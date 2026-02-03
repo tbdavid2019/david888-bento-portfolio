@@ -1,0 +1,280 @@
+[
+  {
+    "type": "github",
+    "title": "DAVID TB",
+    "username": "tbdavid2019",
+    "repoCount": 111,
+    "url": "https://github.com/tbdavid2019",
+    "colSpan": 1
+  },
+  {
+    "type": "link",
+    "title": "LinkedIn",
+    "url": "https://www.linkedin.com/in/david11111/",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+  },
+  {
+    "type": "experience",
+    "yearRange": "Serial Entrepreneur",
+    "description": "成立過 4 家公司，最大團隊管理 300 人以上。單間公司連續 3 年年營業額近 2 億。",
+    "colSpan": 2,
+    "history": [
+      { "name": "CTO/CIO", "hasSeparator": true },
+      { "name": "4x Founder", "hasSeparator": true },
+      { "name": "Full Stack", "hasSeparator": false }
+    ]
+  },
+
+  {
+    "type": "link",
+    "title": "大衛發發發 DAVID888 Blog",
+    "url": "http://blog.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2Jsb2cuZGF2aWQ4ODguY29t/screenshot.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Podcast: DAVID888商業報告[Oli家]",
+    "url": "https://player.soundon.fm/p/david777/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly9wbGF5ZXIuc291bmRvbi5mbS9wL2RhdmlkNzc3Lw==/screenshot.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "台灣標案檢索工具",
+    "url": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdGFpd2FuLXRlbmRlci5wbmc%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "台股預測 (HF Space)",
+    "url": "https://huggingface.co/spaces/tbdavid2019/twStock-predict",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdHdTdG9jay1wcmVkaWN0LnBuZw%3D%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "股市K線判別",
+    "url": "http://git-gl.david888.com:5678/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2dpdC1nbC5kYXZpZDg4OC5jb206NTY3OC8=/screenshot.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "DAVID888 YouTube",
+    "url": "https://youtube.com/playlist?list=PL9BjVCfbuO_Hq4db82qiM9pn46c4yyPYC&si=-mUA1Q4opb31XA_G",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+  },
+  {
+    "type": "link",
+    "title": "Telegram: 股靈精怪 Stock",
+    "url": "https://t.me/oli_billion_bot",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9xZ2tkYVJxbXR5eWJ2amV1ZlVEVGRDVnRLaG02bVZPVHNMRDY4WWZqNGtPanFzU1QtRTkxajFRbUxrUmlnMTloR2NPck5YVGdPMHVMTGRTTFNZUDlaMnRnZ0NvN2I5YTBabFJVOUhaZDFMbHVMejRvb2M3eGl3VWZaZ0ZyazZnaHFncDJSTUJhd0R6cVlya3VHRGw2OUhxOTZidkVFV3ZiWmhIT1dSenRxVmhXNHFJb1BNeF95ZUh4a1FVRnpVVnNMelFZbDZLNjg0UHd6Qmt0Rkx0ckhqV3g4alNKVzhHWVFrQzZkQU5DS2J6bFRqOFlRbGhrOFdEQjAwR1VrSXZON3VjWDh1M2pGbmRVbWFITDNZc21XTXc2bjNqbVVQWFJDczRTQjVEWlVpN2dmVHhGZnJaMlpsRWk3aFd6aFRuNFF0NWl0ZzNSWFphS0NDLVpfcGtaYXcuanBn.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Telegram: Oli Summary 總結王",
+    "url": "https://t.me/quantaar_bot",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9lb0YxUVpmZ09YZVRuQ29NRVozdkt1MEpUWGg0dEtmSFRla0JqR015QmNXOWUzQkFSRHdzNHY0dHlmMFZCTVZuVVRfVnZFRHlYeUxwem9zeTlZeV9wZjZ4YS1RWF8ycUZHOTRiTk5JTHRJWmtyeTNCVF9kR0xaREJEN2dEMVJRenRPcmFGd1NKLU9IdXU3bGFVQzYtN1NPM3huX296Y0s3a2NyRkVoYUdrODZOLUFCb1h5WjVxd0ZUSHdMY2NXUEppUC1vOXlIemhpdVlUTnNYWTVSMmw0SWJ4M211U0ZZNDNlSlRQdkVPSnlfQWtEVmc5REZfdWFHanhCQ2d6U2VLc2lxWWdsRTl0Um1Ea0Zzb1B0cENYREtzVk1qMFFKbVVzSnhQczFycXZyX3hULWZqNTNZb3JRYk8tNGRRU252Q1dBc2R0TkNvVmxyNTBvcXNPbXpaVEEuanBn.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Telegram: Oli家 古靈 Gemini",
+    "url": "https://t.me/oli_photo_bot",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png"
+  },
+  {
+    "type": "link",
+    "title": "Telegram: 小截圖 Screenshot",
+    "url": "https://t.me/oli_img_bot",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png"
+  },
+  {
+    "type": "link",
+    "title": "Telegram: 投資新聞濃縮包",
+    "url": "https://t.me/oliservice",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9oLXhRbXBzdTJzTGpKeEFyYjc4X1pDaE9VSUxGaEprcEotOFNEcUIyYmlKUHVCekQxSHppek1Ob3BXcmJ3SkRoUmQwWjFXRjNfUW16am5mekh1OE5meVdWR1NuZ1ZqTGdCZDliM2pkZVFRZnBFRG1nWUZiSTJlSEZzaS1wdzFYUXNXeGtUOWlvSUd1dEw4UVFfZDd6MzZvYjhfV2dUZVZnc0RJTDZQN1Z4emxsRnMtM3IzenlsbTdVRkhGem50Z3ZlWnBDcUV2T2tfRUg5TldTWEhuSWx1R3poc1BHTV9oOGloQUtVZ3o5M094TFEtbkhqTXJhbzFibDd1Y1ItWFVQRW1ZU3dYN3pGMUtZN3NXY0JoQ3NqZFdORnpwSmZBSTRpNnVkcnBrcDJwT1pqTHJMQWxPQnBlNEgybkxCWHZtVUN2YlU3dWtSVFE5bVVDVlVRcmd1WEEuanBn.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "小濃縮 (Quick Summary)",
+    "url": "https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2twaFVhVlFWcGxYdS1DNmdpalVDNGR4Rjluc0ZpZktoOFRNOHdFTmtyZHdoQV9wMXJGTkFidDVVeU1fVE9QdkF6RGVXN2hjM29wam1WcllXelR5MVBaOEQ9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "TabVoice 分頁學單字",
+    "url": "https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1pUaTdneXBSdGNxX1k5ejAtUnFiQ0M0NVVSOXhOR2w1VXdzQkJkVkVhVVB6MVNTQlFXTmI0SmpaU2RrTlJ6Mk9oY1UxSDFkd202anVVSzlVNlBTdjROT2c1cmc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "LINE 小濃縮",
+    "url": "https://line.me/R/ti/p/@032trcev?from=page&liff.referrer=https%3A%2F%2Fblog.david888.com%2F&accountId=032trcev",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wYWdlLXNoYXJlLmxpbmUubWUvQDAzMnRyY2V2L2dsb2JhbC9vZ19pbWFnZS5wbmc%2FdHM9MTc2OTY0Mzc3MjQ3MA%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Font Changer 改字體",
+    "url": "https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1Q1VGdlU09FaGdoVmlnX0hLRzN2NkZDUERIS0lOV0VfRlVFaTdTMHRKVFo0aW02WTg2VDI1VEQ2NlNjVmo2aUYwWmFHTFBXeTlrc0J2VjhRbUhqV0k5Y2pPQT1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "HF: 股神 AI 投資公司",
+    "url": "https://huggingface.co/spaces/tbdavid2019/ai-hedge-fund",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvYWktaGVkZ2UtZnVuZC5wbmc%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "WebTalk - 網頁聊天",
+    "url": "https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2dMMGZNV3V6NUpzWUZJbkozcjFlcDhWWTZCQTNFbHBmOTdyOWxicG55c0sxODZINnp4Y0FRY21ibE9QM29xQTJfMjdyNkpnRXlSOGpPZ0M5REk1YnJadnc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "HF: Pdf2quiz 考卷產生器",
+    "url": "https://huggingface.co/spaces/tbdavid2019/pdf2quiz",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9odWdnaW5nZmFjZS5jby9mcm9udC90aHVtYm5haWxzL3YyLTIucG5n.png"
+  },
+  {
+    "type": "link",
+    "title": "HF: 病歷格式 Outpatient Records",
+    "url": "https://huggingface.co/spaces/tbdavid2019/outpatient-records",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvb3V0cGF0aWVudC1yZWNvcmRzLnBuZw%3D%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "HF: Stock Top Wick",
+    "url": "https://huggingface.co/spaces/tbdavid2019/stock-top-wick",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvY2stdG9wLXdpY2sucG5n.png"
+  },
+  {
+    "type": "link",
+    "title": "Threads: @david.chinag",
+    "url": "https://www.threads.com/@david.chinag",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9zdGF0aWMuY2RuaW5zdGFncmFtLmNvbS9yc3JjLnBocC92NC95Sy9yLy1mRnlENllLNnQ2LnBuZw%3D%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "HF: 換臉 SwapFace",
+    "url": "https://huggingface.co/spaces/tbdavid2019/SwapFace",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvU3dhcEZhY2UucG5n.png"
+  },
+  {
+    "type": "link",
+    "title": "HF: Store Pulse 店面脈搏",
+    "url": "https://huggingface.co/spaces/tbdavid2019/store-pulse",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvcmUtcHVsc2UucG5n.png"
+  },
+  {
+    "type": "link",
+    "title": "333 奇門遁甲",
+    "url": "https://qi.david888.com/",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/1654/1654235.png"
+  },
+  {
+    "type": "link",
+    "title": "台灣道路施工地圖",
+    "url": "https://tbdavid2019.github.io/tw_road_fix_map/",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/3097/3097180.png"
+  },
+  {
+    "type": "link",
+    "title": "台灣寵物認養地圖",
+    "url": "https://tbdavid2019.github.io/tw_pet_need_map/",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/1076/1076928.png"
+  },
+  {
+    "type": "link",
+    "title": "Short URL Extension",
+    "url": "https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1p5WUpZcXU0MUhsRW1YbUExdnZuWGxQcmhNal82aDJaRUpHd0g4d2JJTDVCUXBESlpiZGVOZFctVE05YUZ1M2NKV01QODF5ZDJ2cXhfdnV1dlV6dkVucVJ4Zz1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "LINE 群組人",
+    "url": "https://line.me/R/ti/p/@377mwhqu",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wYWdlLXNoYXJlLmxpbmUubWUvQDM3N213aHF1L2dsb2JhbC9vZ19pbWFnZS5wbmc%2FdHM9MTc2OTY0Mzc3MzA5NQ%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "LINE 解惑人",
+    "url": "https://line.me/R/ti/p/@728wsrjq",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wYWdlLXNoYXJlLmxpbmUubWUvQDcyOHdzcmpxL2dsb2JhbC9vZ19pbWFnZS5wbmc%2FdHM9MTc2OTY0Mzc3NTEwNg%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "HF: Docs 轉 MD Markdown",
+    "url": "https://huggingface.co/spaces/tbdavid2019/hg-markitdown",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvaGctbWFya2l0ZG93bi5wbmc%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "DAVID888 Daily Podcast",
+    "url": "http://podcast.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wb2RjYXN0LmRhdmlkODg4LmNvbS9vcGVuZ3JhcGgtaW1hZ2UucG5nPzkxYzEzZjdkNDk2NTYwMmE%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Lofi Music - DAVID888",
+    "url": "http://music.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL211c2ljLmRhdmlkODg4LmNvbQ==/screenshot.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "便利商店即期食品查詢",
+    "url": "https://tbdavid2019-taiwan-7-11.hf.space/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly90YmRhdmlkMjAxOS10YWl3YW4tNy0xMS5oZi5zcGFjZQ==/screenshot.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Tabs URL Copy 快速複製",
+    "url": "https://chromewebstore.google.com/detail/tab-url-copy/lfhdpmaolmbejolceggollfelmhbmmkb",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2UzSEoxRE1UNUcxdVlDNTBUUnIwWmttMEM3NHh4UG9VUGVWSXNqXzE5NDc0MHM4clo3d3hxLVV3S2RzMFJURWdYRjZjcWNnd25LN1UyakVNU2cxSHNXX1B4OW89czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Nano banana • Open WebUI",
+    "url": "https://openwebui.com/t/david888/nano_banana",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9iMzViOGIzNzk4ZmIxZTU1YzMxMmMyM2ExZGQ4YzE5ZjA4YzZmOGJjMzQyMjNkMTNmY2M0MmE3OGI1M2Q0ZTVhP2Q9bXA%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "tool.david888 - Handy Tools",
+    "url": "https://tool.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly90b29sLmRhdmlkODg4LmNvbS9iYW5uZXIucG5nP3Y9Mw%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "HF: 台語 TTS",
+    "url": "https://huggingface.co/spaces/tbdavid2019/Taiwanese-tts",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvVGFpd2FuZXNlLXR0cy5wbmc%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "ChatGPT - Oli家: 塔羅牌問事",
+    "url": "https://chatgpt.com/g/g-wpr0oCOgg-olijia-ta-luo-pai-wen-shi",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ%2FaWQ9ZmlsZS1JMFZycXNuSzFpbnBQZFhsd1lTRGdLMTEmZ2l6bW9faWQ9Zy13cHIwb0NPZ2cmdHM9NDkxNTY3JnA9Z3BwJmNpZD0xJnNpZz0xZGFkODExMmU5ZGE3ZjNhNzhiZWQyYjIxODAwNDExMTM5ZDY1MDIyN2FjODFlNGZiZDQ0OWQwZjFjOWYyOTRiJnY9MA%3D%3D.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "stock.david888.com",
+    "url": "https://stock.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9Lb1JSdWdXNVJTMUJxZ19KYWNkQmN5d19GbVBrRG81d09DTWxQNnNMaFF1YWxPNHUwVWgwdFg1SndhVlJ5Rld3V1hKM1E4ZHFzaTFJY0habW1yMDNHLXdnR0lMYmtOa0RRZVpmSzhNLVlIOGVHRnFZWW80OHRRZTdQa3VKN0szNFNZeWttelJObHBxZ1FyTGgzYTZyUlV4dllBVDI5SjdDQ291aFdqUGNCbkxIMXhueDlkajN5OEloZTJPa3FwWEtGMkdOdnhqNVJ0NFRIQndoZEs1amNFcFNBcnMyLXg0TVpNeE5ySm9YR0JfTzJsM3dYOE03OVpqcDJwTkh6UENoRHFKaXNSR2FLSjRXRW5CQ1JfT204SGRVNjIzMU1iZWdwelBRaHZNcFlqVTFFODExby0yRXhRdTFzTVhldzFhX3FJOEZMcXZISmJ5VmxCYmNqc3c5TkEuanBn.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "Costco 好市多最速報",
+    "url": "https://costco.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9NcVFYVzBSajdMekQtN0RjSTJlY0IzMWJrd2ZYQ1JpcWNORnNrYTF5bEozcHlvM3ZFNXRNQnloTFA5TUd3MFF4Q0pqdDhUZld4UGlkVFFaVVdzcmpKMk5hRl9ZZWtTYkV2bVpLV2NPTEtYeUxfOWd1WnNlWWhYSXJkcEpmQVZjTV9IcGlfUHZINEV1WTllcW05RWlZdEpPalBRU3FfbE1XcDlicHRDaDZnVzhLV2REeUc2S3J6TVdndGlOSmlwdmFySXRmbWM2SnVIOU1mR3p4eTN5M2xrdGxNaFpPN21JVnZYREdfaElpdnFyazIwcmZmbW5wdkhEZVBjZktnN3Q5LWZPSnJPenRrSUZWYVBSc19qdEdCVjBaWFNnWEZDalk0dHlsMGYwZlNqMHptcVZ5N1ZWMzUzaHduQW00X24yYlZTYm5IYkFoeTJzSTNiY1NFaU9jbUEuanBn.jpeg"
+  },
+  {
+    "type": "link",
+    "title": "GEM 人生七模組",
+    "url": "https://gemini.google.com/gem/1hpQ_wvQWuGFVPwFhVDwMkhTpcD-MIBxg?usp=sharing",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vbGFtZGEvaW1hZ2VzL2dlbWluaV9hdXJvcmFfdGh1bWJuYWlsXzRnX2U3NDgyMmZmMGNhNDI1OWJlYjcxOC5wbmc%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "GEM 3D 城市天氣卡",
+    "url": "https://gemini.google.com/gem/1-h4FSOBfJOXC5Z6ursBzYv7cBX6fsnTr?usp=sharing",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vbGFtZGEvaW1hZ2VzL2dlbWluaV9hdXJvcmFfdGh1bWJuYWlsXzRnX2U3NDgyMmZmMGNhNDI1OWJlYjcxOC5wbmc%3D.png"
+  }
+]
