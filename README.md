@@ -4,6 +4,12 @@
 
 bento 模板
 
+推送方法
+
+```
+git commit --allow-empty -m "Trigger deployment"
+git push
+```
 
 A modern, responsive bento-grid style portfolio powered by React and Tailwind CSS.
 This project separates data from structure, allowing you to easily manage your content via JSON files.
