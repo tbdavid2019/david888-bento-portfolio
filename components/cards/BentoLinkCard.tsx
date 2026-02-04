@@ -22,7 +22,11 @@ export const BentoLinkCard: React.FC<{ link: BentoLink }> = ({ link }) => {
 
   // Filter out unstable Bento/Creatorspace URLs
   const isUnstableUrl = (url?: string | null) =>
-    url && (url.includes('creatorspace-public') || url.includes('bento'));
+    url && (
+      url.includes('creatorspace-public') ||
+      url.includes('bento') ||
+      url.includes('storage.googleapis.com')
+    );
 
   // Prioritize stable custom images, otherwise fallback to auto-generated favicon
   const imageDisplayUrl = (!isUnstableUrl(link.imageSource) && link.imageSource)
