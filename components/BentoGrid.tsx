@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProfileCard } from './cards/ProfileCard';
+import { ProfileCard } from './ProfileCard';
 import { BentoLinkCard } from './cards/BentoLinkCard';
 import { GithubCard } from './cards/GithubCard';
 import { TwitterCard } from './cards/TwitterCard';
@@ -17,7 +17,7 @@ export const BentoGrid: React.FC = () => {
   return (
     <main className="grid grid-cols-1 lg:grid-cols-[minmax(320px,420px)_1fr] gap-8 items-start">
       <div>
-        <ProfileCard profile={profileData} />
+        <ProfileCard />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {items.map((item, index) => {
