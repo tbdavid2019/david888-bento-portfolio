@@ -32,7 +32,7 @@ David Chiang
 
 [www.linkedin.com linkedin.com ![Image 3](https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9zdGF0aWMubGljZG4uY29tL2Flcm8tdjEvc2MvaC8xYzV1NTc4aWlseGZpNG00ZHZjNHE4MTBx.jpeg)](https://www.linkedin.com/in/david11111/)
 
-[![Image 4](https://storage.googleapis.com/creatorspace-public/sites%2Ffavicons%2FaHR0cHM6Ly9ibG9nLmRhdmlkODg4LmNvbS9mYXZpY29uLmljbw%3D%3D.ico) 大衛發發發 DAVID888 blog.david888.com ![Image 5](https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2Jsb2cuZGF2aWQ4ODguY29t/screenshot.jpeg)](http://blog.david888.com/)
+[![Image 4](https://storage.googleapis.com/creatorspace-public/sites%2Ffavicons%2FaHR0cHM6Ly9ibG9nLmRhdmlkODg4LmNvbS9mYXZpY29uLmljbw%3D%3D.ico) DAVID888 Blog blog.david888.com ![Image 5](https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2Jsb2cuZGF2aWQ4ODguY29t/screenshot.jpeg)](https://blog.david888.com/)
 
 [![Image 6](https://storage.googleapis.com/creatorspace-public/sites%2Ftouchicons%2FaHR0cHM6Ly9wbGF5ZXIuc291bmRvbi5mbS9hc3NldHMvYXBwbGUtdG91Y2gtaWNvbi0xODB4MTgwLnBuZw%3D%3D.png) DAVID888商業報告\[Oli家\] - podcast player.soundon.fm ![Image 7](https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly9wbGF5ZXIuc291bmRvbi5mbS9wL2RhdmlkNzc3Lw==/screenshot.jpeg)](https://player.soundon.fm/p/david777/)
 
