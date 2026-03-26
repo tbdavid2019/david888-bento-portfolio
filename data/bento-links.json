@@ -8,6 +8,16 @@
     "colSpan": 1
   },
   {
+    "type": "project",
+    "title": "888 人生K線 | 八字命理可視化",
+    "description": "獨創八字命理 K 線化工具，將生辰八字轉化為直觀的能量波動圖，輔以 AI 解析您的運勢起伏。",
+    "url": "https://bazi.david888.com",
+    "previewImage": "/bento/bazi-kline.png",
+    "label": "AI 八字可視化",
+    "linkText": "立即體驗人生 K 線",
+    "colSpan": 2
+  },
+  {
     "type": "link",
     "title": "LinkedIn",
     "url": "https://www.linkedin.com/in/david11111/",
