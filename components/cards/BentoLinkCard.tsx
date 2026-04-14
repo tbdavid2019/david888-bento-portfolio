@@ -6,6 +6,7 @@ interface BentoLink {
   url: string;
   image?: string | null;
   imageSource?: string | null;
+  bgClass?: string | null;
 }
 
 const getDomain = (url: string) => {
@@ -33,17 +34,19 @@ export const BentoLinkCard: React.FC<{ link: BentoLink }> = ({ link }) => {
     ? link.imageSource
     : getFaviconUrl(link.url);
 
+  const isBranded = !!link.bgClass;
+
   return (
     <CardWrapper
-      onClick={() => window.open(link.url, '_blank', 'noopener,noreferrer')}
+      onClick={() => window.open(link.url, '_blank', 'noreferrer')}
       className="group min-h-[140px]"
     >
       <div className="flex items-start justify-between">
-        <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 overflow-hidden flex items-center justify-center">
+        <div className={`w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${link.bgClass || 'bg-white dark:bg-slate-800'}`}>
           <img
             src={imageDisplayUrl as string}
             alt={link.title}
-            className="w-full h-full object-cover"
+            className={`w-full h-full ${isBranded ? 'p-2 object-contain' : 'object-cover'}`}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               const faviconUrl = getFaviconUrl(link.url);

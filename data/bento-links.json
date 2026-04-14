@@ -5,7 +5,8 @@
     "username": "tbdavid2019",
     "repoCount": 111,
     "url": "https://github.com/tbdavid2019",
-    "colSpan": 1
+    "colSpan": 1,
+    "bgClass": "bg-slate-900"
   },
   {
     "type": "project",
@@ -21,7 +22,8 @@
     "type": "link",
     "title": "LinkedIn",
     "url": "https://www.linkedin.com/in/david11111/",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+    "bgClass": "bg-[#0077b5]"
   },
   {
     "type": "experience",
@@ -69,7 +71,8 @@
     "type": "link",
     "title": "DAVID888 YouTube",
     "url": "https://youtube.com/playlist?list=PL9BjVCfbuO_Hq4db82qiM9pn46c4yyPYC&si=-mUA1Q4opb31XA_G",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
+    "bgClass": "bg-red-600 font-white"
   },
   {
     "type": "link",
@@ -214,6 +217,27 @@
     "title": "HF: Docs 轉 MD Markdown",
     "url": "https://huggingface.co/spaces/tbdavid2019/hg-markitdown",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvaGctbWFya2l0ZG93bi5wbmc%3D.png"
+  },
+  {
+    "type": "link",
+    "title": "OpenClaw 開發技能 (Skill)",
+    "url": "https://github.com/tbdavid2019/openclaw-docs-skill",
+    "imageSource": "/bento/openclaw-lobster.png",
+    "bgClass": "bg-gradient-to-br from-orange-400 to-red-600 shadow-orange-200"
+  },
+  {
+    "type": "link",
+    "title": "Telegram 開發技能 (Skill)",
+    "url": "https://github.com/tbdavid2019/telegram-docs-skill",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
+    "bgClass": "bg-[#0088cc]"
+  },
+  {
+    "type": "link",
+    "title": "LINE 開發技能 (Skill)",
+    "url": "https://github.com/tbdavid2019/line-docs-skill",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/124/124011.png",
+    "bgClass": "bg-[#06C755]"
   },
   {
     "type": "link",
