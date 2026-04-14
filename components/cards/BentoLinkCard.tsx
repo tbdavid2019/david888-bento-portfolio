@@ -25,7 +25,6 @@ export const BentoLinkCard: React.FC<{ link: BentoLink }> = ({ link }) => {
   const isUnstableUrl = (url?: string | null) =>
     url && (
       url.includes('creatorspace-public') ||
-      url.includes('bento') ||
       url.includes('storage.googleapis.com')
     );
 
