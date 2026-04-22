@@ -3,11 +3,13 @@ export type CardType = 'link' | 'github' | 'twitter' | 'project' | 'experience' 
 export interface BaseCard {
     type: CardType;
     colSpan?: 1 | 2;
+    tag?: string;
 }
 
 export interface LinkCardData extends BaseCard {
     type: 'link';
     title: string;
+    description?: string;
     url: string;
     image?: string | null;
     imageSource?: string | null;

@@ -27,16 +27,16 @@ export const TechStackCard: React.FC<{ data: TechStackCardData }> = ({ data }) =
   return (
     <CardWrapper className="relative overflow-hidden">
       <div className="relative z-10">
-        <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">{data.title || 'Tech Stack'}</h3>
-        <p className="text-slate-500 text-sm mb-8">{data.subtitle || 'Tools I use to bring ideas to life'}</p>
+        <h3 className="font-bold text-2xl mb-2 tracking-tight text-slate-900 dark:text-white">{data.title || 'Tech Stack'}</h3>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mb-10 font-medium">{data.subtitle || 'Tools I use to bring ideas to life'}</p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
           {tools.map((tool, index) => (
             <div
               key={index}
-              className="aspect-square bg-slate-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center group hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-300"
+              className="aspect-square bg-slate-50 dark:bg-slate-800/40 rounded-3xl flex items-center justify-center group hover:bg-primary/20 transition-all duration-500 shadow-sm border border-black/[0.03] dark:border-white/[0.03]"
             >
-              <div className="text-primary/80 group-hover:text-primary group-hover:scale-110 transition-all duration-300">
+              <div className="text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white group-hover:scale-125 transition-all duration-500 ease-out">
                 {tool.icon}
               </div>
             </div>
@@ -45,7 +45,7 @@ export const TechStackCard: React.FC<{ data: TechStackCardData }> = ({ data }) =
       </div>
 
       {/* Background Decorative Blur */}
-      <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/20 dark:bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
     </CardWrapper>
   );
 };

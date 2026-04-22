@@ -57,10 +57,15 @@ export const BentoLinkCard: React.FC<{ link: BentoLink }> = ({ link }) => {
         </div>
       </div>
       <div className="mt-auto pt-6">
-        <div className="text-sm font-semibold text-slate-900 dark:text-white leading-snug">
+        <div className="text-base font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-1">
           {link.title}
         </div>
-        <div className="text-xs text-slate-400 mt-1">{getDomain(link.url)}</div>
+        {link.description && (
+          <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-2 leading-relaxed">
+            {link.description}
+          </div>
+        )}
+        <div className="text-[10px] uppercase font-black tracking-widest text-slate-300 dark:text-slate-600">{getDomain(link.url)}</div>
       </div>
     </CardWrapper>
   );

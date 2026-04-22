@@ -12,12 +12,12 @@ export const TwitterCard: React.FC<{ data: TwitterCardData }> = ({ data }) => {
       onClick={() => window.open(data.url || 'https://twitter.com', '_blank')}
       className="flex flex-col items-center justify-center text-center py-10"
     >
-      <div className="text-blue-400 mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+      <div className="text-secondary mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
         <TwitterLogo />
       </div>
       <div>
-        <div className="text-sm font-bold text-slate-900 dark:text-white mb-1">{data.title || 'Twitter'}</div>
-        <div className="text-xs text-slate-400">{data.username}</div>
+        <div className="text-base font-semibold text-slate-900 dark:text-white mb-1 tracking-tight">{data.title || 'Twitter'}</div>
+        <div className="text-sm font-medium text-slate-500 dark:text-slate-400">{data.username}</div>
       </div>
     </CardWrapper>
   );

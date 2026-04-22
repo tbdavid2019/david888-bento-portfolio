@@ -11,14 +11,16 @@ export const GithubCard: React.FC<{ data: GithubCardData }> = ({ data }) => {
   return (
     <CardWrapper onClick={() => window.open(data.url || 'https://github.com', '_blank')} className="justify-between min-h-[160px]">
       <div className="flex justify-between items-start">
-        <div className="w-10 h-10 flex items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-900 dark:text-white transition-colors">
+        <div className="w-12 h-12 flex items-center justify-center bg-primary/20 text-slate-900 dark:text-white rounded-2xl transition-all duration-300 group-hover:scale-110">
           <GithubLogo />
         </div>
-        <ArrowUpRight className="text-slate-300 dark:text-slate-600 group-hover:text-slate-500 dark:group-hover:text-slate-400 transition-colors" size={20} />
+        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <ArrowUpRight className="text-slate-400 dark:text-slate-500" size={18} />
+        </div>
       </div>
-      <div>
-        <div className="text-sm font-bold text-slate-900 dark:text-white mb-1">{data.title || 'GitHub'}</div>
-        <div className="text-xs text-slate-400">{data.repoCount ? `${data.repoCount} Repositories` : data.username}</div>
+      <div className="mt-4">
+        <div className="text-base font-semibold text-slate-900 dark:text-white mb-1 tracking-tight">{data.title || 'GitHub'}</div>
+        <div className="text-sm font-medium text-slate-500 dark:text-slate-400">{data.repoCount ? `${data.repoCount} Repositories` : data.username}</div>
       </div>
     </CardWrapper>
   );
