@@ -381,5 +381,13 @@
   {
     "source": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vbGFtZGEvaW1hZ2VzL2dlbWluaV9hdXJvcmFfdGh1bWJuYWlsXzRnX2U3NDgyMmZmMGNhNDI1OWJlYjcxOC5wbmc%3D.png",
     "local": "/bento/bento-image-095.png"
+  },
+  {
+    "source": "https://box.david888.com/static/favicon.svg",
+    "local": "/bento/888box.svg"
+  },
+  {
+    "source": "https://url.david888.com/static/favicon.svg",
+    "local": "/bento/888desturl.svg"
   }
 ]

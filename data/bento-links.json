@@ -204,6 +204,22 @@
   },
   {
     "type": "link",
+    "title": "888box 統一資產管理",
+    "description": "開源的類 Dropbox 雲端儲存與資產管理應用程式。",
+    "url": "https://box.david888.com/",
+    "imageSource": "/bento/888box.svg",
+    "tag": "tools"
+  },
+  {
+    "type": "link",
+    "title": "888desturl 最終目的地網址追蹤",
+    "description": "使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。",
+    "url": "https://url.david888.com/",
+    "imageSource": "/bento/888desturl.svg",
+    "tag": "tools"
+  },
+  {
+    "type": "link",
     "title": "333 奇門遁甲",
     "url": "https://qi.david888.com/",
     "imageSource": "https://cdn-icons-png.flaticon.com/512/1654/1654235.png",

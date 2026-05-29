@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-05-28]
+
+### Added
+- **888box 統一資產管理**: Added the open-source Dropbox-like storage and asset management application under the "Handy Tools" section.
+- **888desturl 最終目的地網址追蹤**: Added the redirect trace application under the "Handy Tools" section.
+- **Custom SVG Assets**: Added/cached custom SVG logos for `888box` (`/public/bento/888box.svg`) and `888desturl` (`/public/bento/888desturl.svg`) for optimized loading.
+
 ## [2026-04-22] - Bento Design System & Categorization Update
 
 ### Added
