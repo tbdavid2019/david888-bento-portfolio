@@ -9,12 +9,25 @@
   --spacing-16: 1rem;
   --spacing-24: 1.5rem;
   --spacing-32: 2rem;
+  --paper: #fff5e6;
+  --ink: #0f172a;
+}
+
+html {
+  min-height: 100%;
 }
 
 body {
   @apply antialiased selection:bg-primary/30;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   scroll-behavior: smooth;
+  min-height: 100vh;
+  background: #fff5e6;
+  color: var(--ink);
+}
+
+.dark body {
+  background: #111827;
 }
 
 /* Custom transitions for a premium feel */

@@ -12,18 +12,17 @@ export const CardWrapper: React.FC<CardWrapperProps> = ({ children, className = 
     <div 
       onClick={onClick}
       className={`
-        bg-card-light dark:bg-card-dark 
-        rounded-3xl 
-        border border-black/[0.05] dark:border-white/[0.05] 
-        shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
-        dark:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.3),0_10px_20px_-2px_rgba(0,0,0,0.2)]
-        hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)]
-        dark:hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.4),0_10px_10px_-5px_rgba(0,0,0,0.3)]
+        bg-card-light/92 dark:bg-card-dark/92
+        rounded-[2rem]
+        border border-black/[0.05] dark:border-white/[0.08]
+        shadow-[0_24px_60px_-40px_rgba(15,23,42,0.34)]
+        dark:shadow-[0_24px_60px_-40px_rgba(2,6,23,0.8)]
         transition-all duration-500 ease-out
-        h-full flex flex-col 
+        h-full flex flex-col
         relative overflow-hidden
+        backdrop-blur-xl
         ${noPadding ? '' : 'p-6 md:p-8'}
-        ${onClick ? 'cursor-pointer group hover:-translate-y-1' : ''}
+        ${onClick ? 'cursor-pointer group hover:-translate-y-1.5 hover:shadow-[0_28px_80px_-42px_rgba(15,23,42,0.4)] dark:hover:shadow-[0_28px_80px_-42px_rgba(2,6,23,0.95)]' : ''}
         ${className}
       `}
     >

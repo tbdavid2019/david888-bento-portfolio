@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
-import { FloatingDock } from './components/FloatingDock';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -26,12 +25,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8 pb-32 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen px-4 py-4 transition-colors duration-300 md:px-6 md:py-6">
+      <div className="mx-auto max-w-7xl">
         <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
         <BentoGrid />
       </div>
-      <FloatingDock />
     </div>
   );
 }
