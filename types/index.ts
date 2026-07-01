@@ -4,6 +4,7 @@ export interface BaseCard {
     type: CardType;
     colSpan?: 1 | 2;
     tag?: string;
+    section?: string;
 }
 
 export interface LinkCardData extends BaseCard {

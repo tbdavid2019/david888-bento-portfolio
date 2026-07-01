@@ -103,6 +103,13 @@ export const BentoGrid: React.FC = () => {
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
   const featuredItem = activeItems.find((item) => item.colSpan === 2) ?? activeItems[0];
+  const groupedActiveSections = activeItems.reduce((acc, item) => {
+    const section = item.section || '';
+    if (!acc[section]) acc[section] = [];
+    acc[section].push(item);
+    return acc;
+  }, {} as Record<string, BentoItem[]>);
+  const activeSections = Object.entries(groupedActiveSections);
 
   return (
     <main className="grid gap-6 pb-16 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
@@ -181,16 +188,31 @@ export const BentoGrid: React.FC = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {activeItems.map((item, index) => {
-            const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
+        <div className="space-y-8">
+          {activeSections.map(([section, sectionItems]) => (
+            <div key={section || 'default'} className="space-y-4">
+              {section && (
+                <div className="flex items-center gap-3">
+                  <h4 className="shrink-0 text-sm font-black text-slate-500 dark:text-slate-400">
+                    {section}
+                  </h4>
+                  <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+                </div>
+              )}
 
-            return (
-              <div key={`${activeCategory?.id}-${index}`} className={colSpanClass}>
-                {renderItem(item)}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {sectionItems.map((item, index) => {
+                  const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
+
+                  return (
+                    <div key={`${activeCategory?.id}-${section}-${index}`} className={colSpanClass}>
+                      {renderItem(item)}
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
     </main>

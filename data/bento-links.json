@@ -120,17 +120,21 @@
   },
   {
     "type": "link",
-    "title": "小濃縮 (Quick Summary)",
+    "title": "小濃縮 (Quick Summary & Chat) 333",
+    "description": "一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。",
     "url": "https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2twaFVhVlFWcGxYdS1DNmdpalVDNGR4Rjluc0ZpZktoOFRNOHdFTmtyZHdoQV9wMXJGTkFidDVVeU1fVE9QdkF6RGVXN2hjM29wam1WcllXelR5MVBaOEQ9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
-    "tag": "extensions"
+    "tag": "extensions",
+    "section": "AI 與生產力工具 (AI & Productivity)"
   },
   {
     "type": "link",
-    "title": "TabVoice 分頁學單字",
+    "title": "Tab-Word-Deck 333 分頁學單字",
+    "description": "將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。",
     "url": "https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1pUaTdneXBSdGNxX1k5ejAtUnFiQ0M0NVVSOXhOR2w1VXdzQkJkVkVhVVB6MVNTQlFXTmI0SmpaU2RrTlJ6Mk9oY1UxSDFkd202anVVSzlVNlBTdjROT2c1cmc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
-    "tag": "extensions"
+    "tag": "extensions",
+    "section": "學習與閱讀體驗 (Learning & Reading Experience)"
   },
   {
     "type": "link",
@@ -141,10 +145,12 @@
   },
   {
     "type": "link",
-    "title": "Font Changer 改字體",
+    "title": "Website Font Changer 333 改字體",
+    "description": "高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。",
     "url": "https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1Q1VGdlU09FaGdoVmlnX0hLRzN2NkZDUERIS0lOV0VfRlVFaTdTMHRKVFo0aW02WTg2VDI1VEQ2NlNjVmo2aUYwWmFHTFBXeTlrc0J2VjhRbUhqV0k5Y2pPQT1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
-    "tag": "extensions"
+    "tag": "extensions",
+    "section": "學習與閱讀體驗 (Learning & Reading Experience)"
   },
   {
     "type": "link",
@@ -155,10 +161,12 @@
   },
   {
     "type": "link",
-    "title": "WebTalk - 網頁聊天",
+    "title": "WebTalk 333 - Chat and Summarize on any website.",
+    "description": "結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。",
     "url": "https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2dMMGZNV3V6NUpzWUZJbkozcjFlcDhWWTZCQTNFbHBmOTdyOWxicG55c0sxODZINnp4Y0FRY21ibE9QM29xQTJfMjdyNkpnRXlSOGpPZ0M5REk1YnJadnc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
-    "tag": "extensions"
+    "tag": "extensions",
+    "section": "AI 與生產力工具 (AI & Productivity)"
   },
   {
     "type": "link",
@@ -241,10 +249,12 @@
   },
   {
     "type": "link",
-    "title": "Short URL Extension",
+    "title": "Shorten and undo closed URL 333",
+    "description": "雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。",
     "url": "https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1p5WUpZcXU0MUhsRW1YbUExdnZuWGxQcmhNal82aDJaRUpHd0g4d2JJTDVCUXBESlpiZGVOZFctVE05YUZ1M2NKV01QODF5ZDJ2cXhfdnV1dlV6dkVucVJ4Zz1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
-    "tag": "extensions"
+    "tag": "extensions",
+    "section": "AI 與生產力工具 (AI & Productivity)"
   },
   {
     "type": "link",
@@ -335,10 +345,12 @@
   },
   {
     "type": "link",
-    "title": "Tabs URL Copy 快速複製",
+    "title": "Tabs URL Copy 快速大量複製分頁網址 333",
+    "description": "專為資料彙整與分享設計的效率工具。支援多種格式輸出，一鍵即可將瀏覽器中所有開啟的分頁網址快速複製到剪貼簿。",
     "url": "https://chromewebstore.google.com/detail/tab-url-copy/lfhdpmaolmbejolceggollfelmhbmmkb",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2UzSEoxRE1UNUcxdVlDNTBUUnIwWmttMEM3NHh4UG9VUGVWSXNqXzE5NDc0MHM4clo3d3hxLVV3S2RzMFJURWdYRjZjcWNnd25LN1UyakVNU2cxSHNXX1B4OW89czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
-    "tag": "extensions"
+    "tag": "extensions",
+    "section": "AI 與生產力工具 (AI & Productivity)"
   },
   {
     "type": "link",

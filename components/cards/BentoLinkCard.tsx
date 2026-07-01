@@ -4,6 +4,7 @@ import { CardWrapper } from './CardWrapper';
 interface BentoLink {
   title: string;
   url: string;
+  description?: string;
   image?: string | null;
   imageSource?: string | null;
   bgClass?: string | null;
@@ -61,7 +62,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink }> = ({ link }) => {
           {link.title}
         </div>
         {link.description && (
-          <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-2 leading-relaxed">
+          <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-4 mb-2 leading-relaxed">
             {link.description}
           </div>
         )}
