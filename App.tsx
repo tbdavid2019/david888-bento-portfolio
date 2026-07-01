@@ -2,8 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
 
+export type Locale = 'zh' | 'en';
+
+const getInitialLocale = (): Locale => {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('lang') === 'en' ? 'en' : 'zh';
+};
+
+const getInitialCategory = () => {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('category') || 'social';
+};
+
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [locale, setLocale] = useState<Locale>(getInitialLocale);
+  const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
 
   useEffect(() => {
     // Check system preference on mount
@@ -24,11 +38,32 @@ export default function App() {
     setDarkMode(!darkMode);
   };
 
+  const updateUrlState = (nextLocale = locale, nextCategory = activeCategoryId) => {
+    const params = new URLSearchParams(window.location.search);
+    if (nextLocale === 'en') {
+      params.set('lang', 'en');
+    } else {
+      params.delete('lang');
+    }
+    params.set('category', nextCategory);
+    window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+  };
+
+  const changeLocale = (nextLocale: Locale) => {
+    setLocale(nextLocale);
+    updateUrlState(nextLocale, activeCategoryId);
+  };
+
+  const changeCategory = (nextCategory: string) => {
+    setActiveCategoryId(nextCategory);
+    updateUrlState(locale, nextCategory);
+  };
+
   return (
     <div className="min-h-screen px-4 py-4 transition-colors duration-300 md:px-6 md:py-6">
       <div className="mx-auto max-w-7xl">
-        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
-        <BentoGrid />
+        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} locale={locale} onLocaleChange={changeLocale} />
+        <BentoGrid locale={locale} activeCategoryId={activeCategoryId} onCategoryChange={changeCategory} />
       </div>
     </div>
   );

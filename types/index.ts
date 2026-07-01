@@ -5,12 +5,15 @@ export interface BaseCard {
     colSpan?: 1 | 2;
     tag?: string;
     section?: string;
+    sectionEn?: string;
 }
 
 export interface LinkCardData extends BaseCard {
     type: 'link';
     title: string;
+    titleEn?: string;
     description?: string;
+    descriptionEn?: string;
     url: string;
     image?: string | null;
     imageSource?: string | null;

@@ -1,22 +1,45 @@
 import React from 'react';
 import { Mail, Moon, Sun } from 'lucide-react';
+import type { Locale } from '../App';
 
 interface NavbarProps {
   darkMode: boolean;
   toggleTheme: () => void;
+  locale: Locale;
+  onLocaleChange: (locale: Locale) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
+export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme, locale, onLocaleChange }) => {
   return (
     <nav className="mb-6 flex items-center justify-between gap-4 px-1 md:mb-8">
       <div>
         <div className="font-mono text-2xl font-black text-slate-950 dark:text-white">David888</div>
         <div className="mt-1 hidden text-sm font-semibold text-slate-500 dark:text-slate-400 sm:block">
-          CTO / CIO / AI ML / 遊戲 / AR VR / 各種應用
+          {locale === 'en'
+            ? 'CTO / CIO / AI / ML / Games / AR / VR / Product Builder'
+            : 'CTO / CIO / AI ML / 遊戲 / AR VR / 各種應用'}
         </div>
       </div>
 
       <div className="flex items-center gap-2">
+        <div className="flex h-11 overflow-hidden rounded-full border border-black/[0.06] bg-white text-xs font-black shadow-sm dark:border-white/[0.08] dark:bg-slate-900">
+          <button
+            type="button"
+            onClick={() => onLocaleChange('zh')}
+            className={`px-3 transition-colors ${locale === 'zh' ? 'bg-slate-950 text-white dark:bg-primary dark:text-slate-950' : 'text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white'}`}
+            aria-pressed={locale === 'zh'}
+          >
+            繁
+          </button>
+          <button
+            type="button"
+            onClick={() => onLocaleChange('en')}
+            className={`px-3 transition-colors ${locale === 'en' ? 'bg-slate-950 text-white dark:bg-primary dark:text-slate-950' : 'text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white'}`}
+            aria-pressed={locale === 'en'}
+          >
+            EN
+          </button>
+        </div>
         <button
           onClick={toggleTheme}
           className="flex h-11 w-11 items-center justify-center rounded-full border border-black/[0.06] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"

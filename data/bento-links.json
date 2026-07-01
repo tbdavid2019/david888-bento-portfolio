@@ -121,20 +121,26 @@
   {
     "type": "link",
     "title": "小濃縮 (Quick Summary & Chat) 333",
+    "titleEn": "Quick Summary & Chat 333",
     "description": "一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。",
+    "descriptionEn": "A flexible AI web assistant that integrates with Gemini, ChatGPT, Groq, and custom OpenAI-compatible BaseURLs. Generate web page and YouTube summaries in one click to absorb information faster.",
     "url": "https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2twaFVhVlFWcGxYdS1DNmdpalVDNGR4Rjluc0ZpZktoOFRNOHdFTmtyZHdoQV9wMXJGTkFidDVVeU1fVE9QdkF6RGVXN2hjM29wam1WcllXelR5MVBaOEQ9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "extensions",
-    "section": "AI 與生產力工具 (AI & Productivity)"
+    "section": "AI 與生產力工具 (AI & Productivity)",
+    "sectionEn": "AI & Productivity"
   },
   {
     "type": "link",
     "title": "Tab-Word-Deck 333 分頁學單字",
+    "titleEn": "Tab-Word-Deck 333",
     "description": "將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。",
+    "descriptionEn": "A vocabulary learning extension that turns every new tab into a study moment, with word decks, pronunciation, examples, and review flows built into the browser.",
     "url": "https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1pUaTdneXBSdGNxX1k5ejAtUnFiQ0M0NVVSOXhOR2w1VXdzQkJkVkVhVVB6MVNTQlFXTmI0SmpaU2RrTlJ6Mk9oY1UxSDFkd202anVVSzlVNlBTdjROT2c1cmc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "extensions",
-    "section": "學習與閱讀體驗 (Learning & Reading Experience)"
+    "section": "學習與閱讀體驗 (Learning & Reading Experience)",
+    "sectionEn": "Learning & Reading Experience"
   },
   {
     "type": "link",
@@ -146,19 +152,25 @@
   {
     "type": "link",
     "title": "Website Font Changer 333 改字體",
+    "titleEn": "Website Font Changer 333",
     "description": "高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。",
+    "descriptionEn": "A customizable reading comfort tool that lets users override website fonts with their preferred system fonts, reducing visual fatigue and improving long-form reading.",
     "url": "https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1Q1VGdlU09FaGdoVmlnX0hLRzN2NkZDUERIS0lOV0VfRlVFaTdTMHRKVFo0aW02WTg2VDI1VEQ2NlNjVmo2aUYwWmFHTFBXeTlrc0J2VjhRbUhqV0k5Y2pPQT1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
     "tag": "extensions",
-    "section": "學習與閱讀體驗 (Learning & Reading Experience)"
+    "section": "學習與閱讀體驗 (Learning & Reading Experience)",
+    "sectionEn": "Learning & Reading Experience"
   },
   {
     "type": "link",
     "title": "側邊翻譯 333",
+    "titleEn": "Side Translation 333",
     "description": "提供便捷側邊欄介面的翻譯輔助工具，讓使用者在瀏覽外語網站時能隨時進行對照翻譯，享受無憂的閱讀體驗。",
+    "descriptionEn": "A sidebar translation helper for comparing original and translated text while browsing foreign-language websites.",
     "url": "https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg",
     "tag": "extensions",
-    "section": "學習與閱讀體驗 (Learning & Reading Experience)"
+    "section": "學習與閱讀體驗 (Learning & Reading Experience)",
+    "sectionEn": "Learning & Reading Experience"
   },
   {
     "type": "link",
@@ -170,11 +182,14 @@
   {
     "type": "link",
     "title": "WebTalk 333 - Chat and Summarize on any website.",
+    "titleEn": "WebTalk 333 - Chat and Summarize on any website",
     "description": "結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。",
+    "descriptionEn": "A web summary and real-time communication tool. With WebRTC P2P, users can summarize pages and chat with friends directly on the current website.",
     "url": "https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2dMMGZNV3V6NUpzWUZJbkozcjFlcDhWWTZCQTNFbHBmOTdyOWxicG55c0sxODZINnp4Y0FRY21ibE9QM29xQTJfMjdyNkpnRXlSOGpPZ0M5REk1YnJadnc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "extensions",
-    "section": "AI 與生產力工具 (AI & Productivity)"
+    "section": "AI 與生產力工具 (AI & Productivity)",
+    "sectionEn": "AI & Productivity"
   },
   {
     "type": "link",
@@ -258,27 +273,36 @@
   {
     "type": "link",
     "title": "Shorten and undo closed URL 333",
+    "titleEn": "Shorten and Undo Closed URL 333",
     "description": "雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。",
+    "descriptionEn": "A two-in-one browser utility that combines quick short URL generation with one-click restoration of recently closed tabs.",
     "url": "https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1p5WUpZcXU0MUhsRW1YbUExdnZuWGxQcmhNal82aDJaRUpHd0g4d2JJTDVCUXBESlpiZGVOZFctVE05YUZ1M2NKV01QODF5ZDJ2cXhfdnV1dlV6dkVucVJ4Zz1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
     "tag": "extensions",
-    "section": "AI 與生產力工具 (AI & Productivity)"
+    "section": "AI 與生產力工具 (AI & Productivity)",
+    "sectionEn": "AI & Productivity"
   },
   {
     "type": "link",
     "title": "final destination 檢查網址的最終目的地 333",
+    "titleEn": "Final Destination 333",
     "description": "輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。",
+    "descriptionEn": "A lightweight security utility powered by the 888desturl API. Check the final destination of suspicious links before clicking to reduce redirect risk.",
     "url": "https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln",
     "tag": "extensions",
-    "section": "實用小工具與資安 (Utilities & Security)"
+    "section": "實用小工具與資安 (Utilities & Security)",
+    "sectionEn": "Utilities & Security"
   },
   {
     "type": "link",
     "title": "輪盤選擇器 333",
+    "titleEn": "Roulette Picker 333",
     "description": "支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。",
+    "descriptionEn": "An offline-friendly decision helper with a simple custom option editor and a roulette wheel for quick lightweight choices.",
     "url": "https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp",
     "tag": "extensions",
-    "section": "實用小工具與資安 (Utilities & Security)"
+    "section": "實用小工具與資安 (Utilities & Security)",
+    "sectionEn": "Utilities & Security"
   },
   {
     "type": "link",
@@ -370,11 +394,14 @@
   {
     "type": "link",
     "title": "Tabs URL Copy 快速大量複製分頁網址 333",
+    "titleEn": "Tabs URL Copy 333",
     "description": "專為資料彙整與分享設計的效率工具。支援多種格式輸出，一鍵即可將瀏覽器中所有開啟的分頁網址快速複製到剪貼簿。",
+    "descriptionEn": "A productivity tool for collecting and sharing open tabs. Copy all current tab URLs to the clipboard in multiple output formats with one click.",
     "url": "https://chromewebstore.google.com/detail/tab-url-copy/lfhdpmaolmbejolceggollfelmhbmmkb",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2UzSEoxRE1UNUcxdVlDNTBUUnIwWmttMEM3NHh4UG9VUGVWSXNqXzE5NDc0MHM4clo3d3hxLVV3S2RzMFJURWdYRjZjcWNnd25LN1UyakVNU2cxSHNXX1B4OW89czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "extensions",
-    "section": "AI 與生產力工具 (AI & Productivity)"
+    "section": "AI 與生產力工具 (AI & Productivity)",
+    "sectionEn": "AI & Productivity"
   },
   {
     "type": "link",
