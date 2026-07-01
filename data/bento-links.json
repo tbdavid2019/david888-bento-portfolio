@@ -231,6 +231,25 @@
   },
   {
     "type": "link",
+    "title": "888 Tool",
+    "titleEn": "888 Tool",
+    "description": "常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。",
+    "descriptionEn": "A practical tool hub that gathers the small services and utilities used repeatedly in daily work.",
+    "url": "https://tool.david888.com/",
+    "imageSource": "/bento/888-tool.svg",
+    "tag": "tools"
+  },
+  {
+    "type": "link",
+    "title": "David888 Wiki 團隊知識庫",
+    "titleEn": "David888 Wiki",
+    "description": "團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。",
+    "descriptionEn": "A frequently used internal knowledge base for SOPs, project notes, research logs, and reusable documentation.",
+    "url": "https://wiki.david888.com/",
+    "tag": "tools"
+  },
+  {
+    "type": "link",
     "title": "888desturl 最終目的地網址追蹤",
     "description": "使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。",
     "url": "https://url.david888.com/",
@@ -256,6 +275,15 @@
     "title": "台灣寵物認養地圖",
     "url": "https://tbdavid2019.github.io/tw_pet_need_map/",
     "imageSource": "https://cdn-icons-png.flaticon.com/512/1076/1076928.png",
+    "tag": "tools"
+  },
+  {
+    "type": "link",
+    "title": "URL to Markdown",
+    "titleEn": "URL to Markdown",
+    "description": "把任意網頁快速轉成乾淨 Markdown，適合餵給 LLM、整理閱讀內容或做內部知識沉澱。",
+    "descriptionEn": "Turn almost any webpage into clean Markdown for LLM input, research capture, or internal documentation.",
+    "url": "https://create360.ai/",
     "tag": "tools"
   },
   {
@@ -320,6 +348,34 @@
     "url": "https://github.com/tbdavid2019/openclaw-docs-skill",
     "imageSource": "/bento/openclaw-lobster.png",
     "bgClass": "bg-gradient-to-br from-orange-400 to-red-600 shadow-orange-200",
+    "tag": "skills"
+  },
+  {
+    "type": "link",
+    "title": "CF Notepad Skill",
+    "titleEn": "CF Notepad Skill",
+    "description": "Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。",
+    "descriptionEn": "A skill for Cloudflare-style note editing and lightweight knowledge workflows built around simple hosted tooling.",
+    "url": "https://raw.githubusercontent.com/tbdavid2019/cf-notepad/refs/heads/main/skills/SKILL.md",
+    "tag": "skills"
+  },
+  {
+    "type": "link",
+    "title": "888box Skill",
+    "titleEn": "888box Skill",
+    "description": "把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。",
+    "descriptionEn": "A skill entry for using 888box inside agent workflows for file management, asset organization, and content access.",
+    "url": "https://box.david888.com/skill.php",
+    "imageSource": "/bento/888box.svg",
+    "tag": "skills"
+  },
+  {
+    "type": "link",
+    "title": "AnswerBook API",
+    "titleEn": "AnswerBook API",
+    "description": "可作為知識查詢與回答層的 API 入口，適合串接內部問答、文件檢索與工具流程。",
+    "descriptionEn": "An API entry point for knowledge lookup and answer generation, suitable for internal Q&A, document retrieval, and workflow integrations.",
+    "url": "https://answerbook.david888.com/",
     "tag": "skills"
   },
   {
@@ -390,13 +446,6 @@
     "url": "https://openwebui.com/t/david888/nano_banana",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9iMzViOGIzNzk4ZmIxZTU1YzMxMmMyM2ExZGQ4YzE5ZjA4YzZmOGJjMzQyMjNkMTNmY2M0MmE3OGI1M2Q0ZTVhP2Q9bXA%3D.jpeg",
     "tag": "ai"
-  },
-  {
-    "type": "link",
-    "title": "tool.david888 工具集",
-    "url": "https://tool.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly90b29sLmRhdmlkODg4LmNvbS9iYW5uZXIucG5nP3Y9Mw%3D%3D.jpeg",
-    "tag": "tools"
   },
   {
     "type": "link",
