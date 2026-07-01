@@ -24,8 +24,15 @@
     "type": "link",
     "title": "LinkedIn",
     "url": "https://www.linkedin.com/in/david11111/",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+    "imageSource": "/bento/linkedin.svg",
     "bgClass": "bg-[#0077b5]",
+    "tag": "social"
+  },
+  {
+    "type": "link",
+    "title": "DAVID888 Daily Podcast",
+    "url": "http://podcast.david888.com/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wb2RjYXN0LmRhdmlkODg4LmNvbS9vcGVuZ3JhcGgtaW1hZ2UucG5nPzkxYzEzZjdkNDk2NTYwMmE%3D.jpeg",
     "tag": "social"
   },
   {
@@ -33,13 +40,6 @@
     "title": "大衛發發發 DAVID888 Blog",
     "url": "http://blog.david888.com/",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2Jsb2cuZGF2aWQ4ODguY29t/screenshot.jpeg",
-    "tag": "social"
-  },
-  {
-    "type": "link",
-    "title": "Podcast: DAVID888商業報告[Oli家]",
-    "url": "https://player.soundon.fm/p/david777/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly9wbGF5ZXIuc291bmRvbi5mbS9wL2RhdmlkNzc3Lw==/screenshot.jpeg",
     "tag": "social"
   },
   {
@@ -360,13 +360,6 @@
   },
   {
     "type": "link",
-    "title": "DAVID888 Daily Podcast",
-    "url": "http://podcast.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wb2RjYXN0LmRhdmlkODg4LmNvbS9vcGVuZ3JhcGgtaW1hZ2UucG5nPzkxYzEzZjdkNDk2NTYwMmE%3D.jpeg",
-    "tag": "social"
-  },
-  {
-    "type": "link",
     "title": "Lofi Music 輕音樂",
     "url": "http://music.david888.com/",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL211c2ljLmRhdmlkODg4LmNvbQ==/screenshot.jpeg",
@@ -446,5 +439,12 @@
     "url": "https://gemini.google.com/gem/1-h4FSOBfJOXC5Z6ursBzYv7cBX6fsnTr?usp=sharing",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vbGFtZGEvaW1hZ2VzL2dlbWluaV9hdXJvcmFfdGh1bWJuYWlsXzRnX2U3NDgyMmZmMGNhNDI1OWJlYjcxOC5wbmc%3D.png",
     "tag": "ai"
+  },
+  {
+    "type": "link",
+    "title": "Podcast: DAVID888商業報告[Oli家]",
+    "url": "https://player.soundon.fm/p/david777/",
+    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly9wbGF5ZXIuc291bmRvbi5mbS9wL2RhdmlkNzc3Lw==/screenshot.jpeg",
+    "tag": "social"
   }
 ]

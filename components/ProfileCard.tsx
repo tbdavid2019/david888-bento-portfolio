@@ -55,7 +55,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                     <p className="font-semibold text-slate-900 dark:text-white">
                         {subHeadline}
                     </p>
-                    {bio.slice(0, 4).map((line, index) => (
+                    {bio.slice(0, 5).map((line, index) => (
                         <p key={index}>{line}</p>
                     ))}
                 </div>

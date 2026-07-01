@@ -32,6 +32,24 @@ const categories: CategoryMeta[] = [
     summaryEn: 'Public profiles, content channels, GitHub, LinkedIn, and founder experience.',
   },
   {
+    id: 'extensions',
+    label: '瀏覽器外掛',
+    labelEn: 'Extensions',
+    title: '瀏覽器外掛',
+    titleEn: 'Chrome Extensions',
+    summary: 'Chrome 外掛：摘要、聊天、分頁整理、學單字、改字體，讓日常瀏覽和資料整理更省力。',
+    summaryEn: 'Chrome extensions for summarizing pages, chatting on websites, organizing tabs, learning vocabulary, and improving reading.',
+  },
+  {
+    id: 'skills',
+    label: '開發技能',
+    labelEn: 'Dev Skills',
+    title: '專業開發技能',
+    titleEn: 'Developer Skills',
+    summary: '給 LLM / Agent 使用的開發文件技能與維護能力。',
+    summaryEn: 'Documentation skills and maintenance knowledge designed for LLMs and coding agents.',
+  },
+  {
     id: 'ai',
     label: 'AI 應用',
     labelEn: 'AI Apps',
@@ -66,24 +84,6 @@ const categories: CategoryMeta[] = [
     titleEn: 'Tools & Services',
     summary: '資產管理、轉址追蹤、地圖、查詢工具與個人服務集合。',
     summaryEn: 'Utilities for asset management, redirect tracing, maps, lookup tools, and personal services.',
-  },
-  {
-    id: 'extensions',
-    label: '瀏覽器外掛',
-    labelEn: 'Extensions',
-    title: '瀏覽器外掛',
-    titleEn: 'Chrome Extensions',
-    summary: 'Chrome 外掛：摘要、聊天、分頁整理、學單字、改字體，讓日常瀏覽和資料整理更省力。',
-    summaryEn: 'Chrome extensions for summarizing pages, chatting on websites, organizing tabs, learning vocabulary, and improving reading.',
-  },
-  {
-    id: 'skills',
-    label: '開發技能',
-    labelEn: 'Dev Skills',
-    title: '專業開發技能',
-    titleEn: 'Developer Skills',
-    summary: '給 LLM / Agent 使用的開發文件技能與維護能力。',
-    summaryEn: 'Documentation skills and maintenance knowledge designed for LLMs and coding agents.',
   },
   {
     id: 'others',
@@ -148,9 +148,9 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
       </aside>
 
       <section className="min-w-0 space-y-6">
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/85 md:p-5">
-          <div className="mb-4 flex items-center justify-between gap-4">
-            <div className="text-sm font-black text-slate-950 dark:text-white">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/85">
+          <div className="mb-3 flex items-center justify-between gap-4">
+            <div className="text-xs font-black uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
               {locale === 'en' ? 'Categories' : '分類'}
             </div>
             <div className="shrink-0 text-xs font-bold text-slate-500 dark:text-slate-400">
@@ -170,7 +170,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   key={category.id}
                   type="button"
                   onClick={() => onCategoryChange(category.id)}
-                  className={`inline-flex h-10 items-center gap-2 rounded-full border px-3 text-sm font-bold transition-all duration-200 ${
+                  className={`inline-flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-bold transition-all duration-200 ${
                     isActive
                       ? 'border-slate-950 bg-slate-950 text-white dark:border-primary dark:bg-primary dark:text-slate-950'
                       : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-slate-800/70 dark:text-slate-200 dark:hover:bg-slate-800'
@@ -188,32 +188,32 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
         </div>
 
         {activeCategory && (
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/70 md:p-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-              <div className="max-w-3xl">
-                <div className="text-sm font-black text-slate-500 dark:text-slate-400">
-                  {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
-                </div>
-                <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white md:text-3xl">
+          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white px-5 py-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/70 md:flex-row md:items-center md:justify-between">
+            <div className="min-w-0">
+              <div className="text-xs font-black uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
+                {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
+              </div>
+              <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
+                <h3 className="text-xl font-black text-slate-950 dark:text-white md:text-2xl">
                   {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                <p className="max-w-2xl text-sm text-slate-600 dark:text-slate-300">
                   {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
                 </p>
               </div>
-
-              {featuredItem && 'url' in featuredItem && featuredItem.url && (
-                <a
-                  href={featuredItem.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-slate-950 px-4 text-sm font-black text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
-                >
-                  {locale === 'en' ? 'Featured' : '代表作品'}
-                  <ArrowUpRight size={16} />
-                </a>
-              )}
             </div>
+
+            {featuredItem && 'url' in featuredItem && featuredItem.url && (
+              <a
+                href={featuredItem.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-slate-950 px-4 text-sm font-black text-slate-950 transition-colors hover:bg-slate-950 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-950"
+              >
+                {locale === 'en' ? 'Featured' : '代表作品'}
+                <ArrowUpRight size={16} />
+              </a>
+            )}
           </div>
         )}
 
