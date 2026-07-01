@@ -154,6 +154,14 @@
   },
   {
     "type": "link",
+    "title": "側邊翻譯 333",
+    "description": "提供便捷側邊欄介面的翻譯輔助工具，讓使用者在瀏覽外語網站時能隨時進行對照翻譯，享受無憂的閱讀體驗。",
+    "url": "https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg",
+    "tag": "extensions",
+    "section": "學習與閱讀體驗 (Learning & Reading Experience)"
+  },
+  {
+    "type": "link",
     "title": "HF: 股神 AI 投資公司",
     "url": "https://huggingface.co/spaces/tbdavid2019/ai-hedge-fund",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvYWktaGVkZ2UtZnVuZC5wbmc%3D.png",
@@ -255,6 +263,22 @@
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1p5WUpZcXU0MUhsRW1YbUExdnZuWGxQcmhNal82aDJaRUpHd0g4d2JJTDVCUXBESlpiZGVOZFctVE05YUZ1M2NKV01QODF5ZDJ2cXhfdnV1dlV6dkVucVJ4Zz1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
     "tag": "extensions",
     "section": "AI 與生產力工具 (AI & Productivity)"
+  },
+  {
+    "type": "link",
+    "title": "final destination 檢查網址的最終目的地 333",
+    "description": "輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。",
+    "url": "https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln",
+    "tag": "extensions",
+    "section": "實用小工具與資安 (Utilities & Security)"
+  },
+  {
+    "type": "link",
+    "title": "輪盤選擇器 333",
+    "description": "支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。",
+    "url": "https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp",
+    "tag": "extensions",
+    "section": "實用小工具與資安 (Utilities & Security)"
   },
   {
     "type": "link",

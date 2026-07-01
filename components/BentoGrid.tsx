@@ -21,13 +21,13 @@ type CategoryMeta = {
 const categories: CategoryMeta[] = [
   {
     id: 'social',
-    label: 'Profile',
+    label: '個人入口',
     title: '社交與內容',
     summary: '個人公開入口、內容輸出、GitHub、LinkedIn 與創業經歷。',
   },
   {
     id: 'ai',
-    label: 'AI Apps',
+    label: 'AI 應用',
     title: 'AI 應用與研究',
     summary: 'Hugging Face spaces、命理可視化、文件處理、投資研究與各種 AI prototype。',
   },
@@ -45,25 +45,25 @@ const categories: CategoryMeta[] = [
   },
   {
     id: 'tools',
-    label: 'Tools',
+    label: '實用工具',
     title: '實用工具與服務',
     summary: '資產管理、轉址追蹤、地圖、查詢工具與個人服務集合。',
   },
   {
     id: 'extensions',
-    label: 'Extensions',
+    label: '瀏覽器外掛',
     title: '瀏覽器外掛',
-    summary: 'Chrome extension、生產力、學習、聊天與網址處理工具。',
+    summary: 'Chrome 外掛：摘要、聊天、分頁整理、學單字、改字體，讓日常瀏覽和資料整理更省力。',
   },
   {
     id: 'skills',
-    label: 'Dev Skills',
+    label: '開發技能',
     title: '專業開發技能',
     summary: '給 LLM / Agent 使用的開發文件技能與維護能力。',
   },
   {
     id: 'others',
-    label: 'Others',
+    label: '其他',
     title: '其他作品',
     summary: '暫時不歸類但仍可瀏覽的作品。',
   },
@@ -118,22 +118,22 @@ export const BentoGrid: React.FC = () => {
       </aside>
 
       <section className="min-w-0 space-y-6">
-        <div className="rounded-3xl border border-black/[0.05] bg-white/85 p-4 shadow-[0_18px_50px_-36px_rgba(15,23,42,0.38)] backdrop-blur-md dark:border-white/[0.08] dark:bg-slate-900/85 md:p-5">
-          <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/85 md:p-5">
+          <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="text-2xl font-black text-slate-950 dark:text-white md:text-3xl">
+              <h2 className="text-xl font-black text-slate-950 dark:text-white md:text-2xl">
                 作品分類索引
               </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                這裡不是履歷頁，是 David888 的產品與工具目錄。選一個分類，看對應的 AI、機器人、外掛、工具或內容入口。
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+                選一個分類，看對應的 AI、機器人、外掛、工具或內容入口。
               </p>
             </div>
-            <div className="shrink-0 text-sm font-bold text-slate-500 dark:text-slate-400">
-              {items.length} links / {visibleCategories.length} groups
+            <div className="shrink-0 text-xs font-bold text-slate-500 dark:text-slate-400">
+              {items.length} 個連結 / {visibleCategories.length} 類
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-7">
+          <div className="flex flex-wrap gap-2">
             {visibleCategories.map((category) => {
               const isActive = category.id === activeCategory?.id;
               const count = groupedItems[category.id]?.length ?? 0;
@@ -143,15 +143,17 @@ export const BentoGrid: React.FC = () => {
                   key={category.id}
                   type="button"
                   onClick={() => setActiveCategoryId(category.id)}
-                  className={`min-h-[76px] rounded-2xl border px-3 py-3 text-left transition-all duration-300 ${
+                  className={`inline-flex h-10 items-center gap-2 rounded-full border px-3 text-sm font-bold transition-all duration-200 ${
                     isActive
                       ? 'border-slate-950 bg-slate-950 text-white dark:border-primary dark:bg-primary dark:text-slate-950'
-                      : 'border-black/[0.05] bg-slate-50 text-slate-700 hover:bg-white dark:border-white/[0.08] dark:bg-slate-800/70 dark:text-slate-200 dark:hover:bg-slate-800'
+                      : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-slate-800/70 dark:text-slate-200 dark:hover:bg-slate-800'
                   }`}
                   aria-pressed={isActive}
                 >
-                  <div className="truncate text-sm font-black">{category.label}</div>
-                  <div className="mt-2 text-xs font-semibold opacity-70">{count} items</div>
+                  <span>{category.label}</span>
+                  <span className={`rounded-full px-2 py-0.5 text-xs ${isActive ? 'bg-white/15' : 'bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-400'}`}>
+                    {count}
+                  </span>
                 </button>
               );
             })}
@@ -159,13 +161,13 @@ export const BentoGrid: React.FC = () => {
         </div>
 
         {activeCategory && (
-          <div className="rounded-3xl border border-black/[0.05] bg-white/70 p-5 dark:border-white/[0.08] dark:bg-slate-900/70 md:p-6">
+          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/70 md:p-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="max-w-3xl">
                 <div className="text-sm font-black text-slate-500 dark:text-slate-400">
                   {activeCategory.label}
                 </div>
-                <h3 className="mt-1 text-3xl font-black text-slate-950 dark:text-white">
+                <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white md:text-3xl">
                   {activeCategory.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">

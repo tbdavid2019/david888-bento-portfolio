@@ -22,7 +22,7 @@ export const ProfileCard: React.FC = () => {
                             className="h-20 w-20 rounded-3xl object-cover ring-4 ring-primary/70"
                         />
                         <div>
-                            <h1 className="font-mono text-3xl font-black text-slate-950 dark:text-white">
+                            <h1 className="text-3xl font-black leading-tight text-slate-950 dark:text-white">
                                 {profileData.name}
                             </h1>
                             <p className="mt-2 text-sm font-bold text-slate-600 dark:text-slate-300">
