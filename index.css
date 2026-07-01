@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "David888 Roundhand TC";
+  src: url("/fonts/888Roundhand-Medium_TC.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "David888 JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
 :root {
   --spacing-4: 0.25rem;
   --spacing-8: 0.5rem;
@@ -20,6 +36,7 @@ html {
 body {
   @apply antialiased selection:bg-primary/30;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: "David888 JetBrains Mono", "David888 Roundhand TC", sans-serif;
   scroll-behavior: smooth;
   min-height: 100vh;
   background: #f7f1e6;

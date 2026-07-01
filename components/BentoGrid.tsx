@@ -46,8 +46,8 @@ const categories: CategoryMeta[] = [
     labelEn: 'Tools',
     title: '實用工具與服務',
     titleEn: 'Tools & Services',
-    summary: '日常工作常用的內部工具、知識庫、URL 轉 Markdown 與各種效率服務。',
-    summaryEn: 'Internal tools, wiki workflows, URL-to-Markdown helpers, and practical utilities used in daily work.',
+    summary: '這裡收的是高頻實用入口：內部工具、團隊知識庫、URL 轉 Markdown、決策輔助與各種真的有人每天在用的效率服務。',
+    summaryEn: 'A collection of high-frequency practical tools: internal utilities, team wiki workflows, URL-to-Markdown helpers, decision aids, and daily-use productivity services.',
   },
   {
     id: 'skills',

@@ -233,8 +233,8 @@
     "type": "link",
     "title": "888 Tool",
     "titleEn": "888 Tool",
-    "description": "常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。",
-    "descriptionEn": "A practical tool hub that gathers the small services and utilities used repeatedly in daily work.",
+    "description": "常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。比起單一產品，它更像是我持續擴充的效率箱，適合快速解決小而高頻的實際問題。",
+    "descriptionEn": "A practical tool hub that gathers the small services and utilities used repeatedly in daily work. It works more like an expanding toolbox for solving small but frequent operational needs.",
     "url": "https://tool.david888.com/",
     "imageSource": "/bento/888-tool.svg",
     "tag": "tools"
@@ -243,9 +243,10 @@
     "type": "link",
     "title": "David888 Wiki 團隊知識庫",
     "titleEn": "David888 Wiki",
-    "description": "團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。",
-    "descriptionEn": "A frequently used internal knowledge base for SOPs, project notes, research logs, and reusable documentation.",
+    "description": "團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。對常常跨人協作、需要累積 know-how 的團隊特別實用。",
+    "descriptionEn": "A frequently used internal knowledge base for SOPs, project notes, research logs, and reusable documentation, especially useful for teams that need shared operational memory.",
     "url": "https://wiki.david888.com/",
+    "imageSource": "/bento/wiki.svg",
     "tag": "tools"
   },
   {
@@ -259,8 +260,11 @@
   {
     "type": "link",
     "title": "333 奇門遁甲",
+    "titleEn": "333 Qi Men Dun Jia",
+    "description": "很受歡迎的日常決策工具，超多人每天使用。當你想逢凶化吉、評估時機，或只是遇到猶豫不決想快速做判斷時，都可以立刻打開來參考。",
+    "descriptionEn": "A popular daily decision helper used by many returning users. Open it when you want a quick directional reference for timing, uncertainty, or everyday decision-making.",
     "url": "https://qi.david888.com/",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/1654/1654235.png",
+    "imageSource": "/bento/qimen.svg",
     "tag": "tools"
   },
   {
@@ -281,9 +285,10 @@
     "type": "link",
     "title": "URL to Markdown",
     "titleEn": "URL to Markdown",
-    "description": "把任意網頁快速轉成乾淨 Markdown，適合餵給 LLM、整理閱讀內容或做內部知識沉澱。",
-    "descriptionEn": "Turn almost any webpage into clean Markdown for LLM input, research capture, or internal documentation.",
+    "description": "把任意網頁快速轉成乾淨 Markdown，適合餵給 LLM、整理閱讀內容或做內部知識沉澱。像 `create360.ai/https://webglsoft.com/` 或 `create360.ai/cnn.com` 這樣就能直接取回可處理內容。",
+    "descriptionEn": "Turn almost any webpage into clean Markdown for LLM input, research capture, or internal documentation. URLs like `create360.ai/https://webglsoft.com/` or `create360.ai/cnn.com` can be converted directly.",
     "url": "https://create360.ai/",
+    "imageSource": "/bento/url-markdown.svg",
     "tag": "tools"
   },
   {
