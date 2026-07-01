@@ -29,18 +29,6 @@
     "tag": "social"
   },
   {
-    "type": "experience",
-    "yearRange": "Serial Entrepreneur",
-    "description": "成立過 4 家公司，最大團隊管理 300 人以上。單間公司連續 3 年年營業額近 2 億。",
-    "colSpan": 2,
-    "history": [
-      { "name": "CTO/CIO", "hasSeparator": true },
-      { "name": "4x Founder", "hasSeparator": true },
-      { "name": "Full Stack", "hasSeparator": false }
-    ],
-    "tag": "social"
-  },
-  {
     "type": "link",
     "title": "大衛發發發 DAVID888 Blog",
     "url": "http://blog.david888.com/",

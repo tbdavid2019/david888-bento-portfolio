@@ -2,14 +2,23 @@ import React from 'react';
 import { ExternalLink, Mail, MapPin } from 'lucide-react';
 import { CardWrapper } from './cards/CardWrapper';
 import profileData from '../data/bento-profile.json';
+import type { Locale } from '../App';
 
-export const ProfileCard: React.FC = () => {
+interface ProfileCardProps {
+    locale?: Locale;
+}
+
+export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
     const metrics = [
-        { value: '4', label: '家公司創業' },
-        { value: '111+', label: '開源專案' },
-        { value: '6+', label: 'Chrome extensions' },
-        { value: '1.10M+', label: '單月社群瀏覽' },
+        { value: '4', label: locale === 'en' ? 'Companies founded' : '家公司創業' },
+        { value: '111+', label: locale === 'en' ? 'Open source projects' : '開源專案' },
+        { value: '9+', label: 'Chrome extensions' },
+        { value: '1.10M+', label: locale === 'en' ? 'Monthly social reach' : '單月社群瀏覽' },
     ];
+    const headline = locale === 'en' ? profileData.headlineEn || profileData.headline : profileData.headline;
+    const subHeadline = locale === 'en' ? profileData.subHeadlineEn || profileData.subHeadline : profileData.subHeadline;
+    const bio = locale === 'en' ? profileData.bioEn || profileData.bio : profileData.bio;
+    const contactLine = locale === 'en' ? profileData.contactLineEn || profileData.contactLine : profileData.contactLine;
 
     return (
         <CardWrapper className="p-6 md:p-7">
@@ -26,7 +35,7 @@ export const ProfileCard: React.FC = () => {
                                 {profileData.name}
                             </h1>
                             <p className="mt-2 text-sm font-bold text-slate-600 dark:text-slate-300">
-                                {profileData.headline}
+                                {headline}
                             </p>
                         </div>
                     </div>
@@ -44,9 +53,9 @@ export const ProfileCard: React.FC = () => {
 
                 <div className="mb-7 space-y-3 text-[15px] leading-7 text-slate-700 dark:text-slate-300">
                     <p className="font-semibold text-slate-900 dark:text-white">
-                        {profileData.subHeadline}
+                        {subHeadline}
                     </p>
-                    {profileData.bio.slice(2, 4).map((line, index) => (
+                    {bio.slice(0, 4).map((line, index) => (
                         <p key={index}>{line}</p>
                     ))}
                 </div>
@@ -66,7 +75,7 @@ export const ProfileCard: React.FC = () => {
                 <div className="mt-auto space-y-3 border-t border-black/10 pt-5 text-sm text-slate-600 dark:border-white/10 dark:text-slate-300">
                     <div className="flex items-center gap-3">
                         <MapPin size={16} className="text-slate-400" />
-                        <span>台北 / 高雄，可合作</span>
+                        <span>{contactLine}</span>
                     </div>
                     <div className="flex items-center gap-3">
                         <Mail size={16} className="text-slate-400" />

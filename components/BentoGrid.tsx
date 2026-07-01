@@ -4,7 +4,6 @@ import { ProfileCard } from './ProfileCard';
 import { BentoLinkCard } from './cards/BentoLinkCard';
 import { GithubCard } from './cards/GithubCard';
 import { TwitterCard } from './cards/TwitterCard';
-import { ExperienceCard } from './cards/ExperienceCard';
 import { ProjectCard } from './cards/ProjectCard';
 import { TechStackCard } from './cards/TechStackCard';
 import { DesignSystemCard } from './cards/DesignSystemCard';
@@ -100,7 +99,6 @@ const categories: CategoryMeta[] = [
 const renderItem = (item: BentoItem, locale: Locale) => {
   if (item.type === 'github') return <GithubCard data={item} />;
   if (item.type === 'twitter') return <TwitterCard data={item} />;
-  if (item.type === 'experience') return <ExperienceCard data={item} />;
   if (item.type === 'project') return <ProjectCard data={item} />;
   if (item.type === 'techstack') return <TechStackCard data={item} />;
   if (item.type === 'design-system') return <DesignSystemCard data={item} />;
@@ -146,21 +144,14 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
   return (
     <main className="grid gap-6 pb-16 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
       <aside className="lg:sticky lg:top-6 lg:self-start">
-        <ProfileCard />
+        <ProfileCard locale={locale} />
       </aside>
 
       <section className="min-w-0 space-y-6">
         <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/85 md:p-5">
-          <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-xl font-black text-slate-950 dark:text-white md:text-2xl">
-                {locale === 'en' ? 'Browse by Category' : '作品分類索引'}
-              </h2>
-              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                {locale === 'en'
-                  ? 'Pick a category and jump directly to the relevant AI tools, bots, extensions, services, or content links.'
-                  : '選一個分類，看對應的 AI、機器人、外掛、工具或內容入口。'}
-              </p>
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <div className="text-sm font-black text-slate-950 dark:text-white">
+              {locale === 'en' ? 'Categories' : '分類'}
             </div>
             <div className="shrink-0 text-xs font-bold text-slate-500 dark:text-slate-400">
               {locale === 'en'
