@@ -10,7 +10,7 @@ interface ProfileCardProps {
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
     const metrics = [
-        { value: '4', label: locale === 'en' ? 'Companies founded' : '家公司創業' },
+        { value: '4', label: locale === 'en' ? 'Companies founded' : '創業公司' },
         { value: '111+', label: locale === 'en' ? 'Open source projects' : '開源專案' },
         { value: '9+', label: 'Chrome extensions' },
         { value: '1.10M+', label: locale === 'en' ? 'Monthly social reach' : '單月社群瀏覽' },
@@ -55,7 +55,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                     <p className="font-semibold text-slate-900 dark:text-white">
                         {subHeadline}
                     </p>
-                    {bio.slice(0, 5).map((line, index) => (
+                    {bio.slice(0, 7).map((line, index) => (
                         <p key={index}>{line}</p>
                     ))}
                 </div>
