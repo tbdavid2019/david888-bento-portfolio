@@ -22,6 +22,18 @@
   },
   {
     "type": "link",
+    "title": "333 Taiwanese TTS Hub",
+    "titleEn": "333 Taiwanese TTS Hub",
+    "description": "台語與國語語音模型整合工作台，支援快速試聽、多模型比較、語音生成與展示用途。",
+    "descriptionEn": "A Taiwanese Mandarin and Taiwanese Hokkien TTS workbench for quick listening tests, model comparison, speech generation, and demos.",
+    "url": "https://tbdavid2019.github.io/333TTSWeb/",
+    "imageSource": "https://www.google.com/s2/favicons?domain=tbdavid2019.github.io&sz=128",
+    "tag": "ai",
+    "section": "語音與多模態工具 (Voice & Multimodal)",
+    "sectionEn": "Voice & Multimodal"
+  },
+  {
+    "type": "link",
     "title": "LinkedIn",
     "url": "https://www.linkedin.com/in/david11111/",
     "imageSource": "/bento/linkedin.svg",
