@@ -50,7 +50,7 @@ export const profileContent: Record<Locale, ProfileLocaleContent> = {
         text: '創投機構或投資人需要專業技術盡職調查（Tech Due Diligence），判斷標的物的技術可信度與潛在風險',
       },
       { kind: 'sectionTitle', text: '合作方式：' },
-      { kind: 'note', text: '正職｜兼職｜專案顧問（可依專案規模與深度彈性調整）' },
+      { kind: 'note', text: '正職｜兼職｜顧問' },
       { kind: 'note', text: '謝絕博弈、加密貨幣與交易所相關項目。' },
     ],
   },
