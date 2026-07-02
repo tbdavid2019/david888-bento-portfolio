@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2f5d6c" />
+      <stop offset="100%" stop-color="#82b8c0" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="140" fill="url(#grad)" />
+  <g transform="translate(128, 128) scale(10.6)" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Open Book -->
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    <!-- Brackets/API icon inside book -->
+    <path d="M10 7l-2 2 2 2" stroke-width="1.5" />
+    <path d="M14 7l2 2-2 2" stroke-width="1.5" />
+    <line x1="13" y1="6" x2="11" y2="12" stroke-width="1.5" />
+  </g>
+</svg>

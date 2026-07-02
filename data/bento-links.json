@@ -402,6 +402,7 @@
     "description": "可作為知識查詢與回答層的 API 入口，適合串接內部問答、文件檢索與工具流程。",
     "descriptionEn": "An API entry point for knowledge lookup and answer generation, suitable for internal Q&A, document retrieval, and workflow integrations.",
     "url": "https://answerbook.david888.com/",
+    "imageSource": "/bento/answerbook.svg",
     "tag": "skills"
   },
   {
@@ -451,7 +452,7 @@
     "type": "link",
     "title": "便利商店即期食品查詢",
     "url": "https://tbdavid2019-taiwan-7-11.hf.space/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly90YmRhdmlkMjAxOS10YWl3YW4tNy0xMS5oZi5zcGFjZQ==/screenshot.jpeg",
+    "imageSource": "/bento/expiry_food.svg",
     "tag": "tools"
   },
   {
