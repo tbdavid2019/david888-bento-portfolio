@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0088cc" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="140" fill="url(#grad)" />
+  <g transform="translate(128, 128) scale(10.6)" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Image frame representing screenshot -->
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <polyline points="3,16 9,10 15,16" />
+    <polyline points="12,14 16,10 21,15" />
+    <!-- Small paper plane in the corner -->
+    <path d="M18 6.5l-3.5 1.5 1 1 1.5-1.5z" fill="white" stroke="none" />
+  </g>
+</svg>

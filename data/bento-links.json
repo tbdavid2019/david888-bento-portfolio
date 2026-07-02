@@ -108,16 +108,26 @@
   },
   {
     "type": "link",
+    "title": "Telegram 公開頻道預覽器",
+    "titleEn": "Telegram Channel Viewer",
+    "description": "可以把公開頻道內容轉成 web content，方便快速瀏覽與資料整理。",
+    "descriptionEn": "Convert public Telegram channel posts into easy-to-read web content for fast browsing and clipping.",
+    "url": "https://telegram.david888.com/",
+    "imageSource": "/bento/tg_viewer.svg",
+    "tag": "telegram"
+  },
+  {
+    "type": "link",
     "title": "Telegram: Oli家 古靈 Gemini",
     "url": "https://t.me/oli_photo_bot",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
+    "imageSource": "/bento/tg_gemini.svg",
     "tag": "telegram"
   },
   {
     "type": "link",
     "title": "Telegram: 小截圖 Screenshot",
     "url": "https://t.me/oli_img_bot",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
+    "imageSource": "/bento/tg_screenshot.svg",
     "tag": "telegram"
   },
   {
