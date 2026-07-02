@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06C755" />
+      <stop offset="100%" stop-color="#22c55e" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="140" fill="url(#grad)" />
+  <g transform="translate(128, 128) scale(10.6)" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Chat bubble with summary lines inside -->
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    <line x1="8" y1="8" x2="16" y2="8" stroke-width="1.5" />
+    <line x1="8" y1="12" x2="14" y2="12" stroke-width="1.5" />
+    <!-- Small star sparkle -->
+    <path d="M17 11.5l1-1-1-1-1 1z" fill="white" stroke="none" />
+  </g>
+</svg>

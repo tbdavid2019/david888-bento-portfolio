@@ -53,14 +53,14 @@
     "type": "link",
     "title": "DAVID888 Daily Podcast",
     "url": "http://podcast.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wb2RjYXN0LmRhdmlkODg4LmNvbS9vcGVuZ3JhcGgtaW1hZ2UucG5nPzkxYzEzZjdkNDk2NTYwMmE%3D.jpeg",
+    "imageSource": "/bento/podcast.svg",
     "tag": "social"
   },
   {
     "type": "link",
     "title": "大衛發發發 DAVID888 Blog",
     "url": "http://blog.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2Jsb2cuZGF2aWQ4ODguY29t/screenshot.jpeg",
+    "imageSource": "/bento/blog.svg",
     "tag": "social"
   },
   {
@@ -81,7 +81,7 @@
     "type": "link",
     "title": "股市K線判別",
     "url": "http://git-gl.david888.com:5678/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL2dpdC1nbC5kYXZpZDg4OC5jb206NTY3OC8=/screenshot.jpeg",
+    "imageSource": "/bento/kline.svg",
     "tag": "ai"
   },
   {
@@ -96,14 +96,14 @@
     "type": "link",
     "title": "Telegram: 股靈精怪 Stock",
     "url": "https://t.me/oli_billion_bot",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9xZ2tkYVJxbXR5eWJ2amV1ZlVEVGRDVnRLaG02bVZPVHNMRDY4WWZqNGtPanFzU1QtRTkxajFRbUxrUmlnMTloR2NPck5YVGdPMHVMTGRTTFNZUDlaMnRnZ0NvN2I5YTBabFJVOUhaZDFMbHVMejRvb2M3eGl3VWZaZ0ZyazZnaHFncDJSTUJhd0R6cVlya3VHRGw2OUhxOTZidkVFV3ZiWmhIT1dSenRxVmhXNHFJb1BNeF95ZUh4a1FVRnpVVnNMelFZbDZLNjg0UHd6Qmt0Rkx0ckhqV3g4alNKVzhHWVFrQzZkQU5DS2J6bFRqOFlRbGhrOFdEQjAwR1VrSXZON3VjWDh1M2pGbmRVbWFITDNZc21XTXc2bjNqbVVQWFJDczRTQjVEWlVpN2dmVHhGZnJaMlpsRWk3aFd6aFRuNFF0NWl0ZzNSWFphS0NDLVpfcGtaYXcuanBn.jpeg",
+    "imageSource": "/bento/stock_bot.svg",
     "tag": "telegram"
   },
   {
     "type": "link",
     "title": "Telegram: Oli Summary 總結王",
     "url": "https://t.me/quantaar_bot",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9lb0YxUVpmZ09YZVRuQ29NRVozdkt1MEpUWGg0dEtmSFRla0JqR015QmNXOWUzQkFSRHdzNHY0dHlmMFZCTVZuVVRfVnZFRHlYeUxwem9zeTlZeV9wZjZ4YS1RWF8ycUZHOTRiTk5JTHRJWmtyeTNCVF9kR0xaREJEN2dEMVJRenRPcmFGd1NKLU9IdXU3bGFVQzYtN1NPM3huX296Y0s3a2NyRkVoYUdrODZOLUFCb1h5WjVxd0ZUSHdMY2NXUEppUC1vOXlIemhpdVlUTnNYWTVSMmw0SWJ4M211U0ZZNDNlSlRQdkVPSnlfQWtEVmc5REZfdWFHanhCQ2d6U2VLc2lxWWdsRTl0Um1Ea0Zzb1B0cENYREtzVk1qMFFKbVVzSnhQczFycXZyX3hULWZqNTNZb3JRYk8tNGRRU252Q1dBc2R0TkNvVmxyNTBvcXNPbXpaVEEuanBn.jpeg",
+    "imageSource": "/bento/summary_bot.svg",
     "tag": "telegram"
   },
   {
@@ -124,7 +124,7 @@
     "type": "link",
     "title": "Telegram: 投資新聞濃縮包",
     "url": "https://t.me/oliservice",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9oLXhRbXBzdTJzTGpKeEFyYjc4X1pDaE9VSUxGaEprcEotOFNEcUIyYmlKUHVCekQxSHppek1Ob3BXcmJ3SkRoUmQwWjFXRjNfUW16am5mekh1OE5meVdWR1NuZ1ZqTGdCZDliM2pkZVFRZnBFRG1nWUZiSTJlSEZzaS1wdzFYUXNXeGtUOWlvSUd1dEw4UVFfZDd6MzZvYjhfV2dUZVZnc0RJTDZQN1Z4emxsRnMtM3IzenlsbTdVRkhGem50Z3ZlWnBDcUV2T2tfRUg5TldTWEhuSWx1R3poc1BHTV9oOGloQUtVZ3o5M094TFEtbkhqTXJhbzFibDd1Y1ItWFVQRW1ZU3dYN3pGMUtZN3NXY0JoQ3NqZFdORnpwSmZBSTRpNnVkcnBrcDJwT1pqTHJMQWxPQnBlNEgybkxCWHZtVUN2YlU3dWtSVFE5bVVDVlVRcmd1WEEuanBn.jpeg",
+    "imageSource": "/bento/news_bot.svg",
     "tag": "telegram"
   },
   {
@@ -155,7 +155,7 @@
     "type": "link",
     "title": "LINE 小濃縮",
     "url": "https://line.me/R/ti/p/@032trcev?from=page&liff.referrer=https%3A%2F%2Fblog.david888.com%2F&accountId=032trcev",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wYWdlLXNoYXJlLmxpbmUubWUvQDAzMnRyY2V2L2dsb2JhbC9vZ19pbWFnZS5wbmc%2FdHM9MTc2OTY0Mzc3MjQ3MA%3D%3D.jpeg",
+    "imageSource": "/bento/line_summary.svg",
     "tag": "line"
   },
   {
@@ -331,6 +331,7 @@
     "description": "輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。",
     "descriptionEn": "A lightweight security utility powered by the 888desturl API. Check the final destination of suspicious links before clicking to reduce redirect risk.",
     "url": "https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln",
+    "imageSource": "/bento/dest_url.svg",
     "tag": "extensions",
     "section": "實用小工具與資安 (Utilities & Security)",
     "sectionEn": "Utilities & Security"
@@ -342,6 +343,7 @@
     "description": "支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。",
     "descriptionEn": "An offline-friendly decision helper with a simple custom option editor and a roulette wheel for quick lightweight choices.",
     "url": "https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp",
+    "imageSource": "/bento/roulette.svg",
     "tag": "extensions",
     "section": "實用小工具與資安 (Utilities & Security)",
     "sectionEn": "Utilities & Security"
@@ -350,14 +352,14 @@
     "type": "link",
     "title": "LINE 群組人",
     "url": "https://line.me/R/ti/p/@377mwhqu",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wYWdlLXNoYXJlLmxpbmUubWUvQDM3N213aHF1L2dsb2JhbC9vZ19pbWFnZS5wbmc%2FdHM9MTc2OTY0Mzc3MzA5NQ%3D%3D.jpeg",
+    "imageSource": "/bento/line_group.svg",
     "tag": "line"
   },
   {
     "type": "link",
     "title": "LINE 解惑人",
     "url": "https://line.me/R/ti/p/@728wsrjq",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9wYWdlLXNoYXJlLmxpbmUubWUvQDcyOHdzcmpxL2dsb2JhbC9vZ19pbWFnZS5wbmc%2FdHM9MTc2OTY0Mzc3NTEwNg%3D%3D.jpeg",
+    "imageSource": "/bento/line_solve.svg",
     "tag": "line"
   },
   {
@@ -383,6 +385,7 @@
     "description": "Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。",
     "descriptionEn": "A skill for Cloudflare-style note editing and lightweight knowledge workflows built around simple hosted tooling.",
     "url": "https://raw.githubusercontent.com/tbdavid2019/cf-notepad/refs/heads/main/skills/SKILL.md",
+    "imageSource": "/bento/cf_notepad.svg",
     "tag": "skills"
   },
   {
@@ -445,7 +448,7 @@
     "type": "link",
     "title": "Lofi Music 輕音樂",
     "url": "http://music.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cDovL211c2ljLmRhdmlkODg4LmNvbQ==/screenshot.jpeg",
+    "imageSource": "/bento/music.svg",
     "tag": "tools"
   },
   {
@@ -471,7 +474,7 @@
     "type": "link",
     "title": "Nano banana • Open WebUI",
     "url": "https://openwebui.com/t/david888/nano_banana",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9iMzViOGIzNzk4ZmIxZTU1YzMxMmMyM2ExZGQ4YzE5ZjA4YzZmOGJjMzQyMjNkMTNmY2M0MmE3OGI1M2Q0ZTVhP2Q9bXA%3D.jpeg",
+    "imageSource": "/bento/banana.svg",
     "tag": "ai"
   },
 
@@ -486,14 +489,14 @@
     "type": "link",
     "title": "選出潛力股 | 投資新聞濃縮包 | 333",
     "url": "https://stock.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9Lb1JSdWdXNVJTMUJxZ19KYWNkQmN5d19GbVBrRG81d09DTWxQNnNMaFF1YWxPNHUwVWgwdFg1SndhVlJ5Rld3V1hKM1E4ZHFzaTFJY0habW1yMDNHLXdnR0lMYmtOa0RRZVpmSzhNLVlIOGVHRnFZWW80OHRRZTdQa3VKN0szNFNZeWttelJObHBxZ1FyTGgzYTZyUlV4dllBVDI5SjdDQ291aFdqUGNCbkxIMXhueDlkajN5OEloZTJPa3FwWEtGMkdOdnhqNVJ0NFRIQndoZEs1amNFcFNBcnMyLXg0TVpNeE5ySm9YR0JfTzJsM3dYOE03OVpqcDJwTkh6UENoRHFKaXNSR2FLSjRXRW5CQ1JfT204SGRVNjIzMU1iZWdwelBRaHZNcFlqVTFFODExby0yRXhRdTFzTVhldzFhX3FJOEZMcXZISmJ5VmxCYmNqc3c5TkEuanBn.jpeg",
+    "imageSource": "/bento/stock_bot.svg",
     "tag": "telegram"
   },
   {
     "type": "link",
     "title": "Costco 好市多最速報",
     "url": "https://cost.david888.com/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG41LnRlbGVzY28ucGUvZmlsZS9NcVFYVzBSajdMekQtN0RjSTJlY0IzMWJrd2ZYQ1JpcWNORnNrYTF5bEozcHlvM3ZFNXRNQnloTFA5TUd3MFF4Q0pqdDhUZld4UGlkVFFaVVdzcmpKMk5hRl9ZZWtTYkV2bVpLV2NPTEtYeUxfOWd1WnNlWWhYSXJkcEpmQVZjTV9IcGlfUHZINEV1WTllcW05RWlZdEpPalBRU3FfbE1XcDlicHRDaDZnVzhLV2REeUc2S3J6TVdndGlOSmlwdmFySXRmbWM2SnVIOU1mR3p4eTN5M2xrdGxNaFpPN21JVnZYREdfaElpdnFyazIwcmZmbW5wdkhEZVBjZktnN3Q5LWZPSnJPenRrSUZWYVBSc19qdEdCVjBaWFNnWEZDalk0dHlsMGYwZlNqMHptcVZ5N1ZWMzUzaHduQW00X24yYlZTYm5IYkFoeTJzSTNiY1NFaU9jbUEuanBn.jpeg",
+    "imageSource": "/bento/costco.svg",
     "tag": "telegram"
   },
   {
@@ -514,7 +517,7 @@
     "type": "link",
     "title": "Podcast: DAVID888商業報告[Oli家]",
     "url": "https://player.soundon.fm/p/david777/",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites/aHR0cHM6Ly9wbGF5ZXIuc291bmRvbi5mbS9wL2RhdmlkNzc3Lw==/screenshot.jpeg",
+    "imageSource": "/bento/podcast.svg",
     "tag": "social"
   }
 ]

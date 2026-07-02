@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="140" fill="url(#grad)" />
+  <g transform="translate(128, 128) scale(10.6)" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Roulette circle wheel with segments -->
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="2" />
+    <!-- Dividers -->
+    <line x1="12" y1="3" x2="12" y2="21" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" />
+    <line x1="18.4" y1="5.6" x2="5.6" y2="18.4" />
+  </g>
+</svg>

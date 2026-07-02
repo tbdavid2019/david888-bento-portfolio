@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="140" fill="url(#grad)" />
+  <g transform="translate(128, 128) scale(10.6)" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Cloud shape representing Cloudflare + Notepad lines -->
+    <path d="M12 2v20" />
+    <path d="M17 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z" />
+    <!-- cloud details -->
+    <path d="M10 12a2 2 0 0 1 4 0h1a1.5 1.5 0 0 1 0 3H9a1.5 1.5 0 0 1 0-3z" fill="white" stroke="none" />
+  </g>
+</svg>
