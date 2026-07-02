@@ -60,7 +60,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen px-4 py-4 transition-colors duration-300 md:px-6 md:py-6">
+    <div className="min-h-screen px-4 pb-4 pt-28 transition-colors duration-300 md:px-6 md:pb-6 md:pt-32">
       <div className="mx-auto max-w-7xl">
         <Navbar darkMode={darkMode} toggleTheme={toggleTheme} locale={locale} onLocaleChange={changeLocale} />
         <BentoGrid locale={locale} activeCategoryId={activeCategoryId} onCategoryChange={changeCategory} />
