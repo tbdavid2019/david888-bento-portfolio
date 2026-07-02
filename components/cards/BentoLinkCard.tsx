@@ -47,7 +47,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
       className="group min-h-[140px]"
     >
       <div className="flex items-start justify-between">
-        <div className={`w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${link.bgClass || 'bg-white dark:bg-slate-800'}`}>
+        <div className={`w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${link.bgClass || 'bg-bg-elevated'}`}>
           <img
             src={imageDisplayUrl as string}
             alt={title}
@@ -63,15 +63,15 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
         </div>
       </div>
       <div className="mt-auto pt-6">
-        <div className="text-base font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-1">
+        <div className="text-base font-bold text-text-main leading-tight tracking-tight mb-1">
           {title}
         </div>
         {description && (
-          <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-4 mb-2 leading-relaxed">
+          <div className="text-xs text-text-muted line-clamp-4 mb-2 leading-relaxed">
             {description}
           </div>
         )}
-        <div className="text-[10px] uppercase font-black tracking-widest text-slate-300 dark:text-slate-600">{getDomain(link.url)}</div>
+        <div className="text-[10px] uppercase font-black tracking-widest text-text-muted opacity-60">{getDomain(link.url)}</div>
       </div>
     </CardWrapper>
   );

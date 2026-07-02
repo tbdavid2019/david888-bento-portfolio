@@ -148,12 +148,12 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
       </aside>
 
       <section className="min-w-0 space-y-6">
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/85">
+        <div className="rounded-2xl border border-border bg-bg-surface p-4 shadow-sm">
           <div className="mb-3 flex items-center justify-between gap-4">
-            <div className="text-xs font-black uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
+            <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted">
               {locale === 'en' ? 'Categories' : '分類'}
             </div>
-            <div className="shrink-0 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <div className="shrink-0 text-xs font-bold text-text-muted">
               {locale === 'en'
                 ? `${items.length} links / ${visibleCategories.length} groups`
                 : `${items.length} 個連結 / ${visibleCategories.length} 類`}
@@ -172,13 +172,13 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   onClick={() => onCategoryChange(category.id)}
                   className={`inline-flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-bold transition-all duration-200 ${
                     isActive
-                      ? 'border-slate-950 bg-slate-950 text-white dark:border-primary dark:bg-primary dark:text-slate-950'
-                      : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-slate-800/70 dark:text-slate-200 dark:hover:bg-slate-800'
+                      ? 'border-primary bg-primary text-white dark:text-bg-base'
+                      : 'border-border bg-bg-elevated text-text-muted hover:border-border-hover hover:text-text-main'
                   }`}
                   aria-pressed={isActive}
                 >
                   <span>{locale === 'en' ? category.labelEn : category.label}</span>
-                  <span className={`rounded-full px-2 py-0.5 text-xs ${isActive ? 'bg-white/15' : 'bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-400'}`}>
+                  <span className={`rounded-full px-2 py-0.5 text-xs ${isActive ? 'bg-white/15' : 'bg-bg-surface text-text-muted'}`}>
                     {count}
                   </span>
                 </button>
@@ -188,16 +188,16 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
         </div>
 
         {activeCategory && (
-          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white px-5 py-4 shadow-sm dark:border-white/[0.08] dark:bg-slate-900/70 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
             <div className="min-w-0">
-              <div className="text-xs font-black uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
+              <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted opacity-80">
                 {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
               </div>
               <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
-                <h3 className="text-xl font-black text-slate-950 dark:text-white md:text-2xl">
+                <h3 className="text-xl font-black text-text-main md:text-2xl">
                   {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
                 </h3>
-                <p className="max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+                <p className="max-w-2xl text-sm text-text-muted">
                   {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
                 </p>
               </div>
@@ -208,7 +208,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                 href={featuredItem.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-slate-950 px-4 text-sm font-black text-slate-950 transition-colors hover:bg-slate-950 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-slate-950"
+                className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
               >
                 {locale === 'en' ? 'Featured' : '代表作品'}
                 <ArrowUpRight size={16} />
@@ -222,10 +222,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
             <div key={section || 'default'} className="space-y-4">
               {section && (
                 <div className="flex items-center gap-3">
-                  <h4 className="shrink-0 text-sm font-black text-slate-500 dark:text-slate-400">
+                  <h4 className="shrink-0 text-sm font-black text-text-muted">
                     {section}
                   </h4>
-                  <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+                  <div className="h-px flex-1 bg-border" />
                 </div>
               )}
 

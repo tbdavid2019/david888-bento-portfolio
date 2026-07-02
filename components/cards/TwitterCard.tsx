@@ -16,8 +16,8 @@ export const TwitterCard: React.FC<{ data: TwitterCardData }> = ({ data }) => {
         <TwitterLogo />
       </div>
       <div>
-        <div className="text-base font-semibold text-slate-900 dark:text-white mb-1 tracking-tight">{data.title || 'Twitter'}</div>
-        <div className="text-sm font-medium text-slate-500 dark:text-slate-400">{data.username}</div>
+        <div className="text-base font-semibold text-text-main mb-1 tracking-tight">{data.title || 'Twitter'}</div>
+        <div className="text-sm font-medium text-text-muted">{data.username}</div>
       </div>
     </CardWrapper>
   );
