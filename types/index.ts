@@ -1,3 +1,5 @@
+export type Locale = 'zh' | 'en';
+
 export type CardType = 'link' | 'github' | 'twitter' | 'project' | 'experience' | 'techstack' | 'design-system';
 
 export interface BaseCard {

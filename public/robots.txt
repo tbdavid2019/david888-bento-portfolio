@@ -3,4 +3,5 @@ Allow: /
 Allow: /.well-known/
 Disallow: /.git/
 Disallow: /node_modules/
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 Sitemap: https://david888.com/sitemap.xml

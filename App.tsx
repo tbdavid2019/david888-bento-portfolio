@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
-
-export type Locale = 'zh' | 'en';
+import { defaultCategoryId, getVisibleCategories } from './lib/siteCatalog';
+import { registerPortfolioWebMcp } from './lib/webmcp';
+import type { Locale } from './types';
 
 const getInitialLocale = (): Locale => {
   const params = new URLSearchParams(window.location.search);
@@ -11,13 +12,24 @@ const getInitialLocale = (): Locale => {
 
 const getInitialCategory = () => {
   const params = new URLSearchParams(window.location.search);
-  return params.get('category') || 'social';
+  return params.get('category') || defaultCategoryId;
 };
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
+  const localeRef = useRef(locale);
+  const activeCategoryIdRef = useRef(activeCategoryId);
+  const visibleCategories = getVisibleCategories();
+
+  useEffect(() => {
+    localeRef.current = locale;
+  }, [locale]);
+
+  useEffect(() => {
+    activeCategoryIdRef.current = activeCategoryId;
+  }, [activeCategoryId]);
 
   useEffect(() => {
     // Check system preference on mount
@@ -34,6 +46,22 @@ export default function App() {
     }
   }, [darkMode]);
 
+  useEffect(() => {
+    const cleanup = registerPortfolioWebMcp({
+      getLocale: () => localeRef.current,
+      getActiveCategoryId: () => activeCategoryIdRef.current,
+      setActiveCategoryId: (categoryId) => setCategoryAndSyncUrl(categoryId),
+    });
+
+    return cleanup;
+  }, []);
+
+  useEffect(() => {
+    if (!visibleCategories.some((category) => category.id === activeCategoryId)) {
+      setActiveCategoryId(visibleCategories[0]?.id ?? defaultCategoryId);
+    }
+  }, [activeCategoryId, visibleCategories]);
+
   const toggleTheme = () => {
     setDarkMode(!darkMode);
   };
@@ -49,14 +77,18 @@ export default function App() {
     window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
   };
 
+  const setCategoryAndSyncUrl = (nextCategory: string) => {
+    setActiveCategoryId(nextCategory);
+    updateUrlState(localeRef.current, nextCategory);
+  };
+
   const changeLocale = (nextLocale: Locale) => {
     setLocale(nextLocale);
     updateUrlState(nextLocale, activeCategoryId);
   };
 
   const changeCategory = (nextCategory: string) => {
-    setActiveCategoryId(nextCategory);
-    updateUrlState(locale, nextCategory);
+    setCategoryAndSyncUrl(nextCategory);
   };
 
   return (

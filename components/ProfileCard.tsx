@@ -3,7 +3,7 @@ import { ExternalLink, Mail, MapPin } from 'lucide-react';
 import { CardWrapper } from './cards/CardWrapper';
 import profileData from '../data/bento-profile.json';
 import { profileContent } from '../data/profile-content';
-import type { Locale } from '../App';
+import type { Locale } from '../types';
 
 interface ProfileCardProps {
     locale?: Locale;

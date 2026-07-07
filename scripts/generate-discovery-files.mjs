@@ -50,6 +50,7 @@ function buildRobotsTxt() {
     'Allow: /.well-known/',
     'Disallow: /.git/',
     'Disallow: /node_modules/',
+    'Content-Signal: ai-train=no, search=yes, ai-input=yes',
     `Sitemap: ${siteOrigin}/sitemap.xml`,
     '',
   ].join('\n');

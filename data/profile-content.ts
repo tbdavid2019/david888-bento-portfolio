@@ -1,4 +1,4 @@
-import type { Locale } from '../App';
+import type { Locale } from '../types';
 
 export type ProfileBlock =
   | { kind: 'paragraph'; text: string }
