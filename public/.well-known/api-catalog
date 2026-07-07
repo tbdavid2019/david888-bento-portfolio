@@ -1,0 +1,13 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://david888.com/",
+      "service-doc": [
+        {
+          "href": "https://david888.com/docs/api/",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

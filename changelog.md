@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-07-07] - Agent Discovery, Robots, and Sitemap
+
+### Added
+- **Robots Exclusion Protocol**: Added `/robots.txt` at the site root with explicit `User-agent`, `Allow`, and `Disallow` rules, plus a `Sitemap` reference.
+- **Sitemap Publishing**: Added auto-generated `/sitemap.xml` with canonical URLs for the homepage and agent discovery documentation.
+- **Agent Discovery Endpoints**: Added `/.well-known/api-catalog` and `/docs/api/` to advertise machine-readable and human-readable discovery resources.
+- **Static Host Header Configs**: Added `public/_headers` and `vercel.json` so hosts that support custom headers can emit `Link` headers for `api-catalog` and `service-doc`.
+- **GitHub Pages Compatibility**: Added `public/.nojekyll` to ensure dot-prefixed discovery assets under `/.well-known/` are published correctly.
+
+### Changed
+- **Build Pipeline**: Added `scripts/generate-discovery-files.mjs` and wired it into the `prebuild` step so `robots.txt`, `sitemap.xml`, and the API catalog stay current on publish.
+- **Homepage Metadata**: Added canonical and discovery `<link>` relations in `index.html` for crawlers and agent clients that inspect document metadata.
+
 ## [2026-05-28]
 
 ### Added

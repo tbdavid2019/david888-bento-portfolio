@@ -5,6 +5,7 @@
   "homepage": "https://david888.com",
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/generate-discovery-files.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
