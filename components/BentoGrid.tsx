@@ -9,6 +9,7 @@ import { TechStackCard } from './cards/TechStackCard';
 import { DesignSystemCard } from './cards/DesignSystemCard';
 import { PodcastFeedCard } from './cards/PodcastFeedCard';
 import { BlogFeedCard } from './cards/BlogFeedCard';
+import { GithubActivityCard } from './cards/GithubActivityCard';
 import { categories, siteItems } from '../lib/siteCatalog';
 import type { BentoItem, Locale } from '../types';
 
@@ -156,6 +157,12 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                 {shouldShowPodcastFeed && !section && (
                   <div>
                     <BlogFeedCard locale={locale} />
+                  </div>
+                )}
+
+                {shouldShowPodcastFeed && !section && (
+                  <div>
+                    <GithubActivityCard locale={locale} />
                   </div>
                 )}
 
