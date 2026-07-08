@@ -19,8 +19,12 @@ function stripHtml(value: string) {
   return value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-function getNodeText(parent: Element, selector: string) {
-  return parent.querySelector(selector)?.textContent?.trim() || '';
+function getFirstElementByTagName(parent: Document | Element, tagName: string) {
+  return parent.getElementsByTagName(tagName)[0] ?? null;
+}
+
+function getNodeText(parent: Document | Element, tagName: string) {
+  return getFirstElementByTagName(parent, tagName)?.textContent?.trim() || '';
 }
 
 export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
@@ -43,17 +47,17 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
 
         const xmlText = await response.text();
         const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
-        const parserError = xml.querySelector('parsererror');
+        const parserError = getFirstElementByTagName(xml, 'parsererror');
         if (parserError) {
           throw new Error('Failed to parse podcast RSS');
         }
 
-        const nextEpisodes = Array.from(xml.querySelectorAll('item'))
+        const nextEpisodes = Array.from(xml.getElementsByTagName('item'))
           .slice(0, EPISODE_LIMIT)
           .map((item) => {
             const title = getNodeText(item, 'title');
             const link = getNodeText(item, 'link');
-            const audioUrl = item.querySelector('enclosure')?.getAttribute('url') || null;
+            const audioUrl = getFirstElementByTagName(item, 'enclosure')?.getAttribute('url') || null;
             const pubDate = getNodeText(item, 'pubDate') || null;
             const description = getNodeText(item, 'description') || null;
 
