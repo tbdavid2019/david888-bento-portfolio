@@ -1,0 +1,150 @@
+{
+  "zh": {
+    "headline": "把複雜的技術債，轉化為看得見的商業價值",
+    "subHeadline": "系統越長越大，資料卻四分五裂？",
+    "body": [
+      {
+        "kind": "paragraph",
+        "text": "技術團隊交出一疊厚厚的架構文件，你卻看不出來到底能不能真正落地、能不能支撐未來的業務成長？"
+      },
+      {
+        "kind": "paragraph",
+        "text": "我是具備跨國企業實戰經驗的 CTO 與技術顧問。過去十年，我不只畫藍圖，更親自帶隊把複雜系統從混亂帶向高效，讓技術真正成為商業的加速器，而非包袱。"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "我專注幫你做到三件事："
+      },
+      {
+        "kind": "bullet",
+        "text": "看清技術路線的真實風險與機會"
+      },
+      {
+        "kind": "bullet",
+        "text": "重整破碎的資料流與系統架構"
+      },
+      {
+        "kind": "bullet",
+        "text": "必要時直接進場，帶領團隊把事情做對、做完"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "代表經歷："
+      },
+      {
+        "kind": "paragraph",
+        "text": "企業級電商架構：率領 70 人研發團隊，為全球最大健康與美容零售商打造具備高併發與智慧能力的 SAP eCommerce 平台"
+      },
+      {
+        "kind": "paragraph",
+        "text": "跨系統整合：為全球知名消費性電子品牌串接多通路客服、Salesforce、HubSpot、RingCentral 與 RMA 退換貨流程，大幅提升運營效率"
+      },
+      {
+        "kind": "paragraph",
+        "text": "媒體科技：主導高併發社群平台與生成式內容系統的架構優化，確保穩定性與擴展性"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "特別適合以下情境："
+      },
+      {
+        "kind": "bullet",
+        "text": "準備評估技術團隊的提案，卻需要第二意見把關"
+      },
+      {
+        "kind": "bullet",
+        "text": "系統已出現明顯瓶頸，擔心繼續投資會踩雷"
+      },
+      {
+        "kind": "bullet",
+        "text": "創投機構或投資人需要專業技術盡職調查（Tech Due Diligence），判斷標的物的技術可信度與潛在風險"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "合作方式："
+      },
+      {
+        "kind": "note",
+        "text": "正職｜兼職｜顧問"
+      },
+      {
+        "kind": "note",
+        "text": "謝絕博弈、加密貨幣與交易所相關項目。"
+      }
+    ]
+  },
+  "en": {
+    "headline": "Turn technical complexity into visible business value",
+    "subHeadline": "Systems keep growing, while data gets fragmented?",
+    "body": [
+      {
+        "kind": "paragraph",
+        "text": "Architecture documents can look impressive, yet still leave you unsure whether the system can really ship and support future growth."
+      },
+      {
+        "kind": "paragraph",
+        "text": "I am a CTO and technical advisor with multinational delivery experience. Over the past decade, I have not only designed systems, but also led teams to turn complexity into execution and business leverage."
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "I focus on three outcomes:"
+      },
+      {
+        "kind": "bullet",
+        "text": "Expose the real risks and opportunities behind the proposed technical direction"
+      },
+      {
+        "kind": "bullet",
+        "text": "Rebuild fragmented data flows and system architecture"
+      },
+      {
+        "kind": "bullet",
+        "text": "Step in directly when the team needs hands-on execution leadership"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "Representative experience:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Enterprise e-commerce: led a 70-person engineering team to build a high-concurrency, intelligence-enabled SAP eCommerce platform for the world's largest health and beauty retailer."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Cross-system integration: connected customer support, Salesforce, HubSpot, RingCentral, and RMA workflows for a major global consumer electronics brand, significantly improving operations."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Media technology: led architecture optimization for high-concurrency community platforms and generative content systems to improve stability and scalability."
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "Especially useful when:"
+      },
+      {
+        "kind": "bullet",
+        "text": "You need a second opinion on a technical proposal before committing resources"
+      },
+      {
+        "kind": "bullet",
+        "text": "The system is already showing bottlenecks and you want to avoid expensive mistakes"
+      },
+      {
+        "kind": "bullet",
+        "text": "Investors or funds need technical due diligence on execution credibility and product risk"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "Engagement model:"
+      },
+      {
+        "kind": "note",
+        "text": "Full-time | Part-time | Project advisory, depending on project scope and depth"
+      },
+      {
+        "kind": "note",
+        "text": "No gambling, crypto, or exchange-related projects."
+      }
+    ]
+  }
+}

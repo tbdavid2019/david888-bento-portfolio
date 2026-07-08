@@ -1,3 +1,22 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "title": "tbdavid2019 pushed open333crm",
+      "url": "https://github.com/CreateIntelligens/open333crm/compare/d030c01f82...4d7a4e2992",
+      "updated": "2026-07-08 07:35:33 UTC",
+      "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · July 8, 2026 07:35 1 commit to main 4d7a4e2 docs: 大幅整理 CHANGELOG 與 README"
+    },
+    {
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/425bc5cf7c...87328d542b",
+      "updated": "2026-07-08 07:33:51 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · July 8, 2026 07:33 1 commit to main 87328d5 docs: consolidate all individual changelogs into root CHANGELOG.md"
+    },
+    {
+      "title": "tbdavid2019 pushed open333crm",
+      "url": "https://github.com/CreateIntelligens/open333crm/compare/f3ba7378a4...d030c01f82",
+      "updated": "2026-07-08 07:33:27 UTC",
+      "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · July 8, 2026 07:33 1 commit to main d030c01 chore: release v0.3.0"
+    }
+  ]
 }

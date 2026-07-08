@@ -8,6 +8,7 @@
     "prebuild": "node scripts/generate-discovery-files.mjs",
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
