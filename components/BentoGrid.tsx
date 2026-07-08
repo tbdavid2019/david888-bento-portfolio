@@ -7,6 +7,7 @@ import { TwitterCard } from './cards/TwitterCard';
 import { ProjectCard } from './cards/ProjectCard';
 import { TechStackCard } from './cards/TechStackCard';
 import { DesignSystemCard } from './cards/DesignSystemCard';
+import { PodcastFeedCard } from './cards/PodcastFeedCard';
 import { categories, siteItems } from '../lib/siteCatalog';
 import type { BentoItem, Locale } from '../types';
 
@@ -46,6 +47,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
   const activeCategory =
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
+  const shouldShowPodcastFeed = activeCategory?.id === 'social';
   const featuredItem = activeItems.find((item) => item.colSpan === 2) ?? activeItems[0];
   const groupedActiveSections = activeItems.reduce((acc, item) => {
     const section = locale === 'en' ? item.sectionEn || item.section || '' : item.section || '';
@@ -144,6 +146,12 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
               )}
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {shouldShowPodcastFeed && !section && (
+                  <div className="sm:col-span-2">
+                    <PodcastFeedCard locale={locale} />
+                  </div>
+                )}
+
                 {sectionItems.map((item, index) => {
                   const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
 

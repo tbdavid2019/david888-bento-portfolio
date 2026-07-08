@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-07-08] - Live Podcast Feed Card
+
+### Added
+- **Live Podcast Feed Card**: Added a new featured podcast card in the `social` category that fetches `https://podcast.david888.com/rss.xml` client-side and renders the latest episodes directly on the homepage.
+- **Inline Audio Playback**: Added in-card audio playback for the newest podcast episode using the RSS `enclosure` MP3 URL.
+
+### Changed
+- **Social Category Hero Content**: Promoted the latest podcast episode into a larger featured card with summary text and direct episode access, making the homepage feel more active and less repetitive.
+- **Fallback Behavior**: Added graceful fallback UI when the podcast RSS cannot be loaded, so the page still renders cleanly.
+
 ## [2026-07-07] - Agent Discovery, Robots, and Sitemap
 
 ### Added
