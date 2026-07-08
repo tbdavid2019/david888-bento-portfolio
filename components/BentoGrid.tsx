@@ -22,6 +22,12 @@ const renderItem = (item: BentoItem, locale: Locale) => {
   return <BentoLinkCard link={item as any} locale={locale} />;
 };
 
+const stackedSocialTitles = new Set([
+  'DAVID888 YouTube',
+  'Threads: @david.chinag',
+  'Podcast: DAVID888商業報告[Oli家]',
+]);
+
 interface BentoGridProps {
   locale: Locale;
   activeCategoryId: string;
@@ -161,12 +167,26 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                 )}
 
                 {shouldShowPodcastFeed && !section && (
-                  <div>
+                  <div className="sm:col-span-2">
                     <GithubActivityCard locale={locale} />
                   </div>
                 )}
 
-                {sectionItems.map((item, index) => {
+                {shouldShowPodcastFeed && !section && (
+                  <div className="flex flex-col gap-5">
+                    {sectionItems
+                      .filter((item) => 'title' in item && stackedSocialTitles.has(item.title))
+                      .map((item, index) => (
+                        <div key={`stacked-social-${index}`}>
+                          {renderItem(item, locale)}
+                        </div>
+                      ))}
+                  </div>
+                )}
+
+                {sectionItems
+                  .filter((item) => !shouldShowPodcastFeed || section || !('title' in item) || !stackedSocialTitles.has(item.title))
+                  .map((item, index) => {
                   const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
 
                   return (
