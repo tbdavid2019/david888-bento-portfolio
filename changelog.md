@@ -5,6 +5,7 @@
 ### Added
 - **Live Podcast Feed Card**: Added a new featured podcast card in the `social` category that fetches `https://podcast.david888.com/rss.xml` client-side and renders the latest episodes directly on the homepage.
 - **Inline Audio Playback**: Added in-card audio playback for the newest podcast episode using the RSS `enclosure` MP3 URL.
+- **Live Blog Feed Card**: Added a blog activity card in the `social` category that fetches the latest Ghost posts via the public Content API and surfaces recent articles on the homepage.
 
 ### Changed
 - **Social Category Hero Content**: Promoted the latest podcast episode into a larger featured card with summary text and direct episode access, making the homepage feel more active and less repetitive.
