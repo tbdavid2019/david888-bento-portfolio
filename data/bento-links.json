@@ -51,20 +51,6 @@
   },
   {
     "type": "link",
-    "title": "DAVID888 Daily Podcast",
-    "url": "http://podcast.david888.com/",
-    "imageSource": "/bento/podcast.svg",
-    "tag": "social"
-  },
-  {
-    "type": "link",
-    "title": "大衛發發發 DAVID888 Blog",
-    "url": "http://blog.david888.com/",
-    "imageSource": "/bento/blog.svg",
-    "tag": "social"
-  },
-  {
-    "type": "link",
     "title": "台灣標案檢索工具",
     "url": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdGFpd2FuLXRlbmRlci5wbmc%3D.png",
