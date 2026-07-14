@@ -6,7 +6,7 @@ import { getFunctions } from 'firebase/functions';
 // Firebase Web configuration is public project/app identification data.
 // Admin SDK credentials must remain in firebasekey/ and must never be imported here.
 const firebaseConfig = {
-  apiKey: '***REMOVED***',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: 'aicreate360-official-web-stg.firebaseapp.com',
   projectId: 'aicreate360-official-web-stg',
   storageBucket: 'aicreate360-official-web-stg.firebasestorage.app',
