@@ -34,7 +34,9 @@ export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => 
 
     async function loadActivity() {
       try {
-        const response = await fetch(GITHUB_ACTIVITY_JSON_URL);
+        const response = await fetch(`${GITHUB_ACTIVITY_JSON_URL}?t=${Date.now()}`, {
+          cache: 'no-store',
+        });
         if (!response.ok) {
           throw new Error(`Failed to fetch GitHub activity JSON: ${response.status}`);
         }
