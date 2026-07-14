@@ -58,6 +58,8 @@ export const AnnouncementBar: React.FC<{ data?: AnnouncementData }> = ({
         {liveData.link && liveData.linkLabel && (
           <a
             href={liveData.link}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-10 shrink-0 items-center justify-center gap-2 self-start rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base md:self-center"
           >
             {liveData.linkLabel}

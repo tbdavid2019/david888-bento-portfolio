@@ -71,6 +71,61 @@ To make a card wider (span 2 columns), add `"colSpan": 2` to the object:
 ### 4. Updating Profile
 Edit `data/bento-profile.json` to update your name, bio, avatar, or contact info.
 
+### 5. Updating Profile Copy with Markdown
+Edit `data/profile-content.zh.md` or `data/profile-content.en.md`. The build scripts parse these files into the JSON consumed by the profile card.
+
+### 6. Homepage Announcement
+The announcement editor is available at:
+
+```text
+https://david888.com/?admin=1
+```
+
+After Firebase Authentication login, edit the announcement in the **首頁公告** section. The public announcement document is stored at `announcements/homepage` in Firestore and appears above the homepage categories.
+
+## 🔥 Firebase CRM
+
+The site frontend is hosted on GitHub Pages. Firebase is used only for the backend services:
+
+- Firebase project: `aicreate360-official-web-stg`
+- Web app: `david888-crm2`
+- Firestore: tickets, replies, homepage announcements, and daily ticket counters
+- Authentication: Email/Password for the CRM admin
+- Cloud Functions: `createContactTicket` and `replyToContactTicket` in `asia-east1`
+- SMTP: Gmail credentials are stored in Firebase Secret Manager, never in the repository
+
+### Firebase Files
+
+- `lib/firebase.ts`: public Firebase Web App configuration
+- `lib/crm.ts`: frontend CRM calls and Firestore queries
+- `functions/index.js`: ticket creation, service-number generation, replies, and email delivery
+- `firestore.rules`: public announcement read access and admin-only CRM access
+- `firebase.json` / `.firebaserc`: Firebase deployment configuration
+- `firebasekey/`: local Admin SDK credentials; ignored by Git
+
+### Deploy Firebase Backend
+
+You need Firebase CLI access to the project and the Blaze plan for Cloud Functions:
+
+```bash
+firebase login
+firebase deploy --only firestore:rules,functions --project aicreate360-official-web-stg
+```
+
+The Firebase Authentication user used for the admin console must be in the admin allowlist in `firestore.rules` and `functions/index.js`.
+
+### Configure Gmail SMTP Secrets
+
+Use a Gmail App Password, not your normal Gmail password. Enter the values interactively so they are not written to shell history:
+
+```bash
+firebase functions:secrets:set SMTP_USER --project aicreate360-official-web-stg
+firebase functions:secrets:set SMTP_PASS --project aicreate360-official-web-stg
+firebase deploy --only functions --project aicreate360-official-web-stg
+```
+
+The contact form displays a service number immediately after submission. SMTP sends the admin notification for a new ticket and the customer notification when an admin replies.
+
 ## 🛠 Deployment
 
 This project is ready for **Vercel** or **GitHub Pages**.

@@ -1,5 +1,24 @@
 # Changelog
 
+## [2026-07-14] - Firebase CRM and Homepage Operations
+
+### Added
+
+- **Firebase CRM**: Connected the site to the `aicreate360-official-web-stg` Firebase project and its `david888-crm2` web app.
+- **Contact Form**: Replaced the public email button with a contact form that creates a `CS-YYYYMMDD-0000` service number.
+- **CRM Admin Console**: Added `/?admin=1` for authenticated ticket management, customer replies, and homepage announcement editing.
+- **Homepage Announcements**: Added a Firestore-backed announcement bar above the homepage categories, with external links opening in a new tab.
+- **SMTP Notifications**: Added Firebase Secret Manager bindings for Gmail SMTP so new tickets and admin replies can send email without exposing credentials in the repository.
+- **GitHub Activity Sync**: Added a daily GitHub Actions refresh, retained stale data when GitHub is unavailable, and excluded `david888-bento-portfolio` from the activity feed.
+
+### Changed
+
+- **Profile Content**: Moved the long-form profile copy into maintainable Markdown source files instead of hardcoding the content in React data structures.
+- **Category Navigation**: Converted category counts into iPhone-style notification badges and kept each category button as a fixed square.
+- **Social Layout**: Positioned LinkedIn below the Podcast commercial report card.
+- **Blog Feed**: Rendered feature images for all three live blog posts and aligned the feed content to the top of its card to avoid large empty gaps.
+- **Public Contact Surface**: Removed the visible `104@david888.com` link from the homepage in favor of the contact form.
+
 ## [2026-07-08] - Live Podcast Feed Card
 
 ### Added
