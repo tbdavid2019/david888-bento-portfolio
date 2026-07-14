@@ -98,7 +98,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   key={category.id}
                   type="button"
                   onClick={() => onCategoryChange(category.id)}
-                  className={`flex aspect-square h-24 w-24 shrink-0 flex-col items-center justify-center gap-1 rounded-2xl border text-center text-sm font-bold transition-all duration-200 ${
+                  className={`relative flex aspect-square h-24 w-24 shrink-0 flex-col items-center justify-center rounded-2xl border text-center text-sm font-bold transition-all duration-200 ${
                     isActive
                       ? 'border-primary bg-primary text-white dark:text-bg-base'
                       : 'border-border bg-bg-elevated text-text-muted hover:border-border-hover hover:text-text-main'
@@ -106,10 +106,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   aria-pressed={isActive}
                   aria-label={`${locale === 'en' ? category.labelEn : category.label} (${count})`}
                 >
-                  <span className="max-w-[84px] truncate whitespace-nowrap text-sm leading-5">
+                  <span className="max-w-[84px] truncate whitespace-nowrap px-1 text-sm leading-5">
                     {locale === 'en' ? category.labelEn : category.label}
                   </span>
-                  <span className={`inline-flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs ${isActive ? 'bg-white/15' : 'bg-bg-surface text-text-muted'}`}>
+                  <span className={`absolute right-2 top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-black leading-none ${isActive ? 'bg-white/20 text-white' : 'bg-[var(--error)] text-white'}`}>
                     {count}
                   </span>
                 </button>
