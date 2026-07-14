@@ -9,6 +9,7 @@ setGlobalOptions({ region: 'asia-east1', maxInstances: 5 });
 
 const db = getFirestore();
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '104@david888.com';
+const ADMIN_EMAILS = new Set(['oobwei@gmail.com', 'david@aicreate360.com', '104@david888.com']);
 
 const clean = (value, maxLength) => String(value || '').trim().replace(/[<>]/g, '').slice(0, maxLength);
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -82,7 +83,7 @@ export const createContactTicket = onCall(async (request) => {
 });
 
 export const replyToContactTicket = onCall(async (request) => {
-  if (!request.auth?.token?.email || request.auth.token.email !== ADMIN_EMAIL) {
+  if (!request.auth?.token?.email || !ADMIN_EMAILS.has(request.auth.token.email)) {
     throw new HttpsError('permission-denied', 'Admin authentication is required.');
   }
 

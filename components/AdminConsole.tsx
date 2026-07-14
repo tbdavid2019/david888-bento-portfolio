@@ -9,7 +9,7 @@ const emptyAnnouncement: HomepageAnnouncement = { enabled: false, eyebrow: 'å…¬å
 
 export const AdminConsole: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [email, setEmail] = useState('104@david888.com');
+  const [email, setEmail] = useState('oobwei@gmail.com');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [tickets, setTickets] = useState<ContactTicket[]>([]);
