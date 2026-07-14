@@ -184,13 +184,25 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
               href={post.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-2xl border border-border bg-bg-surface/70 p-4 transition-colors hover:border-border-hover hover:bg-bg-elevated"
+              className="group/post block overflow-hidden rounded-2xl border border-border bg-bg-surface/70 transition-colors hover:border-border-hover hover:bg-bg-elevated"
             >
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-text-muted">
-                {formatDate(post.published_at)}
-              </div>
-              <div className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-text-main">
-                {post.title}
+              {post.feature_image && (
+                <div className="aspect-[16/7] overflow-hidden">
+                  <img
+                    src={post.feature_image}
+                    alt={post.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover/post:scale-[1.03]"
+                  />
+                </div>
+              )}
+              <div className="p-4">
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-text-muted">
+                  {formatDate(post.published_at)}
+                </div>
+                <div className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-text-main">
+                  {post.title}
+                </div>
               </div>
             </a>
           ))}
