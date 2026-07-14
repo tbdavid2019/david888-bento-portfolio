@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Moon, Sun } from 'lucide-react';
-import type { Locale } from '../App';
+import type { Locale } from '../types';
 
 interface NavbarProps {
   darkMode: boolean;

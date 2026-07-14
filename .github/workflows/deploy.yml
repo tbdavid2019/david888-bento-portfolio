@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # 09:17 Asia/Taipei. GitHub may delay scheduled workflows during high load.
+    - cron: "17 1 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read

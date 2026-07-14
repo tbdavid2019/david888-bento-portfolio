@@ -18,5 +18,10 @@
       "updated": "2026-07-08 07:33:27 UTC",
       "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · July 8, 2026 07:33 1 commit to main d030c01 chore: release v0.3.0"
     }
+  ],
+  "lastSyncedAt": "2026-07-08T07:35:33.000Z",
+  "syncStatus": "stale",
+  "excludedRepositories": [
+    "david888-bento-portfolio"
   ]
 }

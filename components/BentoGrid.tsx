@@ -10,6 +10,7 @@ import { DesignSystemCard } from './cards/DesignSystemCard';
 import { PodcastFeedCard } from './cards/PodcastFeedCard';
 import { BlogFeedCard } from './cards/BlogFeedCard';
 import { GithubActivityCard } from './cards/GithubActivityCard';
+import { AnnouncementBar } from './AnnouncementBar';
 import { categories, siteItems } from '../lib/siteCatalog';
 import type { BentoItem, Locale } from '../types';
 
@@ -63,7 +64,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
     acc[section].push(item);
     return acc;
   }, {} as Record<string, BentoItem[]>);
-  const activeSections = Object.entries(groupedActiveSections);
+  const activeSections: Array<[string, BentoItem[]]> = Object.entries(groupedActiveSections);
 
   return (
     <main className="grid gap-6 pb-16 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
@@ -72,6 +73,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
       </aside>
 
       <section className="min-w-0 space-y-6">
+        <AnnouncementBar />
+
         <div className="rounded-2xl border border-border bg-bg-surface p-4 shadow-sm">
           <div className="mb-3 flex items-center justify-between gap-4">
             <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted">
@@ -84,7 +87,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="-mx-1 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max flex-nowrap gap-3">
             {visibleCategories.map((category) => {
               const isActive = category.id === activeCategory?.id;
               const count = groupedItems[category.id]?.length ?? 0;
@@ -94,20 +98,24 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   key={category.id}
                   type="button"
                   onClick={() => onCategoryChange(category.id)}
-                  className={`inline-flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-bold transition-all duration-200 ${
+                  className={`flex aspect-square h-20 w-20 shrink-0 flex-col items-center justify-center gap-1 rounded-2xl border text-center text-sm font-bold transition-all duration-200 md:h-[84px] md:w-[84px] ${
                     isActive
                       ? 'border-primary bg-primary text-white dark:text-bg-base'
                       : 'border-border bg-bg-elevated text-text-muted hover:border-border-hover hover:text-text-main'
                   }`}
                   aria-pressed={isActive}
+                  aria-label={`${locale === 'en' ? category.labelEn : category.label} (${count})`}
                 >
-                  <span>{locale === 'en' ? category.labelEn : category.label}</span>
-                  <span className={`rounded-full px-2 py-0.5 text-xs ${isActive ? 'bg-white/15' : 'bg-bg-surface text-text-muted'}`}>
+                  <span className="max-w-[68px] truncate whitespace-nowrap text-[11px] leading-4 md:text-xs">
+                    {locale === 'en' ? category.labelEn : category.label}
+                  </span>
+                  <span className={`inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] ${isActive ? 'bg-white/15' : 'bg-bg-surface text-text-muted'}`}>
                     {count}
                   </span>
                 </button>
               );
             })}
+            </div>
           </div>
         </div>
 

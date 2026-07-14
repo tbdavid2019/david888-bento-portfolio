@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardWrapper } from './CardWrapper';
-import type { Locale } from '../../App';
+import type { Locale } from '../../types';
 
 interface BentoLink {
   title: string;

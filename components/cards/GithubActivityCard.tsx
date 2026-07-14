@@ -15,6 +15,8 @@ type GithubActivityEntry = {
 
 type GithubActivityPayload = {
   entries: GithubActivityEntry[];
+  lastSyncedAt?: string;
+  syncStatus?: 'ok' | 'stale';
 };
 
 function normalizeText(value: string) {
@@ -24,6 +26,8 @@ function normalizeText(value: string) {
 export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => {
   const [entries, setEntries] = React.useState<GithubActivityEntry[]>([]);
   const [isReady, setIsReady] = React.useState(false);
+  const [lastSyncedAt, setLastSyncedAt] = React.useState<string | null>(null);
+  const [syncStatus, setSyncStatus] = React.useState<'ok' | 'stale'>('ok');
 
   React.useEffect(() => {
     let cancelled = false;
@@ -49,12 +53,16 @@ export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => 
 
         if (!cancelled) {
           setEntries(nextEntries);
+          setLastSyncedAt(payload.lastSyncedAt || null);
+          setSyncStatus(payload.syncStatus === 'stale' ? 'stale' : 'ok');
           setIsReady(true);
         }
       } catch (error) {
         console.error(error);
         if (!cancelled) {
           setEntries([]);
+          setLastSyncedAt(null);
+          setSyncStatus('stale');
           setIsReady(true);
         }
       }
@@ -89,6 +97,21 @@ export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => 
     return formatter.format(date);
   };
 
+  const formatSyncDate = (value: string | null) => {
+    if (!value) return null;
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+
+    return new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : 'zh-TW', {
+      month: 'numeric',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(date);
+  };
+
+  const syncDateLabel = formatSyncDate(lastSyncedAt);
+
   return (
     <CardWrapper className="min-h-[280px] justify-between border-border bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.06),transparent_35%),linear-gradient(160deg,rgba(255,252,247,0.96),rgba(248,244,238,0.9))] dark:bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_35%),linear-gradient(160deg,rgba(34,29,26,0.96),rgba(24,20,18,0.9))]">
       <div className="flex items-start justify-between gap-4">
@@ -98,11 +121,22 @@ export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => 
           </div>
           <div>
             <div className="text-[11px] font-black uppercase tracking-[0.24em] text-text-muted">
-              {locale === 'en' ? 'Build-time Atom Feed' : 'Build-time Atom Feed'}
+              {locale === 'en' ? 'Daily GitHub Sync' : '每日 GitHub 同步'}
             </div>
             <h3 className="mt-2 text-lg font-black leading-tight text-text-main">
               {locale === 'en' ? 'Latest GitHub Activity' : '最新 GitHub 動態'}
             </h3>
+            {syncDateLabel && (
+              <div className={`mt-2 text-xs font-bold ${syncStatus === 'stale' ? 'text-warning' : 'text-text-muted'}`}>
+                {syncStatus === 'stale'
+                  ? locale === 'en'
+                    ? `Last successful sync: ${syncDateLabel}`
+                    : `上次成功同步：${syncDateLabel}`
+                  : locale === 'en'
+                    ? `Synced: ${syncDateLabel}`
+                    : `最後同步：${syncDateLabel}`}
+              </div>
+            )}
           </div>
         </div>
 
