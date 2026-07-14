@@ -59,7 +59,6 @@ async function run() {
       "alternateName": "David888",
       "url": "https://david888.com/",
       "image": "https://david888.com/bento/bento-image-002.png",
-      "email": profile.email,
       "jobTitle": "CTO & Technical Advisor",
       "description": combinedDesc,
       "sameAs": sameAs
@@ -96,7 +95,6 @@ ${JSON.stringify(schemaJson, null, 2)}
   <div class="sr-only" style="display: none;" aria-hidden="true">
     <header>
       <h1>${profile.name}</h1>
-      <p><strong>Email:</strong> ${profile.email}</p>
       <p><strong>Contact:</strong> ${profile.contactLine} / ${profile.contactLineEn || ''}</p>
       
       <h2>${content.zh.headline}</h2>

@@ -1,6 +1,7 @@
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getFunctions } from 'firebase/functions';
 
 // Firebase Web configuration is public project/app identification data.
 // Admin SDK credentials must remain in firebasekey/ and must never be imported here.
@@ -17,3 +18,4 @@ const firebaseConfig = {
 export const firebaseApp = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
 export const firebaseDb = getFirestore(firebaseApp);
+export const firebaseFunctions = getFunctions(firebaseApp, 'asia-east1');

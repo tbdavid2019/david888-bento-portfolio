@@ -7,9 +7,10 @@ interface NavbarProps {
   toggleTheme: () => void;
   locale: Locale;
   onLocaleChange: (locale: Locale) => void;
+  onContact: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme, locale, onLocaleChange }) => {
+export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme, locale, onLocaleChange, onContact }) => {
   return (
     <div className="fixed inset-x-0 top-3 z-50 px-4 md:top-4 md:px-6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[28px] border border-border bg-bg-surface px-4 py-3 shadow-[0_18px_50px_rgba(15,23,42,0.08)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.3)] backdrop-blur-xl">
@@ -52,13 +53,14 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme, locale, o
               <Moon size={18} className="text-text-main" />
             )}
           </button>
-          <a
-            href="mailto:104@david888.com"
+          <button
+            type="button"
+            onClick={onContact}
             className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-black text-white dark:text-bg-base transition-all duration-300 hover:opacity-90"
           >
             <Mail size={16} />
-            <span className="hidden sm:inline">104@david888.com</span>
-          </a>
+            <span>{locale === 'zh' ? '聯絡我' : 'Contact me'}</span>
+          </button>
         </div>
       </nav>
     </div>

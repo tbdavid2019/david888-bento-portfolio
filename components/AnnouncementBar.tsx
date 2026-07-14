@@ -14,11 +14,29 @@ type AnnouncementData = {
 export const AnnouncementBar: React.FC<{ data?: AnnouncementData }> = ({
   data = announcement,
 }) => {
-  if (!data.enabled || !data.title) return null;
+  const [liveData, setLiveData] = React.useState<AnnouncementData>(data);
+
+  React.useEffect(() => {
+    if (!data.enabled) return undefined;
+    let active = true;
+    void import('../lib/crm')
+      .then(({ loadHomepageAnnouncement }) => loadHomepageAnnouncement())
+      .then((remote) => {
+        if (active && remote) setLiveData(remote);
+      })
+      .catch(() => {
+        // The static JSON remains the offline fallback when Firebase is unavailable.
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  if (!liveData.enabled || !liveData.title) return null;
 
   return (
     <aside
-      aria-label={data.eyebrow || 'Announcement'}
+      aria-label={liveData.eyebrow || 'Announcement'}
       aria-live="polite"
       className="border border-primary/25 bg-[linear-gradient(105deg,var(--primary-glow),transparent_62%)] px-5 py-4 shadow-sm"
     >
@@ -29,21 +47,21 @@ export const AnnouncementBar: React.FC<{ data?: AnnouncementData }> = ({
           </span>
           <div className="min-w-0">
             <div className="text-[11px] font-black uppercase tracking-[0.24em] text-primary">
-              {data.eyebrow || 'Announcement'}
+              {liveData.eyebrow || 'Announcement'}
             </div>
             <h2 className="mt-1 text-base font-black leading-6 text-text-main md:text-lg">
-              {data.title}
+              {liveData.title}
             </h2>
-            {data.body && <p className="mt-1 text-sm leading-6 text-text-muted">{data.body}</p>}
+            {liveData.body && <p className="mt-1 text-sm leading-6 text-text-muted">{liveData.body}</p>}
           </div>
         </div>
 
-        {data.link && data.linkLabel && (
+        {liveData.link && liveData.linkLabel && (
           <a
-            href={data.link}
+            href={liveData.link}
             className="inline-flex h-10 shrink-0 items-center justify-center gap-2 self-start rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base md:self-center"
           >
-            {data.linkLabel}
+            {liveData.linkLabel}
             <ArrowUpRight size={15} />
           </a>
         )}

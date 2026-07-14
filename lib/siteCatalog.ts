@@ -205,7 +205,6 @@ export function getProfileSummary(locale: Locale) {
   const visibleCategories = getVisibleCategories();
   return {
     name: profileData.name,
-    email: profileData.email,
     contactLine: locale === 'en' ? profileData.contactLineEn || profileData.contactLine : profileData.contactLine,
     headline: content.headline,
     subHeadline: content.subHeadline,

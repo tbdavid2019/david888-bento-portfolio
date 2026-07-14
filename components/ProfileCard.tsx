@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Mail, MapPin } from 'lucide-react';
+import { ExternalLink, MapPin } from 'lucide-react';
 import { CardWrapper } from './cards/CardWrapper';
 import profileData from '../data/bento-profile.json';
 import { profileContent } from '../data/profile-content';
@@ -102,12 +102,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                     <div className="flex items-center gap-3">
                         <MapPin size={16} className="text-text-muted opacity-60" />
                         <span>{contactLine}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <Mail size={16} className="text-text-muted opacity-60" />
-                        <a href={`mailto:${profileData.email}`} className="hover:text-text-main">
-                            {profileData.email}
-                        </a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
 import { defaultCategoryId, getVisibleCategories } from './lib/siteCatalog';
 import { registerPortfolioWebMcp } from './lib/webmcp';
 import type { Locale } from './types';
+
+const ContactDialog = lazy(() => import('./components/ContactDialog').then((module) => ({ default: module.ContactDialog })));
+const AdminConsole = lazy(() => import('./components/AdminConsole').then((module) => ({ default: module.AdminConsole })));
 
 const getInitialLocale = (): Locale => {
   const params = new URLSearchParams(window.location.search);
@@ -16,9 +19,13 @@ const getInitialCategory = () => {
 };
 
 export default function App() {
+  const isAdmin = new URLSearchParams(window.location.search).get('admin') === '1';
+  if (isAdmin) return <Suspense fallback={<div className="flex min-h-screen items-center justify-center text-sm font-bold text-text-muted">載入管理後台…</div>}><AdminConsole /></Suspense>;
+
   const [darkMode, setDarkMode] = useState(false);
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
+  const [contactOpen, setContactOpen] = useState(false);
   const localeRef = useRef(locale);
   const activeCategoryIdRef = useRef(activeCategoryId);
   const visibleCategories = getVisibleCategories();
@@ -94,9 +101,10 @@ export default function App() {
   return (
     <div className="min-h-screen px-4 pb-4 pt-28 transition-colors duration-300 md:px-6 md:pb-6 md:pt-32">
       <div className="mx-auto max-w-7xl">
-        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} locale={locale} onLocaleChange={changeLocale} />
+        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} locale={locale} onLocaleChange={changeLocale} onContact={() => setContactOpen(true)} />
         <BentoGrid locale={locale} activeCategoryId={activeCategoryId} onCategoryChange={changeCategory} />
       </div>
+      {contactOpen && <Suspense fallback={null}><ContactDialog locale={locale} onClose={() => setContactOpen(false)} /></Suspense>}
     </div>
   );
 }
