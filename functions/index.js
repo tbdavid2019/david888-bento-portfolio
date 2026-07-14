@@ -2,14 +2,17 @@ import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { setGlobalOptions } from 'firebase-functions/v2/options';
+import { defineSecret } from 'firebase-functions/params';
 import nodemailer from 'nodemailer';
 
 initializeApp();
 setGlobalOptions({ region: 'asia-east1', maxInstances: 5 });
 
 const db = getFirestore();
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '104@david888.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'ray168j@gmail.com';
 const ADMIN_EMAILS = new Set(['oobwei@gmail.com', 'david@aicreate360.com', '104@david888.com']);
+const smtpUserSecret = defineSecret('SMTP_USER');
+const smtpPassSecret = defineSecret('SMTP_PASS');
 
 const clean = (value, maxLength) => String(value || '').trim().replace(/[<>]/g, '').slice(0, maxLength);
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -18,15 +21,15 @@ const taipeiDate = () => new Intl.DateTimeFormat('en-CA', {
 }).format(new Date()).replaceAll('-', '');
 
 const smtpTransport = () => {
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const user = smtpUserSecret.value() || process.env.SMTP_USER;
+  const pass = smtpPassSecret.value() || process.env.SMTP_PASS;
   if (!user || !pass) return null;
-  return nodemailer.createTransport({
+  return { transport: nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     port: Number(process.env.SMTP_PORT || 465),
     secure: String(process.env.SMTP_PORT || 465) === '465',
     auth: { user, pass },
-  });
+  }), user };
 };
 
 const sendMailIfConfigured = async ({ to, subject, text }) => {
@@ -35,15 +38,15 @@ const sendMailIfConfigured = async ({ to, subject, text }) => {
     console.warn('SMTP is not configured; ticket was stored without email delivery.');
     return;
   }
-  await transport.sendMail({
-    from: process.env.SMTP_FROM || process.env.SMTP_USER,
+  await transport.transport.sendMail({
+    from: process.env.SMTP_FROM || transport.user,
     to,
     subject,
     text,
   });
 };
 
-export const createContactTicket = onCall(async (request) => {
+export const createContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret] }, async (request) => {
   const input = request.data || {};
   const name = clean(input.name, 100);
   const email = clean(input.email, 160).toLowerCase();
@@ -82,7 +85,7 @@ export const createContactTicket = onCall(async (request) => {
   return { ticketNo };
 });
 
-export const replyToContactTicket = onCall(async (request) => {
+export const replyToContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret] }, async (request) => {
   if (!request.auth?.token?.email || !ADMIN_EMAILS.has(request.auth.token.email)) {
     throw new HttpsError('permission-denied', 'Admin authentication is required.');
   }
