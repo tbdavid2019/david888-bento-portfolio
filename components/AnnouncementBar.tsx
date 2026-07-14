@@ -17,7 +17,6 @@ export const AnnouncementBar: React.FC<{ data?: AnnouncementData }> = ({
   const [liveData, setLiveData] = React.useState<AnnouncementData>(data);
 
   React.useEffect(() => {
-    if (!data.enabled) return undefined;
     let active = true;
     void import('../lib/crm')
       .then(({ loadHomepageAnnouncement }) => loadHomepageAnnouncement())

@@ -29,6 +29,8 @@ const stackedSocialTitles = new Set([
   'Podcast: DAVID888商業報告[Oli家]',
 ]);
 
+const isLinkedInItem = (item: BentoItem) => 'title' in item && item.title === 'LinkedIn';
+
 interface BentoGridProps {
   locale: Locale;
   activeCategoryId: string;
@@ -165,6 +167,11 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                 {shouldShowPodcastFeed && !section && (
                   <div className="sm:col-span-2">
                     <PodcastFeedCard locale={locale} />
+                    {sectionItems.filter(isLinkedInItem).map((item) => (
+                      <div key="linkedin-under-podcast" className="mt-5">
+                        {renderItem(item, locale)}
+                      </div>
+                    ))}
                   </div>
                 )}
 
@@ -193,7 +200,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                 )}
 
                 {sectionItems
-                  .filter((item) => !shouldShowPodcastFeed || section || !('title' in item) || !stackedSocialTitles.has(item.title))
+                  .filter((item) => !shouldShowPodcastFeed || section || (!isLinkedInItem(item) && (!('title' in item) || !stackedSocialTitles.has(item.title))))
                   .map((item, index) => {
                   const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
 
