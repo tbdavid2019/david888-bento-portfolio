@@ -40,6 +40,7 @@ async function run() {
     const description = `${content.zh.headline}。我是具備跨國企業實戰經驗的 CTO 與技術顧問，專注解決複雜技術債、重整破碎的資料流與系統架構，讓技術真正成為商業的加速器。`;
     const descriptionEn = `${content.en.headline}. A CTO & Technical Advisor specializing in transforming complexity into execution and business value.`;
     const combinedDesc = `${description} ${descriptionEn}`;
+    const metaDescription = `${description} ${descriptionEn}`;
     const keywords = "David Chiang, David888, CTO, Technical Advisor, 技術顧問, 系統架構, 軟體開發, 電商架構, 跨系統整合, AI 應用, 瀏覽器外掛, Telegram Bots";
 
     // 2. Extract Social Links for Structured Data
@@ -58,7 +59,7 @@ async function run() {
       "name": profile.name,
       "alternateName": "David888",
       "url": "https://david888.com/",
-      "image": "https://david888.com/bento/bento-image-002.png",
+      "image": "https://david888.com/bento/og-me.jpg",
       "jobTitle": "CTO & Technical Advisor",
       "description": combinedDesc,
       "sameAs": sameAs
@@ -66,7 +67,7 @@ async function run() {
 
     const headInjections = `
   <!-- SEO Meta Tags -->
-  <meta name="description" content="${description}" />
+  <meta name="description" content="${metaDescription}" />
   <meta name="keywords" content="${keywords}" />
   <meta name="author" content="${profile.name}" />
   
@@ -74,15 +75,17 @@ async function run() {
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://david888.com/" />
   <meta property="og:title" content="${profile.name} | CTO & Technical Advisor" />
-  <meta property="og:description" content="${description}" />
-  <meta property="og:image" content="https://david888.com/bento/bento-image-002.png" />
+  <meta property="og:description" content="${metaDescription}" />
+  <meta property="og:image" content="https://david888.com/bento/og-me.jpg" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:site_name" content="David888.com" />
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://david888.com/" />
-  <meta property="twitter:title" content="${profile.name} | CTO & Technical Advisor" />
-  <meta property="twitter:description" content="${description}" />
-  <meta property="twitter:image" content="https://david888.com/bento/bento-image-002.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${profile.name} | CTO & Technical Advisor" />
+  <meta name="twitter:description" content="${metaDescription}" />
+  <meta name="twitter:image" content="https://david888.com/bento/og-me.jpg" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
