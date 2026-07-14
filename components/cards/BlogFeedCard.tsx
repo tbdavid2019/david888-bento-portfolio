@@ -96,7 +96,7 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
   const morePosts = posts.slice(1);
 
   return (
-    <CardWrapper className="min-h-[340px] justify-between border-secondary/20 bg-[radial-gradient(circle_at_top_right,rgba(47,93,108,0.16),transparent_32%),linear-gradient(180deg,rgba(255,252,247,0.94),rgba(255,248,242,0.84))] dark:bg-[radial-gradient(circle_at_top_right,rgba(130,184,192,0.14),transparent_32%),linear-gradient(180deg,rgba(38,31,28,0.94),rgba(28,23,21,0.88))]">
+    <CardWrapper className="min-h-[340px] border-secondary/20 bg-[radial-gradient(circle_at_top_right,rgba(47,93,108,0.16),transparent_32%),linear-gradient(180deg,rgba(255,252,247,0.94),rgba(255,248,242,0.84))] dark:bg-[radial-gradient(circle_at_top_right,rgba(130,184,192,0.14),transparent_32%),linear-gradient(180deg,rgba(38,31,28,0.94),rgba(28,23,21,0.88))]">
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-3">
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2f5d6c] text-white shadow-sm">
