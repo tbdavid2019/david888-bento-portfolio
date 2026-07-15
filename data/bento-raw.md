@@ -74,7 +74,7 @@ David Chiang
 
 [![Image 43](https://storage.googleapis.com/creatorspace-public/sites%2Ffavicons%2FaHR0cHM6Ly9odWdnaW5nZmFjZS5jby9mYXZpY29uLmljbw%3D%3D.ico) Stock Top Wick - a Hugging Face Space by tbdavid2019 huggingface.co ![Image 44](https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvY2stdG9wLXdpY2sucG5n.png)](https://huggingface.co/spaces/tbdavid2019/stock-top-wick)
 
-[![Image 45](https://storage.googleapis.com/creatorspace-public/sites%2Ftouchicons%2FaHR0cHM6Ly9zdGF0aWMuY2RuaW5zdGFncmFtLmNvbS9yc3JjLnBocC92NC95Xy9yL1BjbmVtYWg5MEs4LnBuZw%3D%3D.png) (@david.chinag) • Threads, Say more threads.com ![Image 46](https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9zdGF0aWMuY2RuaW5zdGFncmFtLmNvbS9yc3JjLnBocC92NC95Sy9yLy1mRnlENllLNnQ2LnBuZw%3D%3D.png)](https://www.threads.com/@david.chinag)
+[![Image 45](https://storage.googleapis.com/creatorspace-public/sites%2Ftouchicons%2FaHR0cHM6Ly9zdGF0aWMuY2RuaW5zdGFncmFtLmNvbS9yc3JjLnBocC92NC95Xy9yL1BjbmVtYWg5MEs4LnBuZw%3D%3D.png) (@david.chinag) • Threads, Say more threads.com ![Image 46](https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9zdGF0aWMuY2RuaW5zdGFncmFtLmNvbS9yc3JjLnBocC92NC95Sy9yLy1mRnlENllLNnQ2LnBuZw%3D%3D.png)](https://www.threads.com/@david888.chiang)
 
 [![Image 47](https://huggingface.co/favicon.ico) 換臉 huggingface.co ![Image 48](https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvU3dhcEZhY2UucG5n.png)](https://huggingface.co/spaces/tbdavid2019/SwapFace)
 
