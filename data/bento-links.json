@@ -487,16 +487,23 @@
   },
   {
     "type": "link",
-    "title": "GEM 人生七模組",
-    "url": "https://gemini.google.com/gem/1hpQ_wvQWuGFVPwFhVDwMkhTpcD-MIBxg?usp=sharing",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vbGFtZGEvaW1hZ2VzL2dlbWluaV9hdXJvcmFfdGh1bWJuYWlsXzRnX2U3NDgyMmZmMGNhNDI1OWJlYjcxOC5wbmc%3D.png",
+    "title": "耶誕樹3D特效",
+    "url": "https://fe-3d-xmastree.vercel.app",
+    "imageSource": "/bento/gun.svg",
     "tag": "ai"
   },
   {
     "type": "link",
-    "title": "GEM 3D 城市天氣卡",
-    "url": "https://gemini.google.com/gem/1-h4FSOBfJOXC5Z6ursBzYv7cBX6fsnTr?usp=sharing",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vbGFtZGEvaW1hZ2VzL2dlbWluaV9hdXJvcmFfdGh1bWJuYWlsXzRnX2U3NDgyMmZmMGNhNDI1OWJlYjcxOC5wbmc%3D.png",
+    "title": "視訊3D槍戰",
+    "url": "https://fe-3d-particle.vercel.app",
+    "imageSource": "/bento/gun.svg",
+    "tag": "ai"
+  },
+  {
+    "type": "link",
+    "title": "3D粒子特效",
+    "url": "https://fe-3d-particles.vercel.app",
+    "imageSource": "/bento/gun.svg",
     "tag": "ai"
   },
   {
