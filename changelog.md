@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-07-16] - WebTalk Chat Integration
+
+### Added
+- **WebTalk Chat**: Integrated WebTalk AI chat widget into the homepage for real-time visitor engagement.
+- **Chat Script**: Added the WebTalk JavaScript library with async loading to avoid blocking page render.
+
 ## [2026-07-14] - Firebase CRM and Homepage Operations
 
 ### Added
