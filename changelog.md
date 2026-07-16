@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-07-16] - YouTube Playlist Update and Threads Fix
+
+### Changed
+- **YouTube Playlist**: Updated "DAVID888 YouTube" to "DAVID888商業報告[Oli家]" with new playlist URL.
+- **Threads Link Fix**: Fixed mismatched title in stacked social titles to properly match "Threads: @david888.chiang".
+
 ## [2026-07-16] - WebTalk Chat Integration
 
 ### Added

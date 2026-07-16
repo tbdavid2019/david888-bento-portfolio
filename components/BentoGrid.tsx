@@ -24,8 +24,8 @@ const renderItem = (item: BentoItem, locale: Locale) => {
 };
 
 const stackedSocialTitles = new Set([
-  'DAVID888 YouTube',
-  'Threads: @david.chinag',
+  'DAVID888商業報告[Oli家]',
+  'Threads: @david888.chiang',
   'Podcast: DAVID888商業報告[Oli家]',
 ]);
 
