@@ -1,26 +1,38 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed open333crm",
-      "url": "https://github.com/CreateIntelligens/open333crm/compare/d030c01f82...4d7a4e2992",
-      "updated": "2026-07-08 07:35:33 UTC",
-      "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · July 8, 2026 07:35 1 commit to main 4d7a4e2 docs: 大幅整理 CHANGELOG 與 README"
+      "title": "tbdavid2019 pushed chrome-webtalk",
+      "url": "https://github.com/tbdavid2019/chrome-webtalk/compare/9eef9c1618...43f14f1a42",
+      "updated": "2026-07-16 09:06:20 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/chrome-webtalk · July 16, 2026 09:06 1 commit to main 43f14f1 chore: bump extension release to 2.1.1"
     },
     {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/425bc5cf7c...87328d542b",
-      "updated": "2026-07-08 07:33:51 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · July 8, 2026 07:33 1 commit to main 87328d5 docs: consolidate all individual changelogs into root CHANGELOG.md"
+      "title": "tbdavid2019 pushed chrome-webtalk",
+      "url": "https://github.com/tbdavid2019/chrome-webtalk/compare/9d59fed995...9eef9c1618",
+      "updated": "2026-07-16 09:01:23 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/chrome-webtalk · July 16, 2026 09:01 1 commit to main 9eef9c1 fix: process incoming text before danmaku events"
     },
     {
-      "title": "tbdavid2019 pushed open333crm",
-      "url": "https://github.com/CreateIntelligens/open333crm/compare/f3ba7378a4...d030c01f82",
-      "updated": "2026-07-08 07:33:27 UTC",
-      "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · July 8, 2026 07:33 1 commit to main d030c01 chore: release v0.3.0"
+      "title": "tbdavid2019 pushed chrome-webtalk",
+      "url": "https://github.com/tbdavid2019/chrome-webtalk/compare/f95a9120b4...9d59fed995",
+      "updated": "2026-07-16 08:47:48 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/chrome-webtalk · July 16, 2026 08:47 1 commit to main 9d59fed refactor: align embed chat with extension room core"
+    },
+    {
+      "title": "tbdavid2019 pushed chrome-webtalk",
+      "url": "https://github.com/tbdavid2019/chrome-webtalk/compare/906ddfc59e...f95a9120b4",
+      "updated": "2026-07-16 08:31:48 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/chrome-webtalk · July 16, 2026 08:31 1 commit to main f95a912 fix: preserve established peer broadcast path"
+    },
+    {
+      "title": "tbdavid2019 pushed chrome-webtalk",
+      "url": "https://github.com/tbdavid2019/chrome-webtalk/compare/83708cf945...906ddfc59e",
+      "updated": "2026-07-16 08:18:09 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/chrome-webtalk · July 16, 2026 08:18 1 commit to main 906ddfc fix: queue embed messages before peer ready"
     }
   ],
-  "lastSyncedAt": "2026-07-08T07:35:33.000Z",
-  "syncStatus": "stale",
+  "lastSyncedAt": "2026-07-16T23:27:00.711Z",
+  "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
   ]

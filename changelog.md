@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-07-17] - Production Tailwind CSS Migration
+
+### Changed
+- **Tailwind CSS Compilation**: Migrated from the development-only Tailwind playground CDN (`cdn.tailwindcss.com`) to the compiler-optimized `@tailwindcss/vite` plugin for build-time compilation.
+- **Project Styles**: Fixed an invalid `@apply` transition statement in `index.css` to comply with standard Tailwind CSS v4 compiler requirements.
+- **Index HTML Clean Up**: Removed inline Tailwind configurations and CDN script tags from `index.html`, reducing HTML overhead.
+
 ## [2026-07-16] - WebTalk Tool Addition
 
 ### Added
