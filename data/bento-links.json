@@ -251,7 +251,7 @@
     "description": "多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天+AI摘要，可嵌入任何網站，無需後端。",
     "descriptionEn": "Multi-user real-time chat tool that lets visitors on the same website discuss and view content together. Supports chat + AI summary, can be embedded on any website without backend.",
     "url": "https://webtalk-nine.vercel.app/",
-    "imageSource": "/bento/webtalk.svg",
+    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
     "tag": "tools"
   },
   {
