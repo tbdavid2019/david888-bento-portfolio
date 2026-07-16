@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-07-16] - WebTalk Tool Addition
+
+### Added
+- **WebTalk 333 Tool**: Added WebTalk real-time chat tool to the "實用工具" category with bilingual descriptions.
+
 ## [2026-07-16] - YouTube Playlist Addition and Threads Fix
 
 ### Added
