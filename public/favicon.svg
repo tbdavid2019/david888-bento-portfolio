@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">david 888</title>
+  <desc id="desc">The David888 mark: david above a bold 888.</desc>
+
+  <rect width="64" height="64" rx="16" fill="#0f172a"/>
+  <path d="M16 24h32" stroke="#f7c7a5" stroke-width="2" stroke-linecap="round"/>
+  <text x="32" y="18" fill="#fffaf0" font-family="Manrope, Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2" text-anchor="middle">david</text>
+  <text x="32" y="51" fill="#f7c7a5" font-family="Manrope, Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-1.6" text-anchor="middle">888</text>
+</svg>
