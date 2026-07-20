@@ -22,8 +22,7 @@ const getDomain = (url: string) => {
 };
 
 export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ link, locale = 'zh' }) => {
-  const getFaviconUrl = (url: string) =>
-    `https://www.google.com/s2/favicons?domain=${getDomain(url)}&sz=128`;
+  const fallbackImageUrl = '/bento/default-icon.svg';
 
   // Filter out unstable Bento/Creatorspace URLs
   const isUnstableUrl = (url?: string | null) =>
@@ -35,7 +34,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
   // Prioritize stable custom images, otherwise fallback to auto-generated favicon
   const imageDisplayUrl = (!isUnstableUrl(link.imageSource) && link.imageSource)
     ? link.imageSource
-    : getFaviconUrl(link.url);
+    : fallbackImageUrl;
 
   const isBranded = !!link.bgClass;
   const title = locale === 'en' ? link.titleEn || link.title : link.title;
@@ -54,9 +53,8 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
             className={`w-full h-full ${isBranded ? 'p-2 object-contain' : 'object-cover'}`}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              const faviconUrl = getFaviconUrl(link.url);
-              if (target.src !== faviconUrl) {
-                target.src = faviconUrl;
+              if (target.getAttribute('src') !== fallbackImageUrl) {
+                target.src = fallbackImageUrl;
               }
             }}
           />

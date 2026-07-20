@@ -387,7 +387,7 @@
     "title": "OpenClaw 開發技能 (Skill)",
     "description": "自動每日更新，讓你的 LLM 有面對 OpenClaw 疑難雜症處理的能力，幫助解決開發問題。",
     "url": "https://github.com/tbdavid2019/openclaw-docs-skill",
-    "imageSource": "/bento/openclaw-lobster.png",
+    "imageSource": "/bento/openclaw.svg",
     "bgClass": "bg-gradient-to-br from-orange-400 to-red-600 shadow-orange-200",
     "tag": "skills"
   },
@@ -453,7 +453,7 @@
     "title": "Hermes Agent 維護技能 (Skill)",
     "description": "自動更新，讓你的 LLM 擁有 Hermes Agent 的完整維護與運行知識。",
     "url": "https://github.com/tbdavid2019/hermes-agent-docs-skill",
-    "imageSource": "/bento/hermes-agent.png",
+    "imageSource": "/bento/hermes-agent.svg",
     "bgClass": "bg-gradient-to-br from-purple-500 to-indigo-700",
     "tag": "skills"
   },
@@ -516,21 +516,21 @@
     "type": "link",
     "title": "耶誕樹3D特效",
     "url": "https://fe-3d-xmastree.vercel.app",
-    "imageSource": "/bento/gun.svg",
+    "imageSource": "/bento/3d-xmastree.svg",
     "tag": "ai"
   },
   {
     "type": "link",
     "title": "視訊3D槍戰",
     "url": "https://fe-3d-particle.vercel.app",
-    "imageSource": "/bento/gun.svg",
+    "imageSource": "/bento/3d-gun.svg",
     "tag": "ai"
   },
   {
     "type": "link",
     "title": "3D粒子特效",
     "url": "https://fe-3d-particles.vercel.app",
-    "imageSource": "/bento/gun.svg",
+    "imageSource": "/bento/3d-particles.svg",
     "tag": "ai"
   },
   {
