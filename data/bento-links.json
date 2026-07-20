@@ -3,8 +3,8 @@
     "type": "link",
     "title": "台灣公司關係網路可視化",
     "titleEn": "Taiwan Company Network Visualization",
-    "description": "台灣公司關係資料的互動式可視化，探索企業、董監事與關聯公司之間的網路連結。",
-    "descriptionEn": "An interactive visualization of Taiwanese company relationships, connecting businesses, directors, supervisors, and related entities.",
+    "description": "台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。",
+    "descriptionEn": "An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.",
     "url": "https://tbdavid2019.github.io/taiwan-company-network/",
     "tag": "ai"
   },
