@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-07-20] - Modern UI Updates & Framer Motion Integration
+
+### Added
+- **Framer Motion Integration**: Introduced `framer-motion` for fluid spring animations, adding staggered layout transitions and micro-interactions.
+- **Spotlight Hover Effect**: Added a cursor-tracking spotlight glow effect and SVG noise overlay to `CardWrapper.tsx` for a premium, Apple-like frosted glass feel.
+- **Segmented Tabs**: Replaced the square category buttons with a modern, pill-shaped segmented tab control that spans full width above the main content grid.
+- **Layout Animations**: Applied `AnimatePresence` for smooth layout transitions when switching categories.
+
+### Changed
+- **Category Navigation Alignment**: Moved the category tabs to the top of the grid and aligned them to the right, resolving the disjointed layout feel and providing more space for longer English category names.
+
 ## [2026-07-17] - Production Tailwind CSS Migration
 
 ### Changed

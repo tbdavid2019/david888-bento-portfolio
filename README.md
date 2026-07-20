@@ -11,7 +11,7 @@ git commit --allow-empty -m "Trigger deployment"
 git push
 ```
 
-A modern, responsive bento-grid style portfolio powered by React and Tailwind CSS.
+A modern, responsive bento-grid style portfolio powered by React, Tailwind CSS, and Framer Motion.
 This project separates data from structure, allowing you to easily manage your content via JSON files.
 
 ## 🚀 Quick Start

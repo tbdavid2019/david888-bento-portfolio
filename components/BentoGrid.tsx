@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
 import { BentoLinkCard } from './cards/BentoLinkCard';
 import { GithubCard } from './cards/GithubCard';
@@ -70,152 +72,165 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
   const activeSections: Array<[string, BentoItem[]]> = Object.entries(groupedActiveSections);
 
   return (
-    <main className="grid gap-6 pb-16 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
-      <aside className="lg:sticky lg:top-6 lg:self-start">
-        <ProfileCard locale={locale} />
-      </aside>
+    <div className="flex flex-col gap-6">
+      {/* Category Tabs - Full Width at Top */}
+      <div className="rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm backdrop-blur-md">
+        <div className="flex flex-wrap items-center justify-end gap-1">
+          {visibleCategories.map((category) => {
+            const isActive = category.id === activeCategory?.id;
+            const count = groupedItems[category.id]?.length ?? 0;
 
-      <section className="min-w-0 space-y-6">
-        <AnnouncementBar />
-
-        <div className="rounded-2xl border border-border bg-bg-surface p-4 shadow-sm">
-          <div className="mb-3 flex items-center justify-between gap-4">
-            <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted">
-              {locale === 'en' ? 'Categories' : '分類'}
-            </div>
-            <div className="shrink-0 text-xs font-bold text-text-muted">
-              {locale === 'en'
-                ? `${items.length} links / ${visibleCategories.length} groups`
-                : `${items.length} 個連結 / ${visibleCategories.length} 類`}
-            </div>
-          </div>
-
-          <div className="-mx-1 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max flex-nowrap gap-3">
-            {visibleCategories.map((category) => {
-              const isActive = category.id === activeCategory?.id;
-              const count = groupedItems[category.id]?.length ?? 0;
-
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  onClick={() => onCategoryChange(category.id)}
-                  className={`relative flex aspect-square h-24 w-24 shrink-0 flex-col items-center justify-center rounded-2xl border text-center text-sm font-bold transition-all duration-200 ${
-                    isActive
-                      ? 'border-primary bg-primary text-white dark:text-bg-base'
-                      : 'border-border bg-bg-elevated text-text-muted hover:border-border-hover hover:text-text-main'
-                  }`}
-                  aria-pressed={isActive}
-                  aria-label={`${locale === 'en' ? category.labelEn : category.label} (${count})`}
-                >
-                  <span className="max-w-[84px] truncate whitespace-nowrap px-1 text-sm leading-5">
-                    {locale === 'en' ? category.labelEn : category.label}
-                  </span>
-                  <span className={`absolute right-2 top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-black leading-none ${isActive ? 'bg-white/20 text-white' : 'bg-[var(--error)] text-white'}`}>
+            return (
+              <button
+                key={category.id}
+                type="button"
+                onClick={() => onCategoryChange(category.id)}
+                className={cn(
+                  "relative flex min-h-10 items-center gap-2 rounded-xl px-4 text-sm font-bold transition-colors",
+                  isActive ? "text-white dark:text-bg-base" : "text-text-muted hover:text-text-main"
+                )}
+                aria-pressed={isActive}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 rounded-xl bg-primary"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {locale === 'en' ? category.labelEn : category.label}
+                  <span className={cn(
+                    "inline-flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-black leading-none transition-colors",
+                    isActive ? "bg-white/20 text-white dark:bg-black/20 dark:text-bg-base" : "bg-border text-text-muted group-hover:bg-border-hover"
+                  )}>
                     {count}
                   </span>
-                </button>
-              );
-            })}
-            </div>
-          </div>
+                </span>
+              </button>
+            );
+          })}
         </div>
+      </div>
 
-        {activeCategory && (
-          <div className="flex flex-col gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
-            <div className="min-w-0">
-              <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted opacity-80">
-                {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
-              </div>
-              <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
-                <h3 className="text-xl font-black text-text-main md:text-2xl">
-                  {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
-                </h3>
-                <p className="max-w-2xl text-sm text-text-muted">
-                  {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
-                </p>
-              </div>
-            </div>
+      <main className="grid gap-6 pb-16 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
+        <aside className="lg:sticky lg:top-6 lg:self-start">
+          <ProfileCard locale={locale} />
+        </aside>
 
-            {featuredItem && 'url' in featuredItem && featuredItem.url && (
-              <a
-                href={featuredItem.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
-              >
-                {locale === 'en' ? 'Featured' : '代表作品'}
-                <ArrowUpRight size={16} />
-              </a>
-            )}
-          </div>
-        )}
+        <section className="min-w-0 space-y-6">
+          <AnnouncementBar />
 
-        <div className="space-y-8">
-          {activeSections.map(([section, sectionItems]) => (
-            <div key={section || 'default'} className="space-y-4">
-              {section && (
-                <div className="flex items-center gap-3">
-                  <h4 className="shrink-0 text-sm font-black text-text-muted">
-                    {section}
-                  </h4>
-                  <div className="h-px flex-1 bg-border" />
+          {activeCategory && (
+            <div className="flex flex-col gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
+              <div className="min-w-0">
+                <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted opacity-80">
+                  {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
                 </div>
+                <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
+                  <h3 className="text-xl font-black text-text-main md:text-2xl">
+                    {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
+                  </h3>
+                  <p className="max-w-2xl text-sm text-text-muted">
+                    {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
+                  </p>
+                </div>
+              </div>
+
+              {featuredItem && 'url' in featuredItem && featuredItem.url && (
+                <a
+                  href={featuredItem.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
+                >
+                  {locale === 'en' ? 'Featured' : '代表作品'}
+                  <ArrowUpRight size={16} />
+                </a>
               )}
+            </div>
+          )}
 
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {shouldShowPodcastFeed && !section && (
-                  <div className="sm:col-span-2">
-                    <PodcastFeedCard locale={locale} />
-                    {sectionItems.filter(isLinkedInItem).map((item) => (
-                      <div key="linkedin-under-podcast" className="mt-5">
-                        {renderItem(item, locale)}
-                      </div>
-                    ))}
+        <AnimatePresence mode="popLayout">
+          <motion.div 
+            key={activeCategoryId}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, type: "spring", bounce: 0.2 }}
+            className="space-y-8"
+          >
+            {activeSections.map(([section, sectionItems]) => (
+              <div key={section || 'default'} className="space-y-4">
+                {section && (
+                  <div className="flex items-center gap-3">
+                    <h4 className="shrink-0 text-sm font-black text-text-muted">
+                      {section}
+                    </h4>
+                    <div className="h-px flex-1 bg-border" />
                   </div>
                 )}
 
-                {shouldShowPodcastFeed && !section && (
-                  <div>
-                    <BlogFeedCard locale={locale} />
-                  </div>
-                )}
-
-                {shouldShowPodcastFeed && !section && (
-                  <div className="sm:col-span-2">
-                    <GithubActivityCard locale={locale} />
-                  </div>
-                )}
-
-                {shouldShowPodcastFeed && !section && (
-                  <div className="flex flex-col gap-5">
-                    {sectionItems
-                      .filter((item) => 'title' in item && stackedSocialTitles.has(item.title))
-                      .map((item, index) => (
-                        <div key={`stacked-social-${index}`}>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  {shouldShowPodcastFeed && !section && (
+                    <div className="sm:col-span-2">
+                      <PodcastFeedCard locale={locale} />
+                      {sectionItems.filter(isLinkedInItem).map((item) => (
+                        <div key="linkedin-under-podcast" className="mt-5">
                           {renderItem(item, locale)}
                         </div>
                       ))}
-                  </div>
-                )}
-
-                {sectionItems
-                  .filter((item) => !shouldShowPodcastFeed || section || (!isLinkedInItem(item) && (!('title' in item) || !stackedSocialTitles.has(item.title))))
-                  .map((item, index) => {
-                  const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
-
-                  return (
-                    <div key={`${activeCategory?.id}-${section}-${index}`} className={colSpanClass}>
-                      {renderItem(item, locale)}
                     </div>
-                  );
-                })}
+                  )}
+
+                  {shouldShowPodcastFeed && !section && (
+                    <div>
+                      <BlogFeedCard locale={locale} />
+                    </div>
+                  )}
+
+                  {shouldShowPodcastFeed && !section && (
+                    <div className="sm:col-span-2">
+                      <GithubActivityCard locale={locale} />
+                    </div>
+                  )}
+
+                  {shouldShowPodcastFeed && !section && (
+                    <div className="flex flex-col gap-5">
+                      {sectionItems
+                        .filter((item) => 'title' in item && stackedSocialTitles.has(item.title))
+                        .map((item, index) => (
+                          <div key={`stacked-social-${index}`}>
+                            {renderItem(item, locale)}
+                          </div>
+                        ))}
+                    </div>
+                  )}
+
+                  {sectionItems
+                    .filter((item) => !shouldShowPodcastFeed || section || (!isLinkedInItem(item) && (!('title' in item) || !stackedSocialTitles.has(item.title))))
+                    .map((item, index) => {
+                    const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
+
+                    return (
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: index * 0.05 }}
+                        key={`${activeCategory?.id}-${section}-${index}`} 
+                        className={colSpanClass}
+                      >
+                        {renderItem(item, locale)}
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </section>
     </main>
+    </div>
   );
 };
