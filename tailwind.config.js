@@ -37,9 +37,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["Manrope", "David888 JetBrains Mono", "David888 Roundhand TC", "Noto Sans TC", "sans-serif"],
-        display: ["Cormorant Garamond", "David888 JetBrains Mono", "David888 Roundhand TC", "Noto Sans TC", "serif"],
-        mono: ["David888 JetBrains Mono", "monospace"],
+        sans: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "sans-serif"],
+        display: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       borderRadius: {
         "2xl": "1.5rem",
