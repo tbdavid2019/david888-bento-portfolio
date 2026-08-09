@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-08-10] - 888-url2md Addition & 888box Naming Update
+
+### Added
+- **888-url2md Web Reader**: Added 888-url2md (`https://create360.ai`) under "實用工具" (Handy Tools) section for converting web pages & search results to clean Markdown.
+
+### Changed
+- **888box Title Update**: Renamed "888box 統一資產管理" to "888box 檔案中心" (888box File Center) to reflect updated project branding.
+
 ## [2026-07-20] - Modern UI Updates & Framer Motion Integration
 
 ### Added

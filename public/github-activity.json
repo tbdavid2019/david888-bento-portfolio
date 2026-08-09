@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed telegram-bot-summary",
-      "url": "https://github.com/tbdavid2019/telegram-bot-summary/compare/10065a518d...49f2603759",
-      "updated": "2026-07-23 14:56:47 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/telegram-bot-summary · July 23, 2026 14:56 1 commit to main 49f2603 fix: make Chrome mount portable across hosts"
+      "title": "tbdavid2019 pushed cf-notepad",
+      "url": "https://github.com/tbdavid2019/cf-notepad/compare/60a09a52a8...840da933e7",
+      "updated": "2026-08-09 11:43:59 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 9, 2026 11:43 1 commit to main 840da93 feat: add URL to Markdown import clipper with 3-tier failover and fix…"
     },
     {
-      "title": "tbdavid2019 pushed telegram-bot-summary",
-      "url": "https://github.com/tbdavid2019/telegram-bot-summary/compare/bae99606f0...10065a518d",
-      "updated": "2026-07-23 14:44:08 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/telegram-bot-summary · July 23, 2026 14:44 1 commit to main 10065a5 chore: ignore local deployment secrets"
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/763c229e89...e2208195b3",
+      "updated": "2026-08-09 11:33:17 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · August 9, 2026 11:33 1 commit to main e220819 feat: update primary reader to 2md.aiurl.tw with fallbacks"
     },
     {
-      "title": "tbdavid2019 pushed telegram-bot-summary",
-      "url": "https://github.com/tbdavid2019/telegram-bot-summary/compare/dd9dc1b455...bae99606f0",
-      "updated": "2026-07-23 14:33:29 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/telegram-bot-summary · July 23, 2026 14:33 2 commits to main e38c67f docs: add runtime stabilization design 6711cca fix: prevent summary requests from blocking event loop 3 more commits »"
+      "title": "tbdavid2019 pushed 888-url2md",
+      "url": "https://github.com/tbdavid2019/888-url2md/compare/968c2bbbc9...4b20d0fffb",
+      "updated": "2026-08-09 09:02:33 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · August 9, 2026 09:02 1 commit to main 4b20d0f ci: add continue-on-error to dockerhub description step"
     },
     {
-      "title": "tbdavid2019 pushed line-bot-talk-group",
-      "url": "https://github.com/tbdavid2019/line-bot-talk-group/compare/d825478780...620a392244",
-      "updated": "2026-07-23 13:56:18 UTC",
-      "summary": "tbdavid2019 pushed to master in tbdavid2019/line-bot-talk-group · July 23, 2026 13:56 1 commit to master 620a392 refactor: Add Firebase and Gemini services with atomic deduplication …"
+      "title": "tbdavid2019 pushed 888-url2md",
+      "url": "https://github.com/tbdavid2019/888-url2md/compare/55b7a1bad7...968c2bbbc9",
+      "updated": "2026-08-09 08:45:23 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · August 9, 2026 08:45 1 commit to main 968c2bb docs: align architecture with self-hosted deployment"
     },
     {
-      "title": "tbdavid2019 pushed line-bot-talk-group",
-      "url": "https://github.com/tbdavid2019/line-bot-talk-group/compare/1fa78931df...d825478780",
-      "updated": "2026-07-23 13:35:37 UTC",
-      "summary": "tbdavid2019 pushed to master in tbdavid2019/line-bot-talk-group · July 23, 2026 13:35 1 commit to master d825478 chore: update gitignore to ignore all .env variants"
+      "title": "tbdavid2019 pushed 888-url2md",
+      "url": "https://github.com/tbdavid2019/888-url2md/compare/7ff7077664...55b7a1bad7",
+      "updated": "2026-08-09 08:44:30 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · August 9, 2026 08:44 1 commit to main 55b7a1b fix: provide production Docker Compose deployment"
     }
   ],
-  "lastSyncedAt": "2026-07-24T00:40:45.117Z",
+  "lastSyncedAt": "2026-08-09T22:59:47.757Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

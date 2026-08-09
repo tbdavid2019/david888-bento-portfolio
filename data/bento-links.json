@@ -247,10 +247,22 @@
   },
   {
     "type": "link",
-    "title": "888box 統一資產管理",
-    "description": "開源的類 Dropbox 雲端儲存與資產管理應用程式。",
+    "title": "888box 檔案中心",
+    "titleEn": "888box File Center",
+    "description": "開源的類 Dropbox 雲端儲存與檔案管理中心。",
+    "descriptionEn": "An open-source Dropbox-like cloud storage and file center.",
     "url": "https://box.david888.com/",
     "imageSource": "/bento/888box.svg",
+    "tag": "tools"
+  },
+  {
+    "type": "link",
+    "title": "888-url2md 網頁轉 Markdown",
+    "titleEn": "888-url2md Web Reader",
+    "description": "將任意網頁或搜尋結果轉換為乾淨的 Markdown 格式，支援單一網頁解析、網頁搜尋與多網頁批次抓取。",
+    "descriptionEn": "Converts any web page or search query into clean Markdown. Supports single URL parsing, web search, and multi-URL batch crawling.",
+    "url": "https://create360.ai",
+    "imageSource": "/bento/url-markdown.svg",
     "tag": "tools"
   },
   {
