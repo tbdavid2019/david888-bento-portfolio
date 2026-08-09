@@ -41,6 +41,7 @@ interface BentoGridProps {
 }
 
 export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, onCategoryChange }) => {
+  const contentSectionRef = React.useRef<HTMLElement>(null);
   const items = siteItems;
   const groupedItems = React.useMemo(() => {
     return items.reduce((acc, item) => {
@@ -58,11 +59,21 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
     }
   }, [activeCategoryId, onCategoryChange, visibleCategories]);
 
+  const handleCategorySelect = (categoryId: string) => {
+    onCategoryChange(categoryId);
+
+    if (window.innerWidth < 1024 && contentSectionRef.current) {
+      setTimeout(() => {
+        contentSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  };
+
   const activeCategory =
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
   const shouldShowPodcastFeed = activeCategory?.id === 'social';
-  const featuredItem = activeItems.find((item) => item.colSpan === 2) ?? activeItems[0];
+  const featuredItem = activeItems.find((item) => item.featured || item.colSpan === 2);
   const groupedActiveSections = activeItems.reduce((acc, item) => {
     const section = locale === 'en' ? item.sectionEn || item.section || '' : item.section || '';
     if (!acc[section]) acc[section] = [];
@@ -84,7 +95,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
               <button
                 key={category.id}
                 type="button"
-                onClick={() => onCategoryChange(category.id)}
+                onClick={() => handleCategorySelect(category.id)}
                 className={cn(
                   "relative flex min-h-10 items-center gap-2 rounded-xl px-4 text-sm font-bold transition-colors",
                   isActive ? "text-white dark:text-bg-base" : "text-text-muted hover:text-text-main"
@@ -118,7 +129,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
           <ProfileCard locale={locale} />
         </aside>
 
-        <section className="min-w-0 space-y-6">
+        <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-36">
           <AnnouncementBar />
 
           {activeCategory && (

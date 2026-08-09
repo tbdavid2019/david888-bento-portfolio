@@ -8,6 +8,7 @@ import {
   createStaleGithubActivityPayload,
   parseGithubAtomFeed,
 } from './github-activity.mjs';
+import { generateLlmsFiles } from './llms-txt.mjs';
 
 const projectRoot = process.cwd();
 const publicDir = path.join(projectRoot, 'public');
@@ -62,6 +63,8 @@ function buildRobotsTxt() {
     'Disallow: /node_modules/',
     'Content-Signal: ai-train=no, search=yes, ai-input=yes',
     `Sitemap: ${siteOrigin}/sitemap.xml`,
+    `# LLM standard interface: https://llmstxt.org/`,
+    `# LLMs: see ${siteOrigin}/llms.txt and ${siteOrigin}/llms-full.txt`,
     '',
   ].join('\n');
 }
@@ -138,8 +141,10 @@ async function buildGithubActivityFeed() {
 
 await ensureDir(path.join(publicDir, '.well-known'));
 
+await generateLlmsFiles({ projectRoot, siteOrigin });
+
 const discoveredRoutes = await collectHtmlRoutes(publicDir);
-const sitemapRoutes = Array.from(new Set(['/', ...discoveredRoutes])).sort();
+const sitemapRoutes = Array.from(new Set(['/', '/llms.txt', '/llms-full.txt', ...discoveredRoutes])).sort();
 
 await fs.writeFile(path.join(publicDir, 'robots.txt'), buildRobotsTxt(), 'utf8');
 await fs.writeFile(path.join(publicDir, 'sitemap.xml'), buildSitemapXml(sitemapRoutes), 'utf8');

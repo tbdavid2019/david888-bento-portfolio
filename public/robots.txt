@@ -5,3 +5,5 @@ Disallow: /.git/
 Disallow: /node_modules/
 Content-Signal: ai-train=no, search=yes, ai-input=yes
 Sitemap: https://david888.com/sitemap.xml
+# LLM standard interface: https://llmstxt.org/
+# LLMs: see https://david888.com/llms.txt and https://david888.com/llms-full.txt

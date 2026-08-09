@@ -1,5 +1,19 @@
 # Changelog
 
+## [2026-08-10] - Mobile RWD UX Optimization & Featured Work Selection Fix
+
+### Fixed
+- **Featured Work Customization**: Configured exact representative works for categories based on user requirements:
+  - **個人入口 (social)** ➔ `Podcast: DAVID888商業報告[Oli家]`
+  - **實用工具 (tools)** ➔ `David888 Wiki 團隊知識庫` (`https://wiki.david888.com/`)
+  - **AI 應用 (ai)** ➔ `台灣公司關係網路可視化` (`https://taiwan-company-network.david888.com/`)
+
+### Added
+- **Mobile Collapsible ProfileCard**: Added expandable/collapsible toggle button for `ProfileCard` on mobile screens (`<lg`), defaulting to a compact card so category content is immediately visible.
+- **Auto Smooth Scroll on Category Switch**: Added smooth auto-scroll to the category section (`scroll-mt-28`) on mobile when tapping top category tabs, preventing the view from staying stuck at the top bio.
+- **llms.txt Standard Support**: Added `/llms.txt` and `/llms-full.txt` generator adhering to the [llmstxt.org](https://llmstxt.org/) specification for LLM inference discoverability.
+- **Discovery & SEO Injections**: Updated `generate-discovery-files.mjs`, `robots.txt`, `sitemap.xml`, and `<head>` HTML metadata to reference `/llms.txt` and `/llms-full.txt`.
+
 ## [2026-08-10] - 888-url2md Addition & 888box Naming Update
 
 ### Added

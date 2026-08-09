@@ -5,6 +5,7 @@ export type CardType = 'link' | 'github' | 'twitter' | 'project' | 'experience' 
 export interface BaseCard {
     type: CardType;
     colSpan?: 1 | 2;
+    featured?: boolean;
     tag?: string;
     section?: string;
     sectionEn?: string;
