@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-08-20] - 888 Paper Daily Research Radar & Skill Addition
+
+### Added
+- **888每日論文雷達 (Paper Daily)**: Added 888 Paper Daily (`https://tbdavid2019.github.io/paper-daily/`) to the AI applications catalog. It tracks Embodied AI and machine learning papers across arXiv, HuggingFace, and Semantic Scholar with daily LLM summaries.
+- **論文雷達技能 (Daily Paper Scout Skill)**: Added Paper Daily Agent Skill (`https://github.com/tbdavid2019/paper-daily`) under Developer Skills for autonomous academic research workflows.
+
 ## [2026-08-10] - Mobile RWD UX Optimization & Featured Work Selection Fix
 
 ### Fixed
