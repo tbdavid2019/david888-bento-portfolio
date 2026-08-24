@@ -1,5 +1,21 @@
 # Changelog
 
+## [2026-08-24] - WebMCP Capability Tools
+
+### Added
+- Added a structured public capability catalog for David's consulting and engineering services.
+- Added WebMCP tools for capability search, goal-based recommendations, capability/project details, and opening the contact form.
+- Added keyword-aware ranking for Traditional Chinese and English capability searches.
+- Added automated tests for WebMCP capability matching and result ranking.
+
+### Changed
+- Updated WebMCP registration to use the current `document.modelContext.registerTool()` API.
+- Removed the deprecated `navigator.modelContext` registration fallback.
+
+### Notes
+- WebMCP requires a supported Chrome experiment or origin trial and a secure browsing context.
+- `open_contact_form` opens the form for user review; it does not submit a contact request automatically.
+
 ## [2026-08-20] - 888 Paper Daily Research Radar & Skill Addition
 
 ### Added
