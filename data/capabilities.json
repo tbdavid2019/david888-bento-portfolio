@@ -1,0 +1,34 @@
+[
+  {
+    "id": "architecture-advisory",
+    "title": "技術架構與技術債顧問",
+    "titleEn": "Technical Architecture & Technical Debt Advisory",
+    "description": "評估技術路線、找出架構風險與技術債，將複雜系統轉成可執行的改善路線圖。",
+    "descriptionEn": "Assess technical direction, expose architecture risks and technical debt, and turn complex systems into an executable improvement roadmap.",
+    "keywords": ["技術架構", "技術債", "architecture", "technical debt", "roadmap", "second opinion"]
+  },
+  {
+    "id": "system-integration",
+    "title": "跨系統整合與資料流重整",
+    "titleEn": "Cross-system Integration & Data Flow Design",
+    "description": "重整破碎的資料流與服務邊界，整合客服、CRM、電商、RMA 與內部工具，讓營運流程可以可靠地運作。",
+    "descriptionEn": "Rebuild fragmented data flows and service boundaries across customer support, CRM, e-commerce, RMA, and internal tools so operations can run reliably.",
+    "keywords": ["系統整合", "資料流", "CRM", "Salesforce", "HubSpot", "RMA", "integration", "data flow"]
+  },
+  {
+    "id": "engineering-leadership",
+    "title": "工程團隊與產品落地",
+    "titleEn": "Engineering Leadership & Product Delivery",
+    "description": "在需要時直接進場，帶領工程團隊把架構、產品與交付流程做對、做完。",
+    "descriptionEn": "Step in directly when needed to lead engineering teams through architecture, product delivery, and execution.",
+    "keywords": ["CTO", "工程管理", "團隊帶領", "產品落地", "delivery", "engineering leadership", "CTO advisor"]
+  },
+  {
+    "id": "technical-due-diligence",
+    "title": "技術盡職調查與投資判斷",
+    "titleEn": "Technical Due Diligence & Investment Review",
+    "description": "協助創投、投資人或決策者判斷技術可信度、系統風險、團隊執行能力與後續投資成本。",
+    "descriptionEn": "Help investors and decision-makers assess technical credibility, system risk, team execution capability, and the cost of future investment.",
+    "keywords": ["技術盡職調查", "投資", "創投", "技術風險", "due diligence", "investor", "technical risk"]
+  }
+]

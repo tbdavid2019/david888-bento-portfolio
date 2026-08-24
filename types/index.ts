@@ -1,5 +1,14 @@
 export type Locale = 'zh' | 'en';
 
+export interface CapabilityArea {
+    id: string;
+    title: string;
+    titleEn: string;
+    description: string;
+    descriptionEn: string;
+    keywords: string[];
+}
+
 export type CardType = 'link' | 'github' | 'twitter' | 'project' | 'experience' | 'techstack' | 'design-system';
 
 export interface BaseCard {

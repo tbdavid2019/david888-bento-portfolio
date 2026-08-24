@@ -1,7 +1,9 @@
 import linksData from '../data/bento-links.json';
 import profileData from '../data/bento-profile.json';
+import capabilitiesData from '../data/capabilities.json';
 import { profileContent } from '../data/profile-content';
-import type { BentoItem, LinkCardData, Locale } from '../types';
+import { rankCapabilities } from './webmcpSearch.mjs';
+import type { BentoItem, CapabilityArea, LinkCardData, Locale } from '../types';
 
 export type CategoryMeta = {
   id: string;
@@ -91,6 +93,7 @@ export const categories: CategoryMeta[] = [
 ];
 
 export const siteItems = linksData as BentoItem[];
+export const capabilityAreas = capabilitiesData as CapabilityArea[];
 
 export function getVisibleCategories(items: BentoItem[] = siteItems): CategoryMeta[] {
   const tags = new Set(items.map((item) => item.tag || 'others'));
@@ -111,6 +114,14 @@ export function getLocalizedCategoryTitle(category: CategoryMeta, locale: Locale
 
 export function getLocalizedCategorySummary(category: CategoryMeta, locale: Locale): string {
   return locale === 'en' ? category.summaryEn : category.summary;
+}
+
+export function getLocalizedCapabilityTitle(capability: CapabilityArea, locale: Locale): string {
+  return locale === 'en' ? capability.titleEn : capability.title;
+}
+
+export function getLocalizedCapabilityDescription(capability: CapabilityArea, locale: Locale): string {
+  return locale === 'en' ? capability.descriptionEn : capability.description;
 }
 
 export function getLocalizedItemTitle(item: BentoItem, locale: Locale): string {
@@ -225,6 +236,81 @@ export function toItemPreview(item: BentoItem, locale: Locale) {
     categoryId: item.tag || 'others',
     type: item.type,
     url: getItemUrl(item),
+  };
+}
+
+export function toCapabilityPreview(capability: CapabilityArea, locale: Locale) {
+  return {
+    id: capability.id,
+    title: getLocalizedCapabilityTitle(capability, locale),
+    description: getLocalizedCapabilityDescription(capability, locale),
+    keywords: capability.keywords,
+  };
+}
+
+function toSearchableItem(item: BentoItem, locale: Locale, index: number) {
+  const category = getCategoryById(item.tag || 'others');
+  return {
+    id: `item:${index}`,
+    title: getLocalizedItemTitle(item, 'zh'),
+    titleEn: getLocalizedItemTitle(item, 'en'),
+    description: getLocalizedItemDescription(item, 'zh'),
+    descriptionEn: getLocalizedItemDescription(item, 'en'),
+    section: getLocalizedItemSection(item, 'zh'),
+    sectionEn: getLocalizedItemSection(item, 'en'),
+    categoryLabel: category ? getLocalizedCategoryLabel(category, locale) : item.tag,
+    keywords: [item.type, item.tag].filter(Boolean),
+    preview: toItemPreview(item, locale),
+  };
+}
+
+export function searchSiteCapabilities(query: string, locale: Locale, limit = 8) {
+  const capabilityMatches = rankCapabilities(query, capabilityAreas, limit);
+  const itemCandidates = siteItems.map((item, index) => toSearchableItem(item, locale, index));
+  const itemMatches = rankCapabilities(query, itemCandidates, limit);
+
+  return {
+    query,
+    capabilities: capabilityMatches.map(({ capability, score, matchedFields }) => ({
+      ...toCapabilityPreview(capability, locale),
+      matchScore: score,
+      matchedFields,
+    })),
+    projects: itemMatches.map(({ capability, score, matchedFields }) => ({
+      ...capability.preview,
+      matchScore: score,
+      matchedFields,
+    })),
+  };
+}
+
+export function getCapabilityDetails(query: string, locale: Locale) {
+  const normalizedQuery = query.trim().toLowerCase();
+  if (!normalizedQuery) {
+    return null;
+  }
+
+  const capability = capabilityAreas.find((item) => [item.title, item.titleEn, item.id]
+    .some((value) => value.toLowerCase() === normalizedQuery || value.toLowerCase().includes(normalizedQuery)));
+  if (capability) {
+    return {
+      kind: 'capability' as const,
+      ...toCapabilityPreview(capability, locale),
+    };
+  }
+
+  const item = findItemByTitle(query, locale);
+  if (!item) {
+    return null;
+  }
+
+  const category = getCategoryById(item.tag || 'others');
+  return {
+    kind: 'project' as const,
+    ...toItemPreview(item, locale),
+    categoryTitle: category ? getLocalizedCategoryTitle(category, locale) : null,
+    categorySummary: category ? getLocalizedCategorySummary(category, locale) : null,
+    featured: Boolean(item.featured),
   };
 }
 
