@@ -21,14 +21,6 @@ interface ModelContext {
   registerTool(tool: ModelContextTool, options?: ModelContextRegisterToolOptions): Promise<void>;
 }
 
-interface NavigatorModelContext {
-  provideContext(context: { tools: ModelContextTool[] }): void | (() => void);
-}
-
 interface Document {
   modelContext?: ModelContext;
-}
-
-interface Navigator {
-  modelContext?: NavigatorModelContext;
 }

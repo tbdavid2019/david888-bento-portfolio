@@ -1,12 +1,14 @@
 import {
   defaultCategoryId,
   findItemByTitle,
+  getCapabilityDetails,
   getCategoryById,
   getLocalizedCategoryLabel,
   getLocalizedItemTitle,
   getProfileSummary,
   getVisibleCategories,
   listItemsByCategory,
+  searchSiteCapabilities,
   siteItems,
   toItemPreview,
 } from './siteCatalog';
@@ -16,6 +18,7 @@ type WebMcpContext = {
   getLocale: () => Locale;
   getActiveCategoryId: () => string;
   setActiveCategoryId: (categoryId: string) => void;
+  openContactForm: () => void;
 };
 
 type WebMcpTool = {
@@ -91,6 +94,147 @@ function createTools(context: WebMcpContext): WebMcpTool[] {
         const args = (input && typeof input === 'object' ? input : {}) as { locale?: Locale };
         const locale = normalizeLocale(args.locale, context.getLocale());
         return getProfileSummary(locale);
+      },
+    },
+    {
+      name: 'search_my_capabilities',
+      title: 'Search David’s Capabilities',
+      description: 'Search David’s professional capabilities and related public projects for a user goal or technical problem.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          query: {
+            type: 'string',
+            minLength: 2,
+            description: 'A capability, business problem, or technical topic to search for.',
+          },
+          locale: {
+            type: 'string',
+            enum: ['zh', 'en'],
+            description: 'Preferred response language.',
+          },
+          limit: {
+            type: 'integer',
+            minimum: 1,
+            maximum: 20,
+            description: 'Maximum number of capability and project matches to return.',
+          },
+        },
+        required: ['query'],
+        additionalProperties: false,
+      },
+      annotations: {
+        readOnlyHint: true,
+      },
+      execute: (input) => {
+        const args = (input && typeof input === 'object' ? input : {}) as {
+          query?: string;
+          locale?: Locale;
+          limit?: number;
+        };
+        const locale = normalizeLocale(args.locale, context.getLocale());
+        if (typeof args.query !== 'string' || args.query.trim().length < 2) {
+          return {
+            ok: false,
+            reason: locale === 'en' ? 'Please provide a search query with at least two characters.' : '請提供至少兩個字元的搜尋需求。',
+          };
+        }
+
+        return {
+          ok: true,
+          ...searchSiteCapabilities(args.query, locale, normalizeLimit(args.limit)),
+        };
+      },
+    },
+    {
+      name: 'recommend_capabilities',
+      title: 'Recommend Capabilities',
+      description: 'Recommend the most relevant consulting capabilities and public projects for a stated business or engineering goal.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          goal: {
+            type: 'string',
+            minLength: 2,
+            description: 'The business or engineering outcome the user wants to achieve.',
+          },
+          locale: {
+            type: 'string',
+            enum: ['zh', 'en'],
+            description: 'Preferred response language.',
+          },
+          limit: {
+            type: 'integer',
+            minimum: 1,
+            maximum: 10,
+            description: 'Maximum number of recommendations to return.',
+          },
+        },
+        required: ['goal'],
+        additionalProperties: false,
+      },
+      annotations: {
+        readOnlyHint: true,
+      },
+      execute: (input) => {
+        const args = (input && typeof input === 'object' ? input : {}) as {
+          goal?: string;
+          locale?: Locale;
+          limit?: number;
+        };
+        const locale = normalizeLocale(args.locale, context.getLocale());
+        if (typeof args.goal !== 'string' || args.goal.trim().length < 2) {
+          return {
+            ok: false,
+            reason: locale === 'en' ? 'Please describe the goal with at least two characters.' : '請提供至少兩個字元的目標描述。',
+          };
+        }
+
+        return {
+          ok: true,
+          goal: args.goal,
+          ...searchSiteCapabilities(args.goal, locale, Math.min(normalizeLimit(args.limit, 5), 10)),
+        };
+      },
+    },
+    {
+      name: 'get_capability_details',
+      title: 'Get Capability Details',
+      description: 'Return detailed information about one of David’s capabilities or public projects by name.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          query: {
+            type: 'string',
+            minLength: 2,
+            description: 'A capability or project name. Partial matches are allowed.',
+          },
+          locale: {
+            type: 'string',
+            enum: ['zh', 'en'],
+            description: 'Preferred response language.',
+          },
+        },
+        required: ['query'],
+        additionalProperties: false,
+      },
+      annotations: {
+        readOnlyHint: true,
+      },
+      execute: (input) => {
+        const args = (input && typeof input === 'object' ? input : {}) as { query?: string; locale?: Locale };
+        const locale = normalizeLocale(args.locale, context.getLocale());
+        if (typeof args.query !== 'string' || args.query.trim().length < 2) {
+          return {
+            ok: false,
+            reason: locale === 'en' ? 'A capability or project name is required.' : '請提供能力或作品名稱。',
+          };
+        }
+
+        const details = getCapabilityDetails(args.query, locale);
+        return details
+          ? { ok: true, ...details }
+          : { ok: false, reason: locale === 'en' ? 'No matching capability or project was found.' : '找不到符合的能力或作品。' };
       },
     },
     {
@@ -193,6 +337,26 @@ function createTools(context: WebMcpContext): WebMcpTool[] {
       },
     },
     {
+      name: 'open_contact_form',
+      title: 'Open Contact Form',
+      description: 'Open the visible contact form so the user can review and submit a collaboration request.',
+      inputSchema: {
+        type: 'object',
+        properties: {},
+        additionalProperties: false,
+      },
+      annotations: {
+        readOnlyHint: false,
+      },
+      execute: () => {
+        context.openContactForm();
+        return {
+          ok: true,
+          message: 'The contact form is now open for the user to review and complete.',
+        };
+      },
+    },
+    {
       name: 'open_site_item',
       title: 'Open Site Item',
       description: 'Open a portfolio item by title in a new tab.',
@@ -243,33 +407,19 @@ export function registerPortfolioWebMcp(context: WebMcpContext): () => void {
 
   const tools = createTools(context);
   const modelContext = document.modelContext;
-
-  if (modelContext && typeof modelContext.registerTool === 'function') {
-    const abortController = new AbortController();
-
-    for (const tool of tools) {
-      modelContext.registerTool(tool, { signal: abortController.signal }).catch((error) => {
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          return;
-        }
-        console.warn(`Failed to register WebMCP tool "${tool.name}"`, error);
-      });
-    }
-
-    return () => abortController.abort();
+  if (!modelContext || typeof modelContext.registerTool !== 'function') {
+    return () => undefined;
   }
 
-  const navigatorModelContext = navigator.modelContext;
-  if (navigatorModelContext && typeof navigatorModelContext.provideContext === 'function') {
-    try {
-      const cleanup = navigatorModelContext.provideContext({ tools });
-      if (typeof cleanup === 'function') {
-        return cleanup;
+  const abortController = new AbortController();
+  for (const tool of tools) {
+    modelContext.registerTool(tool, { signal: abortController.signal }).catch((error) => {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
       }
-    } catch (error) {
-      console.warn('Failed to provide WebMCP context via navigator.modelContext', error);
-    }
+      console.warn(`Failed to register WebMCP tool "${tool.name}"`, error);
+    });
   }
 
-  return () => undefined;
+  return () => abortController.abort();
 }

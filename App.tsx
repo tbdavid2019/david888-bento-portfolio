@@ -58,6 +58,7 @@ export default function App() {
       getLocale: () => localeRef.current,
       getActiveCategoryId: () => activeCategoryIdRef.current,
       setActiveCategoryId: (categoryId) => setCategoryAndSyncUrl(categoryId),
+      openContactForm: () => setContactOpen(true),
     });
 
     return cleanup;
