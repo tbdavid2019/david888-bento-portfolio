@@ -45,10 +45,10 @@ export const AnnouncementBar: React.FC<{ data?: AnnouncementData }> = ({
             <Megaphone size={16} />
           </span>
           <div className="min-w-0">
-            <div className="text-[11px] font-black uppercase tracking-[0.24em] text-primary">
+            <div className="text-xs font-black uppercase tracking-[0.24em] text-primary">
               {liveData.eyebrow || 'Announcement'}
             </div>
-            <h2 className="mt-1 text-base font-black leading-6 text-text-main md:text-lg">
+            <h2 className="mt-1 text-lg font-black leading-6 text-text-main md:text-xl">
               {liveData.title}
             </h2>
             {liveData.body && <p className="mt-1 text-sm leading-6 text-text-muted">{liveData.body}</p>}

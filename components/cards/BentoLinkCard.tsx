@@ -53,7 +53,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
   return (
     <CardWrapper
       onClick={() => window.open(link.url, '_blank', 'noreferrer')}
-      className="group min-h-[140px]"
+      className="group min-h-[180px]"
     >
       <div className="flex items-start justify-between">
         <div className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-110 ${link.icon ? 'bg-primary/10 text-primary' : link.bgClass || 'bg-bg-elevated'}`}>
@@ -74,16 +74,16 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
           )}
         </div>
       </div>
-      <div className="mt-auto pt-6">
-        <div className="text-base font-bold text-text-main leading-tight tracking-tight mb-1">
+      <div className="mt-auto pt-8">
+        <div className="text-lg font-bold leading-tight tracking-tight text-text-main md:text-xl">
           {title}
         </div>
         {description && (
-          <div className="text-xs text-text-muted line-clamp-4 mb-2 leading-relaxed">
+          <div className="mb-3 line-clamp-4 text-sm leading-relaxed text-text-muted md:text-[15px]">
             {description}
           </div>
         )}
-        <div className="text-[10px] uppercase font-black tracking-widest text-text-muted opacity-60">{getDomain(link.url)}</div>
+        <div className="text-[11px] font-black uppercase tracking-widest text-text-muted opacity-60">{getDomain(link.url)}</div>
       </div>
     </CardWrapper>
   );

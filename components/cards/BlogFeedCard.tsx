@@ -103,10 +103,10 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
             <BookOpenText size={22} />
           </div>
           <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.24em] text-text-muted">
+            <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted">
               {locale === 'en' ? 'Live Blog Feed' : '即時 Blog Feed'}
             </div>
-            <h3 className="mt-2 text-lg font-black leading-tight text-text-main">
+            <h3 className="mt-2 text-xl font-black leading-tight text-text-main md:text-2xl">
               {locale === 'en' ? 'Latest DAVID888 Posts' : 'DAVID888 最新文章'}
             </h3>
           </div>
@@ -164,7 +164,7 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
                 </div>
                 <ArrowUpRight size={16} className="text-text-muted" />
               </div>
-              <div className="mt-2 line-clamp-2 text-sm font-bold leading-6 text-text-main">
+              <div className="mt-2 line-clamp-2 text-base font-bold leading-6 text-text-main">
                 {featuredPost.title}
               </div>
               {featuredPost.excerpt && (
@@ -200,7 +200,7 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-text-muted">
                   {formatDate(post.published_at)}
                 </div>
-                <div className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-text-main">
+                <div className="mt-1 line-clamp-2 text-base font-bold leading-6 text-text-main">
                   {post.title}
                 </div>
               </div>

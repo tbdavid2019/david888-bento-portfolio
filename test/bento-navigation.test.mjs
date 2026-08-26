@@ -1,0 +1,24 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const bentoGridSource = fs.readFileSync(new URL('../components/BentoGrid.tsx', import.meta.url), 'utf8');
+
+test('provides a table of contents for category sub-sections', () => {
+  assert.match(bentoGridSource, /aria-label=\{locale === 'en' \? 'Section navigation' : '子分類目錄'\}/);
+  assert.match(bentoGridSource, /href=\{`#\$\{getSectionAnchorId/);
+  assert.match(bentoGridSource, /id=\{section \? getSectionAnchorId/);
+});
+
+test('provides an accessible back-to-top action for long pages', () => {
+  assert.match(bentoGridSource, /window\.scrollTo\(/);
+  assert.match(bentoGridSource, /aria-label=\{locale === 'en' \? 'Back to top' : '回到頂端'\}/);
+  assert.match(bentoGridSource, /showScrollTop/);
+});
+
+test('uses a larger type scale for portfolio browsing', () => {
+  const linkCardSource = fs.readFileSync(new URL('../components/cards/BentoLinkCard.tsx', import.meta.url), 'utf8');
+  assert.match(linkCardSource, /min-h-\[180px\]/);
+  assert.match(linkCardSource, /text-lg font-bold[^\n]*md:text-xl/);
+  assert.match(bentoGridSource, /text-base font-bold transition-colors/);
+});

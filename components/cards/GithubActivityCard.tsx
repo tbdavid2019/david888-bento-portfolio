@@ -122,10 +122,10 @@ export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => 
             <Github size={22} />
           </div>
           <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.24em] text-text-muted">
+            <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted">
               {locale === 'en' ? 'Daily GitHub Sync' : '每日 GitHub 同步'}
             </div>
-            <h3 className="mt-2 text-lg font-black leading-tight text-text-main">
+            <h3 className="mt-2 text-xl font-black leading-tight text-text-main md:text-2xl">
               {locale === 'en' ? 'Latest GitHub Activity' : '最新 GitHub 動態'}
             </h3>
             {syncDateLabel && (
@@ -177,11 +177,11 @@ export const GithubActivityCard: React.FC<{ locale: Locale }> = ({ locale }) => 
               </div>
               <ArrowUpRight size={14} className="text-text-muted" />
             </div>
-            <div className="mt-2 line-clamp-2 text-sm font-bold leading-6 text-text-main">
+              <div className="mt-2 line-clamp-2 text-base font-bold leading-6 text-text-main">
               {entry.title}
             </div>
             {entry.summary && (
-              <div className="mt-2 line-clamp-2 text-xs leading-5 text-text-muted">
+              <div className="mt-2 line-clamp-2 text-sm leading-5 text-text-muted">
                 {entry.summary}
               </div>
             )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
@@ -33,6 +33,8 @@ const stackedSocialTitles = new Set([
 ]);
 
 const isLinkedInItem = (item: BentoItem) => 'title' in item && item.title === 'LinkedIn';
+const getSectionAnchorId = (categoryId: string, _section: string, index: number) => `section-${categoryId}-${index}`;
+const getSectionLabel = (section: string) => section.replace(/\s+\([^)]*\)$/, '');
 
 interface BentoGridProps {
   locale: Locale;
@@ -42,6 +44,7 @@ interface BentoGridProps {
 
 export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, onCategoryChange }) => {
   const contentSectionRef = React.useRef<HTMLElement>(null);
+  const [showScrollTop, setShowScrollTop] = React.useState(false);
   const items = siteItems;
   const groupedItems = React.useMemo(() => {
     return items.reduce((acc, item) => {
@@ -81,6 +84,14 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
     return acc;
   }, {} as Record<string, BentoItem[]>);
   const activeSections: Array<[string, BentoItem[]]> = Object.entries(groupedActiveSections);
+  const tocSections = activeSections.filter(([section]) => section);
+
+  React.useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 600);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="flex flex-col gap-6">
@@ -97,7 +108,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                 type="button"
                 onClick={() => handleCategorySelect(category.id)}
                 className={cn(
-                  "relative flex min-h-10 items-center gap-2 rounded-xl px-4 text-sm font-bold transition-colors",
+                  "relative flex min-h-10 items-center gap-2 rounded-xl px-5 text-base font-bold transition-colors",
                   isActive ? "text-white dark:text-bg-base" : "text-text-muted hover:text-text-main"
                 )}
                 aria-pressed={isActive}
@@ -139,10 +150,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
                 </div>
                 <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
-                  <h3 className="text-xl font-black text-text-main md:text-2xl">
+                  <h3 className="shrink-0 text-2xl font-black text-text-main md:text-3xl">
                     {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
                   </h3>
-                  <p className="max-w-2xl text-sm text-text-muted">
+                  <p className="max-w-2xl text-base leading-relaxed text-text-muted">
                     {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
                   </p>
                 </div>
@@ -162,6 +173,30 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
             </div>
           )}
 
+          {tocSections.length > 1 && (
+            <nav
+              aria-label={locale === 'en' ? 'Section navigation' : '子分類目錄'}
+              className="rounded-2xl border border-border bg-bg-surface px-4 py-3 shadow-sm"
+            >
+              <div className="flex items-center gap-3 overflow-x-auto pb-1 md:flex-wrap md:overflow-x-visible">
+                <span className="shrink-0 text-sm font-black text-text-muted">
+                  {locale === 'en' ? 'Sections' : '子分類'}
+                </span>
+                <div className="flex min-w-max items-center gap-2 md:min-w-0 md:flex-wrap">
+                  {tocSections.map(([section], sectionIndex) => (
+                    <a
+                      key={section}
+                      href={`#${getSectionAnchorId(activeCategory?.id ?? activeCategoryId, section, sectionIndex)}`}
+                      className="rounded-full border border-border px-3 py-1.5 text-sm font-bold text-text-muted transition-colors hover:border-primary hover:text-primary"
+                    >
+                      {getSectionLabel(section)}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </nav>
+          )}
+
         <AnimatePresence mode="popLayout">
           <motion.div 
             key={activeCategoryId}
@@ -171,11 +206,15 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
             transition={{ duration: 0.3, type: "spring", bounce: 0.2 }}
             className="space-y-8"
           >
-            {activeSections.map(([section, sectionItems]) => (
-              <div key={section || 'default'} className="space-y-4">
+            {activeSections.map(([section, sectionItems], sectionIndex) => (
+              <div
+                key={section || 'default'}
+                id={section ? getSectionAnchorId(activeCategory?.id ?? activeCategoryId, section, sectionIndex) : undefined}
+                className="scroll-mt-32 space-y-4"
+              >
                 {section && (
                   <div className="flex items-center gap-3">
-                    <h4 className="shrink-0 text-sm font-black text-text-muted">
+                    <h4 className="shrink-0 text-base font-black text-text-muted md:text-lg">
                       {section}
                     </h4>
                     <div className="h-px flex-1 bg-border" />
@@ -242,6 +281,20 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
         </AnimatePresence>
       </section>
     </main>
+
+    {showScrollTop && (
+      <button
+        type="button"
+        onClick={() => window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        })}
+        aria-label={locale === 'en' ? 'Back to top' : '回到頂端'}
+        className="fixed bottom-6 right-6 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg-surface text-text-main shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:border-primary hover:text-primary"
+      >
+        <ArrowUp size={19} />
+      </button>
+    )}
     </div>
   );
 };

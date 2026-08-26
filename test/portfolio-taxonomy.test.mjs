@@ -49,3 +49,26 @@ test('labels LLM resources as AI Agent Skills', () => {
   assert.equal(links.find((item) => item.title === 'AnswerBook API')?.tag, 'products');
   assert.equal(categoryConfig.categories.find((category) => category.id === 'agent-skills')?.label, 'AI Agent Skills');
 });
+
+test('keeps the TTS project family together in research and experiments', () => {
+  const ttsItems = links.filter((item) => item.sectionEn === 'Speech & Language');
+  assert.deepEqual(ttsItems.map((item) => item.title), ['333 Taiwanese TTS Hub', 'HF: 台語 TTS']);
+  assert.ok(ttsItems.every((item) => item.tag === 'experiments'));
+});
+
+test('keeps lifestyle side projects with the Qi and Life category', () => {
+  const lifestyleTitles = [
+    '台灣道路施工地圖',
+    '台灣寵物認養地圖',
+    'Lofi Music 輕音樂',
+    '便利商店即期食品查詢',
+  ];
+
+  for (const title of lifestyleTitles) {
+    assert.equal(links.find((item) => item.title === title)?.tag, 'metaphysics', title);
+  }
+});
+
+test('removes the retired hg-markitdown entry', () => {
+  assert.equal(links.some((item) => item.url === 'https://huggingface.co/spaces/tbdavid2019/hg-markitdown'), false);
+});

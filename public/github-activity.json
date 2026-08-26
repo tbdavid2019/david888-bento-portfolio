@@ -2,6 +2,18 @@
   "entries": [
     {
       "title": "tbdavid2019 pushed 888a2a",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/5f71826d6b...726c41f3f2",
+      "updated": "2026-08-26 01:44:53 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:44 1 commit to main 726c41f fix(org): harden tenant isolation and acceptance evidence"
+    },
+    {
+      "title": "tbdavid2019 pushed cf-notepad",
+      "url": "https://github.com/tbdavid2019/cf-notepad/compare/d5fcebc601...1b072f0ce1",
+      "updated": "2026-08-26 01:38:35 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 26, 2026 01:38 1 commit to main 1b072f0 feat(ui): split action capsule in share mode and interactive language…"
+    },
+    {
+      "title": "tbdavid2019 pushed 888a2a",
       "url": "https://github.com/tbdavid2019/888a2a/compare/5e5913e88b...a27e3dafc7",
       "updated": "2026-08-26 01:06:14 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:06 1 commit to main a27e3da feat(org): implement tenant IAM, store operations and frontend organi…"
@@ -17,21 +29,9 @@
       "url": "https://github.com/tbdavid2019/888a2a/compare/247bcf1ac8...35648e073c",
       "updated": "2026-08-26 00:53:10 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 00:53 1 commit to main 35648e0 chore: remove obsolete docs/plan in favor of openspec and guides"
-    },
-    {
-      "title": "tbdavid2019 deleted",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/75a6b77248...0000000000",
-      "updated": "2026-08-26 00:52:03 UTC",
-      "summary": "tbdavid2019 deleted branch refs/heads/feature/agent-network-foundation in tbdavid2019/888a2a · August 26, 2026 00:52 tbdavid2019/888a2a Updated Aug 26"
-    },
-    {
-      "title": "tbdavid2019 pushed 888a2a",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/75a6b77248...247bcf1ac8",
-      "updated": "2026-08-26 00:51:57 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 00:51 1 commit to main 247bcf1 docs(openspec): archive build-888a2a-agent-network-foundation and syn…"
     }
   ],
-  "lastSyncedAt": "2026-08-26T01:30:17.594Z",
+  "lastSyncedAt": "2026-08-26T01:58:53.654Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

@@ -129,10 +129,10 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
             <Headphones size={22} />
           </div>
           <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.24em] text-text-muted">
+            <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted">
               {locale === 'en' ? 'Live Podcast Feed' : '即時 Podcast Feed'}
             </div>
-            <h3 className="mt-2 text-xl font-black leading-tight text-text-main">
+            <h3 className="mt-2 text-2xl font-black leading-tight text-text-main md:text-3xl">
               {locale === 'en' ? 'Latest DAVID888 Episodes' : 'DAVID888 最新節目'}
             </h3>
           </div>
@@ -168,7 +168,7 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
 
         {!loading && !hasError && featuredEpisode && (
           <div className="rounded-[1.75rem] border border-border bg-[linear-gradient(145deg,rgba(255,255,255,0.55),rgba(255,255,255,0.18))] p-5 shadow-sm dark:bg-[linear-gradient(145deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]">
-            <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.24em] text-text-muted">
+            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-text-muted">
               <Radio size={13} />
               {locale === 'en' ? 'Now Featured' : '本日主打'}
             </div>
@@ -177,7 +177,7 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
               <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted">
                 {formatDate(featuredEpisode.pubDate)}
               </div>
-              <h4 className="mt-2 text-lg font-black leading-7 text-text-main md:text-xl">
+              <h4 className="mt-2 text-xl font-black leading-7 text-text-main md:text-2xl">
                 {featuredEpisode.title}
               </h4>
               {featuredEpisode.description && (
@@ -235,14 +235,14 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted">
+                  <div className="text-sm font-black uppercase tracking-[0.2em] text-text-muted">
                     {formatDate(episode.pubDate)}
                   </div>
-                  <div className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-text-main">
+                  <div className="mt-1 line-clamp-2 text-base font-bold leading-6 text-text-main">
                     {episode.title}
                   </div>
                   {episode.description && (
-                    <div className="mt-2 line-clamp-2 text-xs leading-5 text-text-muted">
+                    <div className="mt-2 line-clamp-2 text-sm leading-5 text-text-muted">
                       {episode.description}
                     </div>
                   )}

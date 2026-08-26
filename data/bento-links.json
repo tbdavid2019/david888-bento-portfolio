@@ -31,9 +31,9 @@
     "descriptionEn": "A Taiwanese Mandarin and Taiwanese Hokkien TTS workbench for quick listening tests, model comparison, speech generation, and demos.",
     "url": "https://tbdavid2019.github.io/333TTSWeb/",
     "imageSource": "/bento/333tts.svg",
-    "tag": "products",
-    "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "tag": "experiments",
+    "section": "語音與語言 (Speech & Language)",
+    "sectionEn": "Speech & Language"
   },
   {
     "type": "link",
@@ -433,7 +433,7 @@
     "title": "台灣道路施工地圖",
     "url": "https://tbdavid2019.github.io/tw_road_fix_map/",
     "imageSource": "https://cdn-icons-png.flaticon.com/512/3097/3097180.png",
-    "tag": "experiments",
+    "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
     "sectionEn": "Lifestyle Side Projects"
   },
@@ -442,7 +442,7 @@
     "title": "台灣寵物認養地圖",
     "url": "https://tbdavid2019.github.io/tw_pet_need_map/",
     "imageSource": "https://cdn-icons-png.flaticon.com/512/1076/1076928.png",
-    "tag": "experiments",
+    "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
     "sectionEn": "Lifestyle Side Projects"
   },
@@ -511,15 +511,6 @@
     "tag": "products",
     "section": "LINE 產品與機器人 (LINE Products & Bots)",
     "sectionEn": "LINE Products & Bots"
-  },
-  {
-    "type": "link",
-    "title": "HF: Docs 轉 MD Markdown",
-    "url": "https://huggingface.co/spaces/tbdavid2019/hg-markitdown",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvaGctbWFya2l0ZG93bi5wbmc%3D.png",
-    "tag": "experiments",
-    "section": "資料與工作流 (Data & Workflows)",
-    "sectionEn": "Data & Workflows"
   },
   {
     "type": "link",
@@ -615,7 +606,7 @@
     "title": "Lofi Music 輕音樂",
     "url": "http://music.david888.com/",
     "imageSource": "/bento/music.svg",
-    "tag": "experiments",
+    "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
     "sectionEn": "Lifestyle Side Projects"
   },
@@ -624,7 +615,7 @@
     "title": "便利商店即期食品查詢",
     "url": "https://tbdavid2019-taiwan-7-11.hf.space/",
     "imageSource": "/bento/expiry_food.svg",
-    "tag": "experiments",
+    "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
     "sectionEn": "Lifestyle Side Projects"
   },
