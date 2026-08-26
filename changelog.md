@@ -1,5 +1,21 @@
 # Changelog
 
+## [2026-08-26] - Portfolio Readability, Navigation, and Catalog Cleanup
+
+### Added
+- Added larger typography across portfolio cards, category headers, announcement copy, and the live Podcast, Blog, and GitHub cards.
+- Added a sub-category table of contents for long category pages.
+- Added an accessible back-to-top button that appears after scrolling.
+- Added regression tests for category placement, typography, section navigation, and the back-to-top action.
+
+### Changed
+- Moved `333 Taiwanese TTS Hub` into `研究與實驗 > 語音與語言`, alongside `HF: 台語 TTS`.
+- Moved lifestyle side projects into `命理與生活 > 生活型 Side Projects`.
+- Kept the homepage's auto-updating Podcast, Blog, and GitHub Activity layout unchanged.
+
+### Removed
+- Removed the retired `HF: Docs 轉 MD Markdown` entry for `hg-markitdown`.
+
 ## [2026-08-24] - WebMCP Capability Tools
 
 ### Added
