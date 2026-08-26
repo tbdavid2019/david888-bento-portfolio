@@ -36,6 +36,8 @@ All content is managed in the `data/` folder. You do not need to touch the code.
 ### 1. Reordering Blocks (移動區塊)
 To change the order of cards, simply rearrange the objects in `data/bento-links.json`. The grid renders items from top to bottom.
 
+Category names, order, bilingual descriptions, and the homepage default are managed in `data/bento-categories.json`. The homepage uses the `social` category so the auto-updating Podcast, Blog, and GitHub Activity cards remain the default view.
+
 ### 2. Adding New Blocks (新增區塊)
 Add a new object to the list in `data/bento-links.json`.
 
@@ -45,9 +47,20 @@ Add a new object to the list in `data/bento-links.json`.
   "type": "link",
   "title": "My New Project",
   "url": "https://example.com",
-  "imageSource": "https://example.com/image.png"
+  "imageSource": "https://example.com/image.png",
+  "tag": "products",
+  "section": "Web 產品與服務 (Web Products & Services)",
+  "sectionEn": "Web Products & Services"
 }
 ```
+
+Current category IDs:
+
+- `social`: Latest auto-updating content and media links
+- `products`: Web, browser, Telegram, and LINE products
+- `agent-skills`: Skills built for LLMs and AI agents
+- `experiments`: Research prototypes and side projects
+- `metaphysics`: Qi Men, Bazi, tarot, Feng Shui, and related products
 
 **Special Card Types:**
 You can use the following values for the `"type"` field:

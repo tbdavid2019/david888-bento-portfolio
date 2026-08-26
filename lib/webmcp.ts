@@ -275,7 +275,7 @@ function createTools(context: WebMcpContext): WebMcpTool[] {
         properties: {
           categoryId: {
             type: 'string',
-            description: 'Category ID such as social, tools, skills, ai, telegram, line, or extensions.',
+            description: 'Category ID such as social, products, agent-skills, experiments, or metaphysics.',
           },
           locale: {
             type: 'string',

@@ -1,6 +1,7 @@
 import React from 'react';
+import { HeartHandshake, House, ScrollText, Sparkles, type LucideIcon } from 'lucide-react';
 import { CardWrapper } from './CardWrapper';
-import type { Locale } from '../../types';
+import type { BentoLinkIcon, Locale } from '../../types';
 
 interface BentoLink {
   title: string;
@@ -11,7 +12,15 @@ interface BentoLink {
   image?: string | null;
   imageSource?: string | null;
   bgClass?: string | null;
+  icon?: BentoLinkIcon;
 }
+
+const iconMap: Record<BentoLinkIcon, LucideIcon> = {
+  tarot: Sparkles,
+  bazi: ScrollText,
+  fengshui: House,
+  yinyuan: HeartHandshake,
+};
 
 const getDomain = (url: string) => {
   try {
@@ -39,6 +48,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
   const isBranded = !!link.bgClass;
   const title = locale === 'en' ? link.titleEn || link.title : link.title;
   const description = locale === 'en' ? link.descriptionEn || link.description : link.description;
+  const ServiceIcon = link.icon ? iconMap[link.icon] : null;
 
   return (
     <CardWrapper
@@ -46,18 +56,22 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
       className="group min-h-[140px]"
     >
       <div className="flex items-start justify-between">
-        <div className={`w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${link.bgClass || 'bg-bg-elevated'}`}>
-          <img
-            src={imageDisplayUrl as string}
-            alt={title}
-            className={`w-full h-full ${isBranded ? 'p-2 object-contain' : 'object-cover'}`}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              if (target.getAttribute('src') !== fallbackImageUrl) {
-                target.src = fallbackImageUrl;
-              }
-            }}
-          />
+        <div className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-110 ${link.icon ? 'bg-primary/10 text-primary' : link.bgClass || 'bg-bg-elevated'}`}>
+          {ServiceIcon ? (
+            <ServiceIcon size={25} strokeWidth={1.8} aria-hidden="true" />
+          ) : (
+            <img
+              src={imageDisplayUrl as string}
+              alt={title}
+              className={`h-full w-full ${isBranded ? 'object-contain p-2' : 'object-cover'}`}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.getAttribute('src') !== fallbackImageUrl) {
+                  target.src = fallbackImageUrl;
+                }
+              }}
+            />
+          )}
         </div>
       </div>
       <div className="mt-auto pt-6">

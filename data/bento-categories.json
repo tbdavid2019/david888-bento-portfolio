@@ -1,0 +1,50 @@
+{
+  "defaultCategoryId": "social",
+  "categories": [
+    {
+      "id": "social",
+      "label": "最新動態",
+      "labelEn": "Latest",
+      "title": "最新內容與動態",
+      "titleEn": "Latest Updates",
+      "summary": "自動更新 Podcast、Blog 與 GitHub Activity，也保留我的社群與內容入口。",
+      "summaryEn": "Auto-updated podcast, blog, and GitHub activity alongside my media and social channels."
+    },
+    {
+      "id": "products",
+      "label": "產品與作品",
+      "labelEn": "Products",
+      "title": "產品與作品",
+      "titleEn": "Products & Work",
+      "summary": "已經做成可使用產品的 Web 服務、瀏覽器產品、Telegram 與 LINE 服務。",
+      "summaryEn": "Usable web services, browser products, and products delivered through Telegram or LINE."
+    },
+    {
+      "id": "agent-skills",
+      "label": "AI Agent Skills",
+      "labelEn": "Agent Skills",
+      "title": "給 LLM 與 AI Agent 的 Skills",
+      "titleEn": "Skills for LLMs & AI Agents",
+      "summary": "讓 LLM 與 AI Agent 具備特定領域知識、文件查詢與工具操作能力的可重用 Skills。",
+      "summaryEn": "Reusable skills that give LLMs and AI agents domain knowledge, documentation, and tool workflows."
+    },
+    {
+      "id": "experiments",
+      "label": "研究與實驗",
+      "labelEn": "Lab",
+      "title": "研究與實驗",
+      "titleEn": "Research & Experiments",
+      "summary": "研究原型、資料應用、AI 實驗、視覺互動與生活型 Side Projects。",
+      "summaryEn": "Research prototypes, data applications, AI experiments, interactive visuals, and personal side projects."
+    },
+    {
+      "id": "metaphysics",
+      "label": "命理與生活",
+      "labelEn": "Qi & Life",
+      "title": "命理與生活產品",
+      "titleEn": "Qi & Life Products",
+      "summary": "奇門、八字、塔羅、風水與姻緣等持續發展中的產品系列。",
+      "summaryEn": "An evolving product family spanning Qi Men, Bazi, tarot, Feng Shui, and relationships."
+    }
+  ]
+}

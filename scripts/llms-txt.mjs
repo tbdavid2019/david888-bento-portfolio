@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-export function buildLlmsTxt({ profile, links, content, siteOrigin }) {
+export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }) {
   const lines = [
     '# David Chiang (David888) - CTO & Technical Advisor Portfolio',
     '',
@@ -25,17 +25,6 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin }) {
     '',
   ];
 
-  const categoryMap = {
-    social: 'Profile & Media Channels',
-    extensions: 'Chrome Extensions',
-    tools: 'Tools & Services',
-    skills: 'Developer Skills & APIs',
-    ai: 'AI Apps & Research',
-    telegram: 'Telegram Bots',
-    line: 'LINE Bots',
-    others: 'Other Work',
-  };
-
   const grouped = {};
   for (const item of links) {
     const tag = item.tag || 'others';
@@ -43,13 +32,11 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin }) {
     grouped[tag].push(item);
   }
 
-  const mainTags = ['social', 'extensions', 'tools', 'skills', 'ai', 'telegram', 'line'];
-
-  for (const tag of mainTags) {
-    const items = grouped[tag] || [];
+  for (const category of categories) {
+    const items = grouped[category.id] || [];
     if (items.length === 0) continue;
 
-    lines.push(`## ${categoryMap[tag]}`);
+    lines.push(`## ${category.titleEn}`);
     lines.push('');
 
     for (const item of items) {
@@ -62,25 +49,11 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin }) {
     lines.push('');
   }
 
-  const optionalItems = grouped.others || [];
-  if (optionalItems.length > 0) {
-    lines.push('## Optional');
-    lines.push('');
-    for (const item of optionalItems) {
-      const title = item.titleEn ? `${item.title} (${item.titleEn})` : item.title;
-      const rawUrl = item.url || '';
-      const url = rawUrl.startsWith('http://') || rawUrl.startsWith('https://') ? rawUrl : `${siteOrigin}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`;
-      const desc = item.description || item.descriptionEn || '';
-      lines.push(desc ? `- [${title}](${url}): ${desc}` : `- [${title}](${url})`);
-    }
-    lines.push('');
-  }
-
   return lines.join('\n').trim() + '\n';
 }
 
-export function buildLlmsFullTxt({ profile, links, content, siteOrigin }) {
-  const baseLlmsTxt = buildLlmsTxt({ profile, links, content, siteOrigin });
+export function buildLlmsFullTxt({ profile, links, content, siteOrigin, categories }) {
+  const baseLlmsTxt = buildLlmsTxt({ profile, links, content, siteOrigin, categories });
 
   const fullLines = [
     baseLlmsTxt.trim(),
@@ -155,10 +128,12 @@ export async function generateLlmsFiles({ projectRoot = process.cwd(), siteOrigi
 
   const profile = JSON.parse(await fs.readFile(path.join(dataDir, 'bento-profile.json'), 'utf8'));
   const links = JSON.parse(await fs.readFile(path.join(dataDir, 'bento-links.json'), 'utf8'));
+  const categoryConfig = JSON.parse(await fs.readFile(path.join(dataDir, 'bento-categories.json'), 'utf8'));
   const content = JSON.parse(await fs.readFile(path.join(dataDir, 'profile-content.json'), 'utf8'));
 
-  const llmsTxtContent = buildLlmsTxt({ profile, links, content, siteOrigin });
-  const llmsFullTxtContent = buildLlmsFullTxt({ profile, links, content, siteOrigin });
+  const categories = categoryConfig.categories;
+  const llmsTxtContent = buildLlmsTxt({ profile, links, content, siteOrigin, categories });
+  const llmsFullTxtContent = buildLlmsFullTxt({ profile, links, content, siteOrigin, categories });
 
   await fs.writeFile(path.join(publicDir, 'llms.txt'), llmsTxtContent, 'utf8');
   await fs.writeFile(path.join(publicDir, 'llms-full.txt'), llmsFullTxtContent, 'utf8');

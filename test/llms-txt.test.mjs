@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildLlmsTxt, buildLlmsFullTxt } from '../scripts/llms-txt.mjs';
+import categoryConfig from '../data/bento-categories.json' with { type: 'json' };
 
 const mockProfile = {
   name: 'David Chiang',
@@ -42,14 +43,14 @@ const mockLinks = [
     title: '小濃縮 Quick Summary',
     description: '網頁 AI 摘要外掛',
     url: 'https://chromewebstore.google.com/detail/example',
-    tag: 'extensions',
+    tag: 'products',
   },
   {
     type: 'link',
     title: '奇門遁甲系統',
     description: '命理與易數計算',
     url: 'https://qi.david888.com/',
-    tag: 'others',
+    tag: 'metaphysics',
   },
 ];
 
@@ -59,6 +60,7 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
     links: mockLinks,
     content: mockContent,
     siteOrigin: 'https://david888.com',
+    categories: categoryConfig.categories,
   });
 
   // Spec check 1: Starts with an H1 heading for the site/person
@@ -68,9 +70,9 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
   assert.match(result, /> 把複雜的技術債，轉化為看得見的商業價值/);
 
   // Spec check 3: Contains H2 sections for category file lists
-  assert.match(result, /## Profile & Media Channels/);
-  assert.match(result, /## Chrome Extensions/);
-  assert.match(result, /## Optional/);
+  assert.match(result, /## Latest Updates/);
+  assert.match(result, /## Products & Work/);
+  assert.match(result, /## Qi & Life Products/);
 
   // Spec check 4: Contains list links in standard [name](url): description format
   assert.match(
@@ -85,6 +87,7 @@ test('buildLlmsFullTxt appends full profile and item catalog details', () => {
     links: mockLinks,
     content: mockContent,
     siteOrigin: 'https://david888.com',
+    categories: categoryConfig.categories,
   });
 
   assert.match(fullResult, /# Full Profile & Background Context/);

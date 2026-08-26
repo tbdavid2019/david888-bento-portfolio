@@ -7,18 +7,8 @@ const indexPath = path.join(distDir, 'index.html');
 
 const profilePath = path.join(projectRoot, 'data/bento-profile.json');
 const linksPath = path.join(projectRoot, 'data/bento-links.json');
+const categoriesPath = path.join(projectRoot, 'data/bento-categories.json');
 const contentPath = path.join(projectRoot, 'data/profile-content.json');
-
-const categories = [
-  { id: 'social', title: '個人入口 (Profile & Content)', summary: '個人公開入口、內容輸出、GitHub、LinkedIn 與創業經歷。' },
-  { id: 'extensions', title: '瀏覽器外掛 (Chrome Extensions)', summary: 'Chrome 外掛：摘要、聊天、分頁整理、學單字、改字體，讓日常瀏覽和資料整理更省力。' },
-  { id: 'tools', title: '實用工具與服務 (Tools & Services)', summary: '這裡收的是高頻實用入口：內部工具、團隊知識庫、URL 轉 Markdown、決策輔助與各種效率服務。' },
-  { id: 'skills', title: '專業開發技能 (Developer Skills)', summary: '給 LLM、Agent 與工程團隊使用的技能文件、API 與開發知識。' },
-  { id: 'ai', title: 'AI 應用與研究 (AI Apps & Research)', summary: 'Hugging Face spaces、命理可視化、文件處理、投資研究與各種 AI prototype。' },
-  { id: 'telegram', title: 'Telegram 機器人 (Telegram Bots)', summary: '資訊整理、投資新聞、截圖、摘要與日常工作流機器人。' },
-  { id: 'line', title: 'LINE 機器人 (LINE Bots)', summary: '面向台灣使用情境的 LINE OA / LINE Bot 服務入口。' },
-  { id: 'others', title: '其他作品 (Other Work)', summary: '其他作品。' }
-];
 
 async function run() {
   try {
@@ -33,6 +23,8 @@ async function run() {
 
     const profile = JSON.parse(await fs.readFile(profilePath, 'utf8'));
     const links = JSON.parse(await fs.readFile(linksPath, 'utf8'));
+    const categoryConfig = JSON.parse(await fs.readFile(categoriesPath, 'utf8'));
+    const categories = categoryConfig.categories;
     const content = JSON.parse(await fs.readFile(contentPath, 'utf8'));
     let html = await fs.readFile(indexPath, 'utf8');
 
@@ -142,7 +134,7 @@ ${JSON.stringify(schemaJson, null, 2)}
       
       preRenderedContent += `
       <section>
-        <h3>${cat.title}</h3>
+        <h3>${cat.title} (${cat.titleEn})</h3>
         <p><em>${cat.summary}</em></p>
         <ul>
 `;

@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed cf-notepad",
-      "url": "https://github.com/tbdavid2019/cf-notepad/compare/9212f284e3...8f9e2f30f6",
-      "updated": "2026-08-20 08:02:06 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 20, 2026 08:02 1 commit to main 8f9e2f3 feat(ui): elevate editor toolbar to full-width header and place publi…"
+      "title": "tbdavid2019 pushed 888a2a",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/5e5913e88b...a27e3dafc7",
+      "updated": "2026-08-26 01:06:14 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:06 1 commit to main a27e3da feat(org): implement tenant IAM, store operations and frontend organi…"
     },
     {
-      "title": "tbdavid2019 pushed cf-notepad",
-      "url": "https://github.com/tbdavid2019/cf-notepad/compare/9b2237bbab...3e6de72500",
-      "updated": "2026-08-20 08:37:58 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 20, 2026 08:37 1 commit to main 3e6de72 docs(skill): add multi-column layout and [TOC] guides; fix editor pre…"
+      "title": "tbdavid2019 pushed 888a2a",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/35648e073c...5e5913e88b",
+      "updated": "2026-08-26 01:01:56 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:01 1 commit to main 5e5913e feat(org): implement organization and tenant store foundation (tasks …"
     },
     {
-      "title": "tbdavid2019 pushed paper-daily",
-      "url": "https://github.com/tbdavid2019/paper-daily/compare/388a765f08...d9e6d1a18c",
-      "updated": "2026-08-20 07:58:39 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/paper-daily · August 20, 2026 07:58 1 commit to main d9e6d1a docs: document LLM blog and Pages deployment"
+      "title": "tbdavid2019 pushed 888a2a",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/247bcf1ac8...35648e073c",
+      "updated": "2026-08-26 00:53:10 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 00:53 1 commit to main 35648e0 chore: remove obsolete docs/plan in favor of openspec and guides"
     },
     {
-      "title": "tbdavid2019 pushed paper-daily",
-      "url": "https://github.com/tbdavid2019/paper-daily/compare/b615d7dd9b...388a765f08",
-      "updated": "2026-08-20 07:56:53 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/paper-daily · August 20, 2026 07:56 1 commit to main 388a765 feat: update blog branding and footer credit"
+      "title": "tbdavid2019 deleted",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/75a6b77248...0000000000",
+      "updated": "2026-08-26 00:52:03 UTC",
+      "summary": "tbdavid2019 deleted branch refs/heads/feature/agent-network-foundation in tbdavid2019/888a2a · August 26, 2026 00:52 tbdavid2019/888a2a Updated Aug 26"
     },
     {
-      "title": "tbdavid2019 pushed cf-notepad",
-      "url": "https://github.com/tbdavid2019/cf-notepad/compare/8f9e2f30f6...e4ae90be37",
-      "updated": "2026-08-20 08:04:04 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 20, 2026 08:04 1 commit to main e4ae90b fix(layout): restore .stack flex properties to expand editor and prev…"
+      "title": "tbdavid2019 pushed 888a2a",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/75a6b77248...247bcf1ac8",
+      "updated": "2026-08-26 00:51:57 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 00:51 1 commit to main 247bcf1 docs(openspec): archive build-888a2a-agent-network-foundation and syn…"
     }
   ],
-  "lastSyncedAt": "2026-08-20T09:53:09.488Z",
+  "lastSyncedAt": "2026-08-26T01:30:17.594Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
