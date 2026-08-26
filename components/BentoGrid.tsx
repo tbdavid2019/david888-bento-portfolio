@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { ArrowUp, ArrowUpRight, Search, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
@@ -13,7 +13,15 @@ import { PodcastFeedCard } from './cards/PodcastFeedCard';
 import { BlogFeedCard } from './cards/BlogFeedCard';
 import { GithubActivityCard } from './cards/GithubActivityCard';
 import { AnnouncementBar } from './AnnouncementBar';
-import { categories, siteItems } from '../lib/siteCatalog';
+import {
+  categories,
+  getCategoryById,
+  getLocalizedCategoryLabel,
+  getLocalizedItemDescription,
+  getLocalizedItemSection,
+  getLocalizedItemTitle,
+  siteItems,
+} from '../lib/siteCatalog';
 import type { BentoItem, Locale } from '../types';
 
 const renderItem = (item: BentoItem, locale: Locale) => {
@@ -35,6 +43,24 @@ const stackedSocialTitles = new Set([
 const isLinkedInItem = (item: BentoItem) => 'title' in item && item.title === 'LinkedIn';
 const getSectionAnchorId = (categoryId: string, _section: string, index: number) => `section-${categoryId}-${index}`;
 const getSectionLabel = (section: string) => section.replace(/\s+\([^)]*\)$/, '');
+const getSearchText = (item: BentoItem) => {
+  const category = getCategoryById(item.tag || 'others');
+  return [
+    getLocalizedItemTitle(item, 'zh'),
+    getLocalizedItemTitle(item, 'en'),
+    getLocalizedItemDescription(item, 'zh'),
+    getLocalizedItemDescription(item, 'en'),
+    getLocalizedItemSection(item, 'zh'),
+    getLocalizedItemSection(item, 'en'),
+    category?.label,
+    category?.labelEn,
+    category?.title,
+    category?.titleEn,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+};
 
 interface BentoGridProps {
   locale: Locale;
@@ -45,6 +71,7 @@ interface BentoGridProps {
 export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, onCategoryChange }) => {
   const contentSectionRef = React.useRef<HTMLElement>(null);
   const [showScrollTop, setShowScrollTop] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
   const items = siteItems;
   const groupedItems = React.useMemo(() => {
     return items.reduce((acc, item) => {
@@ -75,8 +102,25 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
   const activeCategory =
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
-  const shouldShowPodcastFeed = activeCategory?.id === 'social';
-  const featuredItem = activeItems.find((item) => item.featured || item.colSpan === 2);
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
+  const isSearching = normalizedSearchQuery.length > 0;
+  const searchMatches = React.useMemo(() => {
+    if (!normalizedSearchQuery) return [];
+    return items.filter((item) => getSearchText(item).includes(normalizedSearchQuery));
+  }, [items, normalizedSearchQuery]);
+  const searchSections: Array<[string, BentoItem[]]> = React.useMemo(() => {
+    const grouped = new Map<string, BentoItem[]>();
+    for (const item of searchMatches) {
+      const category = getCategoryById(item.tag || 'others');
+      const categoryLabel = category ? getLocalizedCategoryLabel(category, locale) : item.tag || 'Other';
+      const section = getLocalizedItemSection(item, locale);
+      const label = section ? `${categoryLabel} / ${getSectionLabel(section)}` : categoryLabel;
+      grouped.set(label, [...(grouped.get(label) ?? []), item]);
+    }
+    return [...grouped.entries()];
+  }, [locale, searchMatches]);
+  const shouldShowPodcastFeed = activeCategory?.id === 'social' && !isSearching;
+  const featuredItem = !isSearching ? activeItems.find((item) => item.featured || item.colSpan === 2) : null;
   const groupedActiveSections = activeItems.reduce((acc, item) => {
     const section = locale === 'en' ? item.sectionEn || item.section || '' : item.section || '';
     if (!acc[section]) acc[section] = [];
@@ -84,7 +128,9 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
     return acc;
   }, {} as Record<string, BentoItem[]>);
   const activeSections: Array<[string, BentoItem[]]> = Object.entries(groupedActiveSections);
-  const tocSections = activeSections.filter(([section]) => section);
+  const sectionsToRender = isSearching ? searchSections : activeSections;
+  const tocSections = sectionsToRender.filter(([section]) => section);
+  const navigationCategoryId = isSearching ? 'search' : activeCategory?.id ?? activeCategoryId;
 
   React.useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 600);
@@ -95,6 +141,30 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
 
   return (
     <div className="flex flex-col gap-6">
+      <div className="rounded-2xl border border-border bg-bg-surface p-3 shadow-sm backdrop-blur-md md:p-4">
+        <div className="relative flex items-center">
+          <Search size={21} className="pointer-events-none absolute left-4 text-text-muted" aria-hidden="true" />
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder={locale === 'en' ? 'Search projects, skills, or topics' : '搜尋作品、技能或主題…'}
+            aria-label={locale === 'en' ? 'Search portfolio' : '搜尋作品'}
+            className="h-14 w-full rounded-xl border border-border bg-bg-elevated pl-12 pr-12 text-base font-bold text-text-main outline-none transition-colors placeholder:text-text-muted/70 focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+          {isSearching && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              aria-label={locale === 'en' ? 'Clear search' : '清除搜尋'}
+              className="absolute right-3 inline-flex h-9 w-9 items-center justify-center rounded-full text-text-muted transition-colors hover:bg-border hover:text-text-main"
+            >
+              <X size={18} />
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* Category Tabs - Full Width at Top */}
       <div className="rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm backdrop-blur-md">
         <div className="flex flex-wrap items-center justify-end gap-1">
@@ -143,7 +213,25 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
         <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-36">
           <AnnouncementBar />
 
-          {activeCategory && (
+          {isSearching ? (
+            <div className="flex flex-col gap-3 rounded-2xl border border-primary/25 bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
+              <div>
+                <div className="text-xs font-black uppercase tracking-[0.24em] text-primary">
+                  {locale === 'en' ? 'Search results' : '搜尋結果'}
+                </div>
+                <h3 className="mt-1 text-2xl font-black text-text-main md:text-3xl">
+                  {locale === 'en' ? `${searchMatches.length} works found` : `找到 ${searchMatches.length} 個作品`}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="inline-flex h-10 shrink-0 items-center justify-center rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
+              >
+                {locale === 'en' ? 'Clear search' : '清除搜尋'}
+              </button>
+            </div>
+          ) : activeCategory && (
             <div className="flex flex-col gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
               <div className="min-w-0">
                 <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted opacity-80">
@@ -186,7 +274,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
                   {tocSections.map(([section], sectionIndex) => (
                     <a
                       key={section}
-                      href={`#${getSectionAnchorId(activeCategory?.id ?? activeCategoryId, section, sectionIndex)}`}
+                      href={`#${getSectionAnchorId(navigationCategoryId, section, sectionIndex)}`}
                       className="rounded-full border border-border px-3 py-1.5 text-sm font-bold text-text-muted transition-colors hover:border-primary hover:text-primary"
                     >
                       {getSectionLabel(section)}
@@ -197,19 +285,23 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
             </nav>
           )}
 
-        <AnimatePresence mode="popLayout">
+        {isSearching && searchMatches.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-bg-surface p-8 text-center text-base font-bold text-text-muted">
+            {locale === 'en' ? 'No matching works found.' : '找不到符合的作品。'}
+          </div>
+        ) : <AnimatePresence mode="popLayout">
           <motion.div 
-            key={activeCategoryId}
+            key={isSearching ? `search-${normalizedSearchQuery}` : activeCategoryId}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, type: "spring", bounce: 0.2 }}
             className="space-y-8"
           >
-            {activeSections.map(([section, sectionItems], sectionIndex) => (
+            {sectionsToRender.map(([section, sectionItems], sectionIndex) => (
               <div
                 key={section || 'default'}
-                id={section ? getSectionAnchorId(activeCategory?.id ?? activeCategoryId, section, sectionIndex) : undefined}
+                id={section ? getSectionAnchorId(navigationCategoryId, section, sectionIndex) : undefined}
                 className="scroll-mt-32 space-y-4"
               >
                 {section && (
@@ -278,7 +370,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
               </div>
             ))}
           </motion.div>
-        </AnimatePresence>
+        </AnimatePresence>}
       </section>
     </main>
 

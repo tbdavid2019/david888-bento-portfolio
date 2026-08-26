@@ -6,6 +6,7 @@
 - Added larger typography across portfolio cards, category headers, announcement copy, and the live Podcast, Blog, and GitHub cards.
 - Added a sub-category table of contents for long category pages.
 - Added an accessible back-to-top button that appears after scrolling.
+- Added a global portfolio search for finding works by title, description, category, or topic.
 - Added regression tests for category placement, typography, section navigation, and the back-to-top action.
 
 ### Changed

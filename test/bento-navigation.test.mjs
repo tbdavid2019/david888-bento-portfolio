@@ -31,3 +31,11 @@ test('shows runtime status tooltips and local clone actions on link cards', () =
   assert.match(linkCardSource, /cloneCommand/);
   assert.match(linkCardSource, /本機運行/);
 });
+
+test('provides a global work search at the top of the portfolio', () => {
+  assert.match(bentoGridSource, /type="search"/);
+  assert.match(bentoGridSource, /placeholder=\{locale === 'en' \? 'Search projects, skills, or topics' : '搜尋作品、技能或主題…'\}/);
+  assert.match(bentoGridSource, /searchMatches/);
+  assert.match(bentoGridSource, /搜尋結果/);
+  assert.match(bentoGridSource, /清除搜尋/);
+});
