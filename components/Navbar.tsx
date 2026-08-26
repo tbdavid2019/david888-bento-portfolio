@@ -56,10 +56,11 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme, locale, o
           <button
             type="button"
             onClick={onContact}
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-black text-white dark:text-bg-base transition-all duration-300 hover:opacity-90"
+            className="inline-flex h-10 w-10 items-center justify-center gap-0 rounded-full bg-primary px-0 text-sm font-black text-white transition-all duration-300 hover:opacity-90 dark:text-bg-base sm:w-auto sm:gap-2 sm:px-4"
+            aria-label={locale === 'zh' ? '聯絡我' : 'Contact me'}
           >
             <Mail size={16} />
-            <span>{locale === 'zh' ? '聯絡我' : 'Contact me'}</span>
+            <span className="hidden sm:inline">{locale === 'zh' ? '聯絡我' : 'Contact me'}</span>
           </button>
         </div>
       </nav>
