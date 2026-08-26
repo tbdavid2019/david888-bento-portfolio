@@ -78,7 +78,6 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [股市K線判別](http://git-gl.david888.com:5678/)
 - [Telegram 公開頻道預覽器 (Telegram Channel Viewer)](https://telegram.david888.com/): 可以把公開頻道內容轉成 web content，方便快速瀏覽與資料整理。
 - [HF: 股神 AI 投資公司](https://huggingface.co/spaces/tbdavid2019/ai-hedge-fund)
-- [HF: Pdf2quiz 考卷產生器](https://huggingface.co/spaces/tbdavid2019/pdf2quiz)
 - [HF: 病歷格式 Outpatient Records](https://huggingface.co/spaces/tbdavid2019/outpatient-records)
 - [HF: Stock Top Wick](https://huggingface.co/spaces/tbdavid2019/stock-top-wick)
 - [HF: 換臉 SwapFace](https://huggingface.co/spaces/tbdavid2019/SwapFace)
@@ -321,11 +320,6 @@ Media technology: led architecture optimization for high-concurrency community p
 - Section: 瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)
 - Description (ZH): 結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。
 - Description (EN): A web summary and real-time communication tool. With WebRTC P2P, users can summarize pages and chat with friends directly on the current website.
-
-### HF: Pdf2quiz 考卷產生器
-- URL: https://huggingface.co/spaces/tbdavid2019/pdf2quiz
-- Category: experiments
-- Section: 資料與工作流 (Data & Workflows)
 
 ### HF: 病歷格式 Outpatient Records
 - URL: https://huggingface.co/spaces/tbdavid2019/outpatient-records

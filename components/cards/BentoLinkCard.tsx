@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeartHandshake, House, ScrollText, Sparkles, type LucideIcon } from 'lucide-react';
+import { ExternalLink, HeartHandshake, House, ScrollText, Sparkles, type LucideIcon } from 'lucide-react';
 import { CardWrapper } from './CardWrapper';
-import type { BentoLinkIcon, Locale } from '../../types';
+import type { BentoLinkIcon, BentoLinkRuntimeStatus, Locale } from '../../types';
 
 interface BentoLink {
   title: string;
@@ -13,6 +13,9 @@ interface BentoLink {
   imageSource?: string | null;
   bgClass?: string | null;
   icon?: BentoLinkIcon;
+  runtimeStatus?: BentoLinkRuntimeStatus;
+  repoUrl?: string;
+  cloneCommand?: string;
 }
 
 const iconMap: Record<BentoLinkIcon, LucideIcon> = {
@@ -20,6 +23,11 @@ const iconMap: Record<BentoLinkIcon, LucideIcon> = {
   bazi: ScrollText,
   fengshui: House,
   yinyuan: HeartHandshake,
+};
+
+const runtimeStatusLabels: Record<BentoLinkRuntimeStatus, { zh: string; en: string }> = {
+  paused: { zh: '暫停', en: 'Paused' },
+  sleeping: { zh: '休眠', en: 'Sleeping' },
 };
 
 const getDomain = (url: string) => {
@@ -49,13 +57,20 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
   const title = locale === 'en' ? link.titleEn || link.title : link.title;
   const description = locale === 'en' ? link.descriptionEn || link.description : link.description;
   const ServiceIcon = link.icon ? iconMap[link.icon] : null;
+  const statusCopy = link.runtimeStatus ? runtimeStatusLabels[link.runtimeStatus] : null;
+  const statusLabel = statusCopy ? `[${locale === 'en' ? statusCopy.en : statusCopy.zh}]` : null;
+  const statusTooltip = statusCopy
+    ? locale === 'en'
+      ? `Hugging Face Space status: ${statusCopy.en}`
+      : `Hugging Face Space 狀態：${statusCopy.zh}`
+    : '';
 
   return (
     <CardWrapper
       onClick={() => window.open(link.url, '_blank', 'noreferrer')}
       className="group min-h-[180px]"
     >
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between gap-3">
         <div className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-110 ${link.icon ? 'bg-primary/10 text-primary' : link.bgClass || 'bg-bg-elevated'}`}>
           {ServiceIcon ? (
             <ServiceIcon size={25} strokeWidth={1.8} aria-hidden="true" />
@@ -73,6 +88,15 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
             />
           )}
         </div>
+        {statusLabel && (
+          <span
+            title={statusTooltip}
+            aria-label={statusTooltip}
+            className="rounded-full border border-warning/40 bg-warning/10 px-2.5 py-1 text-xs font-black text-warning"
+          >
+            {statusLabel}
+          </span>
+        )}
       </div>
       <div className="mt-auto pt-8">
         <div className="text-lg font-bold leading-tight tracking-tight text-text-main md:text-xl">
@@ -83,7 +107,23 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
             {description}
           </div>
         )}
-        <div className="text-[11px] font-black uppercase tracking-widest text-text-muted opacity-60">{getDomain(link.url)}</div>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="text-[11px] font-black uppercase tracking-widest text-text-muted opacity-60">{getDomain(link.url)}</div>
+          {link.repoUrl && (
+            <a
+              href={link.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={link.cloneCommand}
+              aria-label={locale === 'en' ? 'Open source for local run' : '開啟原始碼並在本機運行'}
+              onClick={(event) => event.stopPropagation()}
+              className="inline-flex items-center gap-1 text-xs font-black text-primary transition-colors hover:text-text-main"
+            >
+              {locale === 'en' ? 'Run locally' : '本機運行'}
+              <ExternalLink size={13} />
+            </a>
+          )}
+        </div>
       </div>
     </CardWrapper>
   );

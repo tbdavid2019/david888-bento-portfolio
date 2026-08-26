@@ -72,7 +72,10 @@
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdGFpd2FuLXRlbmRlci5wbmc%3D.png",
     "tag": "experiments",
     "section": "資料與工作流 (Data & Workflows)",
-    "sectionEn": "Data & Workflows"
+    "sectionEn": "Data & Workflows",
+    "runtimeStatus": "paused",
+    "repoUrl": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender/tree/main",
+    "cloneCommand": "git clone https://huggingface.co/spaces/tbdavid2019/taiwan-tender"
   },
   {
     "type": "link",
@@ -81,7 +84,8 @@
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdHdTdG9jay1wcmVkaWN0LnBuZw%3D%3D.png",
     "tag": "experiments",
     "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research"
+    "sectionEn": "Investment Research",
+    "runtimeStatus": "paused"
   },
   {
     "type": "link",
@@ -231,7 +235,8 @@
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvYWktaGVkZ2UtZnVuZC5wbmc%3D.png",
     "tag": "experiments",
     "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research"
+    "sectionEn": "Investment Research",
+    "runtimeStatus": "sleeping"
   },
   {
     "type": "link",
@@ -247,21 +252,13 @@
   },
   {
     "type": "link",
-    "title": "HF: Pdf2quiz 考卷產生器",
-    "url": "https://huggingface.co/spaces/tbdavid2019/pdf2quiz",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9odWdnaW5nZmFjZS5jby9mcm9udC90aHVtYm5haWxzL3YyLTIucG5n.png",
-    "tag": "experiments",
-    "section": "資料與工作流 (Data & Workflows)",
-    "sectionEn": "Data & Workflows"
-  },
-  {
-    "type": "link",
     "title": "HF: 病歷格式 Outpatient Records",
     "url": "https://huggingface.co/spaces/tbdavid2019/outpatient-records",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvb3V0cGF0aWVudC1yZWNvcmRzLnBuZw%3D%3D.png",
     "tag": "experiments",
     "section": "資料與工作流 (Data & Workflows)",
-    "sectionEn": "Data & Workflows"
+    "sectionEn": "Data & Workflows",
+    "runtimeStatus": "paused"
   },
   {
     "type": "link",
@@ -270,7 +267,8 @@
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvY2stdG9wLXdpY2sucG5n.png",
     "tag": "experiments",
     "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research"
+    "sectionEn": "Investment Research",
+    "runtimeStatus": "paused"
   },
   {
     "type": "link",
@@ -286,7 +284,8 @@
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvU3dhcEZhY2UucG5n.png",
     "tag": "experiments",
     "section": "生成式與視覺實驗 (Generative & Visual Experiments)",
-    "sectionEn": "Generative & Visual Experiments"
+    "sectionEn": "Generative & Visual Experiments",
+    "runtimeStatus": "paused"
   },
   {
     "type": "link",

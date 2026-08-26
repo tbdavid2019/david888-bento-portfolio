@@ -72,3 +72,29 @@ test('keeps lifestyle side projects with the Qi and Life category', () => {
 test('removes the retired hg-markitdown entry', () => {
   assert.equal(links.some((item) => item.url === 'https://huggingface.co/spaces/tbdavid2019/hg-markitdown'), false);
 });
+
+test('removes the inaccessible Pdf2quiz entry', () => {
+  assert.equal(links.some((item) => item.url === 'https://huggingface.co/spaces/tbdavid2019/pdf2quiz'), false);
+});
+
+test('records runtime state for paused and sleeping Hugging Face Spaces', () => {
+  const pausedTitles = [
+    '台灣標案檢索工具',
+    '台股預測 (HF Space)',
+    'HF: 病歷格式 Outpatient Records',
+    'HF: Stock Top Wick',
+    'HF: 換臉 SwapFace',
+  ];
+
+  for (const title of pausedTitles) {
+    assert.equal(links.find((item) => item.title === title)?.runtimeStatus, 'paused', title);
+  }
+
+  assert.equal(links.find((item) => item.title === 'HF: 股神 AI 投資公司')?.runtimeStatus, 'sleeping');
+});
+
+test('provides a local clone source for Taiwan Tender', () => {
+  const tender = links.find((item) => item.title === '台灣標案檢索工具');
+  assert.equal(tender?.repoUrl, 'https://huggingface.co/spaces/tbdavid2019/taiwan-tender/tree/main');
+  assert.equal(tender?.cloneCommand, 'git clone https://huggingface.co/spaces/tbdavid2019/taiwan-tender');
+});

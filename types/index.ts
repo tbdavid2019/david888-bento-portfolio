@@ -12,6 +12,7 @@ export interface CapabilityArea {
 export type CardType = 'link' | 'github' | 'twitter' | 'project' | 'experience' | 'techstack' | 'design-system';
 
 export type BentoLinkIcon = 'tarot' | 'bazi' | 'fengshui' | 'yinyuan';
+export type BentoLinkRuntimeStatus = 'paused' | 'sleeping';
 
 export interface BaseCard {
     type: CardType;
@@ -32,6 +33,9 @@ export interface LinkCardData extends BaseCard {
     image?: string | null;
     imageSource?: string | null;
     icon?: BentoLinkIcon;
+    runtimeStatus?: BentoLinkRuntimeStatus;
+    repoUrl?: string;
+    cloneCommand?: string;
 }
 
 export interface GithubCardData extends BaseCard {

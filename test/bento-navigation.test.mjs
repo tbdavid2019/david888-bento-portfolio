@@ -22,3 +22,12 @@ test('uses a larger type scale for portfolio browsing', () => {
   assert.match(linkCardSource, /text-lg font-bold[^\n]*md:text-xl/);
   assert.match(bentoGridSource, /text-base font-bold transition-colors/);
 });
+
+test('shows runtime status tooltips and local clone actions on link cards', () => {
+  const linkCardSource = fs.readFileSync(new URL('../components/cards/BentoLinkCard.tsx', import.meta.url), 'utf8');
+  assert.match(linkCardSource, /runtimeStatus/);
+  assert.match(linkCardSource, /title=\{statusTooltip\}/);
+  assert.match(linkCardSource, /repoUrl/);
+  assert.match(linkCardSource, /cloneCommand/);
+  assert.match(linkCardSource, /本機運行/);
+});

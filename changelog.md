@@ -12,9 +12,12 @@
 - Moved `333 Taiwanese TTS Hub` into `研究與實驗 > 語音與語言`, alongside `HF: 台語 TTS`.
 - Moved lifestyle side projects into `命理與生活 > 生活型 Side Projects`.
 - Kept the homepage's auto-updating Podcast, Blog, and GitHub Activity layout unchanged.
+- Added `[暫停]` and `[休眠]` status labels with hover tooltips to Hugging Face Space cards.
+- Added a `本機運行` source link and `git clone` tooltip for Taiwan Tender so users can run the paused Space locally.
 
 ### Removed
 - Removed the retired `HF: Docs 轉 MD Markdown` entry for `hg-markitdown`.
+- Removed the inaccessible `HF: Pdf2quiz 考卷產生器` entry after its Hugging Face endpoint returned HTTP 401.
 
 ## [2026-08-24] - WebMCP Capability Tools
 

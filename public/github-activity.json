@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed cf-notepad",
+      "url": "https://github.com/tbdavid2019/cf-notepad/compare/1b072f0ce1...570263faa1",
+      "updated": "2026-08-26 02:06:17 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 26, 2026 02:06 1 commit to main 570263f feat(audio): implement local-first offline recording and deferred clo…"
+    },
+    {
       "title": "tbdavid2019 pushed 888a2a",
       "url": "https://github.com/tbdavid2019/888a2a/compare/5f71826d6b...726c41f3f2",
       "updated": "2026-08-26 01:44:53 UTC",
@@ -23,15 +29,9 @@
       "url": "https://github.com/tbdavid2019/888a2a/compare/35648e073c...5e5913e88b",
       "updated": "2026-08-26 01:01:56 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:01 1 commit to main 5e5913e feat(org): implement organization and tenant store foundation (tasks …"
-    },
-    {
-      "title": "tbdavid2019 pushed 888a2a",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/247bcf1ac8...35648e073c",
-      "updated": "2026-08-26 00:53:10 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 00:53 1 commit to main 35648e0 chore: remove obsolete docs/plan in favor of openspec and guides"
     }
   ],
-  "lastSyncedAt": "2026-08-26T01:58:53.654Z",
+  "lastSyncedAt": "2026-08-26T02:20:37.221Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
