@@ -57,6 +57,7 @@ Add a new object to the list in `data/bento-links.json`.
 Current category IDs:
 
 - `social`: Latest auto-updating content and media links
+- `finance`: Stock analysis, AI hedge fund, quantitative models, and investment bots
 - `products`: Web, browser, Telegram, and LINE products
 - `agent-skills`: Skills built for LLMs and AI agents
 - `experiments`: Research prototypes and side projects

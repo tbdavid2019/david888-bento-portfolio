@@ -18,12 +18,32 @@ test('keeps the auto-updating content feed as the default homepage category', ()
 
 test('uses audience-facing portfolio categories instead of technology or channel buckets', () => {
   const categoryIds = categoryConfig.categories.map((category) => category.id);
-  assert.deepEqual(categoryIds, ['social', 'products', 'agent-skills', 'experiments', 'metaphysics']);
+  assert.deepEqual(categoryIds, ['social', 'finance', 'products', 'agent-skills', 'experiments', 'metaphysics']);
 
   const validTags = new Set(categoryIds);
   for (const item of links) {
     assert.ok(validTags.has(item.tag), `${item.title} has unsupported tag: ${item.tag}`);
   }
+});
+
+test('groups finance and investment projects together under finance category', () => {
+  const financeTitles = [
+    '台灣公司關係網路可視化',
+    '888 StockBot 2.0 | 機構級金融智能體',
+    '888 Stock Quant | 專業量化決策平台',
+    '選出潛力股 | 投資新聞濃縮包 | 333',
+    'Telegram: 股靈精怪 Stock',
+    'Telegram: 投資新聞濃縮包',
+    'HF: 股神 AI 投資公司',
+    '台股預測 (HF Space)',
+    'HF: Stock Top Wick',
+    '股市K線判別',
+  ];
+
+  for (const title of financeTitles) {
+    assert.equal(links.find((item) => item.title === title)?.tag, 'finance', title);
+  }
+  assert.equal(categoryConfig.categories.find((category) => category.id === 'finance')?.label, '財經投資');
 });
 
 test('groups the divination product family together', () => {
@@ -44,8 +64,8 @@ test('groups the divination product family together', () => {
 
 test('labels LLM resources as AI Agent Skills', () => {
   const skillItems = links.filter((item) => item.tag === 'agent-skills');
-  assert.equal(skillItems.length, 8);
-  assert.ok(skillItems.every((item) => /Skill|技能|API/.test(item.title)));
+  assert.equal(skillItems.length, 9);
+  assert.ok(skillItems.every((item) => /Skill|技能|API|Agent/.test(item.title)));
   assert.equal(links.find((item) => item.title === 'AnswerBook API')?.tag, 'products');
   assert.equal(categoryConfig.categories.find((category) => category.id === 'agent-skills')?.label, 'AI Agent Skills');
 });

@@ -7,17 +7,51 @@
     "descriptionEn": "An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.",
     "url": "https://taiwan-company-network.david888.com/",
     "featured": true,
-    "tag": "products",
-    "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "tag": "finance",
+    "section": "企業與投資網路 (Corporate & Investment Networks)",
+    "sectionEn": "Corporate & Investment Networks"
   },
   {
     "type": "link",
-    "title": "888每日論文雷達",
-    "titleEn": "888 Paper Daily - Research Radar",
+    "title": "888 StockBot 2.0 | 機構級金融智能體",
+    "titleEn": "888 StockBot 2.0 - Institutional Finance AI",
+    "description": "純 TypeScript 原生量化引擎（DCF 估值、Minervini SEPA、華爾街財報前瞻、期權損益模擬、微觀流動性），完整整併台灣三大法人籌碼情報、TradingView 互動走勢圖、Generative UI 互動卡片與 2MD 即時連網搜尋。",
+    "descriptionEn": "Institutional-grade financial AI agent with native TS quantitative engines (DCF valuation, Minervini SEPA, Wall St earnings preview, options PnL), TWSE/TPEx institutional flows, TradingView charts, Generative UI, and 2MD live search.",
+    "url": "https://bot.david888.com/",
+    "repoUrl": "https://github.com/tbdavid2019/stockbot",
+    "docUrl": "https://wiki.david888.com/share/rzye4g",
+    "docLabel": "實戰題庫指南",
+    "docLabelEn": "Prompt Guide",
+    "imageSource": "/bento/stock_bot.svg",
+    "colSpan": 2,
+    "featured": true,
+    "tag": "finance",
+    "section": "Web 產品與分析平台 (Web Products & Analytics Platforms)",
+    "sectionEn": "Web Products & Analytics Platforms"
+  },
+  {
+    "type": "link",
+    "title": "888 Stock Quant | 專業量化決策平台",
+    "titleEn": "888 Stock Quant - Quantitative Platform",
+    "description": "台美股技術面、LSTM 次日預測、多維量化決策分析與法人籌碼雷達，專為專業投資人打造的深度數據工作台。",
+    "descriptionEn": "Multi-dimensional quantitative decision platform for Taiwan and US equities with LSTM next-day price prediction, technical indicators, and institutional flow radars.",
+    "url": "https://stockdata.david888.com/",
+    "repoUrl": "https://github.com/tbdavid2019/stock-underdog-ml",
+    "imageSource": "/bento/stock_bot.svg",
+    "colSpan": 2,
+    "featured": true,
+    "tag": "finance",
+    "section": "Web 產品與分析平台 (Web Products & Analytics Platforms)",
+    "sectionEn": "Web Products & Analytics Platforms"
+  },
+  {
+    "type": "link",
+    "title": "學術論文追蹤器",
+    "titleEn": "Academic Paper Tracker",
     "description": "每日追蹤 arXiv、HuggingFace、Semantic Scholar 具身智能與前沿論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。",
-    "descriptionEn": "An automated daily research radar tracking Embodied AI and ML papers across arXiv, HuggingFace, and Semantic Scholar with LLM-generated Chinese summaries.",
+    "descriptionEn": "An automated daily research tracker monitoring Embodied AI and ML papers across arXiv, HuggingFace, and Semantic Scholar with LLM-generated Chinese summaries.",
     "url": "https://tbdavid2019.github.io/paper-daily/",
+    "repoUrl": "https://github.com/tbdavid2019/paper-daily",
     "imageSource": "/bento/paper-daily.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
@@ -82,9 +116,9 @@
     "title": "台股預測 (HF Space)",
     "url": "https://huggingface.co/spaces/tbdavid2019/twStock-predict",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdHdTdG9jay1wcmVkaWN0LnBuZw%3D%3D.png",
-    "tag": "experiments",
-    "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research",
+    "tag": "finance",
+    "section": "AI 投資研究與模型 (AI Investment Research & Models)",
+    "sectionEn": "AI Investment Research & Models",
     "runtimeStatus": "paused"
   },
   {
@@ -92,9 +126,9 @@
     "title": "股市K線判別",
     "url": "http://git-gl.david888.com:5678/",
     "imageSource": "/bento/kline.svg",
-    "tag": "experiments",
-    "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research"
+    "tag": "finance",
+    "section": "AI 投資研究與模型 (AI Investment Research & Models)",
+    "sectionEn": "AI Investment Research & Models"
   },
   {
     "type": "link",
@@ -116,11 +150,12 @@
     "type": "link",
     "title": "Telegram: 股靈精怪 Stock",
     "url": "https://t.me/oli_billion_bot",
+    "repoUrl": "https://github.com/tbdavid2019/telegram-bot-stock2",
     "imageSource": "/bento/stock_bot.svg",
     "featured": true,
-    "tag": "products",
-    "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "tag": "finance",
+    "section": "Telegram 投資機器人 (Telegram Investment Bots)",
+    "sectionEn": "Telegram Investment Bots"
   },
   {
     "type": "link",
@@ -166,9 +201,9 @@
     "title": "Telegram: 投資新聞濃縮包",
     "url": "https://t.me/oliservice",
     "imageSource": "/bento/news_bot.svg",
-    "tag": "products",
-    "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "tag": "finance",
+    "section": "Telegram 投資機器人 (Telegram Investment Bots)",
+    "sectionEn": "Telegram Investment Bots"
   },
   {
     "type": "link",
@@ -232,10 +267,11 @@
     "type": "link",
     "title": "HF: 股神 AI 投資公司",
     "url": "https://huggingface.co/spaces/tbdavid2019/ai-hedge-fund",
+    "repoUrl": "https://github.com/tbdavid2019/ai-hedge-fund-API",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvYWktaGVkZ2UtZnVuZC5wbmc%3D.png",
-    "tag": "experiments",
-    "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research",
+    "tag": "finance",
+    "section": "AI 投資研究與模型 (AI Investment Research & Models)",
+    "sectionEn": "AI Investment Research & Models",
     "runtimeStatus": "sleeping"
   },
   {
@@ -265,9 +301,9 @@
     "title": "HF: Stock Top Wick",
     "url": "https://huggingface.co/spaces/tbdavid2019/stock-top-wick",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvY2stdG9wLXdpY2sucG5n.png",
-    "tag": "experiments",
-    "section": "投資研究 (Investment Research)",
-    "sectionEn": "Investment Research",
+    "tag": "finance",
+    "section": "AI 投資研究與模型 (AI Investment Research & Models)",
+    "sectionEn": "AI Investment Research & Models",
     "runtimeStatus": "paused"
   },
   {
@@ -310,11 +346,25 @@
   },
   {
     "type": "link",
+    "title": "2MD 快速閱讀與搜尋",
+    "titleEn": "2MD Fast Web Reader & Search",
+    "description": "極速網頁解析與 SERP 搜尋引擎，將即時網頁與搜尋結果迅速轉為乾淨 Markdown，專為 AI Agent 與 LLM 設計。",
+    "descriptionEn": "High-speed web reader and SERP search engine converting live pages and search results into clean Markdown for AI agents and LLMs.",
+    "url": "https://2md.aiurl.tw/",
+    "imageSource": "/bento/url-markdown.svg",
+    "featured": true,
+    "tag": "products",
+    "section": "Web 產品與服務 (Web Products & Services)",
+    "sectionEn": "Web Products & Services"
+  },
+  {
+    "type": "link",
     "title": "888-url2md 網頁轉 Markdown",
     "titleEn": "888-url2md Web Reader",
-    "description": "將任意網頁或搜尋結果轉換為乾淨的 Markdown 格式，支援單一網頁解析、網頁搜尋與多網頁批次抓取。",
-    "descriptionEn": "Converts any web page or search query into clean Markdown. Supports single URL parsing, web search, and multi-URL batch crawling.",
+    "description": "二次開發 jina-reader 賦予系統有 batch url 處理能力，這裡可以直接使用 https://create360.ai",
+    "descriptionEn": "Enhanced jina-reader fork with batch URL processing capabilities. Directly usable at https://create360.ai",
     "url": "https://create360.ai",
+    "repoUrl": "https://github.com/tbdavid2019/888-url2md",
     "imageSource": "/bento/url-markdown.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
@@ -346,8 +396,8 @@
   },
   {
     "type": "link",
-    "title": "David888 Wiki 團隊知識庫",
-    "titleEn": "David888 Wiki",
+    "title": "david888 wiki",
+    "titleEn": "david888 wiki",
     "description": "團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。對常常跨人協作、需要累積 know-how 的團隊特別實用。",
     "descriptionEn": "A frequently used internal knowledge base for SOPs, project notes, research logs, and reusable documentation, especially useful for teams that need shared operational memory.",
     "url": "https://wiki.david888.com/",
@@ -447,18 +497,6 @@
   },
   {
     "type": "link",
-    "title": "URL to Markdown",
-    "titleEn": "URL to Markdown",
-    "description": "把任意網頁快速轉成乾淨 Markdown，適合餵給 LLM、整理閱讀內容或做內部知識沉澱。像 `create360.ai/https://webglsoft.com/` 或 `create360.ai/cnn.com` 這樣就能直接取回可處理內容。",
-    "descriptionEn": "Turn almost any webpage into clean Markdown for LLM input, research capture, or internal documentation. URLs like `create360.ai/https://webglsoft.com/` or `create360.ai/cnn.com` can be converted directly.",
-    "url": "https://create360.ai/",
-    "imageSource": "/bento/url-markdown.svg",
-    "tag": "products",
-    "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
-  },
-  {
-    "type": "link",
     "title": "Shorten and undo closed URL 333",
     "titleEn": "Shorten and Undo Closed URL 333",
     "description": "雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。",
@@ -534,11 +572,23 @@
   },
   {
     "type": "link",
+    "title": "888a2a Agent 平台",
+    "titleEn": "888a2a - Multi-Agent Platform",
+    "description": "A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。",
+    "descriptionEn": "An A2A-first human and AI-agent collaboration platform designed for seamless multi-agent workflows.",
+    "url": "https://github.com/tbdavid2019/888a2a",
+    "imageSource": "/bento/hermes-agent.svg",
+    "bgClass": "bg-gradient-to-br from-indigo-500 to-purple-800",
+    "featured": true,
+    "tag": "agent-skills"
+  },
+  {
+    "type": "link",
     "title": "CF Notepad Skill",
     "titleEn": "CF Notepad Skill",
     "description": "Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。",
-    "descriptionEn": "A skill for Cloudflare-style note editing and lightweight knowledge workflows built around simple hosted tooling.",
-    "url": "https://raw.githubusercontent.com/tbdavid2019/cf-notepad/refs/heads/main/skills/SKILL.md",
+    "descriptionEn": "Cloudflare Pages / Worker style cloud note editing and workflow skill, ideal for building lightweight knowledge tooling.",
+    "url": "https://github.com/tbdavid2019/cf-notepad",
     "imageSource": "/bento/cf_notepad.svg",
     "tag": "agent-skills"
   },
@@ -653,9 +703,9 @@
     "title": "選出潛力股 | 投資新聞濃縮包 | 333",
     "url": "https://stock.david888.com/",
     "imageSource": "/bento/stock_bot.svg",
-    "tag": "products",
-    "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "tag": "finance",
+    "section": "選股與新聞分析 (Stock Screening & News)",
+    "sectionEn": "Stock Screening & News"
   },
   {
     "type": "link",

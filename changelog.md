@@ -1,5 +1,22 @@
 # Changelog
 
+## [2026-09-01] - Finance & Investment Category Reorganization
+
+### Added
+- Created dedicated top-level **財經投資 (Finance & Investment)** category (`finance`) for all stock analysis, AI hedge fund models, quantitative decision platforms, and finance bots.
+- Added **888 StockBot** (`https://bot.david888.com/`) with TradingView charts, real-time quotes, and 2MD search integration.
+- Added **888 Stock Quant** (`https://stockdata.david888.com/`) for multi-dimensional quantitative decision-making, LSTM price prediction, and institutional flow analysis.
+- Added automated taxonomy and regression tests for the finance category and project grouping.
+
+### Changed
+- Reorganized existing finance and stock market projects into the `finance` category:
+  - `台灣公司關係網路可視化` -> `企業與投資網路`
+  - `888 StockBot` & `888 Stock Quant` -> `Web 產品與分析平台`
+  - `選出潛力股 | 投資新聞濃縮包 | 333` -> `選股與新聞分析`
+  - `Telegram: 股靈精怪 Stock` & `Telegram: 投資新聞濃縮包` -> `Telegram 投資機器人`
+  - `HF: 股神 AI 投資公司`, `台股預測 (HF Space)`, `HF: Stock Top Wick`, `股市K線判別` -> `AI 投資研究與模型`
+- Regenerated `llms.txt`, `llms-full.txt`, and discovery files to reflect the new category taxonomy.
+
 ## [2026-08-26] - Portfolio Readability, Navigation, and Catalog Cleanup
 
 ### Added

@@ -11,6 +11,15 @@
       "summaryEn": "Auto-updated podcast, blog, and GitHub activity alongside my media and social channels."
     },
     {
+      "id": "finance",
+      "label": "財經投資",
+      "labelEn": "Finance",
+      "title": "財經與投資研究",
+      "titleEn": "Finance & Investment",
+      "summary": "台股美股即時分析、AI 投資公司、量化決策平台與股市預測工具。",
+      "summaryEn": "Real-time Taiwan & US stock analysis, AI hedge fund models, quantitative decision platforms, and price forecasting."
+    },
+    {
       "id": "products",
       "label": "產品與作品",
       "labelEn": "Products",

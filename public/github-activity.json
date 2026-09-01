@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed cf-notepad",
-      "url": "https://github.com/tbdavid2019/cf-notepad/compare/1b072f0ce1...570263faa1",
-      "updated": "2026-08-26 02:06:17 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 26, 2026 02:06 1 commit to main 570263f feat(audio): implement local-first offline recording and deferred clo…"
+      "title": "tbdavid2019 pushed telegram-bot-stock2",
+      "url": "https://github.com/tbdavid2019/telegram-bot-stock2/compare/f74c529bf1...1a4aff56b1",
+      "updated": "2026-09-01 07:26:29 UTC",
+      "summary": "tbdavid2019 pushed to master in tbdavid2019/telegram-bot-stock2 · September 1, 2026 07:26 1 commit to master 1a4aff5 fix(callback): resolve button prompt directly from message reply_mark…"
     },
     {
-      "title": "tbdavid2019 pushed 888a2a",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/5f71826d6b...726c41f3f2",
-      "updated": "2026-08-26 01:44:53 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:44 1 commit to main 726c41f fix(org): harden tenant isolation and acceptance evidence"
+      "title": "tbdavid2019 pushed telegram-bot-stock2",
+      "url": "https://github.com/tbdavid2019/telegram-bot-stock2/compare/44d7501b4f...da61cc8c18",
+      "updated": "2026-09-01 05:24:28 UTC",
+      "summary": "tbdavid2019 pushed to master in tbdavid2019/telegram-bot-stock2 · September 1, 2026 05:24 1 commit to master da61cc8 feat(ux+cicd): add Telegram dynamic follow-up prompt buttons and GitH…"
     },
     {
-      "title": "tbdavid2019 pushed cf-notepad",
-      "url": "https://github.com/tbdavid2019/cf-notepad/compare/d5fcebc601...1b072f0ce1",
-      "updated": "2026-08-26 01:38:35 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · August 26, 2026 01:38 1 commit to main 1b072f0 feat(ui): split action capsule in share mode and interactive language…"
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/29d94d8d88...fa63877fff",
+      "updated": "2026-09-01 05:24:12 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 05:24 1 commit to main fa63877 feat(ci): implement automated yfinance PyPI tracking CI/CD pipeline a…"
     },
     {
-      "title": "tbdavid2019 pushed 888a2a",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/5e5913e88b...a27e3dafc7",
-      "updated": "2026-08-26 01:06:14 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:06 1 commit to main a27e3da feat(org): implement tenant IAM, store operations and frontend organi…"
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/dc0bac5c0b...1f305cf527",
+      "updated": "2026-09-01 07:02:13 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 07:02 1 commit to main 1f305cf docs: update changelog for UI bugfix"
     },
     {
-      "title": "tbdavid2019 pushed 888a2a",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/35648e073c...5e5913e88b",
-      "updated": "2026-08-26 01:01:56 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · August 26, 2026 01:01 1 commit to main 5e5913e feat(org): implement organization and tenant store foundation (tasks …"
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/16251317ad...e9a16ac3b0",
+      "updated": "2026-09-01 02:51:48 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 02:51 1 commit to main e9a16ac chore: remove obsolete todo.md files"
     }
   ],
-  "lastSyncedAt": "2026-08-26T02:20:37.221Z",
+  "lastSyncedAt": "2026-09-01T07:54:10.304Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

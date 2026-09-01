@@ -36,6 +36,9 @@ export interface LinkCardData extends BaseCard {
     runtimeStatus?: BentoLinkRuntimeStatus;
     repoUrl?: string;
     cloneCommand?: string;
+    docUrl?: string;
+    docLabel?: string;
+    docLabelEn?: string;
 }
 
 export interface GithubCardData extends BaseCard {
