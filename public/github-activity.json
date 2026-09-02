@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed telegram-bot-stock2",
-      "url": "https://github.com/tbdavid2019/telegram-bot-stock2/compare/f74c529bf1...1a4aff56b1",
-      "updated": "2026-09-01 07:26:29 UTC",
-      "summary": "tbdavid2019 pushed to master in tbdavid2019/telegram-bot-stock2 · September 1, 2026 07:26 1 commit to master 1a4aff5 fix(callback): resolve button prompt directly from message reply_mark…"
-    },
-    {
-      "title": "tbdavid2019 pushed telegram-bot-stock2",
-      "url": "https://github.com/tbdavid2019/telegram-bot-stock2/compare/44d7501b4f...da61cc8c18",
-      "updated": "2026-09-01 05:24:28 UTC",
-      "summary": "tbdavid2019 pushed to master in tbdavid2019/telegram-bot-stock2 · September 1, 2026 05:24 1 commit to master da61cc8 feat(ux+cicd): add Telegram dynamic follow-up prompt buttons and GitH…"
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/beb48a49bf...290ddf0fb6",
+      "updated": "2026-09-02 01:04:15 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 2, 2026 01:04 1 commit to main 290ddf0 fix(macro): separate Taiwan (^TWII) from US (SPY) market regime and r…"
     },
     {
       "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/29d94d8d88...fa63877fff",
-      "updated": "2026-09-01 05:24:12 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 05:24 1 commit to main fa63877 feat(ci): implement automated yfinance PyPI tracking CI/CD pipeline a…"
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/f9ac22c90c...beb48a49bf",
+      "updated": "2026-09-01 14:16:39 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 14:16 1 commit to main beb48a4 docs: add pre-market schedule and raw market data architecture to README"
     },
     {
       "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/dc0bac5c0b...1f305cf527",
-      "updated": "2026-09-01 07:02:13 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 07:02 1 commit to main 1f305cf docs: update changelog for UI bugfix"
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/fa63877fff...d263ec158b",
+      "updated": "2026-09-01 05:24:46 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 05:24 1 commit to main d263ec1 fix(test): correct patch method name for MacroRegimeAnalyzer in orche…"
     },
     {
       "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/16251317ad...e9a16ac3b0",
-      "updated": "2026-09-01 02:51:48 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 02:51 1 commit to main e9a16ac chore: remove obsolete todo.md files"
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/1f305cf527...388ce7cc4c",
+      "updated": "2026-09-01 07:26:02 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 07:26 1 commit to main 388ce7c fix: resolve stock names and complete SEO metadata"
+    },
+    {
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/c772bfd806...bac0dd1093",
+      "updated": "2026-09-01 04:02:58 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 04:02 1 commit to main bac0dd1 feat(docker): mount application source code into containers for zero-…"
     }
   ],
-  "lastSyncedAt": "2026-09-01T07:54:10.304Z",
+  "lastSyncedAt": "2026-09-02T08:42:59.027Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

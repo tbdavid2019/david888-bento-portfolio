@@ -15,6 +15,7 @@ const smtpUserSecret = defineSecret('SMTP_USER');
 const smtpPassSecret = defineSecret('SMTP_PASS');
 
 const clean = (value, maxLength) => String(value || '').trim().replace(/[<>]/g, '').slice(0, maxLength);
+const cleanSingleLine = (value, maxLength) => String(value || '').trim().replace(/[\r\n<>]/g, ' ').slice(0, maxLength);
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 const taipeiDate = () => new Intl.DateTimeFormat('en-CA', {
   timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit',
@@ -48,10 +49,10 @@ const sendMailIfConfigured = async ({ to, subject, text }) => {
 
 export const createContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret] }, async (request) => {
   const input = request.data || {};
-  const name = clean(input.name, 100);
-  const email = clean(input.email, 160).toLowerCase();
-  const company = clean(input.company, 160);
-  const subject = clean(input.subject, 180);
+  const name = cleanSingleLine(input.name, 100);
+  const email = cleanSingleLine(input.email, 160).toLowerCase();
+  const company = cleanSingleLine(input.company, 160);
+  const subject = cleanSingleLine(input.subject, 180);
   const message = clean(input.message, 5000);
 
   if (!name || !isEmail(email) || !subject || message.length < 10) {
@@ -86,8 +87,8 @@ export const createContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSe
 });
 
 export const replyToContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret] }, async (request) => {
-  if (!request.auth?.token?.email || !ADMIN_EMAILS.has(request.auth.token.email)) {
-    throw new HttpsError('permission-denied', 'Admin authentication is required.');
+  if (!request.auth?.token?.email || !request.auth.token.email_verified || !ADMIN_EMAILS.has(request.auth.token.email)) {
+    throw new HttpsError('permission-denied', 'Admin authentication with verified email is required.');
   }
 
   const ticketId = clean(request.data?.ticketId, 100);

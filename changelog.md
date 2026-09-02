@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-09-02] - Security Audit & Access Control Hardening
+
+### Added
+- Installed `cloudflare/security-audit-skill` in `.agent/skills/security-audit/` for continuous repository security auditing and vulnerability verification.
+
+### Security
+- **Firestore Admin Authorization**: Enforced `request.auth.token.email_verified == true` requirement in `firestore.rules` and `functions/index.js` to prevent authorization bypass via unverified email accounts.
+- **Email Injection Sanitization**: Added CRLF (`\r\n`) stripping for single-line contact form inputs in `functions/index.js` (`createContactTicket`).
+- **Announcement Link Validation**: Added protocol whitelist validation (`http:`, `https:`, `/`) for homepage announcement links in `components/AnnouncementBar.tsx`.
+
 ## [2026-09-01] - Finance & Investment Category Reorganization
 
 ### Added

@@ -55,7 +55,7 @@ export const AnnouncementBar: React.FC<{ data?: AnnouncementData }> = ({
           </div>
         </div>
 
-        {liveData.link && liveData.linkLabel && (
+        {liveData.link && liveData.linkLabel && /^(https?:\/\/|\/)/i.test(liveData.link.trim()) && (
           <a
             href={liveData.link}
             target="_blank"
