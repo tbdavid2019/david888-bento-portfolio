@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Mail, Moon, Search, Sun, X } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Gamepad2, Mail, Moon, Search, Sun, X } from 'lucide-react';
 import type { Locale } from '../types';
 
 interface NavbarProps {
@@ -26,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleSearch,
 }) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const [isGameModalOpen, setIsGameModalOpen] = useState(false);
 
   useEffect(() => {
     if (isSearchOpen && searchInputRef.current) {
@@ -35,6 +36,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (isGameModalOpen) {
+          e.preventDefault();
+          setIsGameModalOpen(false);
+          return;
+        }
+        if (isSearchOpen) {
+          e.preventDefault();
+          onToggleSearch();
+          return;
+        }
+      }
+
       if (
         (e.key === '/' || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) &&
         document.activeElement?.tagName !== 'INPUT' &&
@@ -46,15 +60,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         } else {
           searchInputRef.current?.focus();
         }
-      } else if (e.key === 'Escape' && isSearchOpen) {
-        e.preventDefault();
-        onToggleSearch();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isSearchOpen, onToggleSearch]);
+  }, [isGameModalOpen, isSearchOpen, onToggleSearch]);
 
   return (
     <div className="fixed inset-x-0 top-3 z-50 px-4 md:top-4 md:px-6">
@@ -145,6 +156,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
           <button
             type="button"
+            onClick={() => setIsGameModalOpen(true)}
+            className={`relative h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-main shadow-sm transition-all duration-300 hover:border-primary/50 hover:text-primary hover:opacity-90 ${isSearchOpen ? 'hidden sm:flex' : 'flex'}`}
+            aria-label={locale === 'en' ? 'Play QAC-MAN QR Maze' : '開啟吃豆人 QR 迷宮'}
+            title={locale === 'en' ? 'QAC-MAN — Playable QR Maze (david888.com)' : 'QAC-MAN — 吃豆人 QR 迷宮（可掃描・可遊玩）'}
+          >
+            <Gamepad2 size={18} className="text-primary" />
+            <span className="absolute right-1 top-1 flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+          </button>
+          <button
+            type="button"
             onClick={onContact}
             className={`h-10 w-10 items-center justify-center gap-0 rounded-full bg-primary px-0 text-sm font-black text-white transition-all duration-300 hover:opacity-90 dark:text-bg-base sm:w-auto sm:gap-2 sm:px-4 ${isSearchOpen ? 'hidden xs:inline-flex' : 'inline-flex'}`}
             aria-label={locale === 'zh' ? '聯絡我' : 'Contact me'}
@@ -154,6 +178,61 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
       </nav>
+
+      {/* QAC-MAN Arcade Modal */}
+      {isGameModalOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          onMouseDown={(e) => e.target === e.currentTarget && setIsGameModalOpen(false)}
+        >
+          <div className="relative w-full max-w-lg rounded-3xl border border-border bg-bg-surface p-5 shadow-2xl">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-sm dark:text-bg-base">
+                  <Gamepad2 size={18} />
+                </div>
+                <div>
+                  <h3 className="flex items-center gap-2 text-base font-black text-text-main">
+                    <span>{locale === 'en' ? 'QAC-MAN — Playable QR Maze' : 'QAC-MAN 吃豆人 QR 迷宮'}</span>
+                    <span className="rounded-full bg-primary/20 px-2 py-0.5 font-mono text-[10px] font-black text-primary">
+                      david888.com
+                    </span>
+                  </h3>
+                  <p className="text-xs font-semibold text-text-muted">
+                    {locale === 'en'
+                      ? 'Target: david888.com (Scan with phone camera)'
+                      : '目標：david888.com（手機鏡頭可直接掃碼直達）'}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsGameModalOpen(false)}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-text-muted transition-colors hover:text-text-main"
+                aria-label={locale === 'en' ? 'Close modal' : '關閉'}
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-border bg-black shadow-inner">
+              <iframe
+                src="https://qacman.com/?embed=1&autoplay=1&mute=1&gh=4&q=david888.com"
+                title="David888 QAC-MAN Fullscreen"
+                className="h-full w-full border-0"
+                allow="autoplay"
+              />
+            </div>
+
+            <div className="mt-3 flex items-center justify-between text-xs font-semibold text-text-muted">
+              <span>📱 手機鏡頭對準迷宮即可直達網站</span>
+              <span className="font-mono">🎮 WASD / 方向鍵遊玩</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

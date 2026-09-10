@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, ExternalLink, Gamepad2, MapPin, Maximize2, QrCode, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, ExternalLink, MapPin } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CardWrapper } from './cards/CardWrapper';
 import profileData from '../data/bento-profile.json';
@@ -12,8 +12,6 @@ interface ProfileCardProps {
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
     const [isExpandedMobile, setIsExpandedMobile] = useState(false);
-    const [showQrGame, setShowQrGame] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const metrics = [
         { value: '4', label: locale === 'en' ? 'Companies founded' : '創業公司' },
@@ -126,135 +124,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                             <MapPin size={16} className="text-text-muted opacity-60" />
                             <span>{contactLine}</span>
                         </div>
-
-                        {/* QAC-MAN Eat Beans QR Code - Option B */}
-                        <div className="pt-2">
-                            <button
-                                type="button"
-                                onClick={() => setShowQrGame(!showQrGame)}
-                                className="group flex w-full items-center justify-between rounded-2xl border border-primary/25 bg-primary/10 p-2.5 text-left transition-all duration-300 hover:border-primary/40 hover:bg-primary/15"
-                                aria-expanded={showQrGame}
-                            >
-                                <div className="flex min-w-0 items-center gap-2.5">
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-sm dark:text-bg-base">
-                                        <Gamepad2 size={16} />
-                                    </div>
-                                    <div className="min-w-0">
-                                        <div className="flex items-center gap-1.5 text-xs font-black text-text-main">
-                                            <span>{locale === 'en' ? 'QAC-MAN QR Card' : '吃豆人 QR 名片'}</span>
-                                            <span className="relative flex h-2 w-2">
-                                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                                                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                                            </span>
-                                        </div>
-                                        <div className="truncate text-[11px] font-semibold text-text-muted">
-                                            {locale === 'en' ? 'Playable & scannable to david888.com' : '手機相機可掃描・鍵盤可遊玩'}
-                                        </div>
-                                    </div>
-                                </div>
-                                <span className="shrink-0 rounded-full border border-border bg-bg-surface px-2.5 py-0.5 text-[10px] font-black text-text-muted transition-colors group-hover:text-text-main">
-                                    {showQrGame ? (locale === 'en' ? 'Hide' : '收起') : (locale === 'en' ? 'Play / Scan' : '展開')}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {showQrGame && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: 'auto' }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div className="mt-3 rounded-2xl border border-border bg-black/90 p-3 shadow-xl">
-                                            <div className="mb-2 flex items-center justify-between px-1 text-xs font-bold text-gray-300">
-                                                <div className="flex items-center gap-1.5">
-                                                    <QrCode size={14} className="text-primary" />
-                                                    <span className="font-mono text-xs">david888.com</span>
-                                                </div>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setIsModalOpen(true)}
-                                                    className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-semibold text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
-                                                    title={locale === 'en' ? 'Enlarge to popup modal' : '放大視窗遊玩'}
-                                                >
-                                                    <Maximize2 size={12} />
-                                                    <span>{locale === 'en' ? 'Enlarge' : '放大'}</span>
-                                                </button>
-                                            </div>
-
-                                            <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-inner">
-                                                <iframe
-                                                    src="https://qacman.com/?embed=1&autoplay=1&mute=1&gh=4&q=david888.com"
-                                                    title="David888 QAC-MAN Playable QR Code"
-                                                    className="h-full w-full border-0"
-                                                    loading="lazy"
-                                                    allow="autoplay"
-                                                />
-                                            </div>
-
-                                            <div className="mt-2.5 flex items-center justify-between px-1 text-[11px] text-gray-400">
-                                                <span>📷 手機相機掃碼直達</span>
-                                                <span className="font-mono">🎮 WASD / 方向鍵</span>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
                     </div>
                 </div>
             </div>
-
-            {/* QAC-MAN Enlarge Modal */}
-            {isModalOpen && (
-                <div
-                    className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md"
-                    role="dialog"
-                    aria-modal="true"
-                    onMouseDown={(e) => e.target === e.currentTarget && setIsModalOpen(false)}
-                >
-                    <div className="relative w-full max-w-lg rounded-3xl border border-border bg-bg-surface p-5 shadow-2xl">
-                        <div className="mb-4 flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-sm dark:text-bg-base">
-                                    <Gamepad2 size={18} />
-                                </div>
-                                <div>
-                                    <h3 className="text-base font-black text-text-main">
-                                        {locale === 'en' ? 'QAC-MAN — Playable QR Maze' : 'QAC-MAN 吃豆人 QR 迷宮'}
-                                    </h3>
-                                    <p className="text-xs font-semibold text-text-muted">
-                                        {locale === 'en' ? 'Target: david888.com (Scan with camera)' : '目標：david888.com（手機相機可直接掃描）'}
-                                    </p>
-                                </div>
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => setIsModalOpen(false)}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-text-muted transition-colors hover:text-text-main"
-                                aria-label="Close modal"
-                            >
-                                <X size={16} />
-                            </button>
-                        </div>
-
-                        <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-border bg-black shadow-inner">
-                            <iframe
-                                src="https://qacman.com/?embed=1&autoplay=1&mute=1&gh=4&q=david888.com"
-                                title="David888 QAC-MAN Fullscreen"
-                                className="h-full w-full border-0"
-                                allow="autoplay"
-                            />
-                        </div>
-
-                        <div className="mt-3 flex items-center justify-between text-xs font-semibold text-text-muted">
-                            <span>📱 手機鏡頭對準螢幕即可直達網站</span>
-                            <span className="font-mono">🎮 WASD / 方向鍵 / 觸控遊玩</span>
-                        </div>
-                    </div>
-                </div>
-            )}
         </CardWrapper>
     );
 };
