@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const bentoGridSource = fs.readFileSync(new URL('../components/BentoGrid.tsx', import.meta.url), 'utf8');
+const navbarSource = fs.readFileSync(new URL('../components/Navbar.tsx', import.meta.url), 'utf8');
 
 test('provides a table of contents for category sub-sections', () => {
   assert.match(bentoGridSource, /aria-label=\{locale === 'en' \? 'Section navigation' : '子分類目錄'\}/);
@@ -32,9 +33,9 @@ test('shows runtime status tooltips and local clone actions on link cards', () =
   assert.match(linkCardSource, /本機運行/);
 });
 
-test('provides a global work search at the top of the portfolio', () => {
-  assert.match(bentoGridSource, /type="search"/);
-  assert.match(bentoGridSource, /placeholder=\{locale === 'en' \? 'Search projects, skills, or topics' : '搜尋作品、技能或主題…'\}/);
+test('provides a global work search collapsible in the navbar', () => {
+  assert.match(navbarSource, /type="search"/);
+  assert.match(navbarSource, /placeholder=\{locale === 'en' \? 'Search portfolio\.\.\.' : '搜尋作品、主題…'\}/);
   assert.match(bentoGridSource, /searchMatches/);
   assert.match(bentoGridSource, /搜尋結果/);
   assert.match(bentoGridSource, /清除搜尋/);

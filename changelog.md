@@ -1,5 +1,21 @@
 # Changelog
 
+## [2026-09-10] - QAC-MAN Playable QR Card & Collapsible Navbar Search
+
+### Added
+- Added **QAC-MAN 8-bit 吃豆人互動 QR 名片** to `ProfileCard`:
+  - Scannable QR maze targeting `david888.com` using Level-H error correction.
+  - Playable directly in-browser with arrow keys / WASD or touch gestures.
+  - Muted audio (`&mute=1`) to prevent autoplay noise.
+  - Collapsible inline view and an expandable full-screen arcade modal.
+
+### Changed
+- Refactored global search from an intrusive standalone row into a compact, collapsible action in `Navbar`:
+  - Default state is an icon button alongside language and theme switches.
+  - Expands smoothly on click or via `/` and `Cmd+K` / `Ctrl+K` shortcuts.
+  - Pressing `Esc` or clicking close collapses the search input.
+  - Main portfolio grid begins cleanly with Category Tabs.
+
 ## [2026-09-02] - Security Audit & Access Control Hardening
 
 ### Added

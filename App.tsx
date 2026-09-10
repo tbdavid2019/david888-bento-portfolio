@@ -26,6 +26,8 @@ export default function App() {
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
   const [contactOpen, setContactOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const localeRef = useRef(locale);
   const activeCategoryIdRef = useRef(activeCategoryId);
   const visibleCategories = getVisibleCategories();
@@ -102,8 +104,31 @@ export default function App() {
   return (
     <div className="min-h-screen px-4 pb-4 pt-28 transition-colors duration-300 md:px-6 md:pb-6 md:pt-32">
       <div className="mx-auto max-w-7xl">
-        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} locale={locale} onLocaleChange={changeLocale} onContact={() => setContactOpen(true)} />
-        <BentoGrid locale={locale} activeCategoryId={activeCategoryId} onCategoryChange={changeCategory} />
+        <Navbar
+          darkMode={darkMode}
+          toggleTheme={toggleTheme}
+          locale={locale}
+          onLocaleChange={changeLocale}
+          onContact={() => setContactOpen(true)}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          isSearchOpen={isSearchOpen}
+          onToggleSearch={() => {
+            if (isSearchOpen) {
+              setSearchQuery('');
+              setIsSearchOpen(false);
+            } else {
+              setIsSearchOpen(true);
+            }
+          }}
+        />
+        <BentoGrid
+          locale={locale}
+          activeCategoryId={activeCategoryId}
+          onCategoryChange={changeCategory}
+          searchQuery={searchQuery}
+          onClearSearch={() => setSearchQuery('')}
+        />
       </div>
       {contactOpen && <Suspense fallback={null}><ContactDialog locale={locale} onClose={() => setContactOpen(false)} /></Suspense>}
     </div>

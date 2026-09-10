@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, ArrowUpRight, Search, X } from 'lucide-react';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
@@ -66,12 +66,19 @@ interface BentoGridProps {
   locale: Locale;
   activeCategoryId: string;
   onCategoryChange: (categoryId: string) => void;
+  searchQuery: string;
+  onClearSearch: () => void;
 }
 
-export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, onCategoryChange }) => {
+export const BentoGrid: React.FC<BentoGridProps> = ({
+  locale,
+  activeCategoryId,
+  onCategoryChange,
+  searchQuery,
+  onClearSearch,
+}) => {
   const contentSectionRef = React.useRef<HTMLElement>(null);
   const [showScrollTop, setShowScrollTop] = React.useState(false);
-  const [searchQuery, setSearchQuery] = React.useState('');
   const items = siteItems;
   const groupedItems = React.useMemo(() => {
     return items.reduce((acc, item) => {
@@ -90,6 +97,9 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
   }, [activeCategoryId, onCategoryChange, visibleCategories]);
 
   const handleCategorySelect = (categoryId: string) => {
+    if (isSearching) {
+      onClearSearch();
+    }
     onCategoryChange(categoryId);
 
     if (window.innerWidth < 1024 && contentSectionRef.current) {
@@ -141,30 +151,6 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="rounded-2xl border border-border bg-bg-surface p-3 shadow-sm backdrop-blur-md md:p-4">
-        <div className="relative flex items-center">
-          <Search size={21} className="pointer-events-none absolute left-4 text-text-muted" aria-hidden="true" />
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-            placeholder={locale === 'en' ? 'Search projects, skills, or topics' : '搜尋作品、技能或主題…'}
-            aria-label={locale === 'en' ? 'Search portfolio' : '搜尋作品'}
-            className="h-14 w-full rounded-xl border border-border bg-bg-elevated pl-12 pr-12 text-base font-bold text-text-main outline-none transition-colors placeholder:text-text-muted/70 focus:border-primary focus:ring-2 focus:ring-primary/20"
-          />
-          {isSearching && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              aria-label={locale === 'en' ? 'Clear search' : '清除搜尋'}
-              className="absolute right-3 inline-flex h-9 w-9 items-center justify-center rounded-full text-text-muted transition-colors hover:bg-border hover:text-text-main"
-            >
-              <X size={18} />
-            </button>
-          )}
-        </div>
-      </div>
-
       {/* Category Tabs - Full Width at Top */}
       <div className="rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm backdrop-blur-md">
         <div className="flex flex-wrap items-center justify-end gap-1">
@@ -225,7 +211,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ locale, activeCategoryId, 
               </div>
               <button
                 type="button"
-                onClick={() => setSearchQuery('')}
+                onClick={onClearSearch}
                 className="inline-flex h-10 shrink-0 items-center justify-center rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
               >
                 {locale === 'en' ? 'Clear search' : '清除搜尋'}

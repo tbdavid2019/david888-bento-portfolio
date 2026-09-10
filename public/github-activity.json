@@ -2,36 +2,36 @@
   "entries": [
     {
       "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/beb48a49bf...290ddf0fb6",
-      "updated": "2026-09-02 01:04:15 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 2, 2026 01:04 1 commit to main 290ddf0 fix(macro): separate Taiwan (^TWII) from US (SPY) market regime and r…"
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/e28b7553b3...c7a29e7034",
+      "updated": "2026-09-10 01:51:36 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 10, 2026 01:51 1 commit to main c7a29e7 feat(polymarket): integrate real-money prediction market sentiment wi…"
     },
     {
       "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/f9ac22c90c...beb48a49bf",
-      "updated": "2026-09-01 14:16:39 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 14:16 1 commit to main beb48a4 docs: add pre-market schedule and raw market data architecture to README"
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/3977b28b7c...15c17f72c9",
+      "updated": "2026-09-10 01:09:12 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 10, 2026 01:09 1 commit to main 15c17f7 fix(mcp): align /mcp and /.well-known/mcp.json tools array"
     },
     {
       "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/fa63877fff...d263ec158b",
-      "updated": "2026-09-01 05:24:46 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 05:24 1 commit to main d263ec1 fix(test): correct patch method name for MacroRegimeAnalyzer in orche…"
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/4d10dc235b...b07731aec7",
+      "updated": "2026-09-10 00:56:30 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 10, 2026 00:56 1 commit to main b07731a fix(db): correct local Taipei timezone in age_hours calculation to pr…"
     },
     {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/1f305cf527...388ce7cc4c",
-      "updated": "2026-09-01 07:26:02 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 07:26 1 commit to main 388ce7c fix: resolve stock names and complete SEO metadata"
+      "title": "tbdavid2019 pushed 888tools",
+      "url": "https://github.com/tbdavid2019/888tools/compare/da3a6acd25...3861188bee",
+      "updated": "2026-09-08 08:04:10 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · September 8, 2026 08:04 1 commit to main 3861188 fix(pwa): persist install prompt dismissal for 3 days and allow mask …"
     },
     {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/c772bfd806...bac0dd1093",
-      "updated": "2026-09-01 04:02:58 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 1, 2026 04:02 1 commit to main bac0dd1 feat(docker): mount application source code into containers for zero-…"
+      "title": "tbdavid2019 pushed line-bot-summary",
+      "url": "https://github.com/tbdavid2019/line-bot-summary/compare/2d2d1db871...a24eb31b16",
+      "updated": "2026-09-08 06:54:50 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/line-bot-summary · September 8, 2026 06:54 1 commit to main a24eb31 feat: integrate Google Magika for local AI file detection &amp; multimoda…"
     }
   ],
-  "lastSyncedAt": "2026-09-02T08:42:59.027Z",
+  "lastSyncedAt": "2026-09-10T03:54:17.193Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
