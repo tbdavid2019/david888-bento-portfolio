@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { LoaderCircle, ShieldAlert, ShieldCheck } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -41,6 +42,13 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  const isLocalhost =
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1' ||
+      window.location.hostname.endsWith('.local'));
 
   const resolvedSiteKey =
     siteKey ||
@@ -61,14 +69,20 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
           action,
           theme: isDark ? 'dark' : 'light',
           callback: (token: string) => {
-            if (isMounted) onSuccess(token);
+            if (isMounted) {
+              setLoading(false);
+              setHasError(false);
+              onSuccess(token);
+            }
           },
           'expired-callback': () => {
             if (isMounted) onExpire?.();
           },
           'error-callback': (err?: string) => {
             if (isMounted) {
+              console.warn('[Turnstile] Verification failed or domain rejected:', err);
               setLoading(false);
+              setHasError(true);
               onError?.(err);
             }
           },
@@ -78,6 +92,7 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
       } catch (renderError) {
         console.warn('Failed to render Turnstile widget:', renderError);
         setLoading(false);
+        setHasError(true);
       }
     };
 
@@ -99,6 +114,7 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
         script.onerror = () => {
           if (isMounted) {
             setLoading(false);
+            setHasError(true);
             onError?.('Script load error');
           }
         };
@@ -130,12 +146,27 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   if (!resolvedSiteKey) return null;
 
   return (
-    <div className={`flex min-h-[65px] flex-col items-center justify-center ${className}`}>
-      <div ref={containerRef} />
-      {loading && (
-        <span className="text-[11px] text-text-muted animate-pulse">
-          Cloudflare 安全驗證加載中…
-        </span>
+    <div className={`flex min-h-[52px] flex-col items-center justify-center rounded-2xl border border-border/40 bg-bg-elevated/30 p-2.5 transition-all ${className}`}>
+      <div ref={containerRef} className={hasError ? 'hidden' : ''} />
+      {loading && !hasError && (
+        <div className="flex items-center gap-2 text-xs text-text-muted animate-pulse">
+          <LoaderCircle size={14} className="animate-spin text-primary" />
+          <span>Cloudflare 安全驗證加載中…</span>
+        </div>
+      )}
+      {hasError && isLocalhost && (
+        <div className="flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-300">
+          <ShieldAlert size={16} className="shrink-0 text-amber-500" />
+          <span>
+            本機測試提示：請於 Cloudflare 後台將 <code className="font-mono font-bold">localhost</code> 加入 Turnstile Domains 白名單
+          </span>
+        </div>
+      )}
+      {hasError && !isLocalhost && (
+        <div className="flex items-center gap-2 text-xs text-text-muted">
+          <ShieldCheck size={16} className="shrink-0 text-primary" />
+          <span>人機安全性驗證中</span>
+        </div>
       )}
     </div>
   );
