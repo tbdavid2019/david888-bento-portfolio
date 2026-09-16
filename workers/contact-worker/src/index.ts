@@ -62,38 +62,26 @@ export default {
         );
       }
 
-      // 2. Cloudflare Turnstile Verification (Independent of Firebase)
-      if (env.TURNSTILE_SECRET) {
-        if (!turnstileToken) {
-          return new Response(
-            JSON.stringify({
-              error: 'Cloudflare Turnstile verification token missing.',
-              turnstileFailed: true,
-            }),
-            { status: 403, headers: { 'Content-Type': 'application/json', ...corsHeaders } },
+      // 2. Cloudflare Turnstile Verification (Optional / bypass when disabled on frontend)
+      if (env.TURNSTILE_SECRET && turnstileToken) {
+        try {
+          const verifyRes = await fetch(
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams({
+                secret: env.TURNSTILE_SECRET,
+                response: turnstileToken,
+              }),
+            },
           );
-        }
-
-        const verifyRes = await fetch(
-          'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-              secret: env.TURNSTILE_SECRET,
-              response: turnstileToken,
-            }),
-          },
-        );
-        const verifyData = (await verifyRes.json()) as { success?: boolean; 'error-codes'?: string[] };
-        if (!verifyData.success) {
-          return new Response(
-            JSON.stringify({
-              error: 'Turnstile verification failed.',
-              turnstileFailed: true,
-            }),
-            { status: 403, headers: { 'Content-Type': 'application/json', ...corsHeaders } },
-          );
+          const verifyData = (await verifyRes.json()) as { success?: boolean; 'error-codes'?: string[] };
+          if (!verifyData.success) {
+            console.warn('Turnstile verification warning:', verifyData['error-codes']);
+          }
+        } catch (verifyErr) {
+          console.warn('Turnstile verify network error:', verifyErr);
         }
       }
 

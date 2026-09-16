@@ -1,7 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Check, Copy, LoaderCircle, Mail, X } from 'lucide-react';
 import { submitContactTicket } from '../lib/crm';
-import { TurnstileWidget } from './TurnstileWidget';
 import type { Locale } from '../types';
 
 interface ContactDialogProps {
@@ -68,20 +67,11 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
   });
   const [selectedSubjectId, setSelectedSubjectId] = useState<string>(defaultOption.id);
   const [customSubject, setCustomSubject] = useState('');
-  const [turnstileToken, setTurnstileToken] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [submittedReceipt, setSubmittedReceipt] = useState<SubmittedReceipt | null>(null);
   const [copiedTicketNo, setCopiedTicketNo] = useState(false);
   const [copiedReceipt, setCopiedReceipt] = useState(false);
-
-  const handleTurnstileSuccess = useCallback((token: string) => {
-    setTurnstileToken(token);
-  }, []);
-
-  const handleTurnstileExpire = useCallback(() => {
-    setTurnstileToken('');
-  }, []);
 
   const activeOption =
     SUBJECT_OPTIONS.find((opt) => opt.id === selectedSubjectId) || defaultOption;
@@ -133,7 +123,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
         company: form.company,
         subject: finalSubject,
         message: form.message,
-        turnstileToken: turnstileToken || undefined,
       });
 
       setSubmittedReceipt({
@@ -465,14 +454,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               />
             </label>
 
-            {/* Cloudflare Turnstile Bot Verification */}
-            <div className="pt-0.5">
-              <TurnstileWidget
-                action="contact"
-                onSuccess={handleTurnstileSuccess}
-                onExpire={handleTurnstileExpire}
-              />
-            </div>
+
 
             {error && (
               <p
