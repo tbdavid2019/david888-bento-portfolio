@@ -60,7 +60,37 @@ export const submitContactTicket = async (input: {
   company?: string;
   subject: string;
   message: string;
-}) => (await createTicket(input)).data;
+  turnstileToken?: string;
+}): Promise<{ ticketNo: string; provider?: string }> => {
+  // 1. Try Resend API first (via Vercel Serverless Function or custom API URL)
+  try {
+    const contactApiUrl =
+      import.meta.env.VITE_CONTACT_API_URL ||
+      'https://david888-contact-worker.raspy-salad-a4b7.workers.dev';
+    const response = await fetch(contactApiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(input),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data?.ticketNo) {
+        return { ticketNo: data.ticketNo, provider: data.provider || 'resend' };
+      }
+    } else {
+      console.warn(`[CRM] Resend API endpoint returned status ${response.status}, falling back to Firebase.`);
+    }
+  } catch (resendError) {
+    console.warn('[CRM] Resend API endpoint unreachable or failed, falling back to Firebase:', resendError);
+  }
+
+  // 2. Fallback to Firebase Cloud Function
+  const result = await createTicket(input);
+  return { ...result.data, provider: 'firebase' };
+};
 
 export const sendTicketReply = async (ticketId: string, body: string) =>
   (await replyToTicket({ ticketId, body })).data;

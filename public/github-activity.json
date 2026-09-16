@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/e28b7553b3...c7a29e7034",
-      "updated": "2026-09-10 01:51:36 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 10, 2026 01:51 1 commit to main c7a29e7 feat(polymarket): integrate real-money prediction market sentiment wi…"
+      "title": "tbdavid2019 pushed liff-game-rockpaper",
+      "url": "https://github.com/CreateIntelligens/liff-game-rockpaper/compare/160330c8aa...bb05136f94",
+      "updated": "2026-09-16 04:12:42 UTC",
+      "summary": "tbdavid2019 pushed to main in CreateIntelligens/liff-game-rockpaper · September 16, 2026 04:12 1 commit to main bb05136 fix: prevent camera startup from hanging"
     },
     {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/3977b28b7c...15c17f72c9",
-      "updated": "2026-09-10 01:09:12 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 10, 2026 01:09 1 commit to main 15c17f7 fix(mcp): align /mcp and /.well-known/mcp.json tools array"
-    },
-    {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/4d10dc235b...b07731aec7",
-      "updated": "2026-09-10 00:56:30 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · September 10, 2026 00:56 1 commit to main b07731a fix(db): correct local Taipei timezone in age_hours calculation to pr…"
+      "title": "tbdavid2019 made this repository public",
+      "url": "https://github.com/CreateIntelligens/liff-game-rockpaper",
+      "updated": "2026-09-15 01:40:45 -0700",
+      "summary": "tbdavid2019 made CreateIntelligens/liff-game-rockpaper public · September 15, 2026 01:40 CreateIntelligens/liff-game-rockpaper TypeScript Updated Sep 16"
     },
     {
       "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/da3a6acd25...3861188bee",
-      "updated": "2026-09-08 08:04:10 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · September 8, 2026 08:04 1 commit to main 3861188 fix(pwa): persist install prompt dismissal for 3 days and allow mask …"
+      "url": "https://github.com/tbdavid2019/888tools/compare/01d523cc41...8a9d90c893",
+      "updated": "2026-09-14 06:45:41 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · September 14, 2026 06:45 2 commits to main b5f8411 fix(ocr-scanner): make worker runtime and request lifecycle reliable 8a9d90c fix(ocr-scanner): preserve CTC dictionary slots"
     },
     {
-      "title": "tbdavid2019 pushed line-bot-summary",
-      "url": "https://github.com/tbdavid2019/line-bot-summary/compare/2d2d1db871...a24eb31b16",
-      "updated": "2026-09-08 06:54:50 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/line-bot-summary · September 8, 2026 06:54 1 commit to main a24eb31 feat: integrate Google Magika for local AI file detection &amp; multimoda…"
+      "title": "tbdavid2019 pushed cf-notepad",
+      "url": "https://github.com/tbdavid2019/cf-notepad/compare/a0ff26c42e...b96b6c8655",
+      "updated": "2026-09-14 05:55:14 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · September 14, 2026 05:55 1 commit to main b96b6c8 fix(editor): ship PaddleOCR worker runtime"
+    },
+    {
+      "title": "tbdavid2019 pushed open333crm",
+      "url": "https://github.com/CreateIntelligens/open333crm/compare/670e8eab95...e92c75eb0d",
+      "updated": "2026-09-15 09:56:51 UTC",
+      "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · September 15, 2026 09:56 1 commit to main e92c75e feat(a2a): add live in-process A2A bridge worker and configure UAT cr…"
     }
   ],
-  "lastSyncedAt": "2026-09-10T03:58:36.762Z",
+  "lastSyncedAt": "2026-09-16T04:24:41.790Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

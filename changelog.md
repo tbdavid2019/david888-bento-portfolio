@@ -1,5 +1,24 @@
 # Changelog
 
+## [2026-09-16] - Resend API Contact Dispatch, Turnstile & Submission Receipt
+
+### Added
+- **Full Submission Receipt for Senders**: The contact dialog now presents a complete post-submission receipt including service tracking number (`CS-YYYYMMDD-XXXX`), sender name, email, company, subject, and message content, with a 1-click clipboard copy feature.
+- **Subject Option Chips (打勾選項)**: Replaced free-form subject input with 4 interactive category chips:
+  - `資訊顧問／工商合作` (IT Consulting & Business Cooperation)
+  - `獵頭招募／職缺邀約` (Recruitment & Job Opportunity)
+  - `技術演講／企業培訓` (Keynote & Tech Workshop)
+  - `其他合作提案` (Other Inquiries with optional custom note input)
+- **Cloudflare Turnstile Bot Protection**: Added `components/TurnstileWidget.tsx` for Turnstile verification on modal form open, validated via `challenges.cloudflare.com/turnstile/v0/siteverify` in edge and backend handlers.
+- **Cloudflare Edge Worker Dispatcher**: Added `workers/contact-worker/` to run standalone on Cloudflare Edge, verifying Turnstile and sending emails to `104@david888.com` via Resend API with 0% Firebase dependency.
+- **Vite Dev Server Middleware & Local Runner**: Added dev server interceptor for `/api/contact` in `vite.config.ts` and `api/contact.ts` enabling local testing with `RESEND_API_KEY`.
+- **Automated Fallback Architecture**: `lib/crm.ts` now calls the Cloudflare Worker first; if unreachable or failing, it automatically falls back to Firebase Cloud Functions (`createContactTicket`).
+- **Resend Support in Firebase Cloud Functions**: `functions/index.js` now also supports `RESEND_API_KEY` as preferred mailer before falling back to Gmail SMTP (`nodemailer`).
+- **Contact API Unit Tests**: Added unit tests in `test/contact-api.test.mjs` verifying input sanitization, ticket number generation, Turnstile token verification, and fallback behavior.
+
+### Changed
+- **Admin Recipient Email**: Changed default admin contact notification email from `ray168j@gmail.com` to `104@david888.com`.
+
 ## [2026-09-10] - QAC-MAN Playable QR Card & Collapsible Navbar Search
 
 ### Added

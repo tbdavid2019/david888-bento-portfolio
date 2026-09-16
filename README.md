@@ -106,39 +106,99 @@ The site frontend is hosted on GitHub Pages. Firebase is used only for the backe
 - Firestore: tickets, replies, homepage announcements, and daily ticket counters
 - Authentication: Email/Password for the CRM admin
 - Cloud Functions: `createContactTicket` and `replyToContactTicket` in `asia-east1`
-- SMTP: Gmail credentials are stored in Firebase Secret Manager, never in the repository
+- Resend API & SMTP: Resend API is the primary mail delivery method; SMTP is retained as fallback
+- Admin recipient: `104@david888.com`
 
-### Firebase Files
+### Contact Form Architecture (Edge Worker + Resend API + Firebase Fallback)
 
-- `lib/firebase.ts`: public Firebase Web App configuration
-- `lib/crm.ts`: frontend CRM calls and Firestore queries
-- `functions/index.js`: ticket creation, service-number generation, replies, and email delivery
-- `firestore.rules`: public announcement read access and admin-only CRM access
+1. **Primary - Cloudflare Worker (`workers/contact-worker/`)**:
+   - Deployed at Edge (e.g. `https://david888-contact-worker.raspy-salad-a4b7.workers.dev`).
+   - Verifies Cloudflare Turnstile token directly with Cloudflare API.
+   - Dispatches notification email directly to `104@david888.com` via Resend API (`RESEND_API_KEY`).
+   - Completely independent from Firebase (if Firebase is down, contact inquiries are still delivered immediately).
+   - Generates and returns ticket tracking number `CS-YYYYMMDD-XXXX`.
+
+2. **Fallback - Firebase Cloud Functions (`functions/index.js`)**:
+   - If the Edge Worker is unreachable or fails, the frontend automatically falls back to Firebase `createContactTicket`.
+   - Cloud Functions attempts Resend API first; if unconfigured or failing, it falls back to Gmail SMTP (`nodemailer`).
+
+3. **Local Dev & Testing (`api/contact.ts`)**:
+   - Vite development middleware handles `/api/contact` during `npm run dev`.
+   - Unit tests in `test/contact-api.test.mjs` run against the shared dispatch logic.
+
+### Directory Structure & Files
+
+- `workers/contact-worker/`: Cloudflare Worker source (`src/index.ts`) and configuration (`wrangler.jsonc`)
+- `api/contact.ts`: Core dispatch and Turnstile validation logic (used by Vite dev middleware & tests)
+- `components/ContactDialog.tsx`: Dialog with interactive subject chips, Turnstile widget, and full submission receipt
+- `components/TurnstileWidget.tsx`: Native React wrapper for Cloudflare Turnstile CAPTCHA
+- `lib/crm.ts`: Frontend CRM client (Worker primary -> Firebase fallback)
+- `functions/index.js`: Firebase Cloud Functions backend with dual Resend/SMTP support
+- `firestore.rules`: Public announcement read access and admin-only CRM access
 - `firebase.json` / `.firebaserc`: Firebase deployment configuration
-- `firebasekey/`: local Admin SDK credentials; ignored by Git
 
-### Deploy Firebase Backend
+---
 
-You need Firebase CLI access to the project and the Blaze plan for Cloud Functions:
+## 🔐 環境變數與金鑰配置總覽 (Environment Variables & Secrets)
+
+專案完整環境變數範本請參考 [.env.example](file:///.env.example)。以下為各服務所需變數整理：
+
+### 1. 前端環境變數（Vite / 客戶端 `.env`）
+以 `VITE_` 開頭的變數會於編譯時注入前端頁面（GitHub Actions 也需設定於 Repository Secrets）：
+
+| 變數名稱 | 預設值 / 範例 | 說明 | 必填 |
+| :--- | :--- | :--- | :--- |
+| `VITE_TURNSTILE_SITE_KEY` | `0x4AAAAAAEvqf7unH6MrhIv2` | Cloudflare Turnstile 網站金鑰（Sitekey），供前端彈出表單時加載人機驗證框 | **是** |
+| `VITE_FIREBASE_API_KEY` | `AIzaSy...` | Firebase Web App 公開 API 金鑰，供首頁公告與 Firebase Fallback 連線 | **是** |
+| `VITE_CONTACT_API_URL` | `https://david888-contact-worker...` | 自訂 Contact Worker 端點（選填，預設已內建 Cloudflare Worker） | 否 |
+
+---
+
+### 2. Cloudflare Worker 密鑰（主要發信服務，設定於 Cloudflare Secrets）
+在 `workers/contact-worker` 目錄下透過 `wrangler secret put` 設定：
 
 ```bash
-firebase login
-firebase deploy --only firestore:rules,functions --project aicreate360-official-web-stg
+cd workers/contact-worker
+npx wrangler secret put RESEND_API_KEY       # 輸入您的 Resend API Key (re_...)
+npx wrangler secret put TURNSTILE_SECRET     # 輸入 Cloudflare Turnstile Secret Key
 ```
 
-The Firebase Authentication user used for the admin console must be in the admin allowlist in `firestore.rules` and `functions/index.js`.
+| 變數名稱 | 類型 | 範例 / 預設值 | 說明 |
+| :--- | :--- | :--- | :--- |
+| `RESEND_API_KEY` | Secret | `re_xxxxxxxxxxxx` | Resend API 金鑰（在 resend.com 取得） |
+| `TURNSTILE_SECRET` | Secret | `0x4AAAAAA...` | Cloudflare Turnstile 私密金鑰 |
+| `ADMIN_EMAIL` | Variable | `104@david888.com` | 管理員通知收件信箱（於 wrangler.jsonc 設定） |
+| `RESEND_FROM` | Variable | `David888 Portfolio <onboarding@resend.dev>` | 寄件者名稱（於 wrangler.jsonc 設定） |
 
-### Configure Gmail SMTP Secrets
+---
 
-Use a Gmail App Password, not your normal Gmail password. Enter the values interactively so they are not written to shell history:
+### 3. Firebase Cloud Functions 密鑰（備援寄信通道，Google Secret Manager）
+若 Edge Worker 異常時，前端會自動降級走 Firebase Cloud Functions：
 
 ```bash
+# 設定 Resend 與 Turnstile（優先）
+firebase functions:secrets:set RESEND_API_KEY --project aicreate360-official-web-stg
+firebase functions:secrets:set TURNSTILE_SECRET --project aicreate360-official-web-stg
+
+# 設定 Gmail SMTP（最終備援）
 firebase functions:secrets:set SMTP_USER --project aicreate360-official-web-stg
 firebase functions:secrets:set SMTP_PASS --project aicreate360-official-web-stg
+
+# 部署
 firebase deploy --only functions --project aicreate360-official-web-stg
 ```
 
-The contact form displays a service number immediately after submission. SMTP sends the admin notification for a new ticket and the customer notification when an admin replies.
+| 變數名稱 | 預設值 / 範例 | 說明 | 必填 |
+| :--- | :--- | :--- | :--- |
+| `RESEND_API_KEY` | `re_xxxxxxxxxxxx` | Cloud Functions 優先發信密鑰 | 建議 |
+| `TURNSTILE_SECRET` | `0x4AAAAAA...` | Cloud Functions 人機驗證私鑰 | 建議 |
+| `SMTP_USER` | `104@david888.com` | Gmail SMTP 發信用帳號 | SMTP 備援必填 |
+| `SMTP_PASS` | `xxxx xxxx xxxx xxxx` | Gmail 應用程式專用密碼（App Password） | SMTP 備援必填 |
+| `ADMIN_EMAIL` | `104@david888.com` | 管理員通知信箱 | 否（預設已是 `104@david888.com`） |
+
+---
+
+The contact form displays a service number immediately after submission. Resend API (or SMTP fallback) sends the admin notification for a new ticket and customer notification when an admin replies.
 
 ## 🛠 Deployment
 
