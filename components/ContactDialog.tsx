@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Check, Copy, LoaderCircle, Mail, X } from 'lucide-react';
 import { submitContactTicket } from '../lib/crm';
 import { TurnstileWidget } from './TurnstileWidget';
@@ -14,29 +14,35 @@ export const SUBJECT_OPTIONS = [
     id: 'consulting',
     zh: '資訊顧問／工商合作',
     en: 'IT Consulting & Partnership',
-    placeholderZh: '請描述諮詢需求（例如：系統架構評估、AI Agent 落地規劃、專案跨系統整合…）',
-    placeholderEn: 'Describe your consulting scope (e.g. system architecture, AI agents, integrations…)',
+    placeholderZh:
+      '請描述您的諮詢需求（例如：系統架構評估、AI Agent 落地規劃、專案跨系統整合…）',
+    placeholderEn:
+      'Describe your consulting needs (e.g. system architecture, AI Agent deployment, system integration…)',
   },
   {
-    id: 'recruiting',
+    id: 'recruitment',
     zh: '獵頭招募／職缺邀約',
     en: 'Recruitment & Job Inquiry',
-    placeholderZh: '請簡述招募職位名稱、公司簡介、工作模式（顧問／全職／遠端）及相關條件…',
-    placeholderEn: 'Describe the position, company intro, work mode (advisory / full-time / remote)…',
+    placeholderZh:
+      '請簡述招募職位名稱、公司簡介、團隊規模與主要技術棧需求…',
+    placeholderEn:
+      'Describe the position, company introduction, team size, and key tech stack expectations…',
   },
   {
-    id: 'training',
+    id: 'speaking',
     zh: '技術演講／企業培訓',
     en: 'Tech Workshop & Speaking',
-    placeholderZh: '請說明活動主題、預計舉辦時間、參與對象與預期成效…',
-    placeholderEn: 'Describe the event topic, expected date, audience, and objectives…',
+    placeholderZh:
+      '請說明活動主題、預計舉辦時間、參與對象與預期成效…',
+    placeholderEn:
+      'Describe the event topic, scheduled date, target audience, and expected takeaways…',
   },
   {
     id: 'other',
     zh: '其他合作提案',
     en: 'Other Inquiries',
-    placeholderZh: '請在此詳細說明您想討論或合作的內容…',
-    placeholderEn: 'Please describe in detail what you would like to discuss or collaborate on…',
+    placeholderZh: '請詳述合作想法或具體事項…',
+    placeholderEn: 'Describe your proposal or specific topic…',
   },
 ];
 
@@ -44,7 +50,7 @@ interface SubmittedReceipt {
   ticketNo: string;
   name: string;
   email: string;
-  company: string;
+  company?: string;
   subject: string;
   message: string;
 }
@@ -68,6 +74,14 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
   const [submittedReceipt, setSubmittedReceipt] = useState<SubmittedReceipt | null>(null);
   const [copiedTicketNo, setCopiedTicketNo] = useState(false);
   const [copiedReceipt, setCopiedReceipt] = useState(false);
+
+  const handleTurnstileSuccess = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken('');
+  }, []);
 
   const activeOption =
     SUBJECT_OPTIONS.find((opt) => opt.id === selectedSubjectId) || defaultOption;
@@ -455,8 +469,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
             <div className="pt-0.5">
               <TurnstileWidget
                 action="contact"
-                onSuccess={(token) => setTurnstileToken(token)}
-                onExpire={() => setTurnstileToken('')}
+                onSuccess={handleTurnstileSuccess}
+                onExpire={handleTurnstileExpire}
               />
             </div>
 

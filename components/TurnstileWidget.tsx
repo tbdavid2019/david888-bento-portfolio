@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LoaderCircle, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { LoaderCircle, ShieldAlert } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -10,6 +10,7 @@ declare global {
           sitekey: string;
           action?: string;
           theme?: 'auto' | 'light' | 'dark';
+          size?: 'normal' | 'flexible' | 'compact';
           callback?: (token: string) => void;
           'error-callback'?: (errorCode?: string) => void;
           'expired-callback'?: () => void;
@@ -44,11 +45,15 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const isLocalhost =
-    typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1' ||
-      window.location.hostname.endsWith('.local'));
+  // Store callbacks in stable refs so useEffect does not re-run on parent keystroke re-renders
+  const onSuccessRef = useRef(onSuccess);
+  onSuccessRef.current = onSuccess;
+
+  const onErrorRef = useRef(onError);
+  onErrorRef.current = onError;
+
+  const onExpireRef = useRef(onExpire);
+  onExpireRef.current = onExpire;
 
   const resolvedSiteKey =
     siteKey ||
@@ -68,22 +73,25 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
           sitekey: resolvedSiteKey,
           action,
           theme: isDark ? 'dark' : 'light',
+          size: 'normal',
           callback: (token: string) => {
             if (isMounted) {
               setLoading(false);
               setHasError(false);
-              onSuccess(token);
+              onSuccessRef.current?.(token);
             }
           },
           'expired-callback': () => {
-            if (isMounted) onExpire?.();
+            if (isMounted) {
+              onExpireRef.current?.();
+            }
           },
           'error-callback': (err?: string) => {
             if (isMounted) {
-              console.warn('[Turnstile] Verification failed or domain rejected:', err);
+              console.warn('[Turnstile] Verification failed:', err);
               setLoading(false);
               setHasError(true);
-              onError?.(err);
+              onErrorRef.current?.(err);
             }
           },
         });
@@ -115,7 +123,7 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
           if (isMounted) {
             setLoading(false);
             setHasError(true);
-            onError?.('Script load error');
+            onErrorRef.current?.('Script load error');
           }
         };
         document.head.appendChild(script);
@@ -141,31 +149,26 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
         widgetIdRef.current = null;
       }
     };
-  }, [resolvedSiteKey, action, onSuccess, onError, onExpire]);
+  }, [resolvedSiteKey, action]); // Crucial: only run once on mount!
 
   if (!resolvedSiteKey) return null;
 
   return (
-    <div className={`flex min-h-[52px] flex-col items-center justify-center rounded-2xl border border-border/40 bg-bg-elevated/30 p-2.5 transition-all ${className}`}>
-      <div ref={containerRef} className={hasError ? 'hidden' : ''} />
+    <div className={`flex min-h-[65px] flex-col items-center justify-center rounded-2xl border border-border/40 bg-bg-elevated/30 p-2.5 transition-all ${className}`}>
+      {/* Turnstile interactive iframe container */}
+      <div ref={containerRef} className="flex justify-center" />
+
       {loading && !hasError && (
-        <div className="flex items-center gap-2 text-xs text-text-muted animate-pulse">
+        <div className="flex items-center gap-2 text-xs text-text-muted animate-pulse py-2">
           <LoaderCircle size={14} className="animate-spin text-primary" />
-          <span>Cloudflare 安全驗證加載中…</span>
+          <span>Cloudflare 安全驗證載入中…</span>
         </div>
       )}
-      {hasError && isLocalhost && (
-        <div className="flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-300">
+
+      {hasError && (
+        <div className="flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3.5 py-2 text-xs text-amber-700 dark:text-amber-300">
           <ShieldAlert size={16} className="shrink-0 text-amber-500" />
-          <span>
-            本機測試提示：請於 Cloudflare 後台將 <code className="font-mono font-bold">localhost</code> 加入 Turnstile Domains 白名單
-          </span>
-        </div>
-      )}
-      {hasError && !isLocalhost && (
-        <div className="flex items-center gap-2 text-xs text-text-muted">
-          <ShieldCheck size={16} className="shrink-0 text-primary" />
-          <span>人機安全性驗證中</span>
+          <span>安全驗證若未自動完成，您仍可直接點擊下方送出</span>
         </div>
       )}
     </div>
