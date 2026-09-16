@@ -95,8 +95,11 @@ export default {
         );
       }
 
-      const adminEmail = env.ADMIN_EMAIL || '104@david888.com';
-      const fromEmail = env.RESEND_FROM || 'David888 Portfolio <onboarding@resend.dev>';
+      const adminEmails = (env.ADMIN_EMAIL || '104@david888.com')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
+      const fromEmail = env.RESEND_FROM || 'David888 Portfolio <contact@vip.david888.com>';
       const date = taipeiDate();
       const rand = Math.floor(1000 + Math.random() * 9000);
       const ticketNo = `CS-${date}-${rand}`;
@@ -110,7 +113,7 @@ export default {
         },
         body: JSON.stringify({
           from: fromEmail,
-          to: [adminEmail],
+          to: adminEmails,
           reply_to: email,
           subject: `[${ticketNo}] ${subject}`,
           text: `新聯絡案件 (Resend API - Cloudflare Edge)\n\n服務序號：${ticketNo}\n諮詢類型：${subject}\n姓名：${name}\nEmail：${email}\n公司／團隊：${company || '-'}\n\n留言內容：\n${message}`,
@@ -141,7 +144,7 @@ export default {
           body: JSON.stringify({
             from: fromEmail,
             to: [email],
-            reply_to: adminEmail,
+            reply_to: adminEmails[0] || '104@david888.com',
             subject: `[收件確認] 我們已收到您的訊息 (${ticketNo}) - ${subject}`,
             text: `您好 ${name}：\n\n感謝您的來信！我們已收到您的聯絡訊息，以下是您填寫的案件存根：\n\n====================\n服務序號：${ticketNo}\n諮詢類型：${subject}\n姓名：${name}\nEmail：${email}\n公司／團隊：${company || '-'}\n\n留言內容：\n${message}\n====================\n\nDavid 會盡快親自查閱並透過此 Email 與您聯繫。\n\nDavid888 Portfolio (david888.com)`,
           }),

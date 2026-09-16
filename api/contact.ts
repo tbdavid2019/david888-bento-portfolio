@@ -106,7 +106,7 @@ export const processContactSubmission = async (
   }
 
   const adminEmail = env.ADMIN_EMAIL || '104@david888.com';
-  const fromEmail = env.RESEND_FROM || 'David888 Portfolio <onboarding@resend.dev>';
+  const fromEmail = env.RESEND_FROM || 'David888 Portfolio <contact@vip.david888.com>';
   const date = taipeiDate();
   const rand = Math.floor(1000 + Math.random() * 9000);
   const ticketNo = `CS-${date}-${rand}`;
