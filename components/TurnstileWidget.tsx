@@ -45,7 +45,7 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   const resolvedSiteKey =
     siteKey ||
     (typeof import.meta !== 'undefined' && import.meta.env?.VITE_TURNSTILE_SITE_KEY) ||
-    '';
+    '0x4AAAAAAEvqf7unH6MrhIv2';
 
   useEffect(() => {
     let isMounted = true;
