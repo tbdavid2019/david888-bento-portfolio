@@ -112,6 +112,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
     }
   };
 
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
+  const isSearching = normalizedSearchQuery.length > 0;
   const isExecutiveView = activeCategoryId === 'executive' && !isSearching;
   const [expandedSections, setExpandedSections] = React.useState<Record<string, boolean>>({});
   const toggleSectionExpanded = (key: string) =>
@@ -120,8 +122,6 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const activeCategory =
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
-  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
-  const isSearching = normalizedSearchQuery.length > 0;
   const searchMatches = React.useMemo(() => {
     if (!normalizedSearchQuery) return [];
     return items.filter((item) => getSearchText(item).includes(normalizedSearchQuery));

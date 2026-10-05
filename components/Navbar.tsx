@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isGameModalOpen, isSearchOpen, onToggleSearch]);
+  }, [isSearchOpen, onToggleSearch]);
 
   return (
     <div className="fixed inset-x-0 top-3 z-50 px-4 md:top-4 md:px-6">

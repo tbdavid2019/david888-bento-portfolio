@@ -2,6 +2,12 @@
   "entries": [
     {
       "title": "tbdavid2019 pushed 888wiki",
+      "url": "https://github.com/tbdavid2019/888wiki/compare/9f8358a81e...3a0065a091",
+      "updated": "2026-10-05 06:54:16 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888wiki · October 5, 2026 06:54 1 commit to main 3a0065a feat(share): align reading progress and TOC with footer color scheme …"
+    },
+    {
+      "title": "tbdavid2019 pushed 888wiki",
       "url": "https://github.com/tbdavid2019/888wiki/compare/69c50ce5e8...5213ceb5a1",
       "updated": "2026-10-05 06:33:22 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888wiki · October 5, 2026 06:33 1 commit to main 5213ceb feat(share): add slim progress rail, safety gutter, and push-on-pin T…"
@@ -23,15 +29,9 @@
       "url": "https://github.com/tbdavid2019/daily-podcast/compare/9ca1e0ecb3...ffdd5369d4",
       "updated": "2026-10-05 04:31:21 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:31 1 commit to main ffdd536 fix(ui): 單集頁面 Tab 整合至控制列中央、分享按鈕改為剪貼簿複製與手機版播放條精簡"
-    },
-    {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/6e00b29807...52a5669687",
-      "updated": "2026-10-05 03:09:51 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 03:09 1 commit to main 52a5669 feat: 全站底部浮動播放列、英聽練習多檔速 (0.5x~0.9x) 與播放效能隔離"
     }
   ],
-  "lastSyncedAt": "2026-10-05T06:54:18.175Z",
+  "lastSyncedAt": "2026-10-05T07:07:39.536Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
