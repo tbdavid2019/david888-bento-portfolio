@@ -9,7 +9,8 @@
     "featured": true,
     "tag": "finance",
     "section": "企業與投資網路 (Corporate & Investment Networks)",
-    "sectionEn": "Corporate & Investment Networks"
+    "sectionEn": "Corporate & Investment Networks",
+    "icon": "network"
   },
   {
     "type": "link",
@@ -27,7 +28,8 @@
     "featured": true,
     "tag": "finance",
     "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
-    "sectionEn": "Institutional Quant & Analytics Platforms"
+    "sectionEn": "Institutional Quant & Analytics Platforms",
+    "icon": "bot"
   },
   {
     "type": "link",
@@ -42,7 +44,8 @@
     "featured": true,
     "tag": "finance",
     "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
-    "sectionEn": "Institutional Quant & Analytics Platforms"
+    "sectionEn": "Institutional Quant & Analytics Platforms",
+    "icon": "line-chart"
   },
   {
     "type": "link",
@@ -55,7 +58,8 @@
     "imageSource": "/bento/paper-daily.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "book-open"
   },
   {
     "type": "link",
@@ -67,16 +71,17 @@
     "imageSource": "/bento/333tts.svg",
     "tag": "experiments",
     "section": "語音與語言 (Speech & Language)",
-    "sectionEn": "Speech & Language"
+    "sectionEn": "Speech & Language",
+    "icon": "mic"
   },
   {
     "type": "link",
     "title": "HF: 台語 TTS",
     "url": "https://huggingface.co/spaces/tbdavid2019/Taiwanese-tts",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvVGFpd2FuZXNlLXR0cy5wbmc%3D.png",
     "tag": "experiments",
     "section": "語音與語言 (Speech & Language)",
-    "sectionEn": "Speech & Language"
+    "sectionEn": "Speech & Language",
+    "icon": "audio-lines"
   },
   {
     "type": "project",
@@ -89,7 +94,8 @@
     "colSpan": 2,
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
-    "sectionEn": "Qi & Life Product Family"
+    "sectionEn": "Qi & Life Product Family",
+    "icon": "candlestick"
   },
   {
     "type": "link",
@@ -97,54 +103,55 @@
     "url": "https://www.linkedin.com/in/david11111/",
     "imageSource": "/bento/linkedin.svg",
     "bgClass": "bg-[#0077b5]",
-    "tag": "social"
+    "tag": "social",
+    "icon": "linkedin"
   },
   {
     "type": "link",
     "title": "台灣標案檢索工具",
     "url": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdGFpd2FuLXRlbmRlci5wbmc%3D.png",
     "tag": "experiments",
     "section": "資料與工作流 (Data & Workflows)",
     "sectionEn": "Data & Workflows",
     "runtimeStatus": "paused",
     "repoUrl": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender/tree/main",
-    "cloneCommand": "git clone https://huggingface.co/spaces/tbdavid2019/taiwan-tender"
+    "cloneCommand": "git clone https://huggingface.co/spaces/tbdavid2019/taiwan-tender",
+    "icon": "file-search"
   },
   {
     "type": "link",
     "title": "台股預測 (HF Space)",
     "url": "https://huggingface.co/spaces/tbdavid2019/twStock-predict",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvdHdTdG9jay1wcmVkaWN0LnBuZw%3D%3D.png",
     "tag": "finance",
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
-    "runtimeStatus": "paused"
+    "runtimeStatus": "paused",
+    "icon": "trending-up"
   },
   {
     "type": "link",
     "title": "股市K線判別",
     "url": "http://git-gl.david888.com:5678/",
-    "imageSource": "/bento/kline.svg",
     "tag": "finance",
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
-    "sectionEn": "AI Investment Research & Models"
+    "sectionEn": "AI Investment Research & Models",
+    "icon": "candlestick"
   },
   {
     "type": "link",
     "title": "DAVID888 YouTube",
     "url": "https://youtube.com/playlist?list=PL9BjVCfbuO_Hq4db82qiM9pn46c4yyPYC&si=-mUA1Q4opb31XA_G",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
     "bgClass": "bg-red-600 font-white",
-    "tag": "social"
+    "tag": "social",
+    "icon": "youtube"
   },
   {
     "type": "link",
     "title": "DAVID888 Daily 每日放送",
     "url": "https://www.youtube.com/playlist?list=PL9BjVCfbuO_FZyuKIns2PaydrQ-d6ZAfI",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
     "bgClass": "bg-red-600 font-white",
-    "tag": "social"
+    "tag": "social",
+    "icon": "youtube"
   },
   {
     "type": "link",
@@ -155,7 +162,8 @@
     "featured": true,
     "tag": "finance",
     "section": "Telegram 投資機器人 (Telegram Investment Bots)",
-    "sectionEn": "Telegram Investment Bots"
+    "sectionEn": "Telegram Investment Bots",
+    "icon": "bot"
   },
   {
     "type": "link",
@@ -164,7 +172,8 @@
     "imageSource": "/bento/summary_bot.svg",
     "tag": "products",
     "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "sectionEn": "Telegram Products & Bots",
+    "icon": "file-text"
   },
   {
     "type": "link",
@@ -176,7 +185,8 @@
     "imageSource": "/bento/tg_viewer.svg",
     "tag": "experiments",
     "section": "其他研究原型 (Other Research Prototypes)",
-    "sectionEn": "Other Research Prototypes"
+    "sectionEn": "Other Research Prototypes",
+    "icon": "eye"
   },
   {
     "type": "link",
@@ -185,7 +195,8 @@
     "imageSource": "/bento/tg_gemini.svg",
     "tag": "products",
     "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "sectionEn": "Telegram Products & Bots",
+    "icon": "sparkles"
   },
   {
     "type": "link",
@@ -194,16 +205,17 @@
     "imageSource": "/bento/tg_screenshot.svg",
     "tag": "products",
     "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "sectionEn": "Telegram Products & Bots",
+    "icon": "camera"
   },
   {
     "type": "link",
     "title": "Telegram: 投資新聞濃縮包",
     "url": "https://t.me/oliservice",
-    "imageSource": "/bento/news_bot.svg",
     "tag": "finance",
     "section": "Telegram 投資機器人 (Telegram Investment Bots)",
-    "sectionEn": "Telegram Investment Bots"
+    "sectionEn": "Telegram Investment Bots",
+    "icon": "newspaper"
   },
   {
     "type": "link",
@@ -212,11 +224,11 @@
     "description": "一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。",
     "descriptionEn": "A flexible AI web assistant that integrates with Gemini, ChatGPT, Groq, and custom OpenAI-compatible BaseURLs. Generate web page and YouTube summaries in one click to absorb information faster.",
     "url": "https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2twaFVhVlFWcGxYdS1DNmdpalVDNGR4Rjluc0ZpZktoOFRNOHdFTmtyZHdoQV9wMXJGTkFidDVVeU1fVE9QdkF6RGVXN2hjM29wam1WcllXelR5MVBaOEQ9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "featured": true,
     "tag": "products",
     "section": "瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)",
-    "sectionEn": "Browser Products - AI & Productivity"
+    "sectionEn": "Browser Products - AI & Productivity",
+    "icon": "sparkles"
   },
   {
     "type": "link",
@@ -225,10 +237,10 @@
     "description": "將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。",
     "descriptionEn": "A vocabulary learning extension that turns every new tab into a study moment, with word decks, pronunciation, examples, and review flows built into the browser.",
     "url": "https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1pUaTdneXBSdGNxX1k5ejAtUnFiQ0M0NVVSOXhOR2w1VXdzQkJkVkVhVVB6MVNTQlFXTmI0SmpaU2RrTlJ6Mk9oY1UxSDFkd202anVVSzlVNlBTdjROT2c1cmc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "products",
     "section": "瀏覽器產品｜學習與閱讀 (Browser Products - Learning & Reading)",
-    "sectionEn": "Browser Products - Learning & Reading"
+    "sectionEn": "Browser Products - Learning & Reading",
+    "icon": "graduation-cap"
   },
   {
     "type": "link",
@@ -238,7 +250,8 @@
     "featured": true,
     "tag": "products",
     "section": "LINE 產品與機器人 (LINE Products & Bots)",
-    "sectionEn": "LINE Products & Bots"
+    "sectionEn": "LINE Products & Bots",
+    "icon": "sparkles"
   },
   {
     "type": "link",
@@ -247,10 +260,10 @@
     "description": "高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。",
     "descriptionEn": "A customizable reading comfort tool that lets users override website fonts with their preferred system fonts, reducing visual fatigue and improving long-form reading.",
     "url": "https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1Q1VGdlU09FaGdoVmlnX0hLRzN2NkZDUERIS0lOV0VfRlVFaTdTMHRKVFo0aW02WTg2VDI1VEQ2NlNjVmo2aUYwWmFHTFBXeTlrc0J2VjhRbUhqV0k5Y2pPQT1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
     "tag": "products",
     "section": "瀏覽器產品｜學習與閱讀 (Browser Products - Learning & Reading)",
-    "sectionEn": "Browser Products - Learning & Reading"
+    "sectionEn": "Browser Products - Learning & Reading",
+    "icon": "type"
   },
   {
     "type": "link",
@@ -261,18 +274,19 @@
     "url": "https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg",
     "tag": "products",
     "section": "瀏覽器產品｜學習與閱讀 (Browser Products - Learning & Reading)",
-    "sectionEn": "Browser Products - Learning & Reading"
+    "sectionEn": "Browser Products - Learning & Reading",
+    "icon": "languages"
   },
   {
     "type": "link",
     "title": "HF: 股神 AI 投資公司",
     "url": "https://huggingface.co/spaces/tbdavid2019/ai-hedge-fund",
     "repoUrl": "https://github.com/tbdavid2019/ai-hedge-fund-API",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvYWktaGVkZ2UtZnVuZC5wbmc%3D.png",
     "tag": "finance",
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
-    "runtimeStatus": "sleeping"
+    "runtimeStatus": "sleeping",
+    "icon": "line-chart"
   },
   {
     "type": "link",
@@ -281,56 +295,56 @@
     "description": "結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。",
     "descriptionEn": "A web summary and real-time communication tool. With WebRTC P2P, users can summarize pages and chat with friends directly on the current website.",
     "url": "https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2dMMGZNV3V6NUpzWUZJbkozcjFlcDhWWTZCQTNFbHBmOTdyOWxicG55c0sxODZINnp4Y0FRY21ibE9QM29xQTJfMjdyNkpnRXlSOGpPZ0M5REk1YnJadnc9czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "products",
     "section": "瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)",
-    "sectionEn": "Browser Products - AI & Productivity"
+    "sectionEn": "Browser Products - AI & Productivity",
+    "icon": "message-circle"
   },
   {
     "type": "link",
     "title": "HF: 病歷格式 Outpatient Records",
     "url": "https://huggingface.co/spaces/tbdavid2019/outpatient-records",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvb3V0cGF0aWVudC1yZWNvcmRzLnBuZw%3D%3D.png",
     "tag": "experiments",
     "section": "資料與工作流 (Data & Workflows)",
     "sectionEn": "Data & Workflows",
-    "runtimeStatus": "paused"
+    "runtimeStatus": "paused",
+    "icon": "activity"
   },
   {
     "type": "link",
     "title": "HF: Stock Top Wick",
     "url": "https://huggingface.co/spaces/tbdavid2019/stock-top-wick",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvY2stdG9wLXdpY2sucG5n.png",
     "tag": "finance",
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
-    "runtimeStatus": "paused"
+    "runtimeStatus": "paused",
+    "icon": "bar-chart"
   },
   {
     "type": "link",
     "title": "Threads: @david888.chiang",
     "url": "https://www.threads.com/@david888.chiang",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9zdGF0aWMuY2RuaW5zdGFncmFtLmNvbS9yc3JjLnBocC92NC95Sy9yLy1mRnlENllLNnQ2LnBuZw%3D%3D.png",
-    "tag": "social"
+    "tag": "social",
+    "icon": "at-sign"
   },
   {
     "type": "link",
     "title": "HF: 換臉 SwapFace",
     "url": "https://huggingface.co/spaces/tbdavid2019/SwapFace",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvU3dhcEZhY2UucG5n.png",
     "tag": "experiments",
     "section": "生成式 AI 視覺 (Generative AI & Vision)",
     "sectionEn": "Generative AI & Vision",
-    "runtimeStatus": "paused"
+    "runtimeStatus": "paused",
+    "icon": "smile"
   },
   {
     "type": "link",
     "title": "HF: Store Pulse 店面脈搏",
     "url": "https://huggingface.co/spaces/tbdavid2019/store-pulse",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvc3RvcmUtcHVsc2UucG5n.png",
     "tag": "experiments",
     "section": "資料與工作流 (Data & Workflows)",
-    "sectionEn": "Data & Workflows"
+    "sectionEn": "Data & Workflows",
+    "icon": "store"
   },
   {
     "type": "link",
@@ -342,7 +356,8 @@
     "imageSource": "/bento/888box.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "box"
   },
   {
     "type": "link",
@@ -355,7 +370,8 @@
     "featured": true,
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "search"
   },
   {
     "type": "link",
@@ -368,7 +384,8 @@
     "imageSource": "/bento/url-markdown.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "search"
   },
   {
     "type": "link",
@@ -377,10 +394,10 @@
     "description": "多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天+AI摘要，可嵌入任何網站，無需後端。",
     "descriptionEn": "Multi-user real-time chat tool that lets visitors on the same website discuss and view content together. Supports chat + AI summary, can be embedded on any website without backend.",
     "url": "https://webtalk-nine.vercel.app/",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "message-circle"
   },
   {
     "type": "link",
@@ -392,7 +409,8 @@
     "imageSource": "/bento/888-tool.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "wrench"
   },
   {
     "type": "link",
@@ -405,7 +423,8 @@
     "featured": true,
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "library"
   },
   {
     "type": "link",
@@ -415,7 +434,8 @@
     "imageSource": "/bento/888desturl.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "navigation"
   },
   {
     "type": "link",
@@ -427,7 +447,8 @@
     "imageSource": "/bento/qimen.svg",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
-    "sectionEn": "Qi & Life Product Family"
+    "sectionEn": "Qi & Life Product Family",
+    "icon": "compass"
   },
   {
     "type": "link",
@@ -436,7 +457,7 @@
     "description": "用牌面整理當下的問題與直覺，提供一個適合自我探索的占卜入口。",
     "descriptionEn": "A reflective tarot tool for exploring the questions and intuitions behind what is on your mind.",
     "url": "https://qi.david888.com/tarot",
-    "icon": "tarot",
+    "icon": "sparkles",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
     "sectionEn": "Qi & Life Product Family"
@@ -448,7 +469,7 @@
     "description": "輸入出生資訊，從傳統八字角度整理個人命盤與人生節奏。",
     "descriptionEn": "Explore a personal birth chart and life rhythms through a traditional Bazi perspective.",
     "url": "https://qi.david888.com/bazi2",
-    "icon": "bazi",
+    "icon": "scroll-text",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
     "sectionEn": "Qi & Life Product Family"
@@ -460,7 +481,7 @@
     "description": "從空間配置與居住情境出發，快速取得風水方向的參考建議。",
     "descriptionEn": "Get practical Feng Shui guidance based on your space, layout, and living context.",
     "url": "https://qi.david888.com/fengshui",
-    "icon": "fengshui",
+    "icon": "house",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
     "sectionEn": "Qi & Life Product Family"
@@ -472,7 +493,7 @@
     "description": "以月老姻緣為主題的互動服務，幫助你整理感情與關係中的想法。",
     "descriptionEn": "A Yuelao-themed relationship tool for reflecting on love, connection, and the possibilities ahead.",
     "url": "https://qi.david888.com/yinyuan",
-    "icon": "yinyuan",
+    "icon": "heart-handshake",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
     "sectionEn": "Qi & Life Product Family"
@@ -481,19 +502,19 @@
     "type": "link",
     "title": "台灣道路施工地圖",
     "url": "https://tbdavid2019.github.io/tw_road_fix_map/",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/3097/3097180.png",
     "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
-    "sectionEn": "Lifestyle Side Projects"
+    "sectionEn": "Lifestyle Side Projects",
+    "icon": "map-pin"
   },
   {
     "type": "link",
     "title": "台灣寵物認養地圖",
     "url": "https://tbdavid2019.github.io/tw_pet_need_map/",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/1076/1076928.png",
     "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
-    "sectionEn": "Lifestyle Side Projects"
+    "sectionEn": "Lifestyle Side Projects",
+    "icon": "heart"
   },
   {
     "type": "link",
@@ -502,10 +523,10 @@
     "description": "雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。",
     "descriptionEn": "A two-in-one browser utility that combines quick short URL generation with one-click restoration of recently closed tabs.",
     "url": "https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1p5WUpZcXU0MUhsRW1YbUExdnZuWGxQcmhNal82aDJaRUpHd0g4d2JJTDVCUXBESlpiZGVOZFctVE05YUZ1M2NKV01QODF5ZDJ2cXhfdnV1dlV6dkVucVJ4Zz1zMTI4LXJqLXNjMHgwMGZmZmZmZg%3D%3D.jpeg",
     "tag": "products",
     "section": "瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)",
-    "sectionEn": "Browser Products - AI & Productivity"
+    "sectionEn": "Browser Products - AI & Productivity",
+    "icon": "link"
   },
   {
     "type": "link",
@@ -517,7 +538,8 @@
     "imageSource": "/bento/dest_url.svg",
     "tag": "products",
     "section": "瀏覽器產品｜實用與資安 (Browser Products - Utilities & Security)",
-    "sectionEn": "Browser Products - Utilities & Security"
+    "sectionEn": "Browser Products - Utilities & Security",
+    "icon": "navigation"
   },
   {
     "type": "link",
@@ -529,7 +551,8 @@
     "imageSource": "/bento/roulette.svg",
     "tag": "products",
     "section": "瀏覽器產品｜實用與資安 (Browser Products - Utilities & Security)",
-    "sectionEn": "Browser Products - Utilities & Security"
+    "sectionEn": "Browser Products - Utilities & Security",
+    "icon": "dice-5"
   },
   {
     "type": "link",
@@ -538,7 +561,8 @@
     "imageSource": "/bento/line_group.svg",
     "tag": "products",
     "section": "LINE 產品與機器人 (LINE Products & Bots)",
-    "sectionEn": "LINE Products & Bots"
+    "sectionEn": "LINE Products & Bots",
+    "icon": "users"
   },
   {
     "type": "link",
@@ -547,7 +571,8 @@
     "imageSource": "/bento/line_solve.svg",
     "tag": "products",
     "section": "LINE 產品與機器人 (LINE Products & Bots)",
-    "sectionEn": "LINE Products & Bots"
+    "sectionEn": "LINE Products & Bots",
+    "icon": "help-circle"
   },
   {
     "type": "link",
@@ -557,7 +582,8 @@
     "imageSource": "/bento/openclaw.svg",
     "bgClass": "bg-gradient-to-br from-orange-400 to-red-600 shadow-orange-200",
     "featured": true,
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "cpu"
   },
   {
     "type": "link",
@@ -568,7 +594,8 @@
     "url": "https://github.com/tbdavid2019/paper-daily",
     "imageSource": "/bento/paper-daily.svg",
     "bgClass": "bg-gradient-to-br from-cyan-600 to-blue-800",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "book-open"
   },
   {
     "type": "link",
@@ -580,7 +607,8 @@
     "imageSource": "/bento/hermes-agent.svg",
     "bgClass": "bg-gradient-to-br from-indigo-500 to-purple-800",
     "featured": true,
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "share-2"
   },
   {
     "type": "link",
@@ -590,7 +618,8 @@
     "descriptionEn": "Cloudflare Pages / Worker style cloud note editing and workflow skill, ideal for building lightweight knowledge tooling.",
     "url": "https://github.com/tbdavid2019/cf-notepad",
     "imageSource": "/bento/cf_notepad.svg",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "file-edit"
   },
   {
     "type": "link",
@@ -600,7 +629,8 @@
     "descriptionEn": "A skill entry for using 888box inside agent workflows for file management, asset organization, and content access.",
     "url": "https://box.david888.com/skill.php",
     "imageSource": "/bento/888box.svg",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "box"
   },
   {
     "type": "link",
@@ -612,16 +642,17 @@
     "imageSource": "/bento/answerbook.svg",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services"
+    "sectionEn": "Web Products & Services",
+    "icon": "book"
   },
   {
     "type": "link",
     "title": "Telegram Bot Agent Skill",
     "description": "提供 Telegram Bot API 開發知識，讓你的 LLM 成為 Telegram 機器人專家。",
     "url": "https://github.com/tbdavid2019/telegram-docs-skill",
-    "imageSource": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
     "bgClass": "bg-[#0088cc]",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "bot"
   },
   {
     "type": "link",
@@ -630,7 +661,8 @@
     "url": "https://github.com/tbdavid2019/line-docs-skill",
     "imageSource": "https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg",
     "bgClass": "bg-[#06C755]",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "message-square"
   },
   {
     "type": "link",
@@ -639,7 +671,8 @@
     "url": "https://github.com/tbdavid2019/SAP-spartacus-docs-skill",
     "imageSource": "https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg",
     "bgClass": "bg-[#008fd3]",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "layers"
   },
   {
     "type": "link",
@@ -648,7 +681,8 @@
     "url": "https://github.com/tbdavid2019/hermes-agent-docs-skill",
     "imageSource": "/bento/hermes-agent.svg",
     "bgClass": "bg-gradient-to-br from-purple-500 to-indigo-700",
-    "tag": "agent-skills"
+    "tag": "agent-skills",
+    "icon": "workflow"
   },
   {
     "type": "link",
@@ -657,7 +691,8 @@
     "imageSource": "/bento/music.svg",
     "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
-    "sectionEn": "Lifestyle Side Projects"
+    "sectionEn": "Lifestyle Side Projects",
+    "icon": "music"
   },
   {
     "type": "link",
@@ -666,7 +701,8 @@
     "imageSource": "/bento/expiry_food.svg",
     "tag": "metaphysics",
     "section": "生活型 Side Projects (Lifestyle Side Projects)",
-    "sectionEn": "Lifestyle Side Projects"
+    "sectionEn": "Lifestyle Side Projects",
+    "icon": "shopping-bag"
   },
   {
     "type": "link",
@@ -675,10 +711,10 @@
     "description": "專為資料彙整與分享設計的效率工具。支援多種格式輸出，一鍵即可將瀏覽器中所有開啟的分頁網址快速複製到剪貼簿。",
     "descriptionEn": "A productivity tool for collecting and sharing open tabs. Copy all current tab URLs to the clipboard in multiple output formats with one click.",
     "url": "https://chromewebstore.google.com/detail/tab-url-copy/lfhdpmaolmbejolceggollfelmhbmmkb",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2UzSEoxRE1UNUcxdVlDNTBUUnIwWmttMEM3NHh4UG9VUGVWSXNqXzE5NDc0MHM4clo3d3hxLVV3S2RzMFJURWdYRjZjcWNnd25LN1UyakVNU2cxSHNXX1B4OW89czEyOC1yai1zYzB4MDBmZmZmZmY%3D.jpeg",
     "tag": "products",
     "section": "瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)",
-    "sectionEn": "Browser Products - AI & Productivity"
+    "sectionEn": "Browser Products - AI & Productivity",
+    "icon": "copy"
   },
   {
     "type": "link",
@@ -687,16 +723,17 @@
     "imageSource": "/bento/banana.svg",
     "tag": "experiments",
     "section": "生成式 AI 視覺 (Generative AI & Vision)",
-    "sectionEn": "Generative AI & Vision"
+    "sectionEn": "Generative AI & Vision",
+    "icon": "cpu"
   },
   {
     "type": "link",
     "title": "ChatGPT - Oli家: 塔羅牌問事",
     "url": "https://chatgpt.com/g/g-wpr0oCOgg-olijia-ta-luo-pai-wen-shi",
-    "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ%2FaWQ9ZmlsZS1JMFZycXNuSzFpbnBQZFhsd1lTRGdLMTEmZ2l6bW9faWQ9Zy13cHIwb0NPZ2cmdHM9NDkxNTY3JnA9Z3BwJmNpZD0xJnNpZz0xZGFkODExMmU5ZGE3ZjNhNzhiZWQyYjIxODAwNDExMTM5ZDY1MDIyN2FjODFlNGZiZDQ0OWQwZjFjOWYyOTRiJnY9MA%3D%3D.jpeg",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
-    "sectionEn": "Qi & Life Product Family"
+    "sectionEn": "Qi & Life Product Family",
+    "icon": "sparkles"
   },
   {
     "type": "link",
@@ -705,7 +742,8 @@
     "imageSource": "/bento/stock_bot.svg",
     "tag": "finance",
     "section": "選股與新聞分析 (Stock Screening & News)",
-    "sectionEn": "Stock Screening & News"
+    "sectionEn": "Stock Screening & News",
+    "icon": "newspaper"
   },
   {
     "type": "link",
@@ -714,7 +752,8 @@
     "imageSource": "/bento/costco.svg",
     "tag": "products",
     "section": "Telegram 產品與機器人 (Telegram Products & Bots)",
-    "sectionEn": "Telegram Products & Bots"
+    "sectionEn": "Telegram Products & Bots",
+    "icon": "shopping-cart"
   },
   {
     "type": "link",
@@ -723,7 +762,8 @@
     "imageSource": "/bento/3d-xmastree.svg",
     "tag": "experiments",
     "section": "3D 視覺與 WebXR (3D Visuals & WebXR)",
-    "sectionEn": "3D Visuals & WebXR"
+    "sectionEn": "3D Visuals & WebXR",
+    "icon": "tree-pine"
   },
   {
     "type": "link",
@@ -732,7 +772,8 @@
     "imageSource": "/bento/3d-gun.svg",
     "tag": "experiments",
     "section": "遊戲與互動實驗 (Games & Interactive Experiments)",
-    "sectionEn": "Games & Interactive Experiments"
+    "sectionEn": "Games & Interactive Experiments",
+    "icon": "crosshair"
   },
   {
     "type": "link",
@@ -741,7 +782,8 @@
     "imageSource": "/bento/3d-particles.svg",
     "tag": "experiments",
     "section": "3D 視覺與 WebXR (3D Visuals & WebXR)",
-    "sectionEn": "3D Visuals & WebXR"
+    "sectionEn": "3D Visuals & WebXR",
+    "icon": "sparkle"
   },
   {
     "type": "link",
@@ -749,7 +791,8 @@
     "url": "https://player.soundon.fm/p/david777/",
     "imageSource": "/bento/podcast.svg",
     "featured": true,
-    "tag": "social"
+    "tag": "social",
+    "icon": "podcast"
   },
   {
     "type": "link",
@@ -762,6 +805,7 @@
     "section": "遊戲與互動實驗 (Games & Interactive Experiments)",
     "sectionEn": "Games & Interactive Experiments",
     "imageSource": "/favicon.svg",
-    "colSpan": 1
+    "colSpan": 1,
+    "icon": "gamepad-2"
   }
 ]

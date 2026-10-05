@@ -2,6 +2,24 @@
   "entries": [
     {
       "title": "tbdavid2019 pushed 888wiki",
+      "url": "https://github.com/tbdavid2019/888wiki/compare/88b8efef12...03bfbda779",
+      "updated": "2026-10-05 07:31:04 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888wiki · October 5, 2026 07:31 1 commit to main 03bfbda fix(reader): add tactile groove progress rail and high-contrast secti…"
+    },
+    {
+      "title": "tbdavid2019 pushed afterBUY",
+      "url": "https://github.com/tbdavid2019/afterBUY/compare/3cc8c494e8...c37ba31775",
+      "updated": "2026-10-05 07:19:21 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 5, 2026 07:19 1 commit to main c37ba31 feat(ux): add 5s undo toast for replace, distill item modal, and poli…"
+    },
+    {
+      "title": "tbdavid2019 pushed qimen",
+      "url": "https://github.com/tbdavid2019/qimen/compare/8633f7c7f7...302aa16bbd",
+      "updated": "2026-10-05 07:11:39 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 5, 2026 07:11 1 commit to main 302aa16 feat(ui): 全面重構奇門與梅花易數心流，升級儀式感四階段卡片、消除13處阻塞式alert與33處殘存glyphicon，Impec…"
+    },
+    {
+      "title": "tbdavid2019 pushed 888wiki",
       "url": "https://github.com/tbdavid2019/888wiki/compare/9f8358a81e...3a0065a091",
       "updated": "2026-10-05 06:54:16 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888wiki · October 5, 2026 06:54 1 commit to main 3a0065a feat(share): align reading progress and TOC with footer color scheme …"
@@ -11,27 +29,9 @@
       "url": "https://github.com/tbdavid2019/888wiki/compare/69c50ce5e8...5213ceb5a1",
       "updated": "2026-10-05 06:33:22 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888wiki · October 5, 2026 06:33 1 commit to main 5213ceb feat(share): add slim progress rail, safety gutter, and push-on-pin T…"
-    },
-    {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/fb0d7e9f0b...6231e55c81",
-      "updated": "2026-10-05 04:56:58 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:56 1 commit to main 6231e55 feat(player): 實作每集播放進度存於本機、重新整理記憶恢復與已收聽標示"
-    },
-    {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/ffdd5369d4...fb0d7e9f0b",
-      "updated": "2026-10-05 04:41:41 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:41 1 commit to main fb0d7e9 fix(ui): 手機版播放按鈕改為純圖示，讓三大 Tab 與控制項維持在同一行不換行"
-    },
-    {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/9ca1e0ecb3...ffdd5369d4",
-      "updated": "2026-10-05 04:31:21 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:31 1 commit to main ffdd536 fix(ui): 單集頁面 Tab 整合至控制列中央、分享按鈕改為剪貼簿複製與手機版播放條精簡"
     }
   ],
-  "lastSyncedAt": "2026-10-05T07:07:39.536Z",
+  "lastSyncedAt": "2026-10-05T08:10:00.924Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

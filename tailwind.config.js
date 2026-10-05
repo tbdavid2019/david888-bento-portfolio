@@ -37,8 +37,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["'Manrope'", "'Noto Sans TC'", "sans-serif"],
-        display: ["'Manrope'", "'Noto Sans TC'", "sans-serif"],
+        sans: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "sans-serif"],
+        display: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],
       },
       borderRadius: {

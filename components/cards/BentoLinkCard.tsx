@@ -1,5 +1,69 @@
 import React from 'react';
-import { BookOpen, ExternalLink, HeartHandshake, House, ScrollText, Sparkles, type LucideIcon } from 'lucide-react';
+import {
+  Activity,
+  AtSign,
+  AudioLines,
+  BarChart2,
+  BarChart3,
+  Book,
+  BookOpen,
+  Bot,
+  Box,
+  Camera,
+  CandlestickChart,
+  Compass,
+  Copy,
+  Cpu,
+  Crosshair,
+  Dice5,
+  ExternalLink,
+  Eye,
+  FileCode,
+  FileEdit,
+  FileSearch,
+  FileText,
+  Gamepad2,
+  Globe,
+  GraduationCap,
+  Heart,
+  HeartHandshake,
+  HelpCircle,
+  House,
+  Languages,
+  Layers,
+  Library,
+  LineChart,
+  Link as LinkIcon,
+  Linkedin,
+  MapPin,
+  MessageCircle,
+  MessageSquare,
+  Mic,
+  Music,
+  Navigation,
+  Network,
+  Newspaper,
+  Package,
+  Podcast,
+  Radar,
+  ScrollText,
+  Search,
+  Share2,
+  ShoppingBag,
+  ShoppingCart,
+  Smile,
+  Sparkle,
+  Sparkles,
+  Store,
+  TreePine,
+  TrendingUp,
+  Type,
+  Users,
+  Workflow,
+  Wrench,
+  Youtube,
+  type LucideIcon,
+} from 'lucide-react';
 import { CardWrapper } from './CardWrapper';
 import { cn } from '../../lib/utils';
 import type { BentoLinkIcon, BentoLinkRuntimeStatus, Locale } from '../../types';
@@ -21,13 +85,92 @@ interface BentoLink {
   docUrl?: string;
   docLabel?: string;
   docLabelEn?: string;
+  tag?: string;
 }
 
-const iconMap: Record<BentoLinkIcon, LucideIcon> = {
+const iconRegistry: Record<string, LucideIcon> = {
   tarot: Sparkles,
   bazi: ScrollText,
   fengshui: House,
   yinyuan: HeartHandshake,
+  network: Network,
+  candlestick: CandlestickChart,
+  newspaper: Newspaper,
+  'trending-up': TrendingUp,
+  'line-chart': LineChart,
+  'bar-chart': BarChart3,
+  bot: Bot,
+  'book-open': BookOpen,
+  mic: Mic,
+  'audio-lines': AudioLines,
+  sparkles: Sparkles,
+  linkedin: Linkedin,
+  'file-search': FileSearch,
+  youtube: Youtube,
+  'file-text': FileText,
+  eye: Eye,
+  camera: Camera,
+  'graduation-cap': GraduationCap,
+  'message-square': MessageSquare,
+  type: Type,
+  languages: Languages,
+  'message-circle': MessageCircle,
+  activity: Activity,
+  'at-sign': AtSign,
+  smile: Smile,
+  store: Store,
+  box: Box,
+  search: Search,
+  'file-code': FileCode,
+  wrench: Wrench,
+  library: Library,
+  compass: Compass,
+  'scroll-text': ScrollText,
+  house: House,
+  'heart-handshake': HeartHandshake,
+  'map-pin': MapPin,
+  heart: Heart,
+  link: LinkIcon,
+  navigation: Navigation,
+  'dice-5': Dice5,
+  users: Users,
+  'help-circle': HelpCircle,
+  cpu: Cpu,
+  radar: Radar,
+  'share-2': Share2,
+  'file-edit': FileEdit,
+  package: Package,
+  book: Book,
+  layers: Layers,
+  workflow: Workflow,
+  music: Music,
+  'shopping-bag': ShoppingBag,
+  copy: Copy,
+  'shopping-cart': ShoppingCart,
+  'tree-pine': TreePine,
+  crosshair: Crosshair,
+  sparkle: Sparkle,
+  podcast: Podcast,
+  'gamepad-2': Gamepad2,
+};
+
+const getCategoryIconStyle = (tag?: string) => {
+  switch (tag) {
+    case 'finance':
+      return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25';
+    case 'agent-skills':
+      return 'bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/25';
+    case 'products':
+      return 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/25';
+    case 'experiments':
+      return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25';
+    case 'metaphysics':
+      return 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/25';
+    case 'social':
+      return 'bg-primary/10 text-primary border border-primary/25';
+    default:
+      return 'bg-bg-elevated text-primary border border-border';
+  }
 };
 
 const runtimeStatusLabels: Record<BentoLinkRuntimeStatus, { zh: string; en: string }> = {
@@ -44,24 +187,9 @@ const getDomain = (url: string) => {
 };
 
 export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ link, locale = 'zh' }) => {
-  const fallbackImageUrl = '/bento/default-icon.svg';
-
-  // Filter out unstable Bento/Creatorspace URLs
-  const isUnstableUrl = (url?: string | null) =>
-    url && (
-      url.includes('creatorspace-public') ||
-      url.includes('storage.googleapis.com')
-    );
-
-  // Prioritize stable custom images, otherwise fallback to auto-generated favicon
-  const imageDisplayUrl = (!isUnstableUrl(link.imageSource) && link.imageSource)
-    ? link.imageSource
-    : fallbackImageUrl;
-
-  const isBranded = !!link.bgClass;
   const title = locale === 'en' ? link.titleEn || link.title : link.title;
   const description = locale === 'en' ? link.descriptionEn || link.description : link.description;
-  const ServiceIcon = link.icon ? iconMap[link.icon] : null;
+  const ServiceIcon = (link.icon && iconRegistry[link.icon]) || Globe;
   const statusCopy = link.runtimeStatus ? runtimeStatusLabels[link.runtimeStatus] : null;
   const statusLabel = statusCopy ? `[${locale === 'en' ? statusCopy.en : statusCopy.zh}]` : null;
   const statusTooltip = statusCopy
@@ -76,22 +204,13 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
       className="group min-h-[180px]"
     >
       <div className="flex items-start justify-between gap-3">
-        <div className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-110 ${link.icon ? 'bg-primary/10 text-primary' : link.bgClass || 'bg-bg-elevated'}`}>
-          {ServiceIcon ? (
-            <ServiceIcon size={25} strokeWidth={1.8} aria-hidden="true" />
-          ) : (
-            <img
-              src={imageDisplayUrl as string}
-              alt={title}
-              className={`h-full w-full ${isBranded ? 'object-contain p-2' : 'object-cover'}`}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (target.getAttribute('src') !== fallbackImageUrl) {
-                  target.src = fallbackImageUrl;
-                }
-              }}
-            />
+        <div
+          className={cn(
+            'flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-110',
+            getCategoryIconStyle(link.tag)
           )}
+        >
+          <ServiceIcon size={24} strokeWidth={1.8} aria-hidden="true" />
         </div>
         {statusLabel && (
           <span

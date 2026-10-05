@@ -68,8 +68,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="truncate font-mono text-xl font-black text-text-main md:text-2xl">David888</div>
           <div className="mt-1 hidden truncate text-sm font-semibold text-text-muted sm:block">
             {locale === 'en'
-              ? 'CTO / CIO / AI / ML / Games / AR / VR / Product Builder'
-              : 'CTO / CIO / AI ML / 遊戲 / AR VR / 各種應用'}
+              ? 'CTO & Technical Advisor | Enterprise Systems & AI Architecture'
+              : 'CTO & 技術顧問 | 企業架構、大型系統與 AI 治理'}
           </div>
         </div>
 
