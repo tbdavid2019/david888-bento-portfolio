@@ -67,7 +67,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!visibleCategories.some((category) => category.id === activeCategoryId)) {
+    if (activeCategoryId !== 'executive' && !visibleCategories.some((category) => category.id === activeCategoryId)) {
       setActiveCategoryId(visibleCategories[0]?.id ?? defaultCategoryId);
     }
   }, [activeCategoryId, visibleCategories]);
@@ -128,6 +128,7 @@ export default function App() {
           onCategoryChange={changeCategory}
           searchQuery={searchQuery}
           onClearSearch={() => setSearchQuery('')}
+          onContact={() => setContactOpen(true)}
         />
       </div>
       {contactOpen && <Suspense fallback={null}><ContactDialog locale={locale} onClose={() => setContactOpen(false)} /></Suspense>}

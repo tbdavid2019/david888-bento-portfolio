@@ -7,44 +7,44 @@
       "labelEn": "Latest",
       "title": "最新內容與動態",
       "titleEn": "Latest Updates",
-      "summary": "自動更新 Podcast、Blog 與 GitHub Activity，也保留我的社群與內容入口。",
-      "summaryEn": "Auto-updated podcast, blog, and GitHub activity alongside my media and social channels."
+      "summary": "自動更新 Podcast、Blog 與 GitHub 活動，收錄商業報告與社群動態。",
+      "summaryEn": "Auto-updated podcast, blog, and GitHub activity alongside technology broadcasts and social channels."
     },
     {
       "id": "finance",
       "label": "財經投資",
-      "labelEn": "Finance",
-      "title": "財經與投資研究",
-      "titleEn": "Finance & Investment",
-      "summary": "台股美股即時分析、AI 投資公司、量化決策平台與股市預測工具。",
-      "summaryEn": "Real-time Taiwan & US stock analysis, AI hedge fund models, quantitative decision platforms, and price forecasting."
+      "labelEn": "Finance & Quant",
+      "title": "財經投資與量化決策",
+      "titleEn": "Finance & Quantitative Systems",
+      "summary": "機構級金融智能體、上市櫃企業關係網路、量化決策平台與股市預測模型。",
+      "summaryEn": "Institutional financial agents, corporate networks, quantitative decision platforms, and predictive models."
     },
     {
       "id": "products",
-      "label": "產品與作品",
-      "labelEn": "Products",
-      "title": "產品與作品",
+      "label": "各種應用",
+      "labelEn": "Apps & Work",
+      "title": "各種應用與作品",
       "titleEn": "Products & Work",
-      "summary": "已經做成可使用產品的 Web 服務、瀏覽器產品、Telegram 與 LINE 服務。",
-      "summaryEn": "Usable web services, browser products, and products delivered through Telegram or LINE."
+      "summary": "生產力工具、瀏覽器擴充套件、Web 服務平台與 Telegram / LINE 自動化產品。",
+      "summaryEn": "Productivity utilities, browser extensions, web platforms, and automated bots."
     },
     {
       "id": "agent-skills",
       "label": "AI Agent Skills",
-      "labelEn": "Agent Skills",
-      "title": "給 LLM 與 AI Agent 的 Skills",
+      "labelEn": "AI Agent Skills",
+      "title": "AI / ML Agent 技能與工具",
       "titleEn": "Skills for LLMs & AI Agents",
-      "summary": "讓 LLM 與 AI Agent 具備特定領域知識、文件查詢與工具操作能力的可重用 Skills。",
+      "summary": "賦予 LLM 與 AI Agent 特定領域知識、API 串接與工作流自動化的可重用 Skills。",
       "summaryEn": "Reusable skills that give LLMs and AI agents domain knowledge, documentation, and tool workflows."
     },
     {
       "id": "experiments",
-      "label": "研究與實驗",
-      "labelEn": "Lab",
-      "title": "研究與實驗",
-      "titleEn": "Research & Experiments",
-      "summary": "研究原型、資料應用、AI 實驗、視覺互動與生活型 Side Projects。",
-      "summaryEn": "Research prototypes, data applications, AI experiments, interactive visuals, and personal side projects."
+      "label": "遊戲與 AR VR",
+      "labelEn": "Games & XR Lab",
+      "title": "遊戲、AR/VR 與 3D 視覺實驗",
+      "titleEn": "Games, AR/VR & Interactive Visuals",
+      "summary": "3D 互動遊戲、WebXR 視覺特效、語音合成與生成式 AI 原型實驗。",
+      "summaryEn": "3D interactive games, WebXR visual effects, speech synthesis, and generative AI prototypes."
     },
     {
       "id": "metaphysics",
@@ -52,8 +52,8 @@
       "labelEn": "Qi & Life",
       "title": "命理與生活產品",
       "titleEn": "Qi & Life Products",
-      "summary": "奇門、八字、塔羅、風水與姻緣等持續發展中的產品系列。",
-      "summaryEn": "An evolving product family spanning Qi Men, Bazi, tarot, Feng Shui, and relationships."
+      "summary": "奇門、八字、塔羅、風水與姻緣等持續發展中的生活產品系列。",
+      "summaryEn": "An evolving product family spanning Qi Men, Bazi, tarot, Feng Shui, and lifestyle projects."
     }
   ]
 }

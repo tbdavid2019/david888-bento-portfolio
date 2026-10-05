@@ -51,10 +51,18 @@ export const CardWrapper: React.FC<CardWrapperProps> = ({ children, className = 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      } : undefined}
       whileHover={onClick ? { scale: 1.02, translateY: -4 } : {}}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-2xl bg-bg-surface border border-border backdrop-blur-xl transition-colors duration-500 ease-out',
+        'group relative flex h-full flex-col overflow-hidden rounded-2xl bg-bg-surface border border-border backdrop-blur-xl transition-colors duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
         !noPadding && 'p-6 md:p-8',
         onClick && 'cursor-pointer hover:border-border-hover shadow-sm hover:shadow-md dark:shadow-[0_18px_45px_-34px_rgba(0,0,0,0.5)] dark:hover:shadow-[0_24px_60px_-36px_rgba(0,0,0,0.6)]',
         className

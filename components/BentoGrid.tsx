@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { ArrowUp, ArrowUpRight, ChevronDown, Sparkles } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
+import { ExecutiveBriefing } from './ExecutiveBriefing';
 import { BentoLinkCard } from './cards/BentoLinkCard';
 import { GithubCard } from './cards/GithubCard';
 import { TwitterCard } from './cards/TwitterCard';
@@ -68,6 +69,7 @@ interface BentoGridProps {
   onCategoryChange: (categoryId: string) => void;
   searchQuery: string;
   onClearSearch: () => void;
+  onContact?: () => void;
 }
 
 export const BentoGrid: React.FC<BentoGridProps> = ({
@@ -76,6 +78,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   onCategoryChange,
   searchQuery,
   onClearSearch,
+  onContact,
 }) => {
   const contentSectionRef = React.useRef<HTMLElement>(null);
   const [showScrollTop, setShowScrollTop] = React.useState(false);
@@ -91,7 +94,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
   const visibleCategories = categories.filter((category) => groupedItems[category.id]?.length);
   React.useEffect(() => {
-    if (!visibleCategories.some((category) => category.id === activeCategoryId)) {
+    if (activeCategoryId !== 'executive' && !visibleCategories.some((category) => category.id === activeCategoryId)) {
       onCategoryChange(visibleCategories[0]?.id ?? 'social');
     }
   }, [activeCategoryId, onCategoryChange, visibleCategories]);
@@ -108,6 +111,11 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
       }, 50);
     }
   };
+
+  const isExecutiveView = activeCategoryId === 'executive' && !isSearching;
+  const [expandedSections, setExpandedSections] = React.useState<Record<string, boolean>>({});
+  const toggleSectionExpanded = (key: string) =>
+    setExpandedSections((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const activeCategory =
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
@@ -153,9 +161,38 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
     <div className="flex flex-col gap-6">
       {/* Category Tabs - Full Width at Top */}
       <div className="rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm backdrop-blur-md">
-        <div className="flex flex-wrap items-center justify-end gap-1">
+        <div className="flex flex-wrap items-center justify-start gap-1">
+          {/* Executive Briefing Tab */}
+          <button
+            type="button"
+            onClick={() => handleCategorySelect('executive')}
+            className={cn(
+              "relative flex min-h-10 items-center gap-2 rounded-xl px-5 text-base font-bold transition-colors",
+              isExecutiveView ? "text-white dark:text-bg-base" : "text-text-muted hover:text-text-main"
+            )}
+            aria-pressed={isExecutiveView}
+          >
+            {isExecutiveView && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute inset-0 rounded-xl bg-primary"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <span className="relative z-10 flex items-center gap-1.5">
+              <Sparkles size={15} className={isExecutiveView ? "text-white dark:text-bg-base" : "text-primary"} />
+              <span>{locale === 'en' ? 'Executive Briefing' : '高階顧問簡報'}</span>
+              <span className={cn(
+                "inline-flex h-4 min-w-4 items-center justify-center rounded-full px-1.5 text-[10px] font-black leading-none transition-colors",
+                isExecutiveView ? "bg-white/20 text-white dark:bg-black/20 dark:text-bg-base" : "bg-primary/15 text-primary"
+              )}>
+                CTO
+              </span>
+            </span>
+          </button>
+
           {visibleCategories.map((category) => {
-            const isActive = category.id === activeCategory?.id;
+            const isActive = !isExecutiveView && category.id === activeCategory?.id;
             const count = groupedItems[category.id]?.length ?? 0;
 
             return (
@@ -199,164 +236,206 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-36">
           <AnnouncementBar />
 
-          {isSearching ? (
-            <div className="flex flex-col gap-3 rounded-2xl border border-primary/25 bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
-              <div>
-                <div className="text-xs font-black uppercase tracking-[0.24em] text-primary">
-                  {locale === 'en' ? 'Search results' : '搜尋結果'}
-                </div>
-                <h3 className="mt-1 text-2xl font-black text-text-main md:text-3xl">
-                  {locale === 'en' ? `${searchMatches.length} works found` : `找到 ${searchMatches.length} 個作品`}
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={onClearSearch}
-                className="inline-flex h-10 shrink-0 items-center justify-center rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
-              >
-                {locale === 'en' ? 'Clear search' : '清除搜尋'}
-              </button>
-            </div>
-          ) : activeCategory && (
-            <div className="flex flex-col gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
-              <div className="min-w-0">
-                <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted opacity-80">
-                  {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
-                </div>
-                <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
-                  <h3 className="shrink-0 text-2xl font-black text-text-main md:text-3xl">
-                    {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
-                  </h3>
-                  <p className="max-w-2xl text-base leading-relaxed text-text-muted">
-                    {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
-                  </p>
-                </div>
-              </div>
-
-              {featuredItem && 'url' in featuredItem && featuredItem.url && (
-                <a
-                  href={featuredItem.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
-                >
-                  {locale === 'en' ? 'Featured' : '代表作品'}
-                  <ArrowUpRight size={16} />
-                </a>
-              )}
-            </div>
-          )}
-
-          {tocSections.length > 1 && (
-            <nav
-              aria-label={locale === 'en' ? 'Section navigation' : '子分類目錄'}
-              className="rounded-2xl border border-border bg-bg-surface px-4 py-3 shadow-sm"
-            >
-              <div className="flex items-center gap-3 overflow-x-auto pb-1 md:flex-wrap md:overflow-x-visible">
-                <span className="shrink-0 text-sm font-black text-text-muted">
-                  {locale === 'en' ? 'Sections' : '子分類'}
-                </span>
-                <div className="flex min-w-max items-center gap-2 md:min-w-0 md:flex-wrap">
-                  {tocSections.map(([section], sectionIndex) => (
-                    <a
-                      key={section}
-                      href={`#${getSectionAnchorId(navigationCategoryId, section, sectionIndex)}`}
-                      className="rounded-full border border-border px-3 py-1.5 text-sm font-bold text-text-muted transition-colors hover:border-primary hover:text-primary"
-                    >
-                      {getSectionLabel(section)}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </nav>
-          )}
-
-        {isSearching && searchMatches.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-border bg-bg-surface p-8 text-center text-base font-bold text-text-muted">
-            {locale === 'en' ? 'No matching works found.' : '找不到符合的作品。'}
-          </div>
-        ) : <AnimatePresence mode="popLayout">
-          <motion.div 
-            key={isSearching ? `search-${normalizedSearchQuery}` : activeCategoryId}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, type: "spring", bounce: 0.2 }}
-            className="space-y-8"
-          >
-            {sectionsToRender.map(([section, sectionItems], sectionIndex) => (
-              <div
-                key={section || 'default'}
-                id={section ? getSectionAnchorId(navigationCategoryId, section, sectionIndex) : undefined}
-                className="scroll-mt-32 space-y-4"
-              >
-                {section && (
-                  <div className="flex items-center gap-3">
-                    <h4 className="shrink-0 text-base font-black text-text-muted md:text-lg">
-                      {section}
-                    </h4>
-                    <div className="h-px flex-1 bg-border" />
+          {isExecutiveView ? (
+            <ExecutiveBriefing
+              locale={locale}
+              onContact={onContact || (() => {})}
+              onSwitchToCatalog={() => handleCategorySelect('social')}
+            />
+          ) : (
+            <>
+              {isSearching ? (
+                <div className="flex flex-col gap-3 rounded-2xl border border-primary/25 bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <div className="text-xs font-black uppercase tracking-[0.24em] text-primary">
+                      {locale === 'en' ? 'Search results' : '搜尋結果'}
+                    </div>
+                    <h3 className="mt-1 text-2xl font-black text-text-main md:text-3xl">
+                      {locale === 'en' ? `${searchMatches.length} works found` : `找到 ${searchMatches.length} 個作品`}
+                    </h3>
                   </div>
-                )}
+                  <button
+                    type="button"
+                    onClick={onClearSearch}
+                    className="inline-flex h-10 shrink-0 items-center justify-center rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
+                  >
+                    {locale === 'en' ? 'Clear search' : '清除搜尋'}
+                  </button>
+                </div>
+              ) : activeCategory && (
+                <div className="flex flex-col gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-4 shadow-sm md:flex-row md:items-center md:justify-between">
+                  <div className="min-w-0">
+                    <div className="text-xs font-black uppercase tracking-[0.24em] text-text-muted opacity-80">
+                      {locale === 'en' ? activeCategory.labelEn : activeCategory.label}
+                    </div>
+                    <div className="mt-1 flex flex-col gap-2 md:flex-row md:items-end md:gap-4">
+                      <h3 className="shrink-0 text-2xl font-black text-text-main md:text-3xl">
+                        {locale === 'en' ? activeCategory.titleEn : activeCategory.title}
+                      </h3>
+                      <p className="max-w-2xl text-base leading-relaxed text-text-muted">
+                        {locale === 'en' ? activeCategory.summaryEn : activeCategory.summary}
+                      </p>
+                    </div>
+                  </div>
 
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                  {shouldShowPodcastFeed && !section && (
-                    <div className="sm:col-span-2">
-                      <PodcastFeedCard locale={locale} />
-                      {sectionItems.filter(isLinkedInItem).map((item) => (
-                        <div key="linkedin-under-podcast" className="mt-5">
-                          {renderItem(item, locale)}
-                        </div>
+                  {featuredItem && 'url' in featuredItem && featuredItem.url && (
+                    <a
+                      href={featuredItem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-text-main px-4 text-sm font-black text-text-main transition-colors hover:bg-text-main hover:text-bg-base"
+                    >
+                      {locale === 'en' ? 'Featured' : '代表作品'}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {tocSections.length > 1 && (
+                <nav
+                  aria-label={locale === 'en' ? 'Section navigation' : '子分類目錄'}
+                  className="rounded-2xl border border-border bg-bg-surface px-4 py-3 shadow-sm"
+                >
+                  <div className="flex items-center gap-3 overflow-x-auto pb-1 md:flex-wrap md:overflow-x-visible">
+                    <span className="shrink-0 text-sm font-black text-text-muted">
+                      {locale === 'en' ? 'Sections' : '子分類'}
+                    </span>
+                    <div className="flex min-w-max items-center gap-2 md:min-w-0 md:flex-wrap">
+                      {tocSections.map(([section], sectionIndex) => (
+                        <a
+                          key={section}
+                          href={`#${getSectionAnchorId(navigationCategoryId, section, sectionIndex)}`}
+                          className="rounded-full border border-border px-3 py-1.5 text-sm font-bold text-text-muted transition-colors hover:border-primary hover:text-primary"
+                        >
+                          {getSectionLabel(section)}
+                        </a>
                       ))}
                     </div>
-                  )}
+                  </div>
+                </nav>
+              )}
 
-                  {shouldShowPodcastFeed && !section && (
-                    <div>
-                      <BlogFeedCard locale={locale} />
-                    </div>
-                  )}
-
-                  {shouldShowPodcastFeed && !section && (
-                    <div className="sm:col-span-2">
-                      <GithubActivityCard locale={locale} />
-                    </div>
-                  )}
-
-                  {shouldShowPodcastFeed && !section && (
-                    <div className="flex flex-col gap-5">
-                      {sectionItems
-                        .filter((item) => 'title' in item && stackedSocialTitles.has(item.title))
-                        .map((item, index) => (
-                          <div key={`stacked-social-${index}`}>
-                            {renderItem(item, locale)}
-                          </div>
-                        ))}
-                    </div>
-                  )}
-
-                  {sectionItems
-                    .filter((item) => !shouldShowPodcastFeed || section || (!isLinkedInItem(item) && (!('title' in item) || !stackedSocialTitles.has(item.title))))
-                    .map((item, index) => {
-                    const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
-
-                    return (
-                      <motion.div 
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                        key={`${activeCategory?.id}-${section}-${index}`} 
-                        className={colSpanClass}
-                      >
-                        {renderItem(item, locale)}
-                      </motion.div>
-                    );
-                  })}
+              {isSearching && searchMatches.length === 0 ? (
+                <div className="rounded-2xl border border-dashed border-border bg-bg-surface p-8 text-center text-base font-bold text-text-muted">
+                  {locale === 'en' ? 'No matching works found.' : '找不到符合的作品。'}
                 </div>
-              </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>}
+              ) : (
+                <AnimatePresence mode="popLayout">
+                  <motion.div 
+                    key={isSearching ? `search-${normalizedSearchQuery}` : activeCategoryId}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3, type: "spring", bounce: 0.2 }}
+                    className="space-y-8"
+                  >
+                    {sectionsToRender.map(([section, sectionItems], sectionIndex) => (
+                      <div
+                        key={section || 'default'}
+                        id={section ? getSectionAnchorId(navigationCategoryId, section, sectionIndex) : undefined}
+                        className="scroll-mt-32 space-y-4"
+                      >
+                        {section && (
+                          <div className="flex items-center gap-3">
+                            <h4 className="shrink-0 text-base font-black text-text-muted md:text-lg">
+                              {section}
+                            </h4>
+                            <div className="h-px flex-1 bg-border" />
+                          </div>
+                        )}
+
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                          {shouldShowPodcastFeed && !section && (
+                            <div className="sm:col-span-2">
+                              <PodcastFeedCard locale={locale} />
+                              {sectionItems.filter(isLinkedInItem).map((item) => (
+                                <div key="linkedin-under-podcast" className="mt-5">
+                                  {renderItem(item, locale)}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {shouldShowPodcastFeed && !section && (
+                            <div>
+                              <BlogFeedCard locale={locale} />
+                            </div>
+                          )}
+
+                          {shouldShowPodcastFeed && !section && (
+                            <div className="sm:col-span-2">
+                              <GithubActivityCard locale={locale} />
+                            </div>
+                          )}
+
+                          {shouldShowPodcastFeed && !section && (
+                            <div className="flex flex-col gap-5">
+                              {sectionItems
+                                .filter((item) => 'title' in item && stackedSocialTitles.has(item.title))
+                                .map((item, index) => (
+                                  <div key={`stacked-social-${index}`}>
+                                    {renderItem(item, locale)}
+                                  </div>
+                                ))}
+                            </div>
+                          )}
+
+                          {(() => {
+                            const filteredItems = sectionItems
+                              .filter((item) => !shouldShowPodcastFeed || section || (!isLinkedInItem(item) && (!('title' in item) || !stackedSocialTitles.has(item.title))));
+                            const sectionKey = `${activeCategory?.id}-${section || 'main'}`;
+                            const isExpanded = !!expandedSections[sectionKey];
+                            const shouldLimit = filteredItems.length > 6 && !isSearching && !shouldShowPodcastFeed;
+                            const displayedItems = shouldLimit && !isExpanded ? filteredItems.slice(0, 6) : filteredItems;
+
+                            return (
+                              <>
+                                {displayedItems.map((item, index) => {
+                                  const colSpanClass = item.colSpan === 2 ? 'sm:col-span-2' : '';
+
+                                  return (
+                                    <motion.div 
+                                      initial={{ opacity: 0, scale: 0.95 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                                      key={`${activeCategory?.id}-${section}-${index}`} 
+                                      className={colSpanClass}
+                                    >
+                                      {renderItem(item, locale)}
+                                    </motion.div>
+                                  );
+                                })}
+
+                                {shouldLimit && (
+                                  <div className="col-span-full flex justify-center pt-3">
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleSectionExpanded(sectionKey)}
+                                      className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-6 py-2.5 text-xs font-black text-text-muted shadow-xs transition-all hover:border-primary hover:text-text-main"
+                                    >
+                                      <span>
+                                        {isExpanded
+                                          ? (locale === 'en' ? 'Show Less' : '收起部分作品')
+                                          : (locale === 'en'
+                                              ? `Show all ${filteredItems.length} works (+${filteredItems.length - 6})`
+                                              : `展開全部 ${filteredItems.length} 個作品 (+${filteredItems.length - 6})`)}
+                                      </span>
+                                      <ChevronDown size={14} className={cn("transition-transform duration-300", isExpanded && "rotate-180")} />
+                                    </button>
+                                  </div>
+                                )}
+                              </>
+                            );
+                          })()}
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </>
+          )}
       </section>
     </main>
 

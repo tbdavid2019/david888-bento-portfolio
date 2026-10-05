@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed liff-game-rockpaper",
-      "url": "https://github.com/CreateIntelligens/liff-game-rockpaper/compare/fa0369115d...d2635a4f1f",
-      "updated": "2026-09-16 04:46:05 UTC",
-      "summary": "tbdavid2019 pushed to main in CreateIntelligens/liff-game-rockpaper · September 16, 2026 04:46 1 commit to main d2635a4 fix: auto-detect gestures with module-safe MediaPipe worker"
+      "title": "tbdavid2019 pushed 888wiki",
+      "url": "https://github.com/tbdavid2019/888wiki/compare/69c50ce5e8...5213ceb5a1",
+      "updated": "2026-10-05 06:33:22 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888wiki · October 5, 2026 06:33 1 commit to main 5213ceb feat(share): add slim progress rail, safety gutter, and push-on-pin T…"
     },
     {
-      "title": "tbdavid2019 pushed liff-game-rockpaper",
-      "url": "https://github.com/CreateIntelligens/liff-game-rockpaper/compare/160330c8aa...bb05136f94",
-      "updated": "2026-09-16 04:12:42 UTC",
-      "summary": "tbdavid2019 pushed to main in CreateIntelligens/liff-game-rockpaper · September 16, 2026 04:12 1 commit to main bb05136 fix: prevent camera startup from hanging"
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/fb0d7e9f0b...6231e55c81",
+      "updated": "2026-10-05 04:56:58 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:56 1 commit to main 6231e55 feat(player): 實作每集播放進度存於本機、重新整理記憶恢復與已收聽標示"
     },
     {
-      "title": "tbdavid2019 made this repository public",
-      "url": "https://github.com/CreateIntelligens/liff-game-rockpaper",
-      "updated": "2026-09-15 01:40:45 -0700",
-      "summary": "tbdavid2019 made CreateIntelligens/liff-game-rockpaper public · September 15, 2026 01:40 CreateIntelligens/liff-game-rockpaper https://createintelligens.github.io/liff-game-rockpaper/ JavaScript Updated Sep 16"
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/ffdd5369d4...fb0d7e9f0b",
+      "updated": "2026-10-05 04:41:41 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:41 1 commit to main fb0d7e9 fix(ui): 手機版播放按鈕改為純圖示，讓三大 Tab 與控制項維持在同一行不換行"
     },
     {
-      "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/01d523cc41...8a9d90c893",
-      "updated": "2026-09-14 06:45:41 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · September 14, 2026 06:45 2 commits to main b5f8411 fix(ocr-scanner): make worker runtime and request lifecycle reliable 8a9d90c fix(ocr-scanner): preserve CTC dictionary slots"
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/9ca1e0ecb3...ffdd5369d4",
+      "updated": "2026-10-05 04:31:21 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 04:31 1 commit to main ffdd536 fix(ui): 單集頁面 Tab 整合至控制列中央、分享按鈕改為剪貼簿複製與手機版播放條精簡"
     },
     {
-      "title": "tbdavid2019 pushed cf-notepad",
-      "url": "https://github.com/tbdavid2019/cf-notepad/compare/a0ff26c42e...b96b6c8655",
-      "updated": "2026-09-14 05:55:14 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/cf-notepad · September 14, 2026 05:55 1 commit to main b96b6c8 fix(editor): ship PaddleOCR worker runtime"
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/6e00b29807...52a5669687",
+      "updated": "2026-10-05 03:09:51 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 5, 2026 03:09 1 commit to main 52a5669 feat: 全站底部浮動播放列、英聽練習多檔速 (0.5x~0.9x) 與播放效能隔離"
     }
   ],
-  "lastSyncedAt": "2026-09-16T04:49:17.502Z",
+  "lastSyncedAt": "2026-10-05T06:54:18.175Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

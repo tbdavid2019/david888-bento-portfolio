@@ -115,9 +115,9 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
             {description}
           </div>
         )}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-          <div className="text-[11px] font-black uppercase tracking-widest text-text-muted opacity-60">{getDomain(link.url)}</div>
-          <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <div className="text-[11px] font-black uppercase tracking-widest text-text-muted">{getDomain(link.url)}</div>
+          <div className="flex flex-wrap items-center gap-2">
             {link.docUrl && (
               <a
                 href={link.docUrl}
@@ -125,10 +125,10 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
                 rel="noopener noreferrer"
                 aria-label={locale === 'en' ? (link.docLabelEn || 'Feature Guide & Prompts') : (link.docLabel || '實戰題庫指南')}
                 onClick={(event) => event.stopPropagation()}
-                className="inline-flex items-center gap-1 text-xs font-black text-amber-600 dark:text-amber-400 transition-colors hover:text-text-main"
+                className="inline-flex min-h-[32px] items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-2.5 py-1 text-xs font-black text-amber-700 dark:text-amber-400 transition-colors hover:border-amber-500 hover:text-text-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
               >
                 <BookOpen size={13} />
-                {locale === 'en' ? (link.docLabelEn || 'Feature Guide') : (link.docLabel || '題庫指南')}
+                <span>{locale === 'en' ? (link.docLabelEn || 'Feature Guide') : (link.docLabel || '題庫指南')}</span>
               </a>
             )}
             {link.repoUrl && (
@@ -139,9 +139,9 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
                 title={link.cloneCommand}
                 aria-label={locale === 'en' ? 'Open source for local run' : '開啟原始碼並在本機運行'}
                 onClick={(event) => event.stopPropagation()}
-                className="inline-flex items-center gap-1 text-xs font-black text-primary transition-colors hover:text-text-main"
+                className="inline-flex min-h-[32px] items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-2.5 py-1 text-xs font-black text-primary transition-colors hover:border-primary hover:text-text-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                {locale === 'en' ? 'Run locally' : '本機運行'}
+                <span>{locale === 'en' ? 'Run locally' : '本機運行'}</span>
                 <ExternalLink size={13} />
               </a>
             )}

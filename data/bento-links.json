@@ -26,8 +26,8 @@
     "colSpan": 2,
     "featured": true,
     "tag": "finance",
-    "section": "Web 產品與分析平台 (Web Products & Analytics Platforms)",
-    "sectionEn": "Web Products & Analytics Platforms"
+    "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
+    "sectionEn": "Institutional Quant & Analytics Platforms"
   },
   {
     "type": "link",
@@ -41,8 +41,8 @@
     "colSpan": 2,
     "featured": true,
     "tag": "finance",
-    "section": "Web 產品與分析平台 (Web Products & Analytics Platforms)",
-    "sectionEn": "Web Products & Analytics Platforms"
+    "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
+    "sectionEn": "Institutional Quant & Analytics Platforms"
   },
   {
     "type": "link",
@@ -319,8 +319,8 @@
     "url": "https://huggingface.co/spaces/tbdavid2019/SwapFace",
     "imageSource": "https://storage.googleapis.com/creatorspace-public/sites%2Fogimages%2FaHR0cHM6Ly9jZG4tdGh1bWJuYWlscy5odWdnaW5nZmFjZS5jby9zb2NpYWwtdGh1bWJuYWlscy9zcGFjZXMvdGJkYXZpZDIwMTkvU3dhcEZhY2UucG5n.png",
     "tag": "experiments",
-    "section": "生成式與視覺實驗 (Generative & Visual Experiments)",
-    "sectionEn": "Generative & Visual Experiments",
+    "section": "生成式 AI 視覺 (Generative AI & Vision)",
+    "sectionEn": "Generative AI & Vision",
     "runtimeStatus": "paused"
   },
   {
@@ -686,8 +686,8 @@
     "url": "https://openwebui.com/t/david888/nano_banana",
     "imageSource": "/bento/banana.svg",
     "tag": "experiments",
-    "section": "生成式與視覺實驗 (Generative & Visual Experiments)",
-    "sectionEn": "Generative & Visual Experiments"
+    "section": "生成式 AI 視覺 (Generative AI & Vision)",
+    "sectionEn": "Generative AI & Vision"
   },
   {
     "type": "link",
@@ -722,8 +722,8 @@
     "url": "https://fe-3d-xmastree.vercel.app",
     "imageSource": "/bento/3d-xmastree.svg",
     "tag": "experiments",
-    "section": "生成式與視覺實驗 (Generative & Visual Experiments)",
-    "sectionEn": "Generative & Visual Experiments"
+    "section": "3D 視覺與 WebXR (3D Visuals & WebXR)",
+    "sectionEn": "3D Visuals & WebXR"
   },
   {
     "type": "link",
@@ -731,8 +731,8 @@
     "url": "https://fe-3d-particle.vercel.app",
     "imageSource": "/bento/3d-gun.svg",
     "tag": "experiments",
-    "section": "生成式與視覺實驗 (Generative & Visual Experiments)",
-    "sectionEn": "Generative & Visual Experiments"
+    "section": "遊戲與互動實驗 (Games & Interactive Experiments)",
+    "sectionEn": "Games & Interactive Experiments"
   },
   {
     "type": "link",
@@ -740,8 +740,8 @@
     "url": "https://fe-3d-particles.vercel.app",
     "imageSource": "/bento/3d-particles.svg",
     "tag": "experiments",
-    "section": "生成式與視覺實驗 (Generative & Visual Experiments)",
-    "sectionEn": "Generative & Visual Experiments"
+    "section": "3D 視覺與 WebXR (3D Visuals & WebXR)",
+    "sectionEn": "3D Visuals & WebXR"
   },
   {
     "type": "link",
@@ -750,5 +750,18 @@
     "imageSource": "/bento/podcast.svg",
     "featured": true,
     "tag": "social"
+  },
+  {
+    "type": "link",
+    "title": "QAC-MAN 吃豆人 QR 迷宮",
+    "titleEn": "QAC-MAN — Playable QR Maze",
+    "url": "https://qacman.com/?gh=4&q=david888.com",
+    "description": "手機鏡頭可掃碼直達，電腦鍵盤 WASD 可直接遊玩的 8-bit 吃豆人 QR 迷宮遊戲。",
+    "descriptionEn": "An 8-bit playable Pac-Man QR maze game playable via keyboard and scannable by phone camera.",
+    "tag": "experiments",
+    "section": "遊戲與互動實驗 (Games & Interactive Experiments)",
+    "sectionEn": "Games & Interactive Experiments",
+    "imageSource": "/favicon.svg",
+    "colSpan": 1
   }
 ]
