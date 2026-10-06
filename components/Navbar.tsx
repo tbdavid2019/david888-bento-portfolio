@@ -62,11 +62,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, [isSearchOpen, onToggleSearch]);
 
   return (
-    <div className="fixed inset-x-0 top-3 z-50 px-4 md:top-4 md:px-6">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-[28px] border border-border bg-bg-surface px-4 py-3 shadow-[0_18px_50px_rgba(15,23,42,0.08)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.3)] backdrop-blur-xl">
+    <div className="fixed inset-x-0 top-0 z-50">
+      <nav className="flex w-full items-center justify-between gap-3 bg-[#231915] px-5 py-4 md:px-8 lg:bg-transparent lg:py-5">
         <div className="min-w-0">
-          <div className="truncate font-mono text-xl font-black text-text-main md:text-2xl">David888</div>
-          <div className="mt-1 hidden truncate text-sm font-semibold text-text-muted sm:block">
+          <div className="truncate font-mono text-xl font-black text-white md:text-2xl">David888</div>
+          <div className="mt-1 hidden truncate text-sm font-semibold text-white/70 sm:block">
             {locale === 'en'
               ? 'CTO & Technical Advisor | Enterprise Systems & AI Architecture'
               : 'CTO & 技術顧問 | 企業架構、大型系統與 AI 治理'}
@@ -76,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex shrink-0 items-center gap-2">
           {isSearchOpen ? (
             <div className="flex items-center gap-1.5">
-              <div className="flex h-10 w-44 items-center gap-2 rounded-full border border-border bg-bg-elevated px-3 shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 xs:w-52 sm:w-60 md:w-72">
+              <div className="flex h-10 w-32 items-center gap-2 rounded-full border border-border bg-bg-elevated px-3 shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 xs:w-44 sm:w-60 md:w-72">
                 <Search size={16} className="shrink-0 text-text-muted" />
                 <input
                   ref={searchInputRef}

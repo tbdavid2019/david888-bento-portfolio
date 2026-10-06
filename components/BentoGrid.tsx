@@ -158,10 +158,15 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   }, []);
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Category Tabs - Full Width at Top */}
-      <div className="rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm backdrop-blur-md">
-        <div className="flex flex-wrap items-center justify-start gap-1">
+    <main className="min-h-screen bg-bg-base lg:grid lg:grid-cols-[minmax(320px,35%)_minmax(0,65%)]">
+      <aside className="bg-[#231915] px-5 pb-8 pt-24 text-white md:px-8 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:px-8 lg:pb-10 lg:pt-24 xl:px-12">
+        <ProfileCard locale={locale} onContact={onContact} />
+      </aside>
+
+      <div className="min-w-0 px-4 pb-12 pt-4 md:px-8 lg:px-8 lg:pb-16 lg:pt-24 xl:px-12">
+        {/* Category Tabs */}
+        <div className="sticky top-[4.25rem] z-30 -mx-1 mb-6 rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm md:static md:mx-0 md:mb-6 lg:sticky lg:top-5">
+          <div className="flex items-center justify-start gap-1 overflow-x-auto lg:flex-wrap lg:overflow-visible">
           {/* Executive Briefing Tab */}
           <button
             type="button"
@@ -225,15 +230,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               </button>
             );
           })}
+          </div>
         </div>
-      </div>
 
-      <main className="grid gap-6 pb-16 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
-        <aside className="lg:sticky lg:top-6 lg:self-start">
-          <ProfileCard locale={locale} />
-        </aside>
-
-        <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-36">
+        <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-8 lg:scroll-mt-8">
           <AnnouncementBar />
 
           {isExecutiveView ? (
@@ -345,7 +345,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                           </div>
                         )}
 
-                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 2xl:grid-cols-3">
                           {shouldShowPodcastFeed && !section && (
                             <div className="sm:col-span-2">
                               <PodcastFeedCard locale={locale} />
@@ -436,8 +436,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               )}
             </>
           )}
-      </section>
-    </main>
+        </section>
+      </div>
 
     {showScrollTop && (
       <button
@@ -452,6 +452,6 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         <ArrowUp size={19} />
       </button>
     )}
-    </div>
+    </main>
   );
 };

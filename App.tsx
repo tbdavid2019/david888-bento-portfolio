@@ -102,8 +102,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen px-4 pb-4 pt-28 transition-colors duration-300 md:px-6 md:pb-6 md:pt-32">
-      <div className="mx-auto max-w-7xl">
+    <div className="min-h-screen transition-colors duration-300">
         <Navbar
           darkMode={darkMode}
           toggleTheme={toggleTheme}
@@ -130,7 +129,6 @@ export default function App() {
           onClearSearch={() => setSearchQuery('')}
           onContact={() => setContactOpen(true)}
         />
-      </div>
       {contactOpen && <Suspense fallback={null}><ContactDialog locale={locale} onClose={() => setContactOpen(false)} /></Suspense>}
     </div>
   );
