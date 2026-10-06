@@ -73,6 +73,8 @@
 }
 
 .profile-panel {
+  container-type: inline-size;
+  --primary: #d98e63;
   --bg-surface: transparent;
   --bg-surface-elevated: rgba(255, 255, 255, 0.08);
   --border-color: rgba(255, 255, 255, 0.2);
@@ -80,6 +82,16 @@
   --text-main: #f8f1e9;
   --text-muted: #c9bdb2;
   --text-dark: #aa9a8b;
+}
+
+.profile-introduction-body {
+  column-count: 1;
+}
+
+@container (min-width: 420px) {
+  .profile-introduction-body {
+    column-count: 2;
+  }
 }
 
 html {

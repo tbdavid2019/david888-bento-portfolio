@@ -2,6 +2,7 @@ import React from 'react';
 import { ExternalLink, MapPin, Mail } from 'lucide-react';
 import profileData from '../data/bento-profile.json';
 import { profileContent } from '../data/profile-content';
+import { ProfileIntroduction } from './ProfileIntroduction';
 import type { Locale } from '../types';
 
 interface ProfileCardProps {
@@ -50,6 +51,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh', onConta
                         </div>
                     ))}
                 </div>
+
+                <ProfileIntroduction locale={locale} />
 
                 <div className="mt-7 grid grid-cols-2 gap-3">
                     {onContact && (

@@ -10,16 +10,16 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
   const content = profileContent[locale];
 
   return (
-    <article className="border-y border-border py-8 md:py-10" aria-label={locale === 'en' ? 'Professional introduction' : '專業介紹'}>
-      <h2 className="max-w-3xl text-2xl font-black leading-tight text-text-main md:text-3xl">
+    <article className="mt-6 border-y border-border py-6" aria-label={locale === 'en' ? 'Professional introduction' : '專業介紹'}>
+      <h2 className="text-xl font-black leading-snug text-text-main">
         {content.subHeadline}
       </h2>
 
-      <div className="mt-6 columns-1 gap-x-10 text-[15px] leading-7 text-text-muted md:columns-2 md:text-base md:leading-8">
+      <div className="profile-introduction-body mt-5 gap-x-6 text-[15px] leading-7 text-text-muted">
         {content.body.map((block, index) => {
           if (block.kind === 'sectionTitle') {
             return (
-              <h3 key={index} className="mb-2 mt-5 break-inside-avoid-column break-after-avoid text-base font-black text-text-main md:text-lg">
+              <h3 key={index} className="mb-2 mt-5 break-inside-avoid-column break-after-avoid text-base font-black text-text-main">
                 {block.text}
               </h3>
             );

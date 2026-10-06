@@ -3,7 +3,6 @@ import { ArrowUp, ArrowUpRight, ChevronDown, Sparkles } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
-import { ProfileIntroduction } from './ProfileIntroduction';
 import { ExecutiveBriefing } from './ExecutiveBriefing';
 import { BentoLinkCard } from './cards/BentoLinkCard';
 import { GithubCard } from './cards/GithubCard';
@@ -160,8 +159,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
   return (
     <main className="min-h-screen bg-bg-base lg:grid lg:grid-cols-[minmax(320px,35%)_minmax(0,65%)]">
-      <aside className="bg-[#231915] px-5 pb-8 pt-24 text-white md:px-8 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:px-8 lg:pb-10 lg:pt-24 xl:px-12">
-        <ProfileCard locale={locale} onContact={onContact} />
+      <aside className="bg-[#231915] px-5 pb-8 pt-24 text-white md:px-8 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:px-8 lg:pb-10 lg:pt-24 xl:px-12">
+        <div className="lg:min-h-0 lg:overflow-y-auto">
+          <ProfileCard locale={locale} onContact={onContact} />
+        </div>
       </aside>
 
       <div className="min-w-0 px-4 pb-12 pt-4 md:px-8 lg:px-8 lg:pb-16 lg:pt-24 xl:px-12">
@@ -233,8 +234,6 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
           })}
           </div>
         </div>
-
-        <ProfileIntroduction locale={locale} />
 
         <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-8 lg:scroll-mt-8">
           <AnnouncementBar />
