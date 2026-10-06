@@ -49,6 +49,7 @@ import {
   ScrollText,
   Search,
   Share2,
+  ShieldCheck,
   ShoppingBag,
   ShoppingCart,
   Smile,
@@ -152,6 +153,7 @@ const iconRegistry: Record<string, LucideIcon> = {
   sparkle: Sparkle,
   podcast: Podcast,
   'gamepad-2': Gamepad2,
+  'shield-check': ShieldCheck,
 };
 
 const getCategoryIconStyle = (tag?: string) => {

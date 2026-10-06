@@ -41,6 +41,9 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Products & Work
 
+- [888news | 全球科技與 AI 情報雷達 (888news - Global Tech & AI Intelligence Radar)](https://news2.david888.com/): 全球科技與 AI 情報雷達 · 每日精選 · 自動追蹤頂尖科技信源，涵蓋 OpenAI、Anthropic、Google 等最新動態，透過 AI 即時摘要、品質評分與多語系熱點聚合呈獻深度觀察。
+- [888 2FA | 邊緣雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 基於 Cloudflare Workers 的極速 2FA 金鑰管理系統。純 Web Crypto API 實作 Passkey / WebAuthn 免密生物辨識登入，支援 PWA 離線 TOTP、多端備份與微秒級時間校準。
+- [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密秒登與 WebCal 日曆無殘留同步。
 - [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 具身智能與前沿論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
 - [Telegram: Oli Summary 總結王](https://t.me/quantaar_bot)
 - [Telegram: Oli家 古靈 Gemini](https://t.me/oli_photo_bot)

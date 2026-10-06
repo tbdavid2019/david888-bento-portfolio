@@ -75,6 +75,7 @@ export type BentoLinkIcon =
     | 'sparkle'
     | 'podcast'
     | 'gamepad-2'
+    | 'shield-check'
     | (string & {});
 export type BentoLinkRuntimeStatus = 'paused' | 'sleeping';
 
