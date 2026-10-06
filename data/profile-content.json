@@ -12,16 +12,28 @@
         "text": "我能協助的工作"
       },
       {
-        "kind": "bullet",
-        "text": "評估技術路線的風險與發展機會"
+        "kind": "sectionTitle",
+        "text": "技術評估與盡職調查"
       },
       {
-        "kind": "bullet",
-        "text": "整理分散的資料流，重整系統架構與整合方式"
+        "kind": "paragraph",
+        "text": "評估技術路線的風險與發展機會，並在方案評估或投資前提供第二意見及技術盡職調查。"
       },
       {
-        "kind": "bullet",
-        "text": "在需要時帶領團隊執行，讓方案完成交付"
+        "kind": "sectionTitle",
+        "text": "系統架構與資料整合"
+      },
+      {
+        "kind": "paragraph",
+        "text": "整理分散的資料流，重整系統架構與整合方式，協助處理影響交付或營運的瓶頸。"
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "團隊執行與交付"
+      },
+      {
+        "kind": "paragraph",
+        "text": "在需要時帶領團隊執行，讓確認的方案完成交付。"
       },
       {
         "kind": "sectionTitle",
@@ -38,22 +50,6 @@
       {
         "kind": "paragraph",
         "text": "媒體科技：主導高併發社群平台與生成式內容系統的架構優化，提升服務穩定性與擴展能力。"
-      },
-      {
-        "kind": "sectionTitle",
-        "text": "適合合作的情境"
-      },
-      {
-        "kind": "bullet",
-        "text": "技術方案需要獨立評估，或需要第二意見再決定投資方向"
-      },
-      {
-        "kind": "bullet",
-        "text": "系統瓶頸開始影響交付與營運，需要釐清修正優先順序"
-      },
-      {
-        "kind": "bullet",
-        "text": "投資前需要技術盡職調查，評估標的的技術可信度與潛在風險"
       },
       {
         "kind": "sectionTitle",
@@ -82,16 +78,28 @@
         "text": "How I can help"
       },
       {
-        "kind": "bullet",
-        "text": "Assess the risks, costs, and opportunities behind a technical direction"
+        "kind": "sectionTitle",
+        "text": "Technical reviews and due diligence"
       },
       {
-        "kind": "bullet",
-        "text": "Reorganize fragmented data flows and reshape system architecture and integrations"
+        "kind": "paragraph",
+        "text": "Assess risks and opportunities, and provide an independent view before technical or investment decisions."
       },
       {
-        "kind": "bullet",
-        "text": "Lead hands-on execution when a team needs help taking a plan through delivery"
+        "kind": "sectionTitle",
+        "text": "Architecture and data integration"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Reorganize fragmented data flows, reshape system architecture, and address bottlenecks affecting delivery or operations."
+      },
+      {
+        "kind": "sectionTitle",
+        "text": "Team execution and delivery"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Lead hands-on execution when a team needs support carrying an agreed plan through delivery."
       },
       {
         "kind": "sectionTitle",
@@ -108,22 +116,6 @@
       {
         "kind": "paragraph",
         "text": "Media technology: led architecture improvements for high-concurrency community platforms and generative content systems, improving service stability and scalability."
-      },
-      {
-        "kind": "sectionTitle",
-        "text": "When to work together"
-      },
-      {
-        "kind": "bullet",
-        "text": "You need an independent review or second opinion before committing to a technical direction"
-      },
-      {
-        "kind": "bullet",
-        "text": "System bottlenecks are affecting delivery or operations, and you need to set priorities"
-      },
-      {
-        "kind": "bullet",
-        "text": "You need technical due diligence to assess a company's technical credibility and potential risks before investment"
       },
       {
         "kind": "sectionTitle",

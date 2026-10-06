@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, MapPin, Mail } from 'lucide-react';
+import { ExternalLink, MapPin } from 'lucide-react';
 import profileData from '../data/bento-profile.json';
 import { profileContent } from '../data/profile-content';
 import { ProfileIntroduction } from './ProfileIntroduction';
@@ -7,10 +7,9 @@ import type { Locale } from '../types';
 
 interface ProfileCardProps {
     locale?: Locale;
-    onContact?: () => void;
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh', onContact }) => {
+export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
     const metrics = [
         { value: '4', label: locale === 'en' ? 'Companies founded' : '創業公司' },
         { value: '111+', label: locale === 'en' ? 'Open source projects' : '開源專案' },
@@ -54,17 +53,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh', onConta
 
                 <ProfileIntroduction locale={locale} />
 
-                <div className="mt-7 grid grid-cols-2 gap-3">
-                    {onContact && (
-                        <button
-                            type="button"
-                            onClick={onContact}
-                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-4 text-sm font-black text-[#231915] transition-transform hover:-translate-y-0.5"
-                        >
-                            <Mail size={16} />
-                            {locale === 'en' ? 'Contact' : '聯絡我'}
-                        </button>
-                    )}
+                <div className="mt-7 grid grid-cols-1 gap-3">
                     <a
                         href="https://www.linkedin.com/in/david11111/"
                         target="_blank"

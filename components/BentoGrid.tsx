@@ -159,9 +159,9 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
   return (
     <main className="min-h-screen bg-bg-base lg:grid lg:grid-cols-[minmax(320px,35%)_minmax(0,65%)]">
-      <aside className="bg-[#231915] px-5 pb-8 pt-24 text-white md:px-8 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:px-8 lg:pb-10 lg:pt-24 xl:px-12">
+      <aside className="bg-[#231915] px-5 pb-8 pt-32 text-white sm:pt-24 md:px-8 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:px-8 lg:pb-10 lg:pt-36 xl:px-12 xl:pt-24">
         <div className="lg:min-h-0 lg:overflow-y-auto">
-          <ProfileCard locale={locale} onContact={onContact} />
+          <ProfileCard locale={locale} />
         </div>
       </aside>
 

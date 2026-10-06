@@ -62,8 +62,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, [isSearchOpen, onToggleSearch]);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50">
-      <nav className="flex w-full items-center justify-between gap-3 bg-[#231915] px-5 py-4 md:px-8 lg:bg-transparent lg:py-5">
+    <div className="fixed inset-x-0 top-0 z-50 bg-[#231915] lg:inset-x-auto lg:left-0 lg:w-[35%]">
+      <nav className="flex w-full flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between md:px-8 lg:flex-col lg:items-stretch lg:py-3 xl:flex-row xl:items-center">
         <div className="min-w-0">
           <div className="truncate font-mono text-xl font-black text-white md:text-2xl">David888</div>
           <div className="mt-1 hidden truncate text-sm font-semibold text-white/70 sm:block">
@@ -73,10 +73,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 sm:justify-end lg:justify-start xl:justify-end">
           {isSearchOpen ? (
             <div className="flex items-center gap-1.5">
-              <div className="flex h-10 w-32 items-center gap-2 rounded-full border border-border bg-bg-elevated px-3 shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 xs:w-44 sm:w-60 md:w-72">
+              <div className="flex h-10 w-32 items-center gap-2 rounded-full border border-border bg-bg-elevated px-3 shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 xs:w-40 sm:w-44 md:w-48">
                 <Search size={16} className="shrink-0 text-text-muted" />
                 <input
                   ref={searchInputRef}
@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
-          <div className={`flex h-10 overflow-hidden rounded-full border border-border bg-bg-elevated text-xs font-black shadow-sm ${isSearchOpen ? 'hidden sm:flex' : 'flex'}`}>
+          <div className={`flex h-10 overflow-hidden rounded-full border border-border bg-bg-elevated text-xs font-black shadow-sm ${isSearchOpen ? 'hidden' : 'flex'}`}>
             <button
               type="button"
               onClick={() => onLocaleChange('zh')}
@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <button
             onClick={toggleTheme}
-            className={`h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-main shadow-sm transition-all duration-300 hover:opacity-90 ${isSearchOpen ? 'hidden sm:flex' : 'flex'}`}
+            className={`h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-main shadow-sm transition-all duration-300 hover:opacity-90 ${isSearchOpen ? 'hidden' : 'flex'}`}
             aria-label="Toggle theme"
           >
             {darkMode ? (
@@ -151,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={onContact}
-            className={`h-10 w-10 items-center justify-center gap-0 rounded-full bg-primary px-0 text-sm font-black text-white transition-all duration-300 hover:opacity-90 dark:text-bg-base sm:w-auto sm:gap-2 sm:px-4 ${isSearchOpen ? 'hidden xs:inline-flex' : 'inline-flex'}`}
+            className={`h-10 w-10 items-center justify-center gap-0 rounded-full bg-primary px-0 text-sm font-black text-white transition-all duration-300 hover:opacity-90 dark:text-bg-base sm:w-auto sm:gap-2 sm:px-4 ${isSearchOpen ? 'hidden' : 'inline-flex'}`}
             aria-label={locale === 'zh' ? '聯絡我' : 'Contact me'}
           >
             <Mail size={16} />

@@ -121,11 +121,17 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 #### 我能協助的工作
 
-- 評估技術路線的風險與發展機會
+#### 技術評估與盡職調查
 
-- 整理分散的資料流，重整系統架構與整合方式
+評估技術路線的風險與發展機會，並在方案評估或投資前提供第二意見及技術盡職調查。
 
-- 在需要時帶領團隊執行，讓方案完成交付
+#### 系統架構與資料整合
+
+整理分散的資料流，重整系統架構與整合方式，協助處理影響交付或營運的瓶頸。
+
+#### 團隊執行與交付
+
+在需要時帶領團隊執行，讓確認的方案完成交付。
 
 #### 代表經歷
 
@@ -134,14 +140,6 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 跨系統整合：為全球知名消費性電子品牌整合多通路客服、Salesforce、HubSpot、RingCentral 與 RMA 退換貨流程，改善營運效率。
 
 媒體科技：主導高併發社群平台與生成式內容系統的架構優化，提升服務穩定性與擴展能力。
-
-#### 適合合作的情境
-
-- 技術方案需要獨立評估，或需要第二意見再決定投資方向
-
-- 系統瓶頸開始影響交付與營運，需要釐清修正優先順序
-
-- 投資前需要技術盡職調查，評估標的的技術可信度與潛在風險
 
 #### 合作方式
 
@@ -158,11 +156,17 @@ I am a CTO and technical advisor with multinational enterprise experience. Over 
 
 #### How I can help
 
-- Assess the risks, costs, and opportunities behind a technical direction
+#### Technical reviews and due diligence
 
-- Reorganize fragmented data flows and reshape system architecture and integrations
+Assess risks and opportunities, and provide an independent view before technical or investment decisions.
 
-- Lead hands-on execution when a team needs help taking a plan through delivery
+#### Architecture and data integration
+
+Reorganize fragmented data flows, reshape system architecture, and address bottlenecks affecting delivery or operations.
+
+#### Team execution and delivery
+
+Lead hands-on execution when a team needs support carrying an agreed plan through delivery.
 
 #### Representative experience
 
@@ -171,14 +175,6 @@ Enterprise e-commerce: led a 70-person engineering team to build a high-concurre
 System integration: connected multichannel customer support, Salesforce, HubSpot, RingCentral, and RMA workflows for a major global consumer electronics brand, improving operational efficiency.
 
 Media technology: led architecture improvements for high-concurrency community platforms and generative content systems, improving service stability and scalability.
-
-#### When to work together
-
-- You need an independent review or second opinion before committing to a technical direction
-
-- System bottlenecks are affecting delivery or operations, and you need to set priorities
-
-- You need technical due diligence to assess a company's technical credibility and potential risks before investment
 
 #### Engagement
 

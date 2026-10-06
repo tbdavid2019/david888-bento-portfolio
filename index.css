@@ -88,7 +88,7 @@
   column-count: 1;
 }
 
-@container (min-width: 420px) {
+@container (min-width: 390px) {
   .profile-introduction-body {
     column-count: 2;
   }
