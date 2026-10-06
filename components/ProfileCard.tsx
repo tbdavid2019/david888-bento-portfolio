@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { ExternalLink, Gamepad2, Keyboard, MapPin, Smartphone, X } from 'lucide-react';
 import profileData from '../data/bento-profile.json';
 import { profileContent } from '../data/profile-content';
@@ -22,11 +23,16 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
 
     useEffect(() => {
         if (!isQrGameOpen) return;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === 'Escape') setIsQrGameOpen(false);
         };
         window.addEventListener('keydown', handleEscape);
-        return () => window.removeEventListener('keydown', handleEscape);
+        return () => {
+            window.removeEventListener('keydown', handleEscape);
+            document.body.style.overflow = previousOverflow;
+        };
     }, [isQrGameOpen]);
 
     return (
@@ -91,7 +97,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                 </div>
             </div>
 
-            {isQrGameOpen && (
+            {isQrGameOpen && createPortal((
                 <div
                     className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md"
                     role="dialog"
@@ -139,7 +145,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                         </div>
                     </div>
                 </div>
-            )}
+            ), document.body)}
         </div>
     );
 };
