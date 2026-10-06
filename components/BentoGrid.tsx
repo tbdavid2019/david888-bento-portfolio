@@ -165,7 +165,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         </div>
       </aside>
 
-      <div className="min-w-0 px-4 pb-12 pt-4 md:px-8 lg:px-8 lg:pb-16 lg:pt-24 xl:px-12">
+      <div className="min-w-0 px-4 pb-12 pt-4 md:px-8 lg:px-8 lg:pb-16 lg:pt-6 xl:px-12">
         {/* Category Tabs */}
         <div className="sticky top-[4.25rem] z-30 -mx-1 mb-6 rounded-2xl border border-border bg-bg-surface p-1.5 shadow-sm md:static md:mx-0 md:mb-6 lg:sticky lg:top-5">
           <div className="flex items-center justify-start gap-1 overflow-x-auto lg:flex-wrap lg:overflow-visible">
