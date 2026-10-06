@@ -92,7 +92,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [耶誕樹3D特效](https://fe-3d-xmastree.vercel.app)
 - [視訊3D槍戰](https://fe-3d-particle.vercel.app)
 - [3D粒子特效](https://fe-3d-particles.vercel.app)
-- [QAC-MAN 吃豆人 QR 迷宮 (QAC-MAN — Playable QR Maze)](https://qacman.com/?gh=4&q=david888.com): 手機鏡頭可掃碼直達，電腦鍵盤 WASD 可直接遊玩的 8-bit 吃豆人 QR 迷宮遊戲。
+- [QAC-MAN 網站 QR (QAC-MAN — Website QR)](https://qacman.com/?gh=4&q=david888.com): 以 8-bit 吃豆人遊戲呈現 david888.com 網址的互動式 QR Code；手機掃碼開站，桌機可用 WASD 遊玩。
 
 ## Qi & Life Products
 
@@ -594,9 +594,9 @@ I do not take on gambling, cryptocurrency, or exchange-related projects.
 - URL: https://player.soundon.fm/p/david777/
 - Category: social
 
-### QAC-MAN 吃豆人 QR 迷宮 / QAC-MAN — Playable QR Maze
+### QAC-MAN 網站 QR / QAC-MAN — Website QR
 - URL: https://qacman.com/?gh=4&q=david888.com
 - Category: experiments
 - Section: 遊戲與互動實驗 (Games & Interactive Experiments)
-- Description (ZH): 手機鏡頭可掃碼直達，電腦鍵盤 WASD 可直接遊玩的 8-bit 吃豆人 QR 迷宮遊戲。
-- Description (EN): An 8-bit playable Pac-Man QR maze game playable via keyboard and scannable by phone camera.
+- Description (ZH): 以 8-bit 吃豆人遊戲呈現 david888.com 網址的互動式 QR Code；手機掃碼開站，桌機可用 WASD 遊玩。
+- Description (EN): An interactive QR code for david888.com presented as an 8-bit Pac-Man game; scan to open the site or play with WASD on desktop.

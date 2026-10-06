@@ -83,11 +83,11 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                         type="button"
                         onClick={() => setIsQrGameOpen(true)}
                         className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/25 px-3 text-sm font-bold text-text-main transition-colors hover:bg-white/10"
-                        aria-label={locale === 'en' ? 'Open QAC-MAN QR maze' : '開啟 QAC-MAN QR 迷宮'}
+                        aria-label={locale === 'en' ? 'Open David888 website QR' : '開啟 David888 網站 QR'}
                         aria-haspopup="dialog"
                     >
                         <Gamepad2 size={16} className="text-primary" />
-                        {locale === 'en' ? 'QR Maze' : 'QR 迷宮'}
+                        {locale === 'en' ? 'Website QR' : '網站 QR'}
                     </button>
                 </div>
 
@@ -113,10 +113,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                                 </span>
                                 <div className="min-w-0">
                                     <h2 id="qacman-title" className="truncate text-base font-black text-text-main">
-                                        QAC-MAN {locale === 'en' ? 'QR Maze' : '吃豆人 QR 迷宮'}
+                                        {locale === 'en' ? 'David888 Website QR' : 'David888 網站 QR'}
                                     </h2>
                                     <p className="text-xs text-text-muted">
-                                        {locale === 'en' ? 'Scan the maze to open david888.com' : '掃描迷宮即可開啟 david888.com'}
+                                        {locale === 'en' ? 'Scan to open david888.com · WASD to play' : '掃描 QR Code 開啟 david888.com · WASD 可遊玩'}
                                     </p>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
                         <div className="aspect-square w-full overflow-hidden rounded-xl border border-border bg-black">
                             <iframe
                                 src="https://qacman.com/?embed=1&autoplay=1&mute=1&gh=4&q=david888.com"
-                                title="QAC-MAN playable QR maze"
+                                title="David888 website QR code game"
                                 className="h-full w-full border-0"
                                 allow="autoplay"
                             />

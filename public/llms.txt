@@ -92,7 +92,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [耶誕樹3D特效](https://fe-3d-xmastree.vercel.app)
 - [視訊3D槍戰](https://fe-3d-particle.vercel.app)
 - [3D粒子特效](https://fe-3d-particles.vercel.app)
-- [QAC-MAN 吃豆人 QR 迷宮 (QAC-MAN — Playable QR Maze)](https://qacman.com/?gh=4&q=david888.com): 手機鏡頭可掃碼直達，電腦鍵盤 WASD 可直接遊玩的 8-bit 吃豆人 QR 迷宮遊戲。
+- [QAC-MAN 網站 QR (QAC-MAN — Website QR)](https://qacman.com/?gh=4&q=david888.com): 以 8-bit 吃豆人遊戲呈現 david888.com 網址的互動式 QR Code；手機掃碼開站，桌機可用 WASD 遊玩。
 
 ## Qi & Life Products
 
