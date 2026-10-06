@@ -3,6 +3,7 @@ import { ArrowUp, ArrowUpRight, ChevronDown, Sparkles } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { ProfileCard } from './ProfileCard';
+import { ProfileIntroduction } from './ProfileIntroduction';
 import { ExecutiveBriefing } from './ExecutiveBriefing';
 import { BentoLinkCard } from './cards/BentoLinkCard';
 import { GithubCard } from './cards/GithubCard';
@@ -232,6 +233,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
           })}
           </div>
         </div>
+
+        <ProfileIntroduction locale={locale} />
 
         <section ref={contentSectionRef} className="min-w-0 space-y-6 scroll-mt-28 md:scroll-mt-8 lg:scroll-mt-8">
           <AnnouncementBar />

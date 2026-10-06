@@ -1,32 +1,31 @@
-# Turn technical complexity into visible business value
+# Turning complex technology into visible business outcomes
 
-> Systems keep growing, while data gets fragmented?
+> From architecture reviews and system integration to team delivery.
 
-Architecture documents can look impressive, yet still leave you unsure whether the system can really ship and support future growth.
+I am a CTO and technical advisor with multinational enterprise experience. Over the past decade, I have planned architectures and led teams delivering enterprise e-commerce, system integration, and high-concurrency media platforms.
 
-I am a CTO and technical advisor with multinational delivery experience. Over the past decade, I have not only designed systems, but also led teams to turn complexity into execution and business leverage.
+## How I can help
 
-## I focus on three outcomes:
+- Assess the risks, costs, and opportunities behind a technical direction
+- Reorganize fragmented data flows and reshape system architecture and integrations
+- Lead hands-on execution when a team needs help taking a plan through delivery
 
-- Expose the real risks and opportunities behind the proposed technical direction
-- Rebuild fragmented data flows and system architecture
-- Step in directly when the team needs hands-on execution leadership
+## Representative experience
 
-## Representative experience:
+Enterprise e-commerce: led a 70-person engineering team to build a high-concurrency SAP e-commerce platform with intelligent capabilities for the world's largest health and beauty retailer.
 
-Enterprise e-commerce: led a 70-person engineering team to build a high-concurrency, intelligence-enabled SAP eCommerce platform for the world's largest health and beauty retailer.
+System integration: connected multichannel customer support, Salesforce, HubSpot, RingCentral, and RMA workflows for a major global consumer electronics brand, improving operational efficiency.
 
-Cross-system integration: connected customer support, Salesforce, HubSpot, RingCentral, and RMA workflows for a major global consumer electronics brand, significantly improving operations.
+Media technology: led architecture improvements for high-concurrency community platforms and generative content systems, improving service stability and scalability.
 
-Media technology: led architecture optimization for high-concurrency community platforms and generative content systems to improve stability and scalability.
+## When to work together
 
-## Especially useful when:
+- You need an independent review or second opinion before committing to a technical direction
+- System bottlenecks are affecting delivery or operations, and you need to set priorities
+- You need technical due diligence to assess a company's technical credibility and potential risks before investment
 
-- You need a second opinion on a technical proposal before committing resources
-- The system is already showing bottlenecks and you want to avoid expensive mistakes
-- Investors or funds need technical due diligence on execution credibility and product risk
+## Engagement
 
-## Engagement model:
+Full-time | Part-time | Advisory
 
-> Full-time | Part-time | Project advisory, depending on project scope and depth
-> No gambling, crypto, or exchange-related projects.
+I do not take on gambling, cryptocurrency, or exchange-related projects.

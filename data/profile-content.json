@@ -1,149 +1,141 @@
 {
   "zh": {
-    "headline": "把複雜的技術債，轉化為看得見的商業價值",
-    "subHeadline": "系統越長越大，資料卻四分五裂？",
+    "headline": "把複雜的技術，轉化為看得見的商業成果",
+    "subHeadline": "從架構評估、系統整合，到帶領團隊交付。",
     "body": [
       {
         "kind": "paragraph",
-        "text": "技術團隊交出一疊厚厚的架構文件，你卻看不出來到底能不能真正落地、能不能支撐未來的業務成長？"
-      },
-      {
-        "kind": "paragraph",
-        "text": "我是具備跨國企業實戰經驗的 CTO 與技術顧問。過去十年，我不只畫藍圖，更親自帶隊把複雜系統從混亂帶向高效，讓技術真正成為商業的加速器，而非包袱。"
+        "text": "我是具備跨國企業實戰經驗的 CTO 與技術顧問。過去十年，我不只規劃架構，也親自帶領團隊交付大型電商、企業系統整合與高併發媒體平台，協助企業把技術方案落實到營運現場。"
       },
       {
         "kind": "sectionTitle",
-        "text": "我專注幫你做到三件事："
+        "text": "我能協助的工作"
       },
       {
         "kind": "bullet",
-        "text": "看清技術路線的真實風險與機會"
+        "text": "評估技術路線的風險與發展機會"
       },
       {
         "kind": "bullet",
-        "text": "重整破碎的資料流與系統架構"
+        "text": "整理分散的資料流，重整系統架構與整合方式"
       },
       {
         "kind": "bullet",
-        "text": "必要時直接進場，帶領團隊把事情做對、做完"
+        "text": "在需要時帶領團隊執行，讓方案完成交付"
       },
       {
         "kind": "sectionTitle",
-        "text": "代表經歷："
+        "text": "代表經歷"
       },
       {
         "kind": "paragraph",
-        "text": "企業級電商架構：率領 70 人研發團隊，為全球最大健康與美容零售商打造具備高併發與智慧能力的 SAP eCommerce 平台"
+        "text": "企業級電商：帶領 70 人研發團隊，為全球最大健康與美容零售商打造高併發 SAP 電商平台，並加入智慧化能力。"
       },
       {
         "kind": "paragraph",
-        "text": "跨系統整合：為全球知名消費性電子品牌串接多通路客服、Salesforce、HubSpot、RingCentral 與 RMA 退換貨流程，大幅提升運營效率"
+        "text": "跨系統整合：為全球知名消費性電子品牌整合多通路客服、Salesforce、HubSpot、RingCentral 與 RMA 退換貨流程，改善營運效率。"
       },
       {
         "kind": "paragraph",
-        "text": "媒體科技：主導高併發社群平台與生成式內容系統的架構優化，確保穩定性與擴展性"
+        "text": "媒體科技：主導高併發社群平台與生成式內容系統的架構優化，提升服務穩定性與擴展能力。"
       },
       {
         "kind": "sectionTitle",
-        "text": "特別適合以下情境："
+        "text": "適合合作的情境"
       },
       {
         "kind": "bullet",
-        "text": "準備評估技術團隊的提案，卻需要第二意見把關"
+        "text": "技術方案需要獨立評估，或需要第二意見再決定投資方向"
       },
       {
         "kind": "bullet",
-        "text": "系統已出現明顯瓶頸，擔心繼續投資會踩雷"
+        "text": "系統瓶頸開始影響交付與營運，需要釐清修正優先順序"
       },
       {
         "kind": "bullet",
-        "text": "創投機構或投資人需要專業技術盡職調查（Tech Due Diligence），判斷標的物的技術可信度與潛在風險"
+        "text": "投資前需要技術盡職調查，評估標的的技術可信度與潛在風險"
       },
       {
         "kind": "sectionTitle",
-        "text": "合作方式："
+        "text": "合作方式"
       },
       {
-        "kind": "note",
+        "kind": "paragraph",
         "text": "正職｜兼職｜顧問"
       },
       {
-        "kind": "note",
+        "kind": "paragraph",
         "text": "謝絕博弈、加密貨幣與交易所相關項目。"
       }
     ]
   },
   "en": {
-    "headline": "Turn technical complexity into visible business value",
-    "subHeadline": "Systems keep growing, while data gets fragmented?",
+    "headline": "Turning complex technology into visible business outcomes",
+    "subHeadline": "From architecture reviews and system integration to team delivery.",
     "body": [
       {
         "kind": "paragraph",
-        "text": "Architecture documents can look impressive, yet still leave you unsure whether the system can really ship and support future growth."
-      },
-      {
-        "kind": "paragraph",
-        "text": "I am a CTO and technical advisor with multinational delivery experience. Over the past decade, I have not only designed systems, but also led teams to turn complexity into execution and business leverage."
+        "text": "I am a CTO and technical advisor with multinational enterprise experience. Over the past decade, I have planned architectures and led teams delivering enterprise e-commerce, system integration, and high-concurrency media platforms."
       },
       {
         "kind": "sectionTitle",
-        "text": "I focus on three outcomes:"
+        "text": "How I can help"
       },
       {
         "kind": "bullet",
-        "text": "Expose the real risks and opportunities behind the proposed technical direction"
+        "text": "Assess the risks, costs, and opportunities behind a technical direction"
       },
       {
         "kind": "bullet",
-        "text": "Rebuild fragmented data flows and system architecture"
+        "text": "Reorganize fragmented data flows and reshape system architecture and integrations"
       },
       {
         "kind": "bullet",
-        "text": "Step in directly when the team needs hands-on execution leadership"
+        "text": "Lead hands-on execution when a team needs help taking a plan through delivery"
       },
       {
         "kind": "sectionTitle",
-        "text": "Representative experience:"
+        "text": "Representative experience"
       },
       {
         "kind": "paragraph",
-        "text": "Enterprise e-commerce: led a 70-person engineering team to build a high-concurrency, intelligence-enabled SAP eCommerce platform for the world's largest health and beauty retailer."
+        "text": "Enterprise e-commerce: led a 70-person engineering team to build a high-concurrency SAP e-commerce platform with intelligent capabilities for the world's largest health and beauty retailer."
       },
       {
         "kind": "paragraph",
-        "text": "Cross-system integration: connected customer support, Salesforce, HubSpot, RingCentral, and RMA workflows for a major global consumer electronics brand, significantly improving operations."
+        "text": "System integration: connected multichannel customer support, Salesforce, HubSpot, RingCentral, and RMA workflows for a major global consumer electronics brand, improving operational efficiency."
       },
       {
         "kind": "paragraph",
-        "text": "Media technology: led architecture optimization for high-concurrency community platforms and generative content systems to improve stability and scalability."
+        "text": "Media technology: led architecture improvements for high-concurrency community platforms and generative content systems, improving service stability and scalability."
       },
       {
         "kind": "sectionTitle",
-        "text": "Especially useful when:"
+        "text": "When to work together"
       },
       {
         "kind": "bullet",
-        "text": "You need a second opinion on a technical proposal before committing resources"
+        "text": "You need an independent review or second opinion before committing to a technical direction"
       },
       {
         "kind": "bullet",
-        "text": "The system is already showing bottlenecks and you want to avoid expensive mistakes"
+        "text": "System bottlenecks are affecting delivery or operations, and you need to set priorities"
       },
       {
         "kind": "bullet",
-        "text": "Investors or funds need technical due diligence on execution credibility and product risk"
+        "text": "You need technical due diligence to assess a company's technical credibility and potential risks before investment"
       },
       {
         "kind": "sectionTitle",
-        "text": "Engagement model:"
+        "text": "Engagement"
       },
       {
-        "kind": "note",
-        "text": "Full-time | Part-time | Project advisory, depending on project scope and depth"
+        "kind": "paragraph",
+        "text": "Full-time | Part-time | Advisory"
       },
       {
-        "kind": "note",
-        "text": "No gambling, crypto, or exchange-related projects."
+        "kind": "paragraph",
+        "text": "I do not take on gambling, cryptocurrency, or exchange-related projects."
       }
     ]
   }

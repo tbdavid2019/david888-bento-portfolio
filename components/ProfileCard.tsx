@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, ExternalLink, MapPin, Mail } from 'lucide-react';
+import React from 'react';
+import { ExternalLink, MapPin, Mail } from 'lucide-react';
 import profileData from '../data/bento-profile.json';
 import { profileContent } from '../data/profile-content';
 import type { Locale } from '../types';
@@ -10,8 +10,6 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh', onContact }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
     const metrics = [
         { value: '4', label: locale === 'en' ? 'Companies founded' : '創業公司' },
         { value: '111+', label: locale === 'en' ? 'Open source projects' : '開源專案' },
@@ -44,10 +42,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh', onConta
 
                 </div>
 
-                <p className="mt-6 max-w-prose text-sm leading-7 text-text-muted md:text-base">
-                    {content.subHeadline}
-                </p>
-
                 <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5">
                     {metrics.map((metric) => (
                         <div key={metric.label} className="border-t border-border pt-3">
@@ -79,60 +73,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh', onConta
                     </a>
                 </div>
 
-                <button
-                    type="button"
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="mt-5 inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-white/25 px-4 text-sm font-bold text-text-main transition-colors hover:bg-white/10"
-                    aria-expanded={isExpanded}
-                >
-                    <span>
-                        {isExpanded
-                            ? (locale === 'en' ? 'Collapse Detailed Bio' : '收起詳細簡介')
-                            : (locale === 'en' ? 'Read full background' : '閱讀完整經歷')}
-                    </span>
-                    {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
-
-                <div className={`${isExpanded ? 'block' : 'hidden'}`}>
-                    <div className="mb-7 mt-6 space-y-4 text-[15px] leading-8 text-text-muted">
-                        <div className="space-y-3">
-                            {content.body.map((block, index) => {
-                                if (block.kind === 'sectionTitle') {
-                                    return (
-                                        <p key={index} className="pt-2 text-base font-black text-text-main">
-                                            {block.text}
-                                        </p>
-                                    );
-                                }
-
-                                if (block.kind === 'bullet') {
-                                    return (
-                                        <div key={index} className="flex items-start gap-3">
-                                            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />
-                                            <p className="font-bold text-text-main opacity-90">{block.text}</p>
-                                        </div>
-                                    );
-                                }
-
-                                if (block.kind === 'note') {
-                                    return (
-                                        <p key={index} className="font-bold text-text-main">
-                                            {block.text}
-                                        </p>
-                                    );
-                                }
-
-                                return <p key={index}>{block.text}</p>;
-                            })}
-                        </div>
-                    </div>
-
-                    <div className="mt-7 space-y-3 border-t border-border pt-5 text-sm text-text-muted">
-                        <div className="flex items-center gap-3">
-                            <MapPin size={16} className="text-text-muted opacity-60" />
-                            <span>{contactLine}</span>
-                        </div>
-                    </div>
+                <div className="mt-7 flex items-center gap-3 border-t border-white/20 pt-5 text-sm text-text-muted">
+                    <MapPin size={16} aria-hidden="true" />
+                    <span>{contactLine}</span>
                 </div>
             </div>
         </div>
