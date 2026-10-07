@@ -13,7 +13,7 @@ interface ProfileCardProps {
 export const ProfileCard: React.FC<ProfileCardProps> = ({ locale = 'zh' }) => {
     const [isQrGameOpen, setIsQrGameOpen] = useState(false);
     const metrics = [
-        { value: '4', label: locale === 'en' ? 'Companies founded' : '創業公司' },
+        { value: '300+', label: locale === 'en' ? 'Max team size' : '團隊管理規模' },
         { value: '111+', label: locale === 'en' ? 'Open source projects' : '開源專案' },
         { value: '9+', label: 'Chrome extensions' },
         { value: '1.10M+', label: locale === 'en' ? 'Monthly social reach' : '單月社群瀏覽' },

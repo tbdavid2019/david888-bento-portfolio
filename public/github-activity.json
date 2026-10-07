@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed open333crm",
-      "url": "https://github.com/CreateIntelligens/open333crm/compare/19749a4f43...3ce99808df",
-      "updated": "2026-10-06 07:43:04 UTC",
-      "summary": "tbdavid2019 pushed to main in CreateIntelligens/open333crm · October 6, 2026 07:43 1 commit to main 3ce9980 fix: improve dashboard triage and navigation"
+      "title": "tbdavid2019 pushed afterBUY",
+      "url": "https://github.com/tbdavid2019/afterBUY/compare/4abfafb74e...b72d7ce42c",
+      "updated": "2026-10-05 09:59:03 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 5, 2026 09:59 1 commit to main b72d7ce fix: address codex review findings on quantity depletion and due dates"
     },
     {
       "title": "tbdavid2019 pushed afterBUY",
-      "url": "https://github.com/tbdavid2019/afterBUY/compare/ccca2b8a25...f179dc85ec",
-      "updated": "2026-10-06 07:33:47 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 6, 2026 07:33 1 commit to main f179dc8 docs: add .nojekyll for GitHub Pages static asset routing"
+      "url": "https://github.com/tbdavid2019/afterBUY/compare/bf5ebca4ae...4abfafb74e",
+      "updated": "2026-10-05 09:54:08 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 5, 2026 09:54 1 commit to main 4abfafb feat: implement quantity and burn rate tracking mode for consumables"
     },
     {
-      "title": "tbdavid2019 pushed afterBUY",
-      "url": "https://github.com/tbdavid2019/afterBUY/compare/2cd600071b...ccca2b8a25",
-      "updated": "2026-10-06 07:31:27 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 6, 2026 07:31 1 commit to main ccca2b8 fix(ui): remove misleading 🆕 emoji from quantity tracking button"
+      "title": "tbdavid2019 pushed tg-Channel-2-web",
+      "url": "https://github.com/tbdavid2019/tg-Channel-2-web/compare/0e5d034114...8f21740f1c",
+      "updated": "2026-10-05 09:39:51 UTC",
+      "summary": "tbdavid2019 pushed to master in tbdavid2019/tg-Channel-2-web · October 5, 2026 09:39 1 commit to master 8f21740 fix: use a single page scrollbar"
     },
     {
-      "title": "tbdavid2019 pushed afterBUY",
-      "url": "https://github.com/tbdavid2019/afterBUY/compare/3b70f4976e...2cd600071b",
-      "updated": "2026-10-06 07:28:00 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 6, 2026 07:28 1 commit to main 2cd6000 feat(ui): add ItemBrandBadge with smart icon engine and squircle bent…"
+      "title": "tbdavid2019 pushed nodewarden",
+      "url": "https://github.com/tbdavid2019/nodewarden/compare/bbf28a9132...5b9f4f65a7",
+      "updated": "2026-10-06 10:12:12 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/nodewarden · October 6, 2026 10:12 1 commit to main 5b9f4f6 feat(auth): integrate Resend Email 2FA OTP with hardened security and…"
     },
     {
       "title": "tbdavid2019 pushed travel-roamradar",
-      "url": "https://github.com/tbdavid2019/travel-roamradar/compare/cf673ecdc6...578ea57d4d",
-      "updated": "2026-10-06 07:27:56 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/travel-roamradar · October 6, 2026 07:27 1 commit to main 578ea57 docs: add AGENTS.md guidelines and update changelog"
+      "url": "https://github.com/tbdavid2019/travel-roamradar/compare/980f430873...4d93f70c93",
+      "updated": "2026-10-06 09:48:03 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/travel-roamradar · October 6, 2026 09:48 1 commit to main 4d93f70 fix(website): update author attribution to david888.com and point CTA…"
     }
   ],
-  "lastSyncedAt": "2026-10-06T08:00:22.067Z",
+  "lastSyncedAt": "2026-10-07T04:23:18.000Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

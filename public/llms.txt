@@ -2,7 +2,7 @@
 
 > 把複雜的技術，轉化為看得見的商業成果 / Turning complex technology into visible business outcomes. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
-David Chiang (David888) is a CTO, Technical Advisor, and serial entrepreneur with 10+ years of enterprise engineering leadership.
+David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
 
 - Contact Email: 台北/高雄 可合作

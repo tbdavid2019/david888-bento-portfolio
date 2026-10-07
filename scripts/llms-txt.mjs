@@ -7,7 +7,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     '',
     `> ${content.zh.headline} / ${content.en.headline}. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.`,
     '',
-    'David Chiang (David888) is a CTO, Technical Advisor, and serial entrepreneur with 10+ years of enterprise engineering leadership.',
+    'David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.',
     'Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.',
     '',
     `- Contact Email: ${profile.contactLine || '104@david888.com'}`,
