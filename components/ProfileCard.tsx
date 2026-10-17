@@ -82,14 +82,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     <div className="dossier-card p-5 sm:p-7 md:p-8">
       <div className="flex flex-col gap-6">
         {/* Top Executive Identity Header */}
-        <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-center">
             <img
               src="/bento/me.jpg"
               alt={profileData.name}
               className="h-20 w-20 shrink-0 rounded-2xl border-2 border-[#17324d] object-cover shadow-sm sm:h-24 sm:w-24 dark:border-[#ffb010]"
             />
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono text-sm font-extrabold text-[#a9471d] dark:text-[#ffb010]">
                   {profileData.name} (David888)
@@ -98,21 +98,21 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
                   {isEn ? 'CTO & TECHNICAL ADVISOR' : 'CTO & 技術顧問'}
                 </span>
               </div>
-              <h1 className="mt-2 max-w-[36ch] text-2xl font-extrabold leading-[1.22] tracking-tight text-text-main sm:text-3xl md:text-[2rem]">
+              <h1 className="mt-2 max-w-[36ch] break-words text-2xl font-extrabold leading-[1.22] tracking-tight text-text-main sm:text-3xl md:text-[2rem]">
                 {content.headline}
               </h1>
             </div>
           </div>
 
           {/* Primary Executive CTAs - Mobile Full-Width Responsive */}
-          <div className="flex w-full shrink-0 flex-wrap items-center gap-2.5 md:w-auto">
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2.5 lg:w-auto">
             {onContact && (
               <button
                 type="button"
                 onClick={onContact}
                 className="btn-saffron inline-flex min-h-[46px] w-full items-center justify-center gap-2 px-5 py-2.5 text-sm sm:w-auto"
               >
-                <span>{isEn ? 'Contact for Advisory / CTO Role' : '洽談顧問合作 / 高階職缺'}</span>
+                <span>{isEn ? 'Contact for Advisory / CTO Role' : '洽談顧問合作 / 技術管理職缺'}</span>
                 <ArrowRight size={16} />
               </button>
             )}
@@ -154,23 +154,23 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
                     onSelectRoute?.('executive');
                   }
                 }}
-                className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-bg-elevated px-3.5 py-3 text-xs font-extrabold text-text-main transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] sm:text-sm dark:hover:border-[#ffb010] dark:hover:bg-[#17324d]"
+                className="flex min-w-0 cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-bg-elevated px-3.5 py-3 text-xs font-extrabold text-text-main transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] sm:text-sm dark:hover:border-[#ffb010] dark:hover:bg-[#17324d]"
               >
                 <Icon size={17} className="shrink-0 text-[#17324d] dark:text-[#ffb010]" />
-                <span>{pill.text}</span>
+                <span className="min-w-0 break-words">{pill.text}</span>
               </div>
             );
           })}
         </div>
 
         {/* 4 Key Metrics Bar */}
-        <div className="grid grid-cols-2 gap-3 rounded-xl border border-border bg-bg-elevated p-4 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-bg-elevated p-4 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((metric) => (
-            <div key={metric.label} className="border-l-2 border-[#ffb010] pl-3">
+            <div key={metric.label} className="min-w-0 border-l-2 border-[#ffb010] pl-3">
               <div className="font-mono text-xl font-extrabold tabular-nums text-text-main sm:text-2xl">
                 {metric.value}
               </div>
-              <div className="mt-0.5 text-xs font-bold text-text-muted">{metric.label}</div>
+              <div className="mt-0.5 break-words text-xs font-bold text-text-muted">{metric.label}</div>
             </div>
           ))}
         </div>
@@ -179,13 +179,13 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-xs font-bold text-text-muted sm:text-sm">
           <div className="flex items-center gap-2">
-            <MapPin size={15} className="text-[#a9471d] dark:text-[#ffb010]" aria-hidden="true" />
+            <MapPin size={15} className="shrink-0 text-[#a9471d] dark:text-[#ffb010]" aria-hidden="true" />
             <span>{contactLine}</span>
           </div>
-          <div className="font-mono text-xs text-text-muted">
+          <div className="min-w-0 max-w-full break-words font-mono text-xs text-text-muted">
             {isEn
-              ? 'Canonical Routes: /executive · /flagships · /finance · /products · /agent-skills'
-              : '支援路由直達：/executive · /flagships · /finance · /products · /agent-skills'}
+              ? 'Routes: /executive · /flagships · /finance · /products · /agent-skills'
+              : '路由直達：/executive · /flagships · /finance · /products · /agent-skills'}
           </div>
         </div>
       </div>

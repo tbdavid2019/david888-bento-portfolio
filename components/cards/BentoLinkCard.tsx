@@ -349,12 +349,12 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
                 rel="noopener noreferrer"
                 title={link.cloneCommand}
                 aria-label={
-                  isEn ? 'Open source for local run' : '開啟原始碼並在本機運行'
+                  isEn ? 'Open source for local run' : '開啟原始碼並在本機執行'
                 }
                 onClick={(event) => event.stopPropagation()}
                 className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-3 py-1.5 text-xs font-extrabold text-text-main no-underline transition-colors hover:border-[#17324d] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:hover:border-[#ffb010]"
               >
-                <span>{isEn ? 'Run locally' : '本機運行'}</span>
+                <span>{isEn ? 'Run locally' : '本機執行'}</span>
                 <ExternalLink size={13} />
               </a>
             )}

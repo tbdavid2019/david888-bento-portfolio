@@ -43,7 +43,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
             'Hiring & leadership support: interviewing, evaluating, and mentoring engineering leads',
           ]
         : [
-            '定期參與技術決策、系統架構檢視、雲端成本調整與技術債整理',
+            '依約定頻率（每週或雙週）參與架構檢視、技術決策會議與雲端成本調整',
             '跨系統資料流串接：整合電商、CRM (Salesforce/HubSpot)、ERP 庫存與售後 RMA 退換貨流程',
             '技術人才招募與培育：協助面試、評估與培養技術主管 (VP / Director / Architect)',
           ],
@@ -80,12 +80,12 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         : '適合：創投機構、投資人、企業併購評估與系統效能改善',
       deliverables: isEn
         ? [
-            'Pre-investment codebase review, scalability assessment & security check (delivered within 2 weeks)',
+            'Pre-investment codebase review, scalability assessment & security configuration check (approx. 1–2 weeks)',
             'Evaluate engineering team execution, technical debt, and realistic maintenance costs',
             'System diagnosis and recovery plans for peak-traffic bottlenecks or data sync issues',
           ]
         : [
-            '投資與併購前第三方評估：2 週內交付架構、程式碼品質與資安法遵三面向評估報告',
+            '投資與併購前第三方評估：依標的資料完整度，約 1–2 週交付系統架構、程式碼品質與資安設定檢視報告（屬技術評估，非法律意見）',
             '團隊交付與維護成本評估：協助投資人釐清實際技術狀況、技術債與後續維護成本',
             '系統瓶頸診斷：針對促銷檔期流量異常、資料庫效能瓶頸或跨系統資料不同步提出改善方案',
           ],
@@ -235,7 +235,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
                     <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#2b251a] bg-[#ffb010] text-[#2b251a]">
                       <Icon size={20} strokeWidth={2} />
                     </span>
-                    <h3 className="text-lg font-extrabold leading-snug text-text-main">
+                    <h3 className="min-w-0 break-words text-lg font-extrabold leading-snug text-text-main">
                       {pkg.title}
                     </h3>
                   </div>
@@ -251,7 +251,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
                           size={16}
                           className="mt-0.5 shrink-0 text-[#17324d] dark:text-[#ffb010]"
                         />
-                        <span>{item}</span>
+                        <span className="min-w-0 break-words">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -296,7 +296,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
                 className="flex h-full flex-col rounded-xl border border-border bg-bg-elevated p-5 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-extrabold leading-snug text-text-main sm:text-xl">
+                  <h3 className="min-w-0 break-words text-lg font-extrabold leading-snug text-text-main sm:text-xl">
                     {item.title}
                   </h3>
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#17324d]/30 bg-bg-surface text-[#17324d] dark:border-[#ffb010]/40 dark:text-[#ffb010]">
@@ -305,13 +305,13 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
                 </div>
 
                 {/* Metrics Banner */}
-                <div className="my-4 grid grid-cols-3 gap-2 rounded-lg border border-border bg-bg-surface p-3 text-center">
+                <div className="my-4 grid grid-cols-1 gap-2.5 rounded-lg border border-border bg-bg-surface p-3 text-left sm:grid-cols-3 sm:gap-2 sm:text-center">
                   {item.metrics.map((metric, idx) => (
-                    <div key={idx} className="min-w-0">
-                      <div className="truncate font-mono text-xs font-extrabold tabular-nums text-text-main sm:text-base">
+                    <div key={idx} className="min-w-0 flex items-center justify-between gap-2 sm:block">
+                      <div className="break-words font-mono text-xs font-extrabold tabular-nums text-text-main sm:text-sm">
                         {metric.value}
                       </div>
-                      <div className="mt-0.5 truncate text-[11px] font-bold text-text-muted">
+                      <div className="mt-0.5 break-words text-[11px] font-bold text-text-muted">
                         {metric.label}
                       </div>
                     </div>
@@ -365,7 +365,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
           <p className="text-sm font-semibold text-text-muted">
             {isEn
               ? 'Send an inquiry directly—your message goes straight to David with an instant tracking number.'
-              : '歡迎直接填寫表單聯繫，訊息會直達 David 信箱並產生專屬服務單號。謝絕博弈與非法資金盤項目。'}
+              : '歡迎直接填寫表單聯繫，訊息會直達 David 信箱並產生服務單號。'}
           </p>
         </div>
         <div className="flex w-full flex-wrap items-center gap-2.5 sm:w-auto">

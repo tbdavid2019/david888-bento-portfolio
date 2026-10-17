@@ -84,11 +84,11 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     titleZh: '888 StockQuant ｜ 時間序列預測與籌碼分析平台',
     titleEn: '888 StockQuant — Time-Series Forecasting & Market Data Platform',
     subtitleZh:
-      '結合 Google TimesFM、Timestral 與 LSTM 時間序列模型，整理台美股走勢預測與三大法人、券商分點買賣超資料。',
+      '結合 Google TimesFM、Timestral 與 LSTM 時間序列模型，整理台美股走勢區間與三大法人、券商分點買賣超資料。',
     subtitleEn:
       'Quantitative data workbench combining Google TimesFM, Timestral, and LSTM models for price forecasting alongside broker-branch chip tracking.',
     breakthroughsZh: [
-      '時間序列預測模型：使用 TimesFM、Timestral 與 LSTM 模型計算台美股次日走勢區間',
+      '時間序列預測模型：使用 TimesFM、Timestral 與 LSTM 模型計算台美股走勢區間供研究參考',
       '券商分點與法人籌碼：追蹤券商分點買賣超變化與三大法人資金流向',
       '技術指標整理：自動計算 MACD、RSI、波動率通道與量價指標，集中於單一介面檢視',
     ],
@@ -111,7 +111,7 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     url: 'https://news2.david888.com/',
     repoUrl: 'https://github.com/tbdavid2019/888news',
     docUrl: 'https://news2.david888.com/agent',
-    docLabelZh: 'Agent 接入指南',
+    docLabelZh: 'Agent 串接指南',
     docLabelEn: 'Agent Guide',
     icon: Newspaper,
     titleZh: '888news ｜ 科技與 AI 新聞自動彙整系統',
@@ -198,7 +198,7 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     subtitleEn:
       'Consumer web application combining a deterministic calendar calculation engine with multi-turn AI Q&A across Qi Men, Bazi, Tarot, and Feng Shui.',
     breakthroughsZh: [
-      '固定規則排盤程式：先以程式精確算出二十四節氣、陰陽遁局與天干地支命盤，避免語言模型自己算錯干支',
+      '固定規則排盤程式：二十四節氣、陰陽遁局與天干地支排盤皆由固定規則程式計算，AI 僅負責後續問答解讀',
       '八字人生 K 線與多輪問答：將大運流年繪製成 K 線圖表，並支援依據排盤結果繼續追問',
       '多主題產品整合：在同一個網站架構下整合奇門、八字、塔羅、風水與月老等子服務',
     ],
@@ -259,7 +259,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
             </p>
           </div>
           <div className="shrink-0 font-mono text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">
-            {isEn ? '5 LIVE DOMAINS' : '5 個線上運行網域'}
+            {isEn ? '5 LIVE DOMAINS' : '5 個目前上線的網域'}
           </div>
         </div>
 
@@ -285,13 +285,13 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                         href={sys.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-md border border-[#17324d]/30 bg-[#fff0cc] px-2.5 py-1 font-mono text-xs font-bold text-[#17324d] no-underline transition-colors hover:bg-[#ffb010] dark:border-[#ffb010]/40 dark:bg-[#17324d] dark:text-[#ffb010]"
+                        className="max-w-full break-all rounded-md border border-[#17324d]/30 bg-[#fff0cc] px-2.5 py-1 font-mono text-xs font-bold text-[#17324d] no-underline transition-colors hover:bg-[#ffb010] dark:border-[#ffb010]/40 dark:bg-[#17324d] dark:text-[#ffb010]"
                       >
                         {sys.domain}
                       </a>
                     </div>
 
-                    <h3 className="mt-3 text-xl font-extrabold leading-snug text-text-main sm:text-2xl">
+                    <h3 className="mt-3 min-w-0 break-words text-xl font-extrabold leading-snug text-text-main sm:text-2xl">
                       <a
                         href={sys.url}
                         target="_blank"
@@ -490,7 +490,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                         rel="noopener noreferrer"
                         className="inline-flex min-h-[36px] shrink-0 items-center gap-1 self-start font-mono text-xs font-bold text-[#a9471d] hover:underline sm:self-auto dark:text-[#ffb010]"
                       >
-                        <span>{isEn ? 'View Full Agent Docs →' : '查看完整 Agent 接入指南 →'}</span>
+                        <span>{isEn ? 'View Full Agent Docs →' : '查看完整 Agent 串接指南 →'}</span>
                       </a>
                     </div>
                   </div>

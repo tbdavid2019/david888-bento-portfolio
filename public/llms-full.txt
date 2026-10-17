@@ -39,7 +39,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 - [888news | 科技與 AI 新聞自動彙整系統 (888news - Tech & AI News Aggregator)](https://news2.david888.com/): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
 - [888 2FA | 雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
-- [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密秒登與 WebCal 日曆無殘留同步。
+- [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密碼登入與 WebCal 日曆訂閱同步。
 - [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
 - [Telegram: Oli Summary 總結王](https://t.me/quantaar_bot)
 - [Telegram: Oli家 古靈 Gemini](https://t.me/oli_photo_bot)
@@ -53,13 +53,13 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [888box 檔案中心 (888box File Center)](https://box.david888.com/): 開源的類 Dropbox 雲端儲存與檔案管理中心。
 - [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
 - [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
-- [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天+AI摘要，可嵌入任何網站，無需後端。
+- [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
 - [888 Tool (888 Tool)](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
 - [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
 - [888desturl 最終目的地網址追蹤](https://url.david888.com/): 使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。
 - [Shorten and undo closed URL 333 (Shorten and Undo Closed URL 333)](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。
 - [final destination 檢查網址的最終目的地 333 (Final Destination 333)](https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln): 輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。
-- [輪盤選擇器 333 (Roulette Picker 333)](https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp): 支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。
+- [輪盤選擇器 333 (Roulette Picker 333)](https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp): 支援離線使用的決策小工具，提供可自訂選項的轉盤介面，協助快速做決定。
 - [LINE 群組人](https://line.me/R/ti/p/@377mwhqu)
 - [LINE 解惑人](https://line.me/R/ti/p/@728wsrjq)
 - [AnswerBook API (AnswerBook API)](https://answerbook.david888.com/): 可作為知識查詢與回答層的 API 入口，適合串接內部問答、文件檢索與工具流程。
@@ -69,15 +69,15 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 ## Skills for LLMs & AI Agents
 
 - [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
-- [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 自動每日更新，讓你的 LLM 有面對 OpenClaw 疑難雜症處理的能力，幫助解決開發問題。
+- [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題。
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
 - [888a2a Agent 平台 (888a2a - Multi-Agent Platform)](https://github.com/tbdavid2019/888a2a): A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。
 - [CF Notepad Skill (CF Notepad Skill)](https://github.com/tbdavid2019/cf-notepad): Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。
 - [888box Skill (888box Skill)](https://box.david888.com/skill.php): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
-- [Telegram Bot Agent Skill](https://github.com/tbdavid2019/telegram-docs-skill): 提供 Telegram Bot API 開發知識，讓你的 LLM 成為 Telegram 機器人專家。
-- [LINE Platform Agent Skill](https://github.com/tbdavid2019/line-docs-skill): 讓你的 LLM 擁有 LINE Bot / LineOA / LINE 官方帳號的完整開發知識。
+- [Telegram Bot Agent Skill](https://github.com/tbdavid2019/telegram-docs-skill): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill。
+- [LINE Platform Agent Skill](https://github.com/tbdavid2019/line-docs-skill): 整理 LINE Bot 與 LINE 官方帳號開發文件與串接規範的 Agent Skill。
 - [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。
-- [Hermes Agent Skill](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動更新，讓你的 LLM 擁有 Hermes Agent 的完整維護與運行知識。
+- [Hermes Agent Skill](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill。
 
 ## Games, AR/VR & Interactive Visuals
 
@@ -118,7 +118,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 #### 1. 年度企業技術顧問（一年期顧問約）
 
-適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。以一年期顧問方式，定期參與技術決策、檢視系統架構、串接電商與 CRM/ERP 資料流、調整雲端成本，並協助面試與培育技術主管。
+適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。以一年期顧問方式，依約定頻率（每週或雙週）參與技術決策與架構檢視、規劃電商與 CRM/ERP 資料串接、檢討雲端成本，並協助面試與培育技術主管。
 
 #### 2. 技術長 / 研發部門負責人（CTO / VP of Engineering）
 
@@ -126,7 +126,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 #### 3. 技術盡職調查與系統診斷（Tech Due Diligence）
 
-為投資人與企業提供投資或併購前的第三方技術評估——2 週內交付架構、程式碼品質與資安法遵三面向評估報告；或針對促銷檔期流量瓶頸、跨系統資料不同步等問題提供改善方案。
+為投資人與企業提供投資或併購前的第三方技術評估——依標的資料完整度，約 1–2 週交付系統架構、程式碼品質與資安設定檢視報告（屬技術評估，非法律意見）；或針對促銷檔期流量瓶頸、跨系統資料不同步等問題提供改善方案。
 
 #### 主要經歷與線上作品
 
@@ -134,9 +134,9 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 - 跨國消費性電子品牌（跨系統整合）：串接客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP / RMA 退換貨流程，將跨部門人工傳遞的退換貨處理時間從數天縮短至數分鐘。
 
-- 個人開發並維護的線上系統：包含 888 StockBot 2.0 股票估值與籌碼分析、888 StockQuant 時間序列預測平台、888news 科技新聞自動彙整、DAVID888 Daily 自動化語音 Podcast，以及 333 奇門遁甲曆法排盤網站。
+- 個人開發並維護的線上系統：包含 888 StockBot 2.0 股票估值與籌碼分析、888 StockQuant 時間序列模型試算平台、888news 科技新聞自動彙整、DAVID888 Daily 自動化語音 Podcast，以及 333 奇門遁甲曆法排盤網站。
 
-> 合作方式：一年期企業技術顧問｜正職技術主管 (CTO / VP of Engineering)｜技術盡職調查 (Tech DD)。謝絕博弈、資金盤與非法項目。
+> 合作方式：一年期企業技術顧問｜正職技術主管 (CTO / VP of Engineering)｜技術盡職調查 (Tech DD)。
 
 ## About David Chiang (English)
 
@@ -210,7 +210,7 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 - URL: https://tbdavid2019.github.io/afterBUY
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密秒登與 WebCal 日曆無殘留同步。
+- Description (ZH): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密碼登入與 WebCal 日曆訂閱同步。
 - Description (EN): Mobile-first PWA for replenishment tracking, period-after-opening (PAO) alerts, warranty countdowns, and spare inventory, featuring Passkey authentication and WebCal sync.
 
 ### 學術論文追蹤器 / Academic Paper Tracker
@@ -346,8 +346,8 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 - URL: https://webtalk-nine.vercel.app/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天+AI摘要，可嵌入任何網站，無需後端。
-- Description (EN): Multi-user real-time chat tool that lets visitors on the same website discuss and view content together. Supports chat + AI summary, can be embedded on any website without backend.
+- Description (ZH): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
+- Description (EN): Multi-user real-time chat tool that lets visitors on the same website discuss and view content together. Supports chat + AI summary, can be embedded on any website without a custom backend.
 
 ### 888 Tool / 888 Tool
 - URL: https://tool.david888.com/
@@ -432,7 +432,7 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 - URL: https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp
 - Category: products
 - Section: 瀏覽器產品｜實用與資安 (Browser Products - Utilities & Security)
-- Description (ZH): 支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。
+- Description (ZH): 支援離線使用的決策小工具，提供可自訂選項的轉盤介面，協助快速做決定。
 - Description (EN): An offline-friendly decision helper with a simple custom option editor and a roulette wheel for quick lightweight choices.
 
 ### LINE 群組人
@@ -454,7 +454,7 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 ### OpenClaw Agent Skill
 - URL: https://github.com/tbdavid2019/openclaw-docs-skill
 - Category: agent-skills
-- Description (ZH): 自動每日更新，讓你的 LLM 有面對 OpenClaw 疑難雜症處理的能力，幫助解決開發問題。
+- Description (ZH): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題。
 
 ### 論文雷達 Agent Skill / Daily Paper Scout Skill
 - URL: https://github.com/tbdavid2019/paper-daily
@@ -490,12 +490,12 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 ### Telegram Bot Agent Skill
 - URL: https://github.com/tbdavid2019/telegram-docs-skill
 - Category: agent-skills
-- Description (ZH): 提供 Telegram Bot API 開發知識，讓你的 LLM 成為 Telegram 機器人專家。
+- Description (ZH): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill。
 
 ### LINE Platform Agent Skill
 - URL: https://github.com/tbdavid2019/line-docs-skill
 - Category: agent-skills
-- Description (ZH): 讓你的 LLM 擁有 LINE Bot / LineOA / LINE 官方帳號的完整開發知識。
+- Description (ZH): 整理 LINE Bot 與 LINE 官方帳號開發文件與串接規範的 Agent Skill。
 
 ### SAP Spartacus Agent Skill
 - URL: https://github.com/tbdavid2019/SAP-spartacus-docs-skill
@@ -505,7 +505,7 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 ### Hermes Agent Skill
 - URL: https://github.com/tbdavid2019/hermes-agent-docs-skill
 - Category: agent-skills
-- Description (ZH): 自動更新，讓你的 LLM 擁有 Hermes Agent 的完整維護與運行知識。
+- Description (ZH): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill。
 
 ### Lofi Music 輕音樂
 - URL: http://music.david888.com/

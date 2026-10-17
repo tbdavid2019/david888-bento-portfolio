@@ -30,7 +30,7 @@ test('shows runtime status tooltips and local clone actions on link cards', () =
   assert.match(linkCardSource, /title=\{statusTooltip\}/);
   assert.match(linkCardSource, /repoUrl/);
   assert.match(linkCardSource, /cloneCommand/);
-  assert.match(linkCardSource, /本機運行/);
+  assert.match(linkCardSource, /本機執行/);
 });
 
 test('provides a global work search collapsible in the navbar', () => {
