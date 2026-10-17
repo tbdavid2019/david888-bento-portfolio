@@ -1015,8 +1015,6 @@
     "type": "link",
     "title": "DAVID888 Daily 每日科技播客（英文版）",
     "titleEn": "DAVID888 Daily Podcast (English Edition)",
-    "description": "每日自動抓取 Hacker News、GitHub Trending 與 Product Hunt 科技焦點，由神經網路 TTS 自動產出之每日英文科技 Podcast。",
-    "descriptionEn": "Daily automated tech podcast summarizing Hacker News, GitHub Trending, and Product Hunt into English audio episodes.",
     "url": "https://podcast.david888.com/en",
     "imageSource": "/bento/podcast.svg",
     "featured": true,

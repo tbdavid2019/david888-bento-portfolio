@@ -51,7 +51,20 @@ const stackedSocialTitles = new Set([
   'DAVID888 Daily 每日放送',
   'Threads: @david888.chiang',
   'Podcast: DAVID888商業報告[Oli家]',
+  'DAVID888 Daily 每日科技播客（英文版）',
 ]);
+
+const isStackedSocialItem = (item: BentoItem) => {
+  if (isLinkedInItem(item)) return false;
+  if ('title' in item) {
+    return (
+      stackedSocialTitles.has(item.title) ||
+      item.title.startsWith('DAVID888 Daily') ||
+      item.title.startsWith('Podcast:')
+    );
+  }
+  return false;
+};
 
 const categoryIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   social: Radio,
@@ -455,9 +468,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                       {shouldShowPodcastFeed && !section && (
                         <div className="md:col-span-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
                           {sectionItems
-                            .filter(
-                              (item) => 'title' in item && stackedSocialTitles.has(item.title),
-                            )
+                            .filter(isStackedSocialItem)
                             .map((item, index) => (
                               <div key={`stacked-social-${index}`}>
                                 {renderItem(item, locale)}
@@ -471,8 +482,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                           (item) =>
                             !shouldShowPodcastFeed ||
                             section ||
-                            (!isLinkedInItem(item) &&
-                              (!('title' in item) || !stackedSocialTitles.has(item.title))),
+                            (!isLinkedInItem(item) && !isStackedSocialItem(item)),
                         );
                         const sectionKey = `${activeCategory?.id}-${section || 'main'}`;
                         const isExpanded = !!expandedSections[sectionKey];

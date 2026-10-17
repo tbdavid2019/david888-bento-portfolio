@@ -150,12 +150,12 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         : '投資與併購前「技術盡職調查 (Tech Due Diligence)」',
       metrics: isEn
         ? [
-            { label: 'Leadership Scale', value: 'Former GM · 300+ Staff' },
+            { label: 'Leadership Scale', value: '300+ Org Management' },
             { label: 'Review Scope', value: 'Arch · Code · Sec' },
             { label: 'Turnaround', value: 'Within 2 Weeks' },
           ]
         : [
-            { label: '最高管理經驗', value: '曾任總經理 · 300+ 人' },
+            { label: '最高管理幅度', value: '300+ 人跨部門組織' },
             { label: '評估範圍', value: '架構 · 程式碼 · 資安' },
             { label: '交付時程', value: '2 週內出件' },
           ],

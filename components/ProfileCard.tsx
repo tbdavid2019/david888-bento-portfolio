@@ -33,7 +33,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   const metrics = [
     {
       value: '300+ 人',
-      label: isEn ? 'Former GM · Led 300+ Staff Org' : '曾任總經理 · 管理 300+ 人組織',
+      label: isEn
+        ? 'Management Span · Leads Teams & Stays Hands-on'
+        : '組織管理幅度 · 能帶大團隊，也熱愛動手寫 Code',
     },
     {
       value: '70 人',

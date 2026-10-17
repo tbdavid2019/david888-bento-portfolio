@@ -3,6 +3,13 @@
 ## [2026-10-17] - Contact Dialog Tone Softening & Zero-Friction UX, English Podcast Edition, and Live Catalog Updates
 
 ### Fixed & Enhanced
+- **Executive Copywriting Overhaul: Zero "總經理" Titles & Grounded Management Span (`ProfileCard.tsx`, `ExecutiveBriefing.tsx`, `profile-content.zh.md`, `profile-content.en.md`)**:
+  - **Completely Eradicated "曾任總經理" / "Former General Manager"**: Removed all corporate GM titles that create an unapproachable "高高在上" barrier or make hiring teams assume an ivory-tower manager who doesn't build.
+  - **Repositioned 300+ Metric to Grounded, Hands-on Leadership**: Reframed the metric to **`300+ 人` ｜ `組織管理幅度 · 能帶大團隊，也熱愛動手寫 Code`** (EN: `Management Span · Leads Teams & Stays Hands-on`).
+  - **Emphasized Rare Dual-Threat Value**: Clearly conveys the ability to steer multi-hundred person organizations through growth bottlenecks while remaining deeply grounded and active in first-line technical execution, architecture, and code.
+- **Fixed Social Bento Grid Layout Hole & Empty Slots (`components/BentoGrid.tsx`, `data/bento-links.json`)**:
+  - **Eliminated Orphan Cards & Empty Grid Slots**: Fixed the gap in the 2-column social grid where un-stacked cards fell into an isolated outer grid, leaving an empty hole beside Threads.
+  - **Unified 2x2 Symmetrical Grid**: Integrated all 4 active social link cards (`DAVID888 YouTube`, `DAVID888 Daily 每日放送`, `Threads: @david888.chiang`, `DAVID888 Daily 每日科技播客（英文版）`) into `isStackedSocialItem` and standardized card heights, producing a clean, gap-free 2x2 grid.
 - **Contact Dialog Tone Softening & Friction Reduction (`components/ContactDialog.tsx`)**:
   - **Removed Visual Asterisks (`*`)**: Removed visual asterisks from all form labels (`姓名`, `Email`, `交流主旨`, `想討論的內容`, and custom topic input), eliminating excessive visual stress and bureaucratic feel while maintaining HTML5 `required` validation and Clef-Flash zero-shot spam protection.
   - **Humanized Header & Submit Button**: Softened the modal header from IT-ticketing tone ("把你的問題交給我") to approachable executive greeting **`與 David 交流與合作`** (EN: `Get in Touch with David`), and changed the submit button from "送出並取得服務序號" to clean and natural **`送出訊息`** (EN: `Send Message`).

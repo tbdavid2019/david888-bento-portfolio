@@ -1,8 +1,8 @@
 # Turning Complex Technology into Business Results
 
-> Enterprise e-commerce architecture, cross-system integration, and leadership of 300+ person organizations.
+> Enterprise e-commerce architecture, cross-system integration, with proven 300+ person management span and hands-on execution.
 
-Over a decade of experience in enterprise technology management and software development. Served as General Manager managing an enterprise organization of 300+ people, led a 70-engineer team delivering an international health & beauty retail SAP e-commerce platform, and unified global CRM/ERP operations—while continuing to write code and maintain quantitative finance, automated media, and rule-based web products.
+Over a decade of experience in enterprise technology management and software development. Proven leadership managing organizations up to 300+ people, led a 70-engineer team delivering an international health & beauty retail SAP e-commerce platform, and unified global CRM/ERP operations—bridging strategic vision with hands-on software development across quantitative finance, automated media, and rule-based web products.
 
 ## Engagement Options
 
