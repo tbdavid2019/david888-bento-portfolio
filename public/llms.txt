@@ -1,6 +1,6 @@
 # David Chiang (David888) - CTO & Technical Advisor Portfolio
 
-> 跨國大型電商、企業系統整合與百人研發治理的實戰派技術長 (CTO) & 企業首席顧問 / Enterprise CTO & Principal Technical Advisor: Global eCommerce, Cross-System Architecture & 300+ Org Leadership. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
+> 把複雜的技術，轉化為看得見的商業成果 / Turning Complex Technology into Business Results. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
@@ -29,35 +29,35 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 ## Finance & Quantitative Systems
 
 - [台灣公司關係網路可視化 (Taiwan Company Network Visualization)](https://taiwan-company-network.david888.com/): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
-- [888 StockBot 2.0 | 機構級金融智能體 (888 StockBot 2.0 - Institutional Finance AI)](https://bot.david888.com/): 純 TypeScript 原生量化引擎（DCF 估值、Minervini SEPA、華爾街財報前瞻、期權損益模擬、微觀流動性），完整整併台灣三大法人籌碼情報、TradingView 互動走勢圖、Generative UI 互動卡片與 2MD 即時連網搜尋。
-- [888 Stock Quant | 專業量化決策平台 (888 Stock Quant - Quantitative Platform)](https://stockdata.david888.com/): 結合 Google TimesFM 與 Timestral 雙時序基礎大模型、LSTM 次日預測、台美股多維技術面矩陣與三大法人及券商分點籌碼雷達的專業級量化工作台。
+- [888 StockBot 2.0 | 台美股估值與籌碼分析系統 (888 StockBot 2.0 - Equity Valuation & Chip Analysis)](https://bot.david888.com/): 以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。
+- [888 Stock Quant | 時間序列預測與籌碼平台 (888 Stock Quant - Quantitative Platform)](https://stockdata.david888.com/): 結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。
 - [Telegram: 股靈精怪 Stock](https://t.me/oli_billion_bot)
 - [Telegram: 投資新聞濃縮包](https://t.me/oliservice)
 - [選出潛力股 | 投資新聞濃縮包 | 333](https://stock.david888.com/)
 
 ## Products & Work
 
-- [888news | 全球科技與 AI 情報雷達 (888news - Global Tech & AI Intelligence Radar)](https://news2.david888.com/): 全天候自動追蹤全球上百個頂尖科技與 AI 信源（OpenAI、Anthropic、Google DeepMind、Meta 等），透過多源報導語意歸組、LLM 品質評分與行銷噪音過濾，每日清晨精準呈獻高管級科技情報。
-- [888 2FA | 邊緣雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 基於 Cloudflare Workers 的極速 2FA 金鑰管理系統。純 Web Crypto API 實作 Passkey / WebAuthn 免密生物辨識登入，支援 PWA 離線 TOTP、多端備份與微秒級時間校準。
+- [888news | 科技與 AI 新聞自動彙整系統 (888news - Tech & AI News Aggregator)](https://news2.david888.com/): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
+- [888 2FA | 雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
 - [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密秒登與 WebCal 日曆無殘留同步。
-- [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 具身智能與前沿論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
+- [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
 - [Telegram: Oli Summary 總結王](https://t.me/quantaar_bot)
 - [Telegram: Oli家 古靈 Gemini](https://t.me/oli_photo_bot)
 - [Telegram: 小截圖 Screenshot](https://t.me/oli_img_bot)
-- [小濃縮 (Quick Summary & Chat) 333 (Quick Summary & Chat 333)](https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof): 一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。
-- [Tab-Word-Deck 333 分頁學單字 (Tab-Word-Deck 333)](https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar): 將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。
+- [小濃縮 (Quick Summary & Chat) 333 (Quick Summary & Chat 333)](https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof): 瀏覽器 AI 網頁摘要工具。支援串接 Gemini、ChatGPT、Groq 與自訂 BaseURL，可一鍵產生網頁與 YouTube 影片摘要。
+- [Tab-Word-Deck 333 分頁學單字 (Tab-Word-Deck 333)](https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar): 每次開啟瀏覽器新分頁時自動顯示英文單字卡，內建多種字庫、發音與例句複習功能。
 - [LINE 小濃縮](https://line.me/R/ti/p/@032trcev?from=page&liff.referrer=https%3A%2F%2Fblog.david888.com%2F&accountId=032trcev)
-- [Website Font Changer 333 改字體 (Website Font Changer 333)](https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW): 高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。
-- [側邊翻譯 333 (Side Translation 333)](https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg): 提供便捷側邊欄介面的翻譯輔助工具，讓使用者在瀏覽外語網站時能隨時進行對照翻譯，享受無憂的閱讀體驗。
-- [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。
+- [Website Font Changer 333 改字體 (Website Font Changer 333)](https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW): 網頁字體替換工具。可將任意網站的字體替換為使用者指定的系統字體，改善長文閱讀體驗。
+- [側邊翻譯 333 (Side Translation 333)](https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg): 提供側邊欄介面的網頁翻譯工具，方便在瀏覽外文網站時左右對照原文與譯文。
+- [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。
 - [888box 檔案中心 (888box File Center)](https://box.david888.com/): 開源的類 Dropbox 雲端儲存與檔案管理中心。
-- [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 極速網頁解析與 SERP 搜尋引擎，將即時網頁與搜尋結果迅速轉為乾淨 Markdown，專為 AI Agent 與 LLM 設計。
-- [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 二次開發 jina-reader 賦予系統有 batch url 處理能力，這裡可以直接使用 https://create360.ai
+- [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
+- [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
 - [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天+AI摘要，可嵌入任何網站，無需後端。
-- [888 Tool (888 Tool)](https://tool.david888.com/): 常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。比起單一產品，它更像是我持續擴充的效率箱，適合快速解決小而高頻的實際問題。
-- [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。對常常跨人協作、需要累積 know-how 的團隊特別實用。
+- [888 Tool (888 Tool)](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
+- [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
 - [888desturl 最終目的地網址追蹤](https://url.david888.com/): 使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。
-- [Shorten and undo closed URL 333 (Shorten and Undo Closed URL 333)](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。
+- [Shorten and undo closed URL 333 (Shorten and Undo Closed URL 333)](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。
 - [final destination 檢查網址的最終目的地 333 (Final Destination 333)](https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln): 輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。
 - [輪盤選擇器 333 (Roulette Picker 333)](https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp): 支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。
 - [LINE 群組人](https://line.me/R/ti/p/@377mwhqu)
@@ -68,7 +68,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Skills for LLMs & AI Agents
 
-- [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): Agent 直接呼叫五個工具。適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。
+- [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
 - [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 自動每日更新，讓你的 LLM 有面對 OpenClaw 疑難雜症處理的能力，幫助解決開發問題。
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
 - [888a2a Agent 平台 (888a2a - Multi-Agent Platform)](https://github.com/tbdavid2019/888a2a): A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。
@@ -76,7 +76,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [888box Skill (888box Skill)](https://box.david888.com/skill.php): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
 - [Telegram Bot Agent Skill](https://github.com/tbdavid2019/telegram-docs-skill): 提供 Telegram Bot API 開發知識，讓你的 LLM 成為 Telegram 機器人專家。
 - [LINE Platform Agent Skill](https://github.com/tbdavid2019/line-docs-skill): 讓你的 LLM 擁有 LINE Bot / LineOA / LINE 官方帳號的完整開發知識。
-- [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): SAP Spartacus e-commerce 前端開發文件 Skill，助力電商開發。
+- [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。
 - [Hermes Agent Skill](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動更新，讓你的 LLM 擁有 Hermes Agent 的完整維護與運行知識。
 
 ## Games, AR/VR & Interactive Visuals
@@ -91,8 +91,8 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Qi & Life Products
 
-- [888 人生K線 | 八字命理可視化](https://bazi.david888.com): 獨創八字命理 K 線化工具，將生辰八字轉化為直觀的能量波動圖，輔以 AI 解析您的運勢起伏。
-- [333 奇門遁甲 (333 Qi Men Dun Jia — AI Decision Engine)](https://qi.david888.com/): 高日活 (High-DAU) 複雜古曆法確定性排盤引擎 × 多輪結構化 AI 決策平台。整合奇門遁甲、梅花易數、八字人生 K 線、塔羅、風水與月老，將繁複的天干地支節氣規則轉化為零幻覺演算法與現代化產品體驗。
+- [888 人生K線 | 八字命理可視化](https://bazi.david888.com): 將生辰八字大運流年繪製成 K 線走勢圖，並搭配 AI 解讀運勢變化。
+- [333 奇門遁甲 (333 Qi Men Dun Jia — Calendar & AI Interpretation)](https://qi.david888.com/): 將奇門遁甲、生辰八字、梅花易數、風水與塔羅的排盤規則寫成固定演算法，再交由 AI 進行多輪問答解讀。
 - [塔羅占卜 (Tarot Reading)](https://qi.david888.com/tarot): 用牌面整理當下的問題與直覺，提供一個適合自我探索的占卜入口。
 - [生辰八字2 (Bazi 2)](https://qi.david888.com/bazi2): 輸入出生資訊，從傳統八字角度整理個人命盤與人生節奏。
 - [風水顧問 (Feng Shui Advisor)](https://qi.david888.com/fengshui): 從空間配置與居住情境出發，快速取得風水方向的參考建議。

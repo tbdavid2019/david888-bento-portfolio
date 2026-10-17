@@ -258,13 +258,13 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
         </div>
       </div>
 
-      <div className="mt-4 flex flex-1 flex-col">
-        <div className="text-lg font-bold leading-tight tracking-tight text-text-main md:text-xl">
+      <div className="mt-4 flex min-w-0 flex-1 flex-col">
+        <div className="break-words text-lg font-bold leading-tight tracking-tight text-text-main md:text-xl">
           {title}
         </div>
 
         {description && (
-          <div className="mt-2 text-sm leading-relaxed text-text-muted md:text-[15px]">
+          <div className="mt-2 break-words text-sm leading-relaxed text-text-muted md:text-[15px]">
             {description}
           </div>
         )}
@@ -272,7 +272,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
         {link.mcpConfig && (
           <div
             onClick={(e) => e.stopPropagation()}
-            className="mt-3 overflow-hidden rounded-xl border border-border bg-bg-surface p-3 text-xs"
+            className="mt-3 min-w-0 overflow-hidden rounded-xl border border-border bg-bg-surface p-3 text-xs"
           >
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/70 pb-2">
               <span className="font-mono text-[11px] font-extrabold text-[#a9471d] dark:text-[#ffb010]">
@@ -281,28 +281,28 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
               <button
                 type="button"
                 onClick={(e) => handleCopyMcp(e, mcpJson)}
-                className="inline-flex items-center gap-1 rounded-md border border-[#17324d] bg-[#fff0cc] px-2 py-1 font-mono text-[11px] font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010]"
+                className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md border border-[#17324d] bg-[#fff0cc] px-2.5 py-1 font-mono text-[11px] font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010]"
                 aria-label={isEn ? 'Copy MCP config' : '複製 MCP 組態'}
               >
                 {copiedMcp ? <Check size={12} /> : <Copy size={12} />}
                 <span>{copiedMcp ? (isEn ? 'Copied!' : '已複製！') : (isEn ? 'Copy JSON' : '複製組態')}</span>
               </button>
             </div>
-            <pre className="mt-2 overflow-x-auto rounded-lg bg-black/5 p-2 font-mono text-[11px] leading-tight text-text-main dark:bg-black/40">
+            <pre className="mt-2 max-w-full overflow-x-auto rounded-lg bg-black/5 p-2.5 font-mono text-[11px] leading-tight text-text-main dark:bg-black/40">
               <code>{mcpJson}</code>
             </pre>
           </div>
         )}
 
         {highlights && highlights.length > 0 && (
-          <ul className="mt-3 m-0 list-none space-y-1.5 rounded-lg border border-border/80 bg-bg-elevated p-3 text-xs leading-relaxed text-text-main sm:text-sm">
+          <ul className="mt-3 m-0 min-w-0 list-none space-y-1.5 rounded-lg border border-border/80 bg-bg-elevated p-3 text-xs leading-relaxed text-text-main sm:text-sm">
             {highlights.map((point, idx) => (
-              <li key={idx} className="flex items-start gap-2">
+              <li key={idx} className="flex min-w-0 items-start gap-2">
                 <CheckCircle2
                   size={15}
                   className="mt-0.5 shrink-0 text-[#17324d] dark:text-[#ffb010]"
                 />
-                <span>{point}</span>
+                <span className="min-w-0 max-w-full break-words [overflow-wrap:anywhere]">{point}</span>
               </li>
             ))}
           </ul>

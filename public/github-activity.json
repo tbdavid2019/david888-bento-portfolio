@@ -1,37 +1,37 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/475852dccf...ad501b60d0",
+      "updated": "2026-10-16 03:09:22 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 16, 2026 03:09 1 commit to main ad501b6 chore(web): deduplicate Google Fonts links"
+    },
+    {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/a2947ffa6c...08103e1bf0",
+      "updated": "2026-10-16 01:30:20 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 16, 2026 01:30 1 commit to main 08103e1 feat(podcast): fetch full episode detail, eliminate title/nav AI word…"
+    },
+    {
+      "title": "tbdavid2019 pushed telegram-bot-stock2",
+      "url": "https://github.com/tbdavid2019/telegram-bot-stock2/compare/070cf11795...ce5e34c5d4",
+      "updated": "2026-10-16 00:02:38 UTC",
+      "summary": "tbdavid2019 pushed to master in tbdavid2019/telegram-bot-stock2 · October 16, 2026 00:02 1 commit to master ce5e34c 支援台灣標案查詢"
+    },
+    {
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/9f869f0a18...c065875027",
+      "updated": "2026-10-16 03:12:10 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 16, 2026 03:12 1 commit to main c065875 fix(pipeline): audit scheduled sync pipelines, add 16:00 post-market …"
+    },
+    {
       "title": "tbdavid2019 pushed stockbot",
       "url": "https://github.com/tbdavid2019/stockbot/compare/932a6fc16b...f1f3b7f478",
       "updated": "2026-10-16 09:23:21 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/stockbot · October 16, 2026 09:23 1 commit to main f1f3b7f fix(rwd): comprehensive mobile-native layout and responsiveness overhaul"
-    },
-    {
-      "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/bc8cdf80d2...61b7847594",
-      "updated": "2026-10-16 07:19:28 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 16, 2026 07:19 1 commit to main 61b7847 fix(design): resolve color-converter TDZ initialization error and mak…"
-    },
-    {
-      "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/61b7847594...ae0621513c",
-      "updated": "2026-10-16 10:02:11 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 16, 2026 10:02 1 commit to main ae06215 feat(color-converter): add precision indicator and approximate CSS co…"
-    },
-    {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/fef2b75190...d99bf12593",
-      "updated": "2026-10-16 06:19:57 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 16, 2026 06:19 1 commit to main d99bf12 feat(ui): add tooltips &amp; strategy explainer, hide legacy LSTM, remove…"
-    },
-    {
-      "title": "tbdavid2019 pushed 888-url2md",
-      "url": "https://github.com/tbdavid2019/888-url2md/compare/17032c4b71...ccd0b731a3",
-      "updated": "2026-10-16 05:52:30 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 05:52 1 commit to main ccd0b73 feat(ui): redesign home as single-page converter"
     }
   ],
-  "lastSyncedAt": "2026-10-17T03:30:03.928Z",
+  "lastSyncedAt": "2026-10-17T08:53:38.019Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

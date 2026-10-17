@@ -32,32 +32,32 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   const isEn = locale === 'en';
   const metrics = [
     {
-      value: '300+',
-      label: isEn ? 'Max Engineering & Tech Org Scale' : '跨國科技與研發組織管理規模',
+      value: '300 人',
+      label: isEn ? 'Max Engineering & Tech Org Scale' : '曾管理科技與工程組織規模',
     },
     {
-      value: '70+ Eng',
-      label: isEn ? 'Global SAP eCommerce Team Led' : '親帶全球零售 SAP 電商工程軍團',
+      value: '70 人',
+      label: isEn ? 'SAP eCommerce Team Led' : '帶領跨國 SAP 電商工程團隊',
     },
     {
-      value: '99.98%',
-      label: isEn ? 'Global High-Concurrency SLA Uptime' : '跨國高併發電商與核心系統可用度',
+      value: 'SAP · CRM',
+      label: isEn ? 'Enterprise eCommerce & ERP Integration' : '跨國電商與 CRM / ERP 系統整合',
     },
     {
-      value: '5 Flagships',
-      label: isEn ? 'Live Quant, Media & Rule Systems' : '自研高併發量化、媒體與規則引擎主系統',
+      value: '5 套系統',
+      label: isEn ? 'Live Web Products Maintained' : '個人開發並維護的線上系統',
     },
   ];
   const engagementPills = isEn
     ? [
-        { icon: Briefcase, text: '12-Month Enterprise Advisory Retainer (Fractional CTO)' },
-        { icon: Users, text: 'Full-Time CTO / VP of Engineering (C-Suite & Global Mandate)' },
-        { icon: ShieldCheck, text: 'VC / Board Technical Due Diligence & Architecture Audit' },
+        { icon: Briefcase, text: '12-Month Technical Advisor (Annual Retainer)' },
+        { icon: Users, text: 'Full-Time CTO / VP of Engineering' },
+        { icon: ShieldCheck, text: 'Technical Due Diligence & System Review' },
       ]
     : [
-        { icon: Briefcase, text: '一年期企業技術顧問約 (Annual Retainer / Fractional CTO)' },
-        { icon: Users, text: '高階技術長正職 / 研發副總 (CTO / VP of Engineering)' },
-        { icon: ShieldCheck, text: '創投與董事會技術盡職調查 (Tech Due Diligence)' },
+        { icon: Briefcase, text: '一年期企業技術顧問約 (Annual Retainer)' },
+        { icon: Users, text: '正職：技術長 / 研發部門負責人 (CTO / VP of Engineering)' },
+        { icon: ShieldCheck, text: '技術盡職調查與系統診斷 (Tech Due Diligence)' },
       ];
 
   const content = profileContent[locale];
@@ -95,7 +95,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
                   {profileData.name} (David888)
                 </span>
                 <span className="rounded-md border border-[#17324d] bg-[#17324d] px-2.5 py-0.5 text-xs font-extrabold text-[#fff9e8] dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#2b251a]">
-                  {isEn ? 'OPEN FOR CTO & ANNUAL RETAINER' : '開放年度顧問約 & CTO 高階職缺'}
+                  {isEn ? 'CTO & TECHNICAL ADVISOR' : 'CTO & 技術顧問'}
                 </span>
               </div>
               <h1 className="mt-2 max-w-[36ch] text-2xl font-extrabold leading-[1.22] tracking-tight text-text-main sm:text-3xl md:text-[2rem]">
@@ -104,15 +104,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             </div>
           </div>
 
-          {/* Primary Executive CTAs */}
-          <div className="flex shrink-0 flex-wrap items-center gap-2.5">
+          {/* Primary Executive CTAs - Mobile Full-Width Responsive */}
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2.5 md:w-auto">
             {onContact && (
               <button
                 type="button"
                 onClick={onContact}
-                className="btn-saffron inline-flex min-h-[46px] items-center justify-center gap-2 px-5 py-2.5 text-sm"
+                className="btn-saffron inline-flex min-h-[46px] w-full items-center justify-center gap-2 px-5 py-2.5 text-sm sm:w-auto"
               >
-                <span>{isEn ? 'Book Advisory / CTO Inquiry' : '洽談年度顧問 / CTO 職缺'}</span>
+                <span>{isEn ? 'Contact for Advisory / CTO Role' : '洽談顧問合作 / 高階職缺'}</span>
                 <ArrowRight size={16} />
               </button>
             )}
@@ -120,7 +120,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
               href="https://www.linkedin.com/in/david11111/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-[10px] border border-[#17324d] bg-bg-elevated px-4 text-sm font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
+              className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-[#17324d] bg-bg-elevated px-4 text-sm font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] sm:flex-initial dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
             >
               <ExternalLink size={15} />
               <span>LinkedIn</span>
@@ -128,7 +128,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             <button
               type="button"
               onClick={() => setIsQrGameOpen(true)}
-              className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-[10px] border border-border bg-bg-elevated px-3.5 text-sm font-bold text-text-main transition-colors hover:border-[#17324d] dark:hover:border-[#ffb010]"
+              className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-border bg-bg-elevated px-3.5 text-sm font-bold text-text-main transition-colors hover:border-[#17324d] sm:flex-initial dark:hover:border-[#ffb010]"
               aria-label={isEn ? 'Open David888 website QR' : '開啟 David888 網站 QR'}
               aria-haspopup="dialog"
             >

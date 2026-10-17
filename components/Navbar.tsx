@@ -78,8 +78,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div className="mt-0.5 truncate text-xs font-bold text-[#2b251a]/85 sm:text-sm">
               {locale === 'en'
-                ? 'Enterprise CTO & Principal Advisor · Global eCommerce, Systems & 300+ Org Leadership'
-                : '實戰派 CTO & 企業首席顧問 ｜ 跨國電商架構 × 企業系統整合 × 百人研發治理'}
+                ? 'CTO & Technical Advisor · Enterprise eCommerce, System Integration & Engineering Leadership'
+                : 'CTO & 技術顧問 ｜ 大型電商架構 · 企業系統整合 · 工程團隊帶領'}
             </div>
           </div>
         </a>

@@ -50,29 +50,29 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     docLabelZh: '實戰題庫指南',
     docLabelEn: 'Prompt Guide',
     icon: Bot,
-    titleZh: '888 StockBot 2.0 ｜ 機構級金融多智能體系統',
-    titleEn: '888 StockBot 2.0 — Institutional Financial AI Agent',
+    titleZh: '888 StockBot 2.0 ｜ 台美股估值與籌碼分析系統',
+    titleEn: '888 StockBot 2.0 — Equity Valuation & Chip Flow Analysis',
     subtitleZh:
-      '不依賴外部黑盒算力，以純 TypeScript 原生建構華爾街級量化估值與期權引擎，結合台股三大法人籌碼穿透與 Generative UI 互動圖表工作台。',
+      '以 TypeScript 實作財務估值與選擇權試算，整合台股三大法人買賣超資料與 TradingView 互動圖表。',
     subtitleEn:
-      'Pure TypeScript institutional quantitative engine combining DCF valuation, Minervini SEPA, options Greeks, TWSE/TPEx institutional chip flows, and Generative UI cards.',
+      'TypeScript quantitative analysis tool combining DCF valuation, Minervini SEPA, options PnL calculation, TWSE/TPEx institutional flows, and interactive charts.',
     breakthroughsZh: [
-      '純 TypeScript 原生量化引擎：實作 DCF 現金流折現估值、Minervini SEPA 趨勢模板、期權損益模擬與微觀流動性衝擊模型',
-      '台股籌碼深度穿透：即時整併證交所與櫃買中心三大法人買賣超、主力籌碼集中度與 TradingView 互動式 K 線圖表',
-      '多智能體協同與即時連網：串接自研 2MD 毫秒級 SERP 搜尋引擎與 Generative UI 動態財報卡片渲染',
+      '財務與估值計算：實作 DCF 現金流折現、Minervini SEPA 趨勢條件、選擇權損益試算與流動性指標',
+      '台股籌碼資料整合：串接證交所與櫃買中心三大法人買賣超、籌碼集中度與 TradingView K 線圖表',
+      '即時搜尋與圖表卡片：連接 2MD 網頁搜尋與動態財報圖表呈現',
     ],
     breakthroughsEn: [
-      'Native TypeScript quant engines: DCF intrinsic valuation, Minervini SEPA trend templates, options PnL & micro-liquidity modeling',
-      'TWSE/TPEx institutional penetration: real-time foreign, trust, and dealer flow tracking integrated with TradingView charts',
-      'Multi-agent tool orchestration with live 2MD SERP web search and dynamic Generative UI financial cards',
+      'Financial & valuation calculators: DCF cash flow, Minervini SEPA trend criteria, options PnL & liquidity metrics',
+      'Taiwan market chip data: integrates TWSE/TPEx foreign, trust, and dealer flows with TradingView charts',
+      'Live web search & dynamic financial summary cards powered by 2MD',
     ],
     techStack: [
-      'TypeScript Quant Engine',
+      'TypeScript',
       'DCF & SEPA',
-      'Options Greeks',
+      'Options PnL',
       'TWSE Chip Flow',
-      'Generative UI',
-      '2MD SERP',
+      'TradingView Charts',
+      '2MD Search',
     ],
   },
   {
@@ -81,27 +81,27 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     url: 'https://stockdata.david888.com/',
     repoUrl: 'https://github.com/tbdavid2019/stock-underdog-ml',
     icon: LineChart,
-    titleZh: '888 StockQuant ｜ 雙時序大模型與多維量化決策平台',
-    titleEn: '888 StockQuant — Time-Series Foundation Model & Quant Platform',
+    titleZh: '888 StockQuant ｜ 時間序列預測與籌碼分析平台',
+    titleEn: '888 StockQuant — Time-Series Forecasting & Market Data Platform',
     subtitleZh:
-      '整合 Google TimesFM 與 Timestral 雙時序基礎大模型、LSTM 次日價格預測，以及三大法人與券商分點主力籌碼雷達的專業量化數據工作台。',
+      '結合 Google TimesFM、Timestral 與 LSTM 時間序列模型，整理台美股走勢預測與三大法人、券商分點買賣超資料。',
     subtitleEn:
-      'Multi-dimensional quantitative decision workbench powered by Google TimesFM & Timestral time-series foundation models, LSTM forecasting, and broker-branch chip radars.',
+      'Quantitative data workbench combining Google TimesFM, Timestral, and LSTM models for price forecasting alongside broker-branch chip tracking.',
     breakthroughsZh: [
-      '雙時序大模型架構：同步驅動 TimesFM 與 Timestral 時序基礎模型及 LSTM 深度學習管線，進行台美股次日走勢機率預測',
-      '券商分點與法人籌碼雷達：穿透追蹤關鍵券商分點吸籌、派發異常與三大法人多空力道背離',
-      '自動化特徵工程管線：將數十項技術指標矩陣（MACD、RSI、波動率通道、量價結構）收斂為直覺的機構級決策儀表板',
+      '時間序列預測模型：使用 TimesFM、Timestral 與 LSTM 模型計算台美股次日走勢區間',
+      '券商分點與法人籌碼：追蹤券商分點買賣超變化與三大法人資金流向',
+      '技術指標整理：自動計算 MACD、RSI、波動率通道與量價指標，集中於單一介面檢視',
     ],
     breakthroughsEn: [
-      'Dual time-series foundation models (TimesFM & Timestral) paired with LSTM pipelines for next-day equity forecasting',
-      'Broker-branch & institutional flow radar detecting hidden accumulation and distribution across Taiwan and US markets',
-      'End-to-end automated feature engineering distilling multi-factor technical indicators into actionable quant signals',
+      'Time-series forecasting using TimesFM, Timestral, and LSTM models for Taiwan and US equities',
+      'Broker-branch & institutional flow tracking across major market participants',
+      'Automated technical indicator calculation (MACD, RSI, volatility bands, volume structure) in one dashboard',
     ],
     techStack: [
       'TimesFM & Timestral',
-      'LSTM Forecasting',
-      'Broker Branch Radar',
-      'Multi-Factor Quant',
+      'LSTM',
+      'Broker Flow Tracking',
+      'Technical Indicators',
       'TW/US Equities',
     ],
   },
@@ -114,35 +114,35 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     docLabelZh: 'Agent 接入指南',
     docLabelEn: 'Agent Guide',
     icon: Newspaper,
-    titleZh: '888news ｜ 全球科技與 AI 情報自動化雷達',
-    titleEn: '888news — Autonomous Global Tech & AI Intelligence Radar',
+    titleZh: '888news ｜ 科技與 AI 新聞自動彙整系統',
+    titleEn: '888news — Automated Tech & AI News Aggregator',
     subtitleZh:
-      '全天候自動監控全球上百個頂尖 AI 實驗室與一手科技信源，透過多源報導語意歸組與 LLM 品質評分過濾行銷噪音，每日清晨產出高管情報簡報。',
+      '自動收集超過 100 個科技媒體與 AI 實驗室公告，透過語意分類合併重複報導、過濾廣編稿，每日產出中英雙語新聞摘要。',
     subtitleEn:
-      'Autonomous intelligence pipeline tracking 100+ frontier AI labs and primary tech sources with multi-source semantic clustering, quality scoring, and executive synthesis.',
+      'Automated news pipeline tracking 100+ AI labs and tech feeds with semantic grouping, ad filtering, and daily bilingual summaries.',
     breakthroughsZh: [
-      '百大一手信源高併發擷取：涵蓋 OpenAI、Anthropic、Google DeepMind、Meta 及頂尖工程部落格之自動化監控管線',
-      '多源語意歸組與噪音過濾：自動聚類同一事件之跨國報導，並透過 LLM 嚴格評分剔除公關廣編與內容農場',
-      '雙語高管情報合成：將零散的技術發佈提煉為具架構洞察與商業影響力評估的每日精選雷達',
+      '多來源自動收集：定時抓取 OpenAI、Anthropic、Google、Meta 與主要科技媒體的最新發佈',
+      '事件歸類與廣編過濾：自動將同一事件的多篇報導合併，並以 LLM 評分排除低相關性的公關稿',
+      '每日重點摘要：每日整理中英雙語科技日報，並提供標準 MCP 介面供外部 Agent 查詢',
     ],
     breakthroughsEn: [
-      'High-concurrency ingestion monitoring 100+ primary AI research labs, engineering blogs, and global tech feeds',
-      'Multi-source semantic event clustering and strict LLM quality scoring that strips out PR fluff and low-signal noise',
-      'Automated daily bilingual executive synthesis focused on architectural breakthroughs and strategic impact',
+      'Automated feed collection across 100+ AI research labs, engineering blogs, and tech news sites',
+      'Event clustering and ad filtering that groups duplicate stories and removes low-value PR posts',
+      'Daily bilingual digest generation with a public Streamable HTTP MCP endpoint for AI agents',
     ],
     techStack: [
-      '100+ Source Ingestion',
-      'Semantic Clustering',
-      'LLM Quality Scoring',
+      '100+ Tech Feeds',
+      'Event Clustering',
+      'LLM Filtering',
       'Streamable HTTP MCP',
-      'Cloudflare Edge',
+      'Cloudflare Workers',
     ],
     mcpConfig: {
       endpoint: 'https://news2.david888.com/api/mcp',
       descriptionZh:
-        'Agent 直接呼叫五個工具：適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。',
+        '支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、免 Token，回傳文字與結構化資料。',
       descriptionEn:
-        'Agent directly calls 5 tools. Built for remote MCP-compatible agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token required; tools return concise text and structured data.',
+        'Remote MCP endpoint exposing 5 tools for AI agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token required.',
       configSnippet: JSON.stringify(
         {
           mcpServers: {
@@ -162,28 +162,28 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     domain: 'podcast.david888.com',
     url: 'https://podcast.david888.com/',
     icon: Podcast,
-    titleZh: 'DAVID888 Daily ｜ 自動化 AI 播客與智慧語音媒體基建',
-    titleEn: 'DAVID888 Daily — Automated AI Podcast & Audio Media Infrastructure',
+    titleZh: 'DAVID888 Daily ｜ 自動化科技新聞 Podcast',
+    titleEn: 'DAVID888 Daily — Automated Tech News Podcast',
     subtitleZh:
-      '每日自動彙整 Hacker News、GitHub Trending、Product Hunt 與全球商業科技動態，全自動完成台灣繁中深度腳本編排、擬真語音合成與標準 RSS 串流分發。',
+      '每日自動整理 Hacker News、GitHub Trending 與 Product Hunt 熱門話題，產生繁體中文講稿並轉為語音，透過 RSS 發佈至各 Podcast 平台。',
     subtitleEn:
-      'End-to-end autonomous media pipeline aggregating Hacker News, GitHub Trending, and Product Hunt into daily Traditional Chinese analysis and broadcast-ready podcast episodes.',
+      'Daily automated pipeline summarizing Hacker News, GitHub Trending, and Product Hunt into Traditional Chinese audio episodes distributed via RSS.',
     breakthroughsZh: [
-      '跨平台開發者趨勢聚合：每日自動爬梳 Hacker News、GitHub Trending、Product Hunt、Dev.to 高價值技術討論',
-      '端到端語音合成與混音管線：自動將結構化技術洞察轉化為自然口語廣播腳本，完成神經網路 TTS 合成與音訊標準化',
-      '自建雲端音訊資產與動態 RSS 引擎：結合 888box 儲存叢集與標準 RSS 2.0 Enclosures，無縫同步各大 Podcast 平台與網頁直連播放',
+      '開發者社群動態整理：每日自動抓取 Hacker News、GitHub Trending、Product Hunt 與 Dev.to 熱門討論',
+      '自動文稿與語音合成：將整理後的重點轉為口語講稿，透過 TTS 產生語音並完成音量標準化',
+      '音訊代管與 RSS 發佈：串接自建 888box 儲存服務與 RSS 2.0 Feed，支援網頁直接收聽與 Podcast 訂閱',
     ],
     breakthroughsEn: [
-      'Automated daily synthesis of Hacker News, GitHub Trending, Product Hunt, and Dev.to engineering discussions',
-      'Autonomous script generation, neural TTS voice synthesis, and audio mastering tailored for natural Taiwanese Mandarin',
-      'Self-hosted 888box media asset storage and dynamic RSS 2.0 distribution engine with instant web streaming',
+      'Daily aggregation of Hacker News, GitHub Trending, Product Hunt, and Dev.to discussions',
+      'Automated script writing, TTS voice generation, and audio normalization in Traditional Chinese',
+      'Hosted on 888box storage with standard RSS 2.0 feeds for web playback and podcast apps',
     ],
     techStack: [
-      'Neural TTS Pipeline',
-      'HN / GitHub / PH Crawler',
-      'Automated Audio Mastering',
+      'TTS Audio Pipeline',
+      'HN / GitHub / PH Scraper',
+      'Audio Normalization',
       '888box Storage',
-      'Dynamic RSS 2.0',
+      'RSS 2.0 Feed',
     ],
   },
   {
@@ -191,28 +191,28 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     domain: 'qi.david888.com',
     url: 'https://qi.david888.com/',
     icon: Compass,
-    titleZh: '333 奇門遁甲 ｜ 高日活古曆法確定性演算法與 AI 決策生態系',
-    titleEn: '333 Qi Men Dun Jia — High-DAU Deterministic Calendar & AI Decision Engine',
+    titleZh: '333 奇門遁甲 ｜ 傳統曆法排盤與 AI 解讀網站',
+    titleEn: '333 Qi Men Dun Jia — Calendar Rule Engine & AI Interpretation',
     subtitleZh:
-      '將極度複雜的傳統奇門遁甲、生辰八字、梅花易數、風水與塔羅轉化為「零幻覺確定性排盤演算法 × 多輪結構化 AI 推理」，打造高回訪率、高留存的日常決策產品群。',
+      '將奇門遁甲、生辰八字、梅花易數、風水與塔羅的排盤規則寫成固定演算法，再交由 AI 進行多輪問答解讀。',
     subtitleEn:
-      'High-retention consumer decision ecosystem combining a zero-hallucination astronomical calendar rule engine with multi-turn LLM reasoning across Qi Men, Bazi Life K-Line, and Feng Shui.',
+      'Consumer web application combining a deterministic calendar calculation engine with multi-turn AI Q&A across Qi Men, Bazi, Tarot, and Feng Shui.',
     breakthroughsZh: [
-      '確定性天文曆法規則引擎：精準計算二十四節氣交節、陰陽遁局、天干地支與八字大運排盤，徹底消除純 LLM 排盤算錯的幻覺痛點',
-      '獨創「八字人生 K 線」與多維決策介面：將抽象命理運勢轉化為金融級 K 線波動視覺化，支援跨場景多輪追問與上下文記憶',
-      '高自然流量與高用戶留存（High-DAU）：證明將高度複雜的傳統領域規則轉化為現代化 SaaS/B2C 產品的完整產品化操盤實力',
+      '固定規則排盤程式：先以程式精確算出二十四節氣、陰陽遁局與天干地支命盤，避免語言模型自己算錯干支',
+      '八字人生 K 線與多輪問答：將大運流年繪製成 K 線圖表，並支援依據排盤結果繼續追問',
+      '多主題產品整合：在同一個網站架構下整合奇門、八字、塔羅、風水與月老等子服務',
     ],
     breakthroughsEn: [
-      'Deterministic astronomical & sexagenary rule engine guaranteeing 100% accurate chart calculation before LLM interpretation',
-      'Pioneered Bazi Life K-Line candlestick visualization and context-aware multi-turn decision dialogues',
-      'High organic DAU and user retention demonstrating end-to-end domain rule engineering and B2C productization',
+      'Deterministic calendar calculation engine computing solar terms and sexagenary charts before AI interpretation',
+      'Bazi Life K-Line chart visualization with context-aware follow-up Q&A',
+      'Multi-module web product combining Qi Men, Bazi, Tarot, Feng Shui, and Matchmaking tools',
     ],
     techStack: [
-      'Deterministic Rule Engine',
-      'Astronomical Calendar',
+      'Calendar Rule Engine',
+      'Solar Term Calculation',
       'Bazi Life K-Line',
-      'Multi-Turn LLM',
-      'High-DAU Consumer Web',
+      'Multi-Turn Q&A',
+      'Consumer Web App',
     ],
     subLinks: [
       { labelZh: '八字人生 K 線', labelEn: 'Bazi Life K-Line', url: 'https://bazi.david888.com' },
@@ -241,7 +241,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
   return (
     <section
       id="flagships"
-      aria-label={isEn ? 'Flagship Production Systems' : '五大高難度主力艦系統'}
+      aria-label={isEn ? 'Live Production Systems' : '五大線上系統'}
       className="scroll-mt-24 space-y-5"
     >
       <div className="dossier-card border-2 border-[#17324d] p-5 sm:p-7 dark:border-[#ffb010]/70">
@@ -249,17 +249,17 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
               {isEn
-                ? '5 Live Flagship Systems — Chief Architect Hands-On Engineering Proof'
-                : '五大高難度主力艦系統 ｜ 首席架構師親手落地的工程實證'}
+                ? '5 Live Systems — Self-Built Web Products (*.david888.com)'
+                : '5 套個人開發並維護的線上系統（*.david888.com）'}
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Unlike hands-off executives who only manage via slides, I personally architected and shipped every production system below on *.david888.com—spanning institutional quantitative finance engines, time-series forecasting pipelines, high-concurrency media ingestion, automated audio broadcasting, and high-DAU deterministic rule engines.'
-                : '不同於只看簡報、脫離一線代碼的傳統高管，以下 5 套線上主力系統（*.david888.com）皆由我親手完成底層架構與全端交付——橫跨純 TS 機構量化估值引擎、時序預測資料管線、高併發媒體情報中心、自動化語音廣播基建與高日活確定性規則引擎。'}
+                ? 'Five production web systems designed, built, and maintained end-to-end—covering equity valuation, time-series forecasting, automated tech news aggregation, daily audio podcasts, and calendar rule calculation.'
+                : '以下 5 套系統皆由我負責系統設計、前後端開發與日常維運，包含台美股估值分析、時間序列預測、科技新聞自動彙整、每日語音 Podcast 與傳統曆法排盤網站。'}
             </p>
           </div>
           <div className="shrink-0 font-mono text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">
-            {isEn ? '5 LIVE PRODUCTION DOMAINS' : '5 大獨立網域線上實機運行'}
+            {isEn ? '5 LIVE DOMAINS' : '5 個線上運行網域'}
           </div>
         </div>
 
@@ -307,24 +307,24 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                     </p>
                   </div>
 
-                  <div className="flex shrink-0 flex-wrap items-center gap-2.5 lg:flex-col lg:items-end">
+                  <div className="flex w-full shrink-0 flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center lg:flex-col lg:items-end">
                     <a
                       href={sys.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-saffron inline-flex min-h-[44px] items-center justify-center gap-2 px-4 py-2.5 text-sm no-underline"
+                      className="btn-saffron inline-flex min-h-[44px] w-full items-center justify-center gap-2 px-4 py-2.5 text-sm no-underline sm:w-auto"
                     >
                       <span>{isEn ? 'Launch Live System' : '開啟線上實機系統'}</span>
                       <ArrowUpRight size={17} />
                     </a>
 
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
                       {sys.docUrl && (
                         <a
                           href={sys.docUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex min-h-[38px] items-center gap-1.5 rounded-lg border border-[#17324d] bg-bg-surface px-3 py-1.5 text-xs font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
+                          className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-lg border border-[#17324d] bg-bg-surface px-3 py-1.5 text-xs font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] sm:flex-none dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
                         >
                           <BookOpen size={14} />
                           <span>{isEn ? sys.docLabelEn : sys.docLabelZh}</span>
@@ -335,7 +335,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                           href={sys.repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex min-h-[38px] items-center gap-1.5 rounded-lg border border-border bg-bg-surface px-3 py-1.5 font-mono text-xs font-bold text-text-main no-underline transition-colors hover:border-[#17324d] dark:hover:border-[#ffb010]"
+                          className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-bg-surface px-3 py-1.5 font-mono text-xs font-bold text-text-main no-underline transition-colors hover:border-[#17324d] sm:flex-none dark:hover:border-[#ffb010]"
                         >
                           <span>GitHub</span>
                           <ExternalLink size={13} />
@@ -348,7 +348,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                 {/* Engineering Breakthroughs */}
                 <div className="mt-4 rounded-xl border border-border/80 bg-bg-surface p-4">
                   <div className="mb-2.5 text-xs font-extrabold text-[#a9471d] dark:text-[#ffb010]">
-                    {isEn ? 'Key Architectural & Engineering Breakthroughs:' : '核心技術難度與架構突破：'}
+                    {isEn ? 'Key Architectural & Engineering Highlights:' : '核心技術架構與實作重點：'}
                   </div>
                   <ul className="m-0 list-none space-y-2 p-0">
                     {breakthroughs.map((point, idx) => (
@@ -357,7 +357,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                           size={16}
                           className="mt-0.5 shrink-0 text-[#17324d] dark:text-[#ffb010]"
                         />
-                        <span>{point}</span>
+                        <span className="min-w-0 break-words">{point}</span>
                       </li>
                     ))}
                   </ul>
@@ -375,7 +375,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                         href={sub.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-md border border-border bg-bg-surface px-2.5 py-1 text-xs font-bold text-text-main no-underline transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] dark:hover:border-[#ffb010] dark:hover:bg-[#17324d]"
+                        className="inline-flex min-h-[34px] items-center gap-1 rounded-md border border-border bg-bg-surface px-2.5 py-1 text-xs font-bold text-text-main no-underline transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] dark:hover:border-[#ffb010] dark:hover:bg-[#17324d]"
                       >
                         <span>{isEn ? sub.labelEn : sub.labelZh}</span>
                         <ArrowUpRight size={12} />
@@ -386,9 +386,9 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
 
                 {/* Remote MCP Server Config if present */}
                 {sys.mcpConfig && (
-                  <div className="mt-4 rounded-xl border border-border bg-bg-surface p-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/70 pb-2.5">
-                      <div className="flex items-center gap-2">
+                  <div className="mt-4 min-w-0 overflow-hidden rounded-xl border border-border bg-bg-surface p-3.5 sm:p-4">
+                    <div className="flex flex-col gap-2.5 border-b border-border/70 pb-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className="rounded-md border border-[#17324d] bg-[#17324d] px-2 py-0.5 font-mono text-[11px] font-extrabold text-[#fff9e8] dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#2b251a]">
                           REMOTE MCP
                         </span>
@@ -396,14 +396,14 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                           {isEn ? 'Agent 5-Tool Remote Endpoint' : 'Agent 5 工具遠端呼叫端點'}
                         </span>
                       </div>
-                      <div className="flex flex-wrap items-center gap-1.5">
+                      <div className="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:items-center">
                         <button
                           type="button"
                           onClick={() => handleCopy(`${sys.id}-endpoint`, sys.mcpConfig!.endpoint)}
-                          className="inline-flex items-center gap-1 rounded-md border border-border bg-bg-elevated px-2 py-1 font-mono text-xs font-bold text-text-main transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] dark:hover:border-[#ffb010]"
+                          className="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-md border border-border bg-bg-elevated px-2.5 py-1.5 font-mono text-xs font-bold text-text-main transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] dark:hover:border-[#ffb010]"
                         >
-                          {copiedKey === `${sys.id}-endpoint` ? <Check size={12} /> : <Copy size={12} />}
-                          <span>
+                          {copiedKey === `${sys.id}-endpoint` ? <Check size={13} /> : <Copy size={13} />}
+                          <span className="truncate">
                             {copiedKey === `${sys.id}-endpoint`
                               ? isEn
                                 ? 'Copied URL!'
@@ -416,10 +416,10 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                         <button
                           type="button"
                           onClick={() => handleCopy(`${sys.id}-config`, sys.mcpConfig!.configSnippet)}
-                          className="inline-flex items-center gap-1 rounded-md border border-[#17324d] bg-[#fff0cc] px-2.5 py-1 font-mono text-xs font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010]"
+                          className="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-md border border-[#17324d] bg-[#fff0cc] px-2.5 py-1.5 font-mono text-xs font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010]"
                         >
-                          {copiedKey === `${sys.id}-config` ? <Check size={12} /> : <Copy size={12} />}
-                          <span>
+                          {copiedKey === `${sys.id}-config` ? <Check size={13} /> : <Copy size={13} />}
+                          <span className="truncate">
                             {copiedKey === `${sys.id}-config`
                               ? isEn
                                 ? 'Copied Config!'
@@ -436,28 +436,28 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                       {isEn ? sys.mcpConfig.descriptionEn : sys.mcpConfig.descriptionZh}
                     </p>
 
-                    <div className="mt-3 flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-text-muted">URL:</span>
-                      <code className="rounded-md border border-border bg-black/5 px-2.5 py-1 font-mono text-xs text-[#a9471d] dark:bg-black/40 dark:text-[#ffb010]">
+                    <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+                      <span className="shrink-0 font-mono text-xs font-bold text-text-muted">URL:</span>
+                      <code className="min-w-0 max-w-full break-all rounded-md border border-border bg-black/5 px-2.5 py-1.5 font-mono text-xs text-[#a9471d] dark:bg-black/40 dark:text-[#ffb010]">
                         {sys.mcpConfig.endpoint}
                       </code>
                     </div>
 
                     <div className="mt-3">
-                      <div className="mb-1 text-[11px] font-bold text-text-muted">
+                      <div className="mb-1.5 text-[11px] font-bold text-text-muted">
                         {isEn ? '5 Agent Tools Available:' : '連上後直接呼叫五個工具：'}
                       </div>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:flex lg:flex-wrap">
                         {[
                           { name: 'news888_get_latest', desc: isEn ? 'Latest/7d news' : '精選與全部動態' },
-                          { name: 'news888_search', desc: isEn ? '7-day search' : '7天多維搜尋' },
-                          { name: 'news888_get_hot_topics', desc: isEn ? 'Hot topics ranking' : '熱點榜與排名' },
-                          { name: 'news888_get_story', desc: isEn ? 'Story timeline' : '事件時間線綜述' },
+                          { name: 'news888_search', desc: isEn ? '7-day search' : '7天關鍵字搜尋' },
+                          { name: 'news888_get_hot_topics', desc: isEn ? 'Hot topics ranking' : '熱門話題與排名' },
+                          { name: 'news888_get_story', desc: isEn ? 'Story timeline' : '事件時間軸整理' },
                           { name: 'news888_get_daily', desc: isEn ? 'Daily digest' : '最新 AI 日報' },
                         ].map((t) => (
                           <span
                             key={t.name}
-                            className="rounded-md border border-border/80 bg-bg-elevated px-2 py-0.5 font-mono text-[11px] text-text-main"
+                            className="inline-flex flex-wrap items-center rounded-md border border-border/80 bg-bg-elevated px-2.5 py-1 font-mono text-[11px] text-text-main"
                           >
                             <span className="font-bold text-[#17324d] dark:text-[#ffb010]">{t.name}</span>
                             <span className="ml-1 text-text-muted">({t.desc})</span>
@@ -472,15 +472,15 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                           ? 'Universal MCP Configuration (Cursor / Claude Desktop / Antigravity):'
                           : '通用 MCP 組態（支援 Cursor、Claude Desktop、Antigravity 等各類 Agent 工具）：'}
                       </div>
-                      <pre className="overflow-x-auto rounded-lg bg-black/5 p-3 font-mono text-xs leading-tight text-text-main dark:bg-black/40">
+                      <pre className="max-w-full overflow-x-auto rounded-lg bg-black/5 p-3 font-mono text-xs leading-tight text-text-main dark:bg-black/40">
                         <code>{sys.mcpConfig.configSnippet}</code>
                       </pre>
                     </div>
 
-                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-2.5">
-                      <div className="flex items-center gap-1.5 font-mono text-[11px] text-text-muted">
-                        <span>CLI:</span>
-                        <code className="rounded bg-black/5 px-2 py-0.5 text-text-main dark:bg-black/40">
+                    <div className="mt-3 flex flex-col gap-2.5 border-t border-border/60 pt-2.5 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="min-w-0 font-mono text-[11px] text-text-muted">
+                        <span className="mr-1.5 font-bold">CLI:</span>
+                        <code className="inline-block max-w-full break-all rounded bg-black/5 px-2 py-1 text-text-main dark:bg-black/40">
                           claude mcp add --transport http news888 'https://news2.david888.com/api/mcp'
                         </code>
                       </div>
@@ -488,7 +488,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                         href="https://news2.david888.com/agent"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-xs font-bold text-[#a9471d] hover:underline dark:text-[#ffb010]"
+                        className="inline-flex min-h-[36px] shrink-0 items-center gap-1 self-start font-mono text-xs font-bold text-[#a9471d] hover:underline sm:self-auto dark:text-[#ffb010]"
                       >
                         <span>{isEn ? 'View Full Agent Docs →' : '查看完整 Agent 接入指南 →'}</span>
                       </a>

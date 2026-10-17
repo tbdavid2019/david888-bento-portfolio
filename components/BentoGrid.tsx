@@ -232,7 +232,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         >
           <Briefcase size={16} className="shrink-0" />
           <span className="truncate">
-            {locale === 'en' ? 'CTO & Advisory' : '高階顧問簡報'}
+            {locale === 'en' ? 'CTO & Advisory' : '顧問與經歷'}
           </span>
           <span
             className={cn(
@@ -262,7 +262,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         >
           <Rocket size={16} className="shrink-0" />
           <span className="truncate">
-            {locale === 'en' ? '5 Flagships' : '5 大主力系統'}
+            {locale === 'en' ? '5 Live Systems' : '5 套線上系統'}
           </span>
           <span
             className={cn(

@@ -29,8 +29,8 @@ test('uses audience-facing portfolio categories instead of technology or channel
 test('groups finance and investment projects together under finance category', () => {
   const financeTitles = [
     '台灣公司關係網路可視化',
-    '888 StockBot 2.0 | 機構級金融智能體',
-    '888 Stock Quant | 專業量化決策平台',
+    '888 StockBot 2.0 | 台美股估值與籌碼分析系統',
+    '888 Stock Quant | 時間序列預測與籌碼平台',
     '選出潛力股 | 投資新聞濃縮包 | 333',
     'Telegram: 股靈精怪 Stock',
     'Telegram: 投資新聞濃縮包',

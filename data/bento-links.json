@@ -19,8 +19,8 @@
       "Interactive Search"
     ],
     "highlights": [
-      "收錄台灣上市櫃與關聯法人董監事、交叉持股與投資關係圖譜",
-      "高流暢度力導向圖 (Force-Directed Graph) 視覺化，快速穿透多層控股結構"
+      "收錄台灣上市櫃與關聯法人董監事、交叉持股與投資關係圖",
+      "使用力導向圖 (Force-Directed Graph) 呈現多層控股結構"
     ],
     "highlightsEn": [
       "Interactive corporate ownership and board interlock knowledge graph across Taiwan listed entities",
@@ -29,10 +29,10 @@
   },
   {
     "type": "link",
-    "title": "888 StockBot 2.0 | 機構級金融智能體",
-    "titleEn": "888 StockBot 2.0 - Institutional Finance AI",
-    "description": "純 TypeScript 原生量化引擎（DCF 估值、Minervini SEPA、華爾街財報前瞻、期權損益模擬、微觀流動性），完整整併台灣三大法人籌碼情報、TradingView 互動走勢圖、Generative UI 互動卡片與 2MD 即時連網搜尋。",
-    "descriptionEn": "Institutional-grade financial AI agent with native TS quantitative engines (DCF valuation, Minervini SEPA, Wall St earnings preview, options PnL), TWSE/TPEx institutional flows, TradingView charts, Generative UI, and 2MD live search.",
+    "title": "888 StockBot 2.0 | 台美股估值與籌碼分析系統",
+    "titleEn": "888 StockBot 2.0 - Equity Valuation & Chip Analysis",
+    "description": "以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。",
+    "descriptionEn": "TypeScript financial analysis tool with DCF valuation, Minervini SEPA, options PnL calculators, TWSE/TPEx institutional flows, TradingView charts, and 2MD web search.",
     "url": "https://bot.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/stockbot",
     "docUrl": "https://wiki.david888.com/share/rzye4g",
@@ -42,70 +42,69 @@
     "colSpan": 2,
     "featured": true,
     "tag": "finance",
-    "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
-    "sectionEn": "Institutional Quant & Analytics Platforms",
+    "section": "量化與分析平台 (Quant & Analytics Platforms)",
+    "sectionEn": "Quant & Analytics Platforms",
     "icon": "bot",
     "flagship": true,
     "techStack": [
       "TypeScript",
-      "Multi-Agent LLM",
-      "DCF / SEPA Engine",
-      "Options Greeks",
+      "DCF / SEPA",
+      "Options PnL",
       "TWSE Chip Flow",
-      "Generative UI",
-      "2MD SERP"
+      "TradingView Charts",
+      "2MD Search"
     ],
     "highlights": [
-      "純 TypeScript 原生實作華爾街級 DCF 現金流估值、Minervini SEPA 趨勢模板、期權損益模擬與微觀流動性模型",
-      "完整串接台灣證交所/櫃買中心三大法人與主力籌碼穿透分析，零黑盒算力依賴",
-      "整合 TradingView 互動走勢圖、Generative UI 動態數據卡片與自研 2MD 毫秒級即時財經搜尋"
+      "實作 DCF 現金流折現估值、Minervini SEPA 趨勢條件與選擇權損益試算",
+      "串接台灣證交所與櫃買中心三大法人買賣超與籌碼資料",
+      "整合 TradingView 互動走勢圖、動態財報圖表卡片與 2MD 即時財經搜尋"
     ],
     "highlightsEn": [
-      "Pure TypeScript quantitative engines: DCF valuation, Minervini SEPA templates, options PnL & micro-liquidity modeling",
-      "Real-time TWSE/TPEx institutional flow penetration and foreign/trust fund tracking",
-      "Generative UI financial cards paired with interactive TradingView charts and live 2MD SERP search"
+      "TypeScript calculators for DCF valuation, Minervini SEPA criteria, and options PnL",
+      "Integrates TWSE/TPEx institutional flow data and foreign/trust fund tracking",
+      "Interactive TradingView charts paired with financial summary cards and 2MD web search"
     ]
   },
   {
     "type": "link",
-    "title": "888 Stock Quant | 專業量化決策平台",
+    "title": "888 Stock Quant | 時間序列預測與籌碼平台",
     "titleEn": "888 Stock Quant - Quantitative Platform",
-    "description": "結合 Google TimesFM 與 Timestral 雙時序基礎大模型、LSTM 次日預測、台美股多維技術面矩陣與三大法人及券商分點籌碼雷達的專業級量化工作台。",
-    "descriptionEn": "Institutional quantitative decision platform combining Google TimesFM & Timestral time-series foundation models, LSTM next-day forecasting, technical matrices, and broker-branch chip radars for TW/US equities.",
+    "description": "結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。",
+    "descriptionEn": "Quantitative data platform combining Google TimesFM, Timestral, and LSTM forecasting models with technical indicators and broker-branch chip tracking for TW/US equities.",
     "url": "https://stockdata.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/stock-underdog-ml",
     "imageSource": "/bento/stock_bot.svg",
     "colSpan": 2,
     "featured": true,
     "tag": "finance",
-    "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
-    "sectionEn": "Institutional Quant & Analytics Platforms",
+    "section": "量化與分析平台 (Quant & Analytics Platforms)",
+    "sectionEn": "Quant & Analytics Platforms",
     "icon": "line-chart",
     "flagship": true,
     "techStack": [
       "TimesFM & Timestral",
-      "LSTM Deep Learning",
-      "Broker Chip Radar",
-      "Multi-Factor Quant",
-      "TW/US Equities Pipeline"
+      "LSTM",
+      "Broker Flow Tracking",
+      "Technical Indicators",
+      "TW/US Equities"
     ],
     "highlights": [
-      "雙時序基礎大模型（TimesFM + Timestral）結合 LSTM 深度學習管線，提供台美股次日走勢與波動區間預測",
-      "追蹤三大法人與關鍵券商分點主力籌碼異動，自動識別主力吸籌與背離訊號",
-      "端到端自動化特徵工程與多維技術指標矩陣，將複雜市場訊號收斂為直覺決策雷達"
+      "結合 TimesFM、Timestral 與 LSTM 模型，計算台美股次日走勢與波動區間",
+      "追蹤三大法人與券商分點買賣超變化",
+      "自動整理多項技術指標（MACD、RSI、波動率通道、量價關係）於單一介面"
     ],
     "highlightsEn": [
-      "Dual time-series foundation models (TimesFM & Timestral) + LSTM pipeline for next-day equity forecasting",
-      "Deep tracking of institutional flows and broker-branch accumulation/distribution anomalies",
-      "Automated feature engineering and multi-factor technical radar for rapid quantitative decision-making"
+      "Combines TimesFM, Timestral, and LSTM models for next-day equity price forecasting",
+      "Tracks institutional flows and broker-branch buying/selling activity",
+      "Automated technical indicator dashboard for Taiwan and US equities"
     ]
   },
   {
     "type": "link",
-    "title": "888news | 全球科技與 AI 情報雷達",
-    "titleEn": "888news - Global Tech & AI Intelligence Radar",
-    "description": "全天候自動追蹤全球上百個頂尖科技與 AI 信源（OpenAI、Anthropic、Google DeepMind、Meta 等），透過多源報導語意歸組、LLM 品質評分與行銷噪音過濾，每日清晨精準呈獻高管級科技情報。",
-    "descriptionEn": "Autonomous global tech & AI intelligence radar monitoring 100+ frontier sources (OpenAI, Anthropic, Google, Meta). Uses multi-source semantic clustering, LLM quality scoring, and noise filtering to deliver daily executive briefings.",
+    "title": "888news | 科技與 AI 新聞自動彙整系統",
+    "titleEn": "888news - Tech & AI News Aggregator",
+    "description": "自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。",
+    "descriptionEn": "Automated tech & AI news aggregator monitoring 100+ sources (OpenAI, Anthropic, Google, Meta) with semantic grouping, ad filtering, and daily bilingual summaries.",
     "url": "https://news2.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/888news",
     "tag": "products",
@@ -116,29 +115,29 @@
     "featured": true,
     "colSpan": 2,
     "techStack": [
-      "Multi-Source Clustering",
-      "LLM Quality Scoring",
-      "Automated Ingestion",
-      "Noise Filtering",
-      "Bilingual Briefing"
+      "100+ Tech Feeds",
+      "Event Clustering",
+      "LLM Filtering",
+      "Streamable HTTP MCP",
+      "Bilingual Digest"
     ],
     "highlights": [
-      "全自動監控全球 100+ 頂尖 AI 實驗室、技術部落格與一手信源，毫秒級擷取與結構化清洗",
-      "多源報導語意聚類（Semantic Clustering）與嚴格品質評分機制，自動剔除公關廣編與農場噪音",
-      "每日清晨自動合成雙語高管技術簡報，協助決策者掌握具商業影響力的前沿突破"
+      "定時抓取 100+ AI 實驗室、技術部落格與科技媒體的最新發佈",
+      "透過語意分類合併同一事件的多篇報導，並過濾公關廣編稿",
+      "每日產出中英雙語科技摘要，並提供遠端 MCP 介面供外部工具查詢"
     ],
     "highlightsEn": [
-      "Continuous automated ingestion across 100+ frontier AI labs, engineering blogs, and primary sources",
-      "Multi-source semantic event clustering and strict LLM quality scoring to eliminate PR/marketing noise",
-      "Automated daily executive synthesis highlighting high-impact architectural and industry breakthroughs"
+      "Automated collection across 100+ AI labs, engineering blogs, and tech news feeds",
+      "Semantic event clustering and ad filtering to group duplicate stories and remove PR noise",
+      "Daily bilingual tech digest with a public remote MCP endpoint"
     ]
   },
   {
     "type": "link",
-    "title": "888 2FA | 邊緣雙因素認證金鑰管理",
+    "title": "888 2FA | 雙因素認證金鑰管理",
     "titleEn": "888 2FA - Cloudflare Workers 2FA Manager",
-    "description": "基於 Cloudflare Workers 的極速 2FA 金鑰管理系統。純 Web Crypto API 實作 Passkey / WebAuthn 免密生物辨識登入，支援 PWA 離線 TOTP、多端備份與微秒級時間校準。",
-    "descriptionEn": "High-performance 2FA authenticator on Cloudflare Workers. Features zero-dependency Web Crypto Passkey/WebAuthn login, offline PWA TOTP, multi-cloud backup, and accurate time sync.",
+    "description": "架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。",
+    "descriptionEn": "2FA authenticator on Cloudflare Workers featuring Web Crypto Passkey/WebAuthn login, offline PWA TOTP, and encrypted backup.",
     "url": "https://2fa.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/8882fa",
     "tag": "products",
@@ -150,15 +149,15 @@
       "Cloudflare Workers",
       "WebAuthn / Passkey",
       "Web Crypto API",
-      "Zero-Dependency PWA"
+      "PWA"
     ],
     "highlights": [
-      "純原生 Web Crypto API 實作 Passkey / WebAuthn 生物辨識無密碼驗證",
-      "支援離線 PWA TOTP 生成、多雲加密備份與邊緣微秒級時間校準"
+      "使用原生 Web Crypto API 實作 Passkey / WebAuthn 免密碼驗證",
+      "支援離線 PWA TOTP 驗證碼產生與加密備份"
     ],
     "highlightsEn": [
-      "Zero-dependency Web Crypto API implementation of Passkey / WebAuthn biometric authentication",
-      "Offline-ready PWA TOTP generator with encrypted multi-cloud backup on Cloudflare Workers"
+      "Web Crypto API implementation of Passkey / WebAuthn authentication",
+      "Offline PWA TOTP generator with encrypted backup on Cloudflare Workers"
     ]
   },
   {
@@ -178,7 +177,7 @@
     "type": "link",
     "title": "學術論文追蹤器",
     "titleEn": "Academic Paper Tracker",
-    "description": "每日追蹤 arXiv、HuggingFace、Semantic Scholar 具身智能與前沿論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。",
+    "description": "每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。",
     "descriptionEn": "An automated daily research tracker monitoring Embodied AI and ML papers across arXiv, HuggingFace, and Semantic Scholar with LLM-generated Chinese summaries.",
     "url": "https://tbdavid2019.github.io/paper-daily/",
     "repoUrl": "https://github.com/tbdavid2019/paper-daily",
@@ -214,7 +213,7 @@
   {
     "type": "project",
     "title": "888 人生K線 | 八字命理可視化",
-    "description": "獨創八字命理 K 線化工具，將生辰八字轉化為直觀的能量波動圖，輔以 AI 解析您的運勢起伏。",
+    "description": "將生辰八字大運流年繪製成 K 線走勢圖，並搭配 AI 解讀運勢變化。",
     "url": "https://bazi.david888.com",
     "previewImage": "/bento/bazi-kline.png",
     "label": "AI 八字可視化",
@@ -352,8 +351,8 @@
     "type": "link",
     "title": "小濃縮 (Quick Summary & Chat) 333",
     "titleEn": "Quick Summary & Chat 333",
-    "description": "一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。",
-    "descriptionEn": "A flexible AI web assistant that integrates with Gemini, ChatGPT, Groq, and custom OpenAI-compatible BaseURLs. Generate web page and YouTube summaries in one click to absorb information faster.",
+    "description": "瀏覽器 AI 網頁摘要工具。支援串接 Gemini、ChatGPT、Groq 與自訂 BaseURL，可一鍵產生網頁與 YouTube 影片摘要。",
+    "descriptionEn": "Browser AI assistant integrating Gemini, ChatGPT, Groq, and custom OpenAI-compatible BaseURLs for one-click web page and YouTube summaries.",
     "url": "https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof",
     "featured": true,
     "tag": "products",
@@ -365,7 +364,7 @@
     "type": "link",
     "title": "Tab-Word-Deck 333 分頁學單字",
     "titleEn": "Tab-Word-Deck 333",
-    "description": "將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。",
+    "description": "每次開啟瀏覽器新分頁時自動顯示英文單字卡，內建多種字庫、發音與例句複習功能。",
     "descriptionEn": "A vocabulary learning extension that turns every new tab into a study moment, with word decks, pronunciation, examples, and review flows built into the browser.",
     "url": "https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar",
     "tag": "products",
@@ -388,7 +387,7 @@
     "type": "link",
     "title": "Website Font Changer 333 改字體",
     "titleEn": "Website Font Changer 333",
-    "description": "高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。",
+    "description": "網頁字體替換工具。可將任意網站的字體替換為使用者指定的系統字體，改善長文閱讀體驗。",
     "descriptionEn": "A customizable reading comfort tool that lets users override website fonts with their preferred system fonts, reducing visual fatigue and improving long-form reading.",
     "url": "https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW",
     "tag": "products",
@@ -400,7 +399,7 @@
     "type": "link",
     "title": "側邊翻譯 333",
     "titleEn": "Side Translation 333",
-    "description": "提供便捷側邊欄介面的翻譯輔助工具，讓使用者在瀏覽外語網站時能隨時進行對照翻譯，享受無憂的閱讀體驗。",
+    "description": "提供側邊欄介面的網頁翻譯工具，方便在瀏覽外文網站時左右對照原文與譯文。",
     "descriptionEn": "A sidebar translation helper for comparing original and translated text while browsing foreign-language websites.",
     "url": "https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg",
     "tag": "products",
@@ -424,7 +423,7 @@
     "type": "link",
     "title": "WebTalk 333 - Chat and Summarize on any website.",
     "titleEn": "WebTalk 333 - Chat and Summarize on any website",
-    "description": "結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。",
+    "description": "結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。",
     "descriptionEn": "A web summary and real-time communication tool. With WebRTC P2P, users can summarize pages and chat with friends directly on the current website.",
     "url": "https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1",
     "tag": "products",
@@ -499,8 +498,8 @@
     "type": "link",
     "title": "2MD 快速閱讀與搜尋",
     "titleEn": "2MD Fast Web Reader & Search",
-    "description": "極速網頁解析與 SERP 搜尋引擎，將即時網頁與搜尋結果迅速轉為乾淨 Markdown，專為 AI Agent 與 LLM 設計。",
-    "descriptionEn": "High-speed web reader and SERP search engine converting live pages and search results into clean Markdown for AI agents and LLMs.",
+    "description": "網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。",
+    "descriptionEn": "Web reader and search tool converting live pages and search results into clean Markdown for AI agents and LLMs.",
     "url": "https://2md.aiurl.tw/",
     "imageSource": "/bento/url-markdown.svg",
     "featured": true,
@@ -510,28 +509,28 @@
     "icon": "search",
     "colSpan": 2,
     "techStack": [
-      "Firecrawl AnyDoc",
-      "PaddleOCR PP-OCRv4",
-      "2D Table Reconstruction",
+      "Document Parsing",
+      "PP-OCRv4",
+      "Table Reconstruction",
       "WebMCP",
-      "Batch SERP"
+      "Batch Search"
     ],
     "highlights": [
-      "Sub-5ms 文件解析（PDF/Word/Excel/PPT/EPUB）與 PP-OCRv4 2D 空間表格重建轉 GFM Markdown",
-      "支援單頁擷取、即時網頁搜尋 (Live SERP)、多網址批次爬梳與深度爬蟲",
-      "原生支援瀏覽器 WebMCP 工具註冊與 AI Agent Content-Negotiation 雙模輸出"
+      "支援文件解析（PDF/Word/Excel/PPT/EPUB）與表格轉為 GFM Markdown",
+      "支援單頁擷取、即時網頁搜尋、多網址批次讀取",
+      "支援瀏覽器 WebMCP 工具註冊與 Markdown 輸出"
     ],
     "highlightsEn": [
-      "Sub-5ms AnyDoc document parsing and PP-OCRv4 2D spatial table reconstruction into clean GFM Markdown",
-      "Supports single URL extraction, live SERP search, concurrent batch crawling, and schema extraction",
-      "Native WebMCP browser tool registration and dual-mode Human HTML / Agent SKILL.md content negotiation"
+      "Document parsing and table reconstruction into clean GFM Markdown",
+      "Supports single URL extraction, live web search, and batch URL reading",
+      "Supports WebMCP browser tool registration and Markdown output"
     ]
   },
   {
     "type": "link",
     "title": "888-url2md 網頁轉 Markdown",
     "titleEn": "888-url2md Web Reader",
-    "description": "二次開發 jina-reader 賦予系統有 batch url 處理能力，這裡可以直接使用 https://create360.ai",
+    "description": "基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。",
     "descriptionEn": "Enhanced jina-reader fork with batch URL processing capabilities. Directly usable at https://create360.ai",
     "url": "https://create360.ai",
     "repoUrl": "https://github.com/tbdavid2019/888-url2md",
@@ -557,8 +556,8 @@
     "type": "link",
     "title": "888 Tool",
     "titleEn": "888 Tool",
-    "description": "常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。比起單一產品，它更像是我持續擴充的效率箱，適合快速解決小而高頻的實際問題。",
-    "descriptionEn": "A practical tool hub that gathers the small services and utilities used repeatedly in daily work. It works more like an expanding toolbox for solving small but frequent operational needs.",
+    "description": "常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。",
+    "descriptionEn": "A practical tool hub that gathers the small services and utilities used repeatedly in daily work.",
     "url": "https://tool.david888.com/",
     "imageSource": "/bento/888-tool.svg",
     "tag": "products",
@@ -570,8 +569,8 @@
     "type": "link",
     "title": "david888 wiki",
     "titleEn": "david888 wiki",
-    "description": "團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。對常常跨人協作、需要累積 know-how 的團隊特別實用。",
-    "descriptionEn": "A frequently used internal knowledge base for SOPs, project notes, research logs, and reusable documentation, especially useful for teams that need shared operational memory.",
+    "description": "團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。",
+    "descriptionEn": "An internal knowledge base for SOPs, project notes, research logs, and documentation.",
     "url": "https://wiki.david888.com/",
     "imageSource": "/bento/wiki.svg",
     "featured": true,
@@ -594,9 +593,9 @@
   {
     "type": "link",
     "title": "333 奇門遁甲",
-    "titleEn": "333 Qi Men Dun Jia — AI Decision Engine",
-    "description": "高日活 (High-DAU) 複雜古曆法確定性排盤引擎 × 多輪結構化 AI 決策平台。整合奇門遁甲、梅花易數、八字人生 K 線、塔羅、風水與月老，將繁複的天干地支節氣規則轉化為零幻覺演算法與現代化產品體驗。",
-    "descriptionEn": "High-DAU deterministic astronomical/calendar rule engine paired with multi-turn LLM reasoning. Spans Qi Men Dun Jia, Plum Blossom Numerology, Bazi Life K-Line, Tarot, and Feng Shui with zero-hallucination chart calculation.",
+    "titleEn": "333 Qi Men Dun Jia — Calendar & AI Interpretation",
+    "description": "將奇門遁甲、生辰八字、梅花易數、風水與塔羅的排盤規則寫成固定演算法，再交由 AI 進行多輪問答解讀。",
+    "descriptionEn": "Consumer web app combining a calendar calculation engine with multi-turn AI Q&A across Qi Men Dun Jia, Plum Blossom Numerology, Bazi Life K-Line, Tarot, and Feng Shui.",
     "url": "https://qi.david888.com/",
     "imageSource": "/bento/qimen.svg",
     "tag": "metaphysics",
@@ -607,16 +606,16 @@
     "featured": true,
     "colSpan": 2,
     "techStack": [
-      "Deterministic Rule Engine",
-      "Astronomical Calendar",
-      "Multi-Turn AI Reasoning",
-      "Life K-Line Visuals",
-      "High-DAU Web App"
+      "Calendar Rule Engine",
+      "Solar Term Calculation",
+      "Multi-Turn Q&A",
+      "Life K-Line Chart",
+      "Consumer Web App"
     ],
     "highlights": [
-      "以嚴謹確定性天文曆法演算法（節氣交節、陰陽遁局、天干地支排盤）徹底解決純 LLM 排盤幻覺問題",
-      "單一平台整合奇門遁甲、梅花易數、八字人生 K 線、風水方位與多輪追問脈絡記憶",
-      "極高自然搜尋流量與用戶每日回訪留存（High DAU/Retention），展現複雜領域知識產品化能力"
+      "先以程式精確計算二十四節氣、陰陽遁局與天干地支排盤，避免語言模型算錯干支",
+      "單一網站整合奇門遁甲、梅花易數、八字人生 K 線、風水與多輪問答",
+      "將傳統曆法排盤規則轉為現代 Web 介面"
     ],
     "highlightsEn": [
       "Deterministic solar-term and sexagenary cycle calculation engine eliminating LLM chart-generation hallucinations",
@@ -694,8 +693,8 @@
     "type": "link",
     "title": "Shorten and undo closed URL 333",
     "titleEn": "Shorten and Undo Closed URL 333",
-    "description": "雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。",
-    "descriptionEn": "A two-in-one browser utility that combines quick short URL generation with one-click restoration of recently closed tabs.",
+    "description": "結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。",
+    "descriptionEn": "A browser utility combining short URL generation with one-click restoration of recently closed tabs.",
     "url": "https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW",
     "tag": "products",
     "section": "瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)",
@@ -752,7 +751,7 @@
     "type": "link",
     "title": "888news 遠端 MCP 服務 (5 工具呼叫)",
     "titleEn": "888news Remote MCP Server (5 Agent Tools)",
-    "description": "Agent 直接呼叫五個工具。適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。",
+    "description": "支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。",
     "descriptionEn": "Directly call 5 tools from any AI agent. Built for remote MCP-compatible agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token needed; returns concise text and structured data.",
     "url": "https://news2.david888.com/api/mcp",
     "docUrl": "https://news2.david888.com/agent",
@@ -772,9 +771,9 @@
       "news888_get_daily"
     ],
     "highlights": [
-      "五大即用工具：news888_get_latest (最新動態), news888_search (7天搜尋), news888_get_hot_topics (熱點榜), news888_get_story (事件時間線), news888_get_daily (AI日報)",
+      "5 個直接呼叫工具：news888_get_latest (最新動態), news888_search (7天搜尋), news888_get_hot_topics (熱門話題), news888_get_story (事件時間軸), news888_get_daily (AI日報)",
       "遠端 MCP 端點：https://news2.david888.com/api/mcp（免 Token 匿名只讀）",
-      "CLI 一鍵安裝：claude mcp add --transport http news888 'https://news2.david888.com/api/mcp'"
+      "CLI 安裝指令：claude mcp add --transport http news888 'https://news2.david888.com/api/mcp'"
     ],
     "highlightsEn": [
       "5 Direct Tools: news888_get_latest, news888_search, news888_get_hot_topics, news888_get_story, news888_get_daily",
@@ -785,7 +784,7 @@
       "serverName": "news888",
       "type": "http",
       "url": "https://news2.david888.com/api/mcp",
-      "description": "標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。",
+      "description": "標準 Streamable HTTP，匿名只讀，不需要 token；回傳簡潔文字與結構化資料。",
       "descriptionEn": "Standard Streamable HTTP, anonymous read-only, no token needed."
     }
   },
@@ -831,7 +830,7 @@
       "TypeScript"
     ],
     "highlights": [
-      "A2A-first 多智能體協同架構，支援跨 Agent 任務委派、狀態同步與人機協作審批"
+      "A2A-first 多 Agent 協作架構，支援跨 Agent 任務委派、狀態同步與人機協作審批"
     ],
     "highlightsEn": [
       "A2A-first multi-agent orchestration platform for autonomous task delegation and human-in-the-loop workflows"
@@ -894,7 +893,7 @@
   {
     "type": "link",
     "title": "SAP Spartacus Agent Skill",
-    "description": "SAP Spartacus e-commerce 前端開發文件 Skill，助力電商開發。",
+    "description": "提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。",
     "url": "https://github.com/tbdavid2019/SAP-spartacus-docs-skill",
     "imageSource": "https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg",
     "bgClass": "bg-[#008fd3]",

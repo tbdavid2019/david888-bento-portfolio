@@ -16,8 +16,8 @@
       "labelEn": "Finance & Quant",
       "title": "財經投資與量化決策",
       "titleEn": "Finance & Quantitative Systems",
-      "summary": "機構級金融智能體、上市櫃企業關係網路、量化決策平台與股市預測模型。",
-      "summaryEn": "Institutional financial agents, corporate networks, quantitative decision platforms, and predictive models."
+      "summary": "股票估值與籌碼分析系統、上市櫃企業關係網路、時間序列預測與量化工具。",
+      "summaryEn": "Equity valuation tools, corporate ownership networks, time-series forecasting, and quantitative platforms."
     },
     {
       "id": "products",
@@ -34,8 +34,8 @@
       "labelEn": "AI Agent Skills",
       "title": "AI / ML Agent 技能與工具",
       "titleEn": "Skills for LLMs & AI Agents",
-      "summary": "賦予 LLM 與 AI Agent 特定領域知識、API 串接與工作流自動化的可重用 Skills。",
-      "summaryEn": "Reusable skills that give LLMs and AI agents domain knowledge, documentation, and tool workflows."
+      "summary": "提供 LLM 與 AI Agent 領域知識、API 串接與自動化流程的 Skills 與遠端 MCP 工具。",
+      "summaryEn": "Reusable skills and remote MCP tools providing domain knowledge, documentation, and workflows for LLMs and AI agents."
     },
     {
       "id": "experiments",

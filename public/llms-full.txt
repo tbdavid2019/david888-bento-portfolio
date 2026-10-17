@@ -1,6 +1,6 @@
 # David Chiang (David888) - CTO & Technical Advisor Portfolio
 
-> 跨國大型電商、企業系統整合與百人研發治理的實戰派技術長 (CTO) & 企業首席顧問 / Enterprise CTO & Principal Technical Advisor: Global eCommerce, Cross-System Architecture & 300+ Org Leadership. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
+> 把複雜的技術，轉化為看得見的商業成果 / Turning Complex Technology into Business Results. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
@@ -29,35 +29,35 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 ## Finance & Quantitative Systems
 
 - [台灣公司關係網路可視化 (Taiwan Company Network Visualization)](https://taiwan-company-network.david888.com/): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
-- [888 StockBot 2.0 | 機構級金融智能體 (888 StockBot 2.0 - Institutional Finance AI)](https://bot.david888.com/): 純 TypeScript 原生量化引擎（DCF 估值、Minervini SEPA、華爾街財報前瞻、期權損益模擬、微觀流動性），完整整併台灣三大法人籌碼情報、TradingView 互動走勢圖、Generative UI 互動卡片與 2MD 即時連網搜尋。
-- [888 Stock Quant | 專業量化決策平台 (888 Stock Quant - Quantitative Platform)](https://stockdata.david888.com/): 結合 Google TimesFM 與 Timestral 雙時序基礎大模型、LSTM 次日預測、台美股多維技術面矩陣與三大法人及券商分點籌碼雷達的專業級量化工作台。
+- [888 StockBot 2.0 | 台美股估值與籌碼分析系統 (888 StockBot 2.0 - Equity Valuation & Chip Analysis)](https://bot.david888.com/): 以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。
+- [888 Stock Quant | 時間序列預測與籌碼平台 (888 Stock Quant - Quantitative Platform)](https://stockdata.david888.com/): 結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。
 - [Telegram: 股靈精怪 Stock](https://t.me/oli_billion_bot)
 - [Telegram: 投資新聞濃縮包](https://t.me/oliservice)
 - [選出潛力股 | 投資新聞濃縮包 | 333](https://stock.david888.com/)
 
 ## Products & Work
 
-- [888news | 全球科技與 AI 情報雷達 (888news - Global Tech & AI Intelligence Radar)](https://news2.david888.com/): 全天候自動追蹤全球上百個頂尖科技與 AI 信源（OpenAI、Anthropic、Google DeepMind、Meta 等），透過多源報導語意歸組、LLM 品質評分與行銷噪音過濾，每日清晨精準呈獻高管級科技情報。
-- [888 2FA | 邊緣雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 基於 Cloudflare Workers 的極速 2FA 金鑰管理系統。純 Web Crypto API 實作 Passkey / WebAuthn 免密生物辨識登入，支援 PWA 離線 TOTP、多端備份與微秒級時間校準。
+- [888news | 科技與 AI 新聞自動彙整系統 (888news - Tech & AI News Aggregator)](https://news2.david888.com/): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
+- [888 2FA | 雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
 - [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密秒登與 WebCal 日曆無殘留同步。
-- [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 具身智能與前沿論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
+- [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
 - [Telegram: Oli Summary 總結王](https://t.me/quantaar_bot)
 - [Telegram: Oli家 古靈 Gemini](https://t.me/oli_photo_bot)
 - [Telegram: 小截圖 Screenshot](https://t.me/oli_img_bot)
-- [小濃縮 (Quick Summary & Chat) 333 (Quick Summary & Chat 333)](https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof): 一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。
-- [Tab-Word-Deck 333 分頁學單字 (Tab-Word-Deck 333)](https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar): 將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。
+- [小濃縮 (Quick Summary & Chat) 333 (Quick Summary & Chat 333)](https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof): 瀏覽器 AI 網頁摘要工具。支援串接 Gemini、ChatGPT、Groq 與自訂 BaseURL，可一鍵產生網頁與 YouTube 影片摘要。
+- [Tab-Word-Deck 333 分頁學單字 (Tab-Word-Deck 333)](https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar): 每次開啟瀏覽器新分頁時自動顯示英文單字卡，內建多種字庫、發音與例句複習功能。
 - [LINE 小濃縮](https://line.me/R/ti/p/@032trcev?from=page&liff.referrer=https%3A%2F%2Fblog.david888.com%2F&accountId=032trcev)
-- [Website Font Changer 333 改字體 (Website Font Changer 333)](https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW): 高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。
-- [側邊翻譯 333 (Side Translation 333)](https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg): 提供便捷側邊欄介面的翻譯輔助工具，讓使用者在瀏覽外語網站時能隨時進行對照翻譯，享受無憂的閱讀體驗。
-- [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。
+- [Website Font Changer 333 改字體 (Website Font Changer 333)](https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW): 網頁字體替換工具。可將任意網站的字體替換為使用者指定的系統字體，改善長文閱讀體驗。
+- [側邊翻譯 333 (Side Translation 333)](https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg): 提供側邊欄介面的網頁翻譯工具，方便在瀏覽外文網站時左右對照原文與譯文。
+- [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。
 - [888box 檔案中心 (888box File Center)](https://box.david888.com/): 開源的類 Dropbox 雲端儲存與檔案管理中心。
-- [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 極速網頁解析與 SERP 搜尋引擎，將即時網頁與搜尋結果迅速轉為乾淨 Markdown，專為 AI Agent 與 LLM 設計。
-- [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 二次開發 jina-reader 賦予系統有 batch url 處理能力，這裡可以直接使用 https://create360.ai
+- [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
+- [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
 - [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天+AI摘要，可嵌入任何網站，無需後端。
-- [888 Tool (888 Tool)](https://tool.david888.com/): 常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。比起單一產品，它更像是我持續擴充的效率箱，適合快速解決小而高頻的實際問題。
-- [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。對常常跨人協作、需要累積 know-how 的團隊特別實用。
+- [888 Tool (888 Tool)](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
+- [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
 - [888desturl 最終目的地網址追蹤](https://url.david888.com/): 使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。
-- [Shorten and undo closed URL 333 (Shorten and Undo Closed URL 333)](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。
+- [Shorten and undo closed URL 333 (Shorten and Undo Closed URL 333)](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。
 - [final destination 檢查網址的最終目的地 333 (Final Destination 333)](https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln): 輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。
 - [輪盤選擇器 333 (Roulette Picker 333)](https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp): 支援離線使用的趣味決策小工具。提供簡單直覺的自訂選項介面，透過轉動輪盤幫助使用者快速克服「選擇困難症」。
 - [LINE 群組人](https://line.me/R/ti/p/@377mwhqu)
@@ -68,7 +68,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Skills for LLMs & AI Agents
 
-- [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): Agent 直接呼叫五個工具。適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。
+- [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
 - [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 自動每日更新，讓你的 LLM 有面對 OpenClaw 疑難雜症處理的能力，幫助解決開發問題。
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
 - [888a2a Agent 平台 (888a2a - Multi-Agent Platform)](https://github.com/tbdavid2019/888a2a): A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。
@@ -76,7 +76,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [888box Skill (888box Skill)](https://box.david888.com/skill.php): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
 - [Telegram Bot Agent Skill](https://github.com/tbdavid2019/telegram-docs-skill): 提供 Telegram Bot API 開發知識，讓你的 LLM 成為 Telegram 機器人專家。
 - [LINE Platform Agent Skill](https://github.com/tbdavid2019/line-docs-skill): 讓你的 LLM 擁有 LINE Bot / LineOA / LINE 官方帳號的完整開發知識。
-- [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): SAP Spartacus e-commerce 前端開發文件 Skill，助力電商開發。
+- [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。
 - [Hermes Agent Skill](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動更新，讓你的 LLM 擁有 Hermes Agent 的完整維護與運行知識。
 
 ## Games, AR/VR & Interactive Visuals
@@ -91,8 +91,8 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Qi & Life Products
 
-- [888 人生K線 | 八字命理可視化](https://bazi.david888.com): 獨創八字命理 K 線化工具，將生辰八字轉化為直觀的能量波動圖，輔以 AI 解析您的運勢起伏。
-- [333 奇門遁甲 (333 Qi Men Dun Jia — AI Decision Engine)](https://qi.david888.com/): 高日活 (High-DAU) 複雜古曆法確定性排盤引擎 × 多輪結構化 AI 決策平台。整合奇門遁甲、梅花易數、八字人生 K 線、塔羅、風水與月老，將繁複的天干地支節氣規則轉化為零幻覺演算法與現代化產品體驗。
+- [888 人生K線 | 八字命理可視化](https://bazi.david888.com): 將生辰八字大運流年繪製成 K 線走勢圖，並搭配 AI 解讀運勢變化。
+- [333 奇門遁甲 (333 Qi Men Dun Jia — Calendar & AI Interpretation)](https://qi.david888.com/): 將奇門遁甲、生辰八字、梅花易數、風水與塔羅的排盤規則寫成固定演算法，再交由 AI 進行多輪問答解讀。
 - [塔羅占卜 (Tarot Reading)](https://qi.david888.com/tarot): 用牌面整理當下的問題與直覺，提供一個適合自我探索的占卜入口。
 - [生辰八字2 (Bazi 2)](https://qi.david888.com/bazi2): 輸入出生資訊，從傳統八字角度整理個人命盤與人生節奏。
 - [風水顧問 (Feng Shui Advisor)](https://qi.david888.com/fengshui): 從空間配置與居住情境出發，快速取得風水方向的參考建議。
@@ -109,65 +109,65 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## About David Chiang (Traditional Chinese)
 
-### 跨國大型電商、企業系統整合與百人研發治理的實戰派技術長 (CTO) & 企業首席顧問
-> 歷練 70–300+ 人跨國研發組織、全球零售 SAP 電商中台與 Fortune 500 跨系統整合——協助董事會與 CEO 將複雜技術債轉化為高可用商業引擎與實質營收。
+### 把複雜的技術，轉化為看得見的商業成果
+> 大型電商架構、跨系統整合、70–300 人團隊管理與系統開發。
 
-我是具備跨國大型企業架構治理與第一線系統工程實力的 Hands-on CTO 與企業首席技術顧問。企業真正願意付高薪與長期顧問費解決的，從來不是華麗的流行口號，而是「跨國高併發電商撐不住大促流量、CRM/ERP/供應鏈系統各自為政、重度技術債拖垮產品交付、以及百人工程團隊缺乏商業產出」。過去十餘年，我最高管理超過 300 人規模之科技與工程體系，並親自率領 70 人純軟體研發軍團交付全球最大健康美容零售集團 SAP 電商平台與 Fortune 500 跨國 CRM/ERP 中樞；同時至今仍維持每日親手架構量化金融引擎、高併發資料管線與複雜規則系統的實戰手感。
+十多年跨國企業技術管理與系統開發經驗。曾管理 300 人規模的科技與工程組織，在跨國健康與美容零售集團帶領 70 人工程團隊負責 SAP 電商平台，並主導跨國企業 CRM / ERP 系統整合；同時持續投入程式開發，完成多套金融分析、新聞自動化與曆法運算系統。
 
-#### 三大高階合作模式 (Executive & Advisory Engagement)
+#### 合作項目
 
-#### 1. 年度企業技術顧問 / Fractional CTO（一年期常駐顧問約）
+#### 1. 年度企業技術顧問（一年期顧問約）
 
-專為尋求大型電商升級、跨系統整合、技術債重構或處於高速擴張期的上市櫃企業與高成長公司設計。以年度合約（Annual Retainer）形式，每月固定參與高層技術決策、核心系統架構把關、CRM/ERP/電商資料流打通、雲端成本優化，以及協助 CEO 面試、考核與培育核心技術主管（VP / Director / Architect）。
+適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。以一年期顧問方式，定期參與技術決策、檢視系統架構、串接電商與 CRM/ERP 資料流、調整雲端成本，並協助面試與培育技術主管。
 
-#### 2. 高階技術長正職 / 研發副總（CTO / VP of Engineering）
+#### 2. 技術長 / 研發部門負責人（CTO / VP of Engineering）
 
-開放具規模願景之跨國企業、上市櫃集團、大型零售電商或高成長科技公司之高階技術決策職缺。全面執掌技術戰略、50–300+ 人跨國研發組織治理、全通路高併發商業平台重構與研發交付效能轉型。
+開放跨國企業、上市櫃公司、零售電商或科技公司的技術管理職缺。負責技術規劃、70–300 人工程團隊管理、大型電商與核心平台改版，提升團隊交付穩定度。
 
-#### 3. 創投盡職調查與系統危機救援（Tech Due Diligence & Architecture Rescue）
+#### 3. 技術盡職調查與系統診斷（Tech Due Diligence）
 
-為創投機構 (VC / PE)、家族辦公室與企業董事會提供融資與併購前的獨立第三方「技術盡職調查」——穿透檢視標的之原始碼品質、架構擴展極限、團隊真實交付能力、資安合規與技術護城河真偽；或針對面臨大促銷高併發崩潰、跨系統資料斷鏈與嚴重技術債之核心系統提供專案診斷與重構救援。
+為投資人與企業提供投資或併購前的第三方技術評估——2 週內交付架構、程式碼品質與資安法遵三面向評估報告；或針對促銷檔期流量瓶頸、跨系統資料不同步等問題提供改善方案。
 
-#### 跨國企業與旗艦系統實戰成績單
+#### 主要經歷與線上作品
 
-- 全球最大健康與美容零售集團（親帶 70+ 人研發軍團）：主導 SAP Commerce Cloud 跨國高併發電商平台與微服務中台重構，打通多幣別結帳、全通路會員與即時庫存同步，扛住跨國大促銷極限流量，系統可用度達 99.98%。
+- 跨國健康與美容零售集團（帶領 70 人工程團隊）：負責 SAP Commerce Cloud 電商平台與微服務架構改版，整合跨國多幣別結帳、會員與庫存同步流程。
 
-- Fortune 500 全球消費性電子品牌（跨國多系統治理）：深度整合 Salesforce Service Cloud、HubSpot、RingCentral 語音中繼與全球 ERP 庫存與售後 RMA 中樞，消滅跨部門資料孤島，將全球退換貨流轉週期由「數天」壓縮至「數分鐘」，營運效率提升 42%。
+- 跨國消費性電子品牌（跨系統整合）：串接客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP / RMA 退換貨流程，將跨部門人工傳遞的退換貨處理時間從數天縮短至數分鐘。
 
-- 獨立架構之高難度量化金融、自動化媒體與複雜規則引擎主系統：不靠簡報空談，親手打造並線上運行 5 大高複雜度主力系統——涵蓋 888 StockBot 2.0 機構級量化估值與籌碼穿透系統（純 TS 實作 DCF、Minervini SEPA、期權損益）、888 StockQuant 雙時序模型預測平台、888news 百大信源自動化情報雷達、DAVID888 Daily 自動化語音媒體基建，以及高日活之 333 奇門遁甲古曆法確定性規則引擎。
+- 個人開發並維護的線上系統：包含 888 StockBot 2.0 股票估值與籌碼分析、888 StockQuant 時間序列預測平台、888news 科技新聞自動彙整、DAVID888 Daily 自動化語音 Podcast，以及 333 奇門遁甲曆法排盤網站。
 
-> 合作形式：一年期企業技術顧問約 (Annual Retainer)｜高階正職 (CTO / VP of Engineering)｜創投與董事會技術盡職調查 (Tech DD)。謝絕博弈、資金盤與非法灰產項目。
+> 合作方式：一年期企業技術顧問｜正職技術主管 (CTO / VP of Engineering)｜技術盡職調查 (Tech DD)。謝絕博弈、資金盤與非法項目。
 
 ## About David Chiang (English)
 
-### Enterprise CTO & Principal Technical Advisor: Global eCommerce, Cross-System Architecture & 300+ Org Leadership
-> From global SAP eCommerce platforms and Fortune 500 CRM/ERP integration to leading 70–300+ person engineering organizations—helping Boards and CEOs turn complex technical debt into resilient commercial engines.
+### Turning Complex Technology into Business Results
+> Enterprise e-commerce architecture, cross-system integration, and leading 70–300 person engineering teams.
 
-I am a hands-on Chief Technology Officer and Principal Technical Advisor with deep expertise in global e-commerce architecture, enterprise system integration, and large-scale engineering governance. Boards and CEOs do not pay executive compensation for buzzwords—they invest in leaders who can prevent high-concurrency e-commerce outages, unify fragmented CRM/ERP/supply-chain data silos, refactor crippling technical debt, and align 70–300+ engineers around commercial delivery. Over the past decade, I have scaled organizations of 300+ staff and directly led 70-engineer software teams delivering global retail e-commerce and Fortune 500 operational hubs, while remaining a hands-on chief architect who builds institutional quantitative engines, high-throughput data pipelines, and deterministic rule systems.
+Over a decade of experience in enterprise technology management and software development. I have managed technology organizations of 300 people, led a 70-engineer team delivering an international health & beauty retail SAP e-commerce platform, and unified global CRM/ERP operations—while continuing to write code and maintain quantitative finance, automated media, and rule-based web products.
 
-#### Executive Engagement & Advisory Models
+#### Engagement Options
 
-#### 1. Annual Enterprise Technical Advisor / Fractional CTO (12-Month Retainer)
+#### 1. Annual Technical Advisor (12-Month Retainer)
 
-Designed for listed corporations, omni-channel retail leaders, and scaling ventures undergoing platform modernization or cross-system integration. Under an annual retainer, I partner directly with the CEO and Board on architecture governance, e-commerce & CRM/ERP data unification, cloud cost optimization, technical debt elimination, and hiring/vetting senior engineering leaders (VP / Director / Principal Architect).
+For companies planning system refactoring, cross-system integration, technical debt cleanup, or team expansion. I work with leadership on a 12-month retainer to review architecture, connect e-commerce and CRM/ERP data flows, optimize cloud costs, and help interview and mentor engineering leads.
 
-#### 2. Full-Time Executive Leadership (CTO / VP of Engineering)
+#### 2. CTO / VP of Engineering
 
-Available for high-impact Chief Technology Officer or VP of Engineering mandates across multinational enterprises, listed groups, and high-growth technology ventures. Full technical and organizational ownership across multi-center engineering orgs (50–300+ engineers), high-concurrency commercial platform modernization, and high-velocity product delivery.
+Open to full-time technology leadership roles at multinational corporations, listed groups, retail/e-commerce enterprises, and technology companies. Responsible for technical direction, managing 70–300 person engineering teams, and improving platform stability and delivery.
 
-#### 3. VC / PE Tech Due Diligence & Architecture Rescue
+#### 3. Technical Due Diligence & System Review
 
-Independent third-party technical due diligence for Venture Capital, Private Equity, Family Offices, and Corporate M&A—auditing codebase health, scalability ceilings, team execution velocity, security posture, and architectural defensibility before capital deployment. Also available for emergency architecture rescue on bottlenecked production systems.
+Independent pre-investment or pre-M&A technical reviews for investors and companies—delivering a 3-pillar report covering architecture, codebase quality, and security/compliance within 2 weeks; or diagnosing traffic bottlenecks and data sync issues.
 
-#### Track Record & Flagship Production Systems
+#### Experience & Live Systems
 
-- Global #1 Health & Beauty Retail Group (Led 70+ Engineers): Spearheaded SAP Commerce Cloud and event-driven microservices transformation across international markets, unifying multi-currency checkout, omni-channel loyalty, and real-time inventory synchronization with 99.98% uptime.
+- International Health & Beauty Retail Group (Led 70 Engineers): Refactored the SAP Commerce Cloud e-commerce platform and microservices architecture across multi-currency checkout, loyalty, and inventory sync.
 
-- Fortune 500 Global Consumer Electronics Brand (Enterprise Integration): Unified Salesforce Service Cloud, HubSpot, RingCentral voice infrastructure, and global ERP/RMA inventory hubs—slashing RMA turnaround from days to minutes and boosting operational efficiency by 42%.
+- Global Consumer Electronics Brand (System Integration): Connected customer support, Salesforce, HubSpot, RingCentral voice, and ERP/RMA workflows, reducing manual return processing from days to minutes.
 
-- Self-Architected Quantitative Finance, High-Throughput Media & Rule Engine Systems: Hands-on architect of 5 live production systems on .david888.com—including 888 StockBot 2.0 (native TypeScript DCF valuation, Minervini SEPA, options Greeks, and institutional chip flow penetration), 888 StockQuant (TimesFM & Timestral dual time-series forecasting), 888news (autonomous 100+ source intelligence radar), DAVID888 Daily (automated audio media & RSS infrastructure), and 333 Qi Men Dun Jia (high-DAU deterministic astronomical rule engine).
+- Self-Built Live Web Systems: Designed and built 888 StockBot 2.0 (equity valuation & chip flow analysis), 888 StockQuant (time-series forecasting), 888news (automated tech news aggregation), DAVID888 Daily (automated audio podcast), and 333 Qi Men Dun Jia (calendar calculation engine).
 
-> Engagement: 12-Month Advisory Retainer | Full-Time CTO / VP of Engineering | Board & VC Tech Due Diligence. Strictly no gambling, illicit crypto schemes, or unregulated exchange projects.
+> Available for: 12-Month Technical Advisor Retainers, Full-Time CTO / VP of Engineering roles, and Technical Due Diligence. No gambling, Ponzi, or illegal projects.
 
 ## Detailed Item Catalog
 
@@ -178,33 +178,33 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - Description (ZH): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
 - Description (EN): An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.
 
-### 888 StockBot 2.0 | 機構級金融智能體 / 888 StockBot 2.0 - Institutional Finance AI
+### 888 StockBot 2.0 | 台美股估值與籌碼分析系統 / 888 StockBot 2.0 - Equity Valuation & Chip Analysis
 - URL: https://bot.david888.com/
 - Category: finance
-- Section: 機構量化與分析平台 (Institutional Quant & Analytics Platforms)
-- Description (ZH): 純 TypeScript 原生量化引擎（DCF 估值、Minervini SEPA、華爾街財報前瞻、期權損益模擬、微觀流動性），完整整併台灣三大法人籌碼情報、TradingView 互動走勢圖、Generative UI 互動卡片與 2MD 即時連網搜尋。
-- Description (EN): Institutional-grade financial AI agent with native TS quantitative engines (DCF valuation, Minervini SEPA, Wall St earnings preview, options PnL), TWSE/TPEx institutional flows, TradingView charts, Generative UI, and 2MD live search.
+- Section: 量化與分析平台 (Quant & Analytics Platforms)
+- Description (ZH): 以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。
+- Description (EN): TypeScript financial analysis tool with DCF valuation, Minervini SEPA, options PnL calculators, TWSE/TPEx institutional flows, TradingView charts, and 2MD web search.
 
-### 888 Stock Quant | 專業量化決策平台 / 888 Stock Quant - Quantitative Platform
+### 888 Stock Quant | 時間序列預測與籌碼平台 / 888 Stock Quant - Quantitative Platform
 - URL: https://stockdata.david888.com/
 - Category: finance
-- Section: 機構量化與分析平台 (Institutional Quant & Analytics Platforms)
-- Description (ZH): 結合 Google TimesFM 與 Timestral 雙時序基礎大模型、LSTM 次日預測、台美股多維技術面矩陣與三大法人及券商分點籌碼雷達的專業級量化工作台。
-- Description (EN): Institutional quantitative decision platform combining Google TimesFM & Timestral time-series foundation models, LSTM next-day forecasting, technical matrices, and broker-branch chip radars for TW/US equities.
+- Section: 量化與分析平台 (Quant & Analytics Platforms)
+- Description (ZH): 結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。
+- Description (EN): Quantitative data platform combining Google TimesFM, Timestral, and LSTM forecasting models with technical indicators and broker-branch chip tracking for TW/US equities.
 
-### 888news | 全球科技與 AI 情報雷達 / 888news - Global Tech & AI Intelligence Radar
+### 888news | 科技與 AI 新聞自動彙整系統 / 888news - Tech & AI News Aggregator
 - URL: https://news2.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 全天候自動追蹤全球上百個頂尖科技與 AI 信源（OpenAI、Anthropic、Google DeepMind、Meta 等），透過多源報導語意歸組、LLM 品質評分與行銷噪音過濾，每日清晨精準呈獻高管級科技情報。
-- Description (EN): Autonomous global tech & AI intelligence radar monitoring 100+ frontier sources (OpenAI, Anthropic, Google, Meta). Uses multi-source semantic clustering, LLM quality scoring, and noise filtering to deliver daily executive briefings.
+- Description (ZH): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
+- Description (EN): Automated tech & AI news aggregator monitoring 100+ sources (OpenAI, Anthropic, Google, Meta) with semantic grouping, ad filtering, and daily bilingual summaries.
 
-### 888 2FA | 邊緣雙因素認證金鑰管理 / 888 2FA - Cloudflare Workers 2FA Manager
+### 888 2FA | 雙因素認證金鑰管理 / 888 2FA - Cloudflare Workers 2FA Manager
 - URL: https://2fa.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 基於 Cloudflare Workers 的極速 2FA 金鑰管理系統。純 Web Crypto API 實作 Passkey / WebAuthn 免密生物辨識登入，支援 PWA 離線 TOTP、多端備份與微秒級時間校準。
-- Description (EN): High-performance 2FA authenticator on Cloudflare Workers. Features zero-dependency Web Crypto Passkey/WebAuthn login, offline PWA TOTP, multi-cloud backup, and accurate time sync.
+- Description (ZH): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
+- Description (EN): 2FA authenticator on Cloudflare Workers featuring Web Crypto Passkey/WebAuthn login, offline PWA TOTP, and encrypted backup.
 
 ### afterBUY 補貨日記 | 耗材保存期管理 / afterBUY - Consumables & Warranty Tracker
 - URL: https://tbdavid2019.github.io/afterBUY
@@ -217,7 +217,7 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://tbdavid2019.github.io/paper-daily/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 具身智能與前沿論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
+- Description (ZH): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
 - Description (EN): An automated daily research tracker monitoring Embodied AI and ML papers across arXiv, HuggingFace, and Semantic Scholar with LLM-generated Chinese summaries.
 
 ### 333 Taiwanese TTS Hub / 333 Taiwanese TTS Hub
@@ -231,7 +231,7 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://bazi.david888.com
 - Category: metaphysics
 - Section: 命理產品系列 (Qi & Life Product Family)
-- Description (ZH): 獨創八字命理 K 線化工具，將生辰八字轉化為直觀的能量波動圖，輔以 AI 解析您的運勢起伏。
+- Description (ZH): 將生辰八字大運流年繪製成 K 線走勢圖，並搭配 AI 解讀運勢變化。
 
 ### LinkedIn
 - URL: https://www.linkedin.com/in/david11111/
@@ -281,14 +281,14 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://chromewebstore.google.com/detail/%E5%B0%8F%E6%BF%83%E7%B8%AE-quick-summary/ilgegilcecmgnomacgjiklmhfgioekof
 - Category: products
 - Section: 瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)
-- Description (ZH): 一款高度彈性的 AI 網頁助理。支援整合 Gemini、ChatGPT、Groq 等多種主流大型語言模型（可自訂 BaseURL），能一鍵快速生成網頁與 YouTube 影片摘要，大幅提升使用者的資訊吸收效率。
-- Description (EN): A flexible AI web assistant that integrates with Gemini, ChatGPT, Groq, and custom OpenAI-compatible BaseURLs. Generate web page and YouTube summaries in one click to absorb information faster.
+- Description (ZH): 瀏覽器 AI 網頁摘要工具。支援串接 Gemini、ChatGPT、Groq 與自訂 BaseURL，可一鍵產生網頁與 YouTube 影片摘要。
+- Description (EN): Browser AI assistant integrating Gemini, ChatGPT, Groq, and custom OpenAI-compatible BaseURLs for one-click web page and YouTube summaries.
 
 ### Tab-Word-Deck 333 分頁學單字 / Tab-Word-Deck 333
 - URL: https://chromewebstore.google.com/detail/random-gre-word-%E9%9A%A8%E6%A9%9F%E5%96%AE%E5%AD%97%E8%A4%87%E7%BF%92%E5%99%A8/mpbkdjjihhjjhmlnchkbpgfclhhdblap?hl=zh-TW&utm_source=ext_sidebar
 - Category: products
 - Section: 瀏覽器產品｜學習與閱讀 (Browser Products - Learning & Reading)
-- Description (ZH): 將碎片化時間轉化為學習契機的語言工具。每次開啟新分頁都會自動推播英文單字卡，並內建多種字庫、發音與例句複習機制，打造沉浸式學習環境。
+- Description (ZH): 每次開啟瀏覽器新分頁時自動顯示英文單字卡，內建多種字庫、發音與例句複習功能。
 - Description (EN): A vocabulary learning extension that turns every new tab into a study moment, with word decks, pronunciation, examples, and review flows built into the browser.
 
 ### LINE 小濃縮
@@ -300,21 +300,21 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://chromewebstore.google.com/detail/%E6%94%B9%E5%AD%97%E9%AB%94-font-changer/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW
 - Category: products
 - Section: 瀏覽器產品｜學習與閱讀 (Browser Products - Learning & Reading)
-- Description (ZH): 高度客製化的網頁排版工具。允許使用者強制將任何網站的字體替換為自己偏好的系統字體，有效減輕視覺疲勞並提升閱讀舒適度。
+- Description (ZH): 網頁字體替換工具。可將任意網站的字體替換為使用者指定的系統字體，改善長文閱讀體驗。
 - Description (EN): A customizable reading comfort tool that lets users override website fonts with their preferred system fonts, reducing visual fatigue and improving long-form reading.
 
 ### 側邊翻譯 333 / Side Translation 333
 - URL: https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg
 - Category: products
 - Section: 瀏覽器產品｜學習與閱讀 (Browser Products - Learning & Reading)
-- Description (ZH): 提供便捷側邊欄介面的翻譯輔助工具，讓使用者在瀏覽外語網站時能隨時進行對照翻譯，享受無憂的閱讀體驗。
+- Description (ZH): 提供側邊欄介面的網頁翻譯工具，方便在瀏覽外文網站時左右對照原文與譯文。
 - Description (EN): A sidebar translation helper for comparing original and translated text while browsing foreign-language websites.
 
 ### WebTalk 333 - Chat and Summarize on any website. / WebTalk 333 - Chat and Summarize on any website
 - URL: https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1
 - Category: products
 - Section: 瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)
-- Description (ZH): 結合網頁摘要與即時通訊的創新工具。利用 WebRTC P2P 技術，讓使用者不僅能快速掌握網頁重點，還能打破網站限制，直接在當前頁面與好友進行即時交流。
+- Description (ZH): 結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。
 - Description (EN): A web summary and real-time communication tool. With WebRTC P2P, users can summarize pages and chat with friends directly on the current website.
 
 ### Threads: @david888.chiang
@@ -332,14 +332,14 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://2md.aiurl.tw/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 極速網頁解析與 SERP 搜尋引擎，將即時網頁與搜尋結果迅速轉為乾淨 Markdown，專為 AI Agent 與 LLM 設計。
-- Description (EN): High-speed web reader and SERP search engine converting live pages and search results into clean Markdown for AI agents and LLMs.
+- Description (ZH): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
+- Description (EN): Web reader and search tool converting live pages and search results into clean Markdown for AI agents and LLMs.
 
 ### 888-url2md 網頁轉 Markdown / 888-url2md Web Reader
 - URL: https://create360.ai
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 二次開發 jina-reader 賦予系統有 batch url 處理能力，這裡可以直接使用 https://create360.ai
+- Description (ZH): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
 - Description (EN): Enhanced jina-reader fork with batch URL processing capabilities. Directly usable at https://create360.ai
 
 ### WebTalk 333 / WebTalk 333
@@ -353,15 +353,15 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://tool.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 常用實用工具入口，集中放置日常工作會反覆用到的小工具與服務。比起單一產品，它更像是我持續擴充的效率箱，適合快速解決小而高頻的實際問題。
-- Description (EN): A practical tool hub that gathers the small services and utilities used repeatedly in daily work. It works more like an expanding toolbox for solving small but frequent operational needs.
+- Description (ZH): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
+- Description (EN): A practical tool hub that gathers the small services and utilities used repeatedly in daily work.
 
 ### david888 wiki / david888 wiki
 - URL: https://wiki.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 團隊內部高頻使用的知識庫，適合整理 SOP、專案筆記、研究紀錄與可重用文件。對常常跨人協作、需要累積 know-how 的團隊特別實用。
-- Description (EN): A frequently used internal knowledge base for SOPs, project notes, research logs, and reusable documentation, especially useful for teams that need shared operational memory.
+- Description (ZH): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
+- Description (EN): An internal knowledge base for SOPs, project notes, research logs, and documentation.
 
 ### 888desturl 最終目的地網址追蹤
 - URL: https://url.david888.com/
@@ -369,12 +369,12 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - Section: Web 產品與服務 (Web Products & Services)
 - Description (ZH): 使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。
 
-### 333 奇門遁甲 / 333 Qi Men Dun Jia — AI Decision Engine
+### 333 奇門遁甲 / 333 Qi Men Dun Jia — Calendar & AI Interpretation
 - URL: https://qi.david888.com/
 - Category: metaphysics
 - Section: 命理產品系列 (Qi & Life Product Family)
-- Description (ZH): 高日活 (High-DAU) 複雜古曆法確定性排盤引擎 × 多輪結構化 AI 決策平台。整合奇門遁甲、梅花易數、八字人生 K 線、塔羅、風水與月老，將繁複的天干地支節氣規則轉化為零幻覺演算法與現代化產品體驗。
-- Description (EN): High-DAU deterministic astronomical/calendar rule engine paired with multi-turn LLM reasoning. Spans Qi Men Dun Jia, Plum Blossom Numerology, Bazi Life K-Line, Tarot, and Feng Shui with zero-hallucination chart calculation.
+- Description (ZH): 將奇門遁甲、生辰八字、梅花易數、風水與塔羅的排盤規則寫成固定演算法，再交由 AI 進行多輪問答解讀。
+- Description (EN): Consumer web app combining a calendar calculation engine with multi-turn AI Q&A across Qi Men Dun Jia, Plum Blossom Numerology, Bazi Life K-Line, Tarot, and Feng Shui.
 
 ### 塔羅占卜 / Tarot Reading
 - URL: https://qi.david888.com/tarot
@@ -418,8 +418,8 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 - URL: https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW
 - Category: products
 - Section: 瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)
-- Description (ZH): 雙效合一的瀏覽器輔助工具。完美結合「短網址快速生成」與「一鍵恢復已關閉分頁」兩大高頻率需求，讓網頁管理與分享更流暢。
-- Description (EN): A two-in-one browser utility that combines quick short URL generation with one-click restoration of recently closed tabs.
+- Description (ZH): 結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。
+- Description (EN): A browser utility combining short URL generation with one-click restoration of recently closed tabs.
 
 ### final destination 檢查網址的最終目的地 333 / Final Destination 333
 - URL: https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln
@@ -448,7 +448,7 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 ### 888news 遠端 MCP 服務 (5 工具呼叫) / 888news Remote MCP Server (5 Agent Tools)
 - URL: https://news2.david888.com/api/mcp
 - Category: agent-skills
-- Description (ZH): Agent 直接呼叫五個工具。適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。
+- Description (ZH): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
 - Description (EN): Directly call 5 tools from any AI agent. Built for remote MCP-compatible agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token needed; returns concise text and structured data.
 
 ### OpenClaw Agent Skill
@@ -500,7 +500,7 @@ Independent third-party technical due diligence for Venture Capital, Private Equ
 ### SAP Spartacus Agent Skill
 - URL: https://github.com/tbdavid2019/SAP-spartacus-docs-skill
 - Category: agent-skills
-- Description (ZH): SAP Spartacus e-commerce 前端開發文件 Skill，助力電商開發。
+- Description (ZH): 提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。
 
 ### Hermes Agent Skill
 - URL: https://github.com/tbdavid2019/hermes-agent-docs-skill
