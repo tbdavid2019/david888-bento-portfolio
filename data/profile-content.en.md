@@ -1,8 +1,8 @@
 # Turning Complex Technology into Business Results
 
-> Enterprise e-commerce architecture, cross-system integration, with proven 300+ person management span and hands-on execution.
+> Proven leadership across 300+ person organizations and enterprise e-commerce platforms. Combining high-level strategic alignment with hands-on architecture and code to solve complex engineering challenges.
 
-Over a decade of experience in enterprise technology management and software development. Proven leadership managing organizations up to 300+ people, led a 70-engineer team delivering an international health & beauty retail SAP e-commerce platform, and unified global CRM/ERP operations—bridging strategic vision with hands-on software development across quantitative finance, automated media, and rule-based web products.
+Over a decade of enterprise technology leadership and software engineering experience. Led a 70-engineer team refactoring an international SAP Commerce Cloud platform and streamlined cross-border CRM/ERP workflows, with proven management span across 300+ person organizations. Equally comfortable aligning technical strategy with the board and sitting side-by-side with engineers debugging code and reviewing PRs—bridging the gap between business vision and ground-level execution.
 
 ## Engagement Options
 

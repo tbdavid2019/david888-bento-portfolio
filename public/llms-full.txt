@@ -110,9 +110,9 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 ## About David Chiang (Traditional Chinese)
 
 ### 把複雜的技術，轉化為看得見的商業成果
-> 大型電商架構、跨系統整合、具 300+ 人組織管理幅度與實戰落地能力。
+> 經歷過 300+ 人組織擴張與大型電商架構洗禮；既懂高階戰略協同，也能挽起袖子在第一線寫 Code 解決核心技術痛點。
 
-十多年跨國企業技術管理與系統開發經驗。組織管理幅度達 300+ 人規模，在跨國健康與美容零售集團帶領 70 人工程團隊負責 SAP 電商平台，並主導跨國企業 CRM / ERP 系統整合；不僅能從戰略層面引導團隊，亦持續投入第一線程式開發，完成多套金融分析、新聞自動化與曆法運算系統。
+十多年跨國企業技術管理與系統開發經驗。曾帶領 70 人工程團隊完成跨國健康零售 SAP 電商微服務重構，並整合全球 CRM / ERP 與售後自動化流程；組織管理幅度達 300+ 人規模。無論是面對投資人與經營層討論技術戰略，還是與工程師坐在一起 Debug 與做架構 Review，都能無縫切換，把複雜的技術債轉化為穩定、高效的商業產出。
 
 #### 合作項目
 
@@ -141,9 +141,9 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 ## About David Chiang (English)
 
 ### Turning Complex Technology into Business Results
-> Enterprise e-commerce architecture, cross-system integration, with proven 300+ person management span and hands-on execution.
+> Proven leadership across 300+ person organizations and enterprise e-commerce platforms. Combining high-level strategic alignment with hands-on architecture and code to solve complex engineering challenges.
 
-Over a decade of experience in enterprise technology management and software development. Proven leadership managing organizations up to 300+ people, led a 70-engineer team delivering an international health & beauty retail SAP e-commerce platform, and unified global CRM/ERP operations—bridging strategic vision with hands-on software development across quantitative finance, automated media, and rule-based web products.
+Over a decade of enterprise technology leadership and software engineering experience. Led a 70-engineer team refactoring an international SAP Commerce Cloud platform and streamlined cross-border CRM/ERP workflows, with proven management span across 300+ person organizations. Equally comfortable aligning technical strategy with the board and sitting side-by-side with engineers debugging code and reviewing PRs—bridging the gap between business vision and ground-level execution.
 
 #### Engagement Options
 

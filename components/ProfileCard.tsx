@@ -34,12 +34,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     {
       value: '300+ 人',
       label: isEn
-        ? 'Management Span · Leads Teams & Stays Hands-on'
-        : '組織管理幅度 · 能帶大團隊，也熱愛動手寫 Code',
+        ? '300+ Org Scale · Leads Teams & Still Codes'
+        : '能帶大團隊，也熱愛動手寫 Code',
     },
     {
       value: '70 人',
-      label: isEn ? 'SAP eCommerce Team Led' : '帶領跨國 SAP 電商工程團隊',
+      label: isEn ? '70 Engineers Led · SAP eCommerce' : '帶領跨國 SAP 電商工程團隊',
     },
     {
       value: '180+ Repos',
@@ -49,14 +49,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   ];
   const engagementPills = isEn
     ? [
-        { icon: Briefcase, text: '12-Month Technical Advisor (Annual Retainer)' },
+        { icon: Briefcase, text: 'Technical Advisor (Annual Retainer)' },
         { icon: Users, text: 'Full-Time CTO / VP of Engineering' },
-        { icon: ShieldCheck, text: 'Technical Due Diligence & System Review' },
+        { icon: ShieldCheck, text: 'Tech Due Diligence & Architecture Review' },
       ]
     : [
-        { icon: Briefcase, text: '一年期企業技術顧問約 (Annual Retainer)' },
-        { icon: Users, text: '正職：技術長 / 研發部門負責人 (CTO / VP of Engineering)' },
-        { icon: ShieldCheck, text: '技術盡職調查與系統診斷 (Tech Due Diligence)' },
+        { icon: Briefcase, text: '年度技術顧問約 (Annual Retainer)' },
+        { icon: Users, text: '全職技術長 / 研發負責人 (CTO / VP)' },
+        { icon: ShieldCheck, text: '技術盡職調查與診斷 (Due Diligence)' },
       ];
 
   const content = profileContent[locale];
@@ -80,62 +80,69 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   return (
     <div className="dossier-card p-5 sm:p-7 md:p-8">
       <div className="flex flex-col gap-6">
-        {/* Top Executive Identity Header */}
-        <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-start">
+        {/* Top Header: Identity & Action Buttons */}
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-center gap-3.5 sm:gap-4">
             <img
               src="/bento/me.jpg"
               alt={profileData.name}
-              className="h-20 w-20 shrink-0 rounded-2xl border-2 border-[#17324d] object-cover shadow-sm sm:h-24 sm:w-24 dark:border-[#ffb010]"
+              className="h-16 w-16 shrink-0 rounded-2xl border-2 border-[#17324d] object-cover shadow-sm sm:h-20 sm:w-20 dark:border-[#ffb010]"
             />
-            <div className="min-w-0 flex-1">
+            <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-sm font-extrabold text-[#a9471d] dark:text-[#ffb010]">
+                <span className="font-mono text-base font-extrabold text-[#a9471d] sm:text-lg dark:text-[#ffb010]">
                   {profileData.name} (David888)
                 </span>
                 <span className="rounded-md border border-[#17324d] bg-[#17324d] px-2.5 py-0.5 text-xs font-extrabold text-[#fff9e8] dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#2b251a]">
                   {isEn ? 'CTO & TECHNICAL ADVISOR' : 'CTO & 技術顧問'}
                 </span>
               </div>
-              <h1 className="mt-2 max-w-4xl text-2xl font-extrabold leading-[1.25] tracking-tight text-text-main sm:text-3xl md:text-[2rem]">
-                {content.headline}
-              </h1>
+              <div className="mt-1 text-xs font-bold text-text-muted sm:text-sm">
+                {isEn
+                  ? 'Enterprise Architecture · System Integration · Hands-on Tech Leadership'
+                  : '大型電商架構 ｜ 企業跨系統整合 ｜ 具百人規模視野的第一線技術領袖'}
+              </div>
             </div>
           </div>
 
-          {/* Primary Executive CTAs - Mobile Full-Width Responsive */}
-          <div className="flex w-full shrink-0 flex-wrap items-center gap-2.5 xl:w-auto">
+          {/* Primary Action Buttons */}
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2 lg:w-auto">
             {onContact && (
               <button
                 type="button"
                 onClick={onContact}
-                className="btn-saffron inline-flex min-h-[46px] w-full items-center justify-center gap-2 px-5 py-2.5 text-sm sm:w-auto"
+                className="btn-saffron inline-flex min-h-[42px] w-full items-center justify-center gap-2 px-4 py-2 text-sm font-extrabold sm:w-auto"
               >
-                <span>{isEn ? 'Contact for Advisory / CTO Role' : '洽談顧問合作 / 技術管理職缺'}</span>
-                <ArrowRight size={16} />
+                <span>{isEn ? 'Contact for Advisory / CTO' : '洽談顧問合作 / 技術管理職缺'}</span>
+                <ArrowRight size={15} />
               </button>
             )}
             <a
               href="https://www.linkedin.com/in/david11111/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-[#17324d] bg-bg-elevated px-4 text-sm font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] sm:flex-initial dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
+              className="inline-flex min-h-[42px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-[#17324d] bg-bg-elevated px-3.5 text-sm font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] sm:flex-initial dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
             >
-              <ExternalLink size={15} />
+              <ExternalLink size={14} />
               <span>LinkedIn</span>
             </a>
             <button
               type="button"
               onClick={() => setIsQrGameOpen(true)}
-              className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-border bg-bg-elevated px-3.5 text-sm font-bold text-text-main transition-colors hover:border-[#17324d] sm:flex-initial dark:hover:border-[#ffb010]"
+              className="inline-flex min-h-[42px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-border bg-bg-elevated px-3 text-sm font-bold text-text-main transition-colors hover:border-[#17324d] sm:flex-initial dark:hover:border-[#ffb010]"
               aria-label={isEn ? 'Open David888 website QR' : '開啟 David888 網站 QR'}
               aria-haspopup="dialog"
             >
-              <Gamepad2 size={16} className="text-[#a9471d] dark:text-[#ffb010]" />
+              <Gamepad2 size={15} className="text-[#a9471d] dark:text-[#ffb010]" />
               <span>{isEn ? 'Website QR' : '網站 QR'}</span>
             </button>
           </div>
         </div>
+
+        {/* Full-Width Hero H1 Headline with Natural Breathing Room */}
+        <h1 className="text-2xl sm:text-3xl md:text-[2.15rem] lg:text-[2.35rem] font-extrabold leading-[1.28] tracking-tight text-text-main text-balance">
+          {content.headline}
+        </h1>
 
         {/* 3 Target Engagement Mandates */}
         <div className="grid grid-cols-1 gap-2.5 md:grid-cols-3">

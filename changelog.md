@@ -3,9 +3,16 @@
 ## [2026-10-17] - Contact Dialog Tone Softening & Zero-Friction UX, English Podcast Edition, and Live Catalog Updates
 
 ### Fixed & Enhanced
+- **Eliminated Hero Headline Squeezing & Broken Line-Wrapping (`components/ProfileCard.tsx`)**:
+  - **Full-Width H1 Hero Container**: Restructured `ProfileCard.tsx` so the H1 statement (`Turning Complex Technology into Business Results` / `把複雜的技術，轉化為看得見的商業成果`) is placed on its own dedicated full-width line with `text-balance`. It no longer competes with the 3 action CTA buttons in a narrow ~300px column, completely eliminating the unnatural 5-line English break (`Turning / Complex / Technology / into Business / Results`) and 4-line Chinese mid-word break (`把複雜的技 / 術，轉化為 / 看得見的商 / 業成果`).
+  - **Balanced Engagement Mandate Pills**: Shortened and harmonized the 3 target mandate titles (e.g. `全職技術長 / 研發負責人 (CTO / VP)`), eliminating awkward compound splits ("負責" / "人") and guaranteeing uniform single/double line heights.
+  - **Streamlined 3 Key Metrics Labels**: Refined the `300+ 人` label to **`能帶大團隊，也熱愛動手寫 Code`** (16 characters), achieving exact visual length balance with the other two metrics (`帶領跨國 SAP 電商工程團隊`, `GitHub 開源專案與多套線上系統`) and eliminating orphan wrapping.
+- **Full-Site Copywriting Elevation: Grounded Dual-Threat Technical Leadership (`data/profile-content.zh.md`, `data/profile-content.en.md`, `data/profile-content.json`)**:
+  - **Elevated Sub-Headline**: Updated the profile mission statement to clearly convey rare dual-threat capability: *「經歷過 300+ 人組織擴張與大型電商架構洗禮；既懂高階戰略協同，也能挽起袖子在第一線寫 Code 解決核心技術痛點。」* (EN: *“Proven leadership across 300+ person organizations and enterprise e-commerce platforms. Combining high-level strategic alignment with hands-on architecture and code to solve complex engineering challenges.”*).
+  - **Seamless Executive & Engineering Collaboration**: Highlighted the ability to navigate both worlds effortlessly: *「無論是面對投資人與經營層討論技術戰略，還是與工程師坐在一起 Debug 與做架構 Review，都能無縫切換，把複雜的技術債轉化為穩定、高效的商業產出。」*
 - **Executive Copywriting Overhaul: Zero "總經理" Titles & Grounded Management Span (`ProfileCard.tsx`, `ExecutiveBriefing.tsx`, `profile-content.zh.md`, `profile-content.en.md`)**:
   - **Completely Eradicated "曾任總經理" / "Former General Manager"**: Removed all corporate GM titles that create an unapproachable "高高在上" barrier or make hiring teams assume an ivory-tower manager who doesn't build.
-  - **Repositioned 300+ Metric to Grounded, Hands-on Leadership**: Reframed the metric to **`300+ 人` ｜ `組織管理幅度 · 能帶大團隊，也熱愛動手寫 Code`** (EN: `Management Span · Leads Teams & Stays Hands-on`).
+  - **Repositioned 300+ Metric to Grounded, Hands-on Leadership**: Reframed the metric to **`300+ 人` ｜ `能帶大團隊，也熱愛動手寫 Code`** (EN: `300+ Org Scale · Leads Teams & Still Codes`).
   - **Emphasized Rare Dual-Threat Value**: Clearly conveys the ability to steer multi-hundred person organizations through growth bottlenecks while remaining deeply grounded and active in first-line technical execution, architecture, and code.
 - **Fixed Social Bento Grid Layout Hole & Empty Slots (`components/BentoGrid.tsx`, `data/bento-links.json`)**:
   - **Eliminated Orphan Cards & Empty Grid Slots**: Fixed the gap in the 2-column social grid where un-stacked cards fell into an isolated outer grid, leaving an empty hole beside Threads.
