@@ -44,6 +44,21 @@ test('successfully dispatches email to 104@david888.com via Resend API and sends
 
   globalThis.fetch = async (url, options) => {
     interceptedRequests.push({ url, options, body: JSON.parse(options.body) });
+    if (url.includes('clef.create360.ai')) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          model: 'clef-flash',
+          answers: {
+            classification: {
+              choice: 'legitimate_inquiry',
+              probabilities: { legitimate_inquiry: 0.95, spam_or_scam: 0.05 },
+            },
+          },
+        }),
+      };
+    }
     return {
       ok: true,
       status: 200,
@@ -71,9 +86,10 @@ test('successfully dispatches email to 104@david888.com via Resend API and sends
     assert.equal(res.body.provider, 'resend');
     assert.match(res.body.ticketNo, /^CS-\d{8}-\d{4}$/);
 
-    assert.ok(interceptedRequests.length >= 1);
-    const adminReq = interceptedRequests[0];
-    assert.equal(adminReq.url, 'https://api.resend.com/emails');
+    const adminReq = interceptedRequests.find(
+      (r) => r.url === 'https://api.resend.com/emails' && r.body.to?.includes('104@david888.com'),
+    );
+    assert.ok(adminReq);
     assert.equal(adminReq.options.headers.Authorization, 'Bearer re_test_key_123');
     assert.deepEqual(adminReq.body.to, ['104@david888.com']);
     assert.equal(adminReq.body.reply_to, 'alice@example.com');
@@ -82,7 +98,7 @@ test('successfully dispatches email to 104@david888.com via Resend API and sends
     assert.ok(adminReq.body.text.includes('Cooper Tech'));
 
     // Verify confirmation receipt request was also attempted
-    const receiptReq = interceptedRequests.find((r) => r.body.to.includes('alice@example.com'));
+    const receiptReq = interceptedRequests.find((r) => r.body.to?.includes('alice@example.com'));
     assert.ok(receiptReq);
     assert.ok(receiptReq.body.subject.includes('收件確認'));
   } finally {
@@ -172,6 +188,53 @@ test('returns 502 with fallback flag when Resend API responds with error', async
     assert.equal(res.status, 502);
     assert.equal(res.body.fallback, true);
     assert.equal(res.body.details, 'Domain not verified');
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('blocks spam or scam messages with 403 when detected by Clef-Flash decision engine', async () => {
+  const originalFetch = globalThis.fetch;
+  let resendCalled = false;
+
+  globalThis.fetch = async (url) => {
+    if (url.includes('clef.create360.ai')) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          model: 'clef-flash',
+          answers: {
+            classification: {
+              choice: 'spam_or_scam',
+              probabilities: { legitimate_inquiry: 0.01, spam_or_scam: 0.99 },
+            },
+          },
+        }),
+      };
+    }
+    if (url.includes('resend.com')) {
+      resendCalled = true;
+    }
+    return { ok: true, status: 200, json: async () => ({}) };
+  };
+
+  try {
+    const res = await processContactSubmission(
+      {
+        name: 'Spam Bot',
+        email: 'spammer@casino-seo.xyz',
+        subject: '資訊顧問／工商合作',
+        message: 'BUY CHEAP BACKLINKS CASINO GAMBLING GUARANTEED RANK 1 TELEGRAM ME',
+      },
+      {
+        RESEND_API_KEY: 're_test_key_123',
+      },
+    );
+
+    assert.equal(res.status, 403);
+    assert.equal(res.body.blocked, true);
+    assert.equal(resendCalled, false); // Resend was never called!
   } finally {
     globalThis.fetch = originalFetch;
   }

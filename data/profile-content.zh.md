@@ -22,6 +22,6 @@
 
 - 跨國健康與美容零售集團（帶領 70 人工程團隊）：負責 SAP Commerce Cloud 電商平台與微服務架構改版，整合跨國多幣別結帳、會員與庫存同步流程。
 - 跨國消費性電子品牌（跨系統整合）：串接客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP / RMA 退換貨流程，將跨部門人工傳遞的退換貨處理時間從數天縮短至數分鐘。
-- 個人開發並維護的線上系統：包含 888 StockBot 2.0 股票估值與籌碼分析、888 StockQuant 時間序列模型試算平台、888news 科技新聞自動彙整、DAVID888 Daily 自動化語音 Podcast，以及 333 奇門遁甲曆法排盤網站。
+- 180+ GitHub 開源專案與主力線上系統：個人 GitHub 累積超過 180+ 開源專案與實戰工具；並長期維運 5 大主力線上系統，包含 888 StockBot 2.0 股票估值分析、888 StockQuant 時間序列預測平台、888news 科技情報彙整與遠端 MCP 服務、DAVID888 Daily 語音 Podcast，以及 333 奇門遁甲曆法決策網站。
 
 > 合作方式：一年期企業技術顧問｜正職技術主管 (CTO / VP of Engineering)｜技術盡職調查 (Tech DD)。

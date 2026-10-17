@@ -44,8 +44,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
       label: isEn ? 'Enterprise eCommerce & ERP Integration' : '跨國電商與 CRM / ERP 系統整合',
     },
     {
-      value: '5 套系統',
-      label: isEn ? 'Live Web Products Maintained' : '個人開發並維護的線上系統',
+      value: '180+ Repos',
+      label: isEn ? 'GitHub Repos & Live Systems' : 'GitHub 開源專案與多套線上系統',
+      href: 'https://github.com/tbdavid2019?tab=repositories',
     },
   ];
   const engagementPills = isEn
@@ -165,14 +166,34 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
 
         {/* 4 Key Metrics Bar */}
         <div className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-bg-elevated p-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((metric) => (
-            <div key={metric.label} className="min-w-0 border-l-2 border-[#ffb010] pl-3">
-              <div className="font-mono text-xl font-extrabold tabular-nums text-text-main sm:text-2xl">
-                {metric.value}
+          {metrics.map((metric) => {
+            const content = (
+              <div key={metric.label} className="min-w-0 border-l-2 border-[#ffb010] pl-3">
+                <div className="flex items-center gap-1.5 font-mono text-xl font-extrabold tabular-nums text-text-main sm:text-2xl">
+                  <span>{metric.value}</span>
+                  {metric.href && (
+                    <ExternalLink size={14} className="text-[#a9471d] dark:text-[#ffb010]" />
+                  )}
+                </div>
+                <div className="mt-0.5 break-words text-xs font-bold text-text-muted">{metric.label}</div>
               </div>
-              <div className="mt-0.5 break-words text-xs font-bold text-text-muted">{metric.label}</div>
-            </div>
-          ))}
+            );
+
+            return metric.href ? (
+              <a
+                key={metric.label}
+                href={metric.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block no-underline transition-opacity hover:opacity-85"
+                title={metric.label}
+              >
+                {content}
+              </a>
+            ) : (
+              content
+            );
+          })}
         </div>
 
         <ProfileIntroduction locale={locale} />

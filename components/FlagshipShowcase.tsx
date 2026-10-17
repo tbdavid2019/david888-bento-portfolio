@@ -241,7 +241,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
   return (
     <section
       id="flagships"
-      aria-label={isEn ? 'Live Production Systems' : '五大線上系統'}
+      aria-label={isEn ? '5 Flagship Live Systems' : '精選 5 大主力線上系統'}
       className="scroll-mt-24 space-y-5"
     >
       <div className="dossier-card border-2 border-[#17324d] p-5 sm:p-7 dark:border-[#ffb010]/70">
@@ -249,17 +249,17 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
               {isEn
-                ? '5 Live Systems — Self-Built Web Products (*.david888.com)'
-                : '5 套個人開發並維護的線上系統（*.david888.com）'}
+                ? '5 Flagship Systems — Selected Production Products (*.david888.com)'
+                : '精選 5 大主力線上系統（*.david888.com）'}
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Five production web systems designed, built, and maintained end-to-end—covering equity valuation, time-series forecasting, automated tech news aggregation, daily audio podcasts, and calendar rule calculation.'
-                : '以下 5 套系統皆由我負責系統設計、前後端開發與日常維運，包含台美股估值分析、時間序列預測、科技新聞自動彙整、每日語音 Podcast 與傳統曆法排盤網站。'}
+                ? 'Selected from 180+ open-source GitHub repositories and full-stack projects—five flagship systems independently built and maintained end-to-end, spanning quantitative finance, time-series forecasting, automated tech intelligence, daily audio podcasts, and calendar decision engines.'
+                : '從個人 180+ 個 GitHub 開源專案與實戰工具庫中，精選 5 套由我獨立架構、前後端開發並長期維運的主力系統（涵蓋台美股估值分析、時序預測模型、科技情報自動彙整、語音廣播基建與傳統曆法決策網站）。'}
             </p>
           </div>
           <div className="shrink-0 font-mono text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">
-            {isEn ? '5 LIVE DOMAINS' : '5 個目前上線的網域'}
+            {isEn ? '5 FLAGSHIP DOMAINS' : '5 大主力線上網域'}
           </div>
         </div>
 

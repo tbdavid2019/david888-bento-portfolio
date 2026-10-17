@@ -134,7 +134,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 - 跨國消費性電子品牌（跨系統整合）：串接客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP / RMA 退換貨流程，將跨部門人工傳遞的退換貨處理時間從數天縮短至數分鐘。
 
-- 個人開發並維護的線上系統：包含 888 StockBot 2.0 股票估值與籌碼分析、888 StockQuant 時間序列模型試算平台、888news 科技新聞自動彙整、DAVID888 Daily 自動化語音 Podcast，以及 333 奇門遁甲曆法排盤網站。
+- 180+ GitHub 開源專案與主力線上系統：個人 GitHub 累積超過 180+ 開源專案與實戰工具；並長期維運 5 大主力線上系統，包含 888 StockBot 2.0 股票估值分析、888 StockQuant 時間序列預測平台、888news 科技情報彙整與遠端 MCP 服務、DAVID888 Daily 語音 Podcast，以及 333 奇門遁甲曆法決策網站。
 
 > 合作方式：一年期企業技術顧問｜正職技術主管 (CTO / VP of Engineering)｜技術盡職調查 (Tech DD)。
 
@@ -165,7 +165,7 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 
 - Global Consumer Electronics Brand (System Integration): Connected customer support, Salesforce, HubSpot, RingCentral voice, and ERP/RMA workflows, reducing manual return processing from days to minutes.
 
-- Self-Built Live Web Systems: Designed and built 888 StockBot 2.0 (equity valuation & chip flow analysis), 888 StockQuant (time-series forecasting), 888news (automated tech news aggregation), DAVID888 Daily (automated audio podcast), and 333 Qi Men Dun Jia (calendar calculation engine).
+- 180+ GitHub Repositories & Flagship Live Systems: Maintained 180+ open-source GitHub repositories alongside 5 flagship live systems—888 StockBot 2.0 (equity valuation), 888 StockQuant (time-series forecasting), 888news (automated tech intelligence & MCP), DAVID888 Daily (automated audio podcast), and 333 Qi Men Dun Jia (calendar calculation engine).
 
 > Available for: 12-Month Technical Advisor Retainers, Full-Time CTO / VP of Engineering roles, and Technical Due Diligence. No gambling, Ponzi, or illegal projects.
 

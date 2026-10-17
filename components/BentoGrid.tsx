@@ -262,7 +262,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         >
           <Rocket size={16} className="shrink-0" />
           <span className="truncate">
-            {locale === 'en' ? '5 Live Systems' : '5 套線上系統'}
+            {locale === 'en' ? '5 Flagship Systems' : '5 大主力系統'}
           </span>
           <span
             className={cn(

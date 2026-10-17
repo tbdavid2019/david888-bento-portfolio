@@ -94,6 +94,47 @@ export const processContactSubmission = async (
     }
   }
 
+  // Clef-Flash System One Spam & Scam Verification
+  try {
+    const clefRes = await fetch('https://clef.create360.ai/v1/systemone', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'clef-flash',
+        state: { sender_name: name, sender_email: email, company: company || '', subject, message },
+        questions: {
+          classification: {
+            type: 'choice',
+            instructions: 'Classify the intent of this contact message.',
+            criteria: {
+              legitimate_inquiry:
+                'Legitimate business contact, executive recruitment, tech consulting, partnership, or client question.',
+              spam_or_scam:
+                'Automated spam, SEO link pitching, telegram crypto pump, gambling ads, phishing, or bulk solicitation.',
+            },
+          },
+        },
+      }),
+    });
+
+    if (clefRes.ok) {
+      const clefData = (await clefRes.json()) as any;
+      const choice = clefData?.answers?.classification?.choice;
+      const spamProb = clefData?.answers?.classification?.probabilities?.spam_or_scam ?? 0;
+      if (choice === 'spam_or_scam' || spamProb >= 0.7) {
+        return {
+          status: 403,
+          body: {
+            error: '此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。',
+            blocked: true,
+          },
+        };
+      }
+    }
+  } catch (clefErr) {
+    console.warn('[API Contact] Clef-Flash verification error, failing open:', clefErr);
+  }
+
   const resendApiKey = env.RESEND_API_KEY;
   if (!resendApiKey) {
     return {

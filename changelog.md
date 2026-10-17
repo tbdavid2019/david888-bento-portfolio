@@ -12,9 +12,17 @@
 - **888news Remote MCP Server (5 Agent Tools) & Universal MCP Configuration (`https://news2.david888.com/api/mcp` & `https://news2.david888.com/agent`)**:
   - Added dedicated Streamable HTTP Remote MCP integration for `888news` in both the 5 Flagship Systems deep-dive (`components/FlagshipShowcase.tsx`) and the AI Agent Skills catalog (`data/bento-links.json`, `components/cards/BentoLinkCard.tsx`).
   - Provides direct 1-click copy for the remote endpoint (`https://news2.david888.com/api/mcp`), universal JSON configuration (`mcpServers.news888`), CLI installation command, and direct link to the Agent Integration Guide (`https://news2.david888.com/agent`) for calling the 5 tools (`news888_get_latest`, `news888_search`, `news888_get_hot_topics`, `news888_get_story`, `news888_get_daily`).
-- **Authentic Taiwanese Professional Copywriting & CTO Positioning (Evaluated by `opencode` & `codex` as Client / Hiring Exec / VC)**:
-  - Conducted a full repository audit to remove all Mainland Chinese corporate buzzwords (`治理`, `首席`, `軍團`, `中台`, `智能體`, `大模型`, `信源`, `穿透`, `日活`, `大促`, `合規`, `數據`, `接入`, `運行`, `熱點榜`) and self-aggrandizing adjectives (`頂尖`, `機構級`, `華爾街級`, `極速`, `完美結合`, `高度彈性`, `沉浸式`, `高流暢度`, `獨創`, `毫秒級`) across `data/profile-content.zh.md`, `data/profile-content.en.md`, `index.html`, `components/Navbar.tsx`, `components/ProfileCard.tsx`, `components/ExecutiveBriefing.tsx`, `components/FlagshipShowcase.tsx`, `components/BentoGrid.tsx`, `components/cards/BentoLinkCard.tsx`, `data/bento-links.json`, and `data/bento-categories.json`.
-  - Refined executive and advisory positioning based on multi-persona evaluations (`opencode` & `codex`): clarified concrete engagement deliverables, clarified Tech Due Diligence scope (`依標的資料完整度，約 1–2 週交付系統架構、程式碼品質與資安設定檢視報告（屬技術評估，非法律意見）`), and removed defensive or confrontational phrasing.
+- **Clef-Flash System One Spam & Scam Guard (`Option A: Direct Hard Shield`)**:
+  - Integrated the Cloudflare Clef-Flash Decision API (`https://clef.create360.ai/v1/systemone`) in both frontend (`components/ContactDialog.tsx`, `lib/clef-guard.ts`) and backend edge workers (`workers/contact-worker/src/index.ts`, `api/contact.ts`).
+  - Automatically classifies incoming inquiries using zero-shot `choice` decision (`legitimate_inquiry` vs `spam_or_scam`).
+  - When spam, casino, SEO solicitation, crypto pump, or bot noise is detected, activates the **Option A Direct Hard Shield** (`🛡️ 系統安全防護：此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。`), completely blocking email dispatch and preventing Resend quota consumption and mailbox spam.
+  - Zero personal email addresses or contact details are leaked in the block message.
+- **Removed All Redundant Input Placeholders (`components/ContactDialog.tsx`)**:
+  - Eliminated redundant and noisy placeholder text (`您的姓名或稱呼`, `contact@yourdomain.com`, `例如：某某科技...`, `請描述您的諮詢需求...`) from the contact form inputs, delivering a clean, modern, and uncluttered executive interface.
+- **Accurately Reflected 180+ Open-Source GitHub Repositories & 5 Flagship Live Systems**:
+  - Updated `ProfileCard.tsx` key metrics ribbon from the understating `5 套系統` to **`180+ Repos` ｜ `GitHub 開源專案與多套線上系統`** with a direct link pointing to `https://github.com/tbdavid2019?tab=repositories`.
+  - Updated `FlagshipShowcase.tsx` and `BentoGrid.tsx` navigation to **「精選 5 大主力線上系統（*.david888.com）」**, explicitly noting they are selected from over 180+ open-source repositories and production tools.
+  - Updated `data/profile-content.zh.md` and `data/profile-content.en.md` to highlight both the 180+ GitHub repos and the 5 flagship live systems.
 
 ### Changed
 - **Mobile RWD & Typography Overhaul**:

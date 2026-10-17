@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Check, Copy, LoaderCircle, Mail, X } from 'lucide-react';
+import { Check, Copy, LoaderCircle, Mail, ShieldAlert, X } from 'lucide-react';
 import { submitContactTicket } from '../lib/crm';
+import { checkSpamWithClef } from '../lib/clef-guard';
 import type { Locale } from '../types';
 
 interface ContactDialogProps {
@@ -13,35 +14,21 @@ export const SUBJECT_OPTIONS = [
     id: 'consulting',
     zh: '資訊顧問／工商合作',
     en: 'IT Consulting & Partnership',
-    placeholderZh:
-      '請描述您的諮詢需求（例如：系統架構評估、AI Agent 落地規劃、專案跨系統整合…）',
-    placeholderEn:
-      'Describe your consulting needs (e.g. system architecture, AI Agent deployment, system integration…)',
   },
   {
     id: 'recruitment',
     zh: '獵頭招募／職缺邀約',
     en: 'Recruitment & Job Inquiry',
-    placeholderZh:
-      '請簡述招募職位名稱、公司簡介、團隊規模與主要技術棧需求…',
-    placeholderEn:
-      'Describe the position, company introduction, team size, and key tech stack expectations…',
   },
   {
     id: 'speaking',
     zh: '技術演講／企業培訓',
     en: 'Tech Workshop & Speaking',
-    placeholderZh:
-      '請說明活動主題、預計舉辦時間、參與對象與預期成效…',
-    placeholderEn:
-      'Describe the event topic, scheduled date, target audience, and expected takeaways…',
   },
   {
     id: 'other',
     zh: '其他合作提案',
     en: 'Other Inquiries',
-    placeholderZh: '請詳述合作想法或具體事項…',
-    placeholderEn: 'Describe your proposal or specific topic…',
   },
 ];
 
@@ -69,6 +56,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
   const [customSubject, setCustomSubject] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [isBlocked, setIsBlocked] = useState(false);
   const [submittedReceipt, setSubmittedReceipt] = useState<SubmittedReceipt | null>(null);
   const [copiedTicketNo, setCopiedTicketNo] = useState(false);
   const [copiedReceipt, setCopiedReceipt] = useState(false);
@@ -110,11 +98,31 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
     event.preventDefault();
     setBusy(true);
     setError('');
+    setIsBlocked(false);
 
     const finalSubject =
       selectedSubjectId === 'other' && customSubject.trim()
         ? (isZh ? `其他：${customSubject.trim()}` : `Other: ${customSubject.trim()}`)
         : form.subject;
+
+    // 1. Clef-Flash Decision API: Spam, Scam & Phishing Verification
+    try {
+      const guardResult = await checkSpamWithClef({
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        subject: finalSubject,
+        message: form.message,
+      });
+
+      if (guardResult.isSpam) {
+        setBusy(false);
+        setIsBlocked(true);
+        return; // Hard stop: rejected before hitting backend/Resend
+      }
+    } catch (guardErr) {
+      console.warn('[ContactDialog] Clef guard check failed, proceeding to backend:', guardErr);
+    }
 
     try {
       const result = await submitContactTicket({
@@ -201,9 +209,13 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                 ? isZh
                   ? '已收到你的訊息'
                   : 'Message Received'
-                : isZh
-                  ? '把你的問題交給我'
-                  : 'Tell me what you are building'}
+                : isBlocked
+                  ? isZh
+                    ? '訊息已被安全機制攔截屏蔽'
+                    : 'Security Verification Notice'
+                  : isZh
+                    ? '把你的問題交給我'
+                    : 'Tell me what you are building'}
             </h2>
           </div>
           <button
@@ -349,8 +361,42 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               </button>
             </div>
           </div>
+        ) : isBlocked ? (
+          /* Option A: Direct Hard Shield View (Zero Information Leak) */
+          <div className="space-y-5">
+            <div className="rounded-2xl border-2 border-[var(--error)]/50 bg-[var(--error)]/10 p-5 sm:p-6 text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--error)] text-white shadow-md">
+                <ShieldAlert size={28} strokeWidth={2.5} />
+              </div>
+              <h3 className="mt-4 text-xl font-black text-text-main">
+                {isZh ? '訊息已被安全機制攔截屏蔽' : 'Message Blocked by Security Filter'}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted max-w-md mx-auto">
+                {isZh
+                  ? '系統偵測此留言未通過安全性與推銷廣告檢驗，已被系統自動屏蔽拒絕發送。'
+                  : 'This message failed automated security verification and has been blocked.'}
+              </p>
+            </div>
+
+            <div className="flex gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => setIsBlocked(false)}
+                className="inline-flex h-12 flex-1 items-center justify-center rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
+              >
+                {isZh ? '返回修改留言' : 'Back to Edit Message'}
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="inline-flex h-12 flex-1 items-center justify-center rounded-full bg-primary px-4 text-sm font-black text-white transition-opacity hover:opacity-90 dark:text-bg-base"
+              >
+                {isZh ? '關閉' : 'Close'}
+              </button>
+            </div>
+          </div>
         ) : (
-          /* Form View */
+          /* Form View (Clean Inputs with Zero Redundant Placeholders) */
           <form onSubmit={submit} className="space-y-4">
             {/* Name and Email */}
             <div className="grid gap-4 sm:grid-cols-2">
@@ -360,7 +406,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                   required
                   value={form.name}
                   onChange={(event) => update('name', event.target.value)}
-                  placeholder={isZh ? '您的姓名或稱呼' : 'Your name'}
                   className="h-12 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
                 />
               </label>
@@ -371,7 +416,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                   type="email"
                   value={form.email}
                   onChange={(event) => update('email', event.target.value)}
-                  placeholder="contact@yourdomain.com"
                   className="h-12 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
                 />
               </label>
@@ -383,7 +427,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               <input
                 value={form.company}
                 onChange={(event) => update('company', event.target.value)}
-                placeholder={isZh ? '例如：某某科技、獵頭顧問團隊' : 'e.g. Acme Corp'}
                 className="h-12 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
               />
             </label>
@@ -429,11 +472,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                     type="text"
                     value={customSubject}
                     onChange={(e) => handleCustomSubjectChange(e.target.value)}
-                    placeholder={
-                      isZh
-                        ? '請輸入自訂主旨說明（例如：專訪、社群技術分享…）'
-                        : 'Enter custom subject details…'
-                    }
                     className="h-11 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
                   />
                 </div>
@@ -449,12 +487,9 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                 rows={5}
                 value={form.message}
                 onChange={(event) => update('message', event.target.value)}
-                placeholder={isZh ? activeOption.placeholderZh : activeOption.placeholderEn}
                 className="w-full resize-y rounded-xl border border-border bg-bg-elevated px-3.5 py-3 text-sm md:text-base leading-relaxed outline-none focus:border-primary transition-colors text-text-main"
               />
             </label>
-
-
 
             {error && (
               <p
@@ -474,8 +509,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               {busy && <LoaderCircle size={18} className="animate-spin" />}
               {busy
                 ? isZh
-                  ? '送出中…'
-                  : 'Sending…'
+                  ? '安全檢驗與送出中…'
+                  : 'Verifying & Sending…'
                 : isZh
                   ? '送出並取得服務序號'
                   : 'Send and get service number'}
