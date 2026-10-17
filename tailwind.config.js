@@ -48,9 +48,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["'Outfit'", "'Noto Sans TC'", "system-ui", "-apple-system", "sans-serif"],
-        display: ["'Outfit'", "'Noto Sans TC'", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["'Fira Code'", "'JetBrains Mono'", "monospace"],
+        sans: ["'JetBrains Mono'", "'Noto Sans TC'", "system-ui", "-apple-system", "monospace", "sans-serif"],
+        display: ["'JetBrains Mono'", "'Noto Sans TC'", "system-ui", "-apple-system", "monospace", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       borderRadius: {
         "2xl": "1rem",

@@ -398,38 +398,72 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
         ) : (
           /* Form View (Clean Inputs with Zero Redundant Placeholders) */
           <form onSubmit={submit} className="space-y-4">
-            {/* Name and Email */}
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="space-y-2 text-sm font-bold text-text-main">
-                <span>{isZh ? '姓名' : 'Name'} *</span>
+            {/* Name and Email - Option B: Floating Labels */}
+            <div className="grid gap-3.5 sm:grid-cols-2">
+              <div className="relative">
                 <input
+                  id="contact-name"
                   required
                   value={form.name}
                   onChange={(event) => update('name', event.target.value)}
-                  className="h-12 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
+                  placeholder=" "
+                  className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
                 />
-              </label>
-              <label className="space-y-2 text-sm font-bold text-text-main">
-                <span>Email *</span>
+                <label
+                  htmlFor="contact-name"
+                  className={`pointer-events-none absolute left-3.5 origin-[0] font-bold transition-all duration-200 ${
+                    form.name
+                      ? 'top-1.5 text-[11px] text-text-muted peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                      : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                  }`}
+                >
+                  {isZh ? '姓名 *' : 'Name *'}
+                </label>
+              </div>
+
+              <div className="relative">
                 <input
+                  id="contact-email"
                   required
                   type="email"
                   value={form.email}
                   onChange={(event) => update('email', event.target.value)}
-                  className="h-12 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
+                  placeholder=" "
+                  className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
                 />
-              </label>
+                <label
+                  htmlFor="contact-email"
+                  className={`pointer-events-none absolute left-3.5 origin-[0] font-bold transition-all duration-200 ${
+                    form.email
+                      ? 'top-1.5 text-[11px] text-text-muted peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                      : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                  }`}
+                >
+                  Email *
+                </label>
+              </div>
             </div>
 
-            {/* Company */}
-            <label className="block space-y-2 text-sm font-bold text-text-main">
-              <span>{isZh ? '公司／團隊（選填）' : 'Company / Organization (Optional)'}</span>
+            {/* Company - Option B: Floating Label */}
+            <div className="relative">
               <input
+                id="contact-company"
                 value={form.company}
                 onChange={(event) => update('company', event.target.value)}
-                className="h-12 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
+                placeholder=" "
+                className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
               />
-            </label>
+              <label
+                htmlFor="contact-company"
+                className={`pointer-events-none absolute left-3.5 origin-[0] font-bold transition-all duration-200 ${
+                  form.company
+                    ? 'top-1.5 text-[11px] text-text-muted peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                    : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                }`}
+              >
+                {isZh ? '公司／團隊（選填）' : 'Company / Organization (Optional)'}
+              </label>
+            </div>
 
             {/* Subject Checkbox / Pill Selection (打勾選項) */}
             <div className="space-y-2">
@@ -465,31 +499,55 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                 })}
               </div>
 
-              {/* If "其他" is selected, allow custom input */}
+              {/* If "其他" is selected, allow custom input with Floating Label */}
               {selectedSubjectId === 'other' && (
-                <div className="pt-1.5">
+                <div className="relative pt-1">
                   <input
+                    id="contact-custom-subject"
                     type="text"
+                    required
                     value={customSubject}
                     onChange={(e) => handleCustomSubjectChange(e.target.value)}
-                    className="h-11 w-full rounded-xl border border-border bg-bg-elevated px-3.5 text-sm md:text-base outline-none focus:border-primary transition-colors text-text-main"
+                    placeholder=" "
+                    className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
                   />
+                  <label
+                    htmlFor="contact-custom-subject"
+                    className={`pointer-events-none absolute left-3.5 origin-[0] font-bold transition-all duration-200 ${
+                      customSubject
+                        ? 'top-2.5 text-[11px] text-text-muted peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                        : 'top-2.5 text-[11px] text-text-muted peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-2.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                    }`}
+                  >
+                    {isZh ? '請輸入自訂諮詢主旨… *' : 'Custom Subject *'}
+                  </label>
                 </div>
               )}
             </div>
 
-            {/* Message Area */}
-            <label className="block space-y-2 text-sm font-bold text-text-main">
-              <span>{isZh ? '想討論的內容 *' : 'Message *'}</span>
+            {/* Message Area - Option B: Floating Label */}
+            <div className="relative">
               <textarea
+                id="contact-message"
                 required
                 minLength={10}
-                rows={5}
+                rows={4}
                 value={form.message}
                 onChange={(event) => update('message', event.target.value)}
-                className="w-full resize-y rounded-xl border border-border bg-bg-elevated px-3.5 py-3 text-sm md:text-base leading-relaxed outline-none focus:border-primary transition-colors text-text-main"
+                placeholder=" "
+                className="peer block w-full resize-y rounded-xl border border-border bg-bg-elevated px-3.5 pt-6 pb-2.5 text-sm md:text-base leading-relaxed text-text-main outline-none transition-colors focus:border-primary min-h-[110px]"
               />
-            </label>
+              <label
+                htmlFor="contact-message"
+                className={`pointer-events-none absolute left-3.5 origin-[0] font-bold transition-all duration-200 ${
+                  form.message
+                    ? 'top-1.5 text-[11px] text-text-muted peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                    : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                }`}
+              >
+                {isZh ? '想討論的內容 *' : 'Message *'}
+              </label>
+            </div>
 
             {error && (
               <p
