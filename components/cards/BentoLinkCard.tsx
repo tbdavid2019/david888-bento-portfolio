@@ -11,6 +11,7 @@ import {
   Box,
   Camera,
   CandlestickChart,
+  Check,
   CheckCircle2,
   Compass,
   Copy,
@@ -92,6 +93,14 @@ interface BentoLink {
   highlights?: string[];
   highlightsEn?: string[];
   techStack?: string[];
+  mcpConfig?: {
+    serverName?: string;
+    type?: string;
+    url: string;
+    configJson?: string;
+    description?: string;
+    descriptionEn?: string;
+  };
 }
 
 const iconRegistry: Record<string, LucideIcon> = {
@@ -179,6 +188,7 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
   locale = 'zh',
 }) => {
   const isEn = locale === 'en';
+  const [copiedMcp, setCopiedMcp] = React.useState(false);
   const title = isEn ? link.titleEn || link.title : link.title;
   const description = isEn ? link.descriptionEn || link.description : link.description;
   const highlights = isEn ? link.highlightsEn || link.highlights : link.highlights;
@@ -189,6 +199,29 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
     ? isEn
       ? `Hugging Face Space status: ${statusCopy.en}`
       : `Hugging Face Space 狀態：${statusCopy.zh}`
+    : '';
+
+  const handleCopyMcp = (e: React.MouseEvent, text: string) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedMcp(true);
+    setTimeout(() => setCopiedMcp(false), 2000);
+  };
+
+  const mcpJson = link.mcpConfig
+    ? link.mcpConfig.configJson ||
+      JSON.stringify(
+        {
+          mcpServers: {
+            [link.mcpConfig.serverName || 'news888']: {
+              type: link.mcpConfig.type || 'http',
+              url: link.mcpConfig.url || link.url,
+            },
+          },
+        },
+        null,
+        2,
+      )
     : '';
 
   return (
@@ -233,6 +266,31 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
         {description && (
           <div className="mt-2 text-sm leading-relaxed text-text-muted md:text-[15px]">
             {description}
+          </div>
+        )}
+
+        {link.mcpConfig && (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="mt-3 overflow-hidden rounded-xl border border-border bg-bg-surface p-3 text-xs"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/70 pb-2">
+              <span className="font-mono text-[11px] font-extrabold text-[#a9471d] dark:text-[#ffb010]">
+                {isEn ? 'Universal MCP Config' : '通用 MCP 組態'}
+              </span>
+              <button
+                type="button"
+                onClick={(e) => handleCopyMcp(e, mcpJson)}
+                className="inline-flex items-center gap-1 rounded-md border border-[#17324d] bg-[#fff0cc] px-2 py-1 font-mono text-[11px] font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010]"
+                aria-label={isEn ? 'Copy MCP config' : '複製 MCP 組態'}
+              >
+                {copiedMcp ? <Check size={12} /> : <Copy size={12} />}
+                <span>{copiedMcp ? (isEn ? 'Copied!' : '已複製！') : (isEn ? 'Copy JSON' : '複製組態')}</span>
+              </button>
+            </div>
+            <pre className="mt-2 overflow-x-auto rounded-lg bg-black/5 p-2 font-mono text-[11px] leading-tight text-text-main dark:bg-black/40">
+              <code>{mcpJson}</code>
+            </pre>
           </div>
         )}
 

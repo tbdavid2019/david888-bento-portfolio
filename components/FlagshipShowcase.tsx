@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowUpRight,
   BookOpen,
   Bot,
+  Check,
+  CheckCircle2,
   Compass,
+  Copy,
   ExternalLink,
   LineChart,
   Newspaper,
   Podcast,
-  CheckCircle2,
   type LucideIcon,
 } from 'lucide-react';
 import type { Locale } from '../types';
@@ -30,6 +32,12 @@ interface FlagshipSystem {
   breakthroughsEn: string[];
   techStack: string[];
   subLinks?: Array<{ labelZh: string; labelEn: string; url: string }>;
+  mcpConfig?: {
+    endpoint: string;
+    descriptionZh: string;
+    descriptionEn: string;
+    configSnippet: string;
+  };
 }
 
 const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
@@ -123,9 +131,28 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
       '100+ Source Ingestion',
       'Semantic Clustering',
       'LLM Quality Scoring',
-      'Noise Filtering',
+      'Streamable HTTP MCP',
       'Cloudflare Edge',
     ],
+    mcpConfig: {
+      endpoint: 'https://news2.david888.com/api/mcp',
+      descriptionZh:
+        'Agent 直接呼叫五個工具：適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。',
+      descriptionEn:
+        'Agent directly calls 5 tools. Built for remote MCP-compatible agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token required; tools return concise text and structured data.',
+      configSnippet: JSON.stringify(
+        {
+          mcpServers: {
+            news888: {
+              type: 'http',
+              url: 'https://news2.david888.com/api/mcp',
+            },
+          },
+        },
+        null,
+        2,
+      ),
+    },
   },
   {
     id: 'podcast',
@@ -200,6 +227,13 @@ interface FlagshipShowcaseProps {
 
 export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) => {
   const isEn = locale === 'en';
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const handleCopy = (key: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => setCopiedKey(null), 2000);
+  };
 
   return (
     <section
@@ -344,6 +378,78 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                         <ArrowUpRight size={12} />
                       </a>
                     ))}
+                  </div>
+                )}
+
+                {/* Remote MCP Server Config if present */}
+                {sys.mcpConfig && (
+                  <div className="mt-4 rounded-xl border border-border bg-bg-surface p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/70 pb-2.5">
+                      <div className="flex items-center gap-2">
+                        <span className="rounded-md border border-[#17324d] bg-[#17324d] px-2 py-0.5 font-mono text-[11px] font-extrabold text-[#fff9e8] dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#2b251a]">
+                          REMOTE MCP
+                        </span>
+                        <span className="text-xs font-extrabold text-text-main">
+                          {isEn ? 'Agent 5-Tool Remote Endpoint' : 'Agent 5 工具遠端呼叫端點'}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(`${sys.id}-endpoint`, sys.mcpConfig!.endpoint)}
+                          className="inline-flex items-center gap-1 rounded-md border border-border bg-bg-elevated px-2 py-1 font-mono text-xs font-bold text-text-main transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] dark:hover:border-[#ffb010]"
+                        >
+                          {copiedKey === `${sys.id}-endpoint` ? <Check size={12} /> : <Copy size={12} />}
+                          <span>
+                            {copiedKey === `${sys.id}-endpoint`
+                              ? isEn
+                                ? 'Copied URL!'
+                                : '已複製端點！'
+                              : isEn
+                                ? 'Copy Endpoint'
+                                : '複製端點'}
+                          </span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(`${sys.id}-config`, sys.mcpConfig!.configSnippet)}
+                          className="inline-flex items-center gap-1 rounded-md border border-[#17324d] bg-[#fff0cc] px-2.5 py-1 font-mono text-xs font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010]"
+                        >
+                          {copiedKey === `${sys.id}-config` ? <Check size={12} /> : <Copy size={12} />}
+                          <span>
+                            {copiedKey === `${sys.id}-config`
+                              ? isEn
+                                ? 'Copied Config!'
+                                : '已複製組態！'
+                              : isEn
+                                ? 'Copy MCP Config'
+                                : '複製通用 MCP 組態'}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <p className="mt-2.5 text-xs leading-relaxed text-text-muted">
+                      {isEn ? sys.mcpConfig.descriptionEn : sys.mcpConfig.descriptionZh}
+                    </p>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-xs font-bold text-text-muted">URL:</span>
+                      <code className="rounded-md border border-border bg-black/5 px-2.5 py-1 font-mono text-xs text-[#a9471d] dark:bg-black/40 dark:text-[#ffb010]">
+                        {sys.mcpConfig.endpoint}
+                      </code>
+                    </div>
+
+                    <div className="mt-3">
+                      <div className="mb-1 text-[11px] font-bold text-text-muted">
+                        {isEn
+                          ? 'Universal MCP Configuration (Cursor / Claude Desktop / Antigravity):'
+                          : '通用 MCP 組態（支援 Cursor、Claude Desktop、Antigravity 等各類 Agent 工具）：'}
+                      </div>
+                      <pre className="overflow-x-auto rounded-lg bg-black/5 p-3 font-mono text-xs leading-tight text-text-main dark:bg-black/40">
+                        <code>{sys.mcpConfig.configSnippet}</code>
+                      </pre>
+                    </div>
                   </div>
                 )}
 

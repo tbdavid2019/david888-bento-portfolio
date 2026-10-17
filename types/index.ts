@@ -109,6 +109,14 @@ export interface LinkCardData extends BaseCard {
     docUrl?: string;
     docLabel?: string;
     docLabelEn?: string;
+    mcpConfig?: {
+        serverName?: string;
+        type?: string;
+        url: string;
+        configJson?: string;
+        description?: string;
+        descriptionEn?: string;
+    };
 }
 
 export interface GithubCardData extends BaseCard {

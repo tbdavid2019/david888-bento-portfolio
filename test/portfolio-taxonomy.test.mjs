@@ -64,8 +64,8 @@ test('groups the divination product family together', () => {
 
 test('labels LLM resources as AI Agent Skills', () => {
   const skillItems = links.filter((item) => item.tag === 'agent-skills');
-  assert.equal(skillItems.length, 9);
-  assert.ok(skillItems.every((item) => /Skill|技能|API|Agent/.test(item.title)));
+  assert.equal(skillItems.length, 10);
+  assert.ok(skillItems.every((item) => /Skill|技能|API|Agent|MCP/.test(item.title)));
   assert.equal(links.find((item) => item.title === 'AnswerBook API')?.tag, 'products');
   assert.equal(categoryConfig.categories.find((category) => category.id === 'agent-skills')?.label, 'AI Agent Skills');
 });
