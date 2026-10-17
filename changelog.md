@@ -9,7 +9,9 @@
   - **Fixed H1 Headline 5-Line Breaking in Profile Card**: Removed restrictive `max-w-[36ch]` from `ProfileCard.tsx` and adjusted CTA layout breakpoint to `xl:flex-row`, preventing the headline (`Turning Complex Technology into Business Results`) from being crammed into an unnatural 5-line vertical strip on standard laptop screens.
 - **Executive Scale Rephrasing: General Manager & 300+ Organization Leadership (`ProfileCard.tsx`, `ExecutiveBriefing.tsx`, `profile-content.zh.md`, `profile-content.en.md`)**:
   - Replaced ambiguous, passive phrasing ("曾管理科技與工程組織規模") with direct, authoritative executive record: **`曾任總經理 · 管理 300+ 人組織`** (`Former GM · Led 300+ Staff Org`) and metric value **`300+ 人`**.
-  - Updated profile introduction across Markdown and structured discovery files to explicitly highlight corporate General Manager tenure managing 300+ person enterprise organizations.
+- **Streamlined 3-Column Hard Metrics Ribbon (`ProfileCard.tsx`)**:
+  - Removed the non-numerical "SAP · CRM" item from the hero metrics bar, ensuring 100% of items are concrete, indisputable hard numbers: **`300+ 人`**（曾任總經理 · 管理 300+ 人組織）、**`70 人`**（帶領跨國 SAP 電商工程團隊）、**`180+ Repos`**（GitHub 開源專案與多套線上系統）。
+  - Switched the container grid to `sm:grid-cols-3`, providing a clean, balanced 1:1 visual symmetry with the 3 engagement mandate pills directly above it.
 ### Added
 - **Floating Labels (方案 B: 浮動標籤) in Contact Form (`components/ContactDialog.tsx`)**:
   - Implemented sleek, space-saving floating labels for `Name`, `Email`, `Company`, and `Message` fields (plus custom subject input).

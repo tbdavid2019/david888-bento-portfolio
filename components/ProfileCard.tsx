@@ -40,10 +40,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
       label: isEn ? 'SAP eCommerce Team Led' : '帶領跨國 SAP 電商工程團隊',
     },
     {
-      value: 'SAP · CRM',
-      label: isEn ? 'Enterprise eCommerce & ERP Integration' : '跨國電商與 CRM / ERP 系統整合',
-    },
-    {
       value: '180+ Repos',
       label: isEn ? 'GitHub Repos & Live Systems' : 'GitHub 開源專案與多套線上系統',
       href: 'https://github.com/tbdavid2019?tab=repositories',
@@ -164,8 +160,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           })}
         </div>
 
-        {/* 4 Key Metrics Bar */}
-        <div className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-bg-elevated p-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* 3 Key Hard Metrics Bar */}
+        <div className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-bg-elevated p-4 sm:grid-cols-3">
           {metrics.map((metric) => {
             const content = (
               <div key={metric.label} className="min-w-0 border-l-2 border-[#ffb010] pl-3">
