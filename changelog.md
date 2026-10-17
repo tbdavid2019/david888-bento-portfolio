@@ -9,8 +9,8 @@
   - Updated `scripts/prerender.mjs` to generate static HTML route entrypoints (`dist/<route>/index.html`) with route-specific `<link rel="canonical">` tags for 200 OK direct access on static hosting.
 - **5 Flagship Production Systems Deep-Dive (`components/FlagshipShowcase.tsx`)**:
   - Dedicated architectural showcase for `bot.david888.com` (888 StockBot 2.0), `stockdata.david888.com` (888 StockQuant with TimesFM & Timestral), `news2.david888.com` (888news 100+ source AI intelligence radar), `podcast.david888.com` (DAVID888 Daily automated neural TTS podcast pipeline), and `qi.david888.com` (333 Qi Men Dun Jia high-DAU deterministic calendar & AI decision engine).
-- **Executive CTO & 12-Month Advisory Retainer Positioning**:
-  - Rewrote bilingual executive profile copy (`data/profile-content.zh.md`, `data/profile-content.en.md`) and `components/ExecutiveBriefing.tsx` to highlight 300+ cross-border organization scale, 70+ engineer SAP eCommerce leadership, and 3 explicit engagement packages: **12-Month Enterprise Advisory Retainer (Fractional CTO)**, **Full-Time CTO / VP of Engineering (Target NT$ 3M+)**, and **VC / Board Technical Due Diligence**.
+- **Executive CTO & 12-Month Advisory Retainer Positioning (Global eCommerce, CRM/ERP Integration & 300+ Org Governance)**:
+  - Rewrote bilingual executive profile copy (`data/profile-content.zh.md`, `data/profile-content.en.md`), `components/Navbar.tsx`, `components/ProfileCard.tsx`, and `components/ExecutiveBriefing.tsx` to de-emphasize generic AI buzzwords and anchor directly on core enterprise value pillars: **Global SAP eCommerce Architecture (70+ Engineers, 99.98% SLA)**, **Fortune 500 Cross-System CRM/ERP/RMA Unification (Salesforce, HubSpot, RingCentral)**, **300+ Cross-Border Engineering Org Governance & Tech Debt Refactoring**, and **VC / Board Technical Due Diligence**.
 
 ### Changed
 - **RWD & Typography Overhaul**:

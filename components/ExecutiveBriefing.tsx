@@ -34,18 +34,18 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         ? '12-Month Enterprise Technical Advisor (Annual Retainer / Fractional CTO)'
         : '一年期企業技術顧問約 (Annual Retainer / Fractional CTO)',
       target: isEn
-        ? 'For Listed Corporations, Scaling Ventures & AI Transformation'
-        : '適用：上市櫃企業、高成長公司、跨部門 AI 轉型與架構升級',
+        ? 'For Listed Corporations, Omni-Channel Retail & Scaling Ventures'
+        : '適用：上市櫃企業、大型電商零售、跨系統整合與高成長公司',
       deliverables: isEn
         ? [
-            'Monthly executive architecture review, cloud cost governance & technical debt roadmap',
-            'Hands-on design & deployment of internal enterprise AI Agent workflows and RAG/MCP systems',
-            'Executive hiring support: interviewing, vetting, and mentoring engineering directors & tech leads',
+            'Monthly executive architecture governance, technical debt refactoring & cloud cost optimization',
+            'Cross-system data flow unification across eCommerce, CRM (Salesforce/HubSpot), ERP & RMA hubs',
+            'Executive hiring support: interviewing, vetting, and mentoring engineering directors & principal architects',
           ]
         : [
-            '每月固定參與高層技術決策、核心系統架構把關、雲端成本優化與技術債清理路線圖',
-            '親手協助企業導入內部 AI Agent 自動化工作流、知識庫檢索與研發效能倍增體系',
-            '高階人才把關：協助 CEO 與人資長面試、考核技術主管 (VP/Director/Architect) 並建立工程文化',
+            '每月固定參與高層技術決策、核心架構把關、雲端成本優化與技術債清理路線圖',
+            '跨系統資料流打通：重整大型電商、CRM (Salesforce/HubSpot)、ERP 庫存與售後 RMA 服務邊界',
+            '高階人才把關：協助 CEO 與人資長面試、考核技術主管 (VP/Director/Architect) 並建立高效交付文化',
           ],
     },
     {
@@ -55,18 +55,18 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         ? 'Full-Time Chief Technology Officer / VP of Engineering (NT$ 3M+ / Global Tier)'
         : '高階技術長正職 / 研發副總 (CTO / VP of Engineering · 目標年薪 NT$ 300萬+)',
       target: isEn
-        ? 'For Multinational Enterprises, Retail/FinTech Leaders & High-Growth Tech Groups'
+        ? 'For Multinational Enterprises, Global eCommerce Leaders & High-Growth Tech Groups'
         : '適用：跨國集團、大型零售電商、金融科技與高成長科技企業',
       deliverables: isEn
         ? [
             'End-to-end leadership of 50–300+ cross-border engineering, data, and product organizations',
-            'High-concurrency platform refactoring (99.98% SLA) and multi-system CRM/ERP unification',
-            'Player-Coach executive who both sets boardroom strategy and builds frontier AI systems hands-on',
+            'High-concurrency eCommerce & commercial platform refactoring (99.98% SLA) and global CRM/ERP unification',
+            'Hands-on Chief Architect CTO: sets boardroom technical ROI while personally governing core system design',
           ]
         : [
             '全面執掌 50–300+ 人跨國研發、數據與產品技術組織，對齊董事會商業目標與技術投資報酬率 (ROI)',
-            '主導高併發商業平台重構（99.98% 可用度）、跨國多品牌微服務中台與全球 CRM/ERP 營運整合',
-            '稀缺「實戰派 (Hands-On) CTO」：既能坐鎮董事會制定戰略，更能親手寫出機構級 AI 與量化系統',
+            '主導跨國高併發電商平台重構（99.98% 可用度）、多品牌微服務中台與全球 CRM/ERP 營運整合',
+            '稀缺「能管百人軍團、亦能親手寫底層架構」的實戰派 CTO，徹底終結外行領導內行的管理內耗',
           ],
     },
     {
@@ -81,13 +81,13 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
       deliverables: isEn
         ? [
             'Pre-investment codebase audit, scalability stress-testing, cybersecurity & IP compliance review',
-            'AI moat verification: distinguishing genuine proprietary AI architectures from thin API wrappers',
-            'Emergency architecture rescue for production systems suffering severe latency or outage bottlenecks',
+            'Engineering organization & technical moat verification: exposing hidden tech debt and delivery bottlenecks',
+            'Emergency architecture rescue for eCommerce or enterprise systems suffering peak-hour outages or data locks',
           ]
         : [
             '投資與併購前獨立第三方審查：深入檢視原始碼品質、架構擴展極限、資安漏洞與合規風險',
-            'AI 技術真偽鑑定：協助投資人看穿標的企業是「真正具備底層演算法護城河」還是「單純套殼 API」',
-            '關鍵系統危機救援：針對大促銷崩潰、資料庫鎖死或跨系統資料失準提供極速診斷與重構方案',
+            '團隊戰力與技術護城河鑑定：協助投資人看穿標的企業之真實交付能力、隱形技術債與後續重構成本',
+            '關鍵系統危機救援：針對電商大促銷崩潰、資料庫鎖死或跨系統資料失準提供極速診斷與重構方案',
           ],
     },
   ];
@@ -151,7 +151,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
       metrics: isEn
         ? [
             { label: 'Max Org Experience', value: '300+ Staff' },
-            { label: 'Audit Scope', value: 'Code · Arch · AI' },
+            { label: 'Audit Scope', value: 'Arch · Code · Sec' },
             { label: 'Position', value: 'Unbiased 3rd Party' },
           ]
         : [
@@ -160,8 +160,8 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
             { label: '獨立立場', value: '客觀第三方報告' },
           ],
       challenge: isEn
-        ? 'Investors and boards often lack visibility into hidden technical debt, scalability ceilings, and AI wrapper risks before major transactions.'
-        : '投資人與董事會在融資、併購或大型轉型前，難以看透簡報背後的隱形技術債、架構擴展極限與 AI 套殼風險。',
+        ? 'Investors and boards often lack visibility into hidden technical debt, scalability ceilings, and engineering execution bottlenecks before major transactions.'
+        : '投資人與董事會在融資、併購或大型轉型前，難以看透簡報背後的隱形技術債、架構擴展極限與團隊交付瓶頸。',
       solution: isEn
         ? 'Conduct deep codebase audits, stress-test architectural scalability, evaluate engineering team velocity, and deliver clear executive risk matrices.'
         : '提供深度原始碼審計、高併發壓力評估、技術債量化分析與研發團隊產出評估，為董事會排除數千萬投資決策風險。',
@@ -171,8 +171,8 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
     {
       id: 'institutional-quant',
       title: isEn
-        ? '888 StockBot & StockQuant: Institutional Financial AI & Corporate Graph'
-        : '888 StockBot & StockQuant：機構級量化智能體與上市櫃關係圖譜',
+        ? '888 StockBot & StockQuant: Institutional Quantitative Engine & Corporate Graph'
+        : '888 StockBot & StockQuant：機構級量化估值引擎與上市櫃股權圖譜',
       metrics: isEn
         ? [
             { label: 'Forecasting', value: 'TimesFM + LSTM' },
@@ -180,17 +180,17 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
             { label: 'Graph Model', value: 'TW Listed Network' },
           ]
         : [
-            { label: '時序預測模型', value: 'TimesFM + LSTM' },
+            { label: '時序預測管線', value: 'TimesFM + LSTM' },
             { label: '原生量化引擎', value: 'DCF · SEPA · 期權' },
             { label: '企業關係圖譜', value: '台灣上市櫃股權網' },
           ],
       challenge: isEn
-        ? 'Retail and legacy financial tools fail to combine institutional valuation models, time-series foundation models, and corporate ownership graphs.'
-        : '傳統看盤軟體無法同時貫通「華爾街級基本面估值、時序大模型預測、三大法人與券商分點籌碼、以及公司交叉持股網路」。',
+        ? 'Retail and legacy financial tools fail to combine institutional valuation models, time-series forecasting pipelines, and corporate ownership graphs.'
+        : '傳統看盤軟體無法同時貫通「華爾街級基本面估值、時序預測模型、三大法人與券商分點籌碼、以及公司交叉持股網路」。',
       solution: isEn
-        ? 'Architected a full-stack financial AI suite combining native TS quantitative engines, dual foundation models, and force-directed corporate graphs.'
-        : '獨立研發完整金融 AI 生態系：涵蓋純 TS 量化估值引擎、雙時序基礎大模型預測與台灣企業法人投資關係知識圖譜。',
-      tags: ['Production AI', 'TimesFM & Timestral', 'Quantitative Finance', 'Knowledge Graph'],
+        ? 'Architected a full-stack quantitative suite combining native TS valuation engines, dual time-series models, and force-directed corporate graphs.'
+        : '獨立研發完整量化金融系統群：涵蓋純 TS 估值引擎、雙時序預測管線與台灣企業法人投資關係知識圖譜。',
+      tags: ['Quantitative Finance', 'TimesFM & Timestral', 'High-Throughput Data', 'Knowledge Graph'],
       icon: Cpu,
     },
   ];
@@ -208,8 +208,8 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Direct engagement structures designed for CEOs, Boards, and Executive Search Partners seeking proven 300+ org leadership paired with hands-on AI architecture.'
-                : '專為企業決策層、上市櫃董事會與高階獵頭設計的合作架構——結合「300+ 人跨國組織治理經驗」與「第一線生產級 AI 系統實戰力」。'}
+                ? 'Direct engagement structures designed for CEOs, Boards, and Executive Search Partners seeking proven global eCommerce architecture, cross-system CRM/ERP governance, and 70–300+ engineering org leadership.'
+                : '專為企業決策層、上市櫃董事會與高階獵頭設計的合作架構——結合「跨國大型電商 (SAP eCommerce) 與 CRM/ERP 整合實績」、「70–300+ 人研發團隊治理」與「第一線底層架構實戰力」。'}
             </p>
           </div>
           <button

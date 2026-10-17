@@ -212,13 +212,13 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
               {isEn
-                ? '5 Flagship Production Systems — Architecture & Hard Engineering'
-                : '五大高難度主力艦系統 ｜ 獨立架構與核心技術突破'}
+                ? '5 Live Flagship Systems — Chief Architect Hands-On Engineering Proof'
+                : '五大高難度主力艦系統 ｜ 首席架構師親手落地的工程實證'}
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Every system below runs live in production on *.david888.com—demonstrating hands-on mastery across quantitative finance engines, time-series foundation models, autonomous multi-source intelligence, neural audio pipelines, and high-DAU rule engines.'
-                : '以下 5 套生產級主力系統皆由我獨立完成架構設計與全端交付（*.david888.com），涵蓋純 TS 機構量化引擎、雙時序基礎大模型預測、百大信源 AI 情報雷達、全自動語音播客基建與高日活確定性規則引擎。'}
+                ? 'Unlike hands-off executives who only manage via slides, I personally architected and shipped every production system below on *.david888.com—spanning institutional quantitative finance engines, time-series forecasting pipelines, high-concurrency media ingestion, automated audio broadcasting, and high-DAU deterministic rule engines.'
+                : '不同於只看簡報、脫離一線代碼的傳統高管，以下 5 套線上主力系統（*.david888.com）皆由我親手完成底層架構與全端交付——橫跨純 TS 機構量化估值引擎、時序預測資料管線、高併發媒體情報中心、自動化語音廣播基建與高日活確定性規則引擎。'}
             </p>
           </div>
           <div className="shrink-0 font-mono text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">

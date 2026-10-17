@@ -40,12 +40,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
       label: isEn ? 'Global SAP eCommerce Team Led' : '親帶全球零售 SAP 電商工程軍團',
     },
     {
-      value: '5 Flagships',
-      label: isEn ? 'Live Production Quant & AI Systems' : '自研生產級量化金融與 AI 主力艦',
+      value: '99.98%',
+      label: isEn ? 'Global High-Concurrency SLA Uptime' : '跨國高併發電商與核心系統可用度',
     },
     {
-      value: '1.10M+',
-      label: isEn ? 'Monthly Tech & Media Reach' : '單月技術社群與商業媒體觸及',
+      value: '5 Flagships',
+      label: isEn ? 'Live Quant, Media & Rule Systems' : '自研高併發量化、媒體與規則引擎主系統',
     },
   ];
   const engagementPills = isEn

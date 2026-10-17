@@ -1,6 +1,6 @@
 # David Chiang (David888) - CTO & Technical Advisor Portfolio
 
-> 兼具百人跨國團隊治理與 AI 原生系統實戰的技術長 (CTO) & 企業首席顧問 / Hands-On Enterprise CTO & Principal Technical Advisor: Scaling 300+ Engineering Orgs & Production AI Systems. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
+> 跨國大型電商、企業系統整合與百人研發治理的實戰派技術長 (CTO) & 企業首席顧問 / Enterprise CTO & Principal Technical Advisor: Global eCommerce, Cross-System Architecture & 300+ Org Leadership. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
