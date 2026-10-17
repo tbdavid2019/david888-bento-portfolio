@@ -32,8 +32,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   const isEn = locale === 'en';
   const metrics = [
     {
-      value: '300 人',
-      label: isEn ? 'Max Engineering & Tech Org Scale' : '曾管理科技與工程組織規模',
+      value: '300+ 人',
+      label: isEn ? 'Former GM · Led 300+ Staff Org' : '曾任總經理 · 管理 300+ 人組織',
     },
     {
       value: '70 人',

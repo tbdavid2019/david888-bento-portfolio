@@ -1,37 +1,37 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed 888-url2md",
+      "url": "https://github.com/tbdavid2019/888-url2md/compare/ccd0b731a3...2735091862",
+      "updated": "2026-10-16 06:39:57 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 06:39 1 commit to main 2735091 feat(ui): apply five-color Saffron palette"
+    },
+    {
+      "title": "tbdavid2019 pushed 888-url2md",
+      "url": "https://github.com/tbdavid2019/888-url2md/compare/e828a42128...b91ac63128",
+      "updated": "2026-10-16 10:32:59 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 10:32 1 commit to main b91ac63 fix(ui): strengthen heading type hierarchy"
+    },
+    {
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/6f1434af00...fef2b75190",
+      "updated": "2026-10-16 05:57:30 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 16, 2026 05:57 1 commit to main fef2b75 fix(duckdb): prioritize composite resonance rows over individual stra…"
+    },
+    {
+      "title": "tbdavid2019 pushed 888-url2md",
+      "url": "https://github.com/tbdavid2019/888-url2md/compare/04f5f03f41...e828a42128",
+      "updated": "2026-10-16 10:04:12 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 10:04 1 commit to main e828a42 feat(ui): optimize mobile responsive layout"
+    },
+    {
       "title": "tbdavid2019 pushed stock-underdog-ml",
       "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/45d8d887e5...a66c898a35",
       "updated": "2026-10-16 03:25:49 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 16, 2026 03:25 1 commit to main a66c898 feat(history): add stock price vs AI target price trajectory line cha…"
-    },
-    {
-      "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/c16132f584...bc8cdf80d2",
-      "updated": "2026-10-16 07:07:11 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 16, 2026 07:07 1 commit to main bc8cdf8 feat(design): add design category, Delta E 2000 pantone matcher, eyed…"
-    },
-    {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/d1036a6887...a9e1194edc",
-      "updated": "2026-10-16 02:49:03 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 16, 2026 02:49 1 commit to main a9e1194 chore: remove CLAUDE.md and ignore in .gitignore"
-    },
-    {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/475852dccf...ad501b60d0",
-      "updated": "2026-10-16 03:09:22 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 16, 2026 03:09 1 commit to main ad501b6 chore(web): deduplicate Google Fonts links"
-    },
-    {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/a2947ffa6c...08103e1bf0",
-      "updated": "2026-10-16 01:30:20 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 16, 2026 01:30 1 commit to main 08103e1 feat(podcast): fetch full episode detail, eliminate title/nav AI word…"
     }
   ],
-  "lastSyncedAt": "2026-10-17T11:06:37.209Z",
+  "lastSyncedAt": "2026-10-17T13:58:52.305Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

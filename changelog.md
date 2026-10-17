@@ -7,7 +7,9 @@
   - **Eliminated Ellipsis Squeezing ("...") in Contact Dialog**: Removed rigid `truncate` CSS from inquiry subject buttons and replaced with `min-w-0 flex-1 leading-snug`, updated subject option English labels to concise executive terminology (`IT Consulting & Advisory`, `Executive Recruitment`, `Speaking & Workshops`), and widened modal to `max-w-xl sm:max-w-2xl` for ample horizontal breathing room.
   - **Fixed Top Navbar Forced Multi-Row Wrap**: Removed `flex-wrap` from `<nav>` in `Navbar.tsx`, gave brand title container `min-w-0 flex-1`, and streamlined the English subtitle to guarantee the entire top navigation banner always remains a sleek, single-row element across all desktop and mobile viewport widths.
   - **Fixed H1 Headline 5-Line Breaking in Profile Card**: Removed restrictive `max-w-[36ch]` from `ProfileCard.tsx` and adjusted CTA layout breakpoint to `xl:flex-row`, preventing the headline (`Turning Complex Technology into Business Results`) from being crammed into an unnatural 5-line vertical strip on standard laptop screens.
-
+- **Executive Scale Rephrasing: General Manager & 300+ Organization Leadership (`ProfileCard.tsx`, `ExecutiveBriefing.tsx`, `profile-content.zh.md`, `profile-content.en.md`)**:
+  - Replaced ambiguous, passive phrasing ("曾管理科技與工程組織規模") with direct, authoritative executive record: **`曾任總經理 · 管理 300+ 人組織`** (`Former GM · Led 300+ Staff Org`) and metric value **`300+ 人`**.
+  - Updated profile introduction across Markdown and structured discovery files to explicitly highlight corporate General Manager tenure managing 300+ person enterprise organizations.
 ### Added
 - **Floating Labels (方案 B: 浮動標籤) in Contact Form (`components/ContactDialog.tsx`)**:
   - Implemented sleek, space-saving floating labels for `Name`, `Email`, `Company`, and `Message` fields (plus custom subject input).
