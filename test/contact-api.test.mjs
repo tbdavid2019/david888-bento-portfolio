@@ -239,3 +239,87 @@ test('blocks spam or scam messages with 403 when detected by Clef-Flash decision
     globalThis.fetch = originalFetch;
   }
 });
+
+test('falls back to Clef-Flash-Q4 (clef.aiurl.tw) when primary node fails, and blocks spam', async () => {
+  const originalFetch = globalThis.fetch;
+  const contactedEndpoints = [];
+
+  globalThis.fetch = async (url) => {
+    contactedEndpoints.push(url);
+    if (url.includes('clef.create360.ai')) {
+      // Simulate primary failure
+      return { ok: false, status: 503, json: async () => ({}) };
+    }
+    if (url.includes('clef.aiurl.tw')) {
+      // Fallback node responds with spam classification
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          model: 'clef-flash-q4_k_m',
+          answers: {
+            classification: {
+              choice: 'spam_or_scam',
+              probabilities: { legitimate_inquiry: 0.05, spam_or_scam: 0.95 },
+            },
+          },
+        }),
+      };
+    }
+    return { ok: true, status: 200, json: async () => ({}) };
+  };
+
+  try {
+    const res = await processContactSubmission(
+      {
+        name: 'SEO Scammer',
+        email: 'seo@backlink-scam.xyz',
+        subject: '資訊顧問／工商合作',
+        message: 'Guaranteed #1 ranking backlink network telegram contact me',
+      },
+      { RESEND_API_KEY: 're_test_key_123' },
+    );
+
+    assert.equal(res.status, 403);
+    assert.equal(res.body.blocked, true);
+    assert.ok(contactedEndpoints.some((u) => u.includes('clef.create360.ai')));
+    assert.ok(contactedEndpoints.some((u) => u.includes('clef.aiurl.tw')));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('fails open and delivers inquiry when both Clef-Flash nodes are down', async () => {
+  const originalFetch = globalThis.fetch;
+  let resendDispatched = false;
+
+  globalThis.fetch = async (url) => {
+    if (url.includes('clef.create360.ai') || url.includes('clef.aiurl.tw')) {
+      // Both nodes down
+      throw new Error('Connection refused / 503');
+    }
+    if (url.includes('resend.com')) {
+      resendDispatched = true;
+      return { ok: true, status: 200, json: async () => ({ id: 'email_ok_123' }) };
+    }
+    return { ok: true, status: 200, json: async () => ({}) };
+  };
+
+  try {
+    const res = await processContactSubmission(
+      {
+        name: 'Real Client',
+        email: 'client@realcompany.com',
+        subject: '資訊顧問／工商合作',
+        message: 'We want to discuss e-commerce system architecture and consulting.',
+      },
+      { RESEND_API_KEY: 're_test_key_123' },
+    );
+
+    assert.equal(res.status, 200);
+    assert.equal(res.body.ok, true);
+    assert.equal(resendDispatched, true); // Fail-open allowed legitimate message to be sent!
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});

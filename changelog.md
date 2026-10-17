@@ -12,8 +12,11 @@
 - **888news Remote MCP Server (5 Agent Tools) & Universal MCP Configuration (`https://news2.david888.com/api/mcp` & `https://news2.david888.com/agent`)**:
   - Added dedicated Streamable HTTP Remote MCP integration for `888news` in both the 5 Flagship Systems deep-dive (`components/FlagshipShowcase.tsx`) and the AI Agent Skills catalog (`data/bento-links.json`, `components/cards/BentoLinkCard.tsx`).
   - Provides direct 1-click copy for the remote endpoint (`https://news2.david888.com/api/mcp`), universal JSON configuration (`mcpServers.news888`), CLI installation command, and direct link to the Agent Integration Guide (`https://news2.david888.com/agent`) for calling the 5 tools (`news888_get_latest`, `news888_search`, `news888_get_hot_topics`, `news888_get_story`, `news888_get_daily`).
-- **Clef-Flash System One Spam & Scam Guard (`Option A: Direct Hard Shield`)**:
-  - Integrated the Cloudflare Clef-Flash Decision API (`https://clef.create360.ai/v1/systemone`) in both frontend (`components/ContactDialog.tsx`, `lib/clef-guard.ts`) and backend edge workers (`workers/contact-worker/src/index.ts`, `api/contact.ts`).
+- **Clef-Flash System One Spam & Scam Guard (`Option A: Direct Hard Shield with 3-Tier Resilient Fallback`)**:
+  - Integrated the Cloudflare Clef-Flash Decision API with a 3-tier high-availability fallback architecture across frontend (`components/ContactDialog.tsx`, `lib/clef-guard.ts`) and backend edge workers (`workers/contact-worker/src/index.ts`, `api/contact.ts`):
+    - **Tier 1 (Primary)**: `https://clef.create360.ai/v1/systemone`
+    - **Tier 2 (Fallback 2)**: `https://clef.aiurl.tw/v1/systemone` (Clef-Flash-Q4 backup node)
+    - **Tier 3 (Fail-Open)**: If both nodes time out or encounter issues, the system fails open (allows normal message delivery), guaranteeing genuine business inquiries are never blocked.
   - Automatically classifies incoming inquiries using zero-shot `choice` decision (`legitimate_inquiry` vs `spam_or_scam`).
   - When spam, casino, SEO solicitation, crypto pump, or bot noise is detected, activates the **Option A Direct Hard Shield** (`🛡️ 系統安全防護：此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。`), completely blocking email dispatch and preventing Resend quota consumption and mailbox spam.
   - Zero personal email addresses or contact details are leaked in the block message.
