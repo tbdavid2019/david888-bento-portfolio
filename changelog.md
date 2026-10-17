@@ -2,6 +2,12 @@
 
 ## [2026-10-17] - 2md.aiurl.tw Single-Axis Executive Dossier Redesign, Canonical Routes & 5 Flagship Systems Showcase
 
+### Fixed
+- **Fixed English UI Truncation & Forced Navbar Wrapping (`Navbar.tsx`, `ContactDialog.tsx`, `ProfileCard.tsx`)**:
+  - **Eliminated Ellipsis Squeezing ("...") in Contact Dialog**: Removed rigid `truncate` CSS from inquiry subject buttons and replaced with `min-w-0 flex-1 leading-snug`, updated subject option English labels to concise executive terminology (`IT Consulting & Advisory`, `Executive Recruitment`, `Speaking & Workshops`), and widened modal to `max-w-xl sm:max-w-2xl` for ample horizontal breathing room.
+  - **Fixed Top Navbar Forced Multi-Row Wrap**: Removed `flex-wrap` from `<nav>` in `Navbar.tsx`, gave brand title container `min-w-0 flex-1`, and streamlined the English subtitle to guarantee the entire top navigation banner always remains a sleek, single-row element across all desktop and mobile viewport widths.
+  - **Fixed H1 Headline 5-Line Breaking in Profile Card**: Removed restrictive `max-w-[36ch]` from `ProfileCard.tsx` and adjusted CTA layout breakpoint to `xl:flex-row`, preventing the headline (`Turning Complex Technology into Business Results`) from being crammed into an unnatural 5-line vertical strip on standard laptop screens.
+
 ### Added
 - **Floating Labels (方案 B: 浮動標籤) in Contact Form (`components/ContactDialog.tsx`)**:
   - Implemented sleek, space-saving floating labels for `Name`, `Email`, `Company`, and `Message` fields (plus custom subject input).

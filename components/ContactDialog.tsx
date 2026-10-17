@@ -13,17 +13,17 @@ export const SUBJECT_OPTIONS = [
   {
     id: 'consulting',
     zh: '資訊顧問／工商合作',
-    en: 'IT Consulting & Partnership',
+    en: 'IT Consulting & Advisory',
   },
   {
     id: 'recruitment',
     zh: '獵頭招募／職缺邀約',
-    en: 'Recruitment & Job Inquiry',
+    en: 'Executive Recruitment',
   },
   {
     id: 'speaking',
     zh: '技術演講／企業培訓',
-    en: 'Tech Workshop & Speaking',
+    en: 'Speaking & Workshops',
   },
   {
     id: 'other',
@@ -193,7 +193,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
       onMouseDown={(event) => event.target === event.currentTarget && onClose()}
     >
       <section
-        className="max-h-[92vh] w-full max-w-xl overflow-y-auto rounded-[28px] border border-border bg-bg-surface p-6 shadow-2xl md:p-8"
+        className="max-h-[92vh] w-full max-w-xl sm:max-w-2xl overflow-y-auto rounded-[28px] border border-border bg-bg-surface p-6 shadow-2xl md:p-8"
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-dialog-title"
@@ -478,13 +478,13 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                       key={opt.id}
                       type="button"
                       onClick={() => handleSelectSubject(opt.id)}
-                      className={`flex items-center justify-between gap-3 rounded-xl border px-3.5 py-3 text-left text-sm md:text-base font-bold transition-all ${
+                      className={`flex min-h-[50px] items-center justify-between gap-2.5 rounded-xl border px-3.5 py-2.5 text-left text-xs sm:text-sm font-bold transition-all ${
                         isSelected
                           ? 'border-primary bg-primary/10 text-primary shadow-sm ring-1 ring-primary/40'
                           : 'border-border bg-bg-elevated text-text-muted hover:border-text-muted hover:text-text-main'
                       }`}
                     >
-                      <span className="truncate">{isZh ? opt.zh : opt.en}</span>
+                      <span className="min-w-0 flex-1 leading-snug">{isZh ? opt.zh : opt.en}</span>
                       <span
                         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs transition-colors ${
                           isSelected

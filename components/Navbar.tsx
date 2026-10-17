@@ -63,22 +63,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="w-full border-b-2 border-[#2b251a] bg-[#ffb010] text-[#2b251a] transition-colors">
-      <nav className="dossier-shell flex flex-wrap items-center justify-between gap-3 py-3.5 sm:py-4">
+      <nav className="dossier-shell flex items-center justify-between gap-3 py-3.5 sm:py-4">
         <a
           href="/"
-          className="group flex min-w-0 items-center gap-3 text-left text-[#2b251a] no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d]"
+          className="group flex min-w-0 flex-1 items-center gap-3 text-left text-[#2b251a] no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d]"
         >
           <div className="flex min-h-[54px] min-w-[74px] shrink-0 flex-col items-center justify-center rounded-[10px] border-2 border-[#2b251a] bg-[#fff9e8] px-2.5 py-1.5 leading-none text-[#2b251a] shadow-[0_2px_6px_rgba(43,37,26,0.16)] transition-transform group-hover:-translate-y-0.5">
             <span className="font-mono text-2xl font-extrabold tracking-tight">888</span>
             <span className="mt-0.5 text-[10px] font-extrabold tracking-wider">DAVID</span>
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <div className="truncate text-lg font-extrabold tracking-tight text-[#2b251a] sm:text-xl md:text-2xl">
               David Chiang
             </div>
             <div className="mt-0.5 truncate text-xs font-bold text-[#2b251a]/85 sm:text-sm">
               {locale === 'en'
-                ? 'CTO & Technical Advisor · Enterprise eCommerce, System Integration & Engineering Leadership'
+                ? 'CTO & Technical Advisor · Enterprise Architecture & Leadership'
                 : 'CTO & 技術顧問 ｜ 大型電商架構 · 企業系統整合 · 工程團隊帶領'}
             </div>
           </div>

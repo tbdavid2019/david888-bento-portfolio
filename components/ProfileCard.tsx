@@ -83,8 +83,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     <div className="dossier-card p-5 sm:p-7 md:p-8">
       <div className="flex flex-col gap-6">
         {/* Top Executive Identity Header */}
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+          <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-start">
             <img
               src="/bento/me.jpg"
               alt={profileData.name}
@@ -99,14 +99,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
                   {isEn ? 'CTO & TECHNICAL ADVISOR' : 'CTO & 技術顧問'}
                 </span>
               </div>
-              <h1 className="mt-2 max-w-[36ch] break-words text-2xl font-extrabold leading-[1.22] tracking-tight text-text-main sm:text-3xl md:text-[2rem]">
+              <h1 className="mt-2 max-w-4xl text-2xl font-extrabold leading-[1.25] tracking-tight text-text-main sm:text-3xl md:text-[2rem]">
                 {content.headline}
               </h1>
             </div>
           </div>
 
           {/* Primary Executive CTAs - Mobile Full-Width Responsive */}
-          <div className="flex w-full shrink-0 flex-wrap items-center gap-2.5 lg:w-auto">
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2.5 xl:w-auto">
             {onContact && (
               <button
                 type="button"
