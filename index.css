@@ -111,7 +111,7 @@ html {
 
 body {
   @apply antialiased selection:bg-[#ffb010]/40;
-  font-family: "JetBrains Mono", "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", monospace, sans-serif;
+  font-family: "JetBrains Mono", "Gen Jyuu Gothic", "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", monospace, sans-serif;
   min-height: 100vh;
   background-color: var(--bg-base);
   color: var(--text-main);
@@ -139,7 +139,7 @@ body {
 
 /* 2md.aiurl.tw Logo Badge */
 .brand-logo-badge {
-  font-family: "JetBrains Mono", sans-serif;
+  font-family: "JetBrains Mono", "Gen Jyuu Gothic", sans-serif;
   font-weight: 800;
   display: inline-flex;
   flex-direction: column;

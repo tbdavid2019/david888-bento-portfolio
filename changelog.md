@@ -13,9 +13,9 @@
   - Implemented sleek, space-saving floating labels for `Name`, `Email`, `Company`, and `Message` fields (plus custom subject input).
   - Labels sit inside inputs when empty and smoothly animate to the top edge (`top-1.5`, `text-[11px] font-bold text-primary`) upon focus or when containing text.
   - Completely eliminates external label margins, saving over ~70px of vertical space and keeping the modal dialog compact and scroll-free on mobile and desktop screens.
-- **English Typography Upgrade to JetBrains Mono**:
-  - Standardized English typography across the site to `JetBrains Mono` paired with `Noto Sans TC` for Traditional Chinese across `index.html`, `index.css`, and `tailwind.config.js`.
-  - Loaded Google Fonts `JetBrains Mono` weights (400, 500, 600, 700, 800) and optimized CSS load hierarchy.
+- **Typography Upgrade: JetBrains Mono (English) + Gen Jyuu Gothic (Traditional Chinese)**:
+  - Standardized English typography across the site to `JetBrains Mono` paired with local `Gen Jyuu Gothic` (源柔黑體) and `Noto Sans TC` fallback across `index.html`, `index.css`, and `tailwind.config.js`.
+  - Added font preload for `/fonts/GenJyuuGothic-Medium.woff2` in `index.html` to eliminate layout shift and provide instantaneous rendering with 100% Traditional Chinese glyph coverage.
 - **2md.aiurl.tw Family Visual Architecture (`Option A`)**: Replaced the split-screen Bento layout with the single-axis centered dossier container (`.dossier-shell`, `width: min(1080px, calc(100% - 32px))`), Saffron (`#ffb010`) full-bleed header with the `888 DAVID` badge, Deep Blue (`#17324d`) sticky section navigation bar (`.section-nav-bar`), Warm Cream (`#fff9e8`) dossier cards, and crisp `2px` borders.
 - **Canonical Routes Direct Navigation (`Canonical Routes 直達`)**:
   - Supported direct path routes (`/executive`, `/advisory`, `/flagships`, `/finance`, `/products`, `/agent-skills`, `/experiments`, `/metaphysics`, `/social`) as well as hash and query routes.

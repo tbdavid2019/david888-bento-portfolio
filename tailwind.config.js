@@ -48,8 +48,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["'JetBrains Mono'", "'Noto Sans TC'", "system-ui", "-apple-system", "monospace", "sans-serif"],
-        display: ["'JetBrains Mono'", "'Noto Sans TC'", "system-ui", "-apple-system", "monospace", "sans-serif"],
+        sans: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "'Noto Sans TC'", "system-ui", "-apple-system", "monospace", "sans-serif"],
+        display: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "'Noto Sans TC'", "system-ui", "-apple-system", "monospace", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],
       },
       borderRadius: {
