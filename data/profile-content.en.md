@@ -12,7 +12,7 @@ Designed for listed corporations, omni-channel retail leaders, and scaling ventu
 
 ### 2. Full-Time Executive Leadership (CTO / VP of Engineering)
 
-Available for high-impact Chief Technology Officer or VP of Engineering mandates (Target: NT$ 3M+ / Global Executive Compensation Package). Full technical and organizational ownership across multi-center engineering orgs (50–300+ engineers), high-concurrency commercial platform modernization, and high-velocity product delivery.
+Available for high-impact Chief Technology Officer or VP of Engineering mandates across multinational enterprises, listed groups, and high-growth technology ventures. Full technical and organizational ownership across multi-center engineering orgs (50–300+ engineers), high-concurrency commercial platform modernization, and high-velocity product delivery.
 
 ### 3. VC / PE Tech Due Diligence & Architecture Rescue
 

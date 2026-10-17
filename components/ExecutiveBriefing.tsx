@@ -52,11 +52,11 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
       id: 'fulltime-cto',
       icon: Users,
       title: isEn
-        ? 'Full-Time Chief Technology Officer / VP of Engineering (NT$ 3M+ / Global Tier)'
-        : '高階技術長正職 / 研發副總 (CTO / VP of Engineering · 目標年薪 NT$ 300萬+)',
+        ? 'Full-Time Chief Technology Officer / VP of Engineering'
+        : '高階技術長正職 / 研發副總 (CTO / VP of Engineering)',
       target: isEn
         ? 'For Multinational Enterprises, Global eCommerce Leaders & High-Growth Tech Groups'
-        : '適用：跨國集團、大型零售電商、金融科技與高成長科技企業',
+        : '適用：跨國集團、上市櫃企業、大型零售電商與高成長科技公司',
       deliverables: isEn
         ? [
             'End-to-end leadership of 50–300+ cross-border engineering, data, and product organizations',

@@ -51,12 +51,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   const engagementPills = isEn
     ? [
         { icon: Briefcase, text: '12-Month Enterprise Advisory Retainer (Fractional CTO)' },
-        { icon: Users, text: 'Full-Time CTO / VP of Engineering (Target NT$ 3M+ / Global)' },
+        { icon: Users, text: 'Full-Time CTO / VP of Engineering (C-Suite & Global Mandate)' },
         { icon: ShieldCheck, text: 'VC / Board Technical Due Diligence & Architecture Audit' },
       ]
     : [
         { icon: Briefcase, text: '一年期企業技術顧問約 (Annual Retainer / Fractional CTO)' },
-        { icon: Users, text: '高階技術長正職 (CTO / VPE · 目標年薪 NT$ 300萬+)' },
+        { icon: Users, text: '高階技術長正職 / 研發副總 (CTO / VP of Engineering)' },
         { icon: ShieldCheck, text: '創投與董事會技術盡職調查 (Tech Due Diligence)' },
       ];
 
