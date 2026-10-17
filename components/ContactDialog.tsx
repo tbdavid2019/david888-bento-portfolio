@@ -11,24 +11,24 @@ interface ContactDialogProps {
 
 export const SUBJECT_OPTIONS = [
   {
+    id: 'tech_chat',
+    zh: '技術交流／打個招呼',
+    en: 'Tech Chat & Say Hello',
+  },
+  {
     id: 'consulting',
-    zh: '資訊顧問／工商合作',
-    en: 'IT Consulting & Advisory',
+    zh: '顧問諮詢／業務合作',
+    en: 'Consulting & Business',
   },
   {
     id: 'recruitment',
-    zh: '獵頭招募／職缺邀約',
-    en: 'Executive Recruitment',
-  },
-  {
-    id: 'speaking',
-    zh: '技術演講／企業培訓',
-    en: 'Speaking & Workshops',
+    zh: '職缺邀約／演講培訓',
+    en: 'Opportunities & Speaking',
   },
   {
     id: 'other',
-    zh: '其他合作提案',
-    en: 'Other Inquiries',
+    zh: '其他想法／隨意聊聊',
+    en: 'Other Ideas & Chat',
   },
 ];
 
@@ -86,7 +86,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
     setCustomSubject(val);
     setForm((prev) => ({
       ...prev,
-      subject: val.trim() || (isZh ? '其他合作提案' : 'Other Inquiries'),
+      subject: val.trim() || (isZh ? '其他想法／隨意聊聊' : 'Other Ideas & Chat'),
     }));
   };
 
@@ -202,7 +202,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
             <div className="mb-1 flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-primary">
-              <Mail size={15} /> {isZh ? '聯絡表單' : 'Contact'}
+              <Mail size={15} /> {isZh ? '聯絡交流' : 'Get in Touch'}
             </div>
             <h2 id="contact-dialog-title" className="text-2xl font-black text-text-main">
               {submittedReceipt
@@ -214,8 +214,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                     ? '訊息已被安全機制攔截屏蔽'
                     : 'Security Verification Notice'
                   : isZh
-                    ? '把你的問題交給我'
-                    : 'Tell me what you are building'}
+                    ? '與 David 交流與合作'
+                    : 'Get in Touch with David'}
             </h2>
           </div>
           <button
@@ -417,7 +417,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                       : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
                   }`}
                 >
-                  {isZh ? '姓名 *' : 'Name *'}
+                  {isZh ? '姓名' : 'Name'}
                 </label>
               </div>
 
@@ -439,7 +439,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                       : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
                   }`}
                 >
-                  Email *
+                  Email
                 </label>
               </div>
             </div>
@@ -468,7 +468,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
             {/* Subject Checkbox / Pill Selection (打勾選項) */}
             <div className="space-y-2">
               <span className="text-sm font-bold text-text-main">
-                {isZh ? '諮詢類型／主旨 *' : 'Inquiry Category / Subject *'}
+                {isZh ? '交流主旨' : 'Topic'}
               </span>
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {SUBJECT_OPTIONS.map((opt) => {
@@ -519,7 +519,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                         : 'top-2.5 text-[11px] text-text-muted peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-2.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
                     }`}
                   >
-                    {isZh ? '請輸入自訂諮詢主旨… *' : 'Custom Subject *'}
+                    {isZh ? '自訂交流主旨…' : 'Custom Topic…'}
                   </label>
                 </div>
               )}
@@ -545,7 +545,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                     : 'top-1.5 text-[11px] text-text-muted peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
                 }`}
               >
-                {isZh ? '想討論的內容 *' : 'Message *'}
+                {isZh ? '想討論的內容' : 'Message'}
               </label>
             </div>
 
@@ -568,10 +568,10 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               {busy
                 ? isZh
                   ? '安全檢驗與送出中…'
-                  : 'Verifying & Sending…'
+                  : 'Sending…'
                 : isZh
-                  ? '送出並取得服務序號'
-                  : 'Send and get service number'}
+                  ? '送出訊息'
+                  : 'Send Message'}
             </button>
           </form>
         )}

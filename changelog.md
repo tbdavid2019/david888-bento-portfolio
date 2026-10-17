@@ -1,6 +1,23 @@
 # Changelog
 
-## [2026-10-17] - 2md.aiurl.tw Single-Axis Executive Dossier Redesign, Canonical Routes & 5 Flagship Systems Showcase
+## [2026-10-17] - Contact Dialog Tone Softening & Zero-Friction UX, English Podcast Edition, and Live Catalog Updates
+
+### Fixed & Enhanced
+- **Contact Dialog Tone Softening & Friction Reduction (`components/ContactDialog.tsx`)**:
+  - **Removed Visual Asterisks (`*`)**: Removed visual asterisks from all form labels (`姓名`, `Email`, `交流主旨`, `想討論的內容`, and custom topic input), eliminating excessive visual stress and bureaucratic feel while maintaining HTML5 `required` validation and Clef-Flash zero-shot spam protection.
+  - **Humanized Header & Submit Button**: Softened the modal header from IT-ticketing tone ("把你的問題交給我") to approachable executive greeting **`與 David 交流與合作`** (EN: `Get in Touch with David`), and changed the submit button from "送出並取得服務序號" to clean and natural **`送出訊息`** (EN: `Send Message`).
+  - **Diversified Subject Chips Beyond Pure Commerce**: Refactored `SUBJECT_OPTIONS` to welcome open community and developer networking instead of 100% transactional business inquiries:
+    1. **`技術交流／打個招呼`** (`Tech Chat & Say Hello`) — set as friendly default
+    2. **`顧問諮詢／業務合作`** (`Consulting & Business`)
+    3. **`職缺邀約／演講培訓`** (`Opportunities & Speaking`)
+    4. **`其他想法／隨意聊聊`** (`Other Ideas & Chat`)
+- **English Podcast Edition Integration (`https://podcast.david888.com/en`)**:
+  - **Bento Card**: Added a dedicated production link card in `data/bento-links.json` under the `social` category for the newly launched daily English tech podcast.
+  - **Flagship Deep-Dive Sub-Links (`components/FlagshipShowcase.tsx`)**: Added `English Edition (英文版)` (`https://podcast.david888.com/en`) and `RSS 訂閱源` to the DAVID888 Daily showcase subLinks alongside bilingual script generation highlights.
+  - **Live Podcast Feed Card Header (`components/cards/PodcastFeedCard.tsx`)**: Added an `EN` edition button right next to the RSS feed button for 1-click access to English episodes.
+  - **AI Agent Discovery (`llms.txt`, `llms-full.txt`)**: Automatically indexed `https://podcast.david888.com/en` across all discovery manifests.
+- **Disabled Unmaintained SoundOn Link (`data/bento-links.json`)**:
+  - Set `"hidden": true` on `https://player.soundon.fm/p/david777/`, seamlessly filtering it out from the live Bento grid, `siteCatalog`, and `llms.txt` without deleting historical record.
 
 ### Fixed
 - **Fixed English UI Truncation & Forced Navbar Wrapping (`Navbar.tsx`, `ContactDialog.tsx`, `ProfileCard.tsx`)**:

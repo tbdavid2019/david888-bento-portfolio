@@ -24,7 +24,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [DAVID888 YouTube](https://youtube.com/playlist?list=PL9BjVCfbuO_Hq4db82qiM9pn46c4yyPYC&si=-mUA1Q4opb31XA_G)
 - [DAVID888 Daily 每日放送](https://www.youtube.com/playlist?list=PL9BjVCfbuO_FZyuKIns2PaydrQ-d6ZAfI)
 - [Threads: @david888.chiang](https://www.threads.com/@david888.chiang)
-- [Podcast: DAVID888商業報告[Oli家]](https://player.soundon.fm/p/david777/)
+- [DAVID888 Daily 每日科技播客（英文版） (DAVID888 Daily Podcast (English Edition))](https://podcast.david888.com/en): 每日自動抓取 Hacker News、GitHub Trending 與 Product Hunt 科技焦點，由神經網路 TTS 自動產出之每日英文科技 Podcast。
 
 ## Finance & Quantitative Systems
 
@@ -559,9 +559,11 @@ Independent pre-investment or pre-M&A technical reviews for investors and compan
 - Category: experiments
 - Section: 3D 視覺與 WebXR (3D Visuals & WebXR)
 
-### Podcast: DAVID888商業報告[Oli家]
-- URL: https://player.soundon.fm/p/david777/
+### DAVID888 Daily 每日科技播客（英文版） / DAVID888 Daily Podcast (English Edition)
+- URL: https://podcast.david888.com/en
 - Category: social
+- Description (ZH): 每日自動抓取 Hacker News、GitHub Trending 與 Product Hunt 科技焦點，由神經網路 TTS 自動產出之每日英文科技 Podcast。
+- Description (EN): Daily automated tech podcast summarizing Hacker News, GitHub Trending, and Product Hunt into English audio episodes.
 
 ### QAC-MAN 網站 QR / QAC-MAN — Website QR
 - URL: https://qacman.com/?gh=4&q=david888.com

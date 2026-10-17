@@ -24,7 +24,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [DAVID888 YouTube](https://youtube.com/playlist?list=PL9BjVCfbuO_Hq4db82qiM9pn46c4yyPYC&si=-mUA1Q4opb31XA_G)
 - [DAVID888 Daily 每日放送](https://www.youtube.com/playlist?list=PL9BjVCfbuO_FZyuKIns2PaydrQ-d6ZAfI)
 - [Threads: @david888.chiang](https://www.threads.com/@david888.chiang)
-- [Podcast: DAVID888商業報告[Oli家]](https://player.soundon.fm/p/david777/)
+- [DAVID888 Daily 每日科技播客（英文版） (DAVID888 Daily Podcast (English Edition))](https://podcast.david888.com/en): 每日自動抓取 Hacker News、GitHub Trending 與 Product Hunt 科技焦點，由神經網路 TTS 自動產出之每日英文科技 Podcast。
 
 ## Finance & Quantitative Systems
 

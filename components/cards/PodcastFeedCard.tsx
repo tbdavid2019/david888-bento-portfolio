@@ -138,15 +138,27 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
           </div>
         </div>
 
-        <a
-          href={PODCAST_HOME_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-border bg-bg-surface/80 px-4 text-sm font-bold text-text-main transition-colors hover:border-border-hover hover:bg-bg-elevated"
-        >
-          RSS
-          <ExternalLink size={14} />
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="https://podcast.david888.com/en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-border bg-bg-surface/80 px-3.5 text-xs font-bold text-text-main transition-colors hover:border-border-hover hover:bg-bg-elevated"
+            title={locale === 'en' ? 'English Edition' : '英文版節目'}
+          >
+            EN
+            <ExternalLink size={13} />
+          </a>
+          <a
+            href={PODCAST_HOME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full border border-border bg-bg-surface/80 px-4 text-sm font-bold text-text-main transition-colors hover:border-border-hover hover:bg-bg-elevated"
+          >
+            RSS
+            <ExternalLink size={14} />
+          </a>
+        </div>
       </div>
 
       <div className="mt-6 space-y-4">

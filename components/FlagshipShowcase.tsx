@@ -165,25 +165,30 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     titleZh: 'DAVID888 Daily ｜ 自動化科技新聞 Podcast',
     titleEn: 'DAVID888 Daily — Automated Tech News Podcast',
     subtitleZh:
-      '每日自動整理 Hacker News、GitHub Trending 與 Product Hunt 熱門話題，產生繁體中文講稿並轉為語音，透過 RSS 發佈至各 Podcast 平台。',
+      '每日自動整理 Hacker News、GitHub Trending 與 Product Hunt 熱門話題，產生繁體中文與英語講稿並轉為語音，透過 RSS 發佈至各 Podcast 平台。',
     subtitleEn:
-      'Daily automated pipeline summarizing Hacker News, GitHub Trending, and Product Hunt into Traditional Chinese audio episodes distributed via RSS.',
+      'Daily automated pipeline summarizing Hacker News, GitHub Trending, and Product Hunt into Traditional Chinese and English audio episodes distributed via RSS.',
     breakthroughsZh: [
       '開發者社群動態整理：每日自動抓取 Hacker News、GitHub Trending、Product Hunt 與 Dev.to 熱門討論',
-      '自動文稿與語音合成：將整理後的重點轉為口語講稿，透過 TTS 產生語音並完成音量標準化',
+      '自動文稿與語音合成：將整理後的重點轉為中英雙語講稿，透過 TTS 產生語音並完成音量標準化',
       '音訊代管與 RSS 發佈：串接自建 888box 儲存服務與 RSS 2.0 Feed，支援網頁直接收聽與 Podcast 訂閱',
     ],
     breakthroughsEn: [
       'Daily aggregation of Hacker News, GitHub Trending, Product Hunt, and Dev.to discussions',
-      'Automated script writing, TTS voice generation, and audio normalization in Traditional Chinese',
+      'Automated script writing, TTS voice generation, and audio normalization in Chinese and English',
       'Hosted on 888box storage with standard RSS 2.0 feeds for web playback and podcast apps',
     ],
     techStack: [
       'TTS Audio Pipeline',
       'HN / GitHub / PH Scraper',
+      'Bilingual Scripts',
       'Audio Normalization',
       '888box Storage',
       'RSS 2.0 Feed',
+    ],
+    subLinks: [
+      { labelZh: 'English Edition (英文版)', labelEn: 'English Edition', url: 'https://podcast.david888.com/en' },
+      { labelZh: 'RSS 訂閱源', labelEn: 'RSS Feed', url: 'https://podcast.david888.com/rss.xml' },
     ],
   },
   {
