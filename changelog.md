@@ -1,5 +1,25 @@
 # Changelog
 
+## [2026-10-17] - 2md.aiurl.tw Single-Axis Executive Dossier Redesign, Canonical Routes & 5 Flagship Systems Showcase
+
+### Added
+- **2md.aiurl.tw Family Visual Architecture (`Option A`)**: Replaced the split-screen Bento layout with the single-axis centered dossier container (`.dossier-shell`, `width: min(1080px, calc(100% - 32px))`), Saffron (`#ffb010`) full-bleed header with the `888 DAVID` badge, Deep Blue (`#17324d`) sticky section navigation bar (`.section-nav-bar`), Warm Cream (`#fff9e8`) dossier cards, and crisp `2px` borders.
+- **Canonical Routes Direct Navigation (`Canonical Routes 直達`)**:
+  - Supported direct path routes (`/executive`, `/advisory`, `/flagships`, `/finance`, `/products`, `/agent-skills`, `/experiments`, `/metaphysics`, `/social`) as well as hash and query routes.
+  - Updated `scripts/prerender.mjs` to generate static HTML route entrypoints (`dist/<route>/index.html`) with route-specific `<link rel="canonical">` tags for 200 OK direct access on static hosting.
+- **5 Flagship Production Systems Deep-Dive (`components/FlagshipShowcase.tsx`)**:
+  - Dedicated architectural showcase for `bot.david888.com` (888 StockBot 2.0), `stockdata.david888.com` (888 StockQuant with TimesFM & Timestral), `news2.david888.com` (888news 100+ source AI intelligence radar), `podcast.david888.com` (DAVID888 Daily automated neural TTS podcast pipeline), and `qi.david888.com` (333 Qi Men Dun Jia high-DAU deterministic calendar & AI decision engine).
+- **Executive CTO & 12-Month Advisory Retainer Positioning**:
+  - Rewrote bilingual executive profile copy (`data/profile-content.zh.md`, `data/profile-content.en.md`) and `components/ExecutiveBriefing.tsx` to highlight 300+ cross-border organization scale, 70+ engineer SAP eCommerce leadership, and 3 explicit engagement packages: **12-Month Enterprise Advisory Retainer (Fractional CTO)**, **Full-Time CTO / VP of Engineering (Target NT$ 3M+)**, and **VC / Board Technical Due Diligence**.
+
+### Changed
+- **RWD & Typography Overhaul**:
+  - Eliminated the broken 35%/65% fixed sidebar overlap and removed the unreadable 2-column CSS newspaper layout (`column-count: 2`) on `.profile-introduction-body`.
+  - Replaced global monospace prose with `'Outfit', 'Noto Sans TC', sans-serif` while reserving `'Fira Code', 'JetBrains Mono', monospace` strictly for metrics, URLs, domains, and tech stack badges.
+  - Responsive sticky navigation bar automatically switches to a 2-column grid with `min-height: 44px` touch targets on mobile screens (`< 768px`).
+- **Dead Hugging Face Space & Broken Link Filtering**:
+  - Marked paused/sleeping Hugging Face Spaces and unreachable `http://git-gl.david888.com:5678/` with `"hidden": true` in `data/bento-links.json` and filtered them out of `siteItems`, `llms.txt`, and `llms-full.txt` so visitors only see live, working production systems.
+
 ## [2026-09-16] - Resend API Contact Dispatch, Turnstile & Submission Receipt
 
 ### Added

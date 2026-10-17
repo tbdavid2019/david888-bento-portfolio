@@ -83,9 +83,14 @@ export interface BaseCard {
     type: CardType;
     colSpan?: 1 | 2;
     featured?: boolean;
+    flagship?: boolean;
+    hidden?: boolean;
     tag?: string;
     section?: string;
     sectionEn?: string;
+    highlights?: string[];
+    highlightsEn?: string[];
+    techStack?: string[];
 }
 
 export interface LinkCardData extends BaseCard {

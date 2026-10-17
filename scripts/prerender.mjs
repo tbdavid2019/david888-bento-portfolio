@@ -22,7 +22,8 @@ async function run() {
     }
 
     const profile = JSON.parse(await fs.readFile(profilePath, 'utf8'));
-    const links = JSON.parse(await fs.readFile(linksPath, 'utf8'));
+    const rawLinks = JSON.parse(await fs.readFile(linksPath, 'utf8'));
+    const links = rawLinks.filter((item) => !item.hidden);
     const categoryConfig = JSON.parse(await fs.readFile(categoriesPath, 'utf8'));
     const categories = categoryConfig.categories;
     const content = JSON.parse(await fs.readFile(contentPath, 'utf8'));
@@ -175,9 +176,29 @@ ${JSON.stringify(schemaJson, null, 2)}
       console.warn('Could not find <div id="root"></div> to inject pre-rendered content.');
     }
 
-    // 6. Save modifications
+    // 6. Save modifications for root index.html
     await fs.writeFile(indexPath, html, 'utf8');
-    console.log('Pre-rendering and SEO metadata injection completed successfully!');
+
+    // 7. Generate Canonical Route static HTML entrypoints for direct URL navigation
+    const canonicalRoutes = [
+      'executive',
+      'advisory',
+      'flagships',
+      ...categories.map((cat) => cat.id),
+    ];
+
+    for (const route of canonicalRoutes) {
+      const routeDir = path.join(distDir, route);
+      await fs.mkdir(routeDir, { recursive: true });
+      const routeCanonicalUrl = `https://david888.com/${route}`;
+      const routeHtml = html.replace(
+        /<link rel="canonical" href="https:\/\/david888\.com\/" \/>/,
+        `<link rel="canonical" href="${routeCanonicalUrl}" />`,
+      );
+      await fs.writeFile(path.join(routeDir, 'index.html'), routeHtml, 'utf8');
+    }
+
+    console.log('Pre-rendering and Canonical Route generation completed successfully!');
   } catch (error) {
     console.error('Pre-rendering failed:', error);
     process.exit(1);

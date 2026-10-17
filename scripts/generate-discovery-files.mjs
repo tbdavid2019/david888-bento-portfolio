@@ -143,8 +143,19 @@ await ensureDir(path.join(publicDir, '.well-known'));
 
 await generateLlmsFiles({ projectRoot, siteOrigin });
 
+const categoryConfigPath = path.join(projectRoot, 'data', 'bento-categories.json');
+const categoryConfig = JSON.parse(await fs.readFile(categoryConfigPath, 'utf8'));
+const canonicalCategoryRoutes = [
+  '/executive',
+  '/advisory',
+  '/flagships',
+  ...categoryConfig.categories.map((cat) => `/${cat.id}`),
+];
+
 const discoveredRoutes = await collectHtmlRoutes(publicDir);
-const sitemapRoutes = Array.from(new Set(['/', '/llms.txt', '/llms-full.txt', ...discoveredRoutes])).sort();
+const sitemapRoutes = Array.from(
+  new Set(['/', '/llms.txt', '/llms-full.txt', ...canonicalCategoryRoutes, ...discoveredRoutes]),
+).sort();
 
 await fs.writeFile(path.join(publicDir, 'robots.txt'), buildRobotsTxt(), 'utf8');
 await fs.writeFile(path.join(publicDir, 'sitemap.xml'), buildSitemapXml(sitemapRoutes), 'utf8');

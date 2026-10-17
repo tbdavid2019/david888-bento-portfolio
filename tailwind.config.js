@@ -11,6 +11,17 @@ export default {
   theme: {
     extend: {
       colors: {
+        saffron: {
+          DEFAULT: "var(--saffron)",
+          hover: "var(--saffron-hover)",
+          light: "var(--saffron-light)",
+        },
+        navy: {
+          DEFAULT: "var(--deep-blue)",
+          dark: "var(--deep-blue-dark)",
+        },
+        clay: "var(--clay)",
+        ink: "var(--ink)",
         primary: {
           DEFAULT: "var(--primary)",
           glow: "var(--primary-glow)",
@@ -37,14 +48,14 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "sans-serif"],
-        display: ["'JetBrains Mono'", "'Gen Jyuu Gothic'", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        sans: ["'Outfit'", "'Noto Sans TC'", "system-ui", "-apple-system", "sans-serif"],
+        display: ["'Outfit'", "'Noto Sans TC'", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["'Fira Code'", "'JetBrains Mono'", "monospace"],
       },
       borderRadius: {
-        "2xl": "1.5rem",
-        "3xl": "2rem",
-        "4xl": "2.5rem",
+        "2xl": "1rem",
+        "3xl": "1.25rem",
+        "4xl": "1.5rem",
       },
       animation: {
         'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',

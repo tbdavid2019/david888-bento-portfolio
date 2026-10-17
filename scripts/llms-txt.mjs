@@ -27,6 +27,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
 
   const grouped = {};
   for (const item of links) {
+    if (item.hidden) continue;
     const tag = item.tag || 'others';
     if (!grouped[tag]) grouped[tag] = [];
     grouped[tag].push(item);
@@ -105,6 +106,7 @@ export function buildLlmsFullTxt({ profile, links, content, siteOrigin, categori
   fullLines.push('');
 
   for (const item of links) {
+    if (item.hidden) continue;
     const title = item.titleEn ? `${item.title} / ${item.titleEn}` : item.title;
     const url = item.url || '';
     const descZh = item.description || '';

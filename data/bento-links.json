@@ -10,7 +10,22 @@
     "tag": "finance",
     "section": "企業與投資網路 (Corporate & Investment Networks)",
     "sectionEn": "Corporate & Investment Networks",
-    "icon": "network"
+    "icon": "network",
+    "colSpan": 2,
+    "techStack": [
+      "Knowledge Graph",
+      "Force-Directed Canvas",
+      "Corporate Ownership Data",
+      "Interactive Search"
+    ],
+    "highlights": [
+      "收錄台灣上市櫃與關聯法人董監事、交叉持股與投資關係圖譜",
+      "高流暢度力導向圖 (Force-Directed Graph) 視覺化，快速穿透多層控股結構"
+    ],
+    "highlightsEn": [
+      "Interactive corporate ownership and board interlock knowledge graph across Taiwan listed entities",
+      "High-performance force-directed network visualization for multi-layer shareholding discovery"
+    ]
   },
   {
     "type": "link",
@@ -29,14 +44,34 @@
     "tag": "finance",
     "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
     "sectionEn": "Institutional Quant & Analytics Platforms",
-    "icon": "bot"
+    "icon": "bot",
+    "flagship": true,
+    "techStack": [
+      "TypeScript",
+      "Multi-Agent LLM",
+      "DCF / SEPA Engine",
+      "Options Greeks",
+      "TWSE Chip Flow",
+      "Generative UI",
+      "2MD SERP"
+    ],
+    "highlights": [
+      "純 TypeScript 原生實作華爾街級 DCF 現金流估值、Minervini SEPA 趨勢模板、期權損益模擬與微觀流動性模型",
+      "完整串接台灣證交所/櫃買中心三大法人與主力籌碼穿透分析，零黑盒算力依賴",
+      "整合 TradingView 互動走勢圖、Generative UI 動態數據卡片與自研 2MD 毫秒級即時財經搜尋"
+    ],
+    "highlightsEn": [
+      "Pure TypeScript quantitative engines: DCF valuation, Minervini SEPA templates, options PnL & micro-liquidity modeling",
+      "Real-time TWSE/TPEx institutional flow penetration and foreign/trust fund tracking",
+      "Generative UI financial cards paired with interactive TradingView charts and live 2MD SERP search"
+    ]
   },
   {
     "type": "link",
     "title": "888 Stock Quant | 專業量化決策平台",
     "titleEn": "888 Stock Quant - Quantitative Platform",
-    "description": "台美股技術面、LSTM 次日預測、多維量化決策分析與法人籌碼雷達，專為專業投資人打造的深度數據工作台。",
-    "descriptionEn": "Multi-dimensional quantitative decision platform for Taiwan and US equities with LSTM next-day price prediction, technical indicators, and institutional flow radars.",
+    "description": "結合 Google TimesFM 與 Timestral 雙時序基礎大模型、LSTM 次日預測、台美股多維技術面矩陣與三大法人及券商分點籌碼雷達的專業級量化工作台。",
+    "descriptionEn": "Institutional quantitative decision platform combining Google TimesFM & Timestral time-series foundation models, LSTM next-day forecasting, technical matrices, and broker-branch chip radars for TW/US equities.",
     "url": "https://stockdata.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/stock-underdog-ml",
     "imageSource": "/bento/stock_bot.svg",
@@ -45,20 +80,58 @@
     "tag": "finance",
     "section": "機構量化與分析平台 (Institutional Quant & Analytics Platforms)",
     "sectionEn": "Institutional Quant & Analytics Platforms",
-    "icon": "line-chart"
+    "icon": "line-chart",
+    "flagship": true,
+    "techStack": [
+      "TimesFM & Timestral",
+      "LSTM Deep Learning",
+      "Broker Chip Radar",
+      "Multi-Factor Quant",
+      "TW/US Equities Pipeline"
+    ],
+    "highlights": [
+      "雙時序基礎大模型（TimesFM + Timestral）結合 LSTM 深度學習管線，提供台美股次日走勢與波動區間預測",
+      "追蹤三大法人與關鍵券商分點主力籌碼異動，自動識別主力吸籌與背離訊號",
+      "端到端自動化特徵工程與多維技術指標矩陣，將複雜市場訊號收斂為直覺決策雷達"
+    ],
+    "highlightsEn": [
+      "Dual time-series foundation models (TimesFM & Timestral) + LSTM pipeline for next-day equity forecasting",
+      "Deep tracking of institutional flows and broker-branch accumulation/distribution anomalies",
+      "Automated feature engineering and multi-factor technical radar for rapid quantitative decision-making"
+    ]
   },
   {
     "type": "link",
     "title": "888news | 全球科技與 AI 情報雷達",
     "titleEn": "888news - Global Tech & AI Intelligence Radar",
-    "description": "全球科技與 AI 情報雷達 · 每日精選 · 自動追蹤頂尖科技信源，涵蓋 OpenAI、Anthropic、Google 等最新動態，透過 AI 即時摘要、品質評分與多語系熱點聚合呈獻深度觀察。",
-    "descriptionEn": "Global Tech & AI Intelligence Radar tracking top AI labs and tech sources with automated LLM synthesis, multi-source clustering, quality scoring, and daily executive briefing.",
+    "description": "全天候自動追蹤全球上百個頂尖科技與 AI 信源（OpenAI、Anthropic、Google DeepMind、Meta 等），透過多源報導語意歸組、LLM 品質評分與行銷噪音過濾，每日清晨精準呈獻高管級科技情報。",
+    "descriptionEn": "Autonomous global tech & AI intelligence radar monitoring 100+ frontier sources (OpenAI, Anthropic, Google, Meta). Uses multi-source semantic clustering, LLM quality scoring, and noise filtering to deliver daily executive briefings.",
     "url": "https://news2.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/888news",
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
     "sectionEn": "Web Products & Services",
-    "icon": "newspaper"
+    "icon": "newspaper",
+    "flagship": true,
+    "featured": true,
+    "colSpan": 2,
+    "techStack": [
+      "Multi-Source Clustering",
+      "LLM Quality Scoring",
+      "Automated Ingestion",
+      "Noise Filtering",
+      "Bilingual Briefing"
+    ],
+    "highlights": [
+      "全自動監控全球 100+ 頂尖 AI 實驗室、技術部落格與一手信源，毫秒級擷取與結構化清洗",
+      "多源報導語意聚類（Semantic Clustering）與嚴格品質評分機制，自動剔除公關廣編與農場噪音",
+      "每日清晨自動合成雙語高管技術簡報，協助決策者掌握具商業影響力的前沿突破"
+    ],
+    "highlightsEn": [
+      "Continuous automated ingestion across 100+ frontier AI labs, engineering blogs, and primary sources",
+      "Multi-source semantic event clustering and strict LLM quality scoring to eliminate PR/marketing noise",
+      "Automated daily executive synthesis highlighting high-impact architectural and industry breakthroughs"
+    ]
   },
   {
     "type": "link",
@@ -71,7 +144,22 @@
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
     "sectionEn": "Web Products & Services",
-    "icon": "shield-check"
+    "icon": "shield-check",
+    "featured": true,
+    "techStack": [
+      "Cloudflare Workers",
+      "WebAuthn / Passkey",
+      "Web Crypto API",
+      "Zero-Dependency PWA"
+    ],
+    "highlights": [
+      "純原生 Web Crypto API 實作 Passkey / WebAuthn 生物辨識無密碼驗證",
+      "支援離線 PWA TOTP 生成、多雲加密備份與邊緣微秒級時間校準"
+    ],
+    "highlightsEn": [
+      "Zero-dependency Web Crypto API implementation of Passkey / WebAuthn biometric authentication",
+      "Offline-ready PWA TOTP generator with encrypted multi-cloud backup on Cloudflare Workers"
+    ]
   },
   {
     "type": "link",
@@ -120,7 +208,8 @@
     "tag": "experiments",
     "section": "語音與語言 (Speech & Language)",
     "sectionEn": "Speech & Language",
-    "icon": "audio-lines"
+    "icon": "audio-lines",
+    "hidden": true
   },
   {
     "type": "project",
@@ -155,7 +244,8 @@
     "runtimeStatus": "paused",
     "repoUrl": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender/tree/main",
     "cloneCommand": "git clone https://huggingface.co/spaces/tbdavid2019/taiwan-tender",
-    "icon": "file-search"
+    "icon": "file-search",
+    "hidden": true
   },
   {
     "type": "link",
@@ -165,7 +255,8 @@
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
     "runtimeStatus": "paused",
-    "icon": "trending-up"
+    "icon": "trending-up",
+    "hidden": true
   },
   {
     "type": "link",
@@ -174,7 +265,8 @@
     "tag": "finance",
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
-    "icon": "candlestick"
+    "icon": "candlestick",
+    "hidden": true
   },
   {
     "type": "link",
@@ -325,7 +417,8 @@
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
     "runtimeStatus": "sleeping",
-    "icon": "line-chart"
+    "icon": "line-chart",
+    "hidden": true
   },
   {
     "type": "link",
@@ -347,7 +440,8 @@
     "section": "資料與工作流 (Data & Workflows)",
     "sectionEn": "Data & Workflows",
     "runtimeStatus": "paused",
-    "icon": "activity"
+    "icon": "activity",
+    "hidden": true
   },
   {
     "type": "link",
@@ -357,7 +451,8 @@
     "section": "AI 投資研究與模型 (AI Investment Research & Models)",
     "sectionEn": "AI Investment Research & Models",
     "runtimeStatus": "paused",
-    "icon": "bar-chart"
+    "icon": "bar-chart",
+    "hidden": true
   },
   {
     "type": "link",
@@ -374,7 +469,8 @@
     "section": "生成式 AI 視覺 (Generative AI & Vision)",
     "sectionEn": "Generative AI & Vision",
     "runtimeStatus": "paused",
-    "icon": "smile"
+    "icon": "smile",
+    "hidden": true
   },
   {
     "type": "link",
@@ -383,7 +479,8 @@
     "tag": "experiments",
     "section": "資料與工作流 (Data & Workflows)",
     "sectionEn": "Data & Workflows",
-    "icon": "store"
+    "icon": "store",
+    "hidden": true
   },
   {
     "type": "link",
@@ -410,7 +507,25 @@
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
     "sectionEn": "Web Products & Services",
-    "icon": "search"
+    "icon": "search",
+    "colSpan": 2,
+    "techStack": [
+      "Firecrawl AnyDoc",
+      "PaddleOCR PP-OCRv4",
+      "2D Table Reconstruction",
+      "WebMCP",
+      "Batch SERP"
+    ],
+    "highlights": [
+      "Sub-5ms 文件解析（PDF/Word/Excel/PPT/EPUB）與 PP-OCRv4 2D 空間表格重建轉 GFM Markdown",
+      "支援單頁擷取、即時網頁搜尋 (Live SERP)、多網址批次爬梳與深度爬蟲",
+      "原生支援瀏覽器 WebMCP 工具註冊與 AI Agent Content-Negotiation 雙模輸出"
+    ],
+    "highlightsEn": [
+      "Sub-5ms AnyDoc document parsing and PP-OCRv4 2D spatial table reconstruction into clean GFM Markdown",
+      "Supports single URL extraction, live SERP search, concurrent batch crawling, and schema extraction",
+      "Native WebMCP browser tool registration and dual-mode Human HTML / Agent SKILL.md content negotiation"
+    ]
   },
   {
     "type": "link",
@@ -479,15 +594,35 @@
   {
     "type": "link",
     "title": "333 奇門遁甲",
-    "titleEn": "333 Qi Men Dun Jia",
-    "description": "很受歡迎的日常決策工具，超多人每天使用。當你想逢凶化吉、評估時機，或只是遇到猶豫不決想快速做判斷時，都可以立刻打開來參考。",
-    "descriptionEn": "A popular daily decision helper used by many returning users. Open it when you want a quick directional reference for timing, uncertainty, or everyday decision-making.",
+    "titleEn": "333 Qi Men Dun Jia — AI Decision Engine",
+    "description": "高日活 (High-DAU) 複雜古曆法確定性排盤引擎 × 多輪結構化 AI 決策平台。整合奇門遁甲、梅花易數、八字人生 K 線、塔羅、風水與月老，將繁複的天干地支節氣規則轉化為零幻覺演算法與現代化產品體驗。",
+    "descriptionEn": "High-DAU deterministic astronomical/calendar rule engine paired with multi-turn LLM reasoning. Spans Qi Men Dun Jia, Plum Blossom Numerology, Bazi Life K-Line, Tarot, and Feng Shui with zero-hallucination chart calculation.",
     "url": "https://qi.david888.com/",
     "imageSource": "/bento/qimen.svg",
     "tag": "metaphysics",
     "section": "命理產品系列 (Qi & Life Product Family)",
     "sectionEn": "Qi & Life Product Family",
-    "icon": "compass"
+    "icon": "compass",
+    "flagship": true,
+    "featured": true,
+    "colSpan": 2,
+    "techStack": [
+      "Deterministic Rule Engine",
+      "Astronomical Calendar",
+      "Multi-Turn AI Reasoning",
+      "Life K-Line Visuals",
+      "High-DAU Web App"
+    ],
+    "highlights": [
+      "以嚴謹確定性天文曆法演算法（節氣交節、陰陽遁局、天干地支排盤）徹底解決純 LLM 排盤幻覺問題",
+      "單一平台整合奇門遁甲、梅花易數、八字人生 K 線、風水方位與多輪追問脈絡記憶",
+      "極高自然搜尋流量與用戶每日回訪留存（High DAU/Retention），展現複雜領域知識產品化能力"
+    ],
+    "highlightsEn": [
+      "Deterministic solar-term and sexagenary cycle calculation engine eliminating LLM chart-generation hallucinations",
+      "Unified ecosystem spanning Qi Men, Bazi Life K-Line, Feng Shui, Tarot, and context-aware multi-turn Q&A",
+      "Proven consumer productization with strong organic daily active usage and user retention"
+    ]
   },
   {
     "type": "link",
@@ -647,7 +782,19 @@
     "bgClass": "bg-gradient-to-br from-indigo-500 to-purple-800",
     "featured": true,
     "tag": "agent-skills",
-    "icon": "share-2"
+    "icon": "share-2",
+    "techStack": [
+      "A2A Protocol",
+      "Multi-Agent Orchestration",
+      "Human-in-the-Loop",
+      "TypeScript"
+    ],
+    "highlights": [
+      "A2A-first 多智能體協同架構，支援跨 Agent 任務委派、狀態同步與人機協作審批"
+    ],
+    "highlightsEn": [
+      "A2A-first multi-agent orchestration platform for autonomous task delegation and human-in-the-loop workflows"
+    ]
   },
   {
     "type": "link",

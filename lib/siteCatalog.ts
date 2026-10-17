@@ -19,7 +19,8 @@ export type CategoryMeta = {
 export const defaultCategoryId = categoryConfig.defaultCategoryId;
 export const categories = categoryConfig.categories as CategoryMeta[];
 
-export const siteItems = linksData as BentoItem[];
+export const allSiteItems = linksData as BentoItem[];
+export const siteItems = allSiteItems.filter((item) => !item.hidden);
 export const capabilityAreas = capabilitiesData as CapabilityArea[];
 
 export function getVisibleCategories(items: BentoItem[] = siteItems): CategoryMeta[] {

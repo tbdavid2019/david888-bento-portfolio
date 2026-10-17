@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   Activity,
+  ArrowUpRight,
   AtSign,
   AudioLines,
-  BarChart2,
   BarChart3,
   Book,
   BookOpen,
@@ -11,6 +11,7 @@ import {
   Box,
   Camera,
   CandlestickChart,
+  CheckCircle2,
   Compass,
   Copy,
   Cpu,
@@ -87,6 +88,10 @@ interface BentoLink {
   docLabel?: string;
   docLabelEn?: string;
   tag?: string;
+  flagship?: boolean;
+  highlights?: string[];
+  highlightsEn?: string[];
+  techStack?: string[];
 }
 
 const iconRegistry: Record<string, LucideIcon> = {
@@ -156,25 +161,6 @@ const iconRegistry: Record<string, LucideIcon> = {
   'shield-check': ShieldCheck,
 };
 
-const getCategoryIconStyle = (tag?: string) => {
-  switch (tag) {
-    case 'finance':
-      return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25';
-    case 'agent-skills':
-      return 'bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/25';
-    case 'products':
-      return 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/25';
-    case 'experiments':
-      return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25';
-    case 'metaphysics':
-      return 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/25';
-    case 'social':
-      return 'bg-primary/10 text-primary border border-primary/25';
-    default:
-      return 'bg-bg-elevated text-primary border border-border';
-  }
-};
-
 const runtimeStatusLabels: Record<BentoLinkRuntimeStatus, { zh: string; en: string }> = {
   paused: { zh: '暫停', en: 'Paused' },
   sleeping: { zh: '休眠', en: 'Sleeping' },
@@ -188,14 +174,19 @@ const getDomain = (url: string) => {
   }
 };
 
-export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ link, locale = 'zh' }) => {
-  const title = locale === 'en' ? link.titleEn || link.title : link.title;
-  const description = locale === 'en' ? link.descriptionEn || link.description : link.description;
+export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
+  link,
+  locale = 'zh',
+}) => {
+  const isEn = locale === 'en';
+  const title = isEn ? link.titleEn || link.title : link.title;
+  const description = isEn ? link.descriptionEn || link.description : link.description;
+  const highlights = isEn ? link.highlightsEn || link.highlights : link.highlights;
   const ServiceIcon = (link.icon && iconRegistry[link.icon]) || Globe;
   const statusCopy = link.runtimeStatus ? runtimeStatusLabels[link.runtimeStatus] : null;
-  const statusLabel = statusCopy ? `[${locale === 'en' ? statusCopy.en : statusCopy.zh}]` : null;
+  const statusLabel = statusCopy ? `[${isEn ? statusCopy.en : statusCopy.zh}]` : null;
   const statusTooltip = statusCopy
-    ? locale === 'en'
+    ? isEn
       ? `Hugging Face Space status: ${statusCopy.en}`
       : `Hugging Face Space 狀態：${statusCopy.zh}`
     : '';
@@ -203,53 +194,94 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
   return (
     <CardWrapper
       onClick={() => window.open(link.url, '_blank', 'noreferrer')}
-      className="group min-h-[180px]"
+      className={cn(
+        'group min-h-[180px]',
+        link.flagship && 'border-2 border-[#17324d] dark:border-[#ffb010]',
+      )}
     >
       <div className="flex items-start justify-between gap-3">
-        <div
-          className={cn(
-            'flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-110',
-            getCategoryIconStyle(link.tag)
-          )}
-        >
-          <ServiceIcon size={24} strokeWidth={1.8} aria-hidden="true" />
-        </div>
-        {statusLabel && (
-          <span
-            title={statusTooltip}
-            aria-label={statusTooltip}
-            className="rounded-full border border-warning/40 bg-warning/10 px-2.5 py-1 text-xs font-black text-warning"
-          >
-            {statusLabel}
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#2b251a] bg-[#ffb010] text-[#2b251a] shadow-xs transition-transform duration-200 group-hover:scale-105">
+            <ServiceIcon size={21} strokeWidth={2} aria-hidden="true" />
+          </div>
+          <span className="rounded-md border border-border bg-bg-elevated px-2.5 py-1 font-mono text-xs font-bold text-text-muted">
+            {getDomain(link.url)}
           </span>
-        )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          {statusLabel && (
+            <span
+              title={statusTooltip}
+              aria-label={statusTooltip}
+              className="rounded-full border border-warning/40 bg-warning/10 px-2.5 py-1 text-xs font-extrabold text-warning"
+            >
+              {statusLabel}
+            </span>
+          )}
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-bg-elevated text-text-muted transition-colors group-hover:border-[#17324d] group-hover:bg-[#17324d] group-hover:text-[#fff9e8] dark:group-hover:border-[#ffb010] dark:group-hover:bg-[#ffb010] dark:group-hover:text-[#2b251a]">
+            <ArrowUpRight size={16} />
+          </span>
+        </div>
       </div>
-      <div className="mt-auto pt-8">
+
+      <div className="mt-4 flex flex-1 flex-col">
         <div className="text-lg font-bold leading-tight tracking-tight text-text-main md:text-xl">
           {title}
         </div>
+
         {description && (
-          <div className={cn(
-            "mb-3 text-sm leading-relaxed text-text-muted md:text-[15px]",
-            link.colSpan === 2 ? "line-clamp-6 md:line-clamp-none" : "line-clamp-4"
-          )}>
+          <div className="mt-2 text-sm leading-relaxed text-text-muted md:text-[15px]">
             {description}
           </div>
         )}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-          <div className="text-[11px] font-black uppercase tracking-widest text-text-muted">{getDomain(link.url)}</div>
-          <div className="flex flex-wrap items-center gap-2">
+
+        {highlights && highlights.length > 0 && (
+          <ul className="mt-3 m-0 list-none space-y-1.5 rounded-lg border border-border/80 bg-bg-elevated p-3 text-xs leading-relaxed text-text-main sm:text-sm">
+            {highlights.map((point, idx) => (
+              <li key={idx} className="flex items-start gap-2">
+                <CheckCircle2
+                  size={15}
+                  className="mt-0.5 shrink-0 text-[#17324d] dark:text-[#ffb010]"
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {link.techStack && link.techStack.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {link.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-md border border-border bg-bg-elevated px-2 py-0.5 font-mono text-[11px] font-bold text-text-muted"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {(link.docUrl || link.repoUrl) && (
+          <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-border/70 pt-3 mt-4">
             {link.docUrl && (
               <a
                 href={link.docUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={locale === 'en' ? (link.docLabelEn || 'Feature Guide & Prompts') : (link.docLabel || '實戰題庫指南')}
+                aria-label={
+                  isEn
+                    ? link.docLabelEn || 'Feature Guide & Prompts'
+                    : link.docLabel || '實戰題庫指南'
+                }
                 onClick={(event) => event.stopPropagation()}
-                className="inline-flex min-h-[32px] items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-2.5 py-1 text-xs font-black text-amber-700 dark:text-amber-400 transition-colors hover:border-amber-500 hover:text-text-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-[#17324d] bg-bg-elevated px-3 py-1.5 text-xs font-extrabold text-text-main no-underline transition-colors hover:bg-[#fff0cc] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
               >
                 <BookOpen size={13} />
-                <span>{locale === 'en' ? (link.docLabelEn || 'Feature Guide') : (link.docLabel || '題庫指南')}</span>
+                <span>
+                  {isEn ? link.docLabelEn || 'Feature Guide' : link.docLabel || '題庫指南'}
+                </span>
               </a>
             )}
             {link.repoUrl && (
@@ -258,16 +290,18 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({ 
                 target="_blank"
                 rel="noopener noreferrer"
                 title={link.cloneCommand}
-                aria-label={locale === 'en' ? 'Open source for local run' : '開啟原始碼並在本機運行'}
+                aria-label={
+                  isEn ? 'Open source for local run' : '開啟原始碼並在本機運行'
+                }
                 onClick={(event) => event.stopPropagation()}
-                className="inline-flex min-h-[32px] items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-2.5 py-1 text-xs font-black text-primary transition-colors hover:border-primary hover:text-text-main focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-3 py-1.5 text-xs font-extrabold text-text-main no-underline transition-colors hover:border-[#17324d] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:hover:border-[#ffb010]"
               >
-                <span>{locale === 'en' ? 'Run locally' : '本機運行'}</span>
+                <span>{isEn ? 'Run locally' : '本機運行'}</span>
                 <ExternalLink size={13} />
               </a>
             )}
           </div>
-        </div>
+        )}
       </div>
     </CardWrapper>
   );

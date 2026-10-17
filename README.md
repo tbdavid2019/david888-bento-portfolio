@@ -1,8 +1,6 @@
 
 
-# David888 Bento Portfolio
-
-bento 模板
+# David888 Executive Dossier & Portfolio
 
 推送方法
 
@@ -11,8 +9,7 @@ git commit --allow-empty -m "Trigger deployment"
 git push
 ```
 
-A modern, responsive bento-grid style portfolio powered by React, Tailwind CSS, and Framer Motion.
-This project separates data from structure, allowing you to easily manage your content via JSON files.
+An executive CTO & Principal Technical Advisor dossier and production systems showcase powered by React, TypeScript, and Tailwind CSS, adopting the **2md.aiurl.tw** Saffron (`#ffb010`) & Deep Navy (`#17324d`) single-axis responsive architecture with direct **Canonical Routes** (`/executive`, `/advisory`, `/flagships`, `/finance`, `/products`, `/agent-skills`, `/metaphysics`, `/experiments`, `/social`).
 
 ## 🚀 Quick Start
 
@@ -24,7 +21,7 @@ This project separates data from structure, allowing you to easily manage your c
    ```bash
    npm run dev
    ```
-3. Build for production:
+3. Build for production (includes `llms.txt` generation and static Canonical Route prerendering):
    ```bash
    npm run build
    ```
@@ -33,10 +30,10 @@ This project separates data from structure, allowing you to easily manage your c
 
 All content is managed in the `data/` folder. You do not need to touch the code.
 
-### 1. Reordering Blocks (移動區塊)
-To change the order of cards, simply rearrange the objects in `data/bento-links.json`. The grid renders items from top to bottom.
+### 1. Reordering & Hiding Blocks (移動與隱藏區塊)
+To change the order of cards, rearrange the objects in `data/bento-links.json`. To hide a paused or retired prototype from the live UI and `llms.txt` without deleting its historical entry, set `"hidden": true` on the item. You can also add `"highlights"`, `"highlightsEn"`, and `"techStack"` arrays to render deep architectural bullet points and stack badges.
 
-Category names, order, bilingual descriptions, and the homepage default are managed in `data/bento-categories.json`. The homepage uses the `social` category so the auto-updating Podcast, Blog, and GitHub Activity cards remain the default view.
+Category names, order, bilingual descriptions, and the homepage default are managed in `data/bento-categories.json`.
 
 ### 2. Adding New Blocks (新增區塊)
 Add a new object to the list in `data/bento-links.json`.

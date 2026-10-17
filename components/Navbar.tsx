@@ -62,35 +62,46 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, [isSearchOpen, onToggleSearch]);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50 bg-[#231915] lg:inset-x-auto lg:left-0 lg:w-[35%]">
-      <nav className="flex w-full flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between md:px-8 lg:flex-col lg:items-stretch lg:py-3 xl:flex-row xl:items-center">
-        <div className="min-w-0">
-          <div className="truncate font-mono text-xl font-black text-white md:text-2xl">David888</div>
-          <div className="mt-1 hidden truncate text-sm font-semibold text-white/70 sm:block">
-            {locale === 'en'
-              ? 'CTO & Technical Advisor | Enterprise Systems & AI Architecture'
-              : 'CTO & 技術顧問 | 企業架構、大型系統與 AI 治理'}
+    <header className="w-full border-b-2 border-[#2b251a] bg-[#ffb010] text-[#2b251a] transition-colors">
+      <nav className="dossier-shell flex flex-wrap items-center justify-between gap-3 py-3.5 sm:py-4">
+        <a
+          href="/"
+          className="group flex min-w-0 items-center gap-3 text-left text-[#2b251a] no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d]"
+        >
+          <div className="flex min-h-[54px] min-w-[74px] shrink-0 flex-col items-center justify-center rounded-[10px] border-2 border-[#2b251a] bg-[#fff9e8] px-2.5 py-1.5 leading-none text-[#2b251a] shadow-[0_2px_6px_rgba(43,37,26,0.16)] transition-transform group-hover:-translate-y-0.5">
+            <span className="font-mono text-2xl font-extrabold tracking-tight">888</span>
+            <span className="mt-0.5 text-[10px] font-extrabold tracking-wider">DAVID</span>
           </div>
-        </div>
+          <div className="min-w-0">
+            <div className="truncate text-lg font-extrabold tracking-tight text-[#2b251a] sm:text-xl md:text-2xl">
+              David Chiang
+            </div>
+            <div className="mt-0.5 truncate text-xs font-bold text-[#2b251a]/85 sm:text-sm">
+              {locale === 'en'
+                ? 'Hands-On CTO & Principal Advisor · 300+ Org Leadership & Production AI'
+                : '實戰派 CTO & 企業首席顧問 ｜ 百人研發治理 × AI 原生系統'}
+            </div>
+          </div>
+        </a>
 
-        <div className="flex shrink-0 items-center gap-2 sm:justify-end lg:justify-start xl:justify-end">
+        <div className="flex shrink-0 items-center gap-2">
           {isSearchOpen ? (
             <div className="flex items-center gap-1.5">
-              <div className="flex h-10 w-32 items-center gap-2 rounded-full border border-border bg-bg-elevated px-3 shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 xs:w-40 sm:w-44 md:w-48">
-                <Search size={16} className="shrink-0 text-text-muted" />
+              <div className="flex h-10 w-44 items-center gap-2 rounded-full border-2 border-[#17324d] bg-[#fffefa] px-3 text-[#2b251a] shadow-xs transition-all duration-200 focus-within:ring-2 focus-within:ring-[#17324d]/30 sm:w-56 md:w-64">
+                <Search size={16} className="shrink-0 text-[#594e36]" />
                 <input
                   ref={searchInputRef}
                   type="search"
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
                   placeholder={locale === 'en' ? 'Search portfolio...' : '搜尋作品、主題…'}
-                  className="w-full bg-transparent text-xs font-bold text-text-main placeholder:text-text-muted/60 outline-none sm:text-sm"
+                  className="w-full bg-transparent text-xs font-bold text-[#2b251a] placeholder:text-[#594e36] outline-none sm:text-sm"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => onSearchChange('')}
-                    className="shrink-0 rounded-full p-0.5 text-text-muted transition-colors hover:text-text-main"
+                    className="shrink-0 rounded-full p-0.5 text-[#594e36] transition-colors hover:text-[#2b251a]"
                     aria-label={locale === 'en' ? 'Clear search' : '清除搜尋'}
                   >
                     <X size={14} />
@@ -100,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 type="button"
                 onClick={onToggleSearch}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-muted shadow-sm transition-colors hover:text-text-main"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#17324d] bg-[#fff9e8] text-[#2b251a] shadow-xs transition-colors hover:bg-[#fff0cc]"
                 aria-label={locale === 'en' ? 'Close search (Esc)' : '關閉搜尋 (Esc)'}
                 title="Esc"
               >
@@ -111,19 +122,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={onToggleSearch}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-main shadow-sm transition-all duration-300 hover:opacity-90"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2b251a] bg-[#fff9e8] text-[#2b251a] shadow-xs transition-colors hover:bg-[#fff0cc]"
               aria-label={locale === 'en' ? 'Search (Press /)' : '搜尋（按 /）'}
               title={locale === 'en' ? 'Search (Press /)' : '搜尋（按 / 快捷鍵）'}
             >
-              <Search size={18} />
+              <Search size={17} />
             </button>
           )}
 
-          <div className={`flex h-10 overflow-hidden rounded-full border border-border bg-bg-elevated text-xs font-black shadow-sm ${isSearchOpen ? 'hidden' : 'flex'}`}>
+          <div className={`flex h-10 overflow-hidden rounded-full border border-[#2b251a] bg-[#fff9e8] text-xs font-extrabold shadow-xs ${isSearchOpen ? 'hidden sm:flex' : 'flex'}`}>
             <button
               type="button"
               onClick={() => onLocaleChange('zh')}
-              className={`px-3 transition-colors ${locale === 'zh' ? 'bg-primary text-white dark:text-bg-base' : 'text-text-muted hover:text-text-main'}`}
+              className={`px-3 transition-colors ${locale === 'zh' ? 'bg-[#17324d] text-[#fff9e8]' : 'text-[#2b251a] hover:bg-[#fff0cc]'}`}
               aria-pressed={locale === 'zh'}
             >
               繁
@@ -131,27 +142,29 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => onLocaleChange('en')}
-              className={`px-3 transition-colors ${locale === 'en' ? 'bg-primary text-white dark:text-bg-base' : 'text-text-muted hover:text-text-main'}`}
+              className={`px-3 transition-colors ${locale === 'en' ? 'bg-[#17324d] text-[#fff9e8]' : 'text-[#2b251a] hover:bg-[#fff0cc]'}`}
               aria-pressed={locale === 'en'}
             >
               EN
             </button>
           </div>
+
           <button
             onClick={toggleTheme}
-            className={`h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-main shadow-sm transition-all duration-300 hover:opacity-90 ${isSearchOpen ? 'hidden' : 'flex'}`}
+            className={`h-10 w-10 items-center justify-center rounded-full border border-[#2b251a] bg-[#fff9e8] text-[#2b251a] shadow-xs transition-colors hover:bg-[#fff0cc] ${isSearchOpen ? 'hidden sm:flex' : 'flex'}`}
             aria-label="Toggle theme"
           >
             {darkMode ? (
-              <Sun size={18} className="text-primary" />
+              <Sun size={17} className="text-[#a9471d]" />
             ) : (
-              <Moon size={18} className="text-text-main" />
+              <Moon size={17} className="text-[#17324d]" />
             )}
           </button>
+
           <button
             type="button"
             onClick={onContact}
-            className={`h-10 w-10 items-center justify-center gap-0 rounded-full bg-primary px-0 text-sm font-black text-white transition-all duration-300 hover:opacity-90 dark:text-bg-base sm:w-auto sm:gap-2 sm:px-4 ${isSearchOpen ? 'hidden' : 'inline-flex'}`}
+            className={`h-10 w-10 items-center justify-center gap-0 rounded-full border-2 border-[#17324d] bg-[#17324d] px-0 text-sm font-extrabold text-[#fff9e8] shadow-xs transition-all duration-200 hover:bg-[#0f2337] sm:w-auto sm:gap-2 sm:px-4 ${isSearchOpen ? 'hidden md:inline-flex' : 'inline-flex'}`}
             aria-label={locale === 'zh' ? '聯絡我' : 'Contact me'}
           >
             <Mail size={16} />
@@ -159,6 +172,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
       </nav>
-    </div>
+    </header>
   );
 };

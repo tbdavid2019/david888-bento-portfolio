@@ -1,6 +1,16 @@
 import React from 'react';
-import { ArrowRight, Building2, CheckCircle2, ChevronRight, Cpu, Network, ShieldCheck, Sparkles, Users } from 'lucide-react';
-import { CardWrapper } from './cards/CardWrapper';
+import {
+  ArrowRight,
+  Briefcase,
+  Building2,
+  CheckCircle2,
+  ChevronRight,
+  Cpu,
+  Network,
+  ShieldCheck,
+  Users,
+} from 'lucide-react';
+import { FlagshipShowcase } from './FlagshipShowcase';
 import type { Locale } from '../types';
 
 interface ExecutiveBriefingProps {
@@ -16,255 +26,364 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
 }) => {
   const isEn = locale === 'en';
 
+  const engagementPackages = [
+    {
+      id: 'annual-retainer',
+      icon: Briefcase,
+      title: isEn
+        ? '12-Month Enterprise Technical Advisor (Annual Retainer / Fractional CTO)'
+        : '一年期企業技術顧問約 (Annual Retainer / Fractional CTO)',
+      target: isEn
+        ? 'For Listed Corporations, Scaling Ventures & AI Transformation'
+        : '適用：上市櫃企業、高成長公司、跨部門 AI 轉型與架構升級',
+      deliverables: isEn
+        ? [
+            'Monthly executive architecture review, cloud cost governance & technical debt roadmap',
+            'Hands-on design & deployment of internal enterprise AI Agent workflows and RAG/MCP systems',
+            'Executive hiring support: interviewing, vetting, and mentoring engineering directors & tech leads',
+          ]
+        : [
+            '每月固定參與高層技術決策、核心系統架構把關、雲端成本優化與技術債清理路線圖',
+            '親手協助企業導入內部 AI Agent 自動化工作流、知識庫檢索與研發效能倍增體系',
+            '高階人才把關：協助 CEO 與人資長面試、考核技術主管 (VP/Director/Architect) 並建立工程文化',
+          ],
+    },
+    {
+      id: 'fulltime-cto',
+      icon: Users,
+      title: isEn
+        ? 'Full-Time Chief Technology Officer / VP of Engineering (NT$ 3M+ / Global Tier)'
+        : '高階技術長正職 / 研發副總 (CTO / VP of Engineering · 目標年薪 NT$ 300萬+)',
+      target: isEn
+        ? 'For Multinational Enterprises, Retail/FinTech Leaders & High-Growth Tech Groups'
+        : '適用：跨國集團、大型零售電商、金融科技與高成長科技企業',
+      deliverables: isEn
+        ? [
+            'End-to-end leadership of 50–300+ cross-border engineering, data, and product organizations',
+            'High-concurrency platform refactoring (99.98% SLA) and multi-system CRM/ERP unification',
+            'Player-Coach executive who both sets boardroom strategy and builds frontier AI systems hands-on',
+          ]
+        : [
+            '全面執掌 50–300+ 人跨國研發、數據與產品技術組織，對齊董事會商業目標與技術投資報酬率 (ROI)',
+            '主導高併發商業平台重構（99.98% 可用度）、跨國多品牌微服務中台與全球 CRM/ERP 營運整合',
+            '稀缺「實戰派 (Hands-On) CTO」：既能坐鎮董事會制定戰略，更能親手寫出機構級 AI 與量化系統',
+          ],
+    },
+    {
+      id: 'tech-dd',
+      icon: ShieldCheck,
+      title: isEn
+        ? 'VC / PE Technical Due Diligence & High-Stakes Architecture Rescue'
+        : '創投 / 董事會技術盡職調查 (Tech DD) 與系統危機救援',
+      target: isEn
+        ? 'For Venture Capital, Private Equity, Family Offices & Board M&A'
+        : '適用：創投機構、私募基金、家族辦公室併購審計與高併發系統急救',
+      deliverables: isEn
+        ? [
+            'Pre-investment codebase audit, scalability stress-testing, cybersecurity & IP compliance review',
+            'AI moat verification: distinguishing genuine proprietary AI architectures from thin API wrappers',
+            'Emergency architecture rescue for production systems suffering severe latency or outage bottlenecks',
+          ]
+        : [
+            '投資與併購前獨立第三方審查：深入檢視原始碼品質、架構擴展極限、資安漏洞與合規風險',
+            'AI 技術真偽鑑定：協助投資人看穿標的企業是「真正具備底層演算法護城河」還是「單純套殼 API」',
+            '關鍵系統危機救援：針對大促銷崩潰、資料庫鎖死或跨系統資料失準提供極速診斷與重構方案',
+          ],
+    },
+  ];
+
   const flagshipCases = [
     {
       id: 'sap-ecommerce',
-      badge: isEn ? 'Enterprise eCommerce & Scale' : '企業級電商與高併發架構',
       title: isEn
-        ? 'Leading 70 Engineers: Global Health & Beauty Retail SAP eCommerce'
-        : '率領 70 人研發團隊：全球最大健康美容連鎖 SAP eCommerce 平台',
+        ? 'Led 70+ Engineers: Global #1 Health & Beauty Retail SAP eCommerce Platform'
+        : '率領 70+ 人研發軍團：全球最大健康美容零售集團 SAP eCommerce 平台',
       metrics: isEn
         ? [
-            { label: 'Team Led', value: '70+ Eng' },
+            { label: 'Engineering Team', value: '70+ Eng' },
             { label: 'Architecture', value: 'Microservices' },
-            { label: 'Reliability', value: '99.98%' },
+            { label: 'SLA Uptime', value: '99.98%' },
           ]
         : [
-            { label: '領導團隊', value: '70+ 位工程師' },
-            { label: '架構標準', value: '微服務中台' },
+            { label: '直接領導研發', value: '70+ 位工程師' },
+            { label: '核心架構', value: '微服務中台' },
             { label: '系統可用度', value: '99.98%' },
           ],
       challenge: isEn
         ? 'Legacy monolithic infrastructure suffered severe peak-hour latency and fragmented international inventory synchronization.'
-        : '傳統單體系統在促銷大檔期間面臨嚴重的延遲與崩潰瓶頸，跨國會員與庫存資料亦高度破碎。',
+        : '傳統單體系統在跨國促銷大檔期間面臨嚴重延遲與崩潰瓶頸，跨區會員、促銷規則與庫存資料高度破碎。',
       solution: isEn
         ? 'Architected modern SAP Commerce Cloud with headless PWA frontend, event-driven microservices, and unified multi-currency checkout.'
         : '帶隊重構 SAP Commerce Cloud 核心，導入 Headless PWA、事件驅動微服務中台與跨國多幣別高併發結帳管線。',
-      tags: ['CTO Leadership', 'SAP eCommerce', '70-Person Team', 'High Concurrency', 'Microservices'],
+      tags: ['CTO Leadership', 'SAP Commerce Cloud', '70-Person Engineering Team', 'High Concurrency'],
       icon: Building2,
     },
     {
       id: 'crm-erp-integration',
-      badge: isEn ? 'Cross-System Hub & Governance' : '跨系統營運治理與資料整合',
       title: isEn
-        ? 'Fortune 500 Consumer Electronics: Omni-Channel Ops Automation'
-        : '全球知名消費性電子品牌：多通路營運與 CRM/ERP 整合中樞',
+        ? 'Fortune 500 Consumer Electronics: Global Omni-Channel CRM / ERP Hub'
+        : 'Fortune 500 全球消費性電子品牌：多通路營運與 CRM / ERP 整合中樞',
       metrics: isEn
         ? [
-            { label: 'Systems Synced', value: '5 Core Platforms' },
+            { label: 'Systems Unified', value: '5 Core Platforms' },
             { label: 'Ops Efficiency', value: '+42%' },
-            { label: 'RMA Cycle', value: 'Days → Minutes' },
+            { label: 'RMA Turnaround', value: 'Days → Minutes' },
           ]
         : [
-            { label: '串接系統', value: '5 大核心平台' },
-            { label: '運營效率提升', value: '+42%' },
-            { label: '退換貨流轉', value: '數天縮短至數分鐘' },
+            { label: '串接核心系統', value: '5 大跨國平台' },
+            { label: '營運效率提升', value: '+42%' },
+            { label: 'RMA 退換貨流轉', value: '數天縮短至數分鐘' },
           ],
       challenge: isEn
         ? 'Support, sales, and RMA returns were siloed across legacy tools, causing multi-day customer ticket delays and inventory mismatches.'
-        : '客服、業務與售後 RMA 退換貨流程四分五裂，跨部門人工傳遞造成數天的處理延遲與庫存對帳失誤。',
+        : '跨國客服、業務與售後 RMA 退換貨流程分散於不同舊系統，人工跨部門傳遞造成數天延遲與庫存對帳失誤。',
       solution: isEn
         ? 'Integrated Salesforce Service Cloud, HubSpot, RingCentral voice hub, and ERP inventory in real-time, eliminating operational data islands.'
-        : '深度串接 Salesforce Service Cloud、HubSpot、RingCentral 語音中繼與 ERP 即時庫存中台，達成售後退換貨全自動化。',
-      tags: ['CIO Governance', 'Salesforce', 'HubSpot', 'RingCentral', 'ERP Integration'],
+        : '深度串接 Salesforce Service Cloud、HubSpot、RingCentral 語音中繼與全球 ERP 即時庫存中台，實現售後退換貨全自動化。',
+      tags: ['CIO Governance', 'Salesforce', 'HubSpot', 'RingCentral', 'Global ERP'],
       icon: Network,
     },
     {
       id: 'tech-due-diligence',
-      badge: isEn ? 'Investment Risk Control' : '創投與董事會投資風控',
       title: isEn
-        ? 'Independent Tech Due Diligence (VC / PE & Board Advisory)'
-        : '創投機構與董事會專屬「技術盡職調查 (Tech Due Diligence)」',
+        ? 'Independent Tech Due Diligence for Venture Capital, PE & Corporate Boards'
+        : '創投機構與企業董事會專屬「獨立技術盡職調查 (Tech Due Diligence)」',
       metrics: isEn
         ? [
-            { label: 'Audits Completed', value: '100+ Projects' },
-            { label: 'Risk Coverage', value: 'Code & Security' },
-            { label: 'Perspective', value: 'Unbiased 3rd Party' },
+            { label: 'Max Org Experience', value: '300+ Staff' },
+            { label: 'Audit Scope', value: 'Code · Arch · AI' },
+            { label: 'Position', value: 'Unbiased 3rd Party' },
           ]
         : [
-            { label: '評估經驗', value: '數十家標的實戰' },
-            { label: '審查範疇', value: '架構、代碼與資安' },
-            { label: '立場', value: '客觀獨立第三方' },
+            { label: '最高組織歷練', value: '300+ 人規模' },
+            { label: '審查維度', value: '架構 · 代碼 · 資安' },
+            { label: '獨立立場', value: '客觀第三方報告' },
           ],
       challenge: isEn
-        ? 'Investors and boards often lack visibility into hidden technical debt, scalability ceilings, and IP licensing risks before major transactions.'
-        : '投資人與董事會在融資或併購前，往往難以看透團隊提案後的隱形技術債、架構擴展極限與資安版權風險。',
+        ? 'Investors and boards often lack visibility into hidden technical debt, scalability ceilings, and AI wrapper risks before major transactions.'
+        : '投資人與董事會在融資、併購或大型轉型前，難以看透簡報背後的隱形技術債、架構擴展極限與 AI 套殼風險。',
       solution: isEn
-        ? 'Conduct deep codebase audits, stress-test architectural scalability, evaluate team engineering throughput, and deliver clear risk matrices.'
-        : '提供獨立第三方代碼品質審計、架構擴展極限壓力評估、技術債量化分析與研發團隊效能評估，排除數百萬美元的決策風險。',
-      tags: ['Tech Due Diligence', 'Architecture Audit', 'Technical Debt', 'VC Advisory', 'Risk Control'],
+        ? 'Conduct deep codebase audits, stress-test architectural scalability, evaluate engineering team velocity, and deliver clear executive risk matrices.'
+        : '提供深度原始碼審計、高併發壓力評估、技術債量化分析與研發團隊產出評估，為董事會排除數千萬投資決策風險。',
+      tags: ['Tech Due Diligence', 'Architecture Audit', 'VC / PE Advisory', 'Risk Control'],
       icon: ShieldCheck,
     },
     {
       id: 'institutional-quant',
-      badge: isEn ? 'AI / ML & Financial Analytics' : 'AI / ML 與金融量化智能體',
       title: isEn
-        ? '888 StockBot & Quant: Institutional Market Network & Analytics'
-        : '888 StockBot & Quant：機構級金融智能體與上市公司關係圖譜',
+        ? '888 StockBot & StockQuant: Institutional Financial AI & Corporate Graph'
+        : '888 StockBot & StockQuant：機構級量化智能體與上市櫃關係圖譜',
       metrics: isEn
         ? [
-            { label: 'Graph Model', value: 'TW Listed Networks' },
-            { label: 'Decision Engine', value: 'Agentic LLM' },
-            { label: 'Data Latency', value: 'Real-Time Pipeline' },
+            { label: 'Forecasting', value: 'TimesFM + LSTM' },
+            { label: 'Quant Engine', value: 'DCF · SEPA · Options' },
+            { label: 'Graph Model', value: 'TW Listed Network' },
           ]
         : [
-            { label: '網絡模型', value: '全市場關係圖譜' },
-            { label: '決策引擎', value: '多智能體 Agent' },
-            { label: '資料管線', value: '高頻即時清洗' },
+            { label: '時序預測模型', value: 'TimesFM + LSTM' },
+            { label: '原生量化引擎', value: 'DCF · SEPA · 期權' },
+            { label: '企業關係圖譜', value: '台灣上市櫃股權網' },
           ],
       challenge: isEn
-        ? 'Financial markets contain dense, unstructured corporate ownership and supply-chain linkages that traditional screeners fail to uncover.'
-        : '上市櫃公司股權穿透、交叉持股與供應鏈網絡極其繁雜，傳統看盤軟體難以呈現隱蔽的關聯交易與籌碼異動。',
+        ? 'Retail and legacy financial tools fail to combine institutional valuation models, time-series foundation models, and corporate ownership graphs.'
+        : '傳統看盤軟體無法同時貫通「華爾街級基本面估值、時序大模型預測、三大法人與券商分點籌碼、以及公司交叉持股網路」。',
       solution: isEn
-        ? 'Built interactive knowledge graphs of Taiwan listed corporate networks paired with autonomous LLM reasoning agents for quant insights.'
-        : '自主研發台灣上市櫃企業股權與董監事網絡圖譜，串接多智能體（Agentic AI）即時清洗管線，提供機構級量化分析優勢。',
-      tags: ['AI / ML', 'Quant Systems', 'Graph Database', 'Financial Agents', '888 StockBot'],
+        ? 'Architected a full-stack financial AI suite combining native TS quantitative engines, dual foundation models, and force-directed corporate graphs.'
+        : '獨立研發完整金融 AI 生態系：涵蓋純 TS 量化估值引擎、雙時序基礎大模型預測與台灣企業法人投資關係知識圖譜。',
+      tags: ['Production AI', 'TimesFM & Timestral', 'Quantitative Finance', 'Knowledge Graph'],
       icon: Cpu,
     },
   ];
 
   return (
-    <div className="space-y-8">
-      {/* Executive Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-bg-surface via-bg-surface to-primary/5 p-6 md:p-8 shadow-sm">
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-black tracking-wide text-primary">
-            <Sparkles size={13} />
-            <span>{isEn ? 'Executive Briefing & CTO Advisory' : '高階顧問簡報 ✕ CTO 旗艦實績'}</span>
-          </div>
-
-          <h2 className="mt-4 text-2xl font-black leading-tight text-text-main sm:text-3xl md:text-4xl">
-            {isEn ? 'Transforming Technical Complexity Into Measurable Business Value' : '把複雜的技術債，轉化為看得見的商業價值'}
-          </h2>
-
-          <p className="mt-3 max-w-3xl text-base leading-relaxed text-text-muted md:text-lg">
-            {isEn
-              ? 'Veteran CTO & Technical Advisor with 10+ years leading cross-border engineering organizations. Specializing in high-concurrency enterprise eCommerce, CRM/ERP governance, tech due diligence for VCs, and production AI agent workflows.'
-              : '具備跨國實戰經驗的資深 CTO 與技術顧問。過去十年親自帶隊重整複雜系統架構，為大型企業與投資人把關技術風險，讓技術投資真正轉化為核心商業動能。'}
-          </p>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={onContact}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-black text-white shadow-md transition-all hover:opacity-90 dark:text-bg-base"
-            >
-              <span>{isEn ? 'Schedule Advisory Consultation' : '預約技術顧問諮詢'}</span>
-              <ArrowRight size={16} />
-            </button>
-            <button
-              type="button"
-              onClick={onSwitchToCatalog}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-5 py-3 text-sm font-bold text-text-muted transition-colors hover:border-primary hover:text-text-main"
-            >
-              <span>{isEn ? 'Explore All 71 Works & Lab' : '探索全部 71 項作品與實驗室'}</span>
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Flagship Case Studies Grid */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
+    <div className="space-y-6">
+      {/* Section 1: 3 High-Ticket Advisory & Executive Mandates */}
+      <div className="dossier-card border-2 border-[#17324d] p-5 sm:p-7 dark:border-[#ffb010]/70">
+        <div className="flex flex-col gap-3 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <h3 className="text-xl font-black text-text-main md:text-2xl">
-              {isEn ? 'Flagship Architecture & Leadership Case Studies' : 'CTO / CIO 旗艦案例與架構治理'}
-            </h3>
-            <p className="text-sm font-semibold text-text-muted">
+            <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
               {isEn
-                ? 'High-impact enterprise transformations, scaled team leadership, and risk audits'
-                : '經受真實商業檢驗的跨國大型架構、團隊管理與技術盡職調查實績'}
+                ? 'Executive CTO Mandates & 12-Month Advisory Retainers'
+                : '高階技術長聘任 (CTO) ＆ 一年期企業技術顧問方案'}
+            </h2>
+            <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
+              {isEn
+                ? 'Direct engagement structures designed for CEOs, Boards, and Executive Search Partners seeking proven 300+ org leadership paired with hands-on AI architecture.'
+                : '專為企業決策層、上市櫃董事會與高階獵頭設計的合作架構——結合「300+ 人跨國組織治理經驗」與「第一線生產級 AI 系統實戰力」。'}
             </p>
           </div>
+          <button
+            type="button"
+            onClick={onContact}
+            className="btn-saffron inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 px-5 py-2.5 text-sm"
+          >
+            <span>{isEn ? 'Request Retainer / CTO Discussion' : '預約顧問合約 / CTO 職缺洽談'}</span>
+            <ArrowRight size={16} />
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {flagshipCases.map((item) => {
-            const Icon = item.icon;
-
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {engagementPackages.map((pkg) => {
+            const Icon = pkg.icon;
             return (
-              <CardWrapper key={item.id} className="p-6 md:p-8">
-                <div className="flex h-full flex-col">
-                  {/* Top Badge & Icon */}
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="rounded-lg border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-black text-primary">
-                      {item.badge}
+              <div
+                key={pkg.id}
+                className="flex flex-col justify-between rounded-xl border border-border bg-bg-elevated p-5 transition-colors hover:border-[#17324d] dark:hover:border-[#ffb010]"
+              >
+                <div>
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#2b251a] bg-[#ffb010] text-[#2b251a]">
+                      <Icon size={20} strokeWidth={2} />
                     </span>
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-bg-elevated text-primary shadow-xs">
-                      <Icon size={20} />
-                    </div>
+                    <h3 className="text-lg font-extrabold leading-snug text-text-main">
+                      {pkg.title}
+                    </h3>
                   </div>
 
-                  {/* Title */}
-                  <h4 className="mt-4 text-xl font-black leading-snug text-text-main">
-                    {item.title}
-                  </h4>
+                  <p className="mt-3 rounded-lg border border-border/80 bg-bg-surface px-3 py-2 text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">
+                    {pkg.target}
+                  </p>
 
-                  {/* Metrics Banner */}
-                  <div className="my-5 grid grid-cols-3 gap-2 rounded-xl border border-border bg-bg-elevated/70 p-3 text-center">
-                    {item.metrics.map((metric, idx) => (
-                      <div key={idx} className="space-y-0.5">
-                        <div className="text-sm font-black text-text-main md:text-base">{metric.value}</div>
-                        <div className="text-[11px] font-semibold text-text-muted">{metric.label}</div>
-                      </div>
+                  <ul className="mt-4 m-0 list-none space-y-2.5 p-0">
+                    {pkg.deliverables.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm leading-relaxed text-text-main">
+                        <CheckCircle2
+                          size={16}
+                          className="mt-0.5 shrink-0 text-[#17324d] dark:text-[#ffb010]"
+                        />
+                        <span>{item}</span>
+                      </li>
                     ))}
-                  </div>
-
-                  {/* Problem & Solution Narrative */}
-                  <div className="space-y-3 text-sm leading-relaxed text-text-muted">
-                    <div>
-                      <span className="font-black text-text-main">{isEn ? 'Context: ' : '業務挑戰：'}</span>
-                      <span>{item.challenge}</span>
-                    </div>
-                    <div>
-                      <span className="font-black text-text-main">{isEn ? 'Architecture Solution: ' : '架構方案：'}</span>
-                      <span>{item.solution}</span>
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="mt-auto pt-6 flex flex-wrap gap-1.5 border-t border-border">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md border border-border bg-bg-surface px-2 py-0.5 text-[11px] font-bold text-text-muted"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  </ul>
                 </div>
-              </CardWrapper>
+
+                <button
+                  type="button"
+                  onClick={onContact}
+                  className="mt-5 inline-flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-lg border border-[#17324d] bg-bg-surface px-3 py-2 text-xs font-extrabold text-text-main transition-colors hover:bg-[#17324d] hover:text-[#fff9e8] dark:border-[#ffb010]/60 dark:hover:bg-[#ffb010] dark:hover:text-[#2b251a]"
+                >
+                  <span>{isEn ? 'Inquire About This Mandate' : '洽詢此合作方案'}</span>
+                  <ArrowRight size={14} />
+                </button>
+              </div>
             );
           })}
         </div>
       </div>
 
-      {/* Quick Advisory Consultation Card */}
-      <div className="flex flex-col items-start justify-between gap-4 rounded-3xl border border-border bg-bg-surface p-6 shadow-sm md:flex-row md:items-center md:p-8">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary">
-            <CheckCircle2 size={15} />
-            <span>{isEn ? 'Direct Advisory Access' : '專屬顧問進場機制'}</span>
-          </div>
-          <h4 className="text-xl font-black text-text-main">
-            {isEn ? 'Need an independent technical audit or fractional CTO leadership?' : '系統遭遇效能瓶頸？需要客觀的技術盡職調查或顧問諮詢？'}
-          </h4>
-          <p className="text-sm font-semibold text-text-muted">
+      {/* Section 2: Enterprise Leadership Case Studies */}
+      <div className="dossier-card p-5 sm:p-7">
+        <div className="border-b border-border pb-4">
+          <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
             {isEn
-              ? 'Available for full-time executive leadership, board-level technical advisory, and interim CTO roles.'
-              : '提供企業架構健檢、代碼審計、創投技術盡職調查與高階技術顧問合作。謝絕博弈與虛擬幣相關項目。'}
+              ? 'Enterprise Architecture & Organization Leadership Track Record'
+              : '跨國集團 CTO / CIO 代表戰役與架構治理實績'}
+          </h2>
+          <p className="mt-1.5 text-sm font-semibold text-text-muted sm:text-base">
+            {isEn
+              ? 'Battle-tested transformations across global retail eCommerce, Fortune 500 operations, and institutional due diligence'
+              : '經受真實商業與高併發檢驗的跨國大型架構、70–300+ 人團隊管理與技術盡職調查實績'}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={onContact}
-          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-black text-white shadow-md transition-all hover:opacity-90 dark:text-bg-base"
-        >
-          <span>{isEn ? 'Get in Touch' : '立即與 David 洽談'}</span>
-          <ArrowRight size={16} />
-        </button>
+
+        <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {flagshipCases.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.id}
+                className="flex h-full flex-col rounded-xl border border-border bg-bg-elevated p-5 sm:p-6"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-lg font-extrabold leading-snug text-text-main sm:text-xl">
+                    {item.title}
+                  </h3>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#17324d]/30 bg-bg-surface text-[#17324d] dark:border-[#ffb010]/40 dark:text-[#ffb010]">
+                    <Icon size={20} />
+                  </div>
+                </div>
+
+                {/* Metrics Banner */}
+                <div className="my-4 grid grid-cols-3 gap-2 rounded-lg border border-border bg-bg-surface p-3 text-center">
+                  {item.metrics.map((metric, idx) => (
+                    <div key={idx}>
+                      <div className="font-mono text-sm font-extrabold tabular-nums text-text-main sm:text-base">
+                        {metric.value}
+                      </div>
+                      <div className="mt-0.5 text-[11px] font-bold text-text-muted">{metric.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Problem & Solution Narrative */}
+                <div className="space-y-2.5 text-sm leading-relaxed text-text-muted">
+                  <div>
+                    <span className="font-extrabold text-text-main">
+                      {isEn ? 'Business Challenge: ' : '業務與技術挑戰：'}
+                    </span>
+                    <span>{item.challenge}</span>
+                  </div>
+                  <div>
+                    <span className="font-extrabold text-text-main">
+                      {isEn ? 'Architectural Execution: ' : '架構治理與交付成果：'}
+                    </span>
+                    <span>{item.solution}</span>
+                  </div>
+                </div>
+
+                {/* Tags */}
+                <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border pt-4 mt-4">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md border border-border bg-bg-surface px-2 py-0.5 font-mono text-[11px] font-bold text-text-muted"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Section 3: The 5 Flagship Production Systems */}
+      <FlagshipShowcase locale={locale} />
+
+      {/* Bottom Direct Advisory Callout */}
+      <div className="dossier-card flex flex-col items-start justify-between gap-4 border-2 border-[#17324d] p-5 sm:flex-row sm:items-center sm:p-7 dark:border-[#ffb010]">
+        <div className="space-y-1">
+          <h3 className="text-xl font-extrabold text-text-main">
+            {isEn
+              ? 'Ready to discuss an Annual Advisory Retainer, CTO Mandate, or Tech Audit?'
+              : '尋求一年期企業技術顧問、高階 CTO 掌舵人，或獨立技術盡職調查？'}
+          </h3>
+          <p className="text-sm font-semibold text-text-muted">
+            {isEn
+              ? 'Direct response via verified service ticket. Strictly no gambling or illicit crypto projects.'
+              : '透過專屬諮詢單直達 David 本人信箱並即時核發追蹤單號。謝絕博弈與非法資金盤項目。'}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            onClick={onContact}
+            className="btn-saffron inline-flex min-h-[44px] shrink-0 items-center gap-2 px-5 py-2.5 text-sm"
+          >
+            <span>{isEn ? 'Start Advisory Conversation' : '立即與 David 預約洽談'}</span>
+            <ArrowRight size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={onSwitchToCatalog}
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-[10px] border border-[#17324d] bg-bg-elevated px-4 py-2.5 text-sm font-bold text-text-main transition-colors hover:bg-[#fff0cc] dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
+          >
+            <span>{isEn ? 'Browse Full Work Directory' : '瀏覽完整作品與開源目錄'}</span>
+            <ChevronRight size={16} />
+          </button>
+        </div>
       </div>
     </div>
   );

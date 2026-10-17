@@ -40,3 +40,17 @@ test('provides a global work search collapsible in the navbar', () => {
   assert.match(bentoGridSource, /搜尋結果/);
   assert.match(bentoGridSource, /清除搜尋/);
 });
+
+test('supports Canonical Routes and highlights the 5 flagship production domains', () => {
+  const appSource = fs.readFileSync(new URL('../App.tsx', import.meta.url), 'utf8');
+  const flagshipSource = fs.readFileSync(new URL('../components/FlagshipShowcase.tsx', import.meta.url), 'utf8');
+
+  assert.match(appSource, /VALID_CANONICAL_ROUTES/);
+  assert.match(appSource, /window\.history\.pushState/);
+  assert.match(flagshipSource, /https:\/\/bot\.david888\.com\//);
+  assert.match(flagshipSource, /https:\/\/stockdata\.david888\.com\//);
+  assert.match(flagshipSource, /https:\/\/news2\.david888\.com\//);
+  assert.match(flagshipSource, /https:\/\/podcast\.david888\.com\//);
+  assert.match(flagshipSource, /https:\/\/qi\.david888\.com\//);
+});
+
