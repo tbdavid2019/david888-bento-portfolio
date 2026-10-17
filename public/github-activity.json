@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed stockbot",
+      "url": "https://github.com/tbdavid2019/stockbot/compare/932a6fc16b...f1f3b7f478",
+      "updated": "2026-10-16 09:23:21 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stockbot · October 16, 2026 09:23 1 commit to main f1f3b7f fix(rwd): comprehensive mobile-native layout and responsiveness overhaul"
+    },
+    {
       "title": "tbdavid2019 pushed 888tools",
       "url": "https://github.com/tbdavid2019/888tools/compare/bc8cdf80d2...61b7847594",
       "updated": "2026-10-16 07:19:28 UTC",
@@ -23,15 +29,9 @@
       "url": "https://github.com/tbdavid2019/888-url2md/compare/17032c4b71...ccd0b731a3",
       "updated": "2026-10-16 05:52:30 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 05:52 1 commit to main ccd0b73 feat(ui): redesign home as single-page converter"
-    },
-    {
-      "title": "tbdavid2019 pushed 888-url2md",
-      "url": "https://github.com/tbdavid2019/888-url2md/compare/a2fab2d087...17032c4b71",
-      "updated": "2026-10-16 04:14:55 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 04:14 1 commit to main 17032c4 fix(ocr): extend default request timeout to two minutes"
     }
   ],
-  "lastSyncedAt": "2026-10-17T03:26:32.210Z",
+  "lastSyncedAt": "2026-10-17T03:30:03.928Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

@@ -755,6 +755,9 @@
     "description": "Agent 直接呼叫五個工具。適合支援遠端 MCP 的 Agent 與開發工具。標準 Streamable HTTP，匿名只讀，不需要 token；工具返回簡潔文字與同一份結構化資料。",
     "descriptionEn": "Directly call 5 tools from any AI agent. Built for remote MCP-compatible agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token needed; returns concise text and structured data.",
     "url": "https://news2.david888.com/api/mcp",
+    "docUrl": "https://news2.david888.com/agent",
+    "docLabel": "Agent 接入指南",
+    "docLabelEn": "Agent Guide",
     "imageSource": "/bento/888box.svg",
     "featured": true,
     "tag": "agent-skills",
@@ -762,16 +765,21 @@
     "techStack": [
       "Streamable HTTP",
       "5 Tools",
-      "Anonymous Read-Only",
-      "Remote MCP"
+      "news888_get_latest",
+      "news888_search",
+      "news888_get_hot_topics",
+      "news888_get_story",
+      "news888_get_daily"
     ],
     "highlights": [
+      "五大即用工具：news888_get_latest (最新動態), news888_search (7天搜尋), news888_get_hot_topics (熱點榜), news888_get_story (事件時間線), news888_get_daily (AI日報)",
       "遠端 MCP 端點：https://news2.david888.com/api/mcp（免 Token 匿名只讀）",
-      "通用 MCP 組態：支援 Cursor, Claude Desktop, Antigravity 等遠端 Agent 工具"
+      "CLI 一鍵安裝：claude mcp add --transport http news888 'https://news2.david888.com/api/mcp'"
     ],
     "highlightsEn": [
+      "5 Direct Tools: news888_get_latest, news888_search, news888_get_hot_topics, news888_get_story, news888_get_daily",
       "Remote MCP Endpoint: https://news2.david888.com/api/mcp (No token, anonymous read-only)",
-      "Universal MCP Config: Compatible with Cursor, Claude Desktop, and Antigravity"
+      "Quick CLI install: claude mcp add --transport http news888 'https://news2.david888.com/api/mcp'"
     ],
     "mcpConfig": {
       "serverName": "news888",

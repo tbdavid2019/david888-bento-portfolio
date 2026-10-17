@@ -110,6 +110,9 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
     domain: 'news2.david888.com',
     url: 'https://news2.david888.com/',
     repoUrl: 'https://github.com/tbdavid2019/888news',
+    docUrl: 'https://news2.david888.com/agent',
+    docLabelZh: 'Agent 接入指南',
+    docLabelEn: 'Agent Guide',
     icon: Newspaper,
     titleZh: '888news ｜ 全球科技與 AI 情報自動化雷達',
     titleEn: '888news — Autonomous Global Tech & AI Intelligence Radar',
@@ -442,6 +445,29 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
 
                     <div className="mt-3">
                       <div className="mb-1 text-[11px] font-bold text-text-muted">
+                        {isEn ? '5 Agent Tools Available:' : '連上後直接呼叫五個工具：'}
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {[
+                          { name: 'news888_get_latest', desc: isEn ? 'Latest/7d news' : '精選與全部動態' },
+                          { name: 'news888_search', desc: isEn ? '7-day search' : '7天多維搜尋' },
+                          { name: 'news888_get_hot_topics', desc: isEn ? 'Hot topics ranking' : '熱點榜與排名' },
+                          { name: 'news888_get_story', desc: isEn ? 'Story timeline' : '事件時間線綜述' },
+                          { name: 'news888_get_daily', desc: isEn ? 'Daily digest' : '最新 AI 日報' },
+                        ].map((t) => (
+                          <span
+                            key={t.name}
+                            className="rounded-md border border-border/80 bg-bg-elevated px-2 py-0.5 font-mono text-[11px] text-text-main"
+                          >
+                            <span className="font-bold text-[#17324d] dark:text-[#ffb010]">{t.name}</span>
+                            <span className="ml-1 text-text-muted">({t.desc})</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-3">
+                      <div className="mb-1 text-[11px] font-bold text-text-muted">
                         {isEn
                           ? 'Universal MCP Configuration (Cursor / Claude Desktop / Antigravity):'
                           : '通用 MCP 組態（支援 Cursor、Claude Desktop、Antigravity 等各類 Agent 工具）：'}
@@ -449,6 +475,23 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
                       <pre className="overflow-x-auto rounded-lg bg-black/5 p-3 font-mono text-xs leading-tight text-text-main dark:bg-black/40">
                         <code>{sys.mcpConfig.configSnippet}</code>
                       </pre>
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-2.5">
+                      <div className="flex items-center gap-1.5 font-mono text-[11px] text-text-muted">
+                        <span>CLI:</span>
+                        <code className="rounded bg-black/5 px-2 py-0.5 text-text-main dark:bg-black/40">
+                          claude mcp add --transport http news888 'https://news2.david888.com/api/mcp'
+                        </code>
+                      </div>
+                      <a
+                        href="https://news2.david888.com/agent"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-xs font-bold text-[#a9471d] hover:underline dark:text-[#ffb010]"
+                      >
+                        <span>{isEn ? 'View Full Agent Docs →' : '查看完整 Agent 接入指南 →'}</span>
+                      </a>
                     </div>
                   </div>
                 )}
