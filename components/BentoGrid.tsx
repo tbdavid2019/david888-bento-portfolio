@@ -200,7 +200,11 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
   const shouldShowPodcastFeed = activeCategory?.id === 'social' && !isSearching && !isFlagshipsView;
   const featuredItem = !isSearching
-    ? activeItems.find((item) => item.featured || item.colSpan === 2)
+    ? (activeCategory?.featuredUrl
+        ? activeItems.find((item) => item.url === activeCategory.featuredUrl)
+        : null) ??
+      activeItems.find((item) => item.flagship) ??
+      activeItems.find((item) => item.featured || item.colSpan === 2)
     : null;
 
   const groupedActiveSections = activeItems.reduce(
@@ -468,6 +472,11 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-saffron inline-flex h-11 shrink-0 items-center gap-2 px-4 text-sm no-underline"
+                      title={
+                        locale === 'en'
+                          ? `Featured: ${('titleEn' in featuredItem && featuredItem.titleEn) || ('title' in featuredItem ? featuredItem.title : '')}`
+                          : `代表作品：${'title' in featuredItem ? featuredItem.title : ''}`
+                      }
                     >
                       <span>{locale === 'en' ? 'Featured System' : '代表作品'}</span>
                       <ArrowUpRight size={16} />

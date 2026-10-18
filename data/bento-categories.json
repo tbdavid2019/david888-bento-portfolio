@@ -14,10 +14,11 @@
       "id": "finance",
       "label": "財經命理",
       "labelEn": "Finance & Qi",
-      "title": "財經量化與奇門決策",
+      "title": "金融投資與玄學",
       "titleEn": "Finance, Quant & Metaphysics Systems",
-      "summary": "股票估值與籌碼分析、上市櫃企業關係網路、量化預測，以及奇門遁甲與八字曆法決策系統。",
-      "summaryEn": "Equity valuation tools, corporate ownership networks, quantitative forecasting, and Qi Men Dun Jia calendar decision engines."
+      "summary": "金融投資與玄學系統。",
+      "summaryEn": "Financial investment and metaphysics systems.",
+      "featuredUrl": "https://stockdata.david888.com/"
     },
     {
       "id": "agent-skills",

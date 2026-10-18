@@ -81,3 +81,18 @@ test('provides direct canonical route /commitments, auto-expansion, and 1-click 
   assert.match(discoverySource, /'\/promises'/);
 });
 
+test('assigns https://stockdata.david888.com/ as the featured representative work for finance category', () => {
+  const categoryConfig = JSON.parse(fs.readFileSync(new URL('../data/bento-categories.json', import.meta.url), 'utf8'));
+  const links = JSON.parse(fs.readFileSync(new URL('../data/bento-links.json', import.meta.url), 'utf8'));
+  const financeCategory = categoryConfig.categories.find((c) => c.id === 'finance');
+
+  assert.equal(financeCategory?.title, '金融投資與玄學');
+  assert.equal(financeCategory?.summary, '金融投資與玄學系統。');
+  assert.equal(financeCategory?.featuredUrl, 'https://stockdata.david888.com/');
+
+  const firstFinanceItem = links.find((item) => item.tag === 'finance');
+  assert.equal(firstFinanceItem?.url, 'https://stockdata.david888.com/');
+  assert.equal(firstFinanceItem?.flagship, true);
+});
+
+

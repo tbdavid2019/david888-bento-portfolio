@@ -1,30 +1,36 @@
 [
   {
     "type": "link",
-    "title": "台灣公司關係網路可視化",
-    "titleEn": "Taiwan Company Network Visualization",
-    "description": "台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。",
-    "descriptionEn": "An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.",
-    "url": "https://taiwan-company-network.david888.com/",
+    "title": "888 Stock Quant | 時間序列預測與籌碼平台",
+    "titleEn": "888 Stock Quant - Quantitative Platform",
+    "description": "結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。",
+    "descriptionEn": "Quantitative data platform combining Google TimesFM, Timestral, and LSTM forecasting models with technical indicators and broker-branch chip tracking for TW/US equities.",
+    "url": "https://stockdata.david888.com/",
+    "repoUrl": "https://github.com/tbdavid2019/stock-underdog-ml",
+    "imageSource": "/bento/stock_bot.svg",
+    "colSpan": 2,
     "featured": true,
     "tag": "finance",
-    "section": "企業與投資網路 (Corporate & Investment Networks)",
-    "sectionEn": "Corporate & Investment Networks",
-    "icon": "network",
-    "colSpan": 2,
+    "section": "量化與分析平台 (Quant & Analytics Platforms)",
+    "sectionEn": "Quant & Analytics Platforms",
+    "icon": "line-chart",
+    "flagship": true,
     "techStack": [
-      "Knowledge Graph",
-      "Force-Directed Canvas",
-      "Corporate Ownership Data",
-      "Interactive Search"
+      "TimesFM & Timestral",
+      "LSTM",
+      "Broker Flow Tracking",
+      "Technical Indicators",
+      "TW/US Equities"
     ],
     "highlights": [
-      "收錄台灣上市櫃與關聯法人董監事、交叉持股與投資關係圖",
-      "使用力導向圖 (Force-Directed Graph) 呈現多層控股結構"
+      "結合 TimesFM、Timestral 與 LSTM 模型，計算台美股走勢與波動區間供研究參考",
+      "追蹤三大法人與券商分點買賣超變化",
+      "自動整理多項技術指標（MACD、RSI、波動率通道、量價關係）於單一介面"
     ],
     "highlightsEn": [
-      "Interactive corporate ownership and board interlock knowledge graph across Taiwan listed entities",
-      "High-performance force-directed network visualization for multi-layer shareholding discovery"
+      "Combines TimesFM, Timestral, and LSTM models for equity price range analysis",
+      "Tracks institutional flows and broker-branch buying/selling activity",
+      "Automated technical indicator dashboard for Taiwan and US equities"
     ]
   },
   {
@@ -67,36 +73,29 @@
   },
   {
     "type": "link",
-    "title": "888 Stock Quant | 時間序列預測與籌碼平台",
-    "titleEn": "888 Stock Quant - Quantitative Platform",
-    "description": "結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。",
-    "descriptionEn": "Quantitative data platform combining Google TimesFM, Timestral, and LSTM forecasting models with technical indicators and broker-branch chip tracking for TW/US equities.",
-    "url": "https://stockdata.david888.com/",
-    "repoUrl": "https://github.com/tbdavid2019/stock-underdog-ml",
-    "imageSource": "/bento/stock_bot.svg",
-    "colSpan": 2,
-    "featured": true,
+    "title": "台灣公司關係網路可視化",
+    "titleEn": "Taiwan Company Network Visualization",
+    "description": "台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。",
+    "descriptionEn": "An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.",
+    "url": "https://taiwan-company-network.david888.com/",
     "tag": "finance",
-    "section": "量化與分析平台 (Quant & Analytics Platforms)",
-    "sectionEn": "Quant & Analytics Platforms",
-    "icon": "line-chart",
-    "flagship": true,
+    "section": "企業與投資網路 (Corporate & Investment Networks)",
+    "sectionEn": "Corporate & Investment Networks",
+    "icon": "network",
+    "colSpan": 2,
     "techStack": [
-      "TimesFM & Timestral",
-      "LSTM",
-      "Broker Flow Tracking",
-      "Technical Indicators",
-      "TW/US Equities"
+      "Knowledge Graph",
+      "Force-Directed Canvas",
+      "Corporate Ownership Data",
+      "Interactive Search"
     ],
     "highlights": [
-      "結合 TimesFM、Timestral 與 LSTM 模型，計算台美股走勢與波動區間供研究參考",
-      "追蹤三大法人與券商分點買賣超變化",
-      "自動整理多項技術指標（MACD、RSI、波動率通道、量價關係）於單一介面"
+      "收錄台灣上市櫃與關聯法人董監事、交叉持股與投資關係圖",
+      "使用力導向圖 (Force-Directed Graph) 呈現多層控股結構"
     ],
     "highlightsEn": [
-      "Combines TimesFM, Timestral, and LSTM models for equity price range analysis",
-      "Tracks institutional flows and broker-branch buying/selling activity",
-      "Automated technical indicator dashboard for Taiwan and US equities"
+      "Interactive corporate ownership and board interlock knowledge graph across Taiwan listed entities",
+      "High-performance force-directed network visualization for multi-layer shareholding discovery"
     ]
   },
   {

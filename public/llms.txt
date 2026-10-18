@@ -38,9 +38,9 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Finance, Quant & Metaphysics Systems
 
-- [台灣公司關係網路可視化 (Taiwan Company Network Visualization)](https://taiwan-company-network.david888.com/): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
-- [888 StockBot 2.0 | 台美股估值與籌碼分析系統 (888 StockBot 2.0 - Equity Valuation & Chip Analysis)](https://bot.david888.com/): 以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。
 - [888 Stock Quant | 時間序列預測與籌碼平台 (888 Stock Quant - Quantitative Platform)](https://stockdata.david888.com/): 結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。
+- [888 StockBot 2.0 | 台美股估值與籌碼分析系統 (888 StockBot 2.0 - Equity Valuation & Chip Analysis)](https://bot.david888.com/): 以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。
+- [台灣公司關係網路可視化 (Taiwan Company Network Visualization)](https://taiwan-company-network.david888.com/): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
 - [888 人生K線 | 八字命理可視化](https://bazi.david888.com): 將生辰八字大運流年繪製成 K 線走勢圖，並搭配 AI 解讀運勢變化。
 - [Telegram: 股靈精怪 Stock](https://t.me/oli_billion_bot)
 - [Telegram: 投資新聞濃縮包](https://t.me/oliservice)

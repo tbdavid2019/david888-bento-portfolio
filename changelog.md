@@ -1,6 +1,21 @@
 # Changelog
 
-## [2026-10-18] - Executive Polish: "一個 CTO 的 5 大承諾" & Scroll Viewport Auto-Expansion
+## [2026-10-18] - Fix /finance Representative Work Link & Category Copy Simplification
+
+### Representative Work (代表作品) Locked to 888 Stock Quant (`data/bento-categories.json`, `data/bento-links.json`, `components/BentoGrid.tsx`, `lib/siteCatalog.ts`, `test/bento-navigation.test.mjs`)
+- **Fixed Representative Work Target**:
+  - Corrected the `/finance` category's **「代表作品 ↗」** button to link directly to **`https://stockdata.david888.com/` (888 Stock Quant | 時間序列預測與籌碼平台)** instead of `taiwan-company-network.david888.com`.
+  - Reordered `data/bento-links.json` so `888 Stock Quant` is the first item in the finance category and removed the duplicate `featured: true` flag on `taiwan-company-network`.
+  - Added `featuredUrl: "https://stockdata.david888.com/"` directly to `data/bento-categories.json` and updated `CategoryMeta` and `BentoGrid.tsx` to prioritize `activeCategory.featuredUrl` for zero ambiguity.
+  - Added unit test asserting `/finance` representative work strictly resolves to `https://stockdata.david888.com/`.
+
+### Category Copy Simplification ("金融投資還有玄學") (`data/bento-categories.json`)
+- **Direct & Honest Taxonomy**:
+  - Discarded the convoluted, robotic laundry list ("股票估值與籌碼分析、上市櫃企業關係網路、量化預測，以及奇門遁甲與八字曆法決策系統。").
+  - Streamlined directly to what the category actually contains:
+    - **標題**: **「金融投資與玄學」** (*Finance, Quant & Metaphysics Systems*)
+    - **描述**: **「金融投資與玄學系統。」** (*Financial investment and metaphysics systems.*)
+
 
 ### Title Refinement to Executive Directness (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileIntroduction.tsx`, `scripts/llms-txt.mjs`)
 - **Refined Title to "一個 CTO 的 5 大承諾"**:

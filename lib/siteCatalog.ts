@@ -14,6 +14,7 @@ export type CategoryMeta = {
   titleEn: string;
   summary: string;
   summaryEn: string;
+  featuredUrl?: string;
 };
 
 export const defaultCategoryId = categoryConfig.defaultCategoryId;
