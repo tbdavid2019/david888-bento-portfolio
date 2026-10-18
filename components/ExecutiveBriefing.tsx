@@ -96,51 +96,51 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
     {
       id: 'sap-ecommerce',
       title: isEn
-        ? 'Led 100+ Engineers: International Health & Beauty Retailer eCommerce Platform'
-        : '帶領 100+ 人工程團隊：跨國健康與美容零售商大型電商平台',
+        ? 'Led Engineering & Vendor Teams: Multinational Retailer Commerce Platform Operations'
+        : '帶領工程與外部 Vendor 團隊：跨國零售集團大型商務平台維運',
       metrics: isEn
         ? [
-            { label: 'Team Size', value: '100+ Engineers' },
-            { label: 'Architecture', value: 'Microservices' },
-            { label: 'Platform', value: 'SAP Commerce' },
+            { label: 'Management Scope', value: 'Eng & Vendor Teams' },
+            { label: 'Platform Scope', value: 'Multi-Region Commerce' },
+            { label: 'Core Platform', value: 'SAP Commerce' },
           ]
         : [
-            { label: '工程團隊', value: '100+ 位工程師' },
-            { label: '系統架構', value: '微服務架構' },
+            { label: '團隊管理', value: '跨國工程與 Vendor 團隊' },
+            { label: '維運範圍', value: '跨區商務系統與交易流' },
             { label: '核心平台', value: 'SAP Commerce' },
           ],
       challenge: isEn
-        ? 'Legacy monolithic systems experienced slowdowns during major sales and had separate inventory data across markets.'
-        : '舊有單體式系統在促銷檔期容易發生延遲，且跨國會員、促銷規則與庫存資料分散在不同系統。',
+        ? 'Multinational retail platforms required continuous stability during high-volume sales, multi-currency checkout, and coordinated vendor delivery.'
+        : '跨國零售商務系統涉及跨區多幣別結帳、會員機制與外部廠商協同，需要兼顧日常穩定營運與版本交付節奏。',
       solution: isEn
-        ? 'Refactored the platform onto SAP Commerce Cloud with headless PWA, event-driven microservices, and multi-currency checkout.'
-        : '帶領團隊改版 SAP Commerce Cloud 電商平台，導入 Headless PWA、微服務架構與多幣別結帳流程。',
-      tags: ['CTO Leadership', 'SAP Commerce Cloud', '100+ Engineers', 'E-Commerce'],
+        ? 'Led in-house engineering and external vendor teams managing SAP Commerce Cloud operations, infrastructure maintenance, and high-availability releases.'
+        : '帶領內部工程與外部 Vendor 團隊負責 SAP Commerce Cloud 商務系統營運維護、版本發佈與基礎設施監控，確保跨國交易穩定。',
+      tags: ['Engineering Leadership', 'SAP Commerce', 'Vendor Management', 'Operations & Resilience'],
       icon: Building2,
     },
     {
       id: 'crm-erp-integration',
       title: isEn
-        ? 'Consumer Electronics Brand: Multichannel CRM / ERP Integration'
-        : '跨國消費性電子品牌：客服與 CRM / ERP 跨系統整合',
+        ? 'Consumer Electronics Brand: Multichannel CRM / ERP Cross-System Integration'
+        : '跨國消費性電子品牌：客服與 CRM / ERP 跨系統資料流整合',
       metrics: isEn
         ? [
             { label: 'Systems Connected', value: '5 Systems' },
             { label: 'Key Platforms', value: 'SFDC · HubSpot' },
-            { label: 'RMA Turnaround', value: 'Days → Minutes' },
+            { label: 'Workflow Impact', value: 'Silos Eliminated' },
           ]
         : [
             { label: '串接系統', value: '5 個跨部門系統' },
             { label: '核心平台', value: 'SFDC · HubSpot' },
-            { label: 'RMA 退換貨流程', value: '數天縮短至數分鐘' },
+            { label: '流程改善', value: '打通資訊孤島' },
           ],
       challenge: isEn
-        ? 'Customer support, sales, and RMA returns were spread across separate tools, causing multi-day delays and inventory errors.'
-        : '客服、業務與售後 RMA 退換貨分散在不同系統，人工跨部門傳遞造成數天延遲與庫存對帳誤差。',
+        ? 'Customer support, sales, telephony, and ERP inventory were spread across disconnected tools, creating data silos and manual handoff friction.'
+        : '客服、業務、通訊與 ERP 庫存分散在不同系統，人工跨部門傳遞造成資訊孤島、對帳誤差與溝通摩擦。',
       solution: isEn
-        ? 'Connected Salesforce Service Cloud, HubSpot, RingCentral voice, and ERP inventory to automate RMA workflows.'
-        : '串接 Salesforce Service Cloud、HubSpot、RingCentral 語音系統與 ERP 庫存，讓售後退換貨與客服流程自動同步。',
-      tags: ['System Integration', 'Salesforce', 'HubSpot', 'RingCentral', 'ERP / RMA'],
+        ? 'Connected Salesforce Service Cloud, HubSpot, RingCentral voice, and ERP inventory data flows to automate cross-system synchronization.'
+        : '串接 Salesforce Service Cloud、HubSpot、RingCentral 語音系統與 ERP 庫存資料流，打通跨部門資訊孤島，消除人工傳遞摩擦。',
+      tags: ['System Integration', 'Salesforce', 'HubSpot', 'RingCentral', 'ERP Workflow'],
       icon: Network,
     },
     {

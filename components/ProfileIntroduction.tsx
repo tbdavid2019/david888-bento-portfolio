@@ -293,7 +293,7 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                   </span>
                 </span>
                 <span className="text-xs font-bold text-[#8a6b10] dark:text-[#fcd34d]">
-                  {locale === 'en' ? 'Direct Accountability' : '直球免除經營層 5 大痛點'}
+                  {locale === 'en' ? 'CTO Decision Commitments' : '直球對齊經營層 5 大核心命題'}
                 </span>
                 <span className="rounded-md border border-[#17324d]/20 bg-[#17324d]/10 px-1.5 py-0.5 font-mono text-[10px] font-extrabold text-[#17324d] dark:border-[#ffb010]/30 dark:bg-[#ffb010]/15 dark:text-[#fcd34d]">
                   /commitments
@@ -302,32 +302,32 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
               <h3 className="mt-1.5 text-lg font-black tracking-tight text-[#17324d] sm:text-2xl dark:text-[#fff9e8]">
                 {locale === 'en'
-                  ? 'For Non-Technical Leaders: 5 Core Commitments'
-                  : '給不諳技術老闆的「5 大安心承諾」'}
+                  ? '5 Executive Decision Commitments of a Top CTO'
+                  : '頂級技術長（CTO）的「5 大決策承諾」'}
               </h3>
 
               <p className="mt-1 text-xs font-semibold leading-relaxed text-[#5c4a30] sm:text-sm dark:text-[#d3e3f5]">
                 {locale === 'en'
-                  ? 'Slow system? Just add servers. Behind schedule? Just hire more people. Tech debt? Just rewrite everything. The hard part is identifying the real problem. Click to reveal 5 Core Commitments ➔'
-                  : '「系統慢了就加機器？專案做不完就招人？技術債太多打掉重練？這些方法都不難，難的是找出真正問題。」點擊立即解鎖 5 大安心解方 ➔'}
+                  ? 'Strategic judgment, organizational leadership, business ROI, risk ownership, and grounded delivery. Click to reveal the 5 CTO Decision Commitments ➔'
+                  : '戰略判斷、商業回報、組織領導、風險承擔與執行落地。點擊立即解鎖 5 大決策承諾 ➔'}
               </p>
 
               {/* 5 Quick Feature Chips */}
               <div className="mt-2.5 flex flex-wrap gap-1.5 text-[11px] font-extrabold sm:text-xs">
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Speak Plain Business' : '✓ 說人話不唬弄'}
+                  {locale === 'en' ? '✓ 1. Strategic Judgment' : '✓ 1. 戰略判斷不走偏'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Untangle Spaghetti Flows' : '✓ 梳理複雜毛線團'}
+                  {locale === 'en' ? '✓ 2. Business ROI' : '✓ 2. 嚴控成本算清 ROI'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Spend Wisely, No Waste' : '✓ 該花花不亂燒'}
+                  {locale === 'en' ? '✓ 3. 100+ Team Leadership' : '✓ 3. 百人團隊帶得動'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Business First, Ship on Time' : '✓ 守住上線先做生意'}
+                  {locale === 'en' ? '✓ 4. Risk Ownership' : '✓ 4. 系統危機敢扛大局'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Transparent & Verifiable' : '✓ 正派透明可驗證'}
+                  {locale === 'en' ? '✓ 5. Grounded Execution' : '✓ 5. 戰略穿透底層落地'}
                 </span>
               </div>
             </div>
@@ -469,27 +469,26 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
             if (block.kind === 'bullet') {
               const isCommitmentAnswer =
+                block.text.startsWith('商業導向') ||
+                block.text.startsWith('開源節流') ||
+                block.text.startsWith('建立基準') ||
+                block.text.startsWith('隻身掌控') ||
+                block.text.startsWith('穿透底層') ||
+                block.text.startsWith('Business-Driven') ||
+                block.text.startsWith('Fiscal Discipline') ||
+                block.text.startsWith('Setting Baselines') ||
+                block.text.startsWith('Eliminating SPOF') ||
+                block.text.startsWith('Deep Grounding') ||
                 block.text.startsWith('說人話') ||
                 block.text.startsWith('精準盤查') ||
                 block.text.startsWith('梳理毛線團') ||
                 block.text.startsWith('風險分級') ||
-                block.text.startsWith('搞定龐大') ||
-                block.text.startsWith('消除單點') ||
-                block.text.startsWith('生意優先') ||
-                block.text.startsWith('尊重業務') ||
-                block.text.startsWith('聽得懂') ||
                 block.text.startsWith('陽光透明') ||
                 block.text.startsWith('Speak Plain Business') ||
-                block.text.startsWith('Speak Business') ||
                 block.text.startsWith('Precision Audit') ||
                 block.text.startsWith('Untangling') ||
                 block.text.startsWith('Risk Prioritization') ||
-                block.text.startsWith('Mastering Complex') ||
-                block.text.startsWith('Business Continuity') ||
-                block.text.startsWith('Grounded Respect') ||
-                block.text.startsWith('Decades of') ||
-                block.text.startsWith('Transparent Track Record') ||
-                block.text.startsWith('Public Accountability');
+                block.text.startsWith('Transparent Track Record');
 
               if (isCommitmentAnswer) {
                 const colonIndex =

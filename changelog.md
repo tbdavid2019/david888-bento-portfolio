@@ -1,5 +1,26 @@
 # Changelog
 
+## [2026-10-18] - Executive Elevation: CTO 5 Decision Commitments & Grounded Enterprise Experience
+
+### High-Salaried (3M+) CTO Decision Commitments (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileIntroduction.tsx`, `scripts/llms-txt.mjs`)
+- **Upgraded 5 Commitments from Operational Friction to Executive Decision Mandates**:
+  - Replaced the tactical engineering concerns with the 5 high-stakes questions CEOs and Boards hire a 3M+ CTO to answer:
+    1. **【戰略判斷】技術投資對齊商業增長，絕不讓架構走錯路**（商業導向、拒絕盲目追新；以未來 3–5 年商業模型為依歸做技術選型）。
+    2. **【商業回報】算得清投入產出比（ROI），嚴控研發成本與隱性浪費**（開源節流、精算商業回報；只用降低履約成本、提高運營槓桿的真金白銀與經營層對話）。
+    3. **【組織領導】百人團隊帶得動，建立高交付力的研發組織**（建立基準、打造自主交付團隊；具百人規模組織與跨國 Vendor 管理實戰經驗）。
+    4. **【風險承擔】在系統危機與複雜僵局面前，敢負全責掌控大局**（隻身掌控大局、消除 SPOF；面對銀行/金流/優惠/物流等多方渠道串接與複雜商業毛線團時，親臨第一線排查瓶頸、守住核心營運）。
+    5. **【執行落地】拒絕簡報技術長，複雜戰略穿透底層徹底落地**（穿透底層、負責把決策做出來；懂戰略高度同時擁有親自動手技術底氣，把戰略拆解成扎扎實實的交付成果）。
+- **ProfileIntroduction Interactive Banner Synchronization (`components/ProfileIntroduction.tsx`)**:
+  - Updated title to **「頂級技術長（CTO）的『5 大決策承諾』」** (*5 Executive Decision Commitments of a Top CTO*).
+  - Updated the 5 quick feature chips to: `✓ 1. 戰略判斷不走偏`、`✓ 2. 嚴控成本算清 ROI`、`✓ 3. 百人團隊帶得動`、`✓ 4. 系統危機敢扛大局`、`✓ 5. 戰略穿透底層落地`.
+
+### Grounded & Accurate Enterprise Experience (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ExecutiveBriefing.tsx`)
+- **Removed Exaggerated Narrative**:
+  - Completely purged artificial claims of "microservices refactoring" and "returns reduced from days to minutes".
+  - Reflected true enterprise leadership:
+    - **跨國零售集團商務平台**: 帶領跨國工程與外部 Vendor 團隊，負責 SAP Commerce Cloud 核心架構維護、版本發佈與跨國多幣別結帳穩定性。
+    - **跨國消費性電子品牌**: 串接客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP 庫存資料流，打通跨部門資訊孤島，消除人工傳遞摩擦。
+
 ## [2026-10-18] - Promote `2md.aiurl.tw` (2MD / 888-url2md) to Homepage Flagship Showcase & Agent Skills
 
 ### Flagship Showcase & Portfolio Taxonomy Upgrade
