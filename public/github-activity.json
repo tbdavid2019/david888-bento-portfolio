@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/29e9cb5b62...28077c5e91",
+      "updated": "2026-10-17 13:02:30 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 17, 2026 13:02 1 commit to main 28077c5 feat(web): support canonical routes and deep tab linking for episode …"
+    },
+    {
       "title": "tbdavid2019 pushed 888news",
       "url": "https://github.com/tbdavid2019/888news/compare/a07f16b791...7d19cf88db",
       "updated": "2026-10-17 11:38:14 UTC",
@@ -23,15 +29,9 @@
       "url": "https://github.com/tbdavid2019/888-url2md/compare/e828a42128...b91ac63128",
       "updated": "2026-10-16 10:32:59 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 10:32 1 commit to main b91ac63 fix(ui): strengthen heading type hierarchy"
-    },
-    {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/6f1434af00...fef2b75190",
-      "updated": "2026-10-16 05:57:30 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 16, 2026 05:57 1 commit to main fef2b75 fix(duckdb): prioritize composite resonance rows over individual stra…"
     }
   ],
-  "lastSyncedAt": "2026-10-17T23:59:54.261Z",
+  "lastSyncedAt": "2026-10-18T01:11:27.428Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

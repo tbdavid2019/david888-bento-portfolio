@@ -10,9 +10,13 @@
 - **Sub-headline & Opening Narrative Overhaul (`data/profile-content.zh.md`, `data/profile-content.en.md`)**:
   - Sub-headline updated to: *「管理超過 100+ 人團隊，處理過大型商務系統開發和調整；懂戰略也能挽起袖子在第一線寫 Code 解決核心技術痛點。」*
   - Opening paragraph rewritten to focus purely on grounded operational facts: managing 100+ engineers, shortening RMA turnaround from days to minutes, and solving system bottlenecks with zero consultant jargon.
-- **H1 Headline & SEO Meta Alignment: Say Goodbye to School-book Templates (`profile-content.zh.md`, `profile-content.en.md`, `index.html`)**:
-  - **Authentic, Results-First H1 Headline**: Replaced the textbook template *"把複雜的技術，轉化為看得見的商業成果"* with the grounded, high-affinity statement: **`技術只是工具，能幫公司把問題解決才是目的`** (EN: *"Technology is Just a Tool; Solving Real Problems is the True Purpose"*). Completely removes corporate jargon and elementary-school sentence patterns, delivering authentic trust and business alignment.
-  - **Meta Description & Social Graph Alignment**: Synchronized `index.html` meta tags (`description`, `og:description`, `twitter:description`) with the new headline.
+- **New Non-Cynical H1 Headline & SEO Alignment (`profile-content.zh.md`, `profile-content.en.md`, `index.html`)**:
+  - Replaced the previous cynical phrase with the confident, positive executive headline: **`具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統`** (EN: *"An Experienced CTO with 100+ Team Scale: Building Resilient Systems for Enterprise Growth"*), completely eliminating cynicism and passive aggressiveness.
+  - Synchronized `index.html` SEO metadata (`description`, `og:description`, `twitter:description`).
+- **Dedicated Executive Section: 5 Concerns Addressed for Non-Technical Leaders (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileIntroduction.tsx`)**:
+  - Added dedicated section **「給企業經營層：不懂技術的老闆請看這（我如何為您免除疑慮）」** answering the 5 biggest fears of non-technical CEOs: technical jargon/runaway costs, infinite refactoring/traffic crashes, arrogance/lack of business understanding, communication disconnect, and contractor integrity/reliability.
+  - Enhanced `ProfileIntroduction.tsx` to render the executive section with a gold shield banner, distinct question quote boxes with `HelpCircle`, and solution cards with `CheckCircle2`.
+  - Updated the expand button label to **`展開完整 CTO 實績與給經營層的 5 大安心承諾`** for immediate executive click-through.
 - **Occam's Razor Metrics Refinement (`components/ProfileCard.tsx`)**:
   - **Eliminated Duplicate Headcount Metric**: Removed the redundant middle `70 人` card, strictly abiding by the principle of "若無必要，勿增實體" (entities should not be multiplied beyond necessity) and eliminating repetitive counting.
   - **Calibrated Executive Management Scale (`100+ 人`)**: Adjusted the primary leadership metric from `300+ 人` to a grounded, non-intimidating **`100+ 人` ｜ `能帶大團隊，也能寫 Code`** (EN: `100+ Team Scale · Leads Teams & Still Codes`). This eliminates intimidation for Taiwanese enterprise employers and mid-market organizations while retaining strong executive leadership proof.

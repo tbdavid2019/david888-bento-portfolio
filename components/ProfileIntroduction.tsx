@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { CheckCircle2, ChevronDown, HelpCircle, ShieldCheck } from 'lucide-react';
 import { profileContent } from '../data/profile-content';
 import { cn } from '../lib/utils';
 import type { Locale } from '../types';
@@ -30,11 +30,11 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
           <span>
             {expanded
               ? locale === 'en'
-                ? 'Collapse Full Executive Dossier'
-                : '收起完整顧問與履歷背景'
+                ? 'Collapse Executive Track Record & Commitments'
+                : '收起完整實績與經營層承諾'
               : locale === 'en'
-                ? 'Read Full Executive Track Record & Retainer Terms'
-                : '展開完整 CTO 實績與顧問合作細節'}
+                ? 'Read Full Executive Track Record & 5 Commitments for Leaders'
+                : '展開完整 CTO 實績與給經營層的 5 大安心承諾'}
           </span>
           <ChevronDown
             size={15}
@@ -54,10 +54,43 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
         <div className="mt-5 space-y-3 rounded-xl border border-border bg-bg-elevated p-5 text-[15px] leading-7 text-text-muted">
           {content.body.slice(1).map((block, index) => {
             if (block.kind === 'sectionTitle') {
+              const isExecutiveSection =
+                block.text.includes('給企業經營層') || block.text.includes('Non-Technical Executives');
+              const isQuestion =
+                block.text.includes('「') ||
+                (block.text.startsWith('"') && block.text.includes('"')) ||
+                /^\d+\.\s*[“"「]/.test(block.text);
+
+              if (isExecutiveSection) {
+                return (
+                  <div
+                    key={index}
+                    className="mb-4 mt-6 first:mt-0 flex items-center gap-2.5 rounded-xl border border-[#17324d] bg-[#fff0cc] p-3.5 text-text-main dark:border-[#ffb010]/60 dark:bg-[#17324d]/60"
+                  >
+                    <ShieldCheck className="h-5 w-5 shrink-0 text-[#a9471d] dark:text-[#ffb010]" />
+                    <h3 className="m-0 text-base font-extrabold sm:text-lg">
+                      {block.text}
+                    </h3>
+                  </div>
+                );
+              }
+
+              if (isQuestion) {
+                return (
+                  <div
+                    key={index}
+                    className="mt-4 mb-2 flex items-start gap-2.5 rounded-lg border-l-4 border-[#17324d] bg-bg-surface p-3 font-semibold text-text-main dark:border-[#ffb010]"
+                  >
+                    <HelpCircle size={17} className="mt-0.5 shrink-0 text-[#a9471d] dark:text-[#ffb010]" />
+                    <span className="text-sm font-bold sm:text-[15px]">{block.text}</span>
+                  </div>
+                );
+              }
+
               return (
                 <h3
                   key={index}
-                  className="mb-1.5 mt-4 first:mt-0 text-base font-extrabold text-text-main sm:text-lg"
+                  className="mb-1.5 mt-5 first:mt-0 text-base font-extrabold text-text-main sm:text-lg"
                 >
                   {block.text}
                 </h3>
@@ -65,13 +98,33 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
             }
 
             if (block.kind === 'bullet') {
+              const isCommitmentAnswer =
+                block.text.startsWith('說人話') ||
+                block.text.startsWith('生意優先') ||
+                block.text.startsWith('尊重業務') ||
+                block.text.startsWith('聽得懂') ||
+                block.text.startsWith('陽光透明') ||
+                block.text.startsWith('Speak Business') ||
+                block.text.startsWith('Business Continuity') ||
+                block.text.startsWith('Grounded Respect') ||
+                block.text.startsWith('Decades of') ||
+                block.text.startsWith('Public Accountability');
+
               return (
-                <div key={index} className="mb-2 flex items-start gap-3 text-text-main">
-                  <span
-                    className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-[#a9471d] dark:bg-[#ffb010]"
-                    aria-hidden="true"
-                  />
-                  <p className="m-0">{block.text}</p>
+                <div key={index} className="mb-2 flex items-start gap-2.5 text-text-main">
+                  {isCommitmentAnswer ? (
+                    <CheckCircle2
+                      size={16}
+                      className="mt-1 shrink-0 text-[#17324d] dark:text-[#ffb010]"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <span
+                      className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-[#a9471d] dark:bg-[#ffb010]"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <p className="m-0 leading-relaxed text-sm sm:text-[15px]">{block.text}</p>
                 </div>
               );
             }
