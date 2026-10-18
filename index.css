@@ -158,16 +158,16 @@ body {
   box-shadow: 0 3px 8px rgba(43, 37, 26, 0.16);
 }
 
-/* 2md.aiurl.tw Sticky Deep-Blue Section Navigation: Pre-allocated Equal Columns */
+/* 2md.aiurl.tw Sticky Deep-Blue Section Navigation: Pre-allocated Equal Columns (5 Categories) */
 .section-nav-bar {
   position: sticky;
   top: 10px;
   z-index: 40;
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
   background: #17324d;
-  padding: 5px;
+  padding: 6px;
   border-radius: 12px;
   border: 1px solid #d6bc7c;
   box-shadow: 0 6px 18px rgba(23, 50, 77, 0.22);
@@ -181,7 +181,7 @@ body {
 
 @media (max-width: 1023px) {
   .section-nav-bar {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 6px;
     padding: 6px;
   }
@@ -190,9 +190,18 @@ body {
 @media (max-width: 639px) {
   .section-nav-bar {
     top: 6px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 6px;
     padding: 6px;
+  }
+  .section-nav-bar > a:nth-child(1),
+  .section-nav-bar > a:nth-child(2),
+  .section-nav-bar > a:nth-child(3) {
+    grid-column: span 2;
+  }
+  .section-nav-bar > a:nth-child(4),
+  .section-nav-bar > a:nth-child(5) {
+    grid-column: span 3;
   }
 }
 

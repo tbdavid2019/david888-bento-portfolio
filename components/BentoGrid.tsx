@@ -37,13 +37,13 @@ import {
 } from '../lib/siteCatalog';
 import type { BentoItem, Locale } from '../types';
 
-const renderItem = (item: BentoItem, locale: Locale) => {
+const renderItem = (item: BentoItem, locale: Locale, onTagClick?: (tag: string) => void) => {
   if (item.type === 'github') return <GithubCard data={item} />;
   if (item.type === 'twitter') return <TwitterCard data={item} />;
   if (item.type === 'project') return <ProjectCard data={item} />;
   if (item.type === 'techstack') return <TechStackCard data={item} />;
   if (item.type === 'design-system') return <DesignSystemCard data={item} />;
-  return <BentoLinkCard link={item as any} locale={locale} />;
+  return <BentoLinkCard link={item as any} locale={locale} onTagClick={onTagClick} />;
 };
 
 const stackedSocialTitles = new Set([
@@ -106,6 +106,7 @@ interface BentoGridProps {
   activeCategoryId: string;
   onCategoryChange: (categoryId: string) => void;
   searchQuery: string;
+  onSearchChange?: (query: string) => void;
   onClearSearch: () => void;
   onContact?: () => void;
 }
@@ -115,12 +116,18 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   activeCategoryId,
   onCategoryChange,
   searchQuery,
+  onSearchChange,
   onClearSearch,
   onContact,
 }) => {
   const contentSectionRef = React.useRef<HTMLElement>(null);
   const [showScrollTop, setShowScrollTop] = React.useState(false);
   const items = siteItems;
+
+  const handleTagClick = (tag: string) => {
+    onSearchChange?.(tag);
+    contentSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const groupedItems = React.useMemo(() => {
     return items.reduce(
@@ -224,11 +231,47 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         onSelectRoute={(routeId) => handleCategorySelect(routeId)}
       />
 
-      {/* 2. 2md.aiurl.tw Sticky Deep-Blue Canonical Route Navigation Bar */}
+      {/* 2. 2md.aiurl.tw Sticky Deep-Blue Canonical Route Navigation Bar: 5 Clean Categories */}
       <nav
         aria-label={locale === 'en' ? 'Primary portfolio routes' : '主要路由導覽'}
         className="section-nav-bar"
       >
+        {/* Tab 1: 最新動態 (social) */}
+        {(() => {
+          const isActive = !isExecutiveView && !isFlagshipsView && activeCategory?.id === 'social';
+          const count = groupedItems['social']?.length ?? 0;
+          return (
+            <a
+              href="/social"
+              onClick={(e) => {
+                e.preventDefault();
+                handleCategorySelect('social');
+              }}
+              aria-current={isActive ? 'location' : undefined}
+              className={cn(
+                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                isActive
+                  ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
+                  : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
+              )}
+            >
+              <Radio size={15} className="shrink-0" />
+              <span className="min-w-0 text-center leading-tight break-words">
+                {locale === 'en' ? 'Latest' : '最新動態'}
+              </span>
+              <span
+                className={cn(
+                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
+                )}
+              >
+                {count}
+              </span>
+            </a>
+          );
+        })()}
+
+        {/* Tab 2: 合作方式 (executive) */}
         <a
           href="/executive"
           onClick={(e) => {
@@ -245,63 +288,28 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         >
           <Briefcase size={15} className="shrink-0" />
           <span className="min-w-0 text-center leading-tight break-words">
-            {locale === 'en' ? 'CTO & Advisory' : '顧問與經歷'}
+            {locale === 'en' ? 'Ways to Work' : '合作方式'}
           </span>
           <span
             className={cn(
               'ml-auto inline-flex h-5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:px-1.5 sm:text-[11px] md:ml-0',
-              isExecutiveView
-                ? 'bg-[#17324d] text-[#fff9e8]'
-                : 'bg-[#ffb010] text-[#2b251a]',
+              isExecutiveView ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-[#ffb010] text-[#2b251a]',
             )}
           >
             CTO
           </span>
         </a>
 
-        <a
-          href="/flagships"
-          onClick={(e) => {
-            e.preventDefault();
-            handleCategorySelect('flagships');
-          }}
-          aria-current={isFlagshipsView ? 'location' : undefined}
-          className={cn(
-            'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
-            isFlagshipsView
-              ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
-              : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
-          )}
-        >
-          <Rocket size={15} className="shrink-0" />
-          <span className="min-w-0 text-center leading-tight break-words">
-            {locale === 'en' ? '5 Flagship Systems' : '5 大主力系統'}
-          </span>
-          <span
-            className={cn(
-              'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
-              isFlagshipsView
-                ? 'bg-[#17324d] text-[#fff9e8]'
-                : 'bg-white/15 text-[#fff9e8]',
-            )}
-          >
-            5
-          </span>
-        </a>
-
-        {visibleCategories.map((category) => {
-          const isActive =
-            !isExecutiveView && !isFlagshipsView && category.id === activeCategory?.id;
-          const count = groupedItems[category.id]?.length ?? 0;
-          const Icon = categoryIcons[category.id] || Layers;
-
+        {/* Tab 3: 財經命理 (finance) */}
+        {(() => {
+          const isActive = !isExecutiveView && !isFlagshipsView && activeCategory?.id === 'finance';
+          const count = groupedItems['finance']?.length ?? 0;
           return (
             <a
-              key={category.id}
-              href={`/${category.id}`}
+              href="/finance"
               onClick={(e) => {
                 e.preventDefault();
-                handleCategorySelect(category.id);
+                handleCategorySelect('finance');
               }}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
@@ -311,23 +319,91 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                   : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
               )}
             >
-              <Icon size={15} className="shrink-0" />
+              <LineChart size={15} className="shrink-0" />
               <span className="min-w-0 text-center leading-tight break-words">
-                {locale === 'en' ? category.labelEn : category.label}
+                {locale === 'en' ? 'Finance & Qi' : '財經命理'}
               </span>
               <span
                 className={cn(
                   'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
-                  isActive
-                    ? 'bg-[#17324d] text-[#fff9e8]'
-                    : 'bg-white/15 text-[#fff9e8]',
+                  isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
                 )}
               >
                 {count}
               </span>
             </a>
           );
-        })}
+        })()}
+
+        {/* Tab 4: Skills (agent-skills) */}
+        {(() => {
+          const isActive = !isExecutiveView && !isFlagshipsView && activeCategory?.id === 'agent-skills';
+          const count = groupedItems['agent-skills']?.length ?? 0;
+          return (
+            <a
+              href="/agent-skills"
+              onClick={(e) => {
+                e.preventDefault();
+                handleCategorySelect('agent-skills');
+              }}
+              aria-current={isActive ? 'location' : undefined}
+              className={cn(
+                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                isActive
+                  ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
+                  : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
+              )}
+            >
+              <Cpu size={15} className="shrink-0" />
+              <span className="min-w-0 text-center leading-tight break-words">
+                Skills
+              </span>
+              <span
+                className={cn(
+                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
+                )}
+              >
+                {count}
+              </span>
+            </a>
+          );
+        })()}
+
+        {/* Tab 5: 其他應用 (products) */}
+        {(() => {
+          const isActive = !isExecutiveView && !isFlagshipsView && activeCategory?.id === 'products';
+          const count = groupedItems['products']?.length ?? 0;
+          return (
+            <a
+              href="/products"
+              onClick={(e) => {
+                e.preventDefault();
+                handleCategorySelect('products');
+              }}
+              aria-current={isActive ? 'location' : undefined}
+              className={cn(
+                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                isActive
+                  ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
+                  : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
+              )}
+            >
+              <Layers size={15} className="shrink-0" />
+              <span className="min-w-0 text-center leading-tight break-words">
+                {locale === 'en' ? 'Other Apps' : '其他應用'}
+              </span>
+              <span
+                className={cn(
+                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
+                )}
+              >
+                {count}
+              </span>
+            </a>
+          );
+        })()}
       </nav>
 
       {/* 3. Main Content Surface */}
@@ -447,7 +523,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                           <PodcastFeedCard locale={locale} />
                           {sectionItems.filter(isLinkedInItem).map((item) => (
                             <div key="linkedin-under-podcast" className="mt-4">
-                              {renderItem(item, locale)}
+                              {renderItem(item, locale, handleTagClick)}
                             </div>
                           ))}
                         </div>
@@ -471,7 +547,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                             .filter(isStackedSocialItem)
                             .map((item, index) => (
                               <div key={`stacked-social-${index}`}>
-                                {renderItem(item, locale)}
+                                {renderItem(item, locale, handleTagClick)}
                               </div>
                             ))}
                         </div>
@@ -501,7 +577,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                                   key={`${activeCategory?.id}-${section}-${index}`}
                                   className={colSpanClass}
                                 >
-                                  {renderItem(item, locale)}
+                                  {renderItem(item, locale, handleTagClick)}
                                 </div>
                               );
                             })}

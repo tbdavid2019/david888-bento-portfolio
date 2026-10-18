@@ -27,6 +27,8 @@ export const VALID_CANONICAL_ROUTES = new Set([
 const normalizeRouteAlias = (raw: string): string => {
   const cleaned = raw.replace(/^\/+|\/+$/g, '').toLowerCase();
   if (cleaned === 'advisory') return 'executive';
+  if (cleaned === 'metaphysics') return 'finance';
+  if (cleaned === 'experiments') return 'products';
   return cleaned;
 };
 
@@ -194,6 +196,7 @@ export default function App() {
         activeCategoryId={activeCategoryId}
         onCategoryChange={changeCategory}
         searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
         onClearSearch={() => setSearchQuery('')}
         onContact={() => setContactOpen(true)}
       />

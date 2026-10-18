@@ -18,7 +18,7 @@ test('keeps the auto-updating content feed as the default homepage category', ()
 
 test('uses audience-facing portfolio categories instead of technology or channel buckets', () => {
   const categoryIds = categoryConfig.categories.map((category) => category.id);
-  assert.deepEqual(categoryIds, ['social', 'finance', 'products', 'agent-skills', 'experiments', 'metaphysics']);
+  assert.deepEqual(categoryIds, ['social', 'finance', 'agent-skills', 'products']);
 
   const validTags = new Set(categoryIds);
   for (const item of links) {
@@ -43,10 +43,10 @@ test('groups finance and investment projects together under finance category', (
   for (const title of financeTitles) {
     assert.equal(links.find((item) => item.title === title)?.tag, 'finance', title);
   }
-  assert.equal(categoryConfig.categories.find((category) => category.id === 'finance')?.label, '財經投資');
+  assert.equal(categoryConfig.categories.find((category) => category.id === 'finance')?.label, '財經命理');
 });
 
-test('groups the divination product family together', () => {
+test('groups the divination product family together under finance category', () => {
   const expectedTitles = [
     '888 人生K線 | 八字命理可視化',
     '333 奇門遁甲',
@@ -58,7 +58,7 @@ test('groups the divination product family together', () => {
   ];
 
   for (const title of expectedTitles) {
-    assert.equal(links.find((item) => item.title === title)?.tag, 'metaphysics', title);
+    assert.equal(links.find((item) => item.title === title)?.tag, 'finance', title);
   }
 });
 
@@ -67,16 +67,16 @@ test('labels LLM resources as AI Agent Skills', () => {
   assert.equal(skillItems.length, 10);
   assert.ok(skillItems.every((item) => /Skill|技能|API|Agent|MCP/.test(item.title)));
   assert.equal(links.find((item) => item.title === 'AnswerBook API')?.tag, 'products');
-  assert.equal(categoryConfig.categories.find((category) => category.id === 'agent-skills')?.label, 'AI Agent Skills');
+  assert.equal(categoryConfig.categories.find((category) => category.id === 'agent-skills')?.label, 'Skills');
 });
 
-test('keeps the TTS project family together in research and experiments', () => {
+test('keeps the TTS project family together in research and experiments under products', () => {
   const ttsItems = links.filter((item) => item.sectionEn === 'Speech & Language');
   assert.deepEqual(ttsItems.map((item) => item.title), ['333 Taiwanese TTS Hub', 'HF: 台語 TTS']);
-  assert.ok(ttsItems.every((item) => item.tag === 'experiments'));
+  assert.ok(ttsItems.every((item) => item.tag === 'products'));
 });
 
-test('keeps lifestyle side projects with the Qi and Life category', () => {
+test('keeps lifestyle side projects with the other applications category', () => {
   const lifestyleTitles = [
     '台灣道路施工地圖',
     '台灣寵物認養地圖',
@@ -85,7 +85,7 @@ test('keeps lifestyle side projects with the Qi and Life category', () => {
   ];
 
   for (const title of lifestyleTitles) {
-    assert.equal(links.find((item) => item.title === title)?.tag, 'metaphysics', title);
+    assert.equal(links.find((item) => item.title === title)?.tag, 'products', title);
   }
 });
 

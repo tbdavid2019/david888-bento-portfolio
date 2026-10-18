@@ -50,7 +50,7 @@ const mockLinks = [
     title: '奇門遁甲系統',
     description: '命理與易數計算',
     url: 'https://qi.david888.com/',
-    tag: 'metaphysics',
+    tag: 'finance',
   },
 ];
 
@@ -71,8 +71,8 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
 
   // Spec check 3: Contains H2 sections for category file lists
   assert.match(result, /## Latest Updates/);
-  assert.match(result, /## Products & Work/);
-  assert.match(result, /## Qi & Life Products/);
+  assert.match(result, /## Productivity Apps, Tools & Interactive Visuals/);
+  assert.match(result, /## Finance, Quant & Metaphysics Systems/);
 
   // Spec check 4: Contains list links in standard [name](url): description format
   assert.match(

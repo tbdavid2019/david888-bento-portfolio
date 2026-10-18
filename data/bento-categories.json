@@ -12,48 +12,30 @@
     },
     {
       "id": "finance",
-      "label": "財經投資",
-      "labelEn": "Finance & Quant",
-      "title": "財經投資與量化決策",
-      "titleEn": "Finance & Quantitative Systems",
-      "summary": "股票估值與籌碼分析系統、上市櫃企業關係網路、時間序列預測與量化工具。",
-      "summaryEn": "Equity valuation tools, corporate ownership networks, time-series forecasting, and quantitative platforms."
-    },
-    {
-      "id": "products",
-      "label": "各種應用",
-      "labelEn": "Apps & Work",
-      "title": "各種應用與作品",
-      "titleEn": "Products & Work",
-      "summary": "生產力工具、瀏覽器擴充套件、Web 服務平台與 Telegram / LINE 自動化產品。",
-      "summaryEn": "Productivity utilities, browser extensions, web platforms, and automated bots."
+      "label": "財經命理",
+      "labelEn": "Finance & Qi",
+      "title": "財經量化與奇門決策",
+      "titleEn": "Finance, Quant & Metaphysics Systems",
+      "summary": "股票估值與籌碼分析、上市櫃企業關係網路、量化預測，以及奇門遁甲與八字曆法決策系統。",
+      "summaryEn": "Equity valuation tools, corporate ownership networks, quantitative forecasting, and Qi Men Dun Jia calendar decision engines."
     },
     {
       "id": "agent-skills",
-      "label": "AI Agent Skills",
-      "labelEn": "AI Agent Skills",
-      "title": "AI / ML Agent 技能與工具",
-      "titleEn": "Skills for LLMs & AI Agents",
+      "label": "Skills",
+      "labelEn": "Skills",
+      "title": "AI Agent Skills 與遠端 MCP 工具",
+      "titleEn": "Skills & MCP Tools for LLMs & AI Agents",
       "summary": "提供 LLM 與 AI Agent 領域知識、API 串接與自動化流程的 Skills 與遠端 MCP 工具。",
       "summaryEn": "Reusable skills and remote MCP tools providing domain knowledge, documentation, and workflows for LLMs and AI agents."
     },
     {
-      "id": "experiments",
-      "label": "遊戲與 AR VR",
-      "labelEn": "Games & XR Lab",
-      "title": "遊戲、AR/VR 與 3D 視覺實驗",
-      "titleEn": "Games, AR/VR & Interactive Visuals",
-      "summary": "3D 互動遊戲、WebXR 視覺特效、語音合成與生成式 AI 原型實驗。",
-      "summaryEn": "3D interactive games, WebXR visual effects, speech synthesis, and generative AI prototypes."
-    },
-    {
-      "id": "metaphysics",
-      "label": "命理與生活",
-      "labelEn": "Qi & Life",
-      "title": "命理與生活產品",
-      "titleEn": "Qi & Life Products",
-      "summary": "奇門、八字、塔羅、風水與姻緣等持續發展中的生活產品系列。",
-      "summaryEn": "An evolving product family spanning Qi Men, Bazi, tarot, Feng Shui, and lifestyle projects."
+      "id": "products",
+      "label": "其他應用",
+      "labelEn": "Other Apps",
+      "title": "其他應用、生活工具與 3D 視覺實驗",
+      "titleEn": "Productivity Apps, Tools & Interactive Visuals",
+      "summary": "生產力工具、生活應用與地圖查詢、瀏覽器擴充套件，以及 3D 遊戲與 WebXR 互動實驗。",
+      "summaryEn": "Productivity utilities, lifestyle tools, browser extensions, automated bots, and 3D games/WebXR experiments."
     }
   ]
 }

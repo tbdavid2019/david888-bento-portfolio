@@ -183,9 +183,14 @@ const getDomain = (url: string) => {
   }
 };
 
-export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
+export const BentoLinkCard: React.FC<{
+  link: BentoLink;
+  locale?: Locale;
+  onTagClick?: (tag: string) => void;
+}> = ({
   link,
   locale = 'zh',
+  onTagClick,
 }) => {
   const isEn = locale === 'en';
   const [copiedMcp, setCopiedMcp] = React.useState(false);
@@ -240,6 +245,12 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
           <span className="rounded-md border border-border bg-bg-elevated px-2.5 py-1 font-mono text-xs font-bold text-text-muted">
             {getDomain(link.url)}
           </span>
+          {link.flagship && (
+            <span className="inline-flex items-center gap-1 rounded-md border border-[#f59e0b] bg-[#fff0cc] px-2 py-0.5 text-[11px] font-black text-[#854d0e] dark:border-[#ffb010] dark:bg-[#17324d] dark:text-[#fcd34d]">
+              <Sparkles size={11} className="text-[#f59e0b] dark:text-[#ffb010]" />
+              <span>{isEn ? 'Flagship' : '主力系統'}</span>
+            </span>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
@@ -311,12 +322,18 @@ export const BentoLinkCard: React.FC<{ link: BentoLink; locale?: Locale }> = ({
         {link.techStack && link.techStack.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {link.techStack.map((tech) => (
-              <span
+              <button
                 key={tech}
-                className="rounded-md border border-border bg-bg-elevated px-2 py-0.5 font-mono text-[11px] font-bold text-text-muted"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onTagClick?.(tech);
+                }}
+                title={isEn ? `Filter portfolio by #${tech}` : `依 #${tech} 檢索跨分類相關作品`}
+                className="inline-flex cursor-pointer items-center rounded-md border border-border bg-bg-elevated px-2 py-0.5 font-mono text-[11px] font-bold text-text-muted transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] hover:text-[#17324d] dark:hover:border-[#ffb010] dark:hover:bg-[#17324d] dark:hover:text-[#ffb010]"
               >
-                {tech}
-              </span>
+                #{tech.replace(/^#/, '')}
+              </button>
             ))}
           </div>
         )}

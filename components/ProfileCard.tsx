@@ -206,8 +206,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           </div>
           <div className="min-w-0 max-w-full break-words font-mono text-xs text-text-muted">
             {isEn
-              ? 'Routes: /executive · /flagships · /finance · /products · /agent-skills'
-              : '路由直達：/executive · /flagships · /finance · /products · /agent-skills'}
+              ? 'Routes: /social · /executive · /finance · /agent-skills · /products'
+              : '路由直達：/social · /executive · /finance · /agent-skills · /products'}
           </div>
         </div>
       </div>
