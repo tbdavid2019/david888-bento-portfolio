@@ -3,6 +3,11 @@
 ## [2026-10-18] - Occam's Razor Metric Streamlining: 100+ Team Scale & Zero Headcount Redundancy
 
 ### Enhanced & Streamlined
+- **Hero Eye-Catching Centerpiece: 5 Commitments for Non-Technical Leaders with Big Certified Seal Logo (`components/ProfileIntroduction.tsx`, `data/profile-content.zh.md`, `data/profile-content.en.md`)**:
+  - **Big Eye-Catching Logo Seal (`ExecutiveCommitmentSeal`)**: Designed a prominent, high-impact SVG medallion seal (80px-96px) featuring a 5-star arc (★★★★★), a bold metallic number `5`, and a gold ribbon banner reading `安心承諾` (`PROMISES` in EN), complete with a subtle ambient pulsing aura and hover scale transition.
+  - **Hero Interactive Banner Card**: Replaced the small, inconspicuous right-aligned toggle button with a full-width, high-contrast banner card. Styled with warm saffron-gold gradient & gold border in light mode and glowing deep navy in dark mode, making it an irresistible visual magnet for business owners and non-technical founders.
+  - **Executive-Targeted Value Hook & Feature Chips**: Displayed the badge `🔥 老闆與主管必看 · 零技術黑話`, headline `給不諳技術老闆的「5 大安心承諾」`, and 5 high-converting feature chips (`✓ 說人話不唬弄`, `✓ 雙 11 大檔不當機`, `✓ 尊重業務不自嗨`, `✓ 聽得懂生意經`, `✓ 正派透明可驗證`), directly addressing the top 5 anxieties of business leaders.
+  - **Zero-Friction Expand & Collapse UX**: Clicking anywhere on the banner card seamlessly expands the 5 commitments and full track record below it. Added a convenient bottom collapse button at the end of the section so users can easily close it without scrolling back to the top.
 - **Pre-allocated Equal Column Navigation Bar (`index.css`, `components/BentoGrid.tsx`)**:
   - **Eliminated Awkward Multi-Row Wrap & Orphan Tabs**: Replaced `flex-wrap: wrap` with CSS Grid `grid-template-columns: repeat(8, minmax(0, 1fr))` on desktop viewports. This pre-allocates exact equal widths across all 8 navigation tabs, completely guaranteeing all items sit on a single horizontal row without broken wrapping or orphan tabs.
   - **Flexible In-Tab Text Wrapping**: Replaced rigid `truncate` / `nowrap` on tab labels with `break-words text-center leading-tight`, allowing text inside buttons to gracefully wrap onto 2 lines on compact widths without breaking the outer navigation bar.

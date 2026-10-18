@@ -4,7 +4,7 @@
 
 Over a decade of enterprise technology leadership and software engineering experience. Led a 100+ engineer team refactoring an international enterprise commerce platform and streamlined cross-border CRM/ERP workflows, reducing return processing time from days to minutes. Equally comfortable aligning technical direction with executive leadership and working side-by-side with engineers on architecture reviews and code.
 
-## For Non-Technical Executives: Addressing Your 5 Biggest Concerns
+## For Non-Technical Executives: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 
 ### 1. "Engineers speak in jargon, asking for budget, machines, and microservices."
 - Speak Business, Not Jargon: Translate technical choices into ROI and budget impact. Prioritize resolving bottlenecks in existing infrastructure before asking for headcount or expensive cloud expansion.
