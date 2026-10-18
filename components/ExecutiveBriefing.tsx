@@ -82,12 +82,12 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         ? [
             'Pre-investment codebase review, scalability assessment & security configuration check (approx. 1–2 weeks)',
             'Evaluate engineering team execution, technical debt, and realistic maintenance costs',
-            'Methodical ablation diagnosis: unearth true bottlenecks, eliminate Single Points of Failure (SPOF), and resolve cross-system sync breakdowns',
+            'Full architecture audit & ablation diagnosis: untangle spaghetti information flows, multi-channel integrations (banking/promos/logistics), eliminate SPOF, and stop wasteful compute spend',
           ]
         : [
             '投資與併購前第三方評估：依標的資料完整度，約 1–2 週交付系統架構、程式碼品質與資安設定檢視報告（屬技術評估，非法律意見）',
             '團隊交付與維護成本評估：協助投資人釐清實際技術狀況、技術債與後續維護成本',
-            '系統消融診斷：針對龐大架構多方串接摩擦、單點故障 (SPOF) 風險、資料庫效能瓶頸或跨系統資料不同步進行消融試驗與架構改善',
+            '全面系統盤查與消融診斷：針對企業疊床架屋的毛線團資訊流、多方渠道串接（銀行/金流/優惠/物流）與單點故障 (SPOF) 風險進行全面盤查，以科學消融試驗揪出隱性浪費與真實瓶頸，落實開源節流',
           ],
     },
   ];

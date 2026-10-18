@@ -202,8 +202,8 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
 
               <p className="mt-1 text-xs font-semibold leading-relaxed text-[#5c4a30] sm:text-sm dark:text-[#d3e3f5]">
                 {locale === 'en'
-                  ? "Afraid of tech jargon, tangled fragile architectures, or endless budgets? Click to see how I eliminate business owners' biggest anxieties & view full CTO track record."
-                  : '「害怕被黑話唬弄？龐大系統動一髮動全身？開口只會要預算？」點擊立即解鎖 5 大安心解方與完整實績 ➔'}
+                  ? "Afraid of tech jargon, tangled spaghetti architectures, or endless hardware budgets? Click to see how I eliminate business owners' biggest anxieties & view full CTO track record."
+                  : '「害怕被黑話唬弄？系統像毛線團疊床架屋、多方串接動不了？開口只會要錢買機器？」點擊立即解鎖 5 大安心解方與完整實績 ➔'}
               </p>
 
               {/* 5 Quick Feature Chips */}
@@ -212,7 +212,7 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
                   {locale === 'en' ? '✓ Speak Business' : '✓ 說人話不唬弄'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Resilient Architecture' : '✓ 搞定複雜防單點'}
+                  {locale === 'en' ? '✓ Untangle Spaghetti Flows' : '✓ 梳理複雜毛線團'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
                   {locale === 'en' ? '✓ Zero Arrogance' : '✓ 尊重業務不自嗨'}
@@ -305,6 +305,8 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
             if (block.kind === 'bullet') {
               const isCommitmentAnswer =
                 block.text.startsWith('說人話') ||
+                block.text.startsWith('精準盤查') ||
+                block.text.startsWith('梳理毛線團') ||
                 block.text.startsWith('搞定龐大') ||
                 block.text.startsWith('消除單點') ||
                 block.text.startsWith('生意優先') ||
@@ -312,6 +314,8 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
                 block.text.startsWith('聽得懂') ||
                 block.text.startsWith('陽光透明') ||
                 block.text.startsWith('Speak Business') ||
+                block.text.startsWith('Precision Audit') ||
+                block.text.startsWith('Untangling') ||
                 block.text.startsWith('Mastering Complex') ||
                 block.text.startsWith('Business Continuity') ||
                 block.text.startsWith('Grounded Respect') ||

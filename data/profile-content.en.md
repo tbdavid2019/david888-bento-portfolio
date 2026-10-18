@@ -7,10 +7,10 @@ Over a decade of enterprise technology leadership and software engineering exper
 ## For Non-Technical Executives: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 
 ### 1. "Engineers speak in jargon, asking for budget, machines, and microservices."
-- Speak Business, Not Jargon: Translate technical choices into ROI and budget impact. Prioritize resolving bottlenecks in existing infrastructure before asking for headcount or expensive cloud expansion.
+- Precision Audit & Open-Source Thrift: Anyone can solve problems by spending more money on machines—that requires zero technical capability. I translate choices into ROI and budget impact, thoroughly auditing architecture to eliminate compute waste and bloated cloud bills. We solve real operational needs with precision resources rather than blind expansion.
 
-### 2. "Always 'paying tech debt'; the system grows so massive and entangled with dozens of integrations that a single failure brings down the entire business."
-- Mastering Complex Architectures, Zero SPOF & Ablation Testing: Many CTOs struggle with massive, sprawling systems and default to demanding multi-year rewrites. Having managed complex enterprise platforms at 100+ team scale, I specialize in untangling complex business dependencies and multi-party integrations (CRM, ERP, payments, logistics). I implement resilient fallback and circuit-breaker patterns to eliminate Single Points of Failure (SPOF) and prevent cascading outages, while applying rigorous ablation testing to pinpoint true bottlenecks without costly, disruptive rewrites.
+### 2. "Always 'paying tech debt'; systems are a tangled ball of yarn layered with bank, promo, and channel integrations that no one can untangle."
+- Untangling the Spaghetti Architecture & Zero SPOF: Average teams default to demanding multi-year rewrites because commercial systems (banking rails, promotion rules, multi-channel APIs) are too deeply intertwined to touch safely. Having led massive commerce and fintech platforms at 100+ team scale, I conduct methodical system audits to untangle complex information flows. I establish bulletproof fallbacks and circuit breakers to eliminate Single Points of Failure (SPOF), and use rigorous ablation analysis to isolate true systemic bottlenecks—refactoring in-flight without interrupting daily business operations.
 
 ### 3. "Arrogant engineers who think business leaders don't understand tech."
 - Grounded Respect for Frontline Operations: Technology exists solely to serve commercial success. Respect the challenges of running a profitable business, listen deeply, and avoid tech self-indulgence.
@@ -33,7 +33,7 @@ Open to full-time technology leadership roles at multinational corporations, lis
 
 ### 3. Technical Due Diligence & System Review
 
-Independent pre-investment or pre-M&A technical reviews for investors and enterprises—delivering a 3-pillar report covering architecture, codebase quality, and security/compliance within 2 weeks; or diagnosing massive system integration friction, Single Point of Failure (SPOF) risks, data synchronization breakdowns, and architectural bottlenecks via methodical ablation testing.
+Independent pre-investment or pre-M&A technical reviews for investors and enterprises—delivering a 3-pillar report covering architecture, codebase quality, and security/compliance within 2 weeks; or conducting comprehensive system audits on tangled information flows, multi-party integrations (banking, promos, logistics), SPOF risks, and unearthing waste and bottlenecks via methodical ablation diagnosis.
 
 ## Experience & Live Systems
 
