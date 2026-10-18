@@ -36,8 +36,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     {
       value: '100+ 人',
       label: isEn
-        ? '100+ Team Scale · Leads Teams & Still Codes'
-        : '能帶大團隊，也能寫 Code',
+        ? '100+ Team Scale · Hands-on & Sets Technical Baselines'
+        : '能帶大團隊，更能親自動手建立技術基準',
     },
     {
       value: '180+ Repos',

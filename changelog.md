@@ -1,5 +1,24 @@
 # Changelog
 
+## [2026-10-18] - Executive Positioning Upgrade: Active Hands-On Baseline Setting & Typography/Line Break Polish
+
+### Executive Positioning Upgrade
+- **Repositioned from Passive "看 Code" to Active Hands-On Baseline Setting (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileCard.tsx`, `scripts/llms-txt.mjs`)**:
+  - **Empowering Hero Headline (H1)**: Upgraded from *「帶過百人團隊，也還會自己看 Code」* to **「帶過百人團隊，更能親自動手處理、為團隊建立技術基準」** (EN: *“Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards”*), accurately reflecting David's authoritative role in diving into the trenches, solving core bottlenecks, and setting standards for engineering teams.
+  - **ProfileCard Metric 1 Label**: Updated metric label from *「能帶大團隊，也能寫 Code」* to **「能帶大團隊，更能親自動手建立技術基準」** (EN: *“100+ Team Scale · Hands-on & Sets Technical Baselines”*).
+  - **Authoritative Intro Narrative**: Replaced passive phrasing (*“看架構、查程式”*) with active, high-leverage execution: *「曾掌舵百人規模工程團隊，主導大型電商系統重構與跨國 CRM/ERP 深度整合；更能親自動手排查核心瓶頸，為工程團隊建立清晰可靠的架構技術基準。能以商業回報與成本效益跟經營層算清每筆預算，也能下場與工程師抽絲剝繭拆解底層架構。不為盲目追逐新技術而徒增複雜度，更不為了省成本而犧牲系統該有的商業品質。」*
+
+### UI/UX & Typography Polish
+- **Resolved Awkward Typography & Line Breaking (`components/ProfileIntroduction.tsx`, `data/profile-content.zh.md`)**:
+  - **Executive Philosophy Callout Card**: Transformed the sub-headline from a flat paragraph into an elevated Callout Card with a 4px saffron-gold border accent (`border-l-4 border-l-[#ffb010] bg-bg-elevated/80 p-4 sm:p-5 rounded-2xl shadow-sm`).
+  - **Eliminated 6-Character Orphan Line**: Separated the 3 rhetorical trap questions from David's punchline with structured formatting and `[text-wrap:pretty]`. The punchline is highlighted in brand accent amber/copper (`text-[#a9471d] dark:text-[#ffb010]`), ensuring clean line wrapping across all screen resolutions without orphan fragments like *“真正的問題。”*.
+  - **Harmonized Phrasal Rhythm & Word Wrap**: Removed restrictive `max-w-[80ch]` that caused artificial truncation. Added `[text-wrap:pretty]` and refined phrasing to prevent mid-word splits across lines (such as *“CRM/ERP 整合”* and *“新技術”*).
+
+### Discovery & LLM Dossiers
+- **Synchronized LLM Standard Files (`scripts/llms-txt.mjs`, `public/llms.txt`, `public/llms-full.txt`)**:
+  - Synchronized updated H1 and executive dossier descriptions across all LLM discovery files.
+  - Verified with `npm test` (36 passing tests) and `npm run build` with static HTML prerendering.
+
 ## [2026-10-18] - Contact Form Mobile RWD Fix & Executive-Grounded Narrative Transformation
 
 ### UI/UX & Responsive Design Fix

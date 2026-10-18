@@ -241,19 +241,39 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
     }
   };
 
+  // Split sub-headline into rhetorical hook and punchline if formatted with dash
+  const subHeadlineParts = content.subHeadline.includes('——')
+    ? content.subHeadline.split('——')
+    : content.subHeadline.includes(' — ')
+      ? content.subHeadline.split(' — ')
+      : null;
+
   return (
     <article
       className="mt-6 border-t border-border pt-5"
       aria-label={locale === 'en' ? 'Professional introduction' : '專業介紹'}
     >
-      {/* Executive Sub-headline */}
-      <p className="m-0 max-w-[80ch] text-base font-bold leading-relaxed text-text-main sm:text-lg">
-        {content.subHeadline}
-      </p>
+      {/* Executive Philosophy Callout Card */}
+      <div className="rounded-2xl border border-border/80 border-l-4 border-l-[#ffb010] bg-bg-elevated/80 p-4 sm:p-5 shadow-sm">
+        {subHeadlineParts ? (
+          <div className="flex flex-col gap-2">
+            <p className="m-0 text-base font-extrabold leading-snug text-text-main sm:text-lg [text-wrap:pretty]">
+              {subHeadlineParts[0].trim()}
+            </p>
+            <p className="m-0 text-[15px] font-bold leading-normal text-[#a9471d] sm:text-base dark:text-[#ffb010] [text-wrap:pretty]">
+              {`—— ${subHeadlineParts[1].trim()}`}
+            </p>
+          </div>
+        ) : (
+          <p className="m-0 text-base font-extrabold leading-relaxed text-text-main sm:text-lg [text-wrap:pretty]">
+            {content.subHeadline}
+          </p>
+        )}
+      </div>
 
       {/* Primary Track Record Summary */}
       {content.body[0] && (
-        <p className="mt-3 max-w-[80ch] text-[15px] leading-relaxed text-text-muted sm:text-base">
+        <p className="mt-3.5 text-[15px] font-medium leading-relaxed text-text-muted sm:text-base [text-wrap:pretty]">
           {content.body[0].text}
         </p>
       )}

@@ -1,11 +1,11 @@
 {
   "zh": {
-    "headline": "帶過百人團隊，也還會自己看 Code",
-    "subHeadline": "系統慢了就加機器？專案做不完就繼續招人？技術債太多，乾脆全部打掉重練？這些方法都不難，難的是找出真正的問題。",
+    "headline": "帶過百人團隊，更能親自動手處理、為團隊建立技術基準",
+    "subHeadline": "系統慢了就加機器？專案延宕就盲目招人？技術債沉重就推倒重來？—— 這些花錢堆人的偷懶做法誰都會，難的是親自下場找出真正的核心痛點。",
     "body": [
       {
         "kind": "paragraph",
-        "text": "十多年跨國技術管理與開發經驗。帶過 100+ 人工程團隊，做過大型電商系統重構、跨國 CRM／ERP 整合，也親自下場看架構、查程式。能跟老闆談成本與生意，也能跟工程師一起把問題拆開來看。不為了用新技術而改系統，也不為了省錢犧牲該有的品質。"
+        "text": "十多年跨國技術管理與研發實戰經驗。曾掌舵百人規模工程團隊，主導大型電商系統重構與跨國 CRM/ERP 深度整合；更能親自動手排查核心瓶頸，為工程團隊建立清晰可靠的架構技術基準。能以商業回報與成本效益跟經營層算清每筆預算，也能下場與工程師抽絲剝繭拆解底層架構。不為盲目追逐新技術而徒增複雜度，更不為了省成本而犧牲系統該有的商業品質。"
       },
       {
         "kind": "sectionTitle",
@@ -61,7 +61,7 @@
       },
       {
         "kind": "paragraph",
-        "text": "系統太複雜、不知道該不該重構，或投資前想知道技術團隊究竟做得如何，可以先從架構、程式碼和技術風險看起；全面盤查疊床架屋的毛線團資訊流與多方渠道串接摩擦，提供客觀診斷與開源節流方案。"
+        "text": "系統太複雜、不知道該不該重構，或投資前想評估技術團隊的真實底層能力，可以先全面盤查架構瓶頸、程式碼品質與深層技術風險；梳理疊床架屋的毛線團資訊流與多方渠道串接摩擦，提供客觀診斷與開源節流方案。"
       },
       {
         "kind": "sectionTitle",
@@ -102,12 +102,12 @@
     ]
   },
   "en": {
-    "headline": "Led teams of 100+ engineers, and still reviews code hands-on",
-    "subHeadline": "Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rewrite everything from scratch. None of these shortcuts are hard—the hard part is identifying the real problem.",
+    "headline": "Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards",
+    "subHeadline": "Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rebuild from scratch. — Anyone can throw money and bodies at a problem. The real challenge is diving into the trenches and isolating the root bottleneck.",
     "body": [
       {
         "kind": "paragraph",
-        "text": "Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and streamlined global CRM/ERP workflows, reducing return processing time from days to minutes. Can talk costs and business ROI with CEOs, and break down code and architecture reviews with engineers. Never adopting new tech for its own sake, and never sacrificing quality just to cut corners."
+        "text": "Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems. Hands-on in diagnosing and resolving core technical bottlenecks to establish rock-solid engineering baselines for the team. Fluent in business ROI with leadership, and capable of diving deep into code and architecture alongside engineers. Never adopting new tech for its own sake, and never sacrificing system reliability to cut corners."
       },
       {
         "kind": "sectionTitle",
@@ -163,7 +163,7 @@
       },
       {
         "kind": "paragraph",
-        "text": "For systems that feel too complex to touch, before deciding whether to refactor, or when evaluating technical health prior to investment. We assess codebases, architecture, and structural risks—providing an objective diagnosis and thrift-oriented optimization plan."
+        "text": "For systems that feel too complex to touch, before deciding whether to refactor, or when evaluating technical health prior to investment. We thoroughly audit system architecture, codebases, and structural risks—untangling messy information flows and multi-channel integration friction, providing an objective diagnosis and thrift-oriented optimization roadmap."
       },
       {
         "kind": "sectionTitle",

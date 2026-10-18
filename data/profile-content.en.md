@@ -1,8 +1,8 @@
-# Led teams of 100+ engineers, and still reviews code hands-on
+# Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards
 
-> Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rewrite everything from scratch. None of these shortcuts are hard—the hard part is identifying the real problem.
+> Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rebuild from scratch. — Anyone can throw money and bodies at a problem. The real challenge is diving into the trenches and isolating the root bottleneck.
 
-Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and streamlined global CRM/ERP workflows, reducing return processing time from days to minutes. Can talk costs and business ROI with CEOs, and break down code and architecture reviews with engineers. Never adopting new tech for its own sake, and never sacrificing quality just to cut corners.
+Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems. Hands-on in diagnosing and resolving core technical bottlenecks to establish rock-solid engineering baselines for the team. Fluent in business ROI with leadership, and capable of diving deep into code and architecture alongside engineers. Never adopting new tech for its own sake, and never sacrificing system reliability to cut corners.
 
 ## For Non-Technical Leaders: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 
@@ -25,7 +25,7 @@ Over a decade of enterprise technology leadership and software engineering exper
 
 ### 1. Technical Due Diligence & System Diagnosis
 
-For systems that feel too complex to touch, before deciding whether to refactor, or when evaluating technical health prior to investment. We assess codebases, architecture, and structural risks—providing an objective diagnosis and thrift-oriented optimization plan.
+For systems that feel too complex to touch, before deciding whether to refactor, or when evaluating technical health prior to investment. We thoroughly audit system architecture, codebases, and structural risks—untangling messy information flows and multi-channel integration friction, providing an objective diagnosis and thrift-oriented optimization roadmap.
 
 ### 2. Annual Technical Advisor (12-Month Retainer)
 

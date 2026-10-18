@@ -1,6 +1,6 @@
 # David Chiang (David888) - CTO & Technical Advisor Portfolio
 
-> 帶過百人團隊，也還會自己看 Code / Led teams of 100+ engineers, and still reviews code hands-on. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
+> 帶過百人團隊，更能親自動手處理、為團隊建立技術基準 / Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
@@ -30,7 +30,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Ways to Work & Executive Advisory
 
-- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 帶過百人團隊，也還會自己看 Code。十多年跨國技術管理與開發經驗，提供系統診斷（Tech Due Diligence）、年度企業技術顧問、全職 CTO / VP of Engineering 與給不諳技術老闆的 5 大安心承諾。
+- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 帶過百人團隊，更能親自動手處理、為團隊建立技術基準。十多年跨國技術管理與研發實戰經驗，提供系統診斷（Tech Due Diligence）、年度企業技術顧問、全職 CTO / VP of Engineering 與給不諳技術老闆的 5 大安心承諾。
 - [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](https://david888.com/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。
 - [CTO & VP of Engineering / 技術長與研發管理](https://david888.com/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。
 - [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](https://david888.com/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。
@@ -113,10 +113,10 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## About David Chiang (Traditional Chinese)
 
-### 帶過百人團隊，也還會自己看 Code
-> 系統慢了就加機器？專案做不完就繼續招人？技術債太多，乾脆全部打掉重練？這些方法都不難，難的是找出真正的問題。
+### 帶過百人團隊，更能親自動手處理、為團隊建立技術基準
+> 系統慢了就加機器？專案延宕就盲目招人？技術債沉重就推倒重來？—— 這些花錢堆人的偷懶做法誰都會，難的是親自下場找出真正的核心痛點。
 
-十多年跨國技術管理與開發經驗。帶過 100+ 人工程團隊，做過大型電商系統重構、跨國 CRM／ERP 整合，也親自下場看架構、查程式。能跟老闆談成本與生意，也能跟工程師一起把問題拆開來看。不為了用新技術而改系統，也不為了省錢犧牲該有的品質。
+十多年跨國技術管理與研發實戰經驗。曾掌舵百人規模工程團隊，主導大型電商系統重構與跨國 CRM/ERP 深度整合；更能親自動手排查核心瓶頸，為工程團隊建立清晰可靠的架構技術基準。能以商業回報與成本效益跟經營層算清每筆預算，也能下場與工程師抽絲剝繭拆解底層架構。不為盲目追逐新技術而徒增複雜度，更不為了省成本而犧牲系統該有的商業品質。
 
 #### 給不諳技術老闆的 5 大安心承諾（老闆最怕的 5 件事，技術主管應該說清楚）
 
@@ -144,7 +144,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 #### 1. 系統診斷／技術盡職調查（Tech Due Diligence）
 
-系統太複雜、不知道該不該重構，或投資前想知道技術團隊究竟做得如何，可以先從架構、程式碼和技術風險看起；全面盤查疊床架屋的毛線團資訊流與多方渠道串接摩擦，提供客觀診斷與開源節流方案。
+系統太複雜、不知道該不該重構，或投資前想評估技術團隊的真實底層能力，可以先全面盤查架構瓶頸、程式碼品質與深層技術風險；梳理疊床架屋的毛線團資訊流與多方渠道串接摩擦，提供客觀診斷與開源節流方案。
 
 #### 2. 年度企業技術顧問（12-Month Retainer）
 
@@ -166,10 +166,10 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## About David Chiang (English)
 
-### Led teams of 100+ engineers, and still reviews code hands-on
-> Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rewrite everything from scratch. None of these shortcuts are hard—the hard part is identifying the real problem.
+### Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards
+> Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rebuild from scratch. — Anyone can throw money and bodies at a problem. The real challenge is diving into the trenches and isolating the root bottleneck.
 
-Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and streamlined global CRM/ERP workflows, reducing return processing time from days to minutes. Can talk costs and business ROI with CEOs, and break down code and architecture reviews with engineers. Never adopting new tech for its own sake, and never sacrificing quality just to cut corners.
+Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems. Hands-on in diagnosing and resolving core technical bottlenecks to establish rock-solid engineering baselines for the team. Fluent in business ROI with leadership, and capable of diving deep into code and architecture alongside engineers. Never adopting new tech for its own sake, and never sacrificing system reliability to cut corners.
 
 #### For Non-Technical Leaders: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 
@@ -197,7 +197,7 @@ Over a decade of enterprise technology leadership and software engineering exper
 
 #### 1. Technical Due Diligence & System Diagnosis
 
-For systems that feel too complex to touch, before deciding whether to refactor, or when evaluating technical health prior to investment. We assess codebases, architecture, and structural risks—providing an objective diagnosis and thrift-oriented optimization plan.
+For systems that feel too complex to touch, before deciding whether to refactor, or when evaluating technical health prior to investment. We thoroughly audit system architecture, codebases, and structural risks—untangling messy information flows and multi-channel integration friction, providing an objective diagnosis and thrift-oriented optimization roadmap.
 
 #### 2. Annual Technical Advisor (12-Month Retainer)
 
