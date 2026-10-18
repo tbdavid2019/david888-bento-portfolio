@@ -59,12 +59,12 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         : '適合：跨國企業、上市櫃公司、零售電商與科技公司',
       deliverables: isEn
         ? [
-            'Manage 70–300 person cross-regional engineering, data, and product delivery teams',
+            'Manage 100+ person cross-regional engineering, data, and product delivery teams',
             'E-commerce platform refactoring and global CRM/ERP system integration',
             'Participate directly in system architecture design, code reviews, and technical decisions',
           ]
         : [
-            '管理 70–300 人跨區工程、資料與產品研發團隊，讓技術投入對齊商業目標',
+            '管理 100+ 人跨區工程、資料與產品研發團隊，讓技術投入對齊商業目標',
             '負責大型電商平台改版、微服務架構升級與跨國 CRM/ERP 營運系統整合',
             '實際參與系統架構設計、程式碼審查與關鍵技術選型',
           ],
@@ -96,16 +96,16 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
     {
       id: 'sap-ecommerce',
       title: isEn
-        ? 'Led 70 Engineers: International Health & Beauty Retailer SAP eCommerce'
-        : '帶領 70 人工程團隊：跨國健康與美容零售商 SAP 電商平台',
+        ? 'Led 100+ Engineers: International Health & Beauty Retailer eCommerce Platform'
+        : '帶領 100+ 人工程團隊：跨國健康與美容零售商大型電商平台',
       metrics: isEn
         ? [
-            { label: 'Team Size', value: '70 Engineers' },
+            { label: 'Team Size', value: '100+ Engineers' },
             { label: 'Architecture', value: 'Microservices' },
             { label: 'Platform', value: 'SAP Commerce' },
           ]
         : [
-            { label: '工程團隊', value: '70 位工程師' },
+            { label: '工程團隊', value: '100+ 位工程師' },
             { label: '系統架構', value: '微服務架構' },
             { label: '核心平台', value: 'SAP Commerce' },
           ],
@@ -115,7 +115,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
       solution: isEn
         ? 'Refactored the platform onto SAP Commerce Cloud with headless PWA, event-driven microservices, and multi-currency checkout.'
         : '帶領團隊改版 SAP Commerce Cloud 電商平台，導入 Headless PWA、微服務架構與多幣別結帳流程。',
-      tags: ['CTO Leadership', 'SAP Commerce Cloud', '70 Engineers', 'E-Commerce'],
+      tags: ['CTO Leadership', 'SAP Commerce Cloud', '100+ Engineers', 'E-Commerce'],
       icon: Building2,
     },
     {
@@ -150,12 +150,12 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         : '投資與併購前「技術盡職調查 (Tech Due Diligence)」',
       metrics: isEn
         ? [
-            { label: 'Leadership Scale', value: '300+ Org Management' },
+            { label: 'Leadership Scale', value: '100+ Team Scale' },
             { label: 'Review Scope', value: 'Arch · Code · Sec' },
             { label: 'Turnaround', value: 'Within 2 Weeks' },
           ]
         : [
-            { label: '最高管理幅度', value: '300+ 人跨部門組織' },
+            { label: '團隊管理規模', value: '100+ 人研發團隊' },
             { label: '評估範圍', value: '架構 · 程式碼 · 資安' },
             { label: '交付時程', value: '2 週內出件' },
           ],
@@ -208,8 +208,8 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Engagement options for companies, investors, and executive search partners—combining e-commerce architecture, cross-system integration, and 70–300 person team management.'
-                : '提供企業經營層、投資人與獵頭夥伴三種合作方式——結合大型電商架構、CRM/ERP 跨系統整合、70–300 人團隊管理與系統開發經驗。'}
+                ? 'Engagement options for companies, investors, and executive search partners—combining e-commerce architecture, cross-system integration, and 100+ person team management.'
+                : '提供企業經營層、投資人與獵頭夥伴三種合作方式——結合大型電商架構、CRM/ERP 跨系統整合、100+ 人團隊管理與系統開發經驗。'}
             </p>
           </div>
           <button
@@ -282,7 +282,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
           <p className="mt-1.5 text-sm font-semibold text-text-muted sm:text-base">
             {isEn
               ? 'Proven delivery across global retail e-commerce, Fortune 500 system integration, and technical due diligence'
-              : '大型零售電商架構、跨國企業 CRM/ERP 整合、70–300+ 人團隊帶領與技術盡職調查'}
+              : '大型零售電商架構、跨國企業 CRM/ERP 整合、100+ 人團隊帶領與技術盡職調查'}
           </p>
         </div>
 

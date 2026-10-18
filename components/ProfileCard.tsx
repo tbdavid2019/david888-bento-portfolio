@@ -32,14 +32,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   const isEn = locale === 'en';
   const metrics = [
     {
-      value: '300+ 人',
+      value: '100+ 人',
       label: isEn
-        ? '300+ Org Scale · Leads Teams & Still Codes'
-        : '能帶大團隊，也熱愛動手寫 Code',
-    },
-    {
-      value: '70 人',
-      label: isEn ? '70 Engineers Led · SAP eCommerce' : '帶領跨國 SAP 電商工程團隊',
+        ? '100+ Team Scale · Leads Teams & Still Codes'
+        : '能帶大團隊，也能寫 Code',
     },
     {
       value: '180+ Repos',
@@ -99,8 +95,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
               </div>
               <div className="mt-1 text-xs font-bold text-text-muted sm:text-sm">
                 {isEn
-                  ? 'Enterprise Architecture · System Integration · Hands-on Tech Leadership'
-                  : '大型電商架構 ｜ 企業跨系統整合 ｜ 具百人規模視野的第一線技術領袖'}
+                  ? 'Enterprise Systems Architecture · Systems Integration · Experienced Hands-on CTO'
+                  : '大型系統架構 ｜ 系統整合 ｜ 實戰經驗豐富技術長'}
               </div>
             </div>
           </div>
@@ -169,8 +165,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           })}
         </div>
 
-        {/* 3 Key Hard Metrics Bar */}
-        <div className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-bg-elevated p-4 sm:grid-cols-3">
+        {/* Key Hard Metrics Bar */}
+        <div className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-bg-elevated p-4 sm:grid-cols-2">
           {metrics.map((metric) => {
             const content = (
               <div key={metric.label} className="min-w-0 border-l-2 border-[#ffb010] pl-3">
