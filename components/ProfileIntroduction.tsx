@@ -281,13 +281,19 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
                 return (
                   <div
                     key={index}
-                    className="mb-2 mt-5 flex items-start gap-2.5 rounded-xl border-l-4 border-[#17324d] bg-bg-surface p-3.5 font-bold text-text-main shadow-sm dark:border-[#ffb010]"
+                    className="mb-2 mt-7 first:mt-3 rounded-2xl border border-amber-900/15 bg-amber-50/70 p-4 sm:p-5 shadow-xs dark:border-amber-400/20 dark:bg-[#131f2e]/90"
                   >
-                    <HelpCircle
-                      size={18}
-                      className="mt-0.5 shrink-0 text-[#a9471d] dark:text-[#ffb010]"
-                    />
-                    <span className="text-sm font-bold sm:text-base leading-snug">{block.text}</span>
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-200/80 text-amber-900 text-xs font-black dark:bg-amber-900/50 dark:text-amber-300">
+                        ?
+                      </span>
+                      <span className="text-xs font-black uppercase tracking-wider text-amber-900/80 dark:text-amber-300/90">
+                        {locale === 'en' ? "Boss's Biggest Anxiety" : '老闆心中的痛點與疑慮'}
+                      </span>
+                    </div>
+                    <p className="m-0 text-sm font-bold leading-relaxed text-[#451a03] sm:text-base dark:text-[#fef3c7]">
+                      {block.text}
+                    </p>
                   </div>
                 );
               }
@@ -322,21 +328,56 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
                 block.text.startsWith('Decades of') ||
                 block.text.startsWith('Public Accountability');
 
+              if (isCommitmentAnswer) {
+                const colonIndex =
+                  block.text.indexOf('：') !== -1
+                    ? block.text.indexOf('：')
+                    : block.text.indexOf(':');
+                const title = colonIndex !== -1 ? block.text.slice(0, colonIndex).trim() : '';
+                const body = colonIndex !== -1 ? block.text.slice(colonIndex + 1).trim() : block.text;
+
+                return (
+                  <div
+                    key={index}
+                    className="mb-7 rounded-2xl border-2 border-emerald-600/35 bg-emerald-50/70 p-5 sm:p-6 shadow-[0_4px_20px_rgba(5,150,105,0.08)] transition-all dark:border-emerald-500/40 dark:bg-emerald-950/25"
+                  >
+                    {/* Solution Header Bar */}
+                    <div className="mb-3 flex flex-wrap items-center justify-between gap-2 border-b border-emerald-600/15 pb-2.5 dark:border-emerald-400/15">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs dark:bg-emerald-500">
+                          <CheckCircle2 size={18} strokeWidth={2.5} />
+                        </span>
+                        <span className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+                          {locale === 'en' ? "David's Solution & Commitment" : 'David 的專家實戰解方'}
+                        </span>
+                      </div>
+                      <span className="rounded-full border border-emerald-600/30 bg-white/90 px-2.5 py-0.5 text-[11px] font-extrabold text-emerald-800 shadow-2xs dark:border-emerald-500/30 dark:bg-emerald-900/50 dark:text-emerald-200">
+                        {locale === 'en' ? 'Core Deliverable' : '核心實戰承諾'}
+                      </span>
+                    </div>
+
+                    {/* Prominent Solution Title */}
+                    {title && (
+                      <h4 className="mb-2 text-base font-black tracking-tight text-emerald-950 sm:text-xl dark:text-emerald-100">
+                        {title}
+                      </h4>
+                    )}
+
+                    {/* Large, High-Readability Solution Body Text */}
+                    <p className="m-0 text-base font-medium leading-[1.8] text-emerald-950/90 sm:text-[1.125rem] dark:text-emerald-50/90">
+                      {body}
+                    </p>
+                  </div>
+                );
+              }
+
               return (
-                <div key={index} className="mb-2.5 flex items-start gap-2.5 text-text-main">
-                  {isCommitmentAnswer ? (
-                    <CheckCircle2
-                      size={18}
-                      className="mt-0.5 shrink-0 text-[#17324d] dark:text-[#ffb010]"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <span
-                      className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-[#a9471d] dark:bg-[#ffb010]"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <p className="m-0 leading-relaxed text-sm sm:text-[15px] font-medium">
+                <div key={index} className="mb-3 flex items-start gap-3 text-text-main">
+                  <span
+                    className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-[#a9471d] dark:bg-[#ffb010]"
+                    aria-hidden="true"
+                  />
+                  <p className="m-0 text-sm font-medium leading-relaxed sm:text-base">
                     {block.text}
                   </p>
                 </div>

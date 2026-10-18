@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-10-18] - UI/UX Hierarchy Redesign: Elevated Hero Solution Cards with Commanding Typography
+
+### UI/UX & Visual Hierarchy Redesign
+- **Redesigned 5 Commitments into Hero Solution Cards (`components/ProfileIntroduction.tsx`)**:
+  - **Identified Core UX Flaw**: Previously, the question (boss's anxiety) received a full-width background box, while David's solution (the actual selling point) was rendered as tiny 14px plain bullet text, making the answer visually recessive and easily overlooked.
+  - **Created Dedicated Emerald Solution Cards**: Encapsulated each solution into an elevated, high-contrast container (`border-2 border-emerald-600/35 bg-emerald-50/70 p-5 sm:p-6 shadow-[0_4px_20px_rgba(5,150,105,0.08)]`).
+  - **Added Header Bar with Verification Badges**: Equipped each card with a header bar featuring `David 的專家實戰解方` (EN: `David's Solution & Commitment`) with an emerald `CheckCircle2` icon (2.5 stroke width) and a pill badge `核心實戰承諾` (EN: `Core Deliverable`).
+  - **Large Bold Solution Title**: Extracted the solution headline and rendered it in prominent, high-contrast typography (`text-base font-black sm:text-xl text-emerald-950 dark:text-emerald-100`).
+  - **High-Legibility Solution Body Copy**: Upgraded solution body text from tiny 14px to a generous, readable scale (`text-base sm:text-[1.125rem] font-medium leading-[1.8] text-emerald-950/90 dark:text-emerald-50/90`), making David's real-world answers the undeniable centerpiece of the executive briefing.
+  - **Refined Question Styling**: Reframed the question box into a warm amber quote card (`? 老闆心中的痛點與疑慮`), creating a natural problem-to-solution narrative arc.
+
 ## [2026-10-18] - Deep Business Architecture Realignment: Full System Audit, Open-Source Thrift & Untangling Spaghetti Flows
 
 ### Architecture & Business Alignment
