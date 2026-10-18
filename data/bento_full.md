@@ -26,7 +26,7 @@ David Chiang
 
 → 社群瀏覽量 單月1.10M+ (threads)
 
-台北/高雄 可合作 104@david888.com
+台北/高雄 可合作
 
 [DAVID TB Follow](https://github.com/tbdavid2019)
 

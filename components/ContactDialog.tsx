@@ -243,8 +243,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                   </h3>
                   <p className="text-sm text-text-muted mt-0.5">
                     {isZh
-                      ? '通知已發送至 104@david888.com，David 會盡速回覆。'
-                      : 'Delivered to 104@david888.com. David will reply shortly.'}
+                      ? '訊息已送達 David 個人信箱，將盡速與您聯繫。'
+                      : "Delivered directly to David's inbox. You will receive a response shortly."}
                   </p>
                 </div>
               </div>

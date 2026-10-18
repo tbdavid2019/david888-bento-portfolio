@@ -5,7 +5,7 @@ import categoryConfig from '../data/bento-categories.json' with { type: 'json' }
 
 const mockProfile = {
   name: 'David Chiang',
-  contactLine: '104@david888.com',
+  contactLine: '台北/高雄 可合作',
 };
 
 const mockContent = {
@@ -80,7 +80,9 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
     result,
     /- \[David888 Blog \(David888 Blog\)\]\(https:\/\/blog\.david888\.com\/\): 技術文章與系統架構思考/,
   );
-  assert.match(result, /- Contact Email: 104@david888\.com/);
+  assert.match(result, /- Contact: Verified web contact form at https:\/\/david888\.com\//);
+  assert.doesNotMatch(result, /Contact Email:/);
+  assert.doesNotMatch(result, /104@david888\.com/);
   assert.match(result, /- Executive Advisory & CTO Dossier: https:\/\/david888\.com\/executive/);
 });
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-10-18] - Complete Privacy Protection: Zero Raw Email Exposure & Enforced Verified Contact Form
+
+### Security & Privacy Protection
+- **Zero Raw Email Exposure Across Codebase & Public Discovery Files (`scripts/llms-txt.mjs`, `public/llms.txt`, `public/llms-full.txt`, `data/bento-profile.json`, `components/ContactDialog.tsx`, `test/llms-txt.test.mjs`, `data/bento-raw.md`, `data/bento_full.md`)**:
+  - **Eliminated Raw Email in `llms.txt` & `llms-full.txt`**: Replaced exposed raw email with verified web contact form entry: `- Contact: Verified web contact form at https://david888.com/ (anti-spam protected, direct dispatch to David)`. Prevents automated web crawlers and LLM harvesters from scraping the email.
+  - **Reset Profile Email**: Cleared `email: ""` in `data/bento-profile.json` so no `mailto:` links are exposed on public profile elements.
+  - **Sanitized Contact Dialog Confirmation**: Replaced raw email address display on the submission success receipt card with `訊息已送達 David 個人信箱，將盡速與您聯繫。` (EN: `Delivered directly to David's inbox. You will receive a response shortly.`), completely safeguarding the recipient address from client-side inspection.
+  - **Cleaned Data Markdown Files**: Removed raw email from `data/bento-raw.md` and `data/bento_full.md`.
+  - **Updated Test Suite**: Added negative assertions in `test/llms-txt.test.mjs` verifying `Contact Email:` and raw email addresses never appear in `llms.txt`.
+
 ## [2026-10-18] - llms.txt Full Taxonomy Alignment & Eradication of "雙 11" Narrative
 
 ### Fixed & Enhanced
