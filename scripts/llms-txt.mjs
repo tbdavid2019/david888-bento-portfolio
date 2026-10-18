@@ -60,7 +60,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
       lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
       lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
       lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。`);
-      lines.push(`- [5 Executive Decision Commitments of a Top CTO / 頂級技術長的 5 大決策承諾](${siteOrigin}/commitments): 戰略判斷（商業導向拒絕盲目追新）、商業回報（算清 ROI 嚴控成本與冗餘浪費）、組織領導（百人團隊與跨國 Vendor 帶得動）、風險承擔（關鍵時刻敢負全責掌控大局消除 SPOF）、執行落地（穿透底層負責把決策做出來）。`);
+      lines.push(`- [A CTO's 5 Commitments / 一個 CTO 的 5 大承諾](${siteOrigin}/commitments): 戰略判斷（商業導向拒絕盲目追新）、商業回報（算清 ROI 嚴控成本與冗餘浪費）、組織領導（百人團隊與跨國 Vendor 帶得動）、風險承擔（關鍵時刻敢負全責掌控大局消除 SPOF）、執行落地（穿透底層負責把決策做出來）。`);
       lines.push('');
     }
   }
@@ -72,7 +72,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
     lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
     lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。`);
-    lines.push(`- [5 Executive Decision Commitments of a Top CTO / 頂級技術長的 5 大決策承諾](${siteOrigin}/commitments): 戰略判斷（商業導向拒絕盲目追新）、商業回報（算清 ROI 嚴控成本與冗餘浪費）、組織領導（百人團隊與跨國 Vendor 帶得動）、風險承擔（關鍵時刻敢負全責掌控大局消除 SPOF）、執行落地（穿透底層負責把決策做出來）。`);
+    lines.push(`- [A CTO's 5 Commitments / 一個 CTO 的 5 大承諾](${siteOrigin}/commitments): 戰略判斷（商業導向拒絕盲目追新）、商業回報（算清 ROI 嚴控成本與冗餘浪費）、組織領導（百人團隊與跨國 Vendor 帶得動）、風險承擔（關鍵時刻敢負全責掌控大局消除 SPOF）、執行落地（穿透底層負責把決策做出來）。`);
     lines.push('');
   }
 

@@ -1,6 +1,26 @@
 # Changelog
 
-## [2026-10-18] - Executive Elevation: CTO 5 Decision Commitments & Grounded Enterprise Experience
+## [2026-10-18] - Executive Polish: "一個 CTO 的 5 大承諾" & Scroll Viewport Auto-Expansion
+
+### Title Refinement to Executive Directness (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileIntroduction.tsx`, `scripts/llms-txt.mjs`)
+- **Refined Title to "一個 CTO 的 5 大承諾"**:
+  - Simplified and sharpened the centerpiece title:
+    - **ZH**: **「一個 CTO 的 5 大承諾（經營層與董事會最關心的 5 大命題）」**
+    - **EN**: **"A CTO's 5 Commitments (Addressing the 5 Imperatives of Boards & CEOs)"**
+  - Updated SVG medallion ribbon banner to **「5 大承諾」** (*COMMITMENTS* in EN).
+  - Updated badge tags to **「經營層與董事會必看 · 零技術黑話」** and **「直球對齊經營層 5 大核心命題」**.
+
+### Viewport Scroll Auto-Expansion (`components/ProfileIntroduction.tsx`)
+- **Auto-Unfold on Viewport Scroll (No Manual Click Required)**:
+  - Implemented automatic expansion via `IntersectionObserver` coupled with scroll detection: when the user scrolls down through the profile, the `#commitments` block automatically unfolds and reveals the 5 executive commitments.
+  - Recognizes that C-level readers, founders, and recruiters scroll rather than click through nested accordions.
+  - Maintains full manual toggle capability: if the user explicitly clicks "收起 5 大承諾", the system remembers the action via `hasAutoExpandedRef` and will not forcefully re-expand on subtle scroll movements.
+  - Cleaned up accordion button layout: removed redundant text arrow glyphs (`▾`/`▴`) to prevent duplicate chevrons alongside the animated Lucide `ChevronDown` icon.
+  - Added dedicated card styling for each imperative: `★ 經營層與董事會核心命題` paired with `CTO 決策與落地承諾 · 核心實戰交付`.
+
+### Discovery & SSG Prerendering Synchronization
+- Synchronized `data/profile-content.json`, `public/llms.txt`, `public/llms-full.txt`, and prerendered SSG output across `/commitments` and `/promises`.
+
 
 ### High-Salaried (3M+) CTO Decision Commitments (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileIntroduction.tsx`, `scripts/llms-txt.mjs`)
 - **Upgraded 5 Commitments from Operational Friction to Executive Decision Mandates**:

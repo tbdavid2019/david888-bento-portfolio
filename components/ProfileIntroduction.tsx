@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Check,
   CheckCircle2,
@@ -35,7 +35,7 @@ const ExecutiveCommitmentSeal: React.FC<{ locale: Locale }> = ({ locale }) => {
         className="relative h-20 w-20 sm:h-24 sm:w-24 drop-shadow-[0_4px_12px_rgba(245,158,11,0.38)] transition-transform duration-300 group-hover:scale-105"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        aria-label={locale === 'en' ? '5 Executive Commitments Seal' : '5 大安心承諾信賴標章'}
+        aria-label={locale === 'en' ? "A CTO's 5 Commitments Seal" : '一個 CTO 的 5 大承諾標章'}
       >
         <defs>
           <linearGradient id="sealGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -144,7 +144,7 @@ const ExecutiveCommitmentSeal: React.FC<{ locale: Locale }> = ({ locale }) => {
           fill="#0B1A29"
           letterSpacing={locale === 'en' ? '0.8' : '2'}
         >
-          {locale === 'en' ? 'PROMISES' : '安心承諾'}
+          {locale === 'en' ? 'COMMITMENTS' : '5 大承諾'}
         </text>
       </svg>
     </div>
@@ -173,6 +173,56 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
   const [expanded, setExpanded] = useState<boolean>(checkIsDirectCommitments);
   const [copied, setCopied] = useState<boolean>(false);
+  const commitmentsRef = useRef<HTMLElement>(null);
+  const hasAutoExpandedRef = useRef<boolean>(checkIsDirectCommitments());
+
+  // Auto-expand on scroll: automatically reveals the 5 commitments as the visitor scrolls down
+  useEffect(() => {
+    if (expanded) return;
+
+    const expandSection = () => {
+      if (hasAutoExpandedRef.current) return;
+      hasAutoExpandedRef.current = true;
+      setExpanded(true);
+    };
+
+    let hasScrolled = false;
+
+    const checkAndExpand = () => {
+      const el = commitmentsRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        expandSection();
+      }
+    };
+
+    const handleScroll = () => {
+      hasScrolled = true;
+      checkAndExpand();
+    };
+
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== 'undefined' && commitmentsRef.current) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting && (hasScrolled || window.scrollY > 10)) {
+            expandSection();
+          }
+        },
+        { threshold: 0.05, rootMargin: '0px 0px 50px 0px' }
+      );
+      observer.observe(commitmentsRef.current);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [expanded]);
 
   useEffect(() => {
     const handleUrlOrCategoryCheck = () => {
@@ -258,8 +308,8 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
         </p>
       )}
 
-      {/* Eye-Catching Centerpiece: 給不諳技術老闆的 5 大安心承諾 (Big Logo, Direct Route & 1-Click Share) */}
-      <section id="commitments" className="mt-5 scroll-mt-24">
+      {/* Eye-Catching Centerpiece: 一個 CTO 的 5 大承諾 (Big Logo, Direct Route & 1-Click Share) */}
+      <section id="commitments" ref={commitmentsRef} className="mt-5 scroll-mt-24">
         <div
           role="button"
           tabIndex={0}
@@ -288,12 +338,12 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                   <Sparkles size={12} className="shrink-0" />
                   <span>
                     {locale === 'en'
-                      ? 'FOR EXECUTIVES & FOUNDERS · ZERO JARGON'
-                      : '老闆與主管必看 · 零技術黑話'}
+                      ? 'FOR EXECUTIVES & BOARDS · ZERO JARGON'
+                      : '經營層與董事會必看 · 零技術黑話'}
                   </span>
                 </span>
                 <span className="text-xs font-bold text-[#8a6b10] dark:text-[#fcd34d]">
-                  {locale === 'en' ? 'CTO Decision Commitments' : '直球對齊經營層 5 大核心命題'}
+                  {locale === 'en' ? "A CTO's 5 Commitments" : '直球對齊經營層 5 大核心命題'}
                 </span>
                 <span className="rounded-md border border-[#17324d]/20 bg-[#17324d]/10 px-1.5 py-0.5 font-mono text-[10px] font-extrabold text-[#17324d] dark:border-[#ffb010]/30 dark:bg-[#ffb010]/15 dark:text-[#fcd34d]">
                   /commitments
@@ -302,14 +352,14 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
               <h3 className="mt-1.5 text-lg font-black tracking-tight text-[#17324d] sm:text-2xl dark:text-[#fff9e8]">
                 {locale === 'en'
-                  ? '5 Executive Decision Commitments of a Top CTO'
-                  : '頂級技術長（CTO）的「5 大決策承諾」'}
+                  ? "A CTO's 5 Commitments (Addressing the 5 Imperatives of Boards & CEOs)"
+                  : '一個 CTO 的 5 大承諾（經營層與董事會最關心的 5 大命題）'}
               </h3>
 
               <p className="mt-1 text-xs font-semibold leading-relaxed text-[#5c4a30] sm:text-sm dark:text-[#d3e3f5]">
                 {locale === 'en'
-                  ? 'Strategic judgment, organizational leadership, business ROI, risk ownership, and grounded delivery. Click to reveal the 5 CTO Decision Commitments ➔'
-                  : '戰略判斷、商業回報、組織領導、風險承擔與執行落地。點擊立即解鎖 5 大決策承諾 ➔'}
+                  ? 'Strategic judgment, business ROI, organizational leadership, risk ownership, and grounded delivery. Revealed below ➔'
+                  : '戰略判斷、商業回報、組織領導、風險承擔與執行落地。向下滾動自動展開 ➔'}
               </p>
 
               {/* 5 Quick Feature Chips */}
@@ -377,11 +427,11 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                 <span>
                   {expanded
                     ? locale === 'en'
-                      ? 'Collapse ▴'
-                      : '收起 5 大承諾 ▴'
+                      ? 'Collapse'
+                      : '收起 5 大承諾'
                     : locale === 'en'
-                      ? 'Reveal 5 Commitments ▾'
-                      : '展開 5 大安心解方 ▾'}
+                      ? 'Reveal 5 Commitments'
+                      : '展開 5 大承諾'}
                 </span>
                 <ChevronDown
                   size={16}
@@ -409,20 +459,28 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
       {/* Expanded Track Record & 5 Commitments Details */}
       {expanded && (
-        <div className="mt-5 space-y-4 rounded-2xl border-2 border-border bg-bg-elevated p-5 sm:p-7 text-[15px] leading-7 text-text-muted shadow-md">
+        <div
+          id="commitments-details"
+          className="mt-5 space-y-4 rounded-2xl border-2 border-border bg-bg-elevated p-5 sm:p-7 text-[15px] leading-7 text-text-muted shadow-md transition-all duration-300"
+        >
           {content.body.slice(1).map((block, index) => {
             if (block.kind === 'sectionTitle') {
               const isExecutiveSection =
+                block.text.includes('5 大承諾') ||
+                block.text.includes('5 Commitments') ||
                 block.text.includes('給企業經營層') ||
                 block.text.includes('給不諳技術的老闆') ||
                 block.text.includes('給不諳技術老闆') ||
                 block.text.includes('Non-Technical Executives') ||
                 block.text.includes('5 Core Commitments');
 
+              const isCommitmentHeader = /^\d+\.\s*[【\[]/.test(block.text);
+
               const isQuestion =
-                block.text.includes('「') ||
-                (block.text.startsWith('"') && block.text.includes('"')) ||
-                /^\d+\.\s*[“"「]/.test(block.text);
+                !isCommitmentHeader &&
+                (block.text.includes('「') ||
+                  (block.text.startsWith('"') && block.text.includes('"')) ||
+                  /^\d+\.\s*[“"「]/.test(block.text));
 
               if (isExecutiveSection) {
                 return (
@@ -432,6 +490,27 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                   >
                     <ShieldCheck className="h-6 w-6 shrink-0 text-[#a9471d] dark:text-[#ffb010]" />
                     <h3 className="m-0 text-base font-black sm:text-xl">{block.text}</h3>
+                  </div>
+                );
+              }
+
+              if (isCommitmentHeader) {
+                return (
+                  <div
+                    key={index}
+                    className="mb-2 mt-7 first:mt-3 rounded-2xl border border-[#17324d]/20 bg-[#17324d]/5 p-4 sm:p-5 shadow-xs dark:border-[#ffb010]/25 dark:bg-[#17324d]/30"
+                  >
+                    <div className="mb-1.5 flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#17324d] text-white text-xs font-black dark:bg-[#ffb010] dark:text-[#0b1a29]">
+                        ★
+                      </span>
+                      <span className="text-xs font-black uppercase tracking-wider text-[#17324d] dark:text-[#ffb010]">
+                        {locale === 'en' ? 'Board & Executive Imperative' : '經營層與董事會核心命題'}
+                      </span>
+                    </div>
+                    <h3 className="m-0 text-base font-black leading-snug text-[#0f2338] sm:text-xl dark:text-[#fff9e8]">
+                      {block.text}
+                    </h3>
                   </div>
                 );
               }
@@ -510,11 +589,11 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                           <CheckCircle2 size={18} strokeWidth={2.5} />
                         </span>
                         <span className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
-                          {locale === 'en' ? "David's Solution & Commitment" : 'David 的專家實戰解方'}
+                          {locale === 'en' ? 'CTO Commitment & Delivery' : 'CTO 決策與落地承諾'}
                         </span>
                       </div>
                       <span className="rounded-full border border-emerald-600/30 bg-white/90 px-2.5 py-0.5 text-[11px] font-extrabold text-emerald-800 shadow-2xs dark:border-emerald-500/30 dark:bg-emerald-900/50 dark:text-emerald-200">
-                        {locale === 'en' ? 'Core Deliverable' : '核心實戰承諾'}
+                        {locale === 'en' ? 'Core Deliverable' : '核心實戰交付'}
                       </span>
                     </div>
 

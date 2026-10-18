@@ -4,7 +4,7 @@
 
 What enterprises truly lack is a leader who combines large-scale engineering organization management with deep technical mastery—able to make the right strategic calls during critical technology decisions, establish technical baselines, and take full ownership of execution. With over a decade of multinational leadership, I have led multinational commerce platform engineering and vendor teams managing core operations and architectural resilience, as well as integrated multinational consumer electronics CRM/ERP data flows to eliminate organizational silos and accelerate operational delivery.
 
-## 5 Executive Decision Commitments of a Top CTO (Addressing the 5 Imperatives of Boards & CEOs)
+## A CTO's 5 Commitments (Addressing the 5 Imperatives of Boards & CEOs)
 
 ### 1. [Strategic Judgment] Align Technology Investments with Business Growth, Never Stray
 - Business-Driven, No Trend-Chasing: Choosing technology simply because it is fashionable—wasting tens of millions only to scrap it two years later—is the single biggest drag on business expansion. I anchor technical roadmaps strictly to 3–5 year business models, ensuring every foundational investment genuinely enables multi-year scale.
