@@ -71,6 +71,7 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
 
   // Spec check 3: Contains H2 sections for category file lists
   assert.match(result, /## Latest Updates/);
+  assert.match(result, /## Ways to Work & Executive Advisory/);
   assert.match(result, /## Productivity Apps, Tools & Interactive Visuals/);
   assert.match(result, /## Finance, Quant & Metaphysics Systems/);
 
@@ -79,6 +80,8 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
     result,
     /- \[David888 Blog \(David888 Blog\)\]\(https:\/\/blog\.david888\.com\/\): 技術文章與系統架構思考/,
   );
+  assert.match(result, /- Contact Email: 104@david888\.com/);
+  assert.match(result, /- Executive Advisory & CTO Dossier: https:\/\/david888\.com\/executive/);
 });
 
 test('buildLlmsFullTxt appends full profile and item catalog details', () => {

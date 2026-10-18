@@ -9,8 +9,8 @@ Over a decade of enterprise technology leadership and software engineering exper
 ### 1. "Engineers speak in jargon, asking for budget, machines, and microservices."
 - Speak Business, Not Jargon: Translate technical choices into ROI and budget impact. Prioritize resolving bottlenecks in existing infrastructure before asking for headcount or expensive cloud expansion.
 
-### 2. "Always 'paying tech debt'; systems still crash during peak sales events."
-- Business Continuity First: System refactoring must never disrupt daily revenue. Conduct rigorous stress testing and failover pre-plans well before major seasonal promotions to safeguard every transaction.
+### 2. "Always 'paying tech debt'; systems still crash during mission-critical business peaks."
+- Business Continuity & High Availability: Technical refactoring must never disrupt core operations. Architect proactive failovers, graceful degradation, and load-shedding to guarantee enterprise stability and zero downtime during critical business moments.
 
 ### 3. "Arrogant engineers who think business leaders don't understand tech."
 - Grounded Respect for Frontline Operations: Technology exists solely to serve commercial success. Respect the challenges of running a profitable business, listen deeply, and avoid tech self-indulgence.

@@ -1,5 +1,21 @@
 # Changelog
 
+## [2026-10-18] - llms.txt Full Taxonomy Alignment & Eradication of "雙 11" Narrative
+
+### Fixed & Enhanced
+- **Full `llms.txt` and `llms-full.txt` Streamlining & Bug Fixes (`scripts/llms-txt.mjs`, `public/llms.txt`, `public/llms-full.txt`, `test/llms-txt.test.mjs`, `data/bento-profile.json`)**:
+  - **Fixed Contact Email Bug**: Corrected the `- Contact Email:` field in `llms.txt` which mistakenly displayed the service region (`台北/高雄 可合作`) instead of the official contact email (`104@david888.com`). Added an explicit `- Location / Availability:` line displaying `台北/高雄 可合作 (Taipei / Kaohsiung / Remote collaboration)`. Set `"email": "104@david888.com"` in `data/bento-profile.json`.
+  - **Added `## Ways to Work & Executive Advisory` Section**: Added the missing 2nd category (`合作方式`) directly into `llms.txt` linking to `/executive`, outlining the 3 engagement models (12-Month Advisory Retainer, CTO/VP of Engineering, Tech Due Diligence) and the 5 Commitments for Non-Technical Leaders.
+  - **Full 5-Category Alignment**: `llms.txt` now precisely matches the 5 streamlined portfolio categories: `Latest Updates (最新動態)`, `Ways to Work & Executive Advisory (合作方式)`, `Finance, Quant & Metaphysics Systems (財經命理)`, `Skills & MCP Tools for LLMs & AI Agents (Skills)`, and `Productivity Apps, Tools & Interactive Visuals (其他應用)`.
+  - **Updated Test Suite**: Added assertions in `test/llms-txt.test.mjs` ensuring `## Ways to Work & Executive Advisory`, `Contact Email: 104@david888.com`, and `/executive` links are strictly validated.
+- **Complete Eradication of "雙 11" & Ecommerce-Centric Framing Across Codebase (`components/ProfileIntroduction.tsx`, `data/profile-content.zh.md`, `data/profile-content.en.md`, `data/profile-content.json`)**:
+  - **Eradicated "雙 11" and "大檔期"**: Completely eliminated all mentions of "雙 11" and seasonal ecommerce sale campaigns from the hero banner chips, commitment text, profile content, and generated discovery files.
+  - **Reframed as Mission-Critical Business Continuity & High Availability**:
+    - Chip: Replaced `✓ 雙 11 大檔不當機` with **`✓ 關鍵營運不當機`** (EN: `✓ Business Continuity`).
+    - Banner Prompt: Replaced `擔心大檔期當機？` with **`擔心關鍵時刻系統當機？`** (EN: `Afraid of critical system outages?`).
+    - Commitment 2: Updated to **`「問他何時上線，永遠說在還技術債；一到業務高峰或關鍵活動，系統照樣當機給你看。」`** with solution **`生意優先、營運不中斷：技術重構絕不能影響日常做生意。提前做好架構瓶頸排查、分流降級與容災備援方案，以「系統高可用、守住核心營運」為最高底線。`** (EN: *"Business Continuity & High Availability: Technical refactoring must never disrupt core operations. Architect proactive failovers, graceful degradation, and load-shedding to guarantee enterprise stability and zero downtime during critical business moments."*).
+    - Due Diligence: Replaced `促銷檔期流量瓶頸` with **`業務高峰流量瓶頸`** (mission-critical business peaks and operational bottlenecks).
+
 ## [2026-10-18] - Occam's Razor Metric Streamlining: 100+ Team Scale & Zero Headcount Redundancy
 
 ### Enhanced & Streamlined
