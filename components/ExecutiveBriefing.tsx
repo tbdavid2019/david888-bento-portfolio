@@ -82,12 +82,12 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         ? [
             'Pre-investment codebase review, scalability assessment & security configuration check (approx. 1–2 weeks)',
             'Evaluate engineering team execution, technical debt, and realistic maintenance costs',
-            'System diagnosis and recovery plans for peak-traffic bottlenecks or data sync issues',
+            'Methodical ablation diagnosis: unearth true bottlenecks, eliminate Single Points of Failure (SPOF), and resolve cross-system sync breakdowns',
           ]
         : [
             '投資與併購前第三方評估：依標的資料完整度，約 1–2 週交付系統架構、程式碼品質與資安設定檢視報告（屬技術評估，非法律意見）',
             '團隊交付與維護成本評估：協助投資人釐清實際技術狀況、技術債與後續維護成本',
-            '系統瓶頸診斷：針對促銷檔期流量異常、資料庫效能瓶頸或跨系統資料不同步提出改善方案',
+            '系統消融診斷：針對龐大架構多方串接摩擦、單點故障 (SPOF) 風險、資料庫效能瓶頸或跨系統資料不同步進行消融試驗與架構改善',
           ],
     },
   ];

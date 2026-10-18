@@ -9,8 +9,8 @@ Over a decade of enterprise technology leadership and software engineering exper
 ### 1. "Engineers speak in jargon, asking for budget, machines, and microservices."
 - Speak Business, Not Jargon: Translate technical choices into ROI and budget impact. Prioritize resolving bottlenecks in existing infrastructure before asking for headcount or expensive cloud expansion.
 
-### 2. "Always 'paying tech debt'; systems still crash during mission-critical business peaks."
-- Business Continuity & High Availability: Technical refactoring must never disrupt core operations. Architect proactive failovers, graceful degradation, and load-shedding to guarantee enterprise stability and zero downtime during critical business moments.
+### 2. "Always 'paying tech debt'; the system grows so massive and entangled with dozens of integrations that a single failure brings down the entire business."
+- Mastering Complex Architectures, Zero SPOF & Ablation Testing: Many CTOs struggle with massive, sprawling systems and default to demanding multi-year rewrites. Having managed complex enterprise platforms at 100+ team scale, I specialize in untangling complex business dependencies and multi-party integrations (CRM, ERP, payments, logistics). I implement resilient fallback and circuit-breaker patterns to eliminate Single Points of Failure (SPOF) and prevent cascading outages, while applying rigorous ablation testing to pinpoint true bottlenecks without costly, disruptive rewrites.
 
 ### 3. "Arrogant engineers who think business leaders don't understand tech."
 - Grounded Respect for Frontline Operations: Technology exists solely to serve commercial success. Respect the challenges of running a profitable business, listen deeply, and avoid tech self-indulgence.
@@ -33,7 +33,7 @@ Open to full-time technology leadership roles at multinational corporations, lis
 
 ### 3. Technical Due Diligence & System Review
 
-Independent pre-investment or pre-M&A technical reviews for investors and companies—delivering a 3-pillar report covering architecture, codebase quality, and security/compliance within 2 weeks; or diagnosing traffic bottlenecks and data sync issues.
+Independent pre-investment or pre-M&A technical reviews for investors and enterprises—delivering a 3-pillar report covering architecture, codebase quality, and security/compliance within 2 weeks; or diagnosing massive system integration friction, Single Point of Failure (SPOF) risks, data synchronization breakdowns, and architectural bottlenecks via methodical ablation testing.
 
 ## Experience & Live Systems
 

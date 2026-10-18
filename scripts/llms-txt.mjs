@@ -20,8 +20,8 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     '',
     '## Core Expertise & Advisory Services',
     '',
-    '- Technical Due Diligence & Architecture Audits: Independent technical evaluation for investors, boards, and founders.',
-    '- Legacy System Refactoring & High Availability: Resolving system bottlenecks, data fragmentation, and mission-critical scalability issues.',
+    '- Technical Due Diligence & Architecture Audits: Independent technical evaluation for investors, boards, and founders, diagnosing complex integrations, single points of failure (SPOF), and data synchronization bottlenecks.',
+    '- Complex Enterprise Architecture & Fault Tolerance: Untangling sprawling systems, implementing resilient fallback patterns, eliminating single points of failure (SPOF), and pinpointing root causes with methodical ablation analysis.',
     '- AI Applications & Workflow Automation: Building customized LLM tools, agentic systems, Chrome extensions, and bot workflows.',
     '',
   ];
@@ -58,8 +58,8 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
       lines.push(`- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](${siteOrigin}/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。提供年度企業技術顧問、全職 CTO / VP of Engineering、技術盡職調查（Tech Due Diligence）與給不諳技術老闆的 5 大安心承諾。`);
       lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
       lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
-      lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或診斷業務高峰流量瓶頸與跨系統同步問題。`);
-      lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/executive): 說人話不唬弄、業務高峰營運不中斷、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
+      lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或診斷龐大系統串接複雜度、單點故障風險、資料同步斷點與架構瓶頸，提供精準消融診斷。`);
+      lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/executive): 說人話不唬弄、搞定複雜防單點（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
       lines.push('');
     }
   }
@@ -70,8 +70,8 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     lines.push(`- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](${siteOrigin}/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。提供年度企業技術顧問、全職 CTO / VP of Engineering、技術盡職調查（Tech Due Diligence）與給不諳技術老闆的 5 大安心承諾。`);
     lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
     lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
-    lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或診斷業務高峰流量瓶頸與跨系統同步問題。`);
-    lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/executive): 說人話不唬弄、業務高峰營運不中斷、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
+    lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或診斷龐大系統串接複雜度、單點故障風險、資料同步斷點與架構瓶頸，提供精準消融診斷。`);
+    lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/executive): 說人話不唬弄、搞定複雜防單點（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
     lines.push('');
   }
 
