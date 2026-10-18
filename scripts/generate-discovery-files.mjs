@@ -146,6 +146,8 @@ await generateLlmsFiles({ projectRoot, siteOrigin });
 const categoryConfigPath = path.join(projectRoot, 'data', 'bento-categories.json');
 const categoryConfig = JSON.parse(await fs.readFile(categoryConfigPath, 'utf8'));
 const canonicalCategoryRoutes = [
+  '/commitments',
+  '/promises',
   '/executive',
   '/advisory',
   '/flagships',

@@ -46,11 +46,37 @@ test('supports Canonical Routes and highlights the 5 flagship production domains
   const flagshipSource = fs.readFileSync(new URL('../components/FlagshipShowcase.tsx', import.meta.url), 'utf8');
 
   assert.match(appSource, /VALID_CANONICAL_ROUTES/);
+  assert.match(appSource, /'commitments'/);
+  assert.match(appSource, /'promises'/);
   assert.match(appSource, /window\.history\.pushState/);
   assert.match(flagshipSource, /https:\/\/bot\.david888\.com\//);
   assert.match(flagshipSource, /https:\/\/stockdata\.david888\.com\//);
   assert.match(flagshipSource, /https:\/\/news2\.david888\.com\//);
   assert.match(flagshipSource, /https:\/\/podcast\.david888\.com\//);
   assert.match(flagshipSource, /https:\/\/qi\.david888\.com\//);
+});
+
+test('provides direct canonical route /commitments, auto-expansion, and 1-click sharing', () => {
+  const appSource = fs.readFileSync(new URL('../App.tsx', import.meta.url), 'utf8');
+  const profileIntroSource = fs.readFileSync(new URL('../components/ProfileIntroduction.tsx', import.meta.url), 'utf8');
+  const prerenderSource = fs.readFileSync(new URL('../scripts/prerender.mjs', import.meta.url), 'utf8');
+  const discoverySource = fs.readFileSync(new URL('../scripts/generate-discovery-files.mjs', import.meta.url), 'utf8');
+
+  // Route registration & alias mapping
+  assert.match(appSource, /VALID_CANONICAL_ROUTES.*commitments/s);
+  assert.match(appSource, /cleaned === 'promises'\) return 'commitments'/);
+
+  // ProfileIntroduction deep link target, auto-expand, scroll, and 1-click copy
+  assert.match(profileIntroSource, /id="commitments"/);
+  assert.match(profileIntroSource, /scrollIntoView/);
+  assert.match(profileIntroSource, /handleCopyLink/);
+  assert.match(profileIntroSource, /複製直達連結/);
+  assert.match(profileIntroSource, /\/commitments/);
+
+  // Prerender and sitemap coverage
+  assert.match(prerenderSource, /'commitments'/);
+  assert.match(prerenderSource, /'promises'/);
+  assert.match(discoverySource, /'\/commitments'/);
+  assert.match(discoverySource, /'\/promises'/);
 });
 

@@ -19,12 +19,14 @@ import type { Locale } from '../types';
 
 interface ProfileCardProps {
   locale?: Locale;
+  activeCategoryId?: string;
   onContact?: () => void;
   onSelectRoute?: (routeId: string) => void;
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({
   locale = 'zh',
+  activeCategoryId,
   onContact,
   onSelectRoute,
 }) => {
@@ -197,7 +199,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           })}
         </div>
 
-        <ProfileIntroduction locale={locale} />
+        <ProfileIntroduction locale={locale} activeCategoryId={activeCategoryId} />
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-xs font-bold text-text-muted sm:text-sm">
           <div className="flex items-center gap-2">

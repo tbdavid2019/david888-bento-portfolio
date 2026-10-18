@@ -13,6 +13,8 @@ const AdminConsole = lazy(() =>
 );
 
 export const VALID_CANONICAL_ROUTES = new Set([
+  'commitments',
+  'promises',
   'executive',
   'advisory',
   'flagships',
@@ -26,6 +28,7 @@ export const VALID_CANONICAL_ROUTES = new Set([
 
 const normalizeRouteAlias = (raw: string): string => {
   const cleaned = raw.replace(/^\/+|\/+$/g, '').toLowerCase();
+  if (cleaned === 'promises') return 'commitments';
   if (cleaned === 'advisory') return 'executive';
   if (cleaned === 'metaphysics') return 'finance';
   if (cleaned === 'experiments') return 'products';
@@ -105,6 +108,7 @@ export default function App() {
   useEffect(() => {
     if (
       activeCategoryId !== 'executive' &&
+      activeCategoryId !== 'commitments' &&
       activeCategoryId !== 'flagships' &&
       !visibleCategories.some((category) => category.id === activeCategoryId)
     ) {

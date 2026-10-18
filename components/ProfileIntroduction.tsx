@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
-import { CheckCircle2, ChevronDown, HelpCircle, ShieldCheck, Sparkles } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import {
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  HelpCircle,
+  Link2,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react';
 import { profileContent } from '../data/profile-content';
 import { cn } from '../lib/utils';
 import type { Locale } from '../types';
 
 interface ProfileIntroductionProps {
   locale: Locale;
+  activeCategoryId?: string;
 }
 
 /**
@@ -142,9 +151,95 @@ const ExecutiveCommitmentSeal: React.FC<{ locale: Locale }> = ({ locale }) => {
   );
 };
 
-export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale }) => {
+export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
+  locale,
+  activeCategoryId,
+}) => {
   const content = profileContent[locale];
-  const [expanded, setExpanded] = useState(false);
+
+  const checkIsDirectCommitments = () => {
+    if (typeof window === 'undefined') return false;
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    return (
+      activeCategoryId === 'commitments' ||
+      activeCategoryId === 'promises' ||
+      path === 'commitments' ||
+      path === 'promises' ||
+      hash === '#commitments' ||
+      hash === '#promises'
+    );
+  };
+
+  const [expanded, setExpanded] = useState<boolean>(checkIsDirectCommitments);
+  const [copied, setCopied] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleUrlOrCategoryCheck = () => {
+      const isMatch =
+        activeCategoryId === 'commitments' ||
+        activeCategoryId === 'promises' ||
+        (typeof window !== 'undefined' &&
+          (window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase() === 'commitments' ||
+            window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase() === 'promises' ||
+            window.location.hash.toLowerCase() === '#commitments' ||
+            window.location.hash.toLowerCase() === '#promises'));
+
+      if (isMatch) {
+        setExpanded(true);
+        const timer = setTimeout(() => {
+          const el = document.getElementById('commitments');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 120);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    handleUrlOrCategoryCheck();
+    window.addEventListener('popstate', handleUrlOrCategoryCheck);
+    window.addEventListener('hashchange', handleUrlOrCategoryCheck);
+    return () => {
+      window.removeEventListener('popstate', handleUrlOrCategoryCheck);
+      window.removeEventListener('hashchange', handleUrlOrCategoryCheck);
+    };
+  }, [activeCategoryId]);
+
+  const handleCopyLink = async () => {
+    const origin =
+      typeof window !== 'undefined' && window.location.hostname === 'david888.com'
+        ? window.location.origin
+        : 'https://david888.com';
+    const directUrl = `${origin}/commitments`;
+
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(directUrl);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = directUrl;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+
+      if (typeof window !== 'undefined' && window.history?.pushState) {
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) {
+          canonicalLink.setAttribute('href', directUrl);
+        }
+        window.history.pushState(null, '', '/commitments');
+      }
+    } catch (err) {
+      console.error('Failed to copy direct link:', err);
+    }
+  };
 
   return (
     <article
@@ -163,13 +258,21 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
         </p>
       )}
 
-      {/* Eye-Catching Centerpiece: 給不諳技術老闆的 5 大安心承諾 (Big Logo & Interactive Callout) */}
-      <div className="mt-5">
-        <button
-          type="button"
+      {/* Eye-Catching Centerpiece: 給不諳技術老闆的 5 大安心承諾 (Big Logo, Direct Route & 1-Click Share) */}
+      <section id="commitments" className="mt-5 scroll-mt-24">
+        <div
+          role="button"
+          tabIndex={0}
           onClick={() => setExpanded((prev) => !prev)}
-          className="group relative w-full overflow-hidden rounded-2xl border-2 border-[#f59e0b] bg-gradient-to-br from-[#fff9eb] via-[#fffdfa] to-[#ffedd5] p-4 sm:p-5 text-left shadow-[0_8px_24px_rgba(245,158,11,0.22)] transition-all duration-300 hover:border-[#d97706] hover:shadow-[0_12px_32px_rgba(245,158,11,0.32)] hover:-translate-y-0.5 active:translate-y-0 dark:border-[#ffb010] dark:bg-gradient-to-br dark:from-[#132a42] dark:via-[#17324d] dark:to-[#0f2338] dark:shadow-[0_8px_24px_rgba(255,176,16,0.2)]"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setExpanded((prev) => !prev);
+            }
+          }}
+          className="group relative w-full cursor-pointer overflow-hidden rounded-2xl border-2 border-[#f59e0b] bg-gradient-to-br from-[#fff9eb] via-[#fffdfa] to-[#ffedd5] p-4 sm:p-5 text-left shadow-[0_8px_24px_rgba(245,158,11,0.22)] transition-all duration-300 hover:border-[#d97706] hover:shadow-[0_12px_32px_rgba(245,158,11,0.32)] hover:-translate-y-0.5 active:translate-y-0 dark:border-[#ffb010] dark:bg-gradient-to-br dark:from-[#132a42] dark:via-[#17324d] dark:to-[#0f2338] dark:shadow-[0_8px_24px_rgba(255,176,16,0.2)]"
           aria-expanded={expanded}
+          aria-controls="commitments-details"
         >
           {/* Decorative Corner Glow */}
           <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[#f59e0b]/15 blur-2xl dark:bg-[#ffb010]/15" />
@@ -191,6 +294,9 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
                 </span>
                 <span className="text-xs font-bold text-[#8a6b10] dark:text-[#fcd34d]">
                   {locale === 'en' ? 'Direct Accountability' : '直球免除經營層 5 大痛點'}
+                </span>
+                <span className="rounded-md border border-[#17324d]/20 bg-[#17324d]/10 px-1.5 py-0.5 font-mono text-[10px] font-extrabold text-[#17324d] dark:border-[#ffb010]/30 dark:bg-[#ffb010]/15 dark:text-[#fcd34d]">
+                  /commitments
                 </span>
               </div>
 
@@ -226,17 +332,56 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
               </div>
             </div>
 
-            {/* 3. CTA Action Pill Button */}
-            <div className="mt-2 sm:mt-0 sm:shrink-0 sm:self-center">
-              <span className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#17324d] bg-[#17324d] px-4 py-2.5 text-xs font-black text-white shadow-md transition-all duration-200 group-hover:scale-105 group-hover:bg-[#0b1a29] sm:w-auto sm:text-sm dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#0b1a29] dark:group-hover:bg-[#ffc038]">
+            {/* 3. CTA Action Buttons: 1-Click Copy Link & Expand Accordion */}
+            <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-0 sm:shrink-0 sm:self-center">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCopyLink();
+                }}
+                className={cn(
+                  'inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border-2 px-3.5 py-2 text-xs font-black shadow-xs transition-all duration-200 active:scale-95 sm:text-xs',
+                  copied
+                    ? 'border-emerald-600 bg-emerald-600 text-white dark:border-emerald-500 dark:bg-emerald-500'
+                    : 'border-[#17324d] bg-white text-[#17324d] hover:bg-[#fff0cc] dark:border-[#ffb010] dark:bg-[#132a42] dark:text-[#ffb010] dark:hover:bg-[#17324d]',
+                )}
+                title={
+                  locale === 'en'
+                    ? 'Copy direct URL (https://david888.com/commitments) to share with executives'
+                    : '複製直達網址 (https://david888.com/commitments)，一鍵分享給老闆'
+                }
+                aria-label={
+                  locale === 'en'
+                    ? 'Copy direct link to 5 commitments'
+                    : '複製 5 大承諾直達網址'
+                }
+              >
+                {copied ? (
+                  <Check size={15} strokeWidth={2.5} className="shrink-0 text-white" />
+                ) : (
+                  <Link2 size={15} className="shrink-0" />
+                )}
+                <span>
+                  {copied
+                    ? locale === 'en'
+                      ? 'Link Copied!'
+                      : '已複製直達連結！'
+                    : locale === 'en'
+                      ? 'Copy Direct Link'
+                      : '複製直達連結'}
+                </span>
+              </button>
+
+              <span className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-xl border-2 border-[#17324d] bg-[#17324d] px-4 py-2 text-xs font-black text-white shadow-md transition-all duration-200 group-hover:scale-105 group-hover:bg-[#0b1a29] sm:text-xs dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#0b1a29] dark:group-hover:bg-[#ffc038]">
                 <span>
                   {expanded
                     ? locale === 'en'
-                      ? 'Collapse 5 Commitments ▴'
+                      ? 'Collapse ▴'
                       : '收起 5 大承諾 ▴'
                     : locale === 'en'
-                      ? 'Click to Reveal 5 Commitments ▾'
-                      : '點擊展開 5 大安心解方 ▾'}
+                      ? 'Reveal 5 Commitments ▾'
+                      : '展開 5 大安心解方 ▾'}
                 </span>
                 <ChevronDown
                   size={16}
@@ -245,8 +390,22 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
               </span>
             </div>
           </div>
-        </button>
-      </div>
+        </div>
+
+        {/* Copy Success Feedback Bar */}
+        {copied && (
+          <div className="mt-2.5 flex items-center justify-between rounded-xl border border-emerald-600/35 bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-900 shadow-sm dark:border-emerald-500/40 dark:bg-emerald-950/80 dark:text-emerald-200">
+            <span className="flex items-center gap-2">
+              <Check size={16} strokeWidth={2.5} className="text-emerald-600 dark:text-emerald-400" />
+              <span>
+                {locale === 'en'
+                  ? 'Canonical URL https://david888.com/commitments copied to clipboard. Ready to paste in LINE / Email / Chat!'
+                  : '直達網址 https://david888.com/commitments 已複製！可直接貼在 LINE、Telegram、信件中發送給老闆與合作夥伴。'}
+              </span>
+            </span>
+          </div>
+        )}
+      </section>
 
       {/* Expanded Track Record & 5 Commitments Details */}
       {expanded && (
@@ -402,8 +561,29 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({ locale
             );
           })}
 
-          {/* Bottom Collapse Button for Convenience */}
-          <div className="mt-6 flex justify-center border-t border-border pt-4">
+          {/* Bottom Action Bar for Convenience */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 border-t border-border pt-4">
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className={cn(
+                'inline-flex items-center gap-1.5 rounded-lg border-2 px-4 py-2 text-xs font-black transition-colors',
+                copied
+                  ? 'border-emerald-600 bg-emerald-600 text-white'
+                  : 'border-[#f59e0b] bg-[#fff9eb] text-[#854d0e] hover:bg-[#ffedd5] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010] dark:hover:bg-[#1f3f60]',
+              )}
+            >
+              {copied ? <Check size={14} strokeWidth={2.5} /> : <Link2 size={14} />}
+              <span>
+                {copied
+                  ? locale === 'en'
+                    ? 'Link Copied to Clipboard!'
+                    : '已複製直達連結至剪貼簿！'
+                  : locale === 'en'
+                    ? 'Copy Direct Link (/commitments)'
+                    : '複製 5 大承諾直達網址 (/commitments)'}
+              </span>
+            </button>
             <button
               type="button"
               onClick={() => setExpanded(false)}

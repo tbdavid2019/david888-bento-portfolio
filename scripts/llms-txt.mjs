@@ -13,6 +13,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     `- Contact: Verified web contact form at ${siteOrigin}/ (anti-spam protected, direct dispatch to David)`,
     `- Website: ${siteOrigin}/`,
     `- Executive Advisory & CTO Dossier: ${siteOrigin}/executive`,
+    `- 5 Core Commitments (Direct Route): ${siteOrigin}/commitments`,
     `- GitHub: https://github.com/tbdavid2019`,
     `- LinkedIn: https://www.linkedin.com/in/david11111/`,
     `- Location / Availability: ${profile.contactLine || '台北/高雄 可合作'} (${profile.contactLineEn || 'Taipei / Kaohsiung / Remote collaboration'})`,
@@ -59,7 +60,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
       lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
       lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
       lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。`);
-      lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/executive): 精準盤查開源節流、梳理複雜毛線團（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
+      lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/commitments): 精準盤查開源節流、梳理複雜毛線團（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
       lines.push('');
     }
   }
@@ -71,7 +72,7 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
     lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
     lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。`);
-    lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/executive): 精準盤查開源節流、梳理複雜毛線團（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
+    lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/commitments): 精準盤查開源節流、梳理複雜毛線團（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
     lines.push('');
   }
 

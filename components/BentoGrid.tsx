@@ -146,6 +146,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   React.useEffect(() => {
     if (
       activeCategoryId !== 'executive' &&
+      activeCategoryId !== 'commitments' &&
       activeCategoryId !== 'flagships' &&
       !visibleCategories.some((category) => category.id === activeCategoryId)
     ) {
@@ -155,7 +156,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
   const normalizedSearchQuery = searchQuery.trim().toLowerCase();
   const isSearching = normalizedSearchQuery.length > 0;
-  const isExecutiveView = activeCategoryId === 'executive' && !isSearching;
+  const isExecutiveView =
+    (activeCategoryId === 'executive' || activeCategoryId === 'commitments') && !isSearching;
   const isFlagshipsView = activeCategoryId === 'flagships' && !isSearching;
 
   const handleCategorySelect = (categoryId: string) => {
@@ -227,6 +229,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
       {/* 1. Single-Axis Executive Hero Dossier */}
       <ProfileCard
         locale={locale}
+        activeCategoryId={activeCategoryId}
         onContact={onContact}
         onSelectRoute={(routeId) => handleCategorySelect(routeId)}
       />

@@ -1,5 +1,24 @@
 # Changelog
 
+## [2026-10-18] - Direct Canonical Route `/commitments`, Auto-Expansion, Smooth Scroll & 1-Click Sharing
+
+### Routing, Deep-Linking & 1-Click Sharing
+- **Direct Canonical Route Support (`/commitments`, alias `/promises`, `#commitments`) (`App.tsx`, `components/BentoGrid.tsx`, `components/ProfileCard.tsx`, `components/ProfileIntroduction.tsx`)**:
+  - **Full Routing Support**: Registered `'commitments'` and `'promises'` in `VALID_CANONICAL_ROUTES` and mapped `'promises'` to `'commitments'` in `normalizeRouteAlias`.
+  - **Auto-Expansion on Direct Arrival**: When accessing `https://david888.com/commitments`, `/promises`, or `#commitments`, `ProfileIntroduction` automatically sets `expanded = true`.
+  - **Auto Smooth Scroll**: Automatically executes `scrollIntoView({ behavior: 'smooth', block: 'start' })` with `scroll-mt-24` ensuring the 5 Commitments banner lands cleanly in the user's viewport without being occluded by the sticky navigation bar.
+  - **1-Click Copy Direct Link Action**: Added a high-visibility `複製直達連結` (EN: `Copy Direct Link`) button on the 5 Commitments banner with immediate toast feedback (`直達網址 https://david888.com/commitments 已複製！可直接貼在 LINE、Telegram、信件中發送給老闆與合作夥伴。`) and visual state change (`Check` icon and green confirmation styling) for 3 seconds. Also added a companion copy button at the bottom of the expanded section.
+  - **Route Preservation in BentoGrid**: Updated category route checks in `App.tsx` and `BentoGrid.tsx` to preserve `/commitments` without defaulting back to `/social`, while gracefully displaying the executive view and highlighting the executive collaboration context.
+
+### SEO, Prerendering & Discovery Files
+- **Static HTML Prerendering (`scripts/prerender.mjs`)**: Added `/commitments` and `/promises` to `canonicalRoutes`, generating `dist/commitments/index.html` and `dist/promises/index.html` with `<link rel="canonical" href="https://david888.com/commitments" />` for Cloudflare Pages server hits and social crawler rich link previews.
+- **Sitemap & Discovery Coverage (`scripts/generate-discovery-files.mjs`, `scripts/llms-txt.mjs`)**: Included `/commitments` and `/promises` in `canonicalCategoryRoutes` within `public/sitemap.xml`. Added direct link entry `- 5 Core Commitments (Direct Route): https://david888.com/commitments` in `public/llms.txt` and `public/llms-full.txt`.
+
+### Test Suite
+- **Extended Test Coverage (`test/bento-navigation.test.mjs`, `test/llms-txt.test.mjs`)**:
+  - Added unit test asserting `/commitments` and `/promises` canonical routes, deep link anchor `#commitments`, auto-expansion, and 1-click sharing buttons.
+  - Updated `llms-txt.test.mjs` asserting direct route URL presence in LLM standard files. All 36 tests pass cleanly.
+
 ## [2026-10-18] - UI/UX Hierarchy Redesign: Elevated Hero Solution Cards with Commanding Typography
 
 ### UI/UX & Visual Hierarchy Redesign

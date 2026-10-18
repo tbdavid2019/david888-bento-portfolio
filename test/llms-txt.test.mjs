@@ -84,6 +84,7 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
   assert.doesNotMatch(result, /Contact Email:/);
   assert.doesNotMatch(result, /104@david888\.com/);
   assert.match(result, /- Executive Advisory & CTO Dossier: https:\/\/david888\.com\/executive/);
+  assert.match(result, /- 5 Core Commitments \(Direct Route\): https:\/\/david888\.com\/commitments/);
 });
 
 test('buildLlmsFullTxt appends full profile and item catalog details', () => {
