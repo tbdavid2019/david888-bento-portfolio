@@ -56,11 +56,11 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
       executiveAdded = true;
       lines.push('## Ways to Work & Executive Advisory');
       lines.push('');
-      lines.push(`- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](${siteOrigin}/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。提供年度企業技術顧問、全職 CTO / VP of Engineering、技術盡職調查（Tech Due Diligence）與給不諳技術老闆的 5 大安心承諾。`);
+      lines.push(`- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](${siteOrigin}/executive): 帶過百人團隊，也還會自己看 Code。十多年跨國技術管理與開發經驗，提供系統診斷（Tech Due Diligence）、年度企業技術顧問、全職 CTO / VP of Engineering 與給不諳技術老闆的 5 大安心承諾。`);
       lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
       lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
       lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。`);
-      lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/commitments): 精準盤查開源節流、梳理複雜毛線團（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
+      lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/commitments): 精準盤查開源節流（加錢堆機器誰都會，那毫無技術含金量）、梳理毛線團（消除 SPOF & 健全 Fallback）、風險分級按期交付、說人話聽得懂生意經、正派透明可受檢驗。`);
       lines.push('');
     }
   }
@@ -68,11 +68,11 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
   if (!executiveAdded) {
     lines.push('## Ways to Work & Executive Advisory');
     lines.push('');
-    lines.push(`- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](${siteOrigin}/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。提供年度企業技術顧問、全職 CTO / VP of Engineering、技術盡職調查（Tech Due Diligence）與給不諳技術老闆的 5 大安心承諾。`);
+    lines.push(`- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](${siteOrigin}/executive): 帶過百人團隊，也還會自己看 Code。十多年跨國技術管理與開發經驗，提供系統診斷（Tech Due Diligence）、年度企業技術顧問、全職 CTO / VP of Engineering 與給不諳技術老闆的 5 大安心承諾。`);
     lines.push(`- [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](${siteOrigin}/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。`);
     lines.push(`- [CTO & VP of Engineering / 技術長與研發管理](${siteOrigin}/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。`);
     lines.push(`- [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](${siteOrigin}/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。`);
-    lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/commitments): 精準盤查開源節流、梳理複雜毛線團（消除 SPOF & 健全 Fallback）、尊重業務不自嗨、聽得懂生意經、正派透明可驗證。`);
+    lines.push(`- [5 Core Commitments for Non-Technical Leaders / 給不諳技術老闆的 5 大安心承諾](${siteOrigin}/commitments): 精準盤查開源節流（加錢堆機器誰都會，那毫無技術含金量）、梳理毛線團（消除 SPOF & 健全 Fallback）、風險分級按期交付、說人話聽得懂生意經、正派透明可受檢驗。`);
     lines.push('');
   }
 

@@ -188,23 +188,23 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-black/45 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 p-2.5 sm:p-4 backdrop-blur-sm overflow-x-hidden overflow-y-auto"
       role="presentation"
       onMouseDown={(event) => event.target === event.currentTarget && onClose()}
     >
       <section
-        className="max-h-[92vh] w-full max-w-xl sm:max-w-2xl overflow-y-auto rounded-[28px] border border-border bg-bg-surface p-6 shadow-2xl md:p-8"
+        className="my-auto max-h-[92vh] sm:max-h-[90vh] w-full max-w-[calc(100vw-1.25rem)] sm:max-w-xl md:max-w-2xl overflow-y-auto overflow-x-hidden rounded-2xl sm:rounded-[28px] border border-border bg-bg-surface p-4 sm:p-6 md:p-8 shadow-2xl box-border"
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-dialog-title"
       >
         {/* Modal Header */}
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <div>
-            <div className="mb-1 flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-primary">
-              <Mail size={15} /> {isZh ? '聯絡交流' : 'Get in Touch'}
+        <div className="mb-4 sm:mb-5 flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="mb-1 flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.18em] text-primary">
+              <Mail size={14} className="shrink-0" /> <span>{isZh ? '聯絡交流' : 'Get in Touch'}</span>
             </div>
-            <h2 id="contact-dialog-title" className="text-2xl font-black text-text-main">
+            <h2 id="contact-dialog-title" className="text-xl sm:text-2xl font-black text-text-main break-words">
               {submittedReceipt
                 ? isZh
                   ? '已收到你的訊息'
@@ -221,7 +221,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-text-main hover:bg-bg-elevated transition-colors"
+            className="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full border border-border text-text-main hover:bg-bg-elevated transition-colors"
             aria-label={isZh ? '關閉' : 'Close'}
           >
             <X size={18} />
@@ -250,19 +250,19 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               </div>
 
               {/* Ticket No Badge with 1-click copy */}
-              <div className="mt-3.5 flex items-center justify-between rounded-xl bg-bg-elevated px-4 py-3">
-                <div>
-                  <div className="text-xs font-black uppercase tracking-wider text-text-muted">
+              <div className="mt-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-xl bg-bg-elevated p-3 sm:px-4 sm:py-3 min-w-0">
+                <div className="min-w-0">
+                  <div className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-text-muted">
                     {isZh ? '服務追蹤序號' : 'Service Tracking No.'}
                   </div>
-                  <div className="font-mono text-lg md:text-xl font-black text-primary mt-0.5">
+                  <div className="font-mono text-base sm:text-lg md:text-xl font-black text-primary mt-0.5 break-all">
                     {submittedReceipt.ticketNo}
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={copyTicket}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-bg-surface px-3 py-1.5 text-xs md:text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
+                  className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-bg-surface px-3 py-1.5 text-xs sm:text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated self-start sm:self-center"
                 >
                   {copiedTicketNo ? (
                     <Check size={14} className="text-[var(--success)]" />
@@ -326,36 +326,38 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                 <div className="font-bold text-text-main mb-2">
                   {isZh ? '留言內容：' : 'Message:'}
                 </div>
-                <div className="max-h-40 overflow-y-auto whitespace-pre-wrap rounded-xl border border-border/50 bg-bg-surface p-3.5 text-text-main font-mono text-xs md:text-sm leading-relaxed">
+                <div className="max-h-40 overflow-y-auto whitespace-pre-wrap break-words rounded-xl border border-border/50 bg-bg-surface p-3.5 text-text-main font-mono text-xs md:text-sm leading-relaxed">
                   {submittedReceipt.message}
                 </div>
               </div>
             </div>
 
             {/* Action buttons */}
-            <div className="flex gap-3 pt-1">
+            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1">
               <button
                 type="button"
                 onClick={copyFullReceipt}
-                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
+                className="inline-flex h-11 sm:h-12 w-full sm:flex-1 items-center justify-center gap-2 rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
               >
                 {copiedReceipt ? (
                   <Check size={16} className="text-[var(--success)]" />
                 ) : (
                   <Copy size={16} />
                 )}
-                {copiedReceipt
-                  ? isZh
-                    ? '已複製存根'
-                    : 'Receipt Copied'
-                  : isZh
-                    ? '複製完整存根'
-                    : 'Copy Full Receipt'}
+                <span>
+                  {copiedReceipt
+                    ? isZh
+                      ? '已複製存根'
+                      : 'Receipt Copied'
+                    : isZh
+                      ? '複製完整存根'
+                      : 'Copy Full Receipt'}
+                </span>
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex h-12 flex-1 items-center justify-center rounded-full bg-primary px-4 text-sm font-black text-white transition-opacity hover:opacity-90 dark:text-bg-base"
+                className="inline-flex h-11 sm:h-12 w-full sm:flex-1 items-center justify-center rounded-full bg-primary px-4 text-sm font-black text-white transition-opacity hover:opacity-90 dark:text-bg-base"
               >
                 {isZh ? '完成' : 'Done'}
               </button>
@@ -378,18 +380,18 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               </p>
             </div>
 
-            <div className="flex gap-3 pt-1">
+            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1">
               <button
                 type="button"
                 onClick={() => setIsBlocked(false)}
-                className="inline-flex h-12 flex-1 items-center justify-center rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
+                className="inline-flex h-11 sm:h-12 w-full sm:flex-1 items-center justify-center rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
               >
                 {isZh ? '返回修改留言' : 'Back to Edit Message'}
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex h-12 flex-1 items-center justify-center rounded-full bg-primary px-4 text-sm font-black text-white transition-opacity hover:opacity-90 dark:text-bg-base"
+                className="inline-flex h-11 sm:h-12 w-full sm:flex-1 items-center justify-center rounded-full bg-primary px-4 text-sm font-black text-white transition-opacity hover:opacity-90 dark:text-bg-base"
               >
                 {isZh ? '關閉' : 'Close'}
               </button>
@@ -399,15 +401,15 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
           /* Form View (Clean Inputs with Zero Redundant Placeholders) */
           <form onSubmit={submit} className="space-y-4">
             {/* Name and Email - Option B: Floating Labels */}
-            <div className="grid gap-3.5 sm:grid-cols-2">
-              <div className="relative">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5">
+              <div className="relative min-w-0">
                 <input
                   id="contact-name"
                   required
                   value={form.name}
                   onChange={(event) => update('name', event.target.value)}
                   placeholder=" "
-                  className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
+                  className="peer block h-[50px] sm:h-[52px] w-full min-w-0 rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary box-border"
                 />
                 <label
                   htmlFor="contact-name"
@@ -421,7 +423,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                 </label>
               </div>
 
-              <div className="relative">
+              <div className="relative min-w-0">
                 <input
                   id="contact-email"
                   required
@@ -429,7 +431,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                   value={form.email}
                   onChange={(event) => update('email', event.target.value)}
                   placeholder=" "
-                  className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
+                  className="peer block h-[50px] sm:h-[52px] w-full min-w-0 rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary box-border"
                 />
                 <label
                   htmlFor="contact-email"
@@ -445,13 +447,13 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
             </div>
 
             {/* Company - Option B: Floating Label */}
-            <div className="relative">
+            <div className="relative min-w-0">
               <input
                 id="contact-company"
                 value={form.company}
                 onChange={(event) => update('company', event.target.value)}
                 placeholder=" "
-                className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
+                className="peer block h-[50px] sm:h-[52px] w-full min-w-0 rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary box-border"
               />
               <label
                 htmlFor="contact-company"
@@ -470,7 +472,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
               <span className="text-sm font-bold text-text-main">
                 {isZh ? '交流主旨' : 'Topic'}
               </span>
-              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                 {SUBJECT_OPTIONS.map((opt) => {
                   const isSelected = selectedSubjectId === opt.id;
                   return (
@@ -478,13 +480,13 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                       key={opt.id}
                       type="button"
                       onClick={() => handleSelectSubject(opt.id)}
-                      className={`flex min-h-[50px] items-center justify-between gap-2.5 rounded-xl border px-3.5 py-2.5 text-left text-xs sm:text-sm font-bold transition-all ${
+                      className={`flex min-h-[48px] sm:min-h-[50px] w-full min-w-0 items-center justify-between gap-2 rounded-xl border px-3 sm:px-3.5 py-2 sm:py-2.5 text-left text-xs sm:text-sm font-bold transition-all box-border ${
                         isSelected
                           ? 'border-primary bg-primary/10 text-primary shadow-sm ring-1 ring-primary/40'
                           : 'border-border bg-bg-elevated text-text-muted hover:border-text-muted hover:text-text-main'
                       }`}
                     >
-                      <span className="min-w-0 flex-1 leading-snug">{isZh ? opt.zh : opt.en}</span>
+                      <span className="min-w-0 flex-1 leading-snug break-words">{isZh ? opt.zh : opt.en}</span>
                       <span
                         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs transition-colors ${
                           isSelected
@@ -501,7 +503,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
 
               {/* If "其他" is selected, allow custom input with Floating Label */}
               {selectedSubjectId === 'other' && (
-                <div className="relative pt-1">
+                <div className="relative pt-1 min-w-0">
                   <input
                     id="contact-custom-subject"
                     type="text"
@@ -509,14 +511,14 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                     value={customSubject}
                     onChange={(e) => handleCustomSubjectChange(e.target.value)}
                     placeholder=" "
-                    className="peer block h-[52px] w-full rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary"
+                    className="peer block h-[50px] sm:h-[52px] w-full min-w-0 rounded-xl border border-border bg-bg-elevated px-3.5 pt-5 pb-1 text-sm md:text-base text-text-main outline-none transition-colors focus:border-primary box-border"
                   />
                   <label
                     htmlFor="contact-custom-subject"
                     className={`pointer-events-none absolute left-3.5 origin-[0] font-bold transition-all duration-200 ${
                       customSubject
                         ? 'top-2.5 text-[11px] text-text-muted peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
-                        : 'top-2.5 text-[11px] text-text-muted peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-2.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
+                        : 'top-2.5 text-[11px] text-text-muted peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm md:peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-muted peer-focus:top-2.5 peer-focus:text-[11px] peer-focus:font-bold peer-focus:text-primary dark:peer-focus:text-[#ffb010]'
                     }`}
                   >
                     {isZh ? '自訂交流主旨…' : 'Custom Topic…'}
@@ -526,7 +528,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
             </div>
 
             {/* Message Area - Option B: Floating Label */}
-            <div className="relative">
+            <div className="relative min-w-0">
               <textarea
                 id="contact-message"
                 required
@@ -535,7 +537,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
                 value={form.message}
                 onChange={(event) => update('message', event.target.value)}
                 placeholder=" "
-                className="peer block w-full resize-y rounded-xl border border-border bg-bg-elevated px-3.5 pt-6 pb-2.5 text-sm md:text-base leading-relaxed text-text-main outline-none transition-colors focus:border-primary min-h-[110px]"
+                className="peer block w-full min-w-0 max-w-full resize-y rounded-xl border border-border bg-bg-elevated px-3.5 pt-6 pb-2.5 text-sm md:text-base leading-relaxed text-text-main outline-none transition-colors focus:border-primary min-h-[110px] box-border"
               />
               <label
                 htmlFor="contact-message"
@@ -552,7 +554,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
             {error && (
               <p
                 role="alert"
-                className="rounded-xl bg-[var(--error)]/10 px-4 py-3 text-sm font-bold text-[var(--error)]"
+                className="rounded-xl bg-[var(--error)]/10 px-4 py-3 text-sm font-bold text-[var(--error)] break-words"
               >
                 {error}
               </p>
@@ -562,7 +564,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose })
             <button
               disabled={busy}
               type="submit"
-              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-6 text-base font-black text-white transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-60 dark:text-bg-base shadow-sm"
+              className="inline-flex min-h-[48px] sm:min-h-[50px] w-full min-w-0 items-center justify-center gap-2 rounded-full bg-primary px-4 sm:px-6 text-sm sm:text-base font-black text-white transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-60 dark:text-bg-base shadow-sm"
             >
               {busy && <LoaderCircle size={18} className="animate-spin" />}
               {busy

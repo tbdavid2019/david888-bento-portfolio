@@ -308,23 +308,23 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
               <p className="mt-1 text-xs font-semibold leading-relaxed text-[#5c4a30] sm:text-sm dark:text-[#d3e3f5]">
                 {locale === 'en'
-                  ? "Afraid of tech jargon, tangled spaghetti architectures, or endless hardware budgets? Click to see how I eliminate business owners' biggest anxieties & view full CTO track record."
-                  : '「害怕被黑話唬弄？系統像毛線團疊床架屋、多方串接動不了？開口只會要錢買機器？」點擊立即解鎖 5 大安心解方與完整實績 ➔'}
+                  ? 'Slow system? Just add servers. Behind schedule? Just hire more people. Tech debt? Just rewrite everything. The hard part is identifying the real problem. Click to reveal 5 Core Commitments ➔'
+                  : '「系統慢了就加機器？專案做不完就招人？技術債太多打掉重練？這些方法都不難，難的是找出真正問題。」點擊立即解鎖 5 大安心解方 ➔'}
               </p>
 
               {/* 5 Quick Feature Chips */}
               <div className="mt-2.5 flex flex-wrap gap-1.5 text-[11px] font-extrabold sm:text-xs">
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Speak Business' : '✓ 說人話不唬弄'}
+                  {locale === 'en' ? '✓ Speak Plain Business' : '✓ 說人話不唬弄'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
                   {locale === 'en' ? '✓ Untangle Spaghetti Flows' : '✓ 梳理複雜毛線團'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Zero Arrogance' : '✓ 尊重業務不自嗨'}
+                  {locale === 'en' ? '✓ Spend Wisely, No Waste' : '✓ 該花花不亂燒'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
-                  {locale === 'en' ? '✓ Understands Business' : '✓ 聽得懂生意經'}
+                  {locale === 'en' ? '✓ Business First, Ship on Time' : '✓ 守住上線先做生意'}
                 </span>
                 <span className="rounded-md border border-[#f59e0b]/40 bg-[#fffdfa]/95 px-2 py-0.5 text-[#854d0e] dark:border-[#ffb010]/30 dark:bg-[#0b1a29]/80 dark:text-[#fcd34d]">
                   {locale === 'en' ? '✓ Transparent & Verifiable' : '✓ 正派透明可驗證'}
@@ -472,19 +472,23 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                 block.text.startsWith('說人話') ||
                 block.text.startsWith('精準盤查') ||
                 block.text.startsWith('梳理毛線團') ||
+                block.text.startsWith('風險分級') ||
                 block.text.startsWith('搞定龐大') ||
                 block.text.startsWith('消除單點') ||
                 block.text.startsWith('生意優先') ||
                 block.text.startsWith('尊重業務') ||
                 block.text.startsWith('聽得懂') ||
                 block.text.startsWith('陽光透明') ||
+                block.text.startsWith('Speak Plain Business') ||
                 block.text.startsWith('Speak Business') ||
                 block.text.startsWith('Precision Audit') ||
                 block.text.startsWith('Untangling') ||
+                block.text.startsWith('Risk Prioritization') ||
                 block.text.startsWith('Mastering Complex') ||
                 block.text.startsWith('Business Continuity') ||
                 block.text.startsWith('Grounded Respect') ||
                 block.text.startsWith('Decades of') ||
+                block.text.startsWith('Transparent Track Record') ||
                 block.text.startsWith('Public Accountability');
 
               if (isCommitmentAnswer) {

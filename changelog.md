@@ -1,5 +1,28 @@
 # Changelog
 
+## [2026-10-18] - Contact Form Mobile RWD Fix & Executive-Grounded Narrative Transformation
+
+### UI/UX & Responsive Design Fix
+- **Contact Dialog Mobile RWD & Boundary Enforcement (`components/ContactDialog.tsx`)**:
+  - **Solved Mobile Boundary Overflow**: Fixed padding and sizing constraints that previously caused inputs, textareas, and receipt buttons to exceed viewport boundaries on narrow mobile screens (320px–390px).
+  - **Dynamic Viewport Constraint**: Applied `max-w-[calc(100vw-1.25rem)]`, `box-border`, and `overflow-x-hidden` across the modal container and backdrop (`p-2.5 sm:p-4`).
+  - **Responsive Button Stacking**: Transformed side-by-side action buttons in both the Success Receipt view and the Blocked view to stack vertically on mobile (`flex-col sm:flex-row w-full sm:flex-1`) with thumb-friendly touch targets.
+  - **Input Grid Sizing Protection**: Added `min-w-0` and `box-border` to all form inputs, textareas, and subject options, preventing flex/grid child expansion from breaking container widths.
+
+### Core Value & Narrative Transformation
+- **Executive-Grounded Re-Alignment (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileIntroduction.tsx`, `scripts/llms-txt.mjs`)**:
+  - **Hero Headline & Triple-Question Hook**: Replaced generic buzzwords with punchy executive reality:
+    - *「帶過百人團隊，也還會自己看 Code。」*
+    - *「系統慢了就加機器？專案做不完就繼續招人？技術債太多，乾脆全部打掉重練？這些方法都不難，難的是找出真正的問題。」*
+  - **Preserved David's Uncompromising Signature Quote**: Retained **「加錢堆機器誰都會，那毫無技術含金量。」** at the core of Commitment 1.
+  - **Streamlined 5 Core Commitments**:
+    1. 「系統慢了，就只會叫人加預算？」➔ 精準盤查、開源節流：加錢堆機器誰都會，那毫無技術含金量；該花的錢要花，不該浪費的就別亂燒。
+    2. 「系統像毛線團，動一個地方就壞三個？」➔ 梳理毛線團、消除單點故障（SPOF）：健全 Fallback 容錯與消融試驗；重構不是比誰改得漂亮，而是改完之後，生意還能好好做。
+    3. 「整天說在還技術債，產品到底什麼時候上線？」➔ 風險分級、按期交付：把風險、成本和交付時間攤開來談，優先守住業務上線節奏。
+    4. 「工程師講了一堆名詞，還是不知道錢花在哪。」➔ 說人話、聽得懂生意經：為什麼要做？要花多少？做完能改善什麼？技術是拿來解決問題的，不是拿來考老闆的。
+    5. 「講得這麼厲害，怎麼知道不是嘴巴說說？」➔ 陽光透明、可受檢驗：百人研發管理、電商與 CRM/ERP 整合實績、180+ GitHub 專案與主力線上系統可供檢視；堅守不做博弈、加密幣與高風險灰色產業。
+  - **Bilingual Pragmatic Tone Synchronization**: Removed hyperbolic terms like "bulletproof" and aligned English experience to "Over a decade of enterprise technology leadership" with realistic, resilient architecture principles.
+
 ## [2026-10-18] - Direct Canonical Route `/commitments`, Auto-Expansion, Smooth Scroll & 1-Click Sharing
 
 ### Routing, Deep-Linking & 1-Click Sharing

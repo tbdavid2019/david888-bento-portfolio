@@ -2,6 +2,18 @@
   "entries": [
     {
       "title": "tbdavid2019 pushed daily-podcast",
+      "url": "https://github.com/tbdavid2019/daily-podcast/compare/28077c5e91...aae8ca5fcc",
+      "updated": "2026-10-17 14:13:52 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 17, 2026 14:13 1 commit to main aae8ca5 feat(transcript): add podcasting 2.0 transcript feeds and web sync su…"
+    },
+    {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/7d19cf88db...bd18eedaca",
+      "updated": "2026-10-17 12:04:54 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 12:04 1 commit to main bd18eed feat(web): embed Gen Jyuu Gothic woff2 webfont for cross-device support"
+    },
+    {
+      "title": "tbdavid2019 pushed daily-podcast",
       "url": "https://github.com/tbdavid2019/daily-podcast/compare/29e9cb5b62...28077c5e91",
       "updated": "2026-10-17 13:02:30 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 17, 2026 13:02 1 commit to main 28077c5 feat(web): support canonical routes and deep tab linking for episode …"
@@ -17,21 +29,9 @@
       "url": "https://github.com/tbdavid2019/888-url2md/compare/2735091862...04f5f03f41",
       "updated": "2026-10-16 07:07:51 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 07:07 1 commit to main 04f5f03 fix(ui): remove card heading side accent"
-    },
-    {
-      "title": "tbdavid2019 pushed 888-url2md",
-      "url": "https://github.com/tbdavid2019/888-url2md/compare/ccd0b731a3...2735091862",
-      "updated": "2026-10-16 06:39:57 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 06:39 1 commit to main 2735091 feat(ui): apply five-color Saffron palette"
-    },
-    {
-      "title": "tbdavid2019 pushed 888-url2md",
-      "url": "https://github.com/tbdavid2019/888-url2md/compare/e828a42128...b91ac63128",
-      "updated": "2026-10-16 10:32:59 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 10:32 1 commit to main b91ac63 fix(ui): strengthen heading type hierarchy"
     }
   ],
-  "lastSyncedAt": "2026-10-18T02:34:26.004Z",
+  "lastSyncedAt": "2026-10-18T05:15:09.785Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
