@@ -1,6 +1,6 @@
 # David Chiang (David888) - CTO & Technical Advisor Portfolio
 
-> 帶過百人團隊，更能親自動手處理、為團隊建立技術基準 / Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
+> 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統 / CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
@@ -30,7 +30,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Ways to Work & Executive Advisory
 
-- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 帶過百人團隊，更能親自動手處理、為團隊建立技術基準。十多年跨國技術管理與研發實戰經驗，提供系統診斷（Tech Due Diligence）、年度企業技術顧問、全職 CTO / VP of Engineering 與給不諳技術老闆的 5 大安心承諾。
+- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。十多年跨國技術管理與開發經驗，提供系統診斷（Tech Due Diligence）、年度企業技術顧問、全職 CTO / VP of Engineering 與給不諳技術老闆的 5 大安心承諾。
 - [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](https://david888.com/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。
 - [CTO & VP of Engineering / 技術長與研發管理](https://david888.com/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。
 - [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](https://david888.com/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。
@@ -113,10 +113,10 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## About David Chiang (Traditional Chinese)
 
-### 帶過百人團隊，更能親自動手處理、為團隊建立技術基準
-> 系統慢了就加機器？專案延宕就盲目招人？技術債沉重就推倒重來？—— 這些花錢堆人的偷懶做法誰都會，難的是親自下場找出真正的核心痛點。
+### 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統
+> 管理超過 100+ 人團隊，處理過大型商務系統開發和調整；懂戰略也能挽起袖子在第一線寫 Code 解決核心技術痛點。
 
-十多年跨國技術管理與研發實戰經驗。曾掌舵百人規模工程團隊，主導大型電商系統重構與跨國 CRM/ERP 深度整合；更能親自動手排查核心瓶頸，為工程團隊建立清晰可靠的架構技術基準。能以商業回報與成本效益跟經營層算清每筆預算，也能下場與工程師抽絲剝繭拆解底層架構。不為盲目追逐新技術而徒增複雜度，更不為了省成本而犧牲系統該有的商業品質。
+十多年跨國技術管理與系統開發經驗。曾帶領 100+ 人工程團隊完成跨國大型商務系統微服務重構，並整合全球 CRM / ERP 與售後流程，將退換貨處理時間從數天縮短至數分鐘。能和經營層聚焦業務營運目標，更能親自動手排查核心瓶頸、為團隊建立技術架構基準，專注幫公司解決系統卡關、穩定交付。
 
 #### 給不諳技術老闆的 5 大安心承諾（老闆最怕的 5 件事，技術主管應該說清楚）
 
@@ -166,10 +166,10 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## About David Chiang (English)
 
-### Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards
-> Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rebuild from scratch. — Anyone can throw money and bodies at a problem. The real challenge is diving into the trenches and isolating the root bottleneck.
+### CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth
+> Led teams of 100+ engineers, scaling and refactoring large-scale enterprise platforms; fluent in executive strategy, and ready to roll up sleeves on the front line to write code and tackle core technical bottlenecks.
 
-Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems. Hands-on in diagnosing and resolving core technical bottlenecks to establish rock-solid engineering baselines for the team. Fluent in business ROI with leadership, and capable of diving deep into code and architecture alongside engineers. Never adopting new tech for its own sake, and never sacrificing system reliability to cut corners.
+Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems, reducing return processing time from days to minutes. Able to align on strategic business goals with executive leadership, while personally diagnosing core bottlenecks and setting architectural baselines to ensure reliable delivery.
 
 #### For Non-Technical Leaders: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 

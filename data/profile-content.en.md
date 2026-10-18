@@ -1,8 +1,8 @@
-# Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards
+# CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth
 
-> Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rebuild from scratch. — Anyone can throw money and bodies at a problem. The real challenge is diving into the trenches and isolating the root bottleneck.
+> Led teams of 100+ engineers, scaling and refactoring large-scale enterprise platforms; fluent in executive strategy, and ready to roll up sleeves on the front line to write code and tackle core technical bottlenecks.
 
-Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems. Hands-on in diagnosing and resolving core technical bottlenecks to establish rock-solid engineering baselines for the team. Fluent in business ROI with leadership, and capable of diving deep into code and architecture alongside engineers. Never adopting new tech for its own sake, and never sacrificing system reliability to cut corners.
+Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems, reducing return processing time from days to minutes. Able to align on strategic business goals with executive leadership, while personally diagnosing core bottlenecks and setting architectural baselines to ensure reliable delivery.
 
 ## For Non-Technical Leaders: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 

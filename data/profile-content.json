@@ -1,11 +1,11 @@
 {
   "zh": {
-    "headline": "帶過百人團隊，更能親自動手處理、為團隊建立技術基準",
-    "subHeadline": "系統慢了就加機器？專案延宕就盲目招人？技術債沉重就推倒重來？—— 這些花錢堆人的偷懶做法誰都會，難的是親自下場找出真正的核心痛點。",
+    "headline": "具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統",
+    "subHeadline": "管理超過 100+ 人團隊，處理過大型商務系統開發和調整；懂戰略也能挽起袖子在第一線寫 Code 解決核心技術痛點。",
     "body": [
       {
         "kind": "paragraph",
-        "text": "十多年跨國技術管理與研發實戰經驗。曾掌舵百人規模工程團隊，主導大型電商系統重構與跨國 CRM/ERP 深度整合；更能親自動手排查核心瓶頸，為工程團隊建立清晰可靠的架構技術基準。能以商業回報與成本效益跟經營層算清每筆預算，也能下場與工程師抽絲剝繭拆解底層架構。不為盲目追逐新技術而徒增複雜度，更不為了省成本而犧牲系統該有的商業品質。"
+        "text": "十多年跨國技術管理與系統開發經驗。曾帶領 100+ 人工程團隊完成跨國大型商務系統微服務重構，並整合全球 CRM / ERP 與售後流程，將退換貨處理時間從數天縮短至數分鐘。能和經營層聚焦業務營運目標，更能親自動手排查核心瓶頸、為團隊建立技術架構基準，專注幫公司解決系統卡關、穩定交付。"
       },
       {
         "kind": "sectionTitle",
@@ -102,12 +102,12 @@
     ]
   },
   "en": {
-    "headline": "Led teams of 100+ engineers, hands-on solving core bottlenecks to set engineering standards",
-    "subHeadline": "Slow system? Just add more servers. Behind schedule? Just hire more headcount. Mounting tech debt? Just rebuild from scratch. — Anyone can throw money and bodies at a problem. The real challenge is diving into the trenches and isolating the root bottleneck.",
+    "headline": "CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth",
+    "subHeadline": "Led teams of 100+ engineers, scaling and refactoring large-scale enterprise platforms; fluent in executive strategy, and ready to roll up sleeves on the front line to write code and tackle core technical bottlenecks.",
     "body": [
       {
         "kind": "paragraph",
-        "text": "Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems. Hands-on in diagnosing and resolving core technical bottlenecks to establish rock-solid engineering baselines for the team. Fluent in business ROI with leadership, and capable of diving deep into code and architecture alongside engineers. Never adopting new tech for its own sake, and never sacrificing system reliability to cut corners."
+        "text": "Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems, reducing return processing time from days to minutes. Able to align on strategic business goals with executive leadership, while personally diagnosing core bottlenecks and setting architectural baselines to ensure reliable delivery."
       },
       {
         "kind": "sectionTitle",
