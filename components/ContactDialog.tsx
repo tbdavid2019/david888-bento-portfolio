@@ -6,6 +6,7 @@ import type { Locale } from '../types';
 
 interface ContactDialogProps {
   locale: Locale;
+  defaultSubjectId?: string;
   onClose: () => void;
 }
 
@@ -41,9 +42,14 @@ interface SubmittedReceipt {
   message: string;
 }
 
-export const ContactDialog: React.FC<ContactDialogProps> = ({ locale, onClose }) => {
+export const ContactDialog: React.FC<ContactDialogProps> = ({
+  locale,
+  defaultSubjectId,
+  onClose,
+}) => {
   const isZh = locale === 'zh';
-  const defaultOption = SUBJECT_OPTIONS[0];
+  const defaultOption =
+    SUBJECT_OPTIONS.find((opt) => opt.id === defaultSubjectId) || SUBJECT_OPTIONS[0];
 
   const [form, setForm] = useState({
     name: '',

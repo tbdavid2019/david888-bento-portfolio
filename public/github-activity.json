@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/c79e1b50b9...31eaad2946",
+      "updated": "2026-10-17 11:20:30 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 11:20 1 commit to main 31eaad2 feat(web): upgrade typography to JetBrains Mono and Gen Jyuu Gothic"
+    },
+    {
       "title": "tbdavid2019 pushed daily-podcast",
       "url": "https://github.com/tbdavid2019/daily-podcast/compare/28077c5e91...aae8ca5fcc",
       "updated": "2026-10-17 14:13:52 UTC",
@@ -23,15 +29,9 @@
       "url": "https://github.com/tbdavid2019/888news/compare/a07f16b791...7d19cf88db",
       "updated": "2026-10-17 11:38:14 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 11:38 1 commit to main 7d19cf8 fix(podcast): expand feed maxBytes to 32MB and add Latent Space YouTu…"
-    },
-    {
-      "title": "tbdavid2019 pushed 888-url2md",
-      "url": "https://github.com/tbdavid2019/888-url2md/compare/2735091862...04f5f03f41",
-      "updated": "2026-10-16 07:07:51 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888-url2md · October 16, 2026 07:07 1 commit to main 04f5f03 fix(ui): remove card heading side accent"
     }
   ],
-  "lastSyncedAt": "2026-10-18T05:26:20.970Z",
+  "lastSyncedAt": "2026-10-18T05:46:18.511Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

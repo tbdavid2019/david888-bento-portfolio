@@ -1,11 +1,11 @@
 {
   "zh": {
     "headline": "具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統",
-    "subHeadline": "管理超過 100+ 人團隊，處理過大型商務系統開發和調整；懂戰略也能挽起袖子在第一線寫 Code 解決核心技術痛點。",
+    "subHeadline": "百人團隊帶得動，複雜系統搞得定，商業問題講得清。技術長的工作，不只是把系統做出來，更要管得住成本、控制得了風險，讓團隊持續交付，讓企業放心做生意。",
     "body": [
       {
         "kind": "paragraph",
-        "text": "十多年跨國技術管理與系統開發經驗。曾帶領 100+ 人工程團隊完成跨國大型商務系統微服務重構，並整合全球 CRM / ERP 與售後流程，將退換貨處理時間從數天縮短至數分鐘。能和經營層聚焦業務營運目標，更能親自動手排查核心瓶頸、為團隊建立技術架構基準，專注幫公司解決系統卡關、穩定交付。"
+        "text": "企業真正稀缺的，是既有百人大型研發組織的管理經驗，又有足夠的底層技術深度——能在企業面臨重大技術決策與系統危機時做出正確戰略判斷，並親手建立技術基準、負責把決策徹底落地。十多年跨國技術管理與架構實戰，曾帶領 100+ 人工程團隊完成跨國大型商務平台微服務重構，並整合全球 CRM / ERP 與售後流程，將退換貨處理時間從數天縮短至數分鐘。"
       },
       {
         "kind": "sectionTitle",
@@ -103,11 +103,11 @@
   },
   "en": {
     "headline": "CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth",
-    "subHeadline": "Led teams of 100+ engineers, scaling and refactoring large-scale enterprise platforms; fluent in executive strategy, and ready to roll up sleeves on the front line to write code and tackle core technical bottlenecks.",
+    "subHeadline": "Leading 100+ person teams, mastering complex systems, and speaking plain business. A CTO's job goes beyond building software—it is about controlling costs, managing risk, keeping teams shipping, and giving the business peace of mind.",
     "body": [
       {
         "kind": "paragraph",
-        "text": "Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems, reducing return processing time from days to minutes. Able to align on strategic business goals with executive leadership, while personally diagnosing core bottlenecks and setting architectural baselines to ensure reliable delivery."
+        "text": "What enterprises truly lack is a leader who combines large-scale engineering organization management with deep technical mastery—able to make the right strategic calls during critical technology decisions, establish technical baselines, and take full ownership of execution. With over a decade of multinational leadership, I have led 100+ person engineering teams refactoring global commerce platforms and integrated multinational CRM/ERP workflows, cutting return processing from days to minutes."
       },
       {
         "kind": "sectionTitle",

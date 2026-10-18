@@ -36,8 +36,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     {
       value: '100+ 人',
       label: isEn
-        ? '100+ Team Scale · Hands-on & Sets Technical Baselines'
-        : '能帶大團隊，更能親自動手建立技術基準',
+        ? '100+ Team Scale · Strategic Judgment, Technical Depth & Execution'
+        : '百人研發組織領導 · 兼具戰略決策、技術深度與落地執行力',
     },
     {
       value: '180+ Repos',
@@ -80,7 +80,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
       <div className="flex flex-col gap-6">
         {/* Top Header: Identity & Action Buttons */}
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-3.5 sm:gap-4">
+          <div className="flex min-w-0 items-center gap-3.5 sm:gap-4">
             <img
               src="/bento/me.jpg"
               alt={profileData.name}
@@ -88,50 +88,64 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             />
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-base font-extrabold text-[#a9471d] sm:text-lg dark:text-[#ffb010]">
+                <span className="whitespace-nowrap font-mono text-base font-extrabold text-[#a9471d] sm:text-lg dark:text-[#ffb010]">
                   {profileData.name} (David888)
                 </span>
-                <span className="rounded-md border border-[#17324d] bg-[#17324d] px-2.5 py-0.5 text-xs font-extrabold text-[#fff9e8] dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#2b251a]">
+                <span className="whitespace-nowrap rounded-md border border-[#17324d] bg-[#17324d] px-2.5 py-0.5 text-xs font-extrabold text-[#fff9e8] dark:border-[#ffb010] dark:bg-[#ffb010] dark:text-[#2b251a]">
                   {isEn ? 'CTO & TECHNICAL ADVISOR' : 'CTO & 技術顧問'}
                 </span>
               </div>
-              <div className="mt-1 text-xs font-bold text-text-muted sm:text-sm">
-                {isEn
-                  ? 'Enterprise Systems Architecture · Systems Integration · Experienced Hands-on CTO'
-                  : '大型系統架構 ｜ 系統整合 ｜ 實戰經驗豐富技術長'}
+              <div className="mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs font-bold text-text-muted sm:text-sm">
+                {isEn ? (
+                  <>
+                    <span className="whitespace-nowrap">Enterprise Architecture</span>
+                    <span aria-hidden="true">·</span>
+                    <span className="whitespace-nowrap">Systems Integration</span>
+                    <span aria-hidden="true">·</span>
+                    <span className="whitespace-nowrap">Hands-on CTO</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="whitespace-nowrap">大型系統架構</span>
+                    <span aria-hidden="true">｜</span>
+                    <span className="whitespace-nowrap">系統整合</span>
+                    <span aria-hidden="true">｜</span>
+                    <span className="whitespace-nowrap">實戰經驗豐富技術長</span>
+                  </>
+                )}
               </div>
             </div>
           </div>
 
           {/* Primary Action Buttons */}
-          <div className="flex w-full shrink-0 flex-wrap items-center gap-2 lg:w-auto">
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:w-auto lg:flex-nowrap">
             {onContact && (
               <button
                 type="button"
                 onClick={onContact}
-                className="btn-saffron inline-flex min-h-[42px] w-full items-center justify-center gap-2 px-4 py-2 text-sm font-extrabold sm:w-auto"
+                className="btn-saffron inline-flex h-[42px] w-full shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap px-4 text-sm font-extrabold sm:w-auto"
               >
                 <span>{isEn ? 'Contact for Advisory / CTO' : '洽談顧問合作 / 技術管理職缺'}</span>
-                <ArrowRight size={15} />
+                <ArrowRight size={15} className="shrink-0" />
               </button>
             )}
             <a
               href="https://www.linkedin.com/in/david11111/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[42px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-[#17324d] bg-bg-elevated px-3.5 text-sm font-bold text-text-main no-underline transition-colors hover:bg-[#fff0cc] sm:flex-initial dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
+              className="inline-flex h-[42px] flex-1 shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-[10px] border-2 border-[#17324d] bg-bg-elevated px-3.5 text-sm font-extrabold text-text-main no-underline transition-colors hover:bg-[#fff0cc] sm:flex-initial dark:border-[#ffb010]/70 dark:hover:bg-[#17324d]"
             >
-              <ExternalLink size={14} />
+              <ExternalLink size={14} className="shrink-0" />
               <span>LinkedIn</span>
             </a>
             <button
               type="button"
               onClick={() => setIsQrGameOpen(true)}
-              className="inline-flex min-h-[42px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-border bg-bg-elevated px-3 text-sm font-bold text-text-main transition-colors hover:border-[#17324d] sm:flex-initial dark:hover:border-[#ffb010]"
+              className="inline-flex h-[42px] flex-1 shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-[10px] border-2 border-[#17324d]/40 bg-bg-elevated px-3 text-sm font-extrabold text-text-main transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] sm:flex-initial dark:border-[#ffb010]/40 dark:hover:border-[#ffb010] dark:hover:bg-[#17324d]"
               aria-label={isEn ? 'Open David888 website QR' : '開啟 David888 網站 QR'}
               aria-haspopup="dialog"
             >
-              <Gamepad2 size={15} className="text-[#a9471d] dark:text-[#ffb010]" />
+              <Gamepad2 size={15} className="shrink-0 text-[#a9471d] dark:text-[#ffb010]" />
               <span>{isEn ? 'Website QR' : '網站 QR'}</span>
             </button>
           </div>

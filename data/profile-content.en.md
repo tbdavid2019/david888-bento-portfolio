@@ -1,8 +1,8 @@
 # CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth
 
-> Led teams of 100+ engineers, scaling and refactoring large-scale enterprise platforms; fluent in executive strategy, and ready to roll up sleeves on the front line to write code and tackle core technical bottlenecks.
+> Leading 100+ person teams, mastering complex systems, and speaking plain business. A CTO's job goes beyond building software—it is about controlling costs, managing risk, keeping teams shipping, and giving the business peace of mind.
 
-Over a decade of enterprise technology leadership and software engineering experience. Led 100+ person engineering teams refactoring multinational commerce platforms and integrated global CRM/ERP systems, reducing return processing time from days to minutes. Able to align on strategic business goals with executive leadership, while personally diagnosing core bottlenecks and setting architectural baselines to ensure reliable delivery.
+What enterprises truly lack is a leader who combines large-scale engineering organization management with deep technical mastery—able to make the right strategic calls during critical technology decisions, establish technical baselines, and take full ownership of execution. With over a decade of multinational leadership, I have led 100+ person engineering teams refactoring global commerce platforms and integrated multinational CRM/ERP workflows, cutting return processing from days to minutes.
 
 ## For Non-Technical Leaders: 5 Core Commitments (Addressing Your 5 Biggest Concerns)
 

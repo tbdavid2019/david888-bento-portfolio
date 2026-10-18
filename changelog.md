@@ -1,5 +1,26 @@
 # Changelog
 
+## [2026-10-18] - C-Level CTO Positioning Upgrade & PC CTA Button / Layout Fixes
+
+### Executive CTO Positioning Upgrade
+- **True C-Level CTO Sub-Headline & Strategic Narrative (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ProfileCard.tsx`, `components/ExecutiveBriefing.tsx`, `scripts/llms-txt.mjs`)**:
+  - Upgraded the sub-headline to speak directly to what enterprises actually pay a high-salaried CTO for (strategic judgment, organizational leadership, business ROI, risk ownership, and execution):
+    **「百人團隊帶得動，複雜系統搞得定，商業問題講得清。技術長的工作，不只是把系統做出來，更要管得住成本、控制得了風險，讓團隊持續交付，讓企業放心做生意。」**
+    *(EN: “Leading 100+ person teams, mastering complex systems, and speaking plain business. A CTO's job goes beyond building software—it is about controlling costs, managing risk, keeping teams shipping, and giving the business peace of mind.”)*.
+  - Framed deep technical mastery properly as the foundation for high-stakes executive decision-making and execution rather than self-downgrading to a "coding manager":
+    **「企業真正稀缺的，是既有百人大型研發組織的管理經驗，又有足夠的底層技術深度——能在企業面臨重大技術決策與系統危機時做出正確戰略判斷，並親手建立技術基準、負責把決策徹底落地。」**
+  - Updated the `100+ 人` hard metric label to **「百人研發組織領導 · 兼具戰略決策、技術深度與落地執行力」**.
+
+### PC Button & Interactive UX Fixes
+- **Restored `cursor: pointer` Across All Buttons (`index.css`, `components/ProfileCard.tsx`)**:
+  - Fixed Tailwind CSS v4 preflight's `cursor: default` on `<button>` elements by adding global `button:not(:disabled), [role="button"]:not(:disabled), a[href] { cursor: pointer; }` and explicit `cursor: pointer; white-space: nowrap;` on `.btn-saffron`.
+- **Eliminated `ContactDialog` Lazy-Chunk Failure & 706 KB Firebase Blocking (`App.tsx`, `lib/crm.ts`, `lib/firebase.ts`)**:
+  - Imported `ContactDialog` directly in `App.tsx` so clicking `洽談顧問合作 / 技術管理職缺 ->` opens the modal instantaneously with zero risk of post-deployment chunk 404 errors.
+  - Refactored `lib/crm.ts` to dynamically import Firebase (`firebase/functions`, `firebase/firestore`, `./firebase`) only when fallback or admin operations are invoked, keeping the 706 KB Firebase bundle out of the initial page load.
+- **Context-Aware Default Topic & PC Header Alignment (`App.tsx`, `components/ContactDialog.tsx`, `components/ProfileCard.tsx`)**:
+  - Clicking `洽談顧問合作 / 技術管理職缺 ->` or advisory CTAs now pre-selects **「顧問諮詢／業務合作」 (`consulting`)** in `ContactDialog`.
+  - Protected the identity subtitle segments with `whitespace-nowrap` and unified the 3 PC header action buttons (`h-[42px]`, `border-2`, `lg:flex-nowrap`) so neither the title nor the buttons wrap awkwardly on 1024px–1440px PC viewports.
+
 ## [2026-10-18] - Authoritative Positioning Restoration: "具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統"
 
 ### Executive Positioning & Branding Restoration

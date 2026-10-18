@@ -1,13 +1,11 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
+import { ContactDialog } from './components/ContactDialog';
 import { defaultCategoryId, getVisibleCategories } from './lib/siteCatalog';
 import { registerPortfolioWebMcp } from './lib/webmcp';
 import type { Locale } from './types';
 
-const ContactDialog = lazy(() =>
-  import('./components/ContactDialog').then((module) => ({ default: module.ContactDialog })),
-);
 const AdminConsole = lazy(() =>
   import('./components/AdminConsole').then((module) => ({ default: module.AdminConsole })),
 );
@@ -80,11 +78,17 @@ export default function App() {
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
   const [contactOpen, setContactOpen] = useState(false);
+  const [contactDefaultSubjectId, setContactDefaultSubjectId] = useState<string>('consulting');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const localeRef = useRef(locale);
   const activeCategoryIdRef = useRef(activeCategoryId);
   const visibleCategories = getVisibleCategories();
+
+  const openContactDialog = (defaultSubjectId = 'consulting') => {
+    setContactDefaultSubjectId(defaultSubjectId);
+    setContactOpen(true);
+  };
 
   useEffect(() => {
     localeRef.current = locale;
@@ -99,7 +103,7 @@ export default function App() {
       getLocale: () => localeRef.current,
       getActiveCategoryId: () => activeCategoryIdRef.current,
       setActiveCategoryId: (categoryId) => setCategoryAndSyncUrl(categoryId),
-      openContactForm: () => setContactOpen(true),
+      openContactForm: () => openContactDialog('consulting'),
     });
 
     return cleanup;
@@ -182,7 +186,7 @@ export default function App() {
         toggleTheme={toggleTheme}
         locale={locale}
         onLocaleChange={changeLocale}
-        onContact={() => setContactOpen(true)}
+        onContact={() => openContactDialog('tech_chat')}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         isSearchOpen={isSearchOpen}
@@ -202,12 +206,14 @@ export default function App() {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         onClearSearch={() => setSearchQuery('')}
-        onContact={() => setContactOpen(true)}
+        onContact={() => openContactDialog('consulting')}
       />
       {contactOpen && (
-        <Suspense fallback={null}>
-          <ContactDialog locale={locale} onClose={() => setContactOpen(false)} />
-        </Suspense>
+        <ContactDialog
+          locale={locale}
+          defaultSubjectId={contactDefaultSubjectId}
+          onClose={() => setContactOpen(false)}
+        />
       )}
     </div>
   );

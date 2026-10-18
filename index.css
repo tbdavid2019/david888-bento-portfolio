@@ -119,6 +119,12 @@ body {
   position: relative;
 }
 
+button:not(:disabled),
+[role="button"]:not(:disabled),
+a[href] {
+  cursor: pointer;
+}
+
 /* 2md.aiurl.tw Single-Axis Container */
 .dossier-shell {
   width: min(1080px, calc(100% - 32px));
@@ -224,6 +230,8 @@ body {
   color: #2b251a;
   font-weight: 800;
   border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
   box-shadow: 0 3px 8px rgba(150, 98, 0, 0.2);
   transition: background-color 0.18s ease, transform 0.18s ease;
 }

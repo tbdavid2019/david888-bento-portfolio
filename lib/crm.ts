@@ -1,17 +1,4 @@
-import { httpsCallable } from 'firebase/functions';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  serverTimestamp,
-  setDoc,
-  Timestamp,
-} from 'firebase/firestore';
-import { firebaseDb, firebaseFunctions } from './firebase';
+import type { Timestamp } from 'firebase/firestore';
 
 export type TicketStatus = 'new' | 'replied' | 'closed';
 
@@ -44,16 +31,6 @@ export interface HomepageAnnouncement {
   link: string;
 }
 
-const createTicket = httpsCallable<
-  Omit<ContactTicket, 'id' | 'ticketNo' | 'status' | 'createdAt' | 'updatedAt'>,
-  { ticketNo: string }
->(firebaseFunctions, 'createContactTicket');
-
-const replyToTicket = httpsCallable<{ ticketId: string; body: string }, { ok: true }>(
-  firebaseFunctions,
-  'replyToContactTicket',
-);
-
 export const submitContactTicket = async (input: {
   name: string;
   email: string;
@@ -62,7 +39,7 @@ export const submitContactTicket = async (input: {
   message: string;
   turnstileToken?: string;
 }): Promise<{ ticketNo: string; provider?: string }> => {
-  // 1. Try Resend API first (via Vercel Serverless Function or custom API URL)
+  // 1. Try Resend API first (via Cloudflare Worker or custom API URL)
   try {
     const contactApiUrl =
       import.meta.env.VITE_CONTACT_API_URL ||
@@ -87,15 +64,36 @@ export const submitContactTicket = async (input: {
     console.warn('[CRM] Resend API endpoint unreachable or failed, falling back to Firebase:', resendError);
   }
 
-  // 2. Fallback to Firebase Cloud Function
+  // 2. Fallback to Firebase Cloud Function (loaded on demand)
+  const [{ httpsCallable }, { firebaseFunctions }] = await Promise.all([
+    import('firebase/functions'),
+    import('./firebase'),
+  ]);
+  const createTicket = httpsCallable<
+    Omit<ContactTicket, 'id' | 'ticketNo' | 'status' | 'createdAt' | 'updatedAt'>,
+    { ticketNo: string }
+  >(firebaseFunctions, 'createContactTicket');
   const result = await createTicket(input);
   return { ...result.data, provider: 'firebase' };
 };
 
-export const sendTicketReply = async (ticketId: string, body: string) =>
-  (await replyToTicket({ ticketId, body })).data;
+export const sendTicketReply = async (ticketId: string, body: string) => {
+  const [{ httpsCallable }, { firebaseFunctions }] = await Promise.all([
+    import('firebase/functions'),
+    import('./firebase'),
+  ]);
+  const replyToTicket = httpsCallable<{ ticketId: string; body: string }, { ok: true }>(
+    firebaseFunctions,
+    'replyToContactTicket',
+  );
+  return (await replyToTicket({ ticketId, body })).data;
+};
 
 export const listTickets = async () => {
+  const [{ collection, getDocs, limit, orderBy, query }, { firebaseDb }] = await Promise.all([
+    import('firebase/firestore'),
+    import('./firebase'),
+  ]);
   const snapshot = await getDocs(
     query(collection(firebaseDb, 'tickets'), orderBy('createdAt', 'desc'), limit(100)),
   );
@@ -103,6 +101,10 @@ export const listTickets = async () => {
 };
 
 export const listTicketReplies = async (ticketId: string) => {
+  const [{ collection, getDocs, orderBy, query }, { firebaseDb }] = await Promise.all([
+    import('firebase/firestore'),
+    import('./firebase'),
+  ]);
   const snapshot = await getDocs(
     query(collection(firebaseDb, 'tickets', ticketId, 'replies'), orderBy('createdAt', 'asc')),
   );
@@ -110,11 +112,19 @@ export const listTicketReplies = async (ticketId: string) => {
 };
 
 export const loadHomepageAnnouncement = async (): Promise<HomepageAnnouncement | null> => {
+  const [{ doc, getDoc }, { firebaseDb }] = await Promise.all([
+    import('firebase/firestore'),
+    import('./firebase'),
+  ]);
   const snapshot = await getDoc(doc(firebaseDb, 'announcements', 'homepage'));
   return snapshot.exists() ? (snapshot.data() as HomepageAnnouncement) : null;
 };
 
 export const saveHomepageAnnouncement = async (announcement: HomepageAnnouncement) => {
+  const [{ doc, serverTimestamp, setDoc }, { firebaseDb }] = await Promise.all([
+    import('firebase/firestore'),
+    import('./firebase'),
+  ]);
   await setDoc(
     doc(firebaseDb, 'announcements', 'homepage'),
     { ...announcement, updatedAt: serverTimestamp() },

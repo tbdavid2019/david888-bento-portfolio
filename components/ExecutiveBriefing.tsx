@@ -59,14 +59,14 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         : '適合：跨國企業、上市櫃公司、零售電商與科技公司',
       deliverables: isEn
         ? [
-            'Manage 100+ person cross-regional engineering, data, and product delivery teams',
-            'E-commerce platform refactoring and global CRM/ERP system integration',
-            'Participate directly in system architecture design, code reviews, and technical decisions',
+            'Lead 100+ person cross-regional engineering, data & product organizations—aligning technology investments with multi-year business growth',
+            'Untangle complex commerce platforms and global CRM/ERP integrations while controlling costs and operational risk',
+            'Combine organizational leadership with deep technical judgment: make high-stakes architectural decisions, establish baselines, and drive execution to completion',
           ]
         : [
-            '管理 100+ 人跨區工程、資料與產品研發團隊，讓技術投入對齊商業目標',
-            '負責大型電商平台改版、微服務架構升級與跨國 CRM/ERP 營運系統整合',
-            '實際參與系統架構設計、程式碼審查與關鍵技術選型',
+            '帶領 100+ 人跨區工程、資料與產品研發組織，確保技術投資方向支撐未來業務成長並產生實際商業回報',
+            '搞定大型電商平台重構與跨國 CRM/ERP 系統整合，管住成本、控制風險，在核心系統面臨挑戰時穩住大局',
+            '兼具大型組織管理與底層技術深度：在重大技術決策時做出精準判斷，親手建立技術基準並負責把戰略徹底落地',
           ],
     },
     {
