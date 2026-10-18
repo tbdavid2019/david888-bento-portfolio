@@ -54,6 +54,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Skills & MCP Tools for LLMs & AI Agents
 
+- [888-url2md (2MD) Agent Skill & API (888-url2md (2MD) Agent Skill & API)](https://2md.aiurl.tw/): 專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
 - [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
 - [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題。
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
@@ -83,8 +84,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [側邊翻譯 333 (Side Translation 333)](https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg): 提供側邊欄介面的網頁翻譯工具，方便在瀏覽外文網站時左右對照原文與譯文。
 - [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。
 - [888box 檔案中心 (888box File Center)](https://box.david888.com/): 開源的類 Dropbox 雲端儲存與檔案管理中心。
-- [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
-- [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
+- [2MD 快速閱讀、OCR 表格重建與個資去識別化引擎 (2MD — Fast Web/Doc Reader, PP-OCRv4 Table Reconstruction & PII Shield)](https://2md.aiurl.tw/): 全功能 AI 內容解析與隱私護盾：將網頁、Office/PDF 文件、高解析圖片表格（PP-OCRv4）與即時搜尋轉為乾淨 GFM Markdown 或 JSON，內建 15 類台灣與國際個資去識別化。
 - [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
 - [888 Tool (888 Tool)](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
 - [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。

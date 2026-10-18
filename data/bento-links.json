@@ -497,12 +497,14 @@
   },
   {
     "type": "link",
-    "title": "2MD 快速閱讀與搜尋",
-    "titleEn": "2MD Fast Web Reader & Search",
-    "description": "網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。",
-    "descriptionEn": "Web reader and search tool converting live pages and search results into clean Markdown for AI agents and LLMs.",
+    "title": "2MD 快速閱讀、OCR 表格重建與個資去識別化引擎",
+    "titleEn": "2MD — Fast Web/Doc Reader, PP-OCRv4 Table Reconstruction & PII Shield",
+    "description": "全功能 AI 內容解析與隱私護盾：將網頁、Office/PDF 文件、高解析圖片表格（PP-OCRv4）與即時搜尋轉為乾淨 GFM Markdown 或 JSON，內建 15 類台灣與國際個資去識別化。",
+    "descriptionEn": "All-in-one AI ingestion & privacy shield converting web pages, PDF/Office docs, tabular images (PP-OCRv4), and live search into clean GFM Markdown or JSON, with 15-category PII de-identification.",
     "url": "https://2md.aiurl.tw/",
+    "repoUrl": "https://github.com/tbdavid2019/888-url2md",
     "imageSource": "/bento/url-markdown.svg",
+    "flagship": true,
     "featured": true,
     "tag": "products",
     "section": "Web 產品與服務 (Web Products & Services)",
@@ -510,36 +512,50 @@
     "icon": "search",
     "colSpan": 2,
     "techStack": [
-      "Document Parsing",
-      "PP-OCRv4",
-      "Table Reconstruction",
-      "WebMCP",
-      "Batch Search"
+      "AnyDoc Parser",
+      "PaddleOCR PP-OCRv4",
+      "2D Table Reconstruction",
+      "15-Rule PII De-ID",
+      "Batch Crawl & SERP",
+      "WebMCP"
     ],
     "highlights": [
-      "支援文件解析（PDF/Word/Excel/PPT/EPUB）與表格轉為 GFM Markdown",
-      "支援單頁擷取、即時網頁搜尋、多網址批次讀取",
-      "支援瀏覽器 WebMCP 工具註冊與 Markdown 輸出"
+      "支援單頁擷取、即時搜尋 (/s/<query>)、批次爬取與 PDF/Word/Excel/PPT/EPUB 毫秒級轉 Markdown",
+      "PP-OCRv4 2D 空間表格重建 (/api/ocr，支援 50MB 大圖)，自動將圖片表格還原為 GFM Markdown",
+      "內建 15 類台灣與國際個資去識別化 (/api/deid 或 X-Deidentify: true)、5 種遮罩與可逆 CSV 映射"
     ],
     "highlightsEn": [
-      "Document parsing and table reconstruction into clean GFM Markdown",
-      "Supports single URL extraction, live web search, and batch URL reading",
-      "Supports WebMCP browser tool registration and Markdown output"
+      "Single URL, live SERP search (/s/<query>), batch crawl, and sub-5ms PDF/Office/EPUB document parsing",
+      "PP-OCRv4 2D spatial table reconstruction (/api/ocr, up to 50MB images) outputting clean GFM Markdown tables",
+      "15-category Taiwan & international PII de-identification (/api/deid) with 5 masking modes and reversible CSV mapping"
     ]
   },
   {
     "type": "link",
-    "title": "888-url2md 網頁轉 Markdown",
-    "titleEn": "888-url2md Web Reader",
-    "description": "基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。",
-    "descriptionEn": "Enhanced jina-reader fork with batch URL processing capabilities. Directly usable at https://create360.ai",
-    "url": "https://create360.ai",
+    "title": "888-url2md (2MD) Agent Skill & API",
+    "titleEn": "888-url2md (2MD) Agent Skill & API",
+    "description": "專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。",
+    "descriptionEn": "Agent Skill & API for web scraping, live SERP search, PDF/Office parsing, PP-OCRv4 tabular image OCR, and 15-rule PII de-identification at https://2md.aiurl.tw/.",
+    "url": "https://2md.aiurl.tw/",
     "repoUrl": "https://github.com/tbdavid2019/888-url2md",
     "imageSource": "/bento/url-markdown.svg",
-    "tag": "products",
-    "section": "Web 產品與服務 (Web Products & Services)",
-    "sectionEn": "Web Products & Services",
-    "icon": "search"
+    "featured": true,
+    "tag": "agent-skills",
+    "icon": "search",
+    "colSpan": 2,
+    "techStack": [
+      "Agent Skill",
+      "PP-OCRv4 API",
+      "PII De-ID Shield",
+      "SERP & Batch Crawl",
+      "AnyDoc Engine"
+    ],
+    "highlights": [
+      "提供單頁讀取、即時搜尋 (/s/)、多網址批次爬取 (/v1/batch)、圖片 OCR (/api/ocr) 與個資去識別化 (/api/deid) 標準 API"
+    ],
+    "highlightsEn": [
+      "Unified Agent API for single URL, live SERP (/s/), batch crawl (/v1/batch), PP-OCRv4 (/api/ocr), and PII masking (/api/deid)"
+    ]
   },
   {
     "type": "link",

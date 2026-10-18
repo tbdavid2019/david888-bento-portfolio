@@ -54,6 +54,7 @@ test('supports Canonical Routes and highlights the 5 flagship production domains
   assert.match(flagshipSource, /https:\/\/news2\.david888\.com\//);
   assert.match(flagshipSource, /https:\/\/podcast\.david888\.com\//);
   assert.match(flagshipSource, /https:\/\/qi\.david888\.com\//);
+  assert.match(flagshipSource, /https:\/\/2md\.aiurl\.tw\//);
 });
 
 test('provides direct canonical route /commitments, auto-expansion, and 1-click sharing', () => {

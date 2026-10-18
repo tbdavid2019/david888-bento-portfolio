@@ -64,7 +64,7 @@ test('groups the divination product family together under finance category', () 
 
 test('labels LLM resources as AI Agent Skills', () => {
   const skillItems = links.filter((item) => item.tag === 'agent-skills');
-  assert.equal(skillItems.length, 10);
+  assert.equal(skillItems.length, 11);
   assert.ok(skillItems.every((item) => /Skill|技能|API|Agent|MCP/.test(item.title)));
   assert.equal(links.find((item) => item.title === 'AnswerBook API')?.tag, 'products');
   assert.equal(categoryConfig.categories.find((category) => category.id === 'agent-skills')?.label, 'Skills');

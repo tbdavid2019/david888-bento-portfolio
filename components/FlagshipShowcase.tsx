@@ -8,6 +8,7 @@ import {
   Compass,
   Copy,
   ExternalLink,
+  FileSearch,
   LineChart,
   Newspaper,
   Podcast,
@@ -227,6 +228,44 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
       { labelZh: '月老姻緣', labelEn: 'Matchmaking', url: 'https://qi.david888.com/yinyuan' },
     ],
   },
+  {
+    id: '2md',
+    domain: '2md.aiurl.tw',
+    url: 'https://2md.aiurl.tw/',
+    repoUrl: 'https://github.com/tbdavid2019/888-url2md',
+    docUrl: 'https://2md.aiurl.tw/',
+    docLabelZh: 'API & Skill 規範',
+    docLabelEn: 'API & Skill Spec',
+    icon: FileSearch,
+    titleZh: '2MD (888-url2md) ｜ 網頁與文件解析、PP-OCRv4 表格重建與個資去識別化引擎',
+    titleEn: '2MD (888-url2md) — Web/Doc Parser, PP-OCRv4 Table Reconstruction & PII Shield',
+    subtitleZh:
+      '將任意網頁、多格式文件（PDF/Word/Excel/PPT/EPUB）、高解析圖片表格與即時搜尋結果，毫秒級轉換為乾淨的 GFM Markdown 或結構化 JSON，內建 15 類台灣與國際個資去識別化護盾。',
+    subtitleEn:
+      'High-speed LLM ingestion engine converting live web pages, office documents, tabular images (PP-OCRv4), and SERP queries into clean GFM Markdown or JSON, complete with 15-category PII de-identification.',
+    breakthroughsZh: [
+      '全格式文件與多網址批次爬取：支援單頁擷取、即時網頁搜尋 (`/s/<query>`)、多網址批次讀取與 AnyDoc 文件解析（PDF/Office/EPUB <5ms 轉換）',
+      'PP-OCRv4 空間表格重建：支援最高 50MB 圖片上傳（`/api/ocr`），透過 2D Bounding-Box 空間聚類將圖片表格自動還原為標準 GFM Markdown 表格',
+      '個資去識別化護盾（PII Shield）：內建 15 類台灣（7 類）與國際（8 類）敏感個資規則（`/api/deid` 或 `X-Deidentify: true`），支援 5 種遮罩模式、自訂 RegExp 與可逆 CSV 映射表',
+    ],
+    breakthroughsEn: [
+      'Multi-URL batch crawling, live SERP search (`/s/<query>`), and sub-5ms AnyDoc document parsing (PDF/Word/Excel/PPT/EPUB)',
+      'PP-OCRv4 2D spatial table reconstruction (`/api/ocr`, up to 50MB images) converting complex tabular screenshots directly into GFM Markdown tables',
+      'PII De-Identification & Privacy Shield (`/api/deid` or `X-Deidentify: true`) masking 15 Taiwan & international PII categories with reversible CSV mapping and AI privacy scoring',
+    ],
+    techStack: [
+      'AnyDoc Parser',
+      'PaddleOCR PP-OCRv4',
+      '2D Table Reconstruction',
+      '15-Rule PII De-ID',
+      'Batch Crawl & SERP',
+      'WebMCP & Agent Skill',
+    ],
+    subLinks: [
+      { labelZh: '即時搜尋 API (/s/台積電)', labelEn: 'Live Search API', url: 'https://2md.aiurl.tw/s/%E5%8F%B0%E7%A9%8D%E9%9B%BB' },
+      { labelZh: 'OCR 叢集狀態 (/api/capabilities)', labelEn: 'OCR Capabilities', url: 'https://2md.aiurl.tw/api/capabilities' },
+    ],
+  },
 ];
 
 interface FlagshipShowcaseProps {
@@ -240,13 +279,13 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
   const handleCopy = (key: string, text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedKey(key);
-    setTimeout(() => setCopiedKey(null), 2000);
+    setTimeout(() => setCopiedKey(false as any), 2000);
   };
 
   return (
     <section
       id="flagships"
-      aria-label={isEn ? '5 Flagship Live Systems' : '精選 5 大主力線上系統'}
+      aria-label={isEn ? '6 Flagship Live Systems' : '精選 6 大主力線上系統'}
       className="scroll-mt-24 space-y-5"
     >
       <div className="dossier-card border-2 border-[#17324d] p-5 sm:p-7 dark:border-[#ffb010]/70">
@@ -254,17 +293,17 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
               {isEn
-                ? '5 Flagship Systems — Selected Production Products (*.david888.com)'
-                : '精選 5 大主力線上系統（*.david888.com）'}
+                ? '6 Flagship Systems — Selected Production Products'
+                : '精選 6 大主力線上系統（長期維運實機產品）'}
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Selected from 180+ open-source GitHub repositories and full-stack projects—five flagship systems independently built and maintained end-to-end, spanning quantitative finance, time-series forecasting, automated tech intelligence, daily audio podcasts, and calendar decision engines.'
-                : '從個人 180+ 個 GitHub 開源專案與實戰工具庫中，精選 5 套由我獨立架構、前後端開發並長期維運的主力系統（涵蓋台美股估值分析、時序預測模型、科技情報自動彙整、語音廣播基建與傳統曆法決策網站）。'}
+                ? 'Selected from 180+ open-source GitHub repositories and full-stack projects—six flagship systems independently built and maintained end-to-end, spanning quantitative finance, time-series forecasting, automated tech intelligence, LLM document/OCR/PII ingestion (2MD), daily audio podcasts, and calendar decision engines.'
+                : '從個人 180+ 個 GitHub 開源專案與實戰工具庫中，精選 6 套由我獨立架構、前後端開發並長期維運的主力系統（涵蓋台美股估值分析、時序預測模型、科技情報自動彙整、2MD 網頁/文件/OCR/去識別化引擎、語音廣播基建與傳統曆法決策網站）。'}
             </p>
           </div>
           <div className="shrink-0 font-mono text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">
-            {isEn ? '5 FLAGSHIP DOMAINS' : '5 大主力線上網域'}
+            {isEn ? '6 FLAGSHIP DOMAINS' : '6 大主力線上網域'}
           </div>
         </div>
 

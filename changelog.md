@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-10-18] - Promote `2md.aiurl.tw` (2MD / 888-url2md) to Homepage Flagship Showcase & Agent Skills
+
+### Flagship Showcase & Portfolio Taxonomy Upgrade
+- **Promoted `https://2md.aiurl.tw/` to Homepage Flagship Showcase (`components/FlagshipShowcase.tsx`, `data/profile-content.zh.md`, `data/profile-content.en.md`)**:
+  - Previously, `2md.aiurl.tw` was buried inside the 5th tab (`/products`), making it invisible on the homepage (`FlagshipShowcase` only listed `*.david888.com` domains) and missing from `/agent-skills`.
+  - Expanded `FlagshipShowcase` to **6 Flagship Systems**, showcasing **`2MD (888-url2md) ｜ 網頁與文件解析、PP-OCRv4 表格重建與個資去識別化引擎`** directly on the homepage and `/executive` dossier:
+    - **AnyDoc & Multi-URL Batch Crawl**: Single URL extraction, live SERP search (`/s/<query>`), multi-URL batch reading (`/v1/batch`), and sub-5ms PDF/Word/Excel/PPT/EPUB document parsing.
+    - **PP-OCRv4 2D Spatial Table Reconstruction**: Up to 50MB image upload (`/api/ocr`) with 2D bounding-box spatial clustering to reconstruct tabular screenshots directly into GFM Markdown tables.
+    - **15-Rule PII De-Identification & Privacy Shield**: Built-in masking for 7 Taiwan + 8 international PII categories (`/api/deid` or `X-Deidentify: true`) with 5 masking modes, custom RegExp, and reversible CSV mapping.
+- **Added `888-url2md (2MD) Agent Skill & API` to `/agent-skills` and Updated `/products` (`data/bento-links.json`, `test/portfolio-taxonomy.test.mjs`, `test/bento-navigation.test.mjs`)**:
+  - Added a dedicated featured `colSpan: 2` card in `/agent-skills` (`Skills` tab) pointing directly to `https://2md.aiurl.tw/` and `https://github.com/tbdavid2019/888-url2md` (replacing the outdated `create360.ai` duplicate link).
+  - Updated the `/products` featured card with the full AnyDoc, PP-OCRv4, and 15-category PII De-ID capabilities.
+
 ## [2026-10-18] - C-Level CTO Positioning Upgrade & PC CTA Button / Layout Fixes
 
 ### Executive CTO Positioning Upgrade

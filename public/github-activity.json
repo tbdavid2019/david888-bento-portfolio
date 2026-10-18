@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed 888tools",
+      "url": "https://github.com/tbdavid2019/888tools/compare/d950714949...ff520ff860",
+      "updated": "2026-10-17 23:47:18 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 17, 2026 23:47 1 commit to main ff520ff fix(data-deidentification): improve navigation UX with back button, d…"
+    },
+    {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/31eaad2946...a07f16b791",
+      "updated": "2026-10-17 11:35:20 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 11:35 1 commit to main a07f16b feat(podcast): support native YouTube Atom RSS parsing and autonomous…"
+    },
+    {
       "title": "tbdavid2019 pushed 888news",
       "url": "https://github.com/tbdavid2019/888news/compare/c79e1b50b9...31eaad2946",
       "updated": "2026-10-17 11:20:30 UTC",
@@ -17,21 +29,9 @@
       "url": "https://github.com/tbdavid2019/888news/compare/7d19cf88db...bd18eedaca",
       "updated": "2026-10-17 12:04:54 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 12:04 1 commit to main bd18eed feat(web): embed Gen Jyuu Gothic woff2 webfont for cross-device support"
-    },
-    {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/29e9cb5b62...28077c5e91",
-      "updated": "2026-10-17 13:02:30 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 17, 2026 13:02 1 commit to main 28077c5 feat(web): support canonical routes and deep tab linking for episode …"
-    },
-    {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/a07f16b791...7d19cf88db",
-      "updated": "2026-10-17 11:38:14 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 11:38 1 commit to main 7d19cf8 fix(podcast): expand feed maxBytes to 32MB and add Latent Space YouTu…"
     }
   ],
-  "lastSyncedAt": "2026-10-18T05:46:18.511Z",
+  "lastSyncedAt": "2026-10-18T06:08:03.876Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

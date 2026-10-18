@@ -54,6 +54,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Skills & MCP Tools for LLMs & AI Agents
 
+- [888-url2md (2MD) Agent Skill & API (888-url2md (2MD) Agent Skill & API)](https://2md.aiurl.tw/): 專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
 - [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
 - [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題。
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
@@ -83,8 +84,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 - [側邊翻譯 333 (Side Translation 333)](https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg): 提供側邊欄介面的網頁翻譯工具，方便在瀏覽外文網站時左右對照原文與譯文。
 - [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。
 - [888box 檔案中心 (888box File Center)](https://box.david888.com/): 開源的類 Dropbox 雲端儲存與檔案管理中心。
-- [2MD 快速閱讀與搜尋 (2MD Fast Web Reader & Search)](https://2md.aiurl.tw/): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
-- [888-url2md 網頁轉 Markdown (888-url2md Web Reader)](https://create360.ai): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
+- [2MD 快速閱讀、OCR 表格重建與個資去識別化引擎 (2MD — Fast Web/Doc Reader, PP-OCRv4 Table Reconstruction & PII Shield)](https://2md.aiurl.tw/): 全功能 AI 內容解析與隱私護盾：將網頁、Office/PDF 文件、高解析圖片表格（PP-OCRv4）與即時搜尋轉為乾淨 GFM Markdown 或 JSON，內建 15 類台灣與國際個資去識別化。
 - [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
 - [888 Tool (888 Tool)](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
 - [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
@@ -160,7 +160,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 - 從數天縮短至數分鐘：整合跨國消費性電子品牌的客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP / RMA 退換貨流程，讓原本需要數天的跨部門人工資訊傳遞，縮短至數分鐘。
 
-- 180+ GitHub 專案與主力線上系統：除了企業管理工作，也持續開發、部署與維護實際上線的產品。技術不是只停留在簡報裡。長期維運 5 大主力線上系統，包含 888 StockBot 2.0、888 StockQuant、888news 科技情報彙整、DAVID888 Daily 語音播客與 333 奇門遁甲曆法決策系統。
+- 180+ GitHub 專案與主力線上系統：除了企業管理工作，也持續開發、部署與維護實際上線的產品。技術不是只停留在簡報裡。長期維運 6 大主力線上系統，包含 888 StockBot 2.0、888 StockQuant、888news 科技情報彙整、2MD (2md.aiurl.tw) 網頁與文件解析／PP-OCRv4 表格重建／個資去識別化引擎、DAVID888 Daily 語音播客與 333 奇門遁甲曆法決策系統。
 
 > 有問題，不必急著決定合作。先把問題聊清楚比較重要。
 
@@ -213,7 +213,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 
 - From Days to Minutes: Integrated customer service, Salesforce, HubSpot, RingCentral telephony, and ERP/RMA workflows for a global consumer electronics brand, reducing manual cross-department return processing from days to minutes.
 
-- 180+ GitHub Repositories & Flagship Systems: Beyond enterprise management, actively building, deploying, and maintaining live products. Actively operating 5 flagship platforms: 888 StockBot 2.0 (valuation), 888 StockQuant (time-series forecasting), 888news (tech intelligence & MCP), DAVID888 Daily podcast, and 333 Qi Men Dun Jia calendar system.
+- 180+ GitHub Repositories & Flagship Systems: Beyond enterprise management, actively building, deploying, and maintaining live products. Actively operating 6 flagship platforms: 888 StockBot 2.0 (valuation), 888 StockQuant (time-series forecasting), 888news (tech intelligence & MCP), 2MD (2md.aiurl.tw web/document parser, PP-OCRv4 table reconstruction & PII shield), DAVID888 Daily podcast, and 333 Qi Men Dun Jia calendar system.
 
 > Have questions? No need to rush into an engagement—let's talk through the problem first.
 
@@ -376,19 +376,18 @@ Open to full-time technology leadership roles for multinational corporations, li
 - Description (ZH): 開源的類 Dropbox 雲端儲存與檔案管理中心。
 - Description (EN): An open-source Dropbox-like cloud storage and file center.
 
-### 2MD 快速閱讀與搜尋 / 2MD Fast Web Reader & Search
+### 2MD 快速閱讀、OCR 表格重建與個資去識別化引擎 / 2MD — Fast Web/Doc Reader, PP-OCRv4 Table Reconstruction & PII Shield
 - URL: https://2md.aiurl.tw/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 網頁解析與搜尋工具，將網頁內容與搜尋結果轉為乾淨的 Markdown 格式，方便 AI Agent 與大型語言模型讀取。
-- Description (EN): Web reader and search tool converting live pages and search results into clean Markdown for AI agents and LLMs.
+- Description (ZH): 全功能 AI 內容解析與隱私護盾：將網頁、Office/PDF 文件、高解析圖片表格（PP-OCRv4）與即時搜尋轉為乾淨 GFM Markdown 或 JSON，內建 15 類台灣與國際個資去識別化。
+- Description (EN): All-in-one AI ingestion & privacy shield converting web pages, PDF/Office docs, tabular images (PP-OCRv4), and live search into clean GFM Markdown or JSON, with 15-category PII de-identification.
 
-### 888-url2md 網頁轉 Markdown / 888-url2md Web Reader
-- URL: https://create360.ai
-- Category: products
-- Section: Web 產品與服務 (Web Products & Services)
-- Description (ZH): 基於 jina-reader 改寫，支援批次網址轉 Markdown，可直接於 https://create360.ai 使用。
-- Description (EN): Enhanced jina-reader fork with batch URL processing capabilities. Directly usable at https://create360.ai
+### 888-url2md (2MD) Agent Skill & API / 888-url2md (2MD) Agent Skill & API
+- URL: https://2md.aiurl.tw/
+- Category: agent-skills
+- Description (ZH): 專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
+- Description (EN): Agent Skill & API for web scraping, live SERP search, PDF/Office parsing, PP-OCRv4 tabular image OCR, and 15-rule PII de-identification at https://2md.aiurl.tw/.
 
 ### WebTalk 333 / WebTalk 333
 - URL: https://webtalk-nine.vercel.app/
