@@ -237,19 +237,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
           }}
           aria-current={isExecutiveView ? 'location' : undefined}
           className={cn(
-            'flex min-h-[44px] flex-1 items-center justify-start gap-2 rounded-[9px] px-3 py-2 text-base font-bold transition-colors no-underline md:justify-center',
+            'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
             isExecutiveView
               ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
               : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
           )}
         >
-          <Briefcase size={16} className="shrink-0" />
-          <span className="truncate">
+          <Briefcase size={15} className="shrink-0" />
+          <span className="min-w-0 text-center leading-tight break-words">
             {locale === 'en' ? 'CTO & Advisory' : '顧問與經歷'}
           </span>
           <span
             className={cn(
-              'ml-auto inline-flex h-5 items-center justify-center rounded-md px-1.5 font-mono text-[11px] font-extrabold leading-none md:ml-0',
+              'ml-auto inline-flex h-5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:px-1.5 sm:text-[11px] md:ml-0',
               isExecutiveView
                 ? 'bg-[#17324d] text-[#fff9e8]'
                 : 'bg-[#ffb010] text-[#2b251a]',
@@ -267,19 +267,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
           }}
           aria-current={isFlagshipsView ? 'location' : undefined}
           className={cn(
-            'flex min-h-[44px] flex-1 items-center justify-start gap-2 rounded-[9px] px-3 py-2 text-base font-bold transition-colors no-underline md:justify-center',
+            'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
             isFlagshipsView
               ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
               : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
           )}
         >
-          <Rocket size={16} className="shrink-0" />
-          <span className="truncate">
+          <Rocket size={15} className="shrink-0" />
+          <span className="min-w-0 text-center leading-tight break-words">
             {locale === 'en' ? '5 Flagship Systems' : '5 大主力系統'}
           </span>
           <span
             className={cn(
-              'ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-md px-1.5 font-mono text-[11px] font-extrabold leading-none md:ml-0',
+              'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
               isFlagshipsView
                 ? 'bg-[#17324d] text-[#fff9e8]'
                 : 'bg-white/15 text-[#fff9e8]',
@@ -305,19 +305,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               }}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
-                'flex min-h-[44px] flex-1 items-center justify-start gap-2 rounded-[9px] px-3 py-2 text-base font-bold transition-colors no-underline md:justify-center',
+                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
                 isActive
                   ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
                   : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
               )}
             >
-              <Icon size={16} className="shrink-0" />
-              <span className="truncate">
+              <Icon size={15} className="shrink-0" />
+              <span className="min-w-0 text-center leading-tight break-words">
                 {locale === 'en' ? category.labelEn : category.label}
               </span>
               <span
                 className={cn(
-                  'ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-md px-1.5 font-mono text-[11px] font-extrabold leading-none md:ml-0',
+                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
                   isActive
                     ? 'bg-[#17324d] text-[#fff9e8]'
                     : 'bg-white/15 text-[#fff9e8]',

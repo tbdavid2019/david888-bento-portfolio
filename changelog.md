@@ -3,6 +3,10 @@
 ## [2026-10-18] - Occam's Razor Metric Streamlining: 100+ Team Scale & Zero Headcount Redundancy
 
 ### Enhanced & Streamlined
+- **Pre-allocated Equal Column Navigation Bar (`index.css`, `components/BentoGrid.tsx`)**:
+  - **Eliminated Awkward Multi-Row Wrap & Orphan Tabs**: Replaced `flex-wrap: wrap` with CSS Grid `grid-template-columns: repeat(8, minmax(0, 1fr))` on desktop viewports. This pre-allocates exact equal widths across all 8 navigation tabs, completely guaranteeing all items sit on a single horizontal row without broken wrapping or orphan tabs.
+  - **Flexible In-Tab Text Wrapping**: Replaced rigid `truncate` / `nowrap` on tab labels with `break-words text-center leading-tight`, allowing text inside buttons to gracefully wrap onto 2 lines on compact widths without breaking the outer navigation bar.
+  - **Symmetrical Multi-Tier Breakpoints**: Configured 8 equal columns on desktop (>=1024px), 4 equal columns on tablet (640px-1023px, 2 symmetrical rows of 4), and 2 equal columns on mobile (<640px, 4 symmetrical rows of 2), eliminating any unbalanced trailing tabs.
 - **Personal Subtitle Refinement: Zero Self-Aggrandizement (`components/ProfileCard.tsx`)**:
   - Replaced the self-important phrasing *"具百人規模視野的第一線技術領袖"* with the grounded, authentic executive tagline: **`大型系統架構 ｜ 系統整合 ｜ 實戰經驗豐富技術長`** (EN: *"Enterprise Systems Architecture · Systems Integration · Experienced Hands-on CTO"*).
 - **Site-Wide Headcount Scale Unification to 100+ (`data/profile-content.zh.md`, `data/profile-content.en.md`, `components/ExecutiveBriefing.tsx`)**:

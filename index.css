@@ -158,16 +158,16 @@ body {
   box-shadow: 0 3px 8px rgba(43, 37, 26, 0.16);
 }
 
-/* 2md.aiurl.tw Sticky Deep-Blue Section Navigation */
+/* 2md.aiurl.tw Sticky Deep-Blue Section Navigation: Pre-allocated Equal Columns */
 .section-nav-bar {
   position: sticky;
   top: 10px;
   z-index: 40;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
   background: #17324d;
-  padding: 6px;
+  padding: 5px;
   border-radius: 12px;
   border: 1px solid #d6bc7c;
   box-shadow: 0 6px 18px rgba(23, 50, 77, 0.22);
@@ -179,13 +179,20 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
+  .section-nav-bar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 639px) {
   .section-nav-bar {
     top: 6px;
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
-    padding: 7px;
+    padding: 6px;
   }
 }
 
