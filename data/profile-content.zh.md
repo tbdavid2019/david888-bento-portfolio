@@ -39,6 +39,6 @@
 
 - 100+ 人研發組織與 Vendor 管理：帶領跨國大型商務平台工程與外部 Vendor 團隊，負責核心架構維護、多幣別結帳與營運穩定性。
 - 跨國 CRM / ERP 跨系統整合：串接跨國消費性電子品牌客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP 庫存資料流，打通跨部門資訊孤島，消除人工傳遞摩擦。
-- 180+ GitHub 專案與主力線上系統：除了企業管理工作，也持續開發、部署與維護實際上線的產品。技術不是只停留在簡報裡。長期維運 6 大主力線上系統，包含 888 StockBot 2.0、888 StockQuant、888news 科技情報彙整、2MD (2md.aiurl.tw) 網頁與文件解析／PP-OCRv4 表格重建／個資去識別化引擎、DAVID888 Daily 語音播客與 333 奇門遁甲曆法決策系統。
+- 180+ GitHub 專案與主力線上系統：除了企業管理工作，也持續開發、部署與維護實際上線的產品。技術不是只停留在簡報裡。長期維運 7 大主力線上系統，包含 888 StockBot 2.0、888 StockQuant、888news 科技情報彙整、2MD (2md.aiurl.tw) 網頁與文件解析／PP-OCRv4 表格重建／個資去識別化引擎、Store Pulse (storepulse.david888.com) Google Maps 多分店評價與避雷分析系統、DAVID888 Daily 語音播客與 333 奇門遁甲曆法決策系統。
 
 > 有問題，不必急著決定合作。先把問題聊清楚比較重要。

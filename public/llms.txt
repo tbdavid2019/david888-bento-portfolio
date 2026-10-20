@@ -68,6 +68,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Productivity Apps, Tools & Interactive Visuals
 
+- [Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析 (Store Pulse - Google Maps Multi-Branch Review Curation & Anti-Hallucination Analysis)](https://storepulse.david888.com/): 專為實體門市與連鎖品牌打造的評價速查、負評標記與避雷深度分析系統。透過 Cloudflare Workers 邊緣運算與自備金鑰（BYOK）雙軌機制，自動提煉各門市真實痛點與服務缺口。
 - [888news | 科技與 AI 新聞自動彙整系統 (888news - Tech & AI News Aggregator)](https://news2.david888.com/): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
 - [888 2FA | 雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
 - [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密碼登入與 WebCal 日曆訂閱同步。

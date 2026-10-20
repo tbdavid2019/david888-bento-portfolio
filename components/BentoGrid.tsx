@@ -33,6 +33,7 @@ import {
   getLocalizedItemDescription,
   getLocalizedItemSection,
   getLocalizedItemTitle,
+  searchSiteItems,
   siteItems,
 } from '../lib/siteCatalog';
 import type { BentoItem, Locale } from '../types';
@@ -79,27 +80,6 @@ const isLinkedInItem = (item: BentoItem) => 'title' in item && item.title === 'L
 const getSectionAnchorId = (categoryId: string, _section: string, index: number) =>
   `section-${categoryId}-${index}`;
 const getSectionLabel = (section: string) => section.replace(/\s+\([^)]*\)$/, '');
-const getSearchText = (item: BentoItem) => {
-  const category = getCategoryById(item.tag || 'others');
-  return [
-    getLocalizedItemTitle(item, 'zh'),
-    getLocalizedItemTitle(item, 'en'),
-    getLocalizedItemDescription(item, 'zh'),
-    getLocalizedItemDescription(item, 'en'),
-    getLocalizedItemSection(item, 'zh'),
-    getLocalizedItemSection(item, 'en'),
-    category?.label,
-    category?.labelEn,
-    category?.title,
-    category?.titleEn,
-    ...(item.techStack || []),
-    ...(item.highlights || []),
-    ...(item.highlightsEn || []),
-  ]
-    .filter(Boolean)
-    .join(' ')
-    .toLowerCase();
-};
 
 interface BentoGridProps {
   locale: Locale;
@@ -180,9 +160,8 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
 
   const searchMatches = React.useMemo(() => {
-    if (!normalizedSearchQuery) return [];
-    return items.filter((item) => getSearchText(item).includes(normalizedSearchQuery));
-  }, [items, normalizedSearchQuery]);
+    return searchSiteItems(searchQuery, items);
+  }, [items, searchQuery]);
 
   const searchSections: Array<[string, BentoItem[]]> = React.useMemo(() => {
     const grouped = new Map<string, BentoItem[]>();
@@ -236,6 +215,13 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
         activeCategoryId={activeCategoryId}
         onContact={onContact}
         onSelectRoute={(routeId) => handleCategorySelect(routeId)}
+        isSearching={isSearching}
+        searchQuery={searchQuery}
+        searchMatchesCount={searchMatches.length}
+        onClearSearch={onClearSearch}
+        onScrollToResults={() => {
+          contentSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
       />
 
       {/* 2. 2md.aiurl.tw Sticky Deep-Blue Canonical Route Navigation Bar: 5 Clean Categories */}
@@ -414,7 +400,11 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
       </nav>
 
       {/* 3. Main Content Surface */}
-      <section ref={contentSectionRef} className="min-w-0 scroll-mt-24 space-y-6">
+      <section
+        id="search-results"
+        ref={contentSectionRef}
+        className="min-w-0 scroll-mt-24 space-y-6"
+      >
         <AnnouncementBar />
 
         {isExecutiveView ? (

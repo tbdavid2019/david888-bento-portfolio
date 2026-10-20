@@ -12,6 +12,7 @@ import {
   LineChart,
   Newspaper,
   Podcast,
+  Store,
   type LucideIcon,
 } from 'lucide-react';
 import type { Locale } from '../types';
@@ -266,6 +267,45 @@ const FLAGSHIP_SYSTEMS: FlagshipSystem[] = [
       { labelZh: 'OCR 叢集狀態 (/api/capabilities)', labelEn: 'OCR Capabilities', url: 'https://2md.aiurl.tw/api/capabilities' },
     ],
   },
+  {
+    id: 'storepulse',
+    domain: 'storepulse.david888.com',
+    url: 'https://storepulse.david888.com/',
+    docUrl: 'https://storepulse.david888.com/llms.txt',
+    docLabelZh: 'llms.txt 規範',
+    docLabelEn: 'llms.txt Spec',
+    icon: Store,
+    titleZh: 'Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析系統',
+    titleEn: 'Store Pulse — Google Maps Multi-Branch Review Curation & Anti-Hallucination Analysis',
+    subtitleZh:
+      '專為實體門市、連鎖餐飲與零售品牌打造的 Google Maps 多分店評價速查、顧客負評標記與避雷深度分析系統。透過 Cloudflare Workers 邊緣運算與自備金鑰（BYOK）雙軌機制，協助消費者比較門市水準，並為連鎖品牌自動提煉各門市真實痛點與服務缺口。',
+    subtitleEn:
+      'Operational intelligence and anti-hallucination review curation for retail and dining chains on Cloudflare Workers edge runtime, featuring BYOK zero-knowledge privacy, SHA-256 evidence fingerprinting, and automated pain-point extraction.',
+    breakthroughsZh: [
+      '多分店即時搜尋與比對：整合 Google Maps JavaScript API 與 Places Service，支援全台連鎖品牌一鍵搜尋鄰近分店，並以 Haversine 公式精算距離與評分差異',
+      '雙軌評論擷取與四層過濾：結合 Google Places 5 則快速預覽與 SerpApi BYOK 20～25 則深度評論，透過 4-Tier 優先權演算法篩選在地嚮導 1～3 星真實痛點負評，排除行銷刷榜短評',
+      '防幻覺證據指紋與六大維度分析：每則評論生成 SHA-256 唯一指紋（ev_<hash>），AI 摘要與觀察強制錨定證據；依排隊時間、服務態度、餐點品質、性價比、環境清潔與行銷活動六大維度結構化輸出',
+      'BYOK 零知識隱私架構：支援 Gemini、Groq、OpenAI、xAI、Claude 與 Cloudflare Workers AI，金鑰僅存本機 localStorage，端對端傳輸且伺服器記憶體用畢即焚，符合 llms.txt 規範並提供標準 REST API',
+    ],
+    breakthroughsEn: [
+      'Multi-branch live search & comparison: Integrates Google Maps JS API & Places Service with Haversine distance calculations and instant rating benchmarks across branch networks',
+      'Dual-source review ingestion & 4-tier curation: Combines Google Places fast preview with SerpApi BYOK deep scraping (~25 reviews), ranking Local Guide 1–3 star pain points while filtering fake reviews and incentive promotions',
+      'Anti-hallucination evidence fingerprinting: Generates SHA-256 fingerprints (ev_<hash>) for all reviews, strictly binding AI findings to cited evidence across 6 operational dimensions (wait time, service, quality, pricing, cleanliness, marketing)',
+      'Zero-Knowledge BYOK privacy & edge API: Supports Gemini, Groq, OpenAI, xAI, Claude, and Cloudflare Workers AI with client-side key storage and ephemeral memory forwarding; provides standard REST API and llms.txt / llms-full.txt machine-readable specs',
+    ],
+    techStack: [
+      'Cloudflare Workers',
+      'Google Places & SerpApi',
+      'BYOK Zero-Knowledge',
+      'SHA-256 Evidence Hash',
+      'Anti-Hallucination Guard',
+      'llms.txt REST API',
+    ],
+    subLinks: [
+      { labelZh: '完整技術規格 (llms-full.txt)', labelEn: 'Full Spec (llms-full.txt)', url: 'https://storepulse.david888.com/llms-full.txt' },
+      { labelZh: 'API Health Check 端點', labelEn: 'API Health Endpoint', url: 'https://storepulse.david888.com/api/health' },
+    ],
+  },
 ];
 
 interface FlagshipShowcaseProps {
@@ -285,7 +325,7 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
   return (
     <section
       id="flagships"
-      aria-label={isEn ? '6 Flagship Live Systems' : '精選 6 大主力線上系統'}
+      aria-label={isEn ? `${FLAGSHIP_SYSTEMS.length} Flagship Live Systems` : `精選 ${FLAGSHIP_SYSTEMS.length} 大主力線上系統`}
       className="scroll-mt-24 space-y-5"
     >
       <div className="dossier-card border-2 border-[#17324d] p-5 sm:p-7 dark:border-[#ffb010]/70">
@@ -293,17 +333,17 @@ export const FlagshipShowcase: React.FC<FlagshipShowcaseProps> = ({ locale }) =>
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-text-main sm:text-3xl">
               {isEn
-                ? '6 Flagship Systems — Selected Production Products'
-                : '精選 6 大主力線上系統（長期維運實機產品）'}
+                ? `${FLAGSHIP_SYSTEMS.length} Flagship Systems — Selected Production Products`
+                : `精選 ${FLAGSHIP_SYSTEMS.length} 大主力線上系統（長期維運實機產品）`}
             </h2>
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-text-muted">
               {isEn
-                ? 'Selected from 180+ open-source GitHub repositories and full-stack projects—six flagship systems independently built and maintained end-to-end, spanning quantitative finance, time-series forecasting, automated tech intelligence, LLM document/OCR/PII ingestion (2MD), daily audio podcasts, and calendar decision engines.'
-                : '從個人 180+ 個 GitHub 開源專案與實戰工具庫中，精選 6 套由我獨立架構、前後端開發並長期維運的主力系統（涵蓋台美股估值分析、時序預測模型、科技情報自動彙整、2MD 網頁/文件/OCR/去識別化引擎、語音廣播基建與傳統曆法決策網站）。'}
+                ? `Selected from 180+ open-source GitHub repositories and full-stack projects—${FLAGSHIP_SYSTEMS.length} flagship systems independently built and maintained end-to-end, spanning quantitative finance, time-series forecasting, automated tech intelligence, LLM document/OCR/PII ingestion (2MD), Google Maps multi-branch review curation (Store Pulse), daily audio podcasts, and calendar decision engines.`
+                : `從個人 180+ 個 GitHub 開源專案與實戰工具庫中，精選 ${FLAGSHIP_SYSTEMS.length} 套由我獨立架構、前後端開發並長期維運的主力系統（涵蓋台美股估值分析、時序預測模型、科技情報自動彙整、2MD 網頁/文件/OCR/去識別化引擎、Store Pulse 實體門市評價與避雷分析、語音廣播基建與傳統曆法決策網站）。`}
             </p>
           </div>
           <div className="shrink-0 font-mono text-xs font-bold text-[#a9471d] dark:text-[#ffb010]">
-            {isEn ? '6 FLAGSHIP DOMAINS' : '6 大主力線上網域'}
+            {isEn ? `${FLAGSHIP_SYSTEMS.length} FLAGSHIP DOMAINS` : `${FLAGSHIP_SYSTEMS.length} 大主力線上網域`}
           </div>
         </div>
 

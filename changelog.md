@@ -1,5 +1,32 @@
 # Changelog
 
+## [2026-10-20] - Add Store Pulse (`storepulse.david888.com`) to 7 Flagship Live Systems & Web Products
+
+### Flagship Systems & Portfolio Expansion
+- **Added `https://storepulse.david888.com/` (Store Pulse 店面脈搏) to 7 Flagship Systems (`components/FlagshipShowcase.tsx`, `data/profile-content.zh.md`, `data/profile-content.en.md`, `test/bento-navigation.test.mjs`)**:
+  - Expanded `FlagshipShowcase` to **7 Flagship Systems**, highlighting **Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析系統**:
+    - **多分店即時搜尋與比對**: 整合 Google Maps JavaScript API 與 Places Service，支援全台連鎖品牌一鍵搜尋鄰近分店，並以 Haversine 公式精算距離與評分差異。
+    - **雙軌評論擷取與四層過濾**: 結合 Google Places 5 則快速預覽與 SerpApi BYOK 20～25 則深度評論，透過 4-Tier 優先權演算法篩選在地嚮導 1～3 星真實痛點負評，排除行銷刷榜短評。
+    - **防幻覺證據指紋與六大維度分析**: 每則評論生成 SHA-256 唯一指紋（`ev_<hash>`），AI 摘要與觀察強制錨定證據；依排隊時間、服務態度、餐點品質、性價比、環境清潔與行銷活動六大維度結構化輸出。
+    - **BYOK 零知識隱私架構**: 支援 Gemini、Groq、OpenAI、xAI、Claude 與 Cloudflare Workers AI，金鑰僅存本機 localStorage，端對端傳輸且伺服器記憶體用畢即焚，符合 `llms.txt` 規範並提供標準 REST API。
+  - Updated homepage & dossier showcase badge to **「7 大主力線上網域」** (*7 FLAGSHIP DOMAINS*).
+  - Updated executive dossier profile track record to **長期維運 7 大主力線上系統** (*Actively operating 7 flagship platforms*).
+
+### Web Products & Services Expansion (`data/bento-links.json`, `public/llms.txt`, `public/llms-full.txt`)
+- **Added Featured Card in `/products` ("Web 產品與服務")**:
+  - Created dedicated featured card (`colSpan: 2`, `icon: store`, `flagship: true`) linking directly to `https://storepulse.david888.com/` with documentation link to `https://storepulse.david888.com/llms.txt`.
+  - Automatically regenerated `public/llms.txt` and `public/llms-full.txt` under `Productivity Apps, Tools & Interactive Visuals` with complete metadata.
+
+### Instant Search Dropdown & Zero-Distance Result Navigation (`components/Navbar.tsx`, `components/ProfileCard.tsx`, `components/BentoGrid.tsx`, `lib/siteCatalog.ts`)
+- **Instant Search Dropdown Popover in Navbar (`components/Navbar.tsx`)**:
+  - Solved the issue where search results were pushed thousands of pixels below the fold by adding a real-time command-palette dropdown directly beneath the top search bar.
+  - As users type, matching works appear immediately with category badges, titles, descriptions, and direct external links.
+  - Displays match counter and keyboard guidance (`Enter ↵ to jump`), with quick recommendations when zero results match.
+- **Auto-Scroll & ProfileCard Bio Minimization in Search Mode (`components/ProfileCard.tsx`, `components/BentoGrid.tsx`)**:
+  - Automatically collapses the tall 2500px executive bio (`ProfileIntroduction`) during active search, replacing it with an informative Search Mode Alert banner (`搜尋「...」：找到 X 個相關作品`).
+  - Added direct **「查看搜尋結果 ↓」** button and Enter key handler that smoothly scrolls the viewport to `#search-results`.
+  - Automatically smooth-scrolls down when search mode begins, eliminating the need for manual mouse scrolling to locate results.
+
 ## [2026-10-18] - Fix /finance Representative Work Link & Category Copy Simplification
 
 ### Representative Work (代表作品) Locked to 888 Stock Quant (`data/bento-categories.json`, `data/bento-links.json`, `components/BentoGrid.tsx`, `lib/siteCatalog.ts`, `test/bento-navigation.test.mjs`)

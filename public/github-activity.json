@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/aae8ca5fcc...2849e890c0",
-      "updated": "2026-10-17 14:26:21 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 17, 2026 14:26 1 commit to main 2849e89 fix(transcript): address codex and opencode review comments"
+      "title": "tbdavid2019 pushed store-pulse",
+      "url": "https://github.com/tbdavid2019/store-pulse/compare/3581c2646b...e3f8217b9b",
+      "updated": "2026-10-19 10:09:51 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 19, 2026 10:09 1 commit to main e3f8217 fix(sw): upgrade service-worker to v3 with Network-First strategy for…"
     },
     {
-      "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/d950714949...ff520ff860",
-      "updated": "2026-10-17 23:47:18 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 17, 2026 23:47 1 commit to main ff520ff fix(data-deidentification): improve navigation UX with back button, d…"
+      "title": "tbdavid2019 pushed store-pulse",
+      "url": "https://github.com/tbdavid2019/store-pulse/compare/84d263e4f7...3581c2646b",
+      "updated": "2026-10-19 10:08:30 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 19, 2026 10:08 1 commit to main 3581c26 fix(search): declare analysisGeneration and analysisControllers to pr…"
     },
     {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/31eaad2946...a07f16b791",
-      "updated": "2026-10-17 11:35:20 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 11:35 1 commit to main a07f16b feat(podcast): support native YouTube Atom RSS parsing and autonomous…"
+      "title": "tbdavid2019 pushed qimen",
+      "url": "https://github.com/tbdavid2019/qimen/compare/825f29e7a4...7550ae1989",
+      "updated": "2026-10-20 05:01:34 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 20, 2026 05:01 1 commit to main 7550ae1 feat: slim down hero headers across 10 pages, switch to JetBrains Mon…"
     },
     {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/c79e1b50b9...31eaad2946",
-      "updated": "2026-10-17 11:20:30 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 17, 2026 11:20 1 commit to main 31eaad2 feat(web): upgrade typography to JetBrains Mono and Gen Jyuu Gothic"
+      "title": "tbdavid2019 pushed store-pulse",
+      "url": "https://github.com/tbdavid2019/store-pulse/compare/b68682a322...f86a28fc89",
+      "updated": "2026-10-20 04:36:59 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 20, 2026 04:36 1 commit to main f86a28f fix(llms): ensure charset=utf-8 header to prevent browser mojibake an…"
     },
     {
-      "title": "tbdavid2019 pushed daily-podcast",
-      "url": "https://github.com/tbdavid2019/daily-podcast/compare/28077c5e91...aae8ca5fcc",
-      "updated": "2026-10-17 14:13:52 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/daily-podcast · October 17, 2026 14:13 1 commit to main aae8ca5 feat(transcript): add podcasting 2.0 transcript feeds and web sync su…"
+      "title": "tbdavid2019 pushed store-pulse",
+      "url": "https://github.com/tbdavid2019/store-pulse/compare/d3e22cbc88...58b483adfe",
+      "updated": "2026-10-19 09:41:56 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 19, 2026 09:41 1 commit to main 58b483a feat(ui): make evidence reviews collapsible with hover tooltip preview"
     }
   ],
-  "lastSyncedAt": "2026-10-18T08:26:08.723Z",
+  "lastSyncedAt": "2026-10-20T05:22:58.700Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

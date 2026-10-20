@@ -348,14 +348,14 @@ export const BentoLinkCard: React.FC<{
                 aria-label={
                   isEn
                     ? link.docLabelEn || 'Feature Guide & Prompts'
-                    : link.docLabel || '實戰題庫指南'
+                    : link.docLabel || link.docLabelZh || '實戰題庫指南'
                 }
                 onClick={(event) => event.stopPropagation()}
                 className="inline-flex min-h-[36px] items-center gap-1.5 rounded-lg border border-[#17324d] bg-bg-elevated px-3 py-1.5 text-xs font-extrabold text-text-main no-underline transition-colors hover:bg-[#fff0cc] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:border-[#ffb010]/60 dark:hover:bg-[#17324d]"
               >
                 <BookOpen size={13} />
                 <span>
-                  {isEn ? link.docLabelEn || 'Feature Guide' : link.docLabel || '題庫指南'}
+                  {isEn ? link.docLabelEn || 'Feature Guide' : link.docLabel || link.docLabelZh || '題庫指南'}
                 </span>
               </a>
             )}

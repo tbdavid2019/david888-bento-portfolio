@@ -100,6 +100,45 @@
   },
   {
     "type": "link",
+    "title": "Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析",
+    "titleEn": "Store Pulse - Google Maps Multi-Branch Review Curation & Anti-Hallucination Analysis",
+    "description": "專為實體門市與連鎖品牌打造的評價速查、負評標記與避雷深度分析系統。透過 Cloudflare Workers 邊緣運算與自備金鑰（BYOK）雙軌機制，自動提煉各門市真實痛點與服務缺口。",
+    "descriptionEn": "Operational intelligence and anti-hallucination review curation for retail and dining chains on Cloudflare Workers edge runtime, featuring BYOK zero-knowledge privacy, SHA-256 evidence fingerprinting, and automated pain-point extraction.",
+    "url": "https://storepulse.david888.com/",
+    "docUrl": "https://storepulse.david888.com/llms.txt",
+    "docLabel": "llms.txt 規範",
+    "docLabelZh": "llms.txt 規範",
+    "docLabelEn": "llms.txt Spec",
+    "tag": "products",
+    "section": "Web 產品與服務 (Web Products & Services)",
+    "sectionEn": "Web Products & Services",
+    "icon": "store",
+    "flagship": true,
+    "featured": true,
+    "colSpan": 2,
+    "techStack": [
+      "Cloudflare Workers",
+      "Google Places & SerpApi",
+      "BYOK Zero-Knowledge",
+      "SHA-256 Evidence Hash",
+      "Anti-Hallucination Guard",
+      "llms.txt REST API"
+    ],
+    "highlights": [
+      "整合 Google Maps Places 與 SerpApi 雙軌評論擷取，4-Tier 優先權演算法篩選在地嚮導 1～3 星真實痛點負評",
+      "防幻覺 SHA-256 證據指紋（ev_<hash>）強迫引用機制，自動偵測過濾「打卡送禮/五星送菜」刷榜誘因",
+      "結構化提煉排隊時間、服務態度、餐點品質、性價比、環境清潔與行銷活動六大維度營運觀察",
+      "零知識 BYOK 架構：支援 Gemini/Groq/OpenAI/Claude/Workers AI，金鑰純本機存取，記憶體用畢即焚"
+    ],
+    "highlightsEn": [
+      "Dual-source ingestion (Places + SerpApi) with 4-Tier curation prioritizing Local Guide 1–3 star genuine pain points",
+      "Anti-hallucination SHA-256 evidence fingerprinting (ev_<hash>) with automated incentive signal detection (filtering promotion noise)",
+      "Structured extraction across 6 operational dimensions: wait time, service, quality, pricing, cleanliness, and marketing events",
+      "Zero-knowledge BYOK architecture supporting Gemini, Groq, OpenAI, Claude, and Workers AI with ephemeral edge execution"
+    ]
+  },
+  {
+    "type": "link",
     "title": "888news | 科技與 AI 新聞自動彙整系統",
     "titleEn": "888news - Tech & AI News Aggregator",
     "description": "自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。",

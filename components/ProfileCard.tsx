@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
+  ArrowDown,
   ArrowRight,
   Briefcase,
   ExternalLink,
@@ -22,6 +23,11 @@ interface ProfileCardProps {
   activeCategoryId?: string;
   onContact?: () => void;
   onSelectRoute?: (routeId: string) => void;
+  isSearching?: boolean;
+  searchQuery?: string;
+  searchMatchesCount?: number;
+  onClearSearch?: () => void;
+  onScrollToResults?: () => void;
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({
@@ -29,6 +35,11 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   activeCategoryId,
   onContact,
   onSelectRoute,
+  isSearching,
+  searchQuery,
+  searchMatchesCount = 0,
+  onClearSearch,
+  onScrollToResults,
 }) => {
   const [isQrGameOpen, setIsQrGameOpen] = useState(false);
   const isEn = locale === 'en';
@@ -213,7 +224,48 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           })}
         </div>
 
-        <ProfileIntroduction locale={locale} activeCategoryId={activeCategoryId} />
+        {isSearching ? (
+          <div className="rounded-xl border-2 border-[#17324d] bg-[#fff9e8] p-4 text-sm text-[#2b251a] shadow-xs dark:border-[#ffb010] dark:bg-[#152332] dark:text-[#fff9e8]">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#17324d] font-mono text-sm font-extrabold text-[#fff9e8] dark:bg-[#ffb010] dark:text-[#2b251a]">
+                  {searchMatchesCount}
+                </span>
+                <div>
+                  <div className="font-extrabold text-base">
+                    {isEn
+                      ? `Found ${searchMatchesCount} works matching "${searchQuery}"`
+                      : `搜尋「${searchQuery}」：找到 ${searchMatchesCount} 個相關作品`}
+                  </div>
+                  <div className="text-xs text-text-muted">
+                    {isEn
+                      ? 'Executive bio temporarily collapsed to highlight search results.'
+                      : '已為您自動聚焦搜尋結果（詳細個人自傳暫時收起）。'}
+                  </div>
+                </div>
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={onScrollToResults}
+                  className="btn-saffron inline-flex h-9 items-center gap-1.5 px-3.5 text-xs font-bold"
+                >
+                  <span>{isEn ? 'Jump to Results' : '查看搜尋結果'}</span>
+                  <ArrowDown size={14} />
+                </button>
+                <button
+                  type="button"
+                  onClick={onClearSearch}
+                  className="inline-flex h-9 items-center justify-center rounded-lg border border-border bg-bg-surface px-3 text-xs font-bold text-text-muted transition-colors hover:text-text-main"
+                >
+                  {isEn ? 'Clear' : '清除搜尋'}
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <ProfileIntroduction locale={locale} activeCategoryId={activeCategoryId} />
+        )}
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4 text-xs font-bold text-text-muted sm:text-sm">
           <div className="flex items-center gap-2">

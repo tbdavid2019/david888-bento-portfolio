@@ -68,6 +68,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 ## Productivity Apps, Tools & Interactive Visuals
 
+- [Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析 (Store Pulse - Google Maps Multi-Branch Review Curation & Anti-Hallucination Analysis)](https://storepulse.david888.com/): 專為實體門市與連鎖品牌打造的評價速查、負評標記與避雷深度分析系統。透過 Cloudflare Workers 邊緣運算與自備金鑰（BYOK）雙軌機制，自動提煉各門市真實痛點與服務缺口。
 - [888news | 科技與 AI 新聞自動彙整系統 (888news - Tech & AI News Aggregator)](https://news2.david888.com/): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
 - [888 2FA | 雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
 - [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密碼登入與 WebCal 日曆訂閱同步。
@@ -160,7 +161,7 @@ Specializing in technical due diligence, high-concurrency eCommerce platforms, A
 
 - 跨國 CRM / ERP 跨系統整合：串接跨國消費性電子品牌客服、Salesforce、HubSpot、RingCentral 語音系統與 ERP 庫存資料流，打通跨部門資訊孤島，消除人工傳遞摩擦。
 
-- 180+ GitHub 專案與主力線上系統：除了企業管理工作，也持續開發、部署與維護實際上線的產品。技術不是只停留在簡報裡。長期維運 6 大主力線上系統，包含 888 StockBot 2.0、888 StockQuant、888news 科技情報彙整、2MD (2md.aiurl.tw) 網頁與文件解析／PP-OCRv4 表格重建／個資去識別化引擎、DAVID888 Daily 語音播客與 333 奇門遁甲曆法決策系統。
+- 180+ GitHub 專案與主力線上系統：除了企業管理工作，也持續開發、部署與維護實際上線的產品。技術不是只停留在簡報裡。長期維運 7 大主力線上系統，包含 888 StockBot 2.0、888 StockQuant、888news 科技情報彙整、2MD (2md.aiurl.tw) 網頁與文件解析／PP-OCRv4 表格重建／個資去識別化引擎、Store Pulse (storepulse.david888.com) Google Maps 多分店評價與避雷分析系統、DAVID888 Daily 語音播客與 333 奇門遁甲曆法決策系統。
 
 > 有問題，不必急著決定合作。先把問題聊清楚比較重要。
 
@@ -213,7 +214,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 
 - Multinational CRM / ERP Cross-System Integration: Integrated customer service, Salesforce, HubSpot, RingCentral telephony, and ERP inventory data flows for a global consumer electronics brand—breaking down departmental silos and eliminating manual friction.
 
-- 180+ GitHub Repositories & Flagship Systems: Beyond enterprise management, actively building, deploying, and maintaining live products. Actively operating 6 flagship platforms: 888 StockBot 2.0 (valuation), 888 StockQuant (time-series forecasting), 888news (tech intelligence & MCP), 2MD (2md.aiurl.tw web/document parser, PP-OCRv4 table reconstruction & PII shield), DAVID888 Daily podcast, and 333 Qi Men Dun Jia calendar system.
+- 180+ GitHub Repositories & Flagship Systems: Beyond enterprise management, actively building, deploying, and maintaining live products. Actively operating 7 flagship platforms: 888 StockBot 2.0 (valuation), 888 StockQuant (time-series forecasting), 888news (tech intelligence & MCP), 2MD (2md.aiurl.tw web/document parser, PP-OCRv4 table reconstruction & PII shield), Store Pulse (storepulse.david888.com Google Maps branch review & anti-hallucination analysis), DAVID888 Daily podcast, and 333 Qi Men Dun Jia calendar system.
 
 > Have questions? No need to rush into an engagement—let's talk through the problem first.
 
@@ -239,6 +240,13 @@ Open to full-time technology leadership roles for multinational corporations, li
 - Section: 企業與投資網路 (Corporate & Investment Networks)
 - Description (ZH): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
 - Description (EN): An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.
+
+### Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析 / Store Pulse - Google Maps Multi-Branch Review Curation & Anti-Hallucination Analysis
+- URL: https://storepulse.david888.com/
+- Category: products
+- Section: Web 產品與服務 (Web Products & Services)
+- Description (ZH): 專為實體門市與連鎖品牌打造的評價速查、負評標記與避雷深度分析系統。透過 Cloudflare Workers 邊緣運算與自備金鑰（BYOK）雙軌機制，自動提煉各門市真實痛點與服務缺口。
+- Description (EN): Operational intelligence and anti-hallucination review curation for retail and dining chains on Cloudflare Workers edge runtime, featuring BYOK zero-knowledge privacy, SHA-256 evidence fingerprinting, and automated pain-point extraction.
 
 ### 888news | 科技與 AI 新聞自動彙整系統 / 888news - Tech & AI News Aggregator
 - URL: https://news2.david888.com/

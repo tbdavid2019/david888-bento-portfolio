@@ -121,6 +121,43 @@ export function listItemsByCategory(categoryId: string): BentoItem[] {
   return siteItems.filter((item) => (item.tag || 'others') === categoryId);
 }
 
+const itemSearchTextCache = new WeakMap<BentoItem, string>();
+
+function getItemSearchText(item: BentoItem): string {
+  const cached = itemSearchTextCache.get(item);
+  if (cached !== undefined) return cached;
+
+  const category = getCategoryById(item.tag || 'others');
+  const text = [
+    getLocalizedItemTitle(item, 'zh'),
+    getLocalizedItemTitle(item, 'en'),
+    getLocalizedItemDescription(item, 'zh'),
+    getLocalizedItemDescription(item, 'en'),
+    getLocalizedItemSection(item, 'zh'),
+    getLocalizedItemSection(item, 'en'),
+    category?.label,
+    category?.labelEn,
+    category?.title,
+    category?.titleEn,
+    ...(item.techStack || []),
+    ...(item.highlights || []),
+    ...(item.highlightsEn || []),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  itemSearchTextCache.set(item, text);
+  return text;
+}
+
+export function searchSiteItems(query: string, items: BentoItem[] = siteItems): BentoItem[] {
+  const normalizedQuery = query.trim().toLowerCase();
+  if (!normalizedQuery) return [];
+
+  return items.filter((item) => getItemSearchText(item).includes(normalizedQuery));
+}
+
 function normalizeQuery(value: string): string {
   return value.trim().toLowerCase();
 }
