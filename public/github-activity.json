@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed qimen",
+      "url": "https://github.com/tbdavid2019/qimen/compare/7550ae1989...c6eea68097",
+      "updated": "2026-10-20 05:32:07 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 20, 2026 05:32 1 commit to main c6eea68 fix(branding): unify top-left navbar icon, favicon svg, and social og…"
+    },
+    {
       "title": "tbdavid2019 pushed store-pulse",
       "url": "https://github.com/tbdavid2019/store-pulse/compare/3581c2646b...e3f8217b9b",
       "updated": "2026-10-19 10:09:51 UTC",
@@ -23,15 +29,9 @@
       "url": "https://github.com/tbdavid2019/store-pulse/compare/b68682a322...f86a28fc89",
       "updated": "2026-10-20 04:36:59 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 20, 2026 04:36 1 commit to main f86a28f fix(llms): ensure charset=utf-8 header to prevent browser mojibake an…"
-    },
-    {
-      "title": "tbdavid2019 pushed store-pulse",
-      "url": "https://github.com/tbdavid2019/store-pulse/compare/d3e22cbc88...58b483adfe",
-      "updated": "2026-10-19 09:41:56 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 19, 2026 09:41 1 commit to main 58b483a feat(ui): make evidence reviews collapsible with hover tooltip preview"
     }
   ],
-  "lastSyncedAt": "2026-10-20T05:22:58.700Z",
+  "lastSyncedAt": "2026-10-20T06:01:18.061Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

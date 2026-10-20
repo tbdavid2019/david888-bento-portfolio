@@ -27,6 +27,13 @@
   - Added direct **「查看搜尋結果 ↓」** button and Enter key handler that smoothly scrolls the viewport to `#search-results`.
   - Automatically smooth-scrolls down when search mode begins, eliminating the need for manual mouse scrolling to locate results.
 
+### 5 Commitments Accordion UX Refinement (`components/ProfileIntroduction.tsx`)
+- **Default Collapsed & Disabled Scroll Auto-Expansion**:
+  - Defaulted the "一個 CTO 的 5 大承諾" (5 Commitments) accordion to closed on default page loads (`/` and general categories) to maintain a lean, high-signal profile view without excessive text.
+  - Removed the `IntersectionObserver` scroll listener that previously forced the 5 commitments to expand as visitors scrolled past.
+  - Preserved direct canonical deep-linking: accessing `/commitments`, `/promises`, `#commitments`, or `#promises` continues to automatically unfold and scroll smoothly to the section.
+  - Updated accordion guidance subtitle to: `"戰略判斷、商業回報、組織領導、風險承擔與執行落地。點擊展開完整承諾 ➔"` (*Strategic judgment, business ROI, organizational leadership, risk ownership, and grounded delivery. Click to expand ➔*).
+
 ## [2026-10-18] - Fix /finance Representative Work Link & Category Copy Simplification
 
 ### Representative Work (代表作品) Locked to 888 Stock Quant (`data/bento-categories.json`, `data/bento-links.json`, `components/BentoGrid.tsx`, `lib/siteCatalog.ts`, `test/bento-navigation.test.mjs`)

@@ -58,7 +58,7 @@ test('supports Canonical Routes and highlights the 5 flagship production domains
   assert.match(flagshipSource, /https:\/\/storepulse\.david888\.com\//);
 });
 
-test('provides direct canonical route /commitments, auto-expansion, and 1-click sharing', () => {
+test('provides direct canonical route /commitments, deep-linking, and 1-click sharing', () => {
   const appSource = fs.readFileSync(new URL('../App.tsx', import.meta.url), 'utf8');
   const profileIntroSource = fs.readFileSync(new URL('../components/ProfileIntroduction.tsx', import.meta.url), 'utf8');
   const prerenderSource = fs.readFileSync(new URL('../scripts/prerender.mjs', import.meta.url), 'utf8');

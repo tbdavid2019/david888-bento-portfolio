@@ -174,57 +174,10 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
   const [expanded, setExpanded] = useState<boolean>(checkIsDirectCommitments);
   const [copied, setCopied] = useState<boolean>(false);
   const commitmentsRef = useRef<HTMLElement>(null);
-  const hasAutoExpandedRef = useRef<boolean>(checkIsDirectCommitments());
-
-  // Auto-expand on scroll: automatically reveals the 5 commitments as the visitor scrolls down
-  useEffect(() => {
-    if (expanded) return;
-
-    const expandSection = () => {
-      if (hasAutoExpandedRef.current) return;
-      hasAutoExpandedRef.current = true;
-      setExpanded(true);
-    };
-
-    let hasScrolled = false;
-
-    const checkAndExpand = () => {
-      const el = commitmentsRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        expandSection();
-      }
-    };
-
-    const handleScroll = () => {
-      hasScrolled = true;
-      checkAndExpand();
-    };
-
-    let observer: IntersectionObserver | null = null;
-    if (typeof IntersectionObserver !== 'undefined' && commitmentsRef.current) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          const [entry] = entries;
-          if (entry.isIntersecting && (hasScrolled || window.scrollY > 10)) {
-            expandSection();
-          }
-        },
-        { threshold: 0.05, rootMargin: '0px 0px 50px 0px' }
-      );
-      observer.observe(commitmentsRef.current);
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [expanded]);
 
   useEffect(() => {
+    let scrollTimer: ReturnType<typeof setTimeout> | null = null;
+
     const handleUrlOrCategoryCheck = () => {
       const isMatch =
         activeCategoryId === 'commitments' ||
@@ -237,13 +190,15 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
       if (isMatch) {
         setExpanded(true);
-        const timer = setTimeout(() => {
-          const el = document.getElementById('commitments');
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          const el = commitmentsRef.current || document.getElementById('commitments');
           if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }, 120);
-        return () => clearTimeout(timer);
+      } else if (activeCategoryId && activeCategoryId !== 'commitments' && activeCategoryId !== 'promises') {
+        setExpanded(false);
       }
     };
 
@@ -251,6 +206,7 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
     window.addEventListener('popstate', handleUrlOrCategoryCheck);
     window.addEventListener('hashchange', handleUrlOrCategoryCheck);
     return () => {
+      if (scrollTimer) clearTimeout(scrollTimer);
       window.removeEventListener('popstate', handleUrlOrCategoryCheck);
       window.removeEventListener('hashchange', handleUrlOrCategoryCheck);
     };
@@ -358,8 +314,12 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
 
               <p className="mt-1 text-xs font-semibold leading-relaxed text-[#5c4a30] sm:text-sm dark:text-[#d3e3f5]">
                 {locale === 'en'
-                  ? 'Strategic judgment, business ROI, organizational leadership, risk ownership, and grounded delivery. Revealed below ➔'
-                  : '戰略判斷、商業回報、組織領導、風險承擔與執行落地。向下滾動自動展開 ➔'}
+                  ? expanded
+                    ? 'Strategic judgment, business ROI, organizational leadership, risk ownership, and grounded delivery. Click to collapse ➔'
+                    : 'Strategic judgment, business ROI, organizational leadership, risk ownership, and grounded delivery. Click to expand ➔'
+                  : expanded
+                    ? '戰略判斷、商業回報、組織領導、風險承擔與執行落地。點擊收起 ➔'
+                    : '戰略判斷、商業回報、組織領導、風險承擔與執行落地。點擊展開完整承諾 ➔'}
               </p>
 
               {/* 5 Quick Feature Chips */}
@@ -389,6 +349,9 @@ export const ProfileIntroduction: React.FC<ProfileIntroductionProps> = ({
                 onClick={(e) => {
                   e.stopPropagation();
                   handleCopyLink();
+                }}
+                onKeyDown={(e) => {
+                  e.stopPropagation();
                 }}
                 className={cn(
                   'inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-xl border-2 px-3.5 py-2 text-xs font-black shadow-xs transition-all duration-200 active:scale-95 sm:text-xs',
