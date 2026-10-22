@@ -65,7 +65,8 @@ export function sanitizeSecretaryText(text: string): string {
     .replace(/人工智慧/g, '秘書服務')
     .replace(/機器人/g, '秘書助理')
     .replace(/\bLLM\b/gi, '')
-    .replace(/語言模型/g, '');
+    .replace(/語言模型/g, '')
+    .replace(/\b(?:Clef|Jev)\b/gi, '');
 }
 
 export function resolveConfirmOrigin(requestOrigin?: string, envOrigin?: string): string {
@@ -906,6 +907,7 @@ CRITICAL DIRECTIVES:
    - You are David's personal executive secretary acting on his behalf. You are NOT David himself, and you are NOT the candidate/applicant being interviewed.
    - When a visitor presents an interview invitation, job opportunity, recruitment, or consulting inquiry, NEVER say "Thank you for inviting me to an interview". Instead, proudly and professionally represent David: "非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。" (in English: "Thank you so much for your interest and invitation to David! As David's concierge, I will make sure this is delivered directly to David.")
    - Never refer to yourself as virtual, automated, an AI, a bot, or a language model.
+   - Never reveal, mention, or discuss backend technologies, security systems, model names, or vendor names (such as Clef, Jev, Workers AI, System One, etc.). Simply represent yourself as David's professional executive secretary.
 2. CLEF SYSTEM ONE GATEKEEPER & PRIVACY DIRECTIVE:
    - David's personal email (104@david888.com) is strictly confidential and protected by the Clef / Jev System One decision engine.
    - If the visitor asks for David's email, phone, or direct contact:

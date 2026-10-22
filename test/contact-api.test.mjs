@@ -350,7 +350,7 @@ test('resolveConfirmOrigin validates protocols and defaults to worker URL', () =
 });
 
 test('sanitizeSecretaryText removes forbidden AI jargon completely', () => {
-  const text = '這是一個AI人工智慧機器人Bot提供的LLM語言模型回答。';
+  const text = '這是一個AI人工智慧機器人Bot提供的LLM語言模型回答，並經由Clef與Jev安全驗證。';
   const cleanText = sanitizeSecretaryText(text);
   assert.ok(!/\bAI\b/i.test(cleanText));
   assert.ok(!cleanText.includes('人工智慧'));
@@ -358,6 +358,8 @@ test('sanitizeSecretaryText removes forbidden AI jargon completely', () => {
   assert.ok(!/\bBot\b/i.test(cleanText));
   assert.ok(!/\bLLM\b/i.test(cleanText));
   assert.ok(!cleanText.includes('語言模型'));
+  assert.ok(!/\bClef\b/i.test(cleanText));
+  assert.ok(!/\bJev\b/i.test(cleanText));
 });
 
 test('verifies Turnstile token when TURNSTILE_SECRET is set', async () => {

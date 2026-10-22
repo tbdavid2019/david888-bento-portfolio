@@ -684,24 +684,45 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         ) : (
           /* 3. Main Views: Segmented Tabs (Concierge Chat / Direct Form) */
           <div className="space-y-3.5">
-            {/* Top Bar: Integrated 2md Header with Secretary Avatar, Title, Status & Close Button */}
-            <div className="flex items-center justify-between gap-3 border-b border-border/60 pb-3">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <SecretaryAvatar size={38} locale={locale} />
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h2 className="font-bold text-sm sm:text-base text-text-main truncate">
-                      {isZh ? 'David 的小秘書' : "David's Concierge"}
-                    </h2>
-                    <span className="text-[10px] font-bold text-[#ffb010] bg-[#17324d] px-2 py-0.5 rounded-full border border-[#d6bc7c]/40 shrink-0">
-                      Clef AI 守護
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-text-muted flex items-center gap-1.5 truncate">
-                    <span className="h-1.5 w-1.5 rounded-full bg-success shrink-0" />
-                    <span>{isZh ? '在線接待中・百人團隊 CTO 專業背景' : 'Online Concierge・Former CTO Background'}</span>
-                  </p>
-                </div>
+            {/* Top Bar: Mode Switcher Tabs + Close Button */}
+            <div className="flex items-center justify-between gap-2.5">
+              <div
+                role="tablist"
+                aria-label={isZh ? '選擇接待模式' : 'Choose mode'}
+                className="flex flex-1 rounded-xl bg-bg-elevated p-1 border border-border/70 text-xs sm:text-sm font-bold"
+              >
+                <button
+                  role="tab"
+                  type="button"
+                  id="tab-chat"
+                  aria-selected={activeTab === 'chat'}
+                  aria-controls="panel-chat"
+                  onClick={() => switchTab('chat')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-bold transition-all ${
+                    activeTab === 'chat'
+                      ? 'bg-[#17324d] text-[#ffb010] shadow-xs'
+                      : 'text-text-muted hover:text-text-main'
+                  }`}
+                >
+                  <Ghost size={15} strokeWidth={2.2} />
+                  <span>{isZh ? '小秘書接待' : 'Concierge Chat'}</span>
+                </button>
+                <button
+                  role="tab"
+                  type="button"
+                  id="tab-form"
+                  aria-selected={activeTab === 'form'}
+                  aria-controls="panel-form"
+                  onClick={() => switchTab('form')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-bold transition-all ${
+                    activeTab === 'form'
+                      ? 'bg-[#17324d] text-[#ffb010] shadow-xs'
+                      : 'text-text-muted hover:text-text-main'
+                  }`}
+                >
+                  <Mail size={15} strokeWidth={2.2} />
+                  <span>{isZh ? '直接填寫表單' : 'Direct Form'}</span>
+                </button>
               </div>
 
               <button
@@ -711,46 +732,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                 aria-label={isZh ? '關閉' : 'Close'}
               >
                 <X size={18} />
-              </button>
-            </div>
-
-            {/* Segmented Mode Switcher */}
-            <div
-              role="tablist"
-              aria-label={isZh ? '選擇接待模式' : 'Choose mode'}
-              className="flex rounded-xl bg-bg-elevated p-1 border border-border/70 text-xs sm:text-sm font-bold"
-            >
-              <button
-                role="tab"
-                type="button"
-                id="tab-chat"
-                aria-selected={activeTab === 'chat'}
-                aria-controls="panel-chat"
-                onClick={() => switchTab('chat')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-bold transition-all ${
-                  activeTab === 'chat'
-                    ? 'bg-[#17324d] text-[#ffb010] shadow-xs'
-                    : 'text-text-muted hover:text-text-main'
-                }`}
-              >
-                <Ghost size={15} strokeWidth={2.2} />
-                <span>{isZh ? '小秘書接待' : 'Concierge Chat'}</span>
-              </button>
-              <button
-                role="tab"
-                type="button"
-                id="tab-form"
-                aria-selected={activeTab === 'form'}
-                aria-controls="panel-form"
-                onClick={() => switchTab('form')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-bold transition-all ${
-                  activeTab === 'form'
-                    ? 'bg-[#17324d] text-[#ffb010] shadow-xs'
-                    : 'text-text-muted hover:text-text-main'
-                }`}
-              >
-                <Mail size={15} strokeWidth={2.2} />
-                <span>{isZh ? '直接填寫表單' : 'Direct Form'}</span>
               </button>
             </div>
 
@@ -846,7 +827,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                           <span>{isZh ? 'David 直通信箱名片卡' : "David's Direct Contact Card"}</span>
                         </span>
                         <span className="text-[11px] font-bold text-[#17324d] dark:text-[#ffb010] bg-[#ffb010]/20 border border-[#ffb010]/40 px-2.5 py-0.5 rounded-full">
-                          {isZh ? 'Clef 驗證授權' : 'Clef Verified'}
+                          {isZh ? '正式交流授權' : 'Verified Partner'}
                         </span>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 bg-bg-surface p-3 rounded-xl border border-border">
