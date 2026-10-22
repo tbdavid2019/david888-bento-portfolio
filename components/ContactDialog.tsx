@@ -837,8 +837,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                       }}
                       placeholder={
                         isZh
-                          ? '輸入想與 David 交流的事由…（Enter 送出，Shift+Enter 換行）'
-                          : 'Type message or inquiry for David… (Enter to send, Shift+Enter for newline)'
+                          ? '輸入想與 David 交流的事由…'
+                          : 'Type message or inquiry…'
                       }
                       className="flex-1 min-w-[200px] min-h-[44px] max-h-[120px] resize-none py-2.5 px-3.5 rounded-xl border border-border bg-bg-elevated text-base sm:text-sm text-text-main outline-none focus:border-[#ffb010] leading-normal transition-all"
                     />
@@ -854,12 +854,17 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                   </div>
 
                   {/* Legible real-email helper notice: always visible, never clipped */}
-                  <div className="flex items-center gap-1.5 px-1 text-xs text-text-muted leading-tight">
-                    <Info size={13} className="shrink-0 text-[#ffb010]" />
-                    <span>
-                      {isZh
-                        ? '請提供真實有效信箱，小秘書將自動發送驗證信以直達呈報 David'
-                        : 'Please provide an active email so we can send a verification link to David.'}
+                  <div className="flex items-center justify-between gap-2 px-1 text-xs text-text-muted leading-tight">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <Info size={13} className="shrink-0 text-[#ffb010]" />
+                      <span className="truncate">
+                        {isZh
+                          ? '請留真實有效信箱，小秘書將自動發送驗證信以直達呈報 David'
+                          : 'Valid active email required to deliver verification link to David.'}
+                      </span>
+                    </div>
+                    <span className="shrink-0 text-[11px] opacity-75 font-mono hidden sm:inline">
+                      {isZh ? 'Enter 送出 ↵' : 'Enter ↵ to send'}
                     </span>
                   </div>
                 </div>
