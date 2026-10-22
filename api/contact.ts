@@ -626,8 +626,8 @@ export const confirmContactSubmission = async (
 </head>
 <body>
   <div class="card">
-    <div class="avatar-wrap">
-      <img src="https://david888.com/bento/secretary-ol.png" alt="${isEn ? "David's Concierge" : 'David 的小秘書'}" onerror="this.style.display='none'" />
+    <div class="avatar-wrap" style="background:#17324d;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#ffb010" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
     </div>
     <h1>${isEn ? "David's Concierge has officially delivered your message to David!" : 'David 的小秘書已將您的訊息正式呈交給 David！'}</h1>
     <p class="lead">${
