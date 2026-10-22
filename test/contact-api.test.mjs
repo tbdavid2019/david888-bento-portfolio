@@ -865,3 +865,66 @@ test('processConciergeChat preserves standalone name across turns and isolates t
   assert.ok(!turn4.body.draft.message.includes('我想諮詢'));
   assert.ok(!turn4.body.draft.message.includes('dawen.chen@example.com'));
 });
+
+test('processConciergeChat guarantees non-empty reply even if LLM returns empty reply or alternative key', async () => {
+  const mockEnv = {
+    AI: {
+      run: async () => ({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                reply: '', // empty reply from model
+                draft: {
+                  name: '',
+                  email: '',
+                  company: 'Acme Corp',
+                  message: 'Long interview inquiry text',
+                },
+              }),
+            },
+          },
+        ],
+      }),
+    },
+  };
+
+  const res = await processConciergeChat(
+    {
+      messages: [{ role: 'user', content: 'Long interview inquiry text' }],
+      locale: 'zh',
+    },
+    mockEnv,
+  );
+
+  assert.equal(res.status, 200);
+  assert.ok(res.body.reply.length > 0, 'Reply must never be an empty string');
+  assert.ok(res.body.reply.includes('Acme Corp'));
+  assert.ok(res.body.reply.includes('稱呼'));
+  assert.ok(res.body.reply.includes('信箱') || res.body.reply.includes('Email'));
+});
+
+test('processConciergeChat handles English job invitation: ignores "reaching" as name and extracts company', async () => {
+  const longMsg = `Hello David,
+I am reaching out to you on behalf of Hytech's hiring managers regarding our technical interview process for a Lead Architect role in our Taipei office.
+1. What is your current availability?
+2. Are you open to discussing this opportunity?
+3. What would be the best contact email?`;
+
+  const res = await processConciergeChat(
+    {
+      messages: [{ role: 'user', content: longMsg }],
+      locale: 'zh',
+    },
+    {},
+  );
+
+  assert.equal(res.status, 200);
+  assert.notEqual(res.body.draft.name.toLowerCase(), 'reaching', 'Verb "reaching" must NOT be extracted as a name');
+  assert.equal(res.body.draft.company, 'Hytech');
+  assert.equal(res.body.draft.subject, '職缺邀約／演講培訓');
+  assert.ok(res.body.reply.length > 0);
+  assert.ok(res.body.reply.includes('Hytech'));
+  assert.ok(res.body.reply.includes('稱呼'));
+  assert.ok(res.body.reply.includes('信箱') || res.body.reply.includes('Email'));
+});

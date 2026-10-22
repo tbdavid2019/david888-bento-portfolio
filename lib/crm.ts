@@ -151,7 +151,7 @@ export const sendConciergeMessage = async (
 
     if (response.ok) {
       const data = (await response.json()) as ConciergeChatOutput;
-      if (data && typeof data.reply === 'string') {
+      if (data && typeof data.reply === 'string' && data.reply.trim()) {
         return data;
       }
     }
@@ -177,9 +177,12 @@ export const sendConciergeMessage = async (
     ) ||
       /^(?:email|mail|信箱|聯絡方式)$/i.test(lastUserMsg.trim()));
 
+  const nonNameVerbs =
+    /^(reaching|writing|contacting|looking|interested|delighted|pleased|happy|thrilled|excited|sending|emailing|here|just|glad|wondering|hoping|trying)$/i;
+
   let extractedName = '';
   const nameMatch = allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
-  if (nameMatch) {
+  if (nameMatch && !nonNameVerbs.test(nameMatch[1].trim())) {
     extractedName = nameMatch[1].trim();
   } else {
     for (let i = 0; i < input.messages.length - 1; i++) {
@@ -198,7 +201,8 @@ export const sendConciergeMessage = async (
             !isEmailCandidate &&
             !isGreeting &&
             !isChip &&
-            !isConfirm
+            !isConfirm &&
+            !nonNameVerbs.test(candidate)
           ) {
             extractedName = candidate;
             break;
@@ -209,17 +213,21 @@ export const sendConciergeMessage = async (
   }
 
   let extractedCompany = '';
-  const companyMatch = allUserText.match(/(?:來自|公司是|任職於|公司名稱|代表\s*|from\s+)([^\s,，。!！\n]{2,20})/i);
-  if (companyMatch) extractedCompany = companyMatch[1];
+  const companyMatch =
+    allUserText.match(/\b([A-Z][a-zA-Z0-9_.-]+)(?:'s|’s)\s*(?:hiring managers|recruitment team|talent acquisition|team)/) ||
+    allUserText.match(/\b(?:hiring managers|recruitment team|talent acquisition)\s+at\s+([A-Za-z0-9_.-]+)/i) ||
+    allUserText.match(/\b(?:on behalf of|representative of)\s+([A-Z][a-zA-Z0-9_.-]+)/) ||
+    allUserText.match(/(?:來自|公司是|任職於|公司名稱|代表\s*|from\s+)([^\s,，。!！\n]{2,20})/i);
+  if (companyMatch) extractedCompany = companyMatch[1].trim();
 
   let detectedSubject = input.defaultSubject || '';
   if (!detectedSubject) {
-    if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
+    if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview|hiring\s*manager|talent\s*acquisition/i.test(allUserText)) {
+      detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
+    } else if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
       detectedSubject = isZh ? '顧問諮詢／業務合作' : 'Consulting & Business';
     } else if (/技術|系統|架構|專案|tech|architecture|project/i.test(allUserText)) {
       detectedSubject = isZh ? '技術交流／專案反饋' : 'Tech Chat & Project Feedback';
-    } else if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job/i.test(allUserText)) {
-      detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
     } else {
       detectedSubject = isZh ? '其他交流／隨意聊聊' : 'Other Ideas & Chat';
     }
@@ -289,7 +297,9 @@ export const sendConciergeMessage = async (
       : `Excellent! I have compiled your inquiry for David:\n\n• Name: ${extractedName}\n• Email: ${foundEmail}${extractedCompany ? `\n• Company: ${extractedCompany}` : ''}\n• Topic: ${detectedSubject}\n• Message: ${extractedMessage}\n\nShall I send the confirmation email to ${foundEmail}? Please click the confirmation button below!`;
   } else if (!hasName && !hasEmail) {
     reply = isZh
-      ? `太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理好留言並發送確認信，讓 David 能親自回信給您！`
+      ? (extractedCompany
+          ? `${extractedCompany} 的夥伴您好！已為您記錄此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 能親自回信給您！`
+          : '太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理好留言並發送確認信，讓 David 能親自回信給您！')
       : `Glad to help forward your message! Could you please share your name and email address so I can prepare a confirmation email for you?`;
   } else if (!hasEmail) {
     reply = isZh

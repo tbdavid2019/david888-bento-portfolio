@@ -138,7 +138,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     message: '',
   });
   const isComposingRef = useRef(false);
-  const chatMessagesEndRef = useRef<HTMLDivElement>(null);
+  const chatScrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Sync initialTab when props change
   useEffect(() => {
@@ -170,8 +170,13 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   ]);
 
   useEffect(() => {
-    chatMessagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, revealEmail, conciergeReady]);
+    if (chatScrollContainerRef.current) {
+      chatScrollContainerRef.current.scrollTo({
+        top: chatScrollContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [messages, revealEmail, conciergeReady, chatBusy]);
 
   const handleSelectSubject = (id: string) => {
     setError('');
@@ -440,9 +445,15 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
       setConciergeReady(Boolean(result.readyToConfirm));
 
+      const replyText =
+        (result.reply || '').trim() ||
+        (isZh
+          ? '好的，已為您記錄下此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 才能親自回信給您！'
+          : "Understood, I've noted down your message. Could you please share your name and email so David can reply directly?");
+
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: result.reply },
+        { role: 'assistant', content: replyText },
       ]);
     } catch (err) {
       console.warn('Chat interaction error:', err);
@@ -732,8 +743,12 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
             {activeTab === 'chat' && (
               <div id="panel-chat" role="tabpanel" aria-labelledby="tab-chat" className="space-y-3.5">
                 {/* Chat Scroll Container */}
-                <div className="max-h-[52vh] min-h-[240px] overflow-y-auto space-y-4 rounded-2xl border border-border bg-bg-elevated/40 p-4">
+                <div
+                  ref={chatScrollContainerRef}
+                  className="max-h-[52vh] min-h-[240px] overflow-y-auto space-y-4 rounded-2xl border border-border bg-bg-elevated/40 p-4"
+                >
                   {messages.map((msg, idx) => {
+                    if (!msg.content || !msg.content.trim()) return null;
                     const isAssistant = msg.role === 'assistant';
                     return (
                       <div
@@ -742,7 +757,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                       >
                         {isAssistant && <SecretaryAvatar size={36} locale={locale} />}
                         <div
-                          className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed box-border ${
+                          className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed box-border whitespace-pre-wrap break-words ${
                             isAssistant
                               ? 'bg-bg-elevated border border-border text-text-main shadow-2xs'
                               : 'bg-primary text-white dark:text-bg-base font-bold shadow-2xs'
@@ -754,47 +769,66 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     );
                   })}
 
-                  {/* Quick Reply Chips (Pure Lucide Icons + Unified text-sm font scale) */}
-                  <div className="pt-1 space-y-2.5">
-                    <div className="text-sm font-bold text-text-muted flex items-center gap-1.5">
-                      <MessageCircle size={15} strokeWidth={2} className="text-primary" />
-                      <span>{isZh ? '快速選擇諮詢項目' : 'Quick Inquiry Options'}</span>
+                  {/* Concierge Typing Indicator */}
+                  {chatBusy && (
+                    <div className="flex gap-3 justify-start items-center">
+                      <SecretaryAvatar size={36} locale={locale} />
+                      <div className="rounded-2xl border border-border bg-bg-elevated px-4 py-2.5 text-sm shadow-2xs flex items-center gap-2.5 text-text-muted">
+                        <span className="flex gap-1 items-center">
+                          <span className="h-2 w-2 rounded-full bg-primary/70 animate-bounce [animation-delay:-0.3s]" />
+                          <span className="h-2 w-2 rounded-full bg-primary/70 animate-bounce [animation-delay:-0.15s]" />
+                          <span className="h-2 w-2 rounded-full bg-primary/70 animate-bounce" />
+                        </span>
+                        <span className="text-xs font-medium text-text-muted">
+                          {isZh ? '小秘書正在記錄…' : 'Concierge is typing…'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      <button
-                        type="button"
-                        onClick={() => handleChipClick('consulting', isZh ? '顧問諮詢／業務合作' : 'Consulting & Business')}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
-                      >
-                        <Briefcase size={16} strokeWidth={2} className="shrink-0 text-primary" />
-                        <span className="truncate">{isZh ? '顧問諮詢／業務合作' : 'Consulting & Business'}</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleChipClick('tech_chat', isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello')}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
-                      >
-                        <MessageCircle size={16} strokeWidth={2} className="shrink-0 text-primary" />
-                        <span className="truncate">{isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello'}</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleChipClick('recruitment', isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking')}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
-                      >
-                        <Mic size={16} strokeWidth={2} className="shrink-0 text-primary" />
-                        <span className="truncate">{isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking'}</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleChipClick('email_direct', isZh ? '直接索取聯絡信箱' : "Get Direct Email")}
-                        className="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary/15 hover:border-primary px-3.5 py-2.5 text-sm font-bold text-primary transition-colors text-left"
-                      >
-                        <Mail size={16} strokeWidth={2} className="shrink-0 text-primary" />
-                        <span className="truncate">{isZh ? '直接索取聯絡信箱' : 'Get Direct Email'}</span>
-                      </button>
+                  )}
+
+                  {/* Quick Reply Chips: Only visible at the start before user sends a message */}
+                  {messages.filter((m) => m.role === 'user').length === 0 && (
+                    <div className="pt-1 space-y-2.5">
+                      <div className="text-sm font-bold text-text-muted flex items-center gap-1.5">
+                        <MessageCircle size={15} strokeWidth={2} className="text-primary" />
+                        <span>{isZh ? '快速選擇諮詢項目' : 'Quick Inquiry Options'}</span>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleChipClick('consulting', isZh ? '顧問諮詢／業務合作' : 'Consulting & Business')}
+                          className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
+                        >
+                          <Briefcase size={16} strokeWidth={2} className="shrink-0 text-primary" />
+                          <span className="truncate">{isZh ? '顧問諮詢／業務合作' : 'Consulting & Business'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleChipClick('tech_chat', isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello')}
+                          className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
+                        >
+                          <MessageCircle size={16} strokeWidth={2} className="shrink-0 text-primary" />
+                          <span className="truncate">{isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleChipClick('recruitment', isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking')}
+                          className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
+                        >
+                          <Mic size={16} strokeWidth={2} className="shrink-0 text-primary" />
+                          <span className="truncate">{isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleChipClick('email_direct', isZh ? '直接索取聯絡信箱' : "Get Direct Email")}
+                          className="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary/15 hover:border-primary px-3.5 py-2.5 text-sm font-bold text-primary transition-colors text-left"
+                        >
+                          <Mail size={16} strokeWidth={2} className="shrink-0 text-primary" />
+                          <span className="truncate">{isZh ? '直接索取聯絡信箱' : 'Get Direct Email'}</span>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Inline Direct Contact Card (when revealEmail is triggered) */}
                   {revealEmail && (
@@ -896,8 +930,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                       </button>
                     </div>
                   )}
-
-                  <div ref={chatMessagesEndRef} />
                 </div>
 
                 {/* Chat Input Controls with IME Protection */}

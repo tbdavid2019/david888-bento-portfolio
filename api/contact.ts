@@ -837,11 +837,47 @@ Respond ONLY with a valid JSON object matching this schema:
       const jsonMatch = rawContent.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         const parsed = JSON.parse(jsonMatch[0]);
-        const reply = sanitizeSecretaryText(String(parsed.reply || ''));
+        let extractedReply =
+          parsed.reply ||
+          parsed.message ||
+          parsed.response ||
+          parsed.content ||
+          parsed.text ||
+          '';
+        if (typeof extractedReply !== 'string') {
+          extractedReply =
+            typeof extractedReply === 'object'
+              ? extractedReply.text || extractedReply.content || ''
+              : String(extractedReply || '');
+        }
+        let reply = sanitizeSecretaryText(String(extractedReply || '').trim());
         const draftName = String(parsed.draft?.name || '').trim();
         const draftEmail = String(parsed.draft?.email || '').trim().toLowerCase();
+        const draftCompany = String(parsed.draft?.company || '').trim();
         const draftSubject = sanitizeSecretaryText(String(parsed.draft?.subject || defaultSubject || ''));
         const draftMessage = sanitizeSecretaryText(String(parsed.draft?.message || ''));
+        const wantsEmail = Boolean(parsed.revealEmail);
+
+        if (!reply) {
+          if (wantsEmail) {
+            reply = isZh
+              ? '好的！已為您在下方展開 David 的直通信箱名片卡 (104@david888.com)。您也可以直接在對話中告訴我想轉達給 David 的話，由我為您整理送達！'
+              : "Certainly! I've displayed David's direct contact card below (104@david888.com). You can also tell me what you'd like to forward to David right here!";
+          } else if (!draftName && !draftEmail) {
+            reply = isZh
+              ? `${draftCompany ? `${draftCompany} 的夥伴` : '您'}好！已為您記錄此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 能親自回信給您！`
+              : `Hello! I've noted down your message. Could you please share your name and email address so David can reply directly?`;
+          } else if (!draftEmail) {
+            reply = isZh
+              ? `${draftName} 您好！已為您記錄。請問方便提供您的聯繫 Email 嗎？小秘書會為您整理並呈交給 David！`
+              : `Hello ${draftName}! Could you please share your email so I can forward this to David?`;
+          } else {
+            reply = isZh
+              ? '感謝您的訊息！請問確認要由小秘書為您將此訊息轉達給 David 嗎？'
+              : 'Thank you for your message! Shall I forward this to David?';
+          }
+        }
+
         const canConfirm = Boolean(
           parsed.readyToConfirm &&
           draftName &&
@@ -853,11 +889,11 @@ Respond ONLY with a valid JSON object matching this schema:
           status: 200,
           body: {
             reply,
-            revealEmail: Boolean(parsed.revealEmail),
+            revealEmail: wantsEmail,
             draft: {
               name: draftName,
               email: draftEmail,
-              company: String(parsed.draft?.company || ''),
+              company: draftCompany,
               subject: draftSubject,
               message: draftMessage,
             },
@@ -887,9 +923,12 @@ Respond ONLY with a valid JSON object matching this schema:
     ) ||
       /^(?:email|mail|信箱|聯絡方式)$/i.test(lastUserMsg.trim()));
 
+  const nonNameVerbs =
+    /^(reaching|writing|contacting|looking|interested|delighted|pleased|happy|thrilled|excited|sending|emailing|here|just|glad|wondering|hoping|trying)$/i;
+
   let extractedName = '';
   const nameMatch = allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
-  if (nameMatch) {
+  if (nameMatch && !nonNameVerbs.test(nameMatch[1].trim())) {
     extractedName = nameMatch[1].trim();
   } else {
     for (let i = 0; i < messages.length - 1; i++) {
@@ -908,7 +947,8 @@ Respond ONLY with a valid JSON object matching this schema:
             !isEmailCandidate &&
             !isGreeting &&
             !isChip &&
-            !isConfirm
+            !isConfirm &&
+            !nonNameVerbs.test(candidate)
           ) {
             extractedName = candidate;
             break;
@@ -919,17 +959,21 @@ Respond ONLY with a valid JSON object matching this schema:
   }
 
   let extractedCompany = '';
-  const companyMatch = allUserText.match(/(?:來自|公司是|任職於|公司名稱|代表\s*|from\s+)([^\s,，。!！\n]{2,20})/i);
-  if (companyMatch) extractedCompany = companyMatch[1];
+  const companyMatch =
+    allUserText.match(/\b([A-Z][a-zA-Z0-9_.-]+)(?:'s|’s)\s*(?:hiring managers|recruitment team|talent acquisition|team)/) ||
+    allUserText.match(/\b(?:hiring managers|recruitment team|talent acquisition)\s+at\s+([A-Za-z0-9_.-]+)/i) ||
+    allUserText.match(/\b(?:on behalf of|representative of)\s+([A-Z][a-zA-Z0-9_.-]+)/) ||
+    allUserText.match(/(?:來自|公司是|任職於|公司名稱|代表\s*|from\s+)([^\s,，。!！\n]{2,20})/i);
+  if (companyMatch) extractedCompany = companyMatch[1].trim();
 
   let detectedSubject = defaultSubject || '';
   if (!detectedSubject) {
-    if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
+    if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview|hiring\s*manager|talent\s*acquisition/i.test(allUserText)) {
+      detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
+    } else if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
       detectedSubject = isZh ? '顧問諮詢／業務合作' : 'Consulting & Business';
     } else if (/技術|系統|架構|專案|tech|architecture|project/i.test(allUserText)) {
       detectedSubject = isZh ? '技術交流／專案反饋' : 'Tech Chat & Project Feedback';
-    } else if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job/i.test(allUserText)) {
-      detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
     } else {
       detectedSubject = isZh ? '其他交流／隨意聊聊' : 'Other Ideas & Chat';
     }
@@ -1001,7 +1045,9 @@ Respond ONLY with a valid JSON object matching this schema:
       : `Excellent! I have compiled your inquiry for David:\n\n• Name: ${extractedName}\n• Email: ${foundEmail}${extractedCompany ? `\n• Company: ${extractedCompany}` : ''}\n• Topic: ${detectedSubject}\n• Message: ${extractedMessage}\n\nShall I send the confirmation email to ${foundEmail}? Please click the confirmation button below!`;
   } else if (!hasName && !hasEmail) {
     reply = isZh
-      ? `太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理好留言並發送確認信，讓 David 能親自回信給您！`
+      ? (extractedCompany
+          ? `${extractedCompany} 的夥伴您好！已為您記錄此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 能親自回信給您！`
+          : '太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理好留言並發送確認信，讓 David 能親自回信給您！')
       : `Glad to help forward your message! Could you please share your name and email address so I can prepare a confirmation email for you?`;
   } else if (!hasEmail) {
     reply = isZh
