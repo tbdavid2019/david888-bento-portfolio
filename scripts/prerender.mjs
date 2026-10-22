@@ -181,6 +181,7 @@ ${JSON.stringify(schemaJson, null, 2)}
 
     // 7. Generate Canonical Route static HTML entrypoints for direct URL navigation
     const canonicalRoutes = [
+      'contact',
       'commitments',
       'promises',
       'executive',

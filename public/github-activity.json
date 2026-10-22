@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed qimen",
-      "url": "https://github.com/tbdavid2019/qimen/compare/7550ae1989...c6eea68097",
-      "updated": "2026-10-20 05:32:07 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 20, 2026 05:32 1 commit to main c6eea68 fix(branding): unify top-left navbar icon, favicon svg, and social og…"
-    },
-    {
-      "title": "tbdavid2019 pushed store-pulse",
-      "url": "https://github.com/tbdavid2019/store-pulse/compare/3581c2646b...e3f8217b9b",
-      "updated": "2026-10-19 10:09:51 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 19, 2026 10:09 1 commit to main e3f8217 fix(sw): upgrade service-worker to v3 with Network-First strategy for…"
-    },
-    {
-      "title": "tbdavid2019 pushed store-pulse",
-      "url": "https://github.com/tbdavid2019/store-pulse/compare/84d263e4f7...3581c2646b",
-      "updated": "2026-10-19 10:08:30 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 19, 2026 10:08 1 commit to main 3581c26 fix(search): declare analysisGeneration and analysisControllers to pr…"
+      "title": "tbdavid2019 pushed 888a2a",
+      "url": "https://github.com/tbdavid2019/888a2a/compare/4e53748ff6...ab92746a19",
+      "updated": "2026-10-22 02:14:58 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · October 22, 2026 02:14 1 commit to main ab92746 test(supervisor): avoid multicall /bin/sleep symlink failure on Ubunt…"
     },
     {
       "title": "tbdavid2019 pushed qimen",
-      "url": "https://github.com/tbdavid2019/qimen/compare/825f29e7a4...7550ae1989",
-      "updated": "2026-10-20 05:01:34 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 20, 2026 05:01 1 commit to main 7550ae1 feat: slim down hero headers across 10 pages, switch to JetBrains Mon…"
+      "url": "https://github.com/tbdavid2019/qimen/compare/b6823f2402...59b9e80a41",
+      "updated": "2026-10-22 07:13:55 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 22, 2026 07:13 1 commit to main 59b9e80 feat(email,rwd): add inline Q&amp;A email export across 9 modules (exclud…"
     },
     {
-      "title": "tbdavid2019 pushed store-pulse",
-      "url": "https://github.com/tbdavid2019/store-pulse/compare/b68682a322...f86a28fc89",
-      "updated": "2026-10-20 04:36:59 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 20, 2026 04:36 1 commit to main f86a28f fix(llms): ensure charset=utf-8 header to prevent browser mojibake an…"
+      "title": "tbdavid2019 pushed 888box",
+      "url": "https://github.com/tbdavid2019/888box/compare/f67c5ff9be...67a95f577d",
+      "updated": "2026-10-22 03:59:05 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888box · October 22, 2026 03:59 1 commit to main 67a95f5 fix: restore readable theme text contrast"
+    },
+    {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/5cee33a857...f1f26f261a",
+      "updated": "2026-10-21 07:38:07 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 21, 2026 07:38 1 commit to main f1f26f2 fix: simplify beijingDate in recompose-daily.ts"
+    },
+    {
+      "title": "tbdavid2019 pushed 888PassWD",
+      "url": "https://github.com/tbdavid2019/888PassWD/compare/8e69df75cb...c11bda5da2",
+      "updated": "2026-10-22 01:56:56 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888PassWD · October 22, 2026 01:56 1 commit to main c11bda5 security: update .node-version to 24.22.1"
     }
   ],
-  "lastSyncedAt": "2026-10-20T06:01:18.061Z",
+  "lastSyncedAt": "2026-10-22T07:53:15.647Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

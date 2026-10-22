@@ -11,6 +11,7 @@ const AdminConsole = lazy(() =>
 );
 
 export const VALID_CANONICAL_ROUTES = new Set([
+  'contact',
   'commitments',
   'promises',
   'executive',
@@ -31,6 +32,17 @@ const normalizeRouteAlias = (raw: string): string => {
   if (cleaned === 'metaphysics') return 'finance';
   if (cleaned === 'experiments') return 'products';
   return cleaned;
+};
+
+export const isContactRoute = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('contact') === '1' || params.has('contact')) return true;
+  const path = normalizeRouteAlias(window.location.pathname);
+  if (path === 'contact') return true;
+  const hash = normalizeRouteAlias(window.location.hash.replace(/^#/, ''));
+  if (hash === 'contact') return true;
+  return false;
 };
 
 const getInitialLocale = (): Locale => {
@@ -77,7 +89,7 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
-  const [contactOpen, setContactOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(isContactRoute);
   const [contactDefaultSubjectId, setContactDefaultSubjectId] = useState<string>('consulting');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -88,6 +100,20 @@ export default function App() {
   const openContactDialog = (defaultSubjectId = 'consulting') => {
     setContactDefaultSubjectId(defaultSubjectId);
     setContactOpen(true);
+    if (window.location.pathname !== '/contact') {
+      window.history.pushState(null, '', '/contact');
+    }
+  };
+
+  const closeContactDialog = () => {
+    setContactOpen(false);
+    if (normalizeRouteAlias(window.location.pathname) === 'contact') {
+      const fallback =
+        activeCategoryIdRef.current && activeCategoryIdRef.current !== defaultCategoryId
+          ? `/${activeCategoryIdRef.current}`
+          : '/';
+      window.history.replaceState(null, '', fallback);
+    }
   };
 
   useEffect(() => {
@@ -124,6 +150,7 @@ export default function App() {
     const handlePopState = () => {
       setActiveCategoryId(getInitialCategory());
       setLocale(getInitialLocale());
+      setContactOpen(isContactRoute());
     };
     window.addEventListener('popstate', handlePopState);
     window.addEventListener('hashchange', handlePopState);
@@ -212,7 +239,7 @@ export default function App() {
         <ContactDialog
           locale={locale}
           defaultSubjectId={contactDefaultSubjectId}
-          onClose={() => setContactOpen(false)}
+          onClose={closeContactDialog}
         />
       )}
     </div>

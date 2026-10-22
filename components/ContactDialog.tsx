@@ -5,6 +5,7 @@ import {
   Copy,
   ExternalLink,
   FileText,
+  Ghost,
   Info,
   LoaderCircle,
   Mail,
@@ -13,7 +14,6 @@ import {
   Mic,
   Send,
   ShieldAlert,
-  UserCheck,
   X,
 } from 'lucide-react';
 import { submitContactTicket, sendConciergeMessage, type ConciergeChatMessage } from '../lib/crm';
@@ -61,26 +61,26 @@ export const SecretaryAvatar: React.FC<{
   size?: number;
   className?: string;
   locale?: Locale;
-}> = ({ size = 44, className = '', locale = 'zh' }) => {
+}> = ({ size = 36, className = '', locale = 'zh' }) => {
   const isZh = locale !== 'en';
   const label = isZh ? 'David 的小秘書' : "David's Concierge";
   const onlineTitle = isZh ? '小秘書線上接待中' : 'Concierge online';
-  const iconSize = Math.round(size * 0.48);
+  const iconSize = Math.round(size * 0.52);
 
   return (
     <div
-      className={`relative inline-flex shrink-0 items-center justify-center rounded-full bg-[#17324d] text-[#ffb010] border-2 border-[#ffb010] shadow-xs select-none ${className}`}
+      className={`relative inline-flex shrink-0 items-center justify-center rounded-full bg-[#17324d] text-[#ffb010] border border-[#ffb010]/70 shadow-xs select-none ${className}`}
       style={{ width: size, height: size }}
       aria-label={label}
     >
-      <UserCheck size={iconSize} strokeWidth={2.2} aria-hidden="true" />
+      <Ghost size={iconSize} strokeWidth={2} aria-hidden="true" />
 
       {/* Online Status Dot */}
       <span
-        className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-white ring-2 ring-white dark:bg-[#17324d] dark:ring-[#17324d]"
+        className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-white ring-1.5 ring-white dark:bg-[#17324d] dark:ring-[#17324d]"
         title={onlineTitle}
       >
-        <span className="h-2.5 w-2.5 rounded-full bg-[#266838]" />
+        <span className="h-2 w-2 rounded-full bg-[#266838]" />
       </span>
     </div>
   );
@@ -448,58 +448,32 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       onMouseDown={(event) => event.target === event.currentTarget && onClose()}
     >
       <section
-        className="my-auto max-h-[94vh] sm:max-h-[92vh] w-full max-w-[calc(100vw-1rem)] sm:max-w-xl md:max-w-2xl overflow-y-auto overflow-x-hidden rounded-2xl sm:rounded-[28px] border border-border bg-bg-surface p-4 sm:p-6 md:p-7 shadow-2xl box-border"
+        className="my-auto max-h-[94vh] sm:max-h-[92vh] w-full max-w-[calc(100vw-1rem)] sm:max-w-xl md:max-w-2xl overflow-y-auto overflow-x-hidden rounded-2xl sm:rounded-[28px] border border-border bg-bg-surface p-4 sm:p-5 md:p-6 shadow-2xl box-border"
         style={{
           fontFamily:
             '"Gen Jyuu Gothic", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
         }}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="contact-dialog-title"
+        aria-label={isZh ? '聯絡 David' : 'Contact David'}
       >
-        {/* Modal Header */}
-        <div className="mb-4 flex items-center justify-between gap-3 border-b border-border/60 pb-4">
-          <div className="flex items-center gap-3.5 min-w-0 flex-1">
-            <SecretaryAvatar size={44} className="shrink-0" locale={locale} />
-            <div className="min-w-0 flex-1">
-              <h2
-                id="contact-dialog-title"
-                className="text-xl font-bold text-text-main leading-snug break-words"
-              >
-                {submittedSummary
-                  ? isZh
-                    ? '確認信已寄出，請至信箱點擊確認'
-                    : 'Confirmation Email Sent — Please Check Your Inbox'
-                  : isBlocked
-                    ? isZh
-                      ? '訊息已被安全機制攔截屏蔽'
-                      : 'Security Verification Notice'
-                    : isZh
-                      ? 'David 的小秘書'
-                      : "David's Concierge"}
-              </h2>
-              {!submittedSummary && !isBlocked && (
-                <p className="text-sm font-medium text-text-muted mt-0.5 truncate">
-                  {isZh
-                    ? '留言代轉・合作洽詢・索取直通信箱'
-                    : 'Message Forwarding & Direct Inquiries'}
-                </p>
-              )}
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-text-main hover:bg-bg-elevated transition-colors"
-            aria-label={isZh ? '關閉' : 'Close'}
-          >
-            <X size={18} />
-          </button>
-        </div>
-
         {/* 1. Pending Confirmation View (NO CS-xxxxxxxx ticket number) */}
         {submittedSummary ? (
           <div className="space-y-4">
+            <div className="flex items-center justify-between border-b border-border/60 pb-3">
+              <h2 className="text-lg sm:text-xl font-bold text-text-main">
+                {isZh ? '確認信已寄出，請至信箱點擊確認' : 'Confirmation Email Sent — Please Check Your Inbox'}
+              </h2>
+              <button
+                type="button"
+                onClick={onClose}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-text-main hover:bg-bg-elevated transition-colors"
+                aria-label={isZh ? '關閉' : 'Close'}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
             <div className="rounded-2xl border border-[#ffb010]/40 bg-[#fff9e8] dark:bg-[#17324d]/40 p-4 sm:p-5">
               <div className="flex items-start gap-3.5">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#ffb010] text-[#17324d] shadow-xs">
@@ -606,12 +580,26 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         ) : isBlocked ? (
           /* 2. Security Blocked View */
           <div className="space-y-4">
+            <div className="flex items-center justify-between border-b border-border/60 pb-3">
+              <h2 className="text-lg sm:text-xl font-bold text-text-main">
+                {isZh ? '訊息已被安全機制攔截屏蔽' : 'Security Verification Notice'}
+              </h2>
+              <button
+                type="button"
+                onClick={onClose}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-text-main hover:bg-bg-elevated transition-colors"
+                aria-label={isZh ? '關閉' : 'Close'}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
             <div className="rounded-2xl border-2 border-[var(--error)]/50 bg-[var(--error)]/10 p-5 text-center">
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--error)] text-white shadow-sm">
                 <ShieldAlert size={24} strokeWidth={2.2} />
               </div>
               <h3 className="mt-3.5 text-lg font-bold text-text-main">
-                {isZh ? '訊息已被安全機制攔截屏蔽' : 'Message Blocked by Security Filter'}
+                {isZh ? '未通過安全性檢驗' : 'Message Blocked'}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-text-muted max-w-md mx-auto">
                 {isZh
@@ -639,44 +627,55 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
           </div>
         ) : (
           /* 3. Main Views: Segmented Tabs (Concierge Chat / Direct Form) */
-          <div className="space-y-4">
-            {/* Segmented Mode Switcher */}
-            <div
-              role="tablist"
-              aria-label={isZh ? '選擇接待模式' : 'Choose mode'}
-              className="flex rounded-xl bg-bg-elevated p-1 border border-border/70 text-sm font-bold"
-            >
-              <button
-                role="tab"
-                type="button"
-                id="tab-chat"
-                aria-selected={activeTab === 'chat'}
-                aria-controls="panel-chat"
-                onClick={() => switchTab('chat')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-bold transition-all ${
-                  activeTab === 'chat'
-                    ? 'bg-bg-surface text-[#17324d] dark:text-[#ffb010] shadow-xs'
-                    : 'text-text-muted hover:text-text-main'
-                }`}
+          <div className="space-y-3.5">
+            {/* Top Row: Segmented Mode Switcher + Close Button (No redundant header block!) */}
+            <div className="flex items-center justify-between gap-2.5">
+              <div
+                role="tablist"
+                aria-label={isZh ? '選擇接待模式' : 'Choose mode'}
+                className="flex flex-1 rounded-xl bg-bg-elevated p-1 border border-border/70 text-sm font-bold"
               >
-                <MessageSquare size={16} strokeWidth={2} />
-                <span>{isZh ? '小秘書接待' : 'Concierge Chat'}</span>
-              </button>
+                <button
+                  role="tab"
+                  type="button"
+                  id="tab-chat"
+                  aria-selected={activeTab === 'chat'}
+                  aria-controls="panel-chat"
+                  onClick={() => switchTab('chat')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-bold transition-all ${
+                    activeTab === 'chat'
+                      ? 'bg-bg-surface text-[#17324d] dark:text-[#ffb010] shadow-xs'
+                      : 'text-text-muted hover:text-text-main'
+                  }`}
+                >
+                  <Ghost size={16} strokeWidth={2} />
+                  <span>{isZh ? '小秘書接待' : 'Concierge Chat'}</span>
+                </button>
+                <button
+                  role="tab"
+                  type="button"
+                  id="tab-form"
+                  aria-selected={activeTab === 'form'}
+                  aria-controls="panel-form"
+                  onClick={() => switchTab('form')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-bold transition-all ${
+                    activeTab === 'form'
+                      ? 'bg-bg-surface text-[#17324d] dark:text-[#ffb010] shadow-xs'
+                      : 'text-text-muted hover:text-text-main'
+                  }`}
+                >
+                  <Mail size={16} strokeWidth={2} />
+                  <span>{isZh ? '直接填寫表單' : 'Direct Form'}</span>
+                </button>
+              </div>
+
               <button
-                role="tab"
                 type="button"
-                id="tab-form"
-                aria-selected={activeTab === 'form'}
-                aria-controls="panel-form"
-                onClick={() => switchTab('form')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-bold transition-all ${
-                  activeTab === 'form'
-                    ? 'bg-bg-surface text-[#17324d] dark:text-[#ffb010] shadow-xs'
-                    : 'text-text-muted hover:text-text-main'
-                }`}
+                onClick={onClose}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-bg-elevated text-text-main hover:bg-bg-surface transition-colors"
+                aria-label={isZh ? '關閉' : 'Close'}
               >
-                <Mail size={16} strokeWidth={2} />
-                <span>{isZh ? '直接填寫表單' : 'Direct Form'}</span>
+                <X size={18} />
               </button>
             </div>
 

@@ -329,15 +329,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
-          <button
-            type="button"
-            onClick={onContact}
-            className={`h-10 w-10 items-center justify-center gap-0 rounded-full border-2 border-[#17324d] bg-[#17324d] px-0 text-sm font-extrabold text-[#fff9e8] shadow-xs transition-all duration-200 hover:bg-[#0f2337] sm:w-auto sm:gap-2 sm:px-4 ${isSearchOpen ? 'hidden md:inline-flex' : 'inline-flex'}`}
+          <a
+            href="/contact"
+            onClick={(e) => {
+              e.preventDefault();
+              onContact();
+            }}
+            className={`h-10 w-10 items-center justify-center gap-0 rounded-full border-2 border-[#17324d] bg-[#17324d] px-0 text-sm font-extrabold text-[#fff9e8] shadow-xs transition-all duration-200 hover:bg-[#0f2337] sm:w-auto sm:gap-2 sm:px-4 no-underline ${isSearchOpen ? 'hidden md:inline-flex' : 'inline-flex'}`}
             aria-label={locale === 'zh' ? '聯絡我' : 'Contact me'}
           >
             <Mail size={16} />
             <span className="hidden sm:inline">{locale === 'zh' ? '聯絡我' : 'Contact me'}</span>
-          </button>
+          </a>
         </div>
       </nav>
     </header>
