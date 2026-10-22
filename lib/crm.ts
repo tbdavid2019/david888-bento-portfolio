@@ -132,6 +132,8 @@ export interface ConciergeChatOutput {
   revealEmail: boolean;
   draft: ConciergeChatDraft;
   readyToConfirm: boolean;
+  autoDispatched?: boolean;
+  dispatchedTo?: string;
 }
 
 export const sendConciergeMessage = async (
@@ -300,14 +302,20 @@ export const sendConciergeMessage = async (
         ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
         : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
     }
-  } else if (isConfirming) {
-    reply = isZh
-      ? `收到！小秘書正為您發送確認信至 ${foundEmail}，請點擊下方按鈕或稍候接收確認信！`
-      : `Understood! A confirmation email is being sent to ${foundEmail}. Please click below to complete delivery!`;
   } else if (ready) {
+    // In client-side offline fallback, trigger dispatch in background if not yet done
+    submitContactTicket({
+      name: extractedName || (isZh ? '貴賓' : 'Guest'),
+      email: foundEmail,
+      company: extractedCompany,
+      subject: detectedSubject,
+      message: extractedMessage || allUserText,
+      locale: isZh ? 'zh' : 'en',
+    }).catch((e) => console.warn('[CRM Fallback] submitContactTicket error:', e));
+
     reply = isZh
-      ? `好的！小秘書已為您彙整好欲轉達給 David 的訊息：\n\n• 稱呼：${extractedName}\n• 信箱：${foundEmail}${extractedCompany ? `\n• 公司：${extractedCompany}` : ''}\n• 洽詢主旨：${detectedSubject}\n• 留言內容：${extractedMessage}\n\n請問確認要由小秘書為您寄送確認信至 ${foundEmail} 嗎？請點擊下方「確認送出確認信」即可！`
-      : `Excellent! I have compiled your inquiry for David:\n\n• Name: ${extractedName}\n• Email: ${foundEmail}${extractedCompany ? `\n• Company: ${extractedCompany}` : ''}\n• Topic: ${detectedSubject}\n• Message: ${extractedMessage}\n\nShall I send the confirmation email to ${foundEmail}? Please click the confirmation button below!`;
+      ? `非常感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已自動為您將訊息整理妥當，並已直接寄出確認信至 ${foundEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`
+      : `Thank you so much${extractedName ? `, ${extractedName}` : ''}! I have prepared your message and automatically sent a confirmation email to ${foundEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`;
   } else if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview/i.test(detectedSubject) && (!hasName || !hasEmail)) {
     reply = isZh
       ? (extractedCompany
@@ -337,6 +345,8 @@ export const sendConciergeMessage = async (
   return {
     reply,
     revealEmail: finalRevealEmail,
+    autoDispatched: ready,
+    dispatchedTo: foundEmail || undefined,
     draft: {
       name: extractedName,
       email: foundEmail,

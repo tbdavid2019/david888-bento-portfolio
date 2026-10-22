@@ -38,6 +38,10 @@ export interface ConfirmationPayload {
   m: string; // message
   l?: string; // locale
   exp: number; // timestamp in ms
+  sp?: boolean; // isSpam
+  sc?: string; // choice
+  cf?: number; // confidence
+  ep?: string; // endpoint
 }
 
 const clean = (value: unknown, maxLength: number): string =>
@@ -66,7 +70,7 @@ export function sanitizeSecretaryText(text: string): string {
     .replace(/機器人/g, '秘書助理')
     .replace(/\bLLM\b/gi, '')
     .replace(/語言模型/g, '')
-    .replace(/\b(?:Clef|Jev)\b/gi, '');
+    .replace(/\b(?:Clef|Jev|System\s*One|TypeSafe)\b/gi, '');
 }
 
 export function resolveConfirmOrigin(requestOrigin?: string, envOrigin?: string): string {
@@ -178,6 +182,7 @@ export const processContactSubmission = async (
   payload: ContactPayload,
   env: Env,
   requestOrigin?: string,
+  precomputedClefResult?: any,
 ): Promise<{ status: number; body: Record<string, unknown> }> => {
   const name = clean(payload.name, 100);
   const email = clean(payload.email, 160).toLowerCase();
@@ -196,17 +201,8 @@ export const processContactSubmission = async (
     };
   }
 
-  // 1. Cloudflare Turnstile Verification
-  if (env.TURNSTILE_SECRET) {
-    if (!turnstileToken) {
-      return {
-        status: 403,
-        body: {
-          error: 'Cloudflare Turnstile verification token is missing.',
-          turnstileFailed: true,
-        },
-      };
-    }
+  // 1. Cloudflare Turnstile Verification (if provided)
+  if (env.TURNSTILE_SECRET && turnstileToken) {
     try {
       const verifyRes = await fetch(
         'https://challenges.cloudflare.com/turnstile/v0/siteverify',
@@ -232,18 +228,11 @@ export const processContactSubmission = async (
       }
     } catch (verifyErr) {
       console.warn('Turnstile verify network error:', verifyErr);
-      return {
-        status: 403,
-        body: {
-          error: 'Could not connect to Cloudflare Turnstile verification service.',
-          turnstileFailed: true,
-        },
-      };
     }
   }
 
-  // 2. Clef-Flash & TypeSafe Jev System One Spam & Scam Verification (3-Tier + Fail-Open)
-  const clefResult = await checkSpamWithClef(
+  // 2. Clef-Flash & TypeSafe Jev System One Spam & Scam Verification (Evaluated in background, NEVER block!)
+  const clefResult = precomputedClefResult || await checkSpamWithClef(
     {
       name,
       email,
@@ -252,18 +241,11 @@ export const processContactSubmission = async (
       message,
       typesafeApiKey: env.TYPESAFE_API_KEY,
     },
-    25000,
+    5000,
   );
 
   if (clefResult.isSpam) {
-    console.warn(`[Worker] Clef/Jev blocked spam from ${email}: endpoint=${clefResult.endpoint}`);
-    return {
-      status: 403,
-      body: {
-        error: '此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。',
-        blocked: true,
-      },
-    };
+    console.warn(`[Worker] Clef/Jev evaluated message from ${email} as spam (${clefResult.confidence}): endpoint=${clefResult.endpoint}`);
   }
 
   if (!env.RESEND_API_KEY) {
@@ -286,6 +268,10 @@ export const processContactSubmission = async (
     m: message,
     l: locale,
     exp: Date.now() + 86400000, // 24-hour expiration
+    sp: clefResult.isSpam,
+    sc: clefResult.choice,
+    cf: clefResult.confidence,
+    ep: clefResult.endpoint,
   };
 
   const confirmationToken = await createConfirmationToken(tokenPayload, secret);
@@ -681,6 +667,17 @@ export const confirmContactSubmission = async (
   const fromEmail = env.RESEND_FROM || "David's Concierge <contact@vip.david888.com>";
 
   try {
+    const isSpam = Boolean(payload.sp);
+    const choice = payload.sc || 'legitimate_inquiry';
+    const confidence = typeof payload.cf === 'number' ? payload.cf : 0.9;
+    const endpoint = payload.ep || 'clef-flash';
+
+    const safetyBadge = isSpam
+      ? `[⚠️ 疑似廣告 (${(confidence * 100).toFixed(0)}%)]`
+      : `[✅ 正常商務 (${(confidence * 100).toFixed(0)}%)]`;
+
+    const finalSubject = `[直通呈報] ${safetyBadge} ${payload.s} — ${payload.n}${payload.c ? ` (${payload.c})` : ''}`;
+
     const resendRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -691,8 +688,44 @@ export const confirmContactSubmission = async (
         from: fromEmail,
         to: adminEmails,
         reply_to: payload.e,
-        subject: `[小秘書轉達] ${payload.s} — ${payload.n}`,
-        text: `David 的小秘書 — 訪客訊息轉達（已完成信箱雙重驗證）\n\n諮詢主旨：${payload.s}\n訪客姓名：${payload.n}\n訪客信箱：${payload.e}\n公司／團隊：${payload.c || '-'}\n\n留言內容：\n${payload.m}\n\n──────────────────────────────────\n此訊息已由訪客於其電子信箱點擊確認驗證後轉達。直接點擊「回覆」即可與訪客聯繫。`,
+        subject: finalSubject,
+        text: `David 的小秘書 — 訪客訊息轉達（已完成信箱雙重驗證）\n\n【決策模型安全分析報告】\n• 識別意圖：${choice}\n• 評估狀態：${safetyBadge}\n• 判定信心度：${(confidence * 100).toFixed(1)}%\n• 推論服務節點：${endpoint}\n\n──────────────────────────────────\n諮詢主旨：${payload.s}\n訪客姓名：${payload.n}\n訪客信箱：${payload.e}\n公司／團隊：${payload.c || '-'}\n\n留言內容：\n${payload.m}\n\n──────────────────────────────────\n此訊息已由訪客於其電子信箱點擊確認驗證後轉達。直接點擊「回覆」即可與訪客聯繫。`,
+        html: `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"/></head>
+<body style="margin: 0; padding: 24px; background: #fff9e8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #17324d;">
+  <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #d6bc7c; border-radius: 16px; padding: 24px 28px; box-shadow: 0 4px 16px rgba(23, 50, 77, 0.06);">
+    <div style="font-size: 18px; font-weight: bold; color: #17324d; margin-bottom: 16px; border-bottom: 2px solid #ffb010; padding-bottom: 10px;">
+      📬 David 的小秘書 — 訪客訊息直通呈報
+    </div>
+    
+    <div style="background: #fffdfa; border: 1px solid #d6bc7c; border-radius: 10px; padding: 14px 16px; margin-bottom: 20px;">
+      <div style="font-weight: bold; font-size: 13px; color: #17324d; margin-bottom: 6px;">🛡️ 決策模型安全分析報告</div>
+      <div style="font-size: 12px; color: #2b251a; line-height: 1.6;">
+        • 識別意圖：<strong>${escapeHtml(choice)}</strong><br/>
+        • 評估狀態：<strong>${escapeHtml(safetyBadge)}</strong><br/>
+        • 判定信心度：<strong>${(confidence * 100).toFixed(1)}%</strong><br/>
+        • 推論服務節點：<code>${escapeHtml(endpoint)}</code>
+      </div>
+    </div>
+
+    <div style="font-size: 14px; line-height: 1.7; color: #2b251a; margin-bottom: 20px;">
+      <strong>稱呼：</strong>${escapeHtml(payload.n)}<br/>
+      <strong>信箱：</strong><a href="mailto:${escapeHtml(payload.e)}" style="color: #17324d; font-weight: bold;">${escapeHtml(payload.e)}</a><br/>
+      ${payload.c ? `<strong>公司／團隊：</strong>${escapeHtml(payload.c)}<br/>` : ''}
+      <strong>主旨：</strong>${escapeHtml(payload.s)}
+    </div>
+
+    <div style="background: #fafaf9; border-left: 4px solid #ffb010; padding: 14px 16px; border-radius: 4px; font-size: 14px; line-height: 1.6; color: #1c1917; white-space: pre-wrap; margin-bottom: 20px;">
+${escapeHtml(payload.m)}
+    </div>
+
+    <div style="font-size: 12px; color: #78716c; border-top: 1px solid #e7e5e4; padding-top: 12px; margin-top: 16px;">
+      此郵件由訪客於其電子信箱點擊確認驗證後自動送出。您可以直接點擊此信件的「回覆」與訪客交流。
+    </div>
+  </div>
+</body>
+</html>`,
       }),
     });
 
@@ -745,6 +778,7 @@ export const confirmContactSubmission = async (
 export const processConciergeChat = async (
   payload: Record<string, any>,
   env: Env,
+  workerOrigin?: string,
 ): Promise<{ status: number; body: Record<string, unknown> }> => {
   const rawMessages = Array.isArray(payload.messages) ? payload.messages : [];
   const messages = rawMessages.slice(-10).map((m: any) => ({
@@ -755,6 +789,18 @@ export const processConciergeChat = async (
   const locale = payload.locale === 'en' ? 'en' : 'zh';
   const isZh = locale !== 'en';
   const defaultSubject = clean(payload.defaultSubject, 100);
+  const requestOrigin = payload.requestOrigin || workerOrigin || ((env as any).DEFAULT_BASE_URL as string);
+
+  // Check if confirmation email was already dispatched in earlier turns of this conversation
+  const alreadyDispatchedInHistory = messages.some(
+    (m) =>
+      m.role === 'assistant' &&
+      (m.content.includes('已自動為您將訊息整理妥當') ||
+        m.content.includes('已直接寄出確認信') ||
+        m.content.includes('automatically sent a confirmation email') ||
+        m.content.includes('已自動為您送出確認信') ||
+        m.content.includes('已自動寄送確認信'))
+  );
 
   // 1. Extract conversational details from all user messages
   const userMessages = messages.filter((m) => m.role === 'user');
@@ -891,14 +937,53 @@ export const processConciergeChat = async (
     25000,
   );
 
-  // 3. Try Cloudflare Workers AI
+  // 3. Gatekeeper Handling for Contact / Email Requests
+  const hasEmail = Boolean(foundEmail);
+  const hasName = Boolean(extractedName && extractedName.length >= 2);
+  const hasMessage = Boolean(extractedMessage && extractedMessage.length >= 5);
+  const ready = hasEmail && hasMessage;
+  const finalRevealEmail = Boolean(wantsEmail && decision.canRevealEmail);
+
+  let autoDispatched = false;
+  let reply = '';
+
+  if (wantsEmail) {
+    if (finalRevealEmail) {
+      reply = isZh
+        ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
+        : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
+    } else {
+      reply = isZh
+        ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
+        : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
+    }
+
+    return {
+      status: 200,
+      body: {
+        reply: sanitizeSecretaryText(reply),
+        revealEmail: finalRevealEmail,
+        autoDispatched: false,
+        draft: {
+          name: extractedName,
+          email: foundEmail,
+          company: extractedCompany,
+          subject: detectedSubject,
+          message: sanitizeSecretaryText(extractedMessage || allUserText),
+        },
+        readyToConfirm: ready,
+      },
+    };
+  }
+
+  // 4. Try Cloudflare Workers AI for conversation
   if (env.AI && typeof env.AI.run === 'function') {
     const model = env.CF_MODEL || '@cf/openai/gpt-oss-20b';
     const systemPrompt = `You are "David 的小秘書" (in English: "David's Concierge"), the warm, professional, executive personal secretary and ambassador for David Chiang (江政達 / David888).
 
-[SYSTEM ONE DECISION ENGINE EVALUATION FOR CURRENT TURN]:
+[INTERNAL SECURITY & INTENT ASSESSMENT]:
 - Evaluated Primary Intent: ${decision.intent} (Confidence: ${Math.round(decision.confidence * 100)}%)
-- Safety Assessment: ${decision.isSpam ? 'SPAM/SCAM (Reject politely)' : 'CLEAN & SAFE'}
+- Safety Assessment: ${decision.isSpam ? 'POTENTIAL SPAM (Handle politely)' : 'CLEAN & SAFE'}
 - Email Disclosure Authorization: ${decision.canRevealEmail ? 'APPROVED (Verified High-Value Commercial/Interview Inquiry)' : 'DENIED (Gatekeeping Active: Do NOT disclose David\'s email or phone)'}
 - Policy Guidance: ${decision.guidance}
 
@@ -907,9 +992,12 @@ CRITICAL DIRECTIVES:
    - You are David's personal executive secretary acting on his behalf. You are NOT David himself, and you are NOT the candidate/applicant being interviewed.
    - When a visitor presents an interview invitation, job opportunity, recruitment, or consulting inquiry, NEVER say "Thank you for inviting me to an interview". Instead, proudly and professionally represent David: "非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。" (in English: "Thank you so much for your interest and invitation to David! As David's concierge, I will make sure this is delivered directly to David.")
    - Never refer to yourself as virtual, automated, an AI, a bot, or a language model.
-   - Never reveal, mention, or discuss backend technologies, security systems, model names, or vendor names (such as Clef, Jev, Workers AI, System One, etc.). Simply represent yourself as David's professional executive secretary.
-2. CLEF SYSTEM ONE GATEKEEPER & PRIVACY DIRECTIVE:
-   - David's personal email (104@david888.com) is strictly confidential and protected by the Clef / Jev System One decision engine.
+   - Never reveal, mention, or discuss backend technologies, security systems, model names, or vendor names. Simply represent yourself as David's professional executive secretary.
+   - STRICT RULE: NEVER GUESS, INVENT, OR ASSUME NAMES (such as Daniel, John). If the sender's name is not explicitly stated, address them politely as "您".
+   - STRICT RULE: DO NOT ask the user to re-paste or summarize what they already typed in the dialogue!
+   - STRICT RULE: Whenever asking for their email, always remind them: "（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）".
+2. GATEKEEPER & PRIVACY DIRECTIVE:
+   - David's personal direct email (104@david888.com) is strictly confidential.
    - If the visitor asks for David's email, phone, or direct contact:
      - ONLY set "revealEmail": true IF the decision engine has AUTHORIZED email disclosure (Email Disclosure Authorization: APPROVED).
      - If Email Disclosure Authorization is DENIED (or visitor has not yet provided clear company name, sender name, and inquiry topic):
@@ -922,21 +1010,11 @@ CRITICAL DIRECTIVES:
    - When the conversation is in Traditional Chinese (${isZh ? 'YES' : 'NO'}), respond in 100% pure Traditional Chinese (繁體中文). NEVER append or mix English words or sentences.
    - When the conversation is in English, respond in 100% fluent business English.
 5. CONVERSATIONAL INTERVIEW & GATHERING:
-   - Understand the inquiry and collect the 3 essential pieces of information:
+   - Understand the inquiry and collect the essential pieces of information:
      1. Message / Details (what they wish to tell or propose to David)
-     2. Name / Greeting (how David should address them)
-     3. Email (where you will send the confirmation link, and where David can reply)
-     (Company is optional).
-   - If any of these 3 is missing, politely and warmly ask for the missing item(s) in your conversational reply.
-6. SUMMARY & DISPATCH:
-   - When all 3 essential pieces (Message >= 5 chars, Name, valid Email) are provided:
-     - Formulate a clear bulleted summary:
-       • 稱呼: {name}
-       • 信箱: {email}
-       • 主旨: {subject}
-       • 內容: {message}
-     - Ask: "請問確認要由小秘書為您寄出確認信至 {email} 嗎？"
-     - Set "readyToConfirm": true.
+     2. Email (where you will automatically send the confirmation link, and where David can reply)
+     3. Name / Greeting (optional, how David should address them)
+   - If email is missing, politely and warmly ask for their contact email with the real-email reminder.
 
 OUTPUT FORMAT:
 Respond ONLY with a valid JSON object matching this schema:
@@ -1002,49 +1080,73 @@ Respond ONLY with a valid JSON object matching this schema:
               : String(extractedReply || '');
         }
         let reply = sanitizeSecretaryText(String(extractedReply || '').trim());
-        const draftName = String(parsed.draft?.name || extractedName || '').trim();
-        const draftEmail = String(parsed.draft?.email || foundEmail || '').trim().toLowerCase();
+
+        const rawDraftName = sanitizeSecretaryText(String(parsed.draft?.name || '').trim());
+        const isForbiddenName = /^(david|daniel|user|visitor|訪客|使用者|貴賓|guest)$/i.test(rawDraftName);
+        const nameAppearsInText = rawDraftName && allUserText.toLowerCase().includes(rawDraftName.toLowerCase());
+        const draftName = (!isForbiddenName && nameAppearsInText) ? rawDraftName : (extractedName || '');
+
+        const rawDraftEmail = String(parsed.draft?.email || '').trim().toLowerCase();
+        const draftEmail = (isEmail(rawDraftEmail) && allUserText.toLowerCase().includes(rawDraftEmail))
+          ? rawDraftEmail
+          : (isEmail(foundEmail) ? foundEmail : '');
+
         const draftCompany = String(parsed.draft?.company || extractedCompany || '').trim();
         const draftSubject = sanitizeSecretaryText(String(parsed.draft?.subject || detectedSubject || defaultSubject || ''));
         const draftMessage = sanitizeSecretaryText(String(parsed.draft?.message || extractedMessage || ''));
-        const finalRevealEmail = Boolean(parsed.revealEmail && decision.canRevealEmail);
+        const isReadyNow = Boolean(draftEmail && (draftMessage.length >= 5 || allUserText.length >= 5));
 
-        if (!reply) {
-          if (finalRevealEmail) {
-            reply = isZh
-              ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
-              : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
-          } else if (wantsEmail) {
-            reply = isZh
-              ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
-              : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
-          } else if (!draftName && !draftEmail) {
-            reply = isZh
-              ? `${draftCompany ? `${draftCompany} 的夥伴` : '您'}好！已為您記錄此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 能親自回信給您！`
-              : `Hello! I've noted down your message. Could you please share your name and email address so David can reply directly?`;
-          } else if (!draftEmail) {
-            reply = isZh
-              ? `${draftName} 您好！已為您記錄。請問方便提供您的聯繫 Email 嗎？小秘書會為您整理並呈交給 David！`
-              : `Hello ${draftName}! Could you please share your email so I can forward this to David?`;
+        if (isReadyNow) {
+          if (!alreadyDispatchedInHistory) {
+            try {
+              const submitRes = await processContactSubmission(
+                {
+                  name: draftName || (isZh ? '貴賓' : 'Guest'),
+                  email: draftEmail,
+                  company: draftCompany,
+                  subject: draftSubject,
+                  message: sanitizeSecretaryText(draftMessage || allUserText),
+                  locale,
+                },
+                env,
+                requestOrigin,
+                decision,
+              );
+              autoDispatched = submitRes.status === 200;
+            } catch (submitErr) {
+              console.warn('[ConciergeChat] Auto-dispatch background error:', submitErr);
+              autoDispatched = false;
+            }
           } else {
-            reply = isZh
-              ? '感謝您的訊息！請問確認要由小秘書為您將此訊息轉達給 David 嗎？'
-              : 'Thank you for your message! Shall I forward this to David?';
+            autoDispatched = true;
           }
         }
 
-        const canConfirm = Boolean(
-          parsed.readyToConfirm &&
-          draftName &&
-          isEmail(draftEmail) &&
-          draftMessage.trim().length >= 5
-        );
+        if (!reply) {
+          if (isReadyNow && autoDispatched) {
+            reply = isZh
+              ? (alreadyDispatchedInHistory
+                  ? `好的！確認信先前已自動寄送至 ${draftEmail}，請務必至您的信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David 本人！`
+                  : `非常感謝${draftName ? ` ${draftName}` : ''}！小秘書已自動為您將訊息整理妥當，並已直接寄出確認信至 ${draftEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`)
+              : (alreadyDispatchedInHistory
+                  ? `Understood! The confirmation email was dispatched to ${draftEmail}. Please verify via your inbox to deliver your message directly to David!`
+                  : `Thank you so much${draftName ? `, ${draftName}` : ''}! I have prepared your message and automatically sent a confirmation email to ${draftEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`);
+          } else if (!draftEmail) {
+            reply = isZh
+              ? (draftCompany
+                  ? `${draftCompany} 的夥伴您好！已為您記錄此項訊息。請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`
+                  : '太棒了，很樂意為您轉達！請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）')
+              : `Glad to help forward your message! Could you please share your name and active contact email? (Please ensure you provide a valid email, as a confirmation link will be sent to complete delivery).`;
+          }
+        }
 
         return {
           status: 200,
           body: {
-            reply,
-            revealEmail: finalRevealEmail,
+            reply: sanitizeSecretaryText(reply),
+            revealEmail: false,
+            autoDispatched,
+            dispatchedTo: draftEmail || undefined,
             draft: {
               name: draftName,
               email: draftEmail,
@@ -1052,7 +1154,7 @@ Respond ONLY with a valid JSON object matching this schema:
               subject: draftSubject,
               message: draftMessage,
             },
-            readyToConfirm: canConfirm,
+            readyToConfirm: isReadyNow,
           },
         };
       }
@@ -1061,57 +1163,73 @@ Respond ONLY with a valid JSON object matching this schema:
     }
   }
 
-  // 4. Smart deterministic fallback (multi-turn conversational interview)
-  const hasEmail = Boolean(foundEmail);
-  const hasName = Boolean(extractedName && extractedName.length >= 2);
-  const hasMessage = Boolean(extractedMessage && extractedMessage.length >= 5);
-  const ready = hasEmail && hasName && hasMessage;
+  // 5. Smart deterministic fallback
+  if (ready) {
+    if (!alreadyDispatchedInHistory) {
+      try {
+        const submitRes = await processContactSubmission(
+          {
+            name: extractedName || (isZh ? '貴賓' : 'Guest'),
+            email: foundEmail,
+            company: extractedCompany,
+            subject: detectedSubject,
+            message: sanitizeSecretaryText(extractedMessage || allUserText),
+            locale,
+          },
+          env,
+          requestOrigin,
+          decision,
+        );
+        autoDispatched = submitRes.status === 200;
+      } catch (submitErr) {
+        console.warn('[ConciergeChat] Auto-dispatch background error:', submitErr);
+        autoDispatched = false;
+      }
+    } else {
+      autoDispatched = true;
+    }
 
-  const isConfirming =
-    ready &&
-    /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(lastUserMsg.trim());
+    reply = isZh
+      ? (alreadyDispatchedInHistory
+          ? `好的！確認信先前已自動寄送至 ${foundEmail}，請務必至您的信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David 本人！`
+          : `非常感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已自動為您將訊息整理妥當，並已直接寄出確認信至 ${foundEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`)
+      : (alreadyDispatchedInHistory
+          ? `Understood! The confirmation email was dispatched to ${foundEmail}. Please verify via your inbox to deliver your message directly to David!`
+          : `Thank you so much${extractedName ? `, ${extractedName}` : ''}! I have prepared your message and automatically sent a confirmation email to ${foundEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`);
 
-  const finalRevealEmail = Boolean(wantsEmail && decision.canRevealEmail);
+    return {
+      status: 200,
+      body: {
+        reply: sanitizeSecretaryText(reply),
+        revealEmail: false,
+        autoDispatched,
+        dispatchedTo: foundEmail,
+        draft: {
+          name: extractedName,
+          email: foundEmail,
+          company: extractedCompany,
+          subject: detectedSubject,
+          message: sanitizeSecretaryText(extractedMessage || allUserText),
+        },
+        readyToConfirm: ready,
+      },
+    };
+  }
 
-  let reply = '';
-  if (wantsEmail) {
-    if (finalRevealEmail) {
+  if (!hasEmail) {
+    if (decision.intent === 'recruitment_or_interview' || /職缺|招募|面試|interview/i.test(detectedSubject)) {
       reply = isZh
-        ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
-        : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
+        ? (extractedCompany
+            ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。\n\n請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`
+            : `非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。\n\n請問方便請教您的稱呼、公司與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`)
+        : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D teams in distributed high-concurrency systems. Could you share your name, organization, and active contact email? (Please ensure you provide a valid email, as a confirmation link will be sent to complete delivery).`;
     } else {
       reply = isZh
-        ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
-        : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
+        ? (extractedCompany
+            ? `${extractedCompany} 的夥伴您好！已為您記錄此項訊息。請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`
+            : `太棒了，很樂意為您轉達！請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`)
+        : `Glad to help forward your message! Could you please share your name and active contact email? (Please ensure you provide a valid email, as a confirmation link will be sent to complete delivery).`;
     }
-  } else if (isConfirming) {
-    reply = isZh
-      ? `收到！小秘書正為您發送確認信至 ${foundEmail}，請點擊下方按鈕或稍候接收確認信！`
-      : `Understood! A confirmation email is being sent to ${foundEmail}. Please click below to complete delivery!`;
-  } else if (ready) {
-    reply = isZh
-      ? `好的！小秘書已為您彙整好欲轉達給 David 的訊息：\n\n• 稱呼：${extractedName}\n• 信箱：${foundEmail}${extractedCompany ? `\n• 公司：${extractedCompany}` : ''}\n• 洽詢主旨：${detectedSubject}\n• 留言內容：${extractedMessage}\n\n請問確認要由小秘書為您寄送確認信至 ${foundEmail} 嗎？請點擊下方「確認送出確認信」即可！`
-      : `Excellent! I have compiled your inquiry for David:\n\n• Name: ${extractedName}\n• Email: ${foundEmail}${extractedCompany ? `\n• Company: ${extractedCompany}` : ''}\n• Topic: ${detectedSubject}\n• Message: ${extractedMessage}\n\nShall I send the confirmation email to ${foundEmail}? Please click the confirmation button below!`;
-  } else if (decision.intent === 'recruitment_or_interview' && (!hasName || !hasEmail)) {
-    reply = isZh
-      ? (extractedCompany
-          ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！`
-          : '非常感謝您對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼、公司與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！')
-      : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D teams in distributed high-concurrency systems. Could you share your name, organization, and contact email so I can forward your invitation to David?`;
-  } else if (!hasName && !hasEmail) {
-    reply = isZh
-      ? (extractedCompany
-          ? `${extractedCompany} 的夥伴您好！已為您記錄此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 能親自回信給您！`
-          : '太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理好留言並發送確認信，讓 David 能親自回信給您！')
-      : `Glad to help forward your message! Could you please share your name and email address so I can prepare a confirmation email for you?`;
-  } else if (!hasEmail) {
-    reply = isZh
-      ? `${extractedName} 您好！請問方便提供您的 Email 嗎？小秘書會寄送一封確認信給您，點擊確認後訊息就會直達 David！`
-      : `Nice to meet you, ${extractedName}! Could you share your email address so we can send the confirmation link?`;
-  } else if (!hasName) {
-    reply = isZh
-      ? `感謝您提供信箱 (${foundEmail})！請問方便請教該如何稱呼您呢？`
-      : `Thank you for providing ${foundEmail}! How should David address you?`;
   } else {
     reply = isZh
       ? '您好！我是 David 的小秘書。請問有什麼事情需要我協助記錄或轉達給 David 呢？'
@@ -1122,7 +1240,8 @@ Respond ONLY with a valid JSON object matching this schema:
     status: 200,
     body: {
       reply: sanitizeSecretaryText(reply),
-      revealEmail: finalRevealEmail,
+      revealEmail: false,
+      autoDispatched: false,
       draft: {
         name: extractedName,
         email: foundEmail,
@@ -1130,7 +1249,7 @@ Respond ONLY with a valid JSON object matching this schema:
         subject: detectedSubject,
         message: sanitizeSecretaryText(extractedMessage || allUserText),
       },
-      readyToConfirm: ready,
+      readyToConfirm: false,
     },
   };
 };
@@ -1166,7 +1285,7 @@ export default {
 
       // 3. Handle POST /chat or payload.action === 'chat'
       if (url.pathname === '/chat' || payload.action === 'chat') {
-        const result = await processConciergeChat(payload, env);
+        const result = await processConciergeChat(payload, env, url.origin);
         return new Response(JSON.stringify(result.body), {
           status: result.status,
           headers: { 'Content-Type': 'application/json', ...corsHeaders },

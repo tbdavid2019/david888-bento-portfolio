@@ -169,7 +169,8 @@ test('Step 2 Double Opt-in: confirmContactSubmission verifies HMAC token, delive
     assert.ok(dispatchedPayload);
     assert.deepEqual(dispatchedPayload.to, ['104@david888.com', 'tbdavid2019@gmail.com']);
     assert.equal(dispatchedPayload.reply_to, 'bob@music.com');
-    assert.equal(dispatchedPayload.subject, '[小秘書轉達] 技術交流／打個招呼 — Bob Dylan');
+    assert.ok(dispatchedPayload.subject.includes('[直通呈報]'));
+    assert.ok(dispatchedPayload.subject.includes('技術交流／打個招呼 — Bob Dylan'));
     assert.ok(dispatchedPayload.text.includes('Bob Dylan'));
     assert.ok(result1.html.includes('David 的小秘書已將您的訊息正式呈交給 David！'));
     assert.ok(result1.html.includes('#fff9e8'));
@@ -449,7 +450,7 @@ test('returns 502 with fallback flag when Resend API responds with error', async
   }
 });
 
-test('blocks spam or scam messages with 403 when detected by Clef-Flash decision engine', async () => {
+test('Clef-Flash detects spam, never blocks with 403, and records spam decision in confirmation token for David review', async () => {
   const originalFetch = globalThis.fetch;
   let resendCalled = false;
 
@@ -462,8 +463,8 @@ test('blocks spam or scam messages with 403 when detected by Clef-Flash decision
           model: 'clef-flash',
           answers: {
             classification: {
-              choice: 'spam_or_scam',
-              probabilities: { legitimate_inquiry: 0.01, spam_or_scam: 0.99 },
+              choice: 'harmful_spam_or_scam',
+              probabilities: { legitimate_inquiry: 0.01, harmful_spam_or_scam: 0.99 },
             },
           },
         }),
@@ -471,6 +472,7 @@ test('blocks spam or scam messages with 403 when detected by Clef-Flash decision
     }
     if (url.includes('resend.com')) {
       resendCalled = true;
+      return { ok: true, status: 200, json: async () => ({ id: 'email_ok_123' }) };
     }
     return { ok: true, status: 200, json: async () => ({}) };
   };
@@ -488,17 +490,18 @@ test('blocks spam or scam messages with 403 when detected by Clef-Flash decision
       },
     );
 
-    assert.equal(res.status, 403);
-    assert.equal(res.body.blocked, true);
-    assert.equal(resendCalled, false); // Resend was never called!
+    assert.equal(res.status, 200);
+    assert.equal(res.body.status, 'pending_confirmation');
+    assert.equal(resendCalled, true); // Confirmation email still sent, with spam decision preserved for David's report
   } finally {
     globalThis.fetch = originalFetch;
   }
 });
 
-test('falls back to Clef-Flash-Q4 (clef.aiurl.tw) when primary node fails, and blocks spam', async () => {
+test('falls back to Clef-Flash-Q4 (clef.aiurl.tw) when primary node fails, records spam decision without blocking 403', async () => {
   const originalFetch = globalThis.fetch;
   const contactedEndpoints = [];
+  let resendCalled = false;
 
   globalThis.fetch = async (url) => {
     contactedEndpoints.push(url);
@@ -513,12 +516,16 @@ test('falls back to Clef-Flash-Q4 (clef.aiurl.tw) when primary node fails, and b
           model: 'clef-flash-q4_k_m',
           answers: {
             classification: {
-              choice: 'spam_or_scam',
-              probabilities: { legitimate_inquiry: 0.05, spam_or_scam: 0.95 },
+              choice: 'harmful_spam_or_scam',
+              probabilities: { legitimate_inquiry: 0.05, harmful_spam_or_scam: 0.95 },
             },
           },
         }),
       };
+    }
+    if (url.includes('resend.com')) {
+      resendCalled = true;
+      return { ok: true, status: 200, json: async () => ({ id: 'email_ok_123' }) };
     }
     return { ok: true, status: 200, json: async () => ({}) };
   };
@@ -534,8 +541,9 @@ test('falls back to Clef-Flash-Q4 (clef.aiurl.tw) when primary node fails, and b
       { RESEND_API_KEY: 're_test_key_123' },
     );
 
-    assert.equal(res.status, 403);
-    assert.equal(res.body.blocked, true);
+    assert.equal(res.status, 200);
+    assert.equal(res.body.status, 'pending_confirmation');
+    assert.equal(resendCalled, true);
     assert.ok(contactedEndpoints.some((u) => u.includes('clef.create360.ai')));
     assert.ok(contactedEndpoints.some((u) => u.includes('clef.aiurl.tw')));
   } finally {

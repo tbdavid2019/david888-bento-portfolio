@@ -54,8 +54,7 @@ export const CLEF_PRIMARY_URL = 'https://clef.create360.ai/v1/systemone';
 export const CLEF_FALLBACK2_URL = 'https://clef.aiurl.tw/v1/systemone';
 export const CLEF_TYPESAFE_URL = 'https://api.typesafe.ai/v1/systemone';
 
-export const CLEF_DEFAULT_TYPESAFE_KEY =
-  'apikey_259d4143052cecd4163b1c9f0a242ce8261_dbb3e525dc222cbf9ffed9a63213f95ee18822f0bccda8b3baaff5461008ae55';
+export const CLEF_DEFAULT_TYPESAFE_KEY = '';
 
 export const CLEF_ENDPOINTS = [CLEF_PRIMARY_URL, CLEF_FALLBACK2_URL];
 
@@ -64,7 +63,7 @@ export const CLEF_ENDPOINTS = [CLEF_PRIMARY_URL, CLEF_FALLBACK2_URL];
  */
 export const checkSpamWithClef = async (
   input: ClefSpamCheckInput,
-  timeoutPerEndpointMs: number = 25000,
+  timeoutPerEndpointMs: number = 5000,
 ): Promise<ClefSpamCheckResult> => {
   const typesafeKey =
     input.typesafeApiKey ||
@@ -90,12 +89,16 @@ export const checkSpamWithClef = async (
       questions: {
         classification: {
           type: 'choice',
-          instructions: 'Classify the intent of this contact message.',
+          instructions: 'Classify the true purpose of this contact message.',
           criteria: {
-            legitimate_inquiry:
-              'Legitimate business contact, executive recruitment, tech consulting, partnership, or client question.',
-            spam_or_scam:
-              'Automated spam, SEO link pitching, telegram crypto pump, gambling ads, phishing, or bulk solicitation.',
+            job_interview_or_recruitment:
+              'A job interview invitation, talent recruitment, executive search, or hiring manager inquiry.',
+            business_consulting_or_project:
+              'Technical architecture consulting, software development project, partnership, or client business inquiry.',
+            friendly_greeting_or_chat:
+              'A genuine personal greeting, networking message, or tech discussion from a developer.',
+            harmful_spam_or_scam:
+              'Automated bulk spam, SEO link pitching, telegram crypto pump, gambling ads, phishing link, or malicious fraud.',
           },
         },
       },
@@ -128,9 +131,14 @@ export const checkSpamWithClef = async (
       }
 
       const choice = answer.choice;
-      const spamProb = answer.probabilities?.spam_or_scam ?? 0;
+      const spamProb =
+        answer.probabilities?.harmful_spam_or_scam ??
+        answer.probabilities?.spam_or_scam ??
+        0;
       const confidence = answer.confidence ?? 0;
-      const isSpam = choice === 'spam_or_scam' || spamProb >= 0.7;
+      const isSpam =
+        (choice === 'harmful_spam_or_scam' || choice === 'spam_or_scam') &&
+        spamProb >= 0.7;
 
       return {
         isSpam,
@@ -160,7 +168,7 @@ export const checkSpamWithClef = async (
  */
 export const evaluateConversationWithClef = async (
   input: ConversationEvaluationInput,
-  timeoutPerEndpointMs: number = 25000,
+  timeoutPerEndpointMs: number = 5000,
 ): Promise<ConversationEvaluationResult> => {
   const typesafeKey =
     input.typesafeApiKey ||

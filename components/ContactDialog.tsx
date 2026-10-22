@@ -1,20 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  Briefcase,
   Check,
   CheckCircle2,
   Copy,
   ExternalLink,
-  FileText,
   Ghost,
   Info,
   LoaderCircle,
   Mail,
-  MessageCircle,
-  MessageSquare,
-  Mic,
   Send,
-  ShieldAlert,
   Sparkles,
   X,
 } from 'lucide-react';
@@ -24,7 +18,6 @@ import {
   type ConciergeChatMessage,
   type ConciergeChatDraft,
 } from '../lib/crm';
-import { checkSpamWithClef } from '../lib/clef-guard';
 import type { Locale } from '../types';
 
 interface ContactDialogProps {
@@ -122,7 +115,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   const [busy, setBusy] = useState(false);
   const [chatBusy, setChatBusy] = useState(false);
   const [error, setError] = useState('');
-  const [isBlocked, setIsBlocked] = useState(false);
   const [submittedSummary, setSubmittedSummary] = useState<SubmittedSummary | null>(null);
   const [copiedSummary, setCopiedSummary] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -253,7 +245,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     }
   };
 
-  // Submit contact message (from either Concierge Chat or Direct Form)
+  // Submit contact message (from Direct Form)
   const executeSubmission = async (submissionPayload: {
     name: string;
     email: string;
@@ -263,29 +255,9 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   }) => {
     setBusy(true);
     setError('');
-    setIsBlocked(false);
-
-    // 1. Clef-Flash Spam & Scam Verification
-    try {
-      const guardResult = await checkSpamWithClef({
-        name: submissionPayload.name,
-        email: submissionPayload.email,
-        company: submissionPayload.company,
-        subject: submissionPayload.subject,
-        message: submissionPayload.message,
-      });
-
-      if (guardResult.isSpam) {
-        setBusy(false);
-        setIsBlocked(true);
-        return; // Blocked safely before hitting Resend
-      }
-    } catch (guardErr) {
-      console.warn('[ContactDialog] Clef guard check failed, proceeding to backend:', guardErr);
-    }
 
     try {
-      const result = await submitContactTicket({
+      await submitContactTicket({
         name: submissionPayload.name,
         email: submissionPayload.email,
         company: submissionPayload.company,
@@ -293,11 +265,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         message: submissionPayload.message,
         locale,
       });
-
-      if (result?.blocked) {
-        setIsBlocked(true);
-        return;
-      }
 
       setSubmittedSummary({
         name: submissionPayload.name,
@@ -312,8 +279,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       if (errMsg.includes('Invalid contact submission')) {
         setError(
           isZh
-            ? '請完整填寫姓名、有效信箱，且留言內容至少需 10 個字元。'
-            : 'Please provide a valid name, email, subject, and a message of at least 10 characters.',
+            ? '請完整填寫姓名、有效信箱，且留言內容至少需 5 個字元。'
+            : 'Please provide a valid name, email, subject, and a message of at least 5 characters.',
         );
       } else {
         setError(
@@ -351,25 +318,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     });
   };
 
-  const handleConciergeSubmit = async (overrideDraft?: ConciergeChatDraft) => {
-    const draft = overrideDraft || conciergeDraft;
-    if (!draft.email || !draft.message || draft.message.trim().length < 5) {
-      setError(
-        isZh
-          ? '請至少提供您的 Email 以及想與 David 交流的留言內容。'
-          : 'Please provide your email and message details.',
-      );
-      return;
-    }
-    await executeSubmission({
-      name: draft.name.trim() || (isZh ? '訪客' : 'Visitor'),
-      email: draft.email.trim(),
-      company: draft.company?.trim(),
-      subject: draft.subject || (isZh ? defaultOption.zh : defaultOption.en),
-      message: draft.message.trim(),
-    });
-  };
-
   // Quick reply chip click in chat
   const handleChipClick = async (chipId: string, chipLabel: string) => {
     const selectedOpt = SUBJECT_OPTIONS.find((opt) => opt.id === chipId);
@@ -397,7 +345,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       }
     }
 
-    // Check if user is confirming a ready draft in dialogue
+    // Check if user is acknowledging in dialogue
     const isConfirmWord =
       conciergeReady &&
       Boolean(conciergeDraft.email) &&
@@ -410,12 +358,11 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         {
           role: 'assistant',
           content: isZh
-            ? `收到！小秘書正為您發送確認信至 ${conciergeDraft.email}，請稍候查收信箱！`
-            : `Understood! Dispatching confirmation email to ${conciergeDraft.email}...`,
+            ? `好的！確認信已自動寄送至 ${conciergeDraft.email}，請務必至您的信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David！`
+            : `Understood! A confirmation email has been dispatched to ${conciergeDraft.email}. Please check your inbox and verify the link to deliver your message to David!`,
         },
       ];
       setMessages(nextMessages);
-      await handleConciergeSubmit();
       return;
     }
 
@@ -633,56 +580,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
               </button>
             </div>
           </div>
-        ) : isBlocked ? (
-          /* 2. Security Blocked View */
-          <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-border/60 pb-3">
-              <h2 className="text-lg sm:text-xl font-bold text-text-main">
-                {isZh ? '訊息已被安全機制攔截屏蔽' : 'Security Verification Notice'}
-              </h2>
-              <button
-                type="button"
-                onClick={onClose}
-                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-text-main hover:bg-bg-elevated transition-colors"
-                aria-label={isZh ? '關閉' : 'Close'}
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="rounded-2xl border-2 border-[var(--error)]/50 bg-[var(--error)]/10 p-5 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--error)] text-white dark:text-bg-base shadow-sm">
-                <ShieldAlert size={24} strokeWidth={2.2} />
-              </div>
-              <h3 className="mt-3.5 text-lg font-bold text-text-main">
-                {isZh ? '未通過安全性檢驗' : 'Message Blocked'}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted max-w-md mx-auto">
-                {isZh
-                  ? '系統偵測此留言未通過安全性與推銷廣告檢驗，已被系統自動屏蔽拒絕發送。'
-                  : 'This message failed automated security verification and has been blocked.'}
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
-              <button
-                type="button"
-                onClick={() => setIsBlocked(false)}
-                className="inline-flex h-11 w-full sm:flex-1 items-center justify-center rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
-              >
-                {isZh ? '返回修改留言' : 'Back to Edit Message'}
-              </button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="inline-flex h-11 w-full sm:flex-1 items-center justify-center rounded-full bg-[#ffb010] hover:bg-[#f2a600] px-4 text-sm font-bold text-[#2b251a] shadow-xs transition-colors"
-              >
-                {isZh ? '關閉' : 'Close'}
-              </button>
-            </div>
-          </div>
         ) : (
-          /* 3. Main Views: Segmented Tabs (Concierge Chat / Direct Form) */
+          /* 2. Main Views: Segmented Tabs (Concierge Chat / Direct Form) */
           <div className="space-y-3.5">
             {/* Top Bar: Mode Switcher Tabs + Close Button */}
             <div className="flex items-center justify-between gap-2.5">
@@ -855,16 +754,16 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     </div>
                   )}
 
-                  {/* Inline Conversational Summary & Dispatch Confirmation Widget */}
+                  {/* Inline Conversational Summary & Auto-Dispatched Status Card */}
                   {conciergeReady && conciergeDraft.email && (
-                    <div className="rounded-2xl border border-[#d6bc7c] dark:border-[#2b4a6b] bg-[#fffdfa] dark:bg-[#122338] p-4 text-sm shadow-xs space-y-3">
-                      <div className="flex items-center justify-between border-b border-[#d6bc7c]/30 dark:border-[#2b4a6b] pb-2">
+                    <div className="rounded-2xl border border-[#ffb010]/30 bg-[#fffdfa] dark:bg-[#122338] p-4 text-sm shadow-xs space-y-3">
+                      <div className="flex items-center justify-between border-b border-[#ffb010]/20 pb-2">
                         <span className="font-bold text-sm text-text-main flex items-center gap-2">
                           <CheckCircle2 size={16} className="text-success shrink-0" />
-                          <span>{isZh ? '小秘書已為您彙整完畢' : 'Inquiry Summary Ready'}</span>
+                          <span>{isZh ? '小秘書已自動為您送出確認信' : 'Confirmation Email Dispatched'}</span>
                         </span>
-                        <span className="text-[11px] font-bold text-[#17324d] dark:text-[#ffb010] bg-[#ffb010]/20 border border-[#ffb010]/40 px-2.5 py-0.5 rounded-full">
-                          {isZh ? '待確認發送' : 'Ready to Send'}
+                        <span className="text-[11px] font-bold text-success bg-success/15 border border-success/30 px-2.5 py-0.5 rounded-full">
+                          {isZh ? '已自動寄出' : 'Auto Dispatched'}
                         </span>
                       </div>
 
@@ -887,35 +786,12 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                           <span className="font-bold text-text-main">{isZh ? '交流主旨：' : 'Topic: '}</span>
                           <span className="font-bold text-text-main">{conciergeDraft.subject}</span>
                         </div>
-                        <div>
-                          <span className="font-bold text-text-main">{isZh ? '留言內容：' : 'Message: '}</span>
-                          <span className="text-text-main">{conciergeDraft.message}</span>
+                        <div className="pt-2 text-text-main/90 font-medium border-t border-border/60">
+                          {isZh
+                            ? '💡 提醒您：小秘書已直接發送雙重確認信至上述信箱。請務必前往信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David 本人！'
+                            : '💡 Notice: A double opt-in confirmation email has been dispatched. Please check your inbox and click the verification link to deliver your message directly to David!'}
                         </div>
                       </div>
-
-                      {error && (
-                        <p role="alert" className="rounded-xl bg-[var(--error)]/10 px-3.5 py-2 text-xs font-bold text-[var(--error)]">
-                          {error}
-                        </p>
-                      )}
-
-                      <button
-                        disabled={busy}
-                        type="button"
-                        onClick={() => handleConciergeSubmit()}
-                        className="w-full inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#ffb010] hover:bg-[#f2a600] px-4 text-sm font-bold text-[#2b251a] shadow-xs transition-colors disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {busy ? <LoaderCircle size={17} className="animate-spin text-[#2b251a]" /> : <Send size={16} />}
-                        <span>
-                          {busy
-                            ? isZh
-                              ? '發送確認信中…'
-                              : 'Sending…'
-                            : isZh
-                              ? `確認由小秘書寄出確認信至 ${conciergeDraft.email}`
-                              : `Confirm & Send to ${conciergeDraft.email}`}
-                        </span>
-                      </button>
                     </div>
                   )}
                 </div>
@@ -959,8 +835,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     }}
                     placeholder={
                       isZh
-                        ? '輸入想對 David 說的話、您的稱呼或信箱…（Enter 送出，Shift+Enter 換行）'
-                        : 'Type message, name, or email… (Enter to send, Shift+Enter for newline)'
+                        ? '輸入想與 David 交流的事由…（請留下真實有效 Email，小秘書將自動發送驗證信轉達 David）'
+                        : 'Type message or inquiry… (Please provide an active email for verification)'
                     }
                     className="flex-1 min-w-[200px] min-h-[44px] max-h-[120px] resize-none py-2.5 px-3.5 rounded-xl border border-border bg-bg-elevated text-base sm:text-sm text-text-main outline-none focus:border-[#ffb010] leading-relaxed transition-all"
                   />
