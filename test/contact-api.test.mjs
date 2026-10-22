@@ -728,3 +728,42 @@ test('workers/contact-worker fetch handler routes OPTIONS, GET /confirm, POST /c
     globalThis.fetch = originalFetch;
   }
 });
+
+test('processConciergeChat conducts multi-turn interview: asks for missing contact details before confirming', async () => {
+  // Turn 1: User only provides message intent without name or email
+  const turn1 = await processConciergeChat(
+    {
+      messages: [
+        { role: 'user', content: '我想跟他說，我有使用他的專案' },
+      ],
+      locale: 'zh',
+    },
+    {},
+  );
+
+  assert.equal(turn1.status, 200);
+  assert.equal(turn1.body.readyToConfirm, false);
+  assert.ok(turn1.body.reply.includes('稱呼'));
+  assert.ok(turn1.body.reply.includes('Email') || turn1.body.reply.includes('信箱'));
+
+  // Turn 2: User answers with name and email
+  const turn2 = await processConciergeChat(
+    {
+      messages: [
+        { role: 'user', content: '我想跟他說，我有使用他的專案' },
+        { role: 'assistant', content: turn1.body.reply },
+        { role: 'user', content: '我是 Alex，信箱是 alex@example.com' },
+      ],
+      locale: 'zh',
+    },
+    {},
+  );
+
+  assert.equal(turn2.status, 200);
+  assert.equal(turn2.body.readyToConfirm, true);
+  assert.equal(turn2.body.draft.name, 'Alex');
+  assert.equal(turn2.body.draft.email, 'alex@example.com');
+  assert.ok(turn2.body.draft.message.includes('我有使用他的專案'));
+  assert.ok(turn2.body.reply.includes('Alex'));
+  assert.ok(turn2.body.reply.includes('alex@example.com'));
+});

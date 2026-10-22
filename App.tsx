@@ -12,6 +12,7 @@ const AdminConsole = lazy(() =>
 
 export const VALID_CANONICAL_ROUTES = new Set([
   'contact',
+  'contact/form',
   'commitments',
   'promises',
   'executive',
@@ -39,10 +40,21 @@ export const isContactRoute = (): boolean => {
   const params = new URLSearchParams(window.location.search);
   if (params.get('contact') === '1' || params.has('contact')) return true;
   const path = normalizeRouteAlias(window.location.pathname);
-  if (path === 'contact') return true;
+  if (path === 'contact' || path === 'contact/form' || path.startsWith('contact/')) return true;
   const hash = normalizeRouteAlias(window.location.hash.replace(/^#/, ''));
-  if (hash === 'contact') return true;
+  if (hash === 'contact' || hash === 'contact/form' || hash.startsWith('contact/')) return true;
   return false;
+};
+
+export const getContactInitialTab = (): 'chat' | 'form' => {
+  if (typeof window === 'undefined') return 'chat';
+  const path = normalizeRouteAlias(window.location.pathname);
+  if (path === 'contact/form' || path === 'form') return 'form';
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('tab') === 'form' || params.get('mode') === 'form' || params.has('form')) return 'form';
+  const hash = normalizeRouteAlias(window.location.hash.replace(/^#/, ''));
+  if (hash === 'contact/form' || hash === 'form') return 'form';
+  return 'chat';
 };
 
 const getInitialLocale = (): Locale => {
@@ -90,6 +102,7 @@ export default function App() {
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [activeCategoryId, setActiveCategoryId] = useState(getInitialCategory);
   const [contactOpen, setContactOpen] = useState(isContactRoute);
+  const [contactInitialTab, setContactInitialTab] = useState<'chat' | 'form'>(getContactInitialTab);
   const [contactDefaultSubjectId, setContactDefaultSubjectId] = useState<string>('consulting');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -97,17 +110,20 @@ export default function App() {
   const activeCategoryIdRef = useRef(activeCategoryId);
   const visibleCategories = getVisibleCategories();
 
-  const openContactDialog = (defaultSubjectId = 'consulting') => {
+  const openContactDialog = (defaultSubjectId = 'consulting', tab: 'chat' | 'form' = 'chat') => {
     setContactDefaultSubjectId(defaultSubjectId);
+    setContactInitialTab(tab);
     setContactOpen(true);
-    if (window.location.pathname !== '/contact') {
-      window.history.pushState(null, '', '/contact');
+    const targetPath = tab === 'form' ? '/contact/form' : '/contact';
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath);
     }
   };
 
   const closeContactDialog = () => {
     setContactOpen(false);
-    if (normalizeRouteAlias(window.location.pathname) === 'contact') {
+    const path = normalizeRouteAlias(window.location.pathname);
+    if (path === 'contact' || path === 'contact/form' || path.startsWith('contact/')) {
       const fallback =
         activeCategoryIdRef.current && activeCategoryIdRef.current !== defaultCategoryId
           ? `/${activeCategoryIdRef.current}`
@@ -151,6 +167,7 @@ export default function App() {
       setActiveCategoryId(getInitialCategory());
       setLocale(getInitialLocale());
       setContactOpen(isContactRoute());
+      setContactInitialTab(getContactInitialTab());
     };
     window.addEventListener('popstate', handlePopState);
     window.addEventListener('hashchange', handlePopState);
@@ -239,6 +256,7 @@ export default function App() {
         <ContactDialog
           locale={locale}
           defaultSubjectId={contactDefaultSubjectId}
+          initialTab={contactInitialTab}
           onClose={closeContactDialog}
         />
       )}

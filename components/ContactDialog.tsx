@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Briefcase,
   Check,
+  CheckCircle2,
   Copy,
   ExternalLink,
   FileText,
@@ -16,13 +17,19 @@ import {
   ShieldAlert,
   X,
 } from 'lucide-react';
-import { submitContactTicket, sendConciergeMessage, type ConciergeChatMessage } from '../lib/crm';
+import {
+  submitContactTicket,
+  sendConciergeMessage,
+  type ConciergeChatMessage,
+  type ConciergeChatDraft,
+} from '../lib/crm';
 import { checkSpamWithClef } from '../lib/clef-guard';
 import type { Locale } from '../types';
 
 interface ContactDialogProps {
   locale: Locale;
   defaultSubjectId?: string;
+  initialTab?: 'chat' | 'form';
   onClose: () => void;
 }
 
@@ -89,6 +96,7 @@ export const SecretaryAvatar: React.FC<{
 export const ContactDialog: React.FC<ContactDialogProps> = ({
   locale,
   defaultSubjectId,
+  initialTab = 'chat',
   onClose,
 }) => {
   const isZh = locale === 'zh';
@@ -96,7 +104,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     SUBJECT_OPTIONS.find((opt) => opt.id === defaultSubjectId) || SUBJECT_OPTIONS[0];
 
   // Mode: 'chat' (Concierge Chat) | 'form' (Direct Form)
-  const [activeTab, setActiveTab] = useState<'chat' | 'form'>('chat');
+  const [activeTab, setActiveTab] = useState<'chat' | 'form'>(initialTab);
 
   // Form State
   const [form, setForm] = useState({
@@ -121,8 +129,23 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   // Chat & Concierge States
   const [chatInput, setChatInput] = useState('');
   const [revealEmail, setRevealEmail] = useState(false);
-  const [showDraftCard, setShowDraftCard] = useState(false);
+  const [conciergeReady, setConciergeReady] = useState(false);
+  const [conciergeDraft, setConciergeDraft] = useState<ConciergeChatDraft>({
+    name: '',
+    email: '',
+    company: '',
+    subject: isZh ? defaultOption.zh : defaultOption.en,
+    message: '',
+  });
+  const isComposingRef = useRef(false);
   const chatMessagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Sync initialTab when props change
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   // Keyboard accessibility: Close on Escape key
   useEffect(() => {
@@ -148,7 +171,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
   useEffect(() => {
     chatMessagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, revealEmail, showDraftCard]);
+  }, [messages, revealEmail, conciergeReady]);
 
   const handleSelectSubject = (id: string) => {
     setError('');
@@ -192,9 +215,15 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   const switchTab = (tab: 'chat' | 'form') => {
     setError('');
     setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      const targetPath = tab === 'form' ? '/contact/form' : '/contact';
+      if (window.location.pathname !== targetPath) {
+        window.history.replaceState(null, '', targetPath);
+      }
+    }
   };
 
-  // Submit contact message (from either Chat Draft Card or Direct Form)
+  // Submit contact message (from either Concierge Chat or Direct Form)
   const executeSubmission = async (submissionPayload: {
     name: string;
     email: string;
@@ -284,22 +313,22 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     });
   };
 
-  const handleDraftCardSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || form.message.trim().length < 10) {
+  const handleConciergeSubmit = async (overrideDraft?: ConciergeChatDraft) => {
+    const draft = overrideDraft || conciergeDraft;
+    if (!draft.email || !draft.message || draft.message.trim().length < 5) {
       setError(
         isZh
-          ? '請完整填寫姓名、信箱，且留言內容至少需 10 個字元。'
-          : 'Please provide your name, valid email, and a message of at least 10 characters.',
+          ? '請至少提供您的 Email 以及想與 David 交流的留言內容。'
+          : 'Please provide your email and message details.',
       );
       return;
     }
     await executeSubmission({
-      name: form.name,
-      email: form.email,
-      company: form.company,
-      subject: form.subject,
-      message: form.message,
+      name: draft.name.trim() || (isZh ? '訪客' : 'Visitor'),
+      email: draft.email.trim(),
+      company: draft.company?.trim(),
+      subject: draft.subject || (isZh ? defaultOption.zh : defaultOption.en),
+      message: draft.message.trim(),
     });
   };
 
@@ -314,18 +343,17 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       const assistantMsg: ConciergeChatMessage = {
         role: 'assistant',
         content: isZh
-          ? '沒問題！已為您在下方展開 David 的直通信箱名片卡。您可以點擊複製信箱直接來信，或是填寫下方摘要由我為您呈交！'
-          : "Certainly! I've displayed David's direct contact card below. You can copy his email or submit the draft below to forward it.",
+          ? '沒問題！已為您在下方展開 David 的直通信箱名片卡 (104@david888.com)。您也可以直接在對話中告訴我想轉達給 David 的話，由我為您整理送達！'
+          : "Certainly! I've displayed David's direct contact card below (104@david888.com). You can also tell me what you'd like to forward to David right here!",
       };
       setMessages((prev) => [...prev, userMsg, assistantMsg]);
-      setShowDraftCard(true);
       return;
     }
 
     const selectedOpt = SUBJECT_OPTIONS.find((opt) => opt.id === chipId);
     if (selectedOpt) {
       setSelectedSubjectId(selectedOpt.id);
-      setForm((prev) => ({
+      setConciergeDraft((prev) => ({
         ...prev,
         subject: isZh ? selectedOpt.zh : selectedOpt.en,
       }));
@@ -344,6 +372,28 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       setChatInput('');
     }
 
+    // Check if user is confirming a ready draft in dialogue
+    const isConfirmWord =
+      conciergeReady &&
+      Boolean(conciergeDraft.email) &&
+      /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(textToSend);
+
+    if (isConfirmWord) {
+      const nextMessages: ConciergeChatMessage[] = [
+        ...messages,
+        { role: 'user', content: textToSend },
+        {
+          role: 'assistant',
+          content: isZh
+            ? `收到！小秘書正為您發送確認信至 ${conciergeDraft.email}，請稍候查收信箱！`
+            : `Understood! Dispatching confirmation email to ${conciergeDraft.email}...`,
+        },
+      ];
+      setMessages(nextMessages);
+      await handleConciergeSubmit();
+      return;
+    }
+
     const nextMessages: ConciergeChatMessage[] = [
       ...messages,
       { role: 'user', content: textToSend },
@@ -355,32 +405,22 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       const result = await sendConciergeMessage({
         messages: nextMessages,
         locale,
-        defaultSubject: form.subject,
+        defaultSubject: conciergeDraft.subject || form.subject,
       });
 
       if (result.revealEmail) {
         setRevealEmail(true);
       }
 
-      // Update form draft with any extracted details
-      setForm((prev) => {
-        let updatedMessage = prev.message;
-        if (!isChipPrompt) {
-          updatedMessage = prev.message ? `${prev.message}\n${textToSend}` : (result.draft?.message || textToSend);
-        }
-        return {
-          ...prev,
-          name: result.draft?.name || prev.name,
-          email: result.draft?.email || prev.email,
-          company: result.draft?.company || prev.company,
-          subject: result.draft?.subject || prev.subject,
-          message: updatedMessage,
-        };
-      });
+      setConciergeDraft((prev) => ({
+        name: result.draft?.name || prev.name,
+        email: result.draft?.email || prev.email,
+        company: result.draft?.company || prev.company,
+        subject: result.draft?.subject || prev.subject,
+        message: result.draft?.message || prev.message || textToSend,
+      }));
 
-      if (!isChipPrompt && (result.readyToConfirm || result.revealEmail || textToSend.length >= 10)) {
-        setShowDraftCard(true);
-      }
+      setConciergeReady(Boolean(result.readyToConfirm));
 
       setMessages((prev) => [
         ...prev,
@@ -388,24 +428,15 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       ]);
     } catch (err) {
       console.warn('Chat interaction error:', err);
-      if (!isChipPrompt) {
-        setForm((prev) => ({
-          ...prev,
-          message: prev.message ? `${prev.message}\n${textToSend}` : textToSend,
-        }));
-      }
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
           content: isZh
-            ? '好的，我已為您記錄。請確認下方的轉達信件草稿，點擊按鈕即可寄送確認信！'
-            : "Understood, I've noted down your inquiry. Please review the message draft below and confirm delivery!",
+            ? '好的，我已為您記錄。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 才能親自回信給您！'
+            : "Understood, I've noted down your message. Could you please share your name and email so David can reply directly?",
         },
       ]);
-      if (!isChipPrompt) {
-        setShowDraftCard(true);
-      }
     } finally {
       setChatBusy(false);
     }
@@ -784,146 +815,103 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     </div>
                   )}
 
-                  {/* Inline Message Summary & Confirmation Draft Card */}
-                  {showDraftCard && (
-                    <form
-                      onSubmit={handleDraftCardSubmit}
-                      className="rounded-2xl border-2 border-primary/40 bg-bg-surface p-4 text-sm space-y-3.5 shadow-sm"
-                    >
-                      <div className="flex items-center justify-between border-b border-border/80 pb-2.5">
+                  {/* Inline Conversational Summary & Dispatch Confirmation Widget */}
+                  {conciergeReady && conciergeDraft.email && (
+                    <div className="rounded-2xl border border-primary/30 bg-primary/10 p-4 text-sm shadow-xs space-y-3">
+                      <div className="flex items-center justify-between border-b border-border/80 pb-2">
                         <span className="font-bold text-sm text-text-main flex items-center gap-2">
-                          <FileText size={16} strokeWidth={2} className="text-primary" />
-                          <span>{isZh ? '待轉達信件確認卡' : 'Message Summary & Confirmation'}</span>
+                          <CheckCircle2 size={16} className="text-success shrink-0" />
+                          <span>{isZh ? '小秘書已為您彙整完畢' : 'Inquiry Summary Ready'}</span>
                         </span>
-                        <span className="text-sm text-text-muted">
-                          {isZh ? '由小秘書代為轉達' : 'Delivered by Concierge'}
+                        <span className="text-xs font-bold text-success bg-success/10 border border-success/30 px-2.5 py-0.5 rounded-full">
+                          {isZh ? '待確認發送' : 'Ready to Send'}
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="text-xs text-text-muted space-y-1.5 leading-relaxed bg-bg-surface/80 p-3 rounded-xl border border-border/60">
                         <div>
-                          <label htmlFor="draft-name" className="block text-sm font-bold text-text-muted mb-1.5">
-                            {isZh ? '您的姓名 *' : 'Your Name *'}
-                          </label>
-                          <input
-                            id="draft-name"
-                            required
-                            type="text"
-                            value={form.name}
-                            onChange={(e) => update('name', e.target.value)}
-                            placeholder={isZh ? '例如：王先生 / Alice' : 'e.g. Alice'}
-                            className="w-full rounded-xl border border-border bg-bg-elevated px-3.5 py-2.5 text-base sm:text-sm text-text-main outline-none focus:border-primary"
-                          />
+                          <span className="font-bold text-text-main">{isZh ? '稱呼：' : 'Name: '}</span>
+                          <span className="text-text-main font-medium">{conciergeDraft.name || (isZh ? '訪客' : 'Visitor')}</span>
                         </div>
                         <div>
-                          <label htmlFor="draft-email" className="block text-sm font-bold text-text-muted mb-1.5">
-                            {isZh ? '您的 Email（接收確認信）*' : 'Your Email *'}
-                          </label>
-                          <input
-                            id="draft-email"
-                            required
-                            type="email"
-                            value={form.email}
-                            onChange={(e) => update('email', e.target.value)}
-                            placeholder="alice@example.com"
-                            className="w-full rounded-xl border border-border bg-bg-elevated px-3.5 py-2.5 text-base sm:text-sm text-text-main outline-none focus:border-primary"
-                          />
+                          <span className="font-bold text-text-main">Email：</span>
+                          <span className="font-bold text-primary">{conciergeDraft.email}</span>
                         </div>
-                        <div className="sm:col-span-2">
-                          <label htmlFor="draft-company" className="block text-sm font-bold text-text-muted mb-1.5">
-                            {isZh ? '公司／團隊（選填）' : 'Company / Organization (Optional)'}
-                          </label>
-                          <input
-                            id="draft-company"
-                            type="text"
-                            value={form.company}
-                            onChange={(e) => update('company', e.target.value)}
-                            placeholder={isZh ? '例如：某某科技' : 'e.g. Acme Inc.'}
-                            className="w-full rounded-xl border border-border bg-bg-elevated px-3.5 py-2.5 text-base sm:text-sm text-text-main outline-none focus:border-primary"
-                          />
+                        {conciergeDraft.company && (
+                          <div>
+                            <span className="font-bold text-text-main">{isZh ? '公司／團隊：' : 'Company: '}</span>
+                            <span className="text-text-main font-medium">{conciergeDraft.company}</span>
+                          </div>
+                        )}
+                        <div>
+                          <span className="font-bold text-text-main">{isZh ? '交流主旨：' : 'Topic: '}</span>
+                          <span className="font-bold text-text-main">{conciergeDraft.subject}</span>
                         </div>
-                        <div className="sm:col-span-2">
-                          <label htmlFor="draft-subject" className="block text-sm font-bold text-text-muted mb-1.5">
-                            {isZh ? '交流主旨' : 'Topic'}
-                          </label>
-                          <input
-                            id="draft-subject"
-                            type="text"
-                            value={form.subject}
-                            onChange={(e) => update('subject', e.target.value)}
-                            className="w-full rounded-xl border border-border bg-bg-elevated px-3.5 py-2.5 text-base sm:text-sm font-bold text-primary outline-none focus:border-primary"
-                          />
+                        <div>
+                          <span className="font-bold text-text-main">{isZh ? '留言內容：' : 'Message: '}</span>
+                          <span className="text-text-main">{conciergeDraft.message}</span>
                         </div>
-                        <div className="sm:col-span-2">
-                          <label htmlFor="draft-message" className="block text-sm font-bold text-text-muted mb-1.5">
-                            {isZh ? '留言內容（至少 10 字）*' : 'Message (min 10 characters) *'}
-                          </label>
-                          <textarea
-                            id="draft-message"
-                            required
-                            rows={3}
-                            value={form.message}
-                            onChange={(e) => update('message', e.target.value)}
-                            placeholder={isZh ? '想與 David 交流或合作的事情…' : 'Details of your inquiry…'}
-                            className="w-full rounded-xl border border-border bg-bg-elevated px-3.5 py-2.5 text-base sm:text-sm leading-relaxed text-text-main outline-none focus:border-primary"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-2 text-sm text-text-muted leading-relaxed">
-                        <Info size={16} strokeWidth={2} className="shrink-0 mt-0.5 text-primary" />
-                        <span>
-                          {isZh
-                            ? '點擊下方按鈕後，小秘書會寄送一封確認信至您的信箱，點擊信中「確認轉達給 David」按鈕即正式送達 David 本人。'
-                            : 'Clicking below will send a confirmation link to your inbox. Click it to deliver your message to David.'}
-                        </span>
                       </div>
 
                       {error && (
-                        <p role="alert" className="rounded-xl bg-[var(--error)]/10 px-3.5 py-2.5 text-sm font-bold text-[var(--error)]">
+                        <p role="alert" className="rounded-xl bg-[var(--error)]/10 px-3.5 py-2 text-xs font-bold text-[var(--error)]">
                           {error}
                         </p>
                       )}
 
                       <button
                         disabled={busy}
-                        type="submit"
-                        className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-white dark:text-bg-base transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 shadow-xs"
+                        type="button"
+                        onClick={() => handleConciergeSubmit()}
+                        className="w-full inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-white dark:text-bg-base transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 shadow-xs"
                       >
-                        {busy ? <LoaderCircle size={17} className="animate-spin" /> : <Mail size={17} strokeWidth={2} />}
+                        {busy ? <LoaderCircle size={17} className="animate-spin" /> : <Send size={16} />}
                         <span>
                           {busy
                             ? isZh
-                              ? '處理中…'
+                              ? '發送確認信中…'
                               : 'Sending…'
                             : isZh
-                              ? '寄送確認信至我的信箱'
-                              : 'Send Confirmation Email to My Inbox'}
+                              ? `確認由小秘書寄出確認信至 ${conciergeDraft.email}`
+                              : `Confirm & Send to ${conciergeDraft.email}`}
                         </span>
                       </button>
-                    </form>
+                    </div>
                   )}
 
                   <div ref={chatMessagesEndRef} />
                 </div>
 
-                {/* Chat Input Controls */}
-                <div className="flex flex-wrap sm:flex-nowrap gap-2 items-center">
+                {/* Chat Input Controls with IME Protection */}
+                <div className="flex gap-2 items-center">
                   <input
                     type="text"
                     aria-label={isZh ? '輸入詢問或轉達內容' : 'Type inquiry or message'}
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
+                    onCompositionStart={() => {
+                      isComposingRef.current = true;
+                    }}
+                    onCompositionEnd={() => {
+                      isComposingRef.current = false;
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' && !e.shiftKey) {
+                        if (
+                          isComposingRef.current ||
+                          e.nativeEvent.isComposing ||
+                          e.keyCode === 229
+                        ) {
+                          return; // IME composition in progress, do nothing!
+                        }
                         e.preventDefault();
                         handleSendChat();
                       }
                     }}
                     placeholder={
                       isZh
-                        ? '輸入您想詢問或轉達的事情…'
-                        : 'Type your question or message…'
+                        ? '輸入想對 David 說的話、您的稱呼或信箱…'
+                        : 'Type your message, name, or email…'
                     }
                     className="flex-1 min-w-[200px] h-11 rounded-xl border border-border bg-bg-elevated px-3.5 text-base sm:text-sm text-text-main outline-none focus:border-primary"
                   />
@@ -935,14 +923,6 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     title={isZh ? '送出' : 'Send'}
                   >
                     {chatBusy ? <LoaderCircle size={18} className="animate-spin" /> : <Send size={18} strokeWidth={2} />}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowDraftCard((prev) => !prev)}
-                    className="inline-flex h-11 items-center gap-2 px-3.5 rounded-xl border border-border bg-bg-surface text-sm font-bold text-text-main hover:bg-bg-elevated shrink-0"
-                  >
-                    <FileText size={16} strokeWidth={2} className="text-primary" />
-                    <span>{showDraftCard ? (isZh ? '收合轉達卡' : 'Hide Draft') : (isZh ? '整理轉達信件' : 'Draft Email')}</span>
                   </button>
                 </div>
               </div>
