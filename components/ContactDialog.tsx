@@ -69,7 +69,7 @@ export const SecretaryAvatar: React.FC<{
 
   return (
     <div
-      className={`relative inline-flex shrink-0 items-center justify-center rounded-full bg-[#17324d] text-[#ffb010] border border-[#ffb010]/70 shadow-xs select-none ${className}`}
+      className={`relative inline-flex shrink-0 items-center justify-center rounded-full bg-primary text-white dark:text-bg-base border border-border shadow-xs select-none ${className}`}
       style={{ width: size, height: size }}
       aria-label={label}
     >
@@ -77,10 +77,10 @@ export const SecretaryAvatar: React.FC<{
 
       {/* Online Status Dot */}
       <span
-        className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-white ring-1.5 ring-white dark:bg-[#17324d] dark:ring-[#17324d]"
+        className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-bg-surface ring-1.5 ring-bg-surface"
         title={onlineTitle}
       >
-        <span className="h-2 w-2 rounded-full bg-[#266838]" />
+        <span className="h-2 w-2 rounded-full bg-success" />
       </span>
     </div>
   );
@@ -474,20 +474,20 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
               </button>
             </div>
 
-            <div className="rounded-2xl border border-[#ffb010]/40 bg-[#fff9e8] dark:bg-[#17324d]/40 p-4 sm:p-5">
+            <div className="rounded-2xl border border-primary/25 bg-primary/10 p-4 sm:p-5">
               <div className="flex items-start gap-3.5">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#ffb010] text-[#17324d] shadow-xs">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-white dark:text-bg-base shadow-xs">
                   <Mail size={20} strokeWidth={2.2} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-bold text-[#17324d] dark:text-[#ffb010]">
+                  <h3 className="text-base font-bold text-text-main">
                     {isZh ? '雙重確認信已送達您的信箱' : 'Double Opt-in Confirmation Email Dispatched'}
                   </h3>
                   <p className="text-sm text-text-main/90 mt-1.5 leading-relaxed">
                     {isZh ? (
                       <>
                         為了確保 David 回信時能順利聯繫上您，小秘書已將確認信寄至{' '}
-                        <span className="font-bold text-[#17324d] dark:text-[#ffb010] underline decoration-[#ffb010]">
+                        <span className="font-bold text-primary underline underline-offset-2">
                           {submittedSummary.email}
                         </span>
                         。請打開信箱並點擊信中的「確認轉達給 David」按鈕，信件就會立即送達 David 本人信箱。
@@ -495,7 +495,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     ) : (
                       <>
                         To make sure David can reply to you directly, a confirmation link has been sent to{' '}
-                        <span className="font-bold text-[#17324d] dark:text-[#ffb010] underline">
+                        <span className="font-bold text-primary underline underline-offset-2">
                           {submittedSummary.email}
                         </span>
                         . Please check your inbox and click "Deliver to David" to complete delivery.
@@ -554,7 +554,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                 className="inline-flex h-11 w-full sm:flex-1 items-center justify-center gap-2 rounded-full border border-border bg-bg-surface px-4 text-sm font-bold text-text-main transition-colors hover:bg-bg-elevated"
               >
                 {copiedSummary ? (
-                  <Check size={16} className="text-[#266838]" />
+                  <Check size={16} className="text-success" />
                 ) : (
                   <Copy size={16} />
                 )}
@@ -571,7 +571,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex h-11 w-full sm:flex-1 items-center justify-center rounded-full bg-[#17324d] px-4 text-sm font-bold text-[#ffb010] transition-opacity hover:opacity-95 shadow-xs"
+                className="inline-flex h-11 w-full sm:flex-1 items-center justify-center rounded-full bg-primary px-4 text-sm font-bold text-white dark:text-bg-base transition-opacity hover:opacity-90 shadow-xs"
               >
                 {isZh ? '完成' : 'Done'}
               </button>
@@ -644,7 +644,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                   onClick={() => switchTab('chat')}
                   className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-bold transition-all ${
                     activeTab === 'chat'
-                      ? 'bg-bg-surface text-[#17324d] dark:text-[#ffb010] shadow-xs'
+                      ? 'bg-bg-surface text-primary shadow-xs'
                       : 'text-text-muted hover:text-text-main'
                   }`}
                 >
@@ -660,7 +660,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                   onClick={() => switchTab('form')}
                   className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-bold transition-all ${
                     activeTab === 'form'
-                      ? 'bg-bg-surface text-[#17324d] dark:text-[#ffb010] shadow-xs'
+                      ? 'bg-bg-surface text-primary shadow-xs'
                       : 'text-text-muted hover:text-text-main'
                   }`}
                 >
@@ -695,8 +695,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                         <div
                           className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed box-border ${
                             isAssistant
-                              ? 'bg-[#fffdf5] dark:bg-bg-elevated border border-[#f5e6be] dark:border-border text-[#17324d] dark:text-text-main shadow-2xs'
-                              : 'bg-[#17324d] text-[#fff9e8] font-medium shadow-2xs'
+                              ? 'bg-bg-elevated border border-border text-text-main shadow-2xs'
+                              : 'bg-primary text-white dark:text-bg-base font-bold shadow-2xs'
                           }`}
                         >
                           {msg.content}
@@ -708,40 +708,40 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                   {/* Quick Reply Chips (Pure Lucide Icons + Unified text-sm font scale) */}
                   <div className="pt-1 space-y-2.5">
                     <div className="text-sm font-bold text-text-muted flex items-center gap-1.5">
-                      <MessageCircle size={15} strokeWidth={2} className="text-[#17324d] dark:text-[#ffb010]" />
+                      <MessageCircle size={15} strokeWidth={2} className="text-primary" />
                       <span>{isZh ? '快速選擇諮詢項目' : 'Quick Inquiry Options'}</span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <button
                         type="button"
                         onClick={() => handleChipClick('consulting', isZh ? '顧問諮詢／業務合作' : 'Consulting & Business')}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-[#ffb010] px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
+                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
                       >
-                        <Briefcase size={16} strokeWidth={2} className="shrink-0 text-[#17324d] dark:text-[#ffb010]" />
+                        <Briefcase size={16} strokeWidth={2} className="shrink-0 text-primary" />
                         <span className="truncate">{isZh ? '顧問諮詢／業務合作' : 'Consulting & Business'}</span>
                       </button>
                       <button
                         type="button"
                         onClick={() => handleChipClick('tech_chat', isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello')}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-[#ffb010] px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
+                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
                       >
-                        <MessageCircle size={16} strokeWidth={2} className="shrink-0 text-[#17324d] dark:text-[#ffb010]" />
+                        <MessageCircle size={16} strokeWidth={2} className="shrink-0 text-primary" />
                         <span className="truncate">{isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello'}</span>
                       </button>
                       <button
                         type="button"
                         onClick={() => handleChipClick('recruitment', isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking')}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-[#ffb010] px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
+                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface hover:border-primary hover:bg-bg-elevated px-3.5 py-2.5 text-sm font-bold text-text-main transition-colors text-left"
                       >
-                        <Mic size={16} strokeWidth={2} className="shrink-0 text-[#17324d] dark:text-[#ffb010]" />
+                        <Mic size={16} strokeWidth={2} className="shrink-0 text-primary" />
                         <span className="truncate">{isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking'}</span>
                       </button>
                       <button
                         type="button"
                         onClick={() => handleChipClick('email_direct', isZh ? '直接索取聯絡信箱' : "Get Direct Email")}
-                        className="inline-flex items-center gap-2 rounded-xl border border-[#ffb010] bg-[#fff9e8] dark:bg-[#17324d]/60 px-3.5 py-2.5 text-sm font-bold text-[#17324d] dark:text-[#ffb010] transition-colors text-left"
+                        className="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary/15 hover:border-primary px-3.5 py-2.5 text-sm font-bold text-primary transition-colors text-left"
                       >
-                        <Mail size={16} strokeWidth={2} className="shrink-0 text-[#17324d] dark:text-[#ffb010]" />
+                        <Mail size={16} strokeWidth={2} className="shrink-0 text-primary" />
                         <span className="truncate">{isZh ? '直接索取聯絡信箱' : 'Get Direct Email'}</span>
                       </button>
                     </div>
@@ -749,32 +749,32 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
                   {/* Inline Direct Contact Card (when revealEmail is triggered) */}
                   {revealEmail && (
-                    <div className="rounded-xl border-2 border-[#ffb010] bg-[#fffdf5] dark:bg-[#17324d]/80 p-4 text-sm shadow-xs space-y-3">
-                      <div className="flex items-center justify-between border-b border-[#f3e1b0] dark:border-border pb-2.5">
-                        <span className="font-bold text-sm text-[#17324d] dark:text-[#ffb010] flex items-center gap-2">
-                          <Mail size={16} strokeWidth={2} />
+                    <div className="rounded-2xl border border-primary/25 bg-primary/5 p-4 text-sm shadow-xs space-y-3">
+                      <div className="flex items-center justify-between border-b border-border/80 pb-2.5">
+                        <span className="font-bold text-sm text-text-main flex items-center gap-2">
+                          <Mail size={16} strokeWidth={2} className="text-primary" />
                           <span>{isZh ? 'David 直通信箱名片卡' : "David's Direct Contact Card"}</span>
                         </span>
-                        <span className="text-sm font-bold text-[#266838] dark:text-[#6ee7b7] bg-[#266838]/10 dark:bg-[#6ee7b7]/15 px-2.5 py-0.5 rounded-full">
+                        <span className="text-xs font-bold text-success bg-success/10 border border-success/30 px-2.5 py-0.5 rounded-full">
                           {isZh ? '直通個人信箱' : 'Direct Inbox'}
                         </span>
                       </div>
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 bg-white dark:bg-bg-elevated p-3 rounded-lg border border-[#f0dfb6] dark:border-border">
-                        <span className="font-mono text-sm font-bold text-[#17324d] dark:text-text-main">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 bg-bg-surface p-3 rounded-xl border border-border">
+                        <span className="font-mono text-sm font-bold text-text-main">
                           104@david888.com
                         </span>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
                             onClick={copyEmailToClipboard}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#ffb010] text-[#17324d] font-bold text-sm hover:opacity-90 transition-opacity"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary text-white dark:text-bg-base font-bold text-sm hover:opacity-90 transition-opacity"
                           >
                             {copiedEmail ? <Check size={15} /> : <Copy size={15} />}
                             <span>{copiedEmail ? (isZh ? '已複製' : 'Copied') : (isZh ? '複製信箱' : 'Copy Email')}</span>
                           </button>
                           <a
                             href="mailto:104@david888.com"
-                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-border bg-bg-surface font-bold text-sm text-text-main hover:bg-bg-elevated"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-border bg-bg-elevated font-bold text-sm text-text-main hover:border-border-hover hover:bg-bg-surface"
                           >
                             <span>{isZh ? '直接寫信' : 'Email Directly'}</span>
                             <ExternalLink size={14} />
@@ -888,7 +888,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                       <button
                         disabled={busy}
                         type="submit"
-                        className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl bg-[#ffb010] px-4 text-sm font-bold text-[#17324d] transition-opacity hover:opacity-95 disabled:cursor-wait disabled:opacity-60 shadow-xs"
+                        className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-white dark:text-bg-base transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 shadow-xs"
                       >
                         {busy ? <LoaderCircle size={17} className="animate-spin" /> : <Mail size={17} strokeWidth={2} />}
                         <span>
@@ -931,7 +931,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     type="button"
                     disabled={chatBusy || !chatInput.trim()}
                     onClick={() => handleSendChat()}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#17324d] text-[#ffb010] transition-opacity hover:opacity-90 disabled:opacity-40"
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-white dark:text-bg-base transition-opacity hover:opacity-90 disabled:opacity-40"
                     title={isZh ? '送出' : 'Send'}
                   >
                     {chatBusy ? <LoaderCircle size={18} className="animate-spin" /> : <Send size={18} strokeWidth={2} />}
@@ -1081,7 +1081,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                 <button
                   disabled={busy}
                   type="submit"
-                  className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#ffb010] px-4 text-sm font-bold text-[#17324d] transition-opacity hover:opacity-95 disabled:cursor-wait disabled:opacity-60 shadow-xs"
+                  className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-primary px-4 text-sm font-bold text-white dark:text-bg-base transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 shadow-xs"
                 >
                   {busy ? <LoaderCircle size={18} className="animate-spin" /> : <Mail size={18} strokeWidth={2} />}
                   <span>
