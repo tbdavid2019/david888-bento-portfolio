@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
+  Briefcase,
   Check,
   CheckCircle2,
+  Code2,
+  ConciergeBell,
   Copy,
   ExternalLink,
-  Ghost,
   Info,
   LoaderCircle,
   Mail,
   Send,
   Sparkles,
+  Target,
   X,
 } from 'lucide-react';
 import {
@@ -32,21 +35,25 @@ export const SUBJECT_OPTIONS = [
     id: 'consulting',
     zh: '顧問諮詢／業務合作',
     en: 'Consulting & Business',
+    icon: Briefcase,
   },
   {
     id: 'tech_chat',
     zh: '技術交流／打個招呼',
     en: 'Tech Chat & Say Hello',
+    icon: Code2,
   },
   {
     id: 'recruitment',
     zh: '職缺邀約／演講培訓',
     en: 'Opportunities & Speaking',
+    icon: Target,
   },
   {
     id: 'other',
     zh: '其他想法／隨意聊聊',
     en: 'Other Ideas & Chat',
+    icon: Sparkles,
   },
 ];
 
@@ -74,7 +81,7 @@ export const SecretaryAvatar: React.FC<{
       style={{ width: size, height: size }}
       aria-label={label}
     >
-      <Ghost size={iconSize} strokeWidth={2.2} aria-hidden="true" />
+      <ConciergeBell size={iconSize} strokeWidth={2.2} aria-hidden="true" />
 
       {/* Online Status Dot */}
       <span
@@ -603,7 +610,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                       : 'text-text-muted hover:text-text-main'
                   }`}
                 >
-                  <Ghost size={15} strokeWidth={2.2} />
+                  <ConciergeBell size={15} strokeWidth={2.2} />
                   <span>{isZh ? '小秘書接待' : 'Concierge Chat'}</span>
                 </button>
                 <button
@@ -681,7 +688,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     </div>
                   )}
 
-                  {/* 3 Lightweight Inline Topic Pills: Auto-collapses once visitor messages */}
+                  {/* Lightweight Inline Topic Pills: Auto-collapses once visitor messages */}
                   {messages.filter((m) => m.role === 'user').length === 0 && (
                     <div className="pt-1.5 space-y-2">
                       <div className="text-xs font-bold text-text-muted flex items-center gap-1.5">
@@ -689,30 +696,21 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                         <span>{isZh ? '快速選擇交流主題' : 'Quick Inquiry Topics'}</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        <button
-                          type="button"
-                          onClick={() => handleChipClick('consulting', isZh ? '顧問諮詢／業務合作' : 'Consulting & Business')}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-[#d6bc7c]/70 dark:border-[#2b4a6b] bg-bg-surface hover:border-[#ffb010] hover:bg-[#ffb010]/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-text-main transition-colors shadow-2xs"
-                        >
-                          <span>💼</span>
-                          <span>{isZh ? '顧問諮詢／業務合作' : 'Consulting & Business'}</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleChipClick('tech_chat', isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello')}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-[#d6bc7c]/70 dark:border-[#2b4a6b] bg-bg-surface hover:border-[#ffb010] hover:bg-[#ffb010]/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-text-main transition-colors shadow-2xs"
-                        >
-                          <span>⚡</span>
-                          <span>{isZh ? '技術交流／打個招呼' : 'Tech Chat & Say Hello'}</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleChipClick('recruitment', isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking')}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-[#d6bc7c]/70 dark:border-[#2b4a6b] bg-bg-surface hover:border-[#ffb010] hover:bg-[#ffb010]/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-text-main transition-colors shadow-2xs"
-                        >
-                          <span>🎯</span>
-                          <span>{isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking'}</span>
-                        </button>
+                        {SUBJECT_OPTIONS.filter((opt) => opt.id !== 'other').map((opt) => {
+                          const IconComp = opt.icon;
+                          const label = isZh ? opt.zh : opt.en;
+                          return (
+                            <button
+                              key={opt.id}
+                              type="button"
+                              onClick={() => handleChipClick(opt.id, label)}
+                              className="inline-flex items-center gap-1.5 rounded-full border border-[#d6bc7c]/70 dark:border-[#2b4a6b] bg-bg-surface hover:border-[#ffb010] hover:bg-[#ffb010]/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-text-main transition-colors shadow-2xs"
+                            >
+                              <IconComp size={14} className="shrink-0 text-[#ffb010]" />
+                              <span>{label}</span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
@@ -786,10 +784,13 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                           <span className="font-bold text-text-main">{isZh ? '交流主旨：' : 'Topic: '}</span>
                           <span className="font-bold text-text-main">{conciergeDraft.subject}</span>
                         </div>
-                        <div className="pt-2 text-text-main/90 font-medium border-t border-border/60">
-                          {isZh
-                            ? '💡 提醒您：小秘書已直接發送雙重確認信至上述信箱。請務必前往信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David 本人！'
-                            : '💡 Notice: A double opt-in confirmation email has been dispatched. Please check your inbox and click the verification link to deliver your message directly to David!'}
+                        <div className="pt-2 text-text-main/90 font-medium border-t border-border/60 flex items-start gap-2">
+                          <Info size={15} className="shrink-0 text-[#ffb010] mt-0.5" />
+                          <span>
+                            {isZh
+                              ? '提醒您：小秘書已直接發送雙重確認信至上述信箱。請務必前往信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David 本人！'
+                              : 'Notice: A double opt-in confirmation email has been dispatched. Please check your inbox and click the verification link to deliver your message directly to David!'}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -797,58 +798,70 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                 </div>
 
                 {/* Chat Input Controls: Auto-expanding Textarea with Shift+Enter / Enter */}
-                <div className="flex gap-2 items-end pt-1">
-                  <textarea
-                    ref={chatTextareaRef}
-                    rows={1}
-                    aria-label={isZh ? '輸入想對 David 說的話' : 'Type inquiry or message to David'}
-                    value={chatInput}
-                    onChange={(e) => {
-                      setChatInput(e.target.value);
-                      adjustTextareaHeight(e.target);
-                    }}
-                    onCompositionStart={() => {
-                      isComposingRef.current = true;
-                    }}
-                    onCompositionEnd={() => {
-                      setTimeout(() => {
-                        isComposingRef.current = false;
-                      }, 50);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        if (e.shiftKey) {
-                          // Allow natural newline on Shift+Enter
-                          setTimeout(() => adjustTextareaHeight(chatTextareaRef.current), 10);
-                          return;
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex gap-2 items-end">
+                    <textarea
+                      ref={chatTextareaRef}
+                      rows={1}
+                      aria-label={isZh ? '輸入想對 David 說的話' : 'Type inquiry or message to David'}
+                      value={chatInput}
+                      onChange={(e) => {
+                        setChatInput(e.target.value);
+                        adjustTextareaHeight(e.target);
+                      }}
+                      onCompositionStart={() => {
+                        isComposingRef.current = true;
+                      }}
+                      onCompositionEnd={() => {
+                        setTimeout(() => {
+                          isComposingRef.current = false;
+                        }, 50);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          if (e.shiftKey) {
+                            // Allow natural newline on Shift+Enter
+                            setTimeout(() => adjustTextareaHeight(chatTextareaRef.current), 10);
+                            return;
+                          }
+                          if (
+                            isComposingRef.current ||
+                            (e.nativeEvent as any).isComposing ||
+                            e.keyCode === 229
+                          ) {
+                            return; // IME composition in progress
+                          }
+                          e.preventDefault();
+                          handleSendChat();
                         }
-                        if (
-                          isComposingRef.current ||
-                          (e.nativeEvent as any).isComposing ||
-                          e.keyCode === 229
-                        ) {
-                          return; // IME composition in progress
-                        }
-                        e.preventDefault();
-                        handleSendChat();
+                      }}
+                      placeholder={
+                        isZh
+                          ? '輸入想與 David 交流的事由…（Enter 送出，Shift+Enter 換行）'
+                          : 'Type message or inquiry for David… (Enter to send, Shift+Enter for newline)'
                       }
-                    }}
-                    placeholder={
-                      isZh
-                        ? '輸入想與 David 交流的事由…（請留下真實有效 Email，小秘書將自動發送驗證信轉達 David）'
-                        : 'Type message or inquiry… (Please provide an active email for verification)'
-                    }
-                    className="flex-1 min-w-[200px] min-h-[44px] max-h-[120px] resize-none py-2.5 px-3.5 rounded-xl border border-border bg-bg-elevated text-base sm:text-sm text-text-main outline-none focus:border-[#ffb010] leading-relaxed transition-all"
-                  />
-                  <button
-                    type="button"
-                    disabled={chatBusy || !chatInput.trim()}
-                    onClick={() => handleSendChat()}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#ffb010] hover:bg-[#f2a600] text-[#2b251a] font-bold shadow-xs transition-colors disabled:opacity-40"
-                    title={isZh ? '送出' : 'Send'}
-                  >
-                    {chatBusy ? <LoaderCircle size={18} className="animate-spin text-[#2b251a]" /> : <Send size={18} strokeWidth={2.2} />}
-                  </button>
+                      className="flex-1 min-w-[200px] min-h-[44px] max-h-[120px] resize-none py-2.5 px-3.5 rounded-xl border border-border bg-bg-elevated text-base sm:text-sm text-text-main outline-none focus:border-[#ffb010] leading-normal transition-all"
+                    />
+                    <button
+                      type="button"
+                      disabled={chatBusy || !chatInput.trim()}
+                      onClick={() => handleSendChat()}
+                      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#ffb010] hover:bg-[#f2a600] text-[#2b251a] font-bold shadow-xs transition-colors disabled:opacity-40"
+                      title={isZh ? '送出' : 'Send'}
+                    >
+                      {chatBusy ? <LoaderCircle size={18} className="animate-spin text-[#2b251a]" /> : <Send size={18} strokeWidth={2.2} />}
+                    </button>
+                  </div>
+
+                  {/* Legible real-email helper notice: always visible, never clipped */}
+                  <div className="flex items-center gap-1.5 px-1 text-xs text-text-muted leading-tight">
+                    <Info size={13} className="shrink-0 text-[#ffb010]" />
+                    <span>
+                      {isZh
+                        ? '請提供真實有效信箱，小秘書將自動發送驗證信以直達呈報 David'
+                        : 'Please provide an active email so we can send a verification link to David.'}
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
@@ -908,18 +921,25 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {SUBJECT_OPTIONS.map((opt) => {
                       const isSelected = selectedSubjectId === opt.id;
+                      const IconComp = opt.icon;
                       return (
                         <button
                           key={opt.id}
                           type="button"
                           onClick={() => handleSelectSubject(opt.id)}
-                          className={`flex min-h-[46px] w-full items-center justify-between gap-2 rounded-xl border px-3.5 py-2.5 text-left text-sm font-bold transition-all ${
+                          className={`flex min-h-[46px] w-full items-center justify-between gap-2.5 rounded-xl border px-3.5 py-2.5 text-left text-sm font-bold transition-all ${
                             isSelected
                               ? 'border-primary bg-primary/10 text-primary shadow-2xs ring-1 ring-primary/40'
                               : 'border-border bg-bg-elevated text-text-muted hover:border-text-muted hover:text-text-main'
                           }`}
                         >
-                          <span className="min-w-0 flex-1 truncate">{isZh ? opt.zh : opt.en}</span>
+                          <div className="flex items-center gap-2 min-w-0 flex-1 truncate">
+                            <IconComp
+                              size={15}
+                              className={`shrink-0 ${isSelected ? 'text-primary' : 'text-text-muted'}`}
+                            />
+                            <span className="truncate">{isZh ? opt.zh : opt.en}</span>
+                          </div>
                           <span
                             className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
                               isSelected
