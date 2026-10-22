@@ -180,12 +180,31 @@ export const sendConciergeMessage = async (
   let extractedName = '';
   const nameMatch = allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
   if (nameMatch) {
-    extractedName = nameMatch[1];
+    extractedName = nameMatch[1].trim();
   } else {
-    const assistantMessages = input.messages.filter((m) => m.role === 'assistant');
-    const lastAssistantMsg = assistantMessages[assistantMessages.length - 1]?.content || '';
-    if (/稱呼|姓名|怎麼稱呼|your name/i.test(lastAssistantMsg) && !foundEmail && lastUserMsg.length >= 2 && lastUserMsg.length <= 10) {
-      extractedName = lastUserMsg.replace(/^[我叫我是叫我\s]+/, '').trim();
+    for (let i = 0; i < input.messages.length - 1; i++) {
+      const cur = input.messages[i];
+      const next = input.messages[i + 1];
+      if (cur.role === 'assistant' && next.role === 'user') {
+        if (/稱呼|姓名|名字|貴姓|怎麼稱呼|your name|who you are|who I am speaking with/i.test(cur.content)) {
+          const candidate = next.content.trim().replace(/^[，,。.\s]+|[，,。.\s]+$/g, '');
+          const isEmailCandidate = emailRegex.test(candidate);
+          const isGreeting = /^(您好|你好|嗨|哈囉|hello|hi|hey)$/i.test(candidate);
+          const isChip = /^我想諮詢|^I'd like to discuss/i.test(candidate);
+          const isConfirm = /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(candidate);
+          if (
+            candidate.length >= 2 &&
+            candidate.length <= 15 &&
+            !isEmailCandidate &&
+            !isGreeting &&
+            !isChip &&
+            !isConfirm
+          ) {
+            extractedName = candidate;
+            break;
+          }
+        }
+      }
     }
   }
 
@@ -207,23 +226,27 @@ export const sendConciergeMessage = async (
   }
 
   // Extract message intent
+  const contentFilterRegex = /^(?:我想諮詢「.+」相關事宜。|I'd like to discuss ".+"\.|好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i;
   let extractedMessage = '';
   for (const u of userMessages) {
     const trimmed = u.content.trim();
     if (!trimmed) continue;
-    if (trimmed === foundEmail) continue;
+    if (contentFilterRegex.test(trimmed)) continue;
+    if (emailRegex.test(trimmed) && trimmed.length <= 50 && !trimmed.includes(' ') && !trimmed.includes('\n')) continue;
+    if (extractedName && trimmed === extractedName) continue;
     if (nameMatch && (trimmed === `我是${extractedName}` || trimmed === `我叫${extractedName}`)) continue;
-    if (/^我想諮詢「.+」相關事宜。$/.test(trimmed)) continue;
     extractedMessage = extractedMessage ? `${extractedMessage}\n${trimmed}` : trimmed;
   }
-  if (!extractedMessage) extractedMessage = lastUserMsg;
+
+  const isTopicPromptText = (text: string): boolean =>
+    /^我想諮詢「.+」相關事宜。$/.test(text.trim()) || /^I'd like to discuss ".+"\./.test(text.trim());
+
+  if (!extractedMessage && !isTopicPromptText(lastUserMsg)) extractedMessage = lastUserMsg;
 
   // Check if user only clicked a topic inquiry prompt
-  const isTopicPrompt =
-    /^我想諮詢「.+」相關事宜。$/.test(lastUserMsg.trim()) ||
-    /^I'd like to discuss ".+"\./.test(lastUserMsg.trim());
+  const hasOnlyTopicPrompt = isTopicPromptText(lastUserMsg);
 
-  if (isTopicPrompt) {
+  if (hasOnlyTopicPrompt) {
     const promptReply = isZh
       ? `您好！很樂意為您安排「${detectedSubject}」相關事宜。請問方便請教您的稱呼與聯繫 Email 是？以及目前想與 David 討論的具體內容是什麼呢？`
       : `Certainly! Regarding "${detectedSubject}", could you share your name, email, and any specific details you would like to discuss with David?`;

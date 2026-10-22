@@ -215,10 +215,20 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   const switchTab = (tab: 'chat' | 'form') => {
     setError('');
     setActiveTab(tab);
+    if (tab === 'form') {
+      setForm((prev) => ({
+        name: conciergeDraft.name || prev.name,
+        email: conciergeDraft.email || prev.email,
+        company: conciergeDraft.company || prev.company,
+        subject: conciergeDraft.subject || prev.subject,
+        message: conciergeDraft.message || prev.message,
+      }));
+    }
     if (typeof window !== 'undefined') {
       const targetPath = tab === 'form' ? '/contact/form' : '/contact';
+      const search = window.location.search || '';
       if (window.location.pathname !== targetPath) {
-        window.history.replaceState(null, '', targetPath);
+        window.history.replaceState(null, '', `${targetPath}${search}`);
       }
     }
   };
@@ -299,6 +309,14 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (form.message.trim().length < 5) {
+      setError(
+        isZh
+          ? '留言內容至少需要 5 個字。'
+          : 'Message must be at least 5 characters.',
+      );
+      return;
+    }
     const finalSubject =
       selectedSubjectId === 'other' && customSubject.trim()
         ? (isZh ? `其他：${customSubject.trim()}` : `Other: ${customSubject.trim()}`)
@@ -417,7 +435,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         email: result.draft?.email || prev.email,
         company: result.draft?.company || prev.company,
         subject: result.draft?.subject || prev.subject,
-        message: result.draft?.message || prev.message || textToSend,
+        message: result.draft?.message || prev.message || (isChipPrompt ? '' : textToSend),
       }));
 
       setConciergeReady(Boolean(result.readyToConfirm));
@@ -626,7 +644,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
             </div>
 
             <div className="rounded-2xl border-2 border-[var(--error)]/50 bg-[var(--error)]/10 p-5 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--error)] text-white shadow-sm">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--error)] text-white dark:text-bg-base shadow-sm">
                 <ShieldAlert size={24} strokeWidth={2.2} />
               </div>
               <h3 className="mt-3.5 text-lg font-bold text-text-main">
@@ -893,7 +911,9 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                       isComposingRef.current = true;
                     }}
                     onCompositionEnd={() => {
-                      isComposingRef.current = false;
+                      setTimeout(() => {
+                        isComposingRef.current = false;
+                      }, 50);
                     }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' && !e.shiftKey) {
@@ -1028,12 +1048,12 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                 {/* Message Textarea */}
                 <div>
                   <label htmlFor="contact-message" className="block text-sm font-bold text-text-main mb-1.5">
-                    {isZh ? '想討論的內容（至少 10 個字）*' : 'Message (min 10 characters) *'}
+                    {isZh ? '想討論的內容（至少 5 個字）*' : 'Message (min 5 characters) *'}
                   </label>
                   <textarea
                     id="contact-message"
                     required
-                    minLength={10}
+                    minLength={5}
                     rows={4}
                     value={form.message}
                     onChange={(e) => update('message', e.target.value)}

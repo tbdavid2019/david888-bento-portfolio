@@ -42,16 +42,16 @@ export const escapeHtml = (str: string): string =>
 export function sanitizeSecretaryText(text: string): string {
   if (!text || typeof text !== 'string') return '';
   return text
-    .replace(/\bAI\b/gi, '小秘書')
+    .replace(/(?:AI\s*(?:小秘書|秘書|助理|助手|客服)|(?<![a-zA-Z])AI(?![a-zA-Z]))/gi, '小秘書')
+    .replace(/chat\s*bot|\bBot\b/gi, 'Concierge')
     .replace(/人工智慧/g, '秘書服務')
     .replace(/機器人/g, '秘書助理')
-    .replace(/\bBot\b/gi, 'Concierge')
     .replace(/\bLLM\b/gi, '')
     .replace(/語言模型/g, '');
 }
 
 export function resolveConfirmOrigin(requestOrigin?: string, envOrigin?: string): string {
-  const candidate = (requestOrigin || envOrigin || '').trim();
+  const candidate = (envOrigin || requestOrigin || '').trim();
   if (
     candidate.startsWith('https://') ||
     candidate.startsWith('http://localhost') ||
@@ -162,11 +162,11 @@ export const processContactSubmission = async (
   const locale = payload.locale === 'en' ? 'en' : 'zh';
   const turnstileToken = payload.turnstileToken;
 
-  if (!name || !isEmail(email) || !subject || message.length < 10) {
+  if (!name || !isEmail(email) || !subject || message.length < 5) {
     return {
       status: 400,
       body: {
-        error: 'Please provide a valid name, email, subject, and a message of at least 10 characters.',
+        error: 'Please provide a valid name, email, subject, and a message of at least 5 characters.',
       },
     };
   }
@@ -838,8 +838,16 @@ Respond ONLY with a valid JSON object matching this schema:
       if (jsonMatch) {
         const parsed = JSON.parse(jsonMatch[0]);
         const reply = sanitizeSecretaryText(String(parsed.reply || ''));
+        const draftName = String(parsed.draft?.name || '').trim();
+        const draftEmail = String(parsed.draft?.email || '').trim().toLowerCase();
         const draftSubject = sanitizeSecretaryText(String(parsed.draft?.subject || defaultSubject || ''));
         const draftMessage = sanitizeSecretaryText(String(parsed.draft?.message || ''));
+        const canConfirm = Boolean(
+          parsed.readyToConfirm &&
+          draftName &&
+          isEmail(draftEmail) &&
+          draftMessage.trim().length >= 5
+        );
 
         return {
           status: 200,
@@ -847,13 +855,13 @@ Respond ONLY with a valid JSON object matching this schema:
             reply,
             revealEmail: Boolean(parsed.revealEmail),
             draft: {
-              name: String(parsed.draft?.name || ''),
-              email: String(parsed.draft?.email || ''),
+              name: draftName,
+              email: draftEmail,
               company: String(parsed.draft?.company || ''),
               subject: draftSubject,
               message: draftMessage,
             },
-            readyToConfirm: Boolean(parsed.readyToConfirm),
+            readyToConfirm: canConfirm,
           },
         };
       }
@@ -882,12 +890,31 @@ Respond ONLY with a valid JSON object matching this schema:
   let extractedName = '';
   const nameMatch = allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
   if (nameMatch) {
-    extractedName = nameMatch[1];
+    extractedName = nameMatch[1].trim();
   } else {
-    const assistantMessages = messages.filter((m) => m.role === 'assistant');
-    const lastAssistantMsg = assistantMessages[assistantMessages.length - 1]?.content || '';
-    if (/稱呼|姓名|怎麼稱呼|your name/i.test(lastAssistantMsg) && !foundEmail && lastUserMsg.length >= 2 && lastUserMsg.length <= 10) {
-      extractedName = lastUserMsg.replace(/^[我叫我是叫我\s]+/, '').trim();
+    for (let i = 0; i < messages.length - 1; i++) {
+      const cur = messages[i];
+      const next = messages[i + 1];
+      if (cur.role === 'assistant' && next.role === 'user') {
+        if (/稱呼|姓名|名字|貴姓|怎麼稱呼|your name|who you are|who I am speaking with/i.test(cur.content)) {
+          const candidate = next.content.trim().replace(/^[，,。.\s]+|[，,。.\s]+$/g, '');
+          const isEmailCandidate = emailRegex.test(candidate);
+          const isGreeting = /^(您好|你好|嗨|哈囉|hello|hi|hey)$/i.test(candidate);
+          const isChip = /^我想諮詢|^I'd like to discuss/i.test(candidate);
+          const isConfirm = /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(candidate);
+          if (
+            candidate.length >= 2 &&
+            candidate.length <= 15 &&
+            !isEmailCandidate &&
+            !isGreeting &&
+            !isChip &&
+            !isConfirm
+          ) {
+            extractedName = candidate;
+            break;
+          }
+        }
+      }
     }
   }
 
@@ -909,23 +936,26 @@ Respond ONLY with a valid JSON object matching this schema:
   }
 
   // Extract message intent
+  const contentFilterRegex = /^(?:我想諮詢「.+」相關事宜。|I'd like to discuss ".+"\.|好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i;
   let extractedMessage = '';
   for (const u of userMessages) {
     const trimmed = u.content.trim();
     if (!trimmed) continue;
-    if (trimmed === foundEmail) continue;
+    if (contentFilterRegex.test(trimmed)) continue;
+    if (emailRegex.test(trimmed) && trimmed.length <= 50 && !trimmed.includes(' ') && !trimmed.includes('\n')) continue;
+    if (extractedName && trimmed === extractedName) continue;
     if (nameMatch && (trimmed === `我是${extractedName}` || trimmed === `我叫${extractedName}`)) continue;
-    if (/^我想諮詢「.+」相關事宜。$/.test(trimmed)) continue;
     extractedMessage = extractedMessage ? `${extractedMessage}\n${trimmed}` : trimmed;
   }
-  if (!extractedMessage) extractedMessage = lastUserMsg;
+  const isTopicPromptText = (text: string): boolean =>
+    /^我想諮詢「.+」相關事宜。$/.test(text.trim()) || /^I'd like to discuss ".+"\./.test(text.trim());
+
+  if (!extractedMessage && !isTopicPromptText(lastUserMsg)) extractedMessage = lastUserMsg;
 
   // Check if user only clicked a topic inquiry prompt
-  const isTopicPrompt =
-    /^我想諮詢「.+」相關事宜。$/.test(lastUserMsg.trim()) ||
-    /^I'd like to discuss ".+"\./.test(lastUserMsg.trim());
+  const hasOnlyTopicPrompt = isTopicPromptText(lastUserMsg);
 
-  if (isTopicPrompt) {
+  if (hasOnlyTopicPrompt) {
     const promptReply = isZh
       ? `您好！很樂意為您安排「${detectedSubject}」相關事宜。請問方便請教您的稱呼與聯繫 Email 是？以及目前想與 David 討論的具體內容是什麼呢？`
       : `Certainly! Regarding "${detectedSubject}", could you share your name, email, and any specific details you would like to discuss with David?`;

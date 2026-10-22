@@ -67,16 +67,30 @@ const getInitialCategory = (): string => {
   const queryCategory = params.get('category');
   if (queryCategory) {
     const normalized = normalizeRouteAlias(queryCategory);
-    if (VALID_CANONICAL_ROUTES.has(normalized)) return normalized;
+    if (normalized !== 'contact' && normalized !== 'contact/form' && !normalized.startsWith('contact/') && VALID_CANONICAL_ROUTES.has(normalized)) {
+      return normalized;
+    }
   }
 
   const pathSegment = normalizeRouteAlias(window.location.pathname);
-  if (pathSegment && VALID_CANONICAL_ROUTES.has(pathSegment)) {
+  if (
+    pathSegment &&
+    pathSegment !== 'contact' &&
+    pathSegment !== 'contact/form' &&
+    !pathSegment.startsWith('contact/') &&
+    VALID_CANONICAL_ROUTES.has(pathSegment)
+  ) {
     return pathSegment;
   }
 
   const hashSegment = normalizeRouteAlias(window.location.hash.replace(/^#/, ''));
-  if (hashSegment && VALID_CANONICAL_ROUTES.has(hashSegment)) {
+  if (
+    hashSegment &&
+    hashSegment !== 'contact' &&
+    hashSegment !== 'contact/form' &&
+    !hashSegment.startsWith('contact/') &&
+    VALID_CANONICAL_ROUTES.has(hashSegment)
+  ) {
     return hashSegment;
   }
 
@@ -115,21 +129,33 @@ export default function App() {
     setContactInitialTab(tab);
     setContactOpen(true);
     const targetPath = tab === 'form' ? '/contact/form' : '/contact';
+    const query = window.location.search;
+    const targetUrl = query ? `${targetPath}${query}` : targetPath;
     if (window.location.pathname !== targetPath) {
-      window.history.pushState(null, '', targetPath);
+      window.history.pushState(null, '', targetUrl);
     }
   };
 
   const closeContactDialog = () => {
     setContactOpen(false);
-    const path = normalizeRouteAlias(window.location.pathname);
-    if (path === 'contact' || path === 'contact/form' || path.startsWith('contact/')) {
-      const fallback =
-        activeCategoryIdRef.current && activeCategoryIdRef.current !== defaultCategoryId
-          ? `/${activeCategoryIdRef.current}`
-          : '/';
-      window.history.replaceState(null, '', fallback);
-    }
+    const params = new URLSearchParams(window.location.search);
+    params.delete('contact');
+    params.delete('tab');
+    params.delete('mode');
+    params.delete('form');
+
+    const fallbackPath =
+      activeCategoryIdRef.current &&
+      activeCategoryIdRef.current !== defaultCategoryId &&
+      activeCategoryIdRef.current !== 'contact' &&
+      activeCategoryIdRef.current !== 'contact/form' &&
+      !activeCategoryIdRef.current.startsWith('contact/')
+        ? `/${activeCategoryIdRef.current}`
+        : '/';
+
+    const queryStr = params.toString();
+    const nextUrl = queryStr ? `${fallbackPath}?${queryStr}` : fallbackPath;
+    window.history.replaceState(null, '', nextUrl);
   };
 
   useEffect(() => {

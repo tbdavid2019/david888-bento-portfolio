@@ -28,7 +28,7 @@ test('rejects submissions with missing or invalid fields', async () => {
     name: 'David',
     email: 'david@example.com',
     subject: 'Hello',
-    message: 'Too short',
+    message: '1234', // < 5 chars should be rejected with 400
   });
   assert.equal(res3.status, 400);
 });
@@ -766,4 +766,102 @@ test('processConciergeChat conducts multi-turn interview: asks for missing conta
   assert.ok(turn2.body.draft.message.includes('我有使用他的專案'));
   assert.ok(turn2.body.reply.includes('Alex'));
   assert.ok(turn2.body.reply.includes('alex@example.com'));
+});
+
+test('accepts submissions with minimum 5 character message', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({ id: 'email_ok_5char' }),
+  });
+
+  try {
+    const res = await processContactSubmission(
+      {
+        name: 'Five Char Tester',
+        email: 'tester@example.com',
+        subject: '顧問諮詢／業務合作',
+        message: '12345', // exactly 5 characters
+      },
+      { RESEND_API_KEY: 're_test_key_123' },
+    );
+    assert.equal(res.status, 200);
+    assert.equal(res.body.ok, true);
+    assert.equal(res.body.status, 'pending_confirmation');
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('processConciergeChat preserves standalone name across turns and isolates topic chip prompt', async () => {
+  // Turn 1: User clicks topic chip
+  const turn1 = await processConciergeChat(
+    {
+      messages: [
+        { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
+      ],
+      locale: 'zh',
+    },
+    {},
+  );
+  assert.equal(turn1.body.readyToConfirm, false);
+  assert.equal(turn1.body.draft.message, '');
+
+  // Turn 2: User provides message
+  const turn2 = await processConciergeChat(
+    {
+      messages: [
+        { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
+        { role: 'assistant', content: turn1.body.reply },
+        { role: 'user', content: '我們團隊想邀請 David 擔任系統架構顧問。' },
+      ],
+      locale: 'zh',
+    },
+    {},
+  );
+  assert.equal(turn2.body.readyToConfirm, false);
+  assert.ok(turn2.body.draft.message.includes('系統架構顧問'));
+  assert.ok(!turn2.body.draft.message.includes('我想諮詢「顧問諮詢／業務合作」相關事宜。'));
+
+  // Turn 3: User provides standalone name in response to assistant asking for name
+  const turn3 = await processConciergeChat(
+    {
+      messages: [
+        { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
+        { role: 'assistant', content: turn1.body.reply },
+        { role: 'user', content: '我們團隊想邀請 David 擔任系統架構顧問。' },
+        { role: 'assistant', content: '太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？' },
+        { role: 'user', content: '陳大文' },
+      ],
+      locale: 'zh',
+    },
+    {},
+  );
+  assert.equal(turn3.body.draft.name, '陳大文');
+  // Message must NOT be contaminated by the name
+  assert.ok(!turn3.body.draft.message.includes('陳大文'));
+
+  // Turn 4: User provides email
+  const turn4 = await processConciergeChat(
+    {
+      messages: [
+        { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
+        { role: 'assistant', content: turn1.body.reply },
+        { role: 'user', content: '我們團隊想邀請 David 擔任系統架構顧問。' },
+        { role: 'assistant', content: '太棒了，很樂意為您轉達！請問方便請教您的稱呼與聯繫 Email 嗎？' },
+        { role: 'user', content: '陳大文' },
+        { role: 'assistant', content: '陳大文 您好！請問方便提供您的 Email 嗎？' },
+        { role: 'user', content: 'dawen.chen@example.com' },
+      ],
+      locale: 'zh',
+    },
+    {},
+  );
+  assert.equal(turn4.body.readyToConfirm, true);
+  assert.equal(turn4.body.draft.name, '陳大文');
+  assert.equal(turn4.body.draft.email, 'dawen.chen@example.com');
+  assert.ok(turn4.body.draft.message.includes('系統架構顧問'));
+  assert.ok(!turn4.body.draft.message.includes('我想諮詢'));
+  assert.ok(!turn4.body.draft.message.includes('dawen.chen@example.com'));
 });

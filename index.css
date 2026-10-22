@@ -52,9 +52,9 @@
   --text-muted: #594e36;
   --text-dark: #7a6c4d;
 
-  --success: #266838;
+  --success: #1b5329;
   --warning: #9c5700;
-  --error: var(--clay);
+  --error: #8f3511;
 
   --bg-header: var(--saffron);
 }
