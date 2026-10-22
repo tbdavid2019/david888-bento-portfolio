@@ -1,5 +1,25 @@
 # Changelog
 
+## [2026-10-22] - "David 的小秘書 (David's Concierge)" Receptionist Chat, Stateless Double Opt-in Email Confirmation & Cloudflare Workers `@cf/openai/gpt-oss-20b`
+
+### Executive Receptionist Dialog & Dual-Mode Contact (`components/ContactDialog.tsx`, `public/bento/secretary-ol.png`, `lib/crm.ts`)
+- **"David 的小秘書" (`David's Concierge`) Persona & Secretary OL Avatar**:
+  - Upgraded the contact modal with a warm editorial Secretary OL cartoon avatar (`/bento/secretary-ol.png` + authored inline vector SVG fallback) and online status indicator.
+  - Strictly eliminated generic "AI / Bot / LLM" terminology across all UI, prompts, and email templates in favor of an executive personal secretary persona (**「David 的小秘書」** / **"David's Concierge"**).
+  - Removed legacy `CS-YYYYMMDD-XXXX` support ticket numbers for a more personal, high-trust advisory experience.
+- **Segmented Dual-Mode Experience (`小秘書接待` / `直接填寫表單`)**:
+  - **Concierge Reception Mode**: Interactive reception chat with quick inquiry chips (`顧問諮詢／業務合作`, `技術交流／打個招呼`, `職缺邀約／演講培訓`, `直接索取 David 的 Email`), instant direct email business card reveal (`104@david888.com` with 1-click copy & `mailto:`), and automatic message draft extraction.
+  - **Direct Form Mode**: Classic floating-label contact form preserved for visitors who prefer direct form entry.
+
+### Cloudflare Workers `@cf/openai/gpt-oss-20b` & Stateless Double Opt-in (`workers/contact-worker/src/index.ts`, `workers/contact-worker/wrangler.jsonc`, `api/contact.ts`, `test/contact-api.test.mjs`)
+- **Cloudflare Workers Native Inference (`@cf/openai/gpt-oss-20b`)**:
+  - Bound `env.AI` in `workers/contact-worker/wrangler.jsonc` (`CF_MODEL: "@cf/openai/gpt-oss-20b"`, `reasoning: { effort: 'low' }`) for sub-second receptionist responses and structured contact draft extraction without exposing any API keys on the frontend.
+- **Stateless HMAC-SHA256 Double Opt-in Confirmation Workflow**:
+  - **Step 1 (Visitor Submission)**: Validates input through `Clef-Flash` dual-node spam protection (`clef.create360.ai` $\rightarrow$ `clef.aiurl.tw` $\rightarrow$ fail-open), signs a 24-hour stateless HMAC-SHA256 token, and sends a verification email via Resend to the visitor's own inbox first.
+  - **Step 2 (Inbox Click Confirmation `GET /confirm?token=...`)**: Verifies HMAC signature and expiration, delivers the verified inquiry to David's inbox (`104@david888.com, tbdavid2019@gmail.com`) with idempotency protection and retry safety, and renders a localized (`zh-TW` / `en`) warm editorial confirmation page.
+- **Expanded Test Suite (`test/contact-api.test.mjs`)**:
+  - Added 50 automated tests covering Double Opt-in Step 1 & Step 2, Resend failure retry safety, HMAC secret validation, `@cf/openai/gpt-oss-20b` Responses API parsing, jargon sanitization, and Worker routing.
+
 ## [2026-10-20] - Add Store Pulse (`storepulse.david888.com`) to 7 Flagship Live Systems & Web Products
 
 ### Flagship Systems & Portfolio Expansion
