@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed 888news",
+      "url": "https://github.com/tbdavid2019/888news/compare/d2eaf5f7f2...7c03ded206",
+      "updated": "2026-10-22 03:18:28 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 22, 2026 03:18 1 commit to main 7c03ded feat(ui): migrate design tokens to 2md.aiurl.tw palette with full WCA…"
+    },
+    {
+      "title": "tbdavid2019 pushed store-pulse",
+      "url": "https://github.com/tbdavid2019/store-pulse/compare/f86a28fc89...92666f05dd",
+      "updated": "2026-10-21 08:57:46 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 21, 2026 08:57 1 commit to main 92666f0 fix(security): bind KV namespace, enforce global dual-layer rate limi…"
+    },
+    {
       "title": "tbdavid2019 pushed 888a2a",
       "url": "https://github.com/tbdavid2019/888a2a/compare/4e53748ff6...ab92746a19",
       "updated": "2026-10-22 02:14:58 UTC",
@@ -17,22 +29,10 @@
       "url": "https://github.com/tbdavid2019/888box/compare/f67c5ff9be...67a95f577d",
       "updated": "2026-10-22 03:59:05 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/888box · October 22, 2026 03:59 1 commit to main 67a95f5 fix: restore readable theme text contrast"
-    },
-    {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/5cee33a857...f1f26f261a",
-      "updated": "2026-10-21 07:38:07 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 21, 2026 07:38 1 commit to main f1f26f2 fix: simplify beijingDate in recompose-daily.ts"
-    },
-    {
-      "title": "tbdavid2019 pushed 888PassWD",
-      "url": "https://github.com/tbdavid2019/888PassWD/compare/8e69df75cb...c11bda5da2",
-      "updated": "2026-10-22 01:56:56 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888PassWD · October 22, 2026 01:56 1 commit to main c11bda5 security: update .node-version to 24.22.1"
     }
   ],
-  "lastSyncedAt": "2026-10-22T08:40:56.946Z",
-  "syncStatus": "stale",
+  "lastSyncedAt": "2026-10-22T09:13:10.380Z",
+  "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
   ]

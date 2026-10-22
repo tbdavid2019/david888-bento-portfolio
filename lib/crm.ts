@@ -178,10 +178,13 @@ export const sendConciergeMessage = async (
       /^(?:email|mail|信箱|聯絡方式)$/i.test(lastUserMsg.trim()));
 
   const nonNameVerbs =
-    /^(reaching|writing|contacting|looking|interested|delighted|pleased|happy|thrilled|excited|sending|emailing|here|just|glad|wondering|hoping|trying)$/i;
+    /^(the|a|an|with|from|at|reaching|writing|contacting|looking|interested|delighted|pleased|happy|thrilled|excited|sending|emailing|here|just|glad|wondering|hoping|trying)$/i;
 
   let extractedName = '';
-  const nameMatch = allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
+  const complexIntroMatch = allUserText.match(
+    /(?:我是|我叫|叫我|稱呼我|稱呼為)\s*(?:[\w\u4e00-\u9fa5]+(?:\s*的\s*(?:HR|人資|recruiter|經理|主管|顧問|特助|招募)?\s*))([^\s,，。!！\n]{2,15})/i,
+  );
+  const nameMatch = complexIntroMatch || allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
   if (nameMatch && !nonNameVerbs.test(nameMatch[1].trim())) {
     extractedName = nameMatch[1].trim();
   } else {
@@ -214,6 +217,7 @@ export const sendConciergeMessage = async (
 
   let extractedCompany = '';
   const companyMatch =
+    allUserText.match(/(?:我是|來自)\s*([A-Za-z0-9\u4e00-\u9fa5]{2,20})\s*的\s*(?:HR|人資|recruiter|經理|主管|顧問|特助|工程師|招募|團隊)/i) ||
     allUserText.match(/\b([A-Z][a-zA-Z0-9_.-]+)(?:'s|’s)\s*(?:hiring managers|recruitment team|talent acquisition|team)/) ||
     allUserText.match(/\b(?:hiring managers|recruitment team|talent acquisition)\s+at\s+([A-Za-z0-9_.-]+)/i) ||
     allUserText.match(/\b(?:on behalf of|representative of)\s+([A-Z][a-zA-Z0-9_.-]+)/) ||
@@ -222,7 +226,7 @@ export const sendConciergeMessage = async (
 
   let detectedSubject = input.defaultSubject || '';
   if (!detectedSubject) {
-    if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview|hiring\s*manager|talent\s*acquisition/i.test(allUserText)) {
+    if (/職缺|招募|獵頭|演講|培訓|面試|人資|\bHR\b|recruitment|speaking|job|interview|hiring\s*manager|talent\s*acquisition/i.test(allUserText)) {
       detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
     } else if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
       detectedSubject = isZh ? '顧問諮詢／業務合作' : 'Consulting & Business';
@@ -282,11 +286,20 @@ export const sendConciergeMessage = async (
     ready &&
     /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(lastUserMsg.trim());
 
+  const hasDetailedContext = Boolean(extractedCompany && hasName && extractedMessage.length >= 10);
+  const finalRevealEmail = Boolean(wantsEmail && hasDetailedContext);
+
   let reply = '';
   if (wantsEmail) {
-    reply = isZh
-      ? '好的！已為您在下方展開 David 的直通信箱名片卡 (104@david888.com)。您也可以直接在對話中告訴我想轉達給 David 的話，由我為您整理送達！'
-      : "Certainly! I've displayed David's direct contact card below (104@david888.com). You can also tell me what you'd like to forward to David right here!";
+    if (finalRevealEmail) {
+      reply = isZh
+        ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
+        : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
+    } else {
+      reply = isZh
+        ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
+        : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
+    }
   } else if (isConfirming) {
     reply = isZh
       ? `收到！小秘書正為您發送確認信至 ${foundEmail}，請點擊下方按鈕或稍候接收確認信！`
@@ -295,6 +308,12 @@ export const sendConciergeMessage = async (
     reply = isZh
       ? `好的！小秘書已為您彙整好欲轉達給 David 的訊息：\n\n• 稱呼：${extractedName}\n• 信箱：${foundEmail}${extractedCompany ? `\n• 公司：${extractedCompany}` : ''}\n• 洽詢主旨：${detectedSubject}\n• 留言內容：${extractedMessage}\n\n請問確認要由小秘書為您寄送確認信至 ${foundEmail} 嗎？請點擊下方「確認送出確認信」即可！`
       : `Excellent! I have compiled your inquiry for David:\n\n• Name: ${extractedName}\n• Email: ${foundEmail}${extractedCompany ? `\n• Company: ${extractedCompany}` : ''}\n• Topic: ${detectedSubject}\n• Message: ${extractedMessage}\n\nShall I send the confirmation email to ${foundEmail}? Please click the confirmation button below!`;
+  } else if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview/i.test(detectedSubject) && (!hasName || !hasEmail)) {
+    reply = isZh
+      ? (extractedCompany
+          ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！`
+          : '非常感謝您對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼、公司與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！')
+      : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D teams in distributed high-concurrency systems. Could you share your name, organization, and contact email so I can forward your invitation to David?`;
   } else if (!hasName && !hasEmail) {
     reply = isZh
       ? (extractedCompany
@@ -317,7 +336,7 @@ export const sendConciergeMessage = async (
 
   return {
     reply,
-    revealEmail: wantsEmail,
+    revealEmail: finalRevealEmail,
     draft: {
       name: extractedName,
       email: foundEmail,

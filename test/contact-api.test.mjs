@@ -651,7 +651,7 @@ test('processConciergeChat topic prompt: asks for user details and keeps draft m
   assert.ok(res.body.reply.includes('顧問諮詢／業務合作'));
 });
 
-test('processConciergeChat smart fallback extracts email request and reveals email with zero AI words', async () => {
+test('processConciergeChat smart fallback refuses unverified email request as gatekeeper with zero AI words', async () => {
   const res = await processConciergeChat(
     {
       messages: [
@@ -659,15 +659,69 @@ test('processConciergeChat smart fallback extracts email request and reveals ema
       ],
       locale: 'zh',
     },
-    {}, // No Workers AI bound, triggers smart fallback
+    {}, // No Workers AI bound, triggers smart fallback with Clef gatekeeper
   );
 
   assert.equal(res.status, 200);
-  assert.equal(res.body.revealEmail, true);
-  assert.ok(res.body.reply.includes('名片卡'));
+  assert.equal(res.body.revealEmail, false);
+  assert.ok(
+    res.body.reply.includes('David 先生平時公務繁忙') ||
+    res.body.reply.includes('直通信箱僅提供給') ||
+    res.body.reply.includes('小秘書審核'),
+  );
   assert.ok(!/\bAI\b/i.test(res.body.reply));
   assert.ok(!res.body.reply.includes('人工智慧'));
   assert.ok(!res.body.reply.includes('機器人'));
+});
+
+test('processConciergeChat reveals email card when Clef System One approves verified executive recruitment request', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    if (url.includes('systemone')) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          model: 'clef-flash',
+          answers: {
+            intent: {
+              choice: 'recruitment_or_interview',
+              confidence: 0.98,
+              probabilities: { recruitment_or_interview: 0.98 },
+            },
+            email_disclosure: {
+              choice: 'approved',
+              confidence: 0.95,
+              probabilities: { approved: 0.95, denied: 0.05 },
+            },
+          },
+        }),
+      };
+    }
+    return { ok: true, status: 200, json: async () => ({}) };
+  };
+
+  try {
+    const res = await processConciergeChat(
+      {
+        messages: [
+          {
+            role: 'user',
+            content: '我是 Hytech 的招募主管 Sarah (sarah@hytech.com)，想索取 David 的 Email 信箱以便寄送 Chief Architect 職缺面試邀請。',
+          },
+        ],
+        locale: 'zh',
+      },
+      {},
+    );
+
+    assert.equal(res.status, 200);
+    assert.equal(res.body.revealEmail, true);
+    assert.ok(res.body.reply.includes('名片卡'));
+    assert.ok(res.body.reply.includes('104@david888.com'));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
 
 test('workers/contact-worker fetch handler routes OPTIONS, GET /confirm, POST /chat, and POST / correctly', async () => {
@@ -687,7 +741,7 @@ test('workers/contact-worker fetch handler routes OPTIONS, GET /confirm, POST /c
   const putRes = await workerDefault.fetch(putReq, workerEnv);
   assert.equal(putRes.status, 405);
 
-  // 3. POST /chat
+  // 3. POST /chat (unverified email request is gatekept)
   const chatReq = new Request('https://worker.dev/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -698,7 +752,7 @@ test('workers/contact-worker fetch handler routes OPTIONS, GET /confirm, POST /c
   const chatRes = await workerDefault.fetch(chatReq, workerEnv);
   assert.equal(chatRes.status, 200);
   const chatData = await chatRes.json();
-  assert.equal(chatData.revealEmail, true);
+  assert.equal(chatData.revealEmail, false);
 
   // 4. GET /confirm
   const token = await createConfirmationToken(
@@ -927,4 +981,21 @@ I am reaching out to you on behalf of Hytech's hiring managers regarding our tec
   assert.ok(res.body.reply.includes('Hytech'));
   assert.ok(res.body.reply.includes('稱呼'));
   assert.ok(res.body.reply.includes('信箱') || res.body.reply.includes('Email'));
+});
+
+test('processConciergeChat handles complex Chinese intro: extracts company and individual name correctly', async () => {
+  const introMsg = '我是 Hytech 的 HR Linda，信箱是 linda@hytech.tw，想與 David 安排技術架構面試';
+  const res = await processConciergeChat(
+    {
+      messages: [{ role: 'user', content: introMsg }],
+      locale: 'zh',
+    },
+    {},
+  );
+
+  assert.equal(res.status, 200);
+  assert.equal(res.body.draft.name, 'Linda');
+  assert.equal(res.body.draft.company, 'Hytech');
+  assert.equal(res.body.draft.email, 'linda@hytech.tw');
+  assert.equal(res.body.draft.subject, '職缺邀約／演講培訓');
 });

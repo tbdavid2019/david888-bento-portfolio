@@ -1,3 +1,9 @@
+import {
+  checkSpamWithClef,
+  evaluateConversationWithClef,
+  type ConversationEvaluationResult,
+} from '../lib/clef-guard.ts';
+
 export interface ContactPayload {
   action?: string;
   name?: string;
@@ -219,55 +225,27 @@ export const processContactSubmission = async (
     }
   }
 
-  // 2. Clef-Flash System One Spam & Scam Verification (Primary + Fallback + Fail-Open)
-  const clefEndpoints = [
-    'https://clef.create360.ai/v1/systemone',
-    'https://clef.aiurl.tw/v1/systemone',
-  ];
+  // 2. Clef-Flash & TypeSafe Jev System One Spam & Scam Verification (3-Tier + Fail-Open)
+  const clefResult = await checkSpamWithClef(
+    {
+      name,
+      email,
+      company,
+      subject,
+      message,
+      typesafeApiKey: env.TYPESAFE_API_KEY,
+    },
+    25000,
+  );
 
-  for (const endpoint of clefEndpoints) {
-    try {
-      const clefRes = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'clef-flash',
-          state: { sender_name: name, sender_email: email, company: company || '', subject, message },
-          questions: {
-            classification: {
-              type: 'choice',
-              instructions: 'Classify the intent of this contact message.',
-              criteria: {
-                legitimate_inquiry:
-                  'Legitimate business contact, executive recruitment, tech consulting, partnership, or client question.',
-                spam_or_scam:
-                  'Automated spam, SEO link pitching, telegram crypto pump, gambling ads, phishing, or bulk solicitation.',
-              },
-            },
-          },
-        }),
-      });
-
-      if (clefRes.ok) {
-        const clefData = (await clefRes.json()) as any;
-        const choice = clefData?.answers?.classification?.choice;
-        const spamProb = clefData?.answers?.classification?.probabilities?.spam_or_scam ?? 0;
-        if (choice === 'spam_or_scam' || spamProb >= 0.7) {
-          return {
-            status: 403,
-            body: {
-              error: '此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。',
-              blocked: true,
-            },
-          };
-        }
-        break; // Verified legitimate by Clef
-      } else {
-        console.warn(`[API Contact] Clef endpoint ${endpoint} HTTP ${clefRes.status}, trying fallback...`);
-      }
-    } catch (clefErr) {
-      console.warn(`[API Contact] Clef endpoint ${endpoint} failed, trying fallback:`, clefErr);
-    }
+  if (clefResult.isSpam) {
+    return {
+      status: 403,
+      body: {
+        error: '此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。',
+        blocked: true,
+      },
+    };
   }
 
   const resendApiKey = env.RESEND_API_KEY;
@@ -759,39 +737,192 @@ export const processConciergeChat = async (
   const isZh = locale !== 'en';
   const defaultSubject = clean(payload.defaultSubject, 100);
 
-  // 1. Try Cloudflare Workers AI if available
+  // 1. Extract conversational details from all user messages
+  const userMessages = messages.filter((m) => m.role === 'user');
+  const lastUserMsg = userMessages[userMessages.length - 1]?.content || '';
+  const allUserText = userMessages.map((m) => m.content).join('\n');
+
+  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+  const foundEmail = allUserText.match(emailRegex)?.[0] || '';
+  const lastMsgHasEmail = emailRegex.test(lastUserMsg);
+
+  // Distinguish between asking for David's contact vs visitor simply providing their own email
+  const asksForDavidsContact =
+    /(?:索取|要|提供|給|看|詢問|有|請問|查|寄給).*(?:david|大衛).*(?:email|mail|信箱|郵件|聯絡方式|contact)/i.test(lastUserMsg) ||
+    /(?:david|大衛).*(?:email|mail|信箱|郵件|聯絡方式).*(?:是多少|是什麼|在哪|嗎|可以給我)/i.test(lastUserMsg) ||
+    /(?:想|希望|能否|可以|方便).*(?:索取|要|詢問|獲得).*(?:email|mail|信箱|郵件|聯絡方式)/i.test(lastUserMsg) ||
+    (!lastMsgHasEmail &&
+      (/(?:索取|要|提供|給|看|詢問|有|請問|查|寄給).*(?:email|mail|信箱|郵件|聯絡方式|contact)/i.test(lastUserMsg) ||
+        /^(?:email|mail|信箱|聯絡方式)$/i.test(lastUserMsg.trim())));
+
+  const wantsEmail = Boolean(asksForDavidsContact);
+
+  const nonNameVerbs =
+    /^(the|a|an|with|from|at|reaching|writing|contacting|looking|interested|delighted|pleased|happy|thrilled|excited|sending|emailing|here|just|glad|wondering|hoping|trying)$/i;
+
+  let extractedName = '';
+  const complexIntroMatch = allUserText.match(
+    /(?:我是|我叫|叫我|稱呼我|稱呼為)\s*(?:[\w\u4e00-\u9fa5]+(?:\s*的\s*(?:HR|人資|recruiter|經理|主管|顧問|特助|招募)?\s*))([^\s,，。!！\n]{2,15})/i,
+  );
+  const nameMatch = complexIntroMatch || allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
+  if (nameMatch && !nonNameVerbs.test(nameMatch[1].trim())) {
+    extractedName = nameMatch[1].trim();
+  } else {
+    for (let i = 0; i < messages.length - 1; i++) {
+      const cur = messages[i];
+      const next = messages[i + 1];
+      if (cur.role === 'assistant' && next.role === 'user') {
+        if (/稱呼|姓名|名字|貴姓|怎麼稱呼|your name|who you are|who I am speaking with/i.test(cur.content)) {
+          const candidate = next.content.trim().replace(/^[，,。.\s]+|[，,。.\s]+$/g, '');
+          const isEmailCandidate = emailRegex.test(candidate);
+          const isGreeting = /^(您好|你好|嗨|哈囉|hello|hi|hey)$/i.test(candidate);
+          const isChip = /^我想諮詢|^I'd like to discuss/i.test(candidate);
+          const isConfirm = /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(candidate);
+          if (
+            candidate.length >= 2 &&
+            candidate.length <= 15 &&
+            !isEmailCandidate &&
+            !isGreeting &&
+            !isChip &&
+            !isConfirm &&
+            !nonNameVerbs.test(candidate)
+          ) {
+            extractedName = candidate;
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  let extractedCompany = '';
+  const companyMatch =
+    allUserText.match(/(?:我是|來自)\s*([A-Za-z0-9\u4e00-\u9fa5]{2,20})\s*的\s*(?:HR|人資|recruiter|經理|主管|顧問|特助|工程師|招募|團隊)/i) ||
+    allUserText.match(/\b([A-Z][a-zA-Z0-9_.-]+)(?:'s|’s)\s*(?:hiring managers|recruitment team|talent acquisition|team)/) ||
+    allUserText.match(/\b(?:hiring managers|recruitment team|talent acquisition)\s+at\s+([A-Za-z0-9_.-]+)/i) ||
+    allUserText.match(/\b(?:on behalf of|representative of)\s+([A-Z][a-zA-Z0-9_.-]+)/) ||
+    allUserText.match(/(?:來自|公司是|任職於|公司名稱|代表\s*|from\s+)([^\s,，。!！\n]{2,20})/i);
+  if (companyMatch) extractedCompany = companyMatch[1].trim();
+
+  let detectedSubject = defaultSubject || '';
+  if (!detectedSubject) {
+    if (/職缺|招募|獵頭|演講|培訓|面試|人資|\bHR\b|recruitment|speaking|job|interview|hiring\s*manager|talent\s*acquisition/i.test(allUserText)) {
+      detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
+    } else if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
+      detectedSubject = isZh ? '顧問諮詢／業務合作' : 'Consulting & Business';
+    } else if (/技術|系統|架構|專案|tech|architecture|project/i.test(allUserText)) {
+      detectedSubject = isZh ? '技術交流／專案反饋' : 'Tech Chat & Project Feedback';
+    } else {
+      detectedSubject = isZh ? '其他交流／隨意聊聊' : 'Other Ideas & Chat';
+    }
+  }
+
+  // Extract message intent
+  const contentFilterRegex = /^(?:我想諮詢「.+」相關事宜。|I'd like to discuss ".+"\.|好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i;
+  let extractedMessage = '';
+  for (const u of userMessages) {
+    const trimmed = u.content.trim();
+    if (!trimmed) continue;
+    if (contentFilterRegex.test(trimmed)) continue;
+    if (emailRegex.test(trimmed) && trimmed.length <= 50 && !trimmed.includes(' ') && !trimmed.includes('\n')) continue;
+    if (extractedName && trimmed === extractedName) continue;
+    if (nameMatch && (trimmed === `我是${extractedName}` || trimmed === `我叫${extractedName}`)) continue;
+    extractedMessage = extractedMessage ? `${extractedMessage}\n${trimmed}` : trimmed;
+  }
+  const isTopicPromptText = (text: string): boolean =>
+    /^我想諮詢「.+」相關事宜。$/.test(text.trim()) || /^I'd like to discuss ".+"\./.test(text.trim());
+
+  if (!extractedMessage && !isTopicPromptText(lastUserMsg)) extractedMessage = lastUserMsg;
+
+  // Check if user only clicked a topic inquiry prompt
+  const hasOnlyTopicPrompt = isTopicPromptText(lastUserMsg);
+
+  if (hasOnlyTopicPrompt) {
+    const promptReply = isZh
+      ? `您好！很樂意為您安排「${detectedSubject}」相關事宜。請問方便請教您的稱呼與聯繫 Email 是？以及目前想與 David 討論的具體內容是什麼呢？`
+      : `Certainly! Regarding "${detectedSubject}", could you share your name, email, and any specific details you would like to discuss with David?`;
+    return {
+      status: 200,
+      body: {
+        reply: sanitizeSecretaryText(promptReply),
+        revealEmail: false,
+        draft: {
+          name: extractedName,
+          email: foundEmail,
+          company: extractedCompany,
+          subject: detectedSubject,
+          message: '',
+        },
+        readyToConfirm: false,
+      },
+    };
+  }
+
+  // 2. Invoke Clef / Jev System One Decision Engine for Intent & Gatekeeping Evaluation
+  const decision = await evaluateConversationWithClef(
+    {
+      messages,
+      lastUserMsg,
+      senderName: extractedName,
+      senderEmail: foundEmail,
+      company: extractedCompany,
+      subject: detectedSubject,
+      typesafeApiKey: env.TYPESAFE_API_KEY,
+    },
+    25000,
+  );
+
+  // 3. Try Cloudflare Workers AI if available
   if (env.AI && typeof env.AI.run === 'function') {
     const model = env.CF_MODEL || '@cf/openai/gpt-oss-20b';
-    const systemPrompt = `You are "David 的小秘書" (in English: "David's Concierge"), the warm, professional, executive personal secretary for David Chiang (江政達 / David888).
+    const systemPrompt = `You are "David 的小秘書" (in English: "David's Concierge"), the warm, professional, executive personal secretary and ambassador for David Chiang (江政達 / David888).
+
+[SYSTEM ONE DECISION ENGINE EVALUATION FOR CURRENT TURN]:
+- Evaluated Primary Intent: ${decision.intent} (Confidence: ${Math.round(decision.confidence * 100)}%)
+- Safety Assessment: ${decision.isSpam ? 'SPAM/SCAM (Reject politely)' : 'CLEAN & SAFE'}
+- Email Disclosure Authorization: ${decision.canRevealEmail ? 'APPROVED (Verified High-Value Commercial/Interview Inquiry)' : 'DENIED (Gatekeeping Active: Do NOT disclose David\'s email or phone)'}
+- Policy Guidance: ${decision.guidance}
 
 CRITICAL DIRECTIVES:
-1. PERSONA INTEGRITY: Speak strictly as David's real personal human secretary. Never refer to yourself as virtual, automated, an AI, a bot, or a language model.
-2. TONE: Warm, courteous, refined, concise (1-3 sentences), executive assistant persona.
-3. CONVERSATIONAL INTERVIEW & GATHERING (NEVER ASK THE USER TO FILL OUT A FORM):
-   - You must converse with the visitor step-by-step through natural dialogue to understand their inquiry and collect all necessary details to deliver a message to David.
-   - The 3 essential pieces of information required to deliver a message to David are:
-     1. Message / Intent (what they want to tell or ask David)
+1. PERSONA & AMBASSADOR IDENTITY (YOU ARE DAVID'S SECRETARY, NOT DAVID, NOT THE CANDIDATE):
+   - You are David's personal executive secretary acting on his behalf. You are NOT David himself, and you are NOT the candidate/applicant being interviewed.
+   - When a visitor presents an interview invitation, job opportunity, recruitment, or consulting inquiry, NEVER say "Thank you for inviting me to an interview". Instead, proudly and professionally represent David: "非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。" (in English: "Thank you so much for your interest and invitation to David! As David's concierge, I will make sure this is delivered directly to David.")
+   - Never refer to yourself as virtual, automated, an AI, a bot, or a language model.
+2. CLEF SYSTEM ONE GATEKEEPER & PRIVACY DIRECTIVE:
+   - David's personal email (104@david888.com) is strictly confidential and protected by the Clef / Jev System One decision engine.
+   - If the visitor asks for David's email, phone, or direct contact:
+     - ONLY set "revealEmail": true IF the decision engine has AUTHORIZED email disclosure (Email Disclosure Authorization: APPROVED).
+     - If Email Disclosure Authorization is DENIED (or visitor has not yet provided clear company name, sender name, and inquiry topic):
+       - Keep "revealEmail": false.
+       - Politely explain that David is occupied with technical architecture and client commitments, and that direct contact is reserved for formal partners with verified context.
+       - Warmly invite the visitor to share their name, company, and message details so you can review and deliver it to David.
+3. DIRECT RESPECTFUL ADDRESS (NEVER USE "使用者", "對方", "用戶"):
+   - You are speaking directly to the visitor in a private consultation. Always address the visitor respectfully as "您" or "[稱呼] 您好". NEVER refer to the visitor as "使用者", "對方", or "用戶"!
+4. STRICT LANGUAGE PURITY (ZERO CODE-SWITCHING):
+   - When the conversation is in Traditional Chinese (${isZh ? 'YES' : 'NO'}), respond in 100% pure Traditional Chinese (繁體中文). NEVER append or mix English words or sentences.
+   - When the conversation is in English, respond in 100% fluent business English.
+5. CONVERSATIONAL INTERVIEW & GATHERING:
+   - Understand the inquiry and collect the 3 essential pieces of information:
+     1. Message / Details (what they wish to tell or propose to David)
      2. Name / Greeting (how David should address them)
      3. Email (where you will send the confirmation link, and where David can reply)
      (Company is optional).
-   - If any of these 3 essential pieces is missing, politely and warmly ask for the missing item(s) in your conversational reply!
-4. SUMMARY & DISPATCH:
-   - When all 3 essential pieces (Message, Name, valid Email) are provided in the conversation:
-     - Formulate a clear bulleted summary in your reply:
+   - If any of these 3 is missing, politely and warmly ask for the missing item(s) in your conversational reply.
+6. SUMMARY & DISPATCH:
+   - When all 3 essential pieces (Message >= 5 chars, Name, valid Email) are provided:
+     - Formulate a clear bulleted summary:
        • 稱呼: {name}
        • 信箱: {email}
        • 主旨: {subject}
        • 內容: {message}
-     - Ask the visitor: "請問確認要由小秘書為您寄出確認信至 {email} 嗎？"
+     - Ask: "請問確認要由小秘書為您寄出確認信至 {email} 嗎？"
      - Set "readyToConfirm": true.
-5. DIRECT CONTACT CARD:
-   - If the visitor asks for David's direct contact, email, or phone, set "revealEmail": true.
 
 OUTPUT FORMAT:
 Respond ONLY with a valid JSON object matching this schema:
 {
-  "reply": "string (warm, concise secretary response in ${isZh ? 'Traditional Chinese' : 'English'})",
-  "revealEmail": boolean,
+  "reply": "string (warm, concise secretary response in ${isZh ? '100% Traditional Chinese with NO English' : 'English'})",
+  "revealEmail": ${decision.canRevealEmail ? 'boolean' : 'false'},
   "draft": {
     "name": "string",
     "email": "string",
@@ -851,18 +982,22 @@ Respond ONLY with a valid JSON object matching this schema:
               : String(extractedReply || '');
         }
         let reply = sanitizeSecretaryText(String(extractedReply || '').trim());
-        const draftName = String(parsed.draft?.name || '').trim();
-        const draftEmail = String(parsed.draft?.email || '').trim().toLowerCase();
-        const draftCompany = String(parsed.draft?.company || '').trim();
-        const draftSubject = sanitizeSecretaryText(String(parsed.draft?.subject || defaultSubject || ''));
-        const draftMessage = sanitizeSecretaryText(String(parsed.draft?.message || ''));
-        const wantsEmail = Boolean(parsed.revealEmail);
+        const draftName = String(parsed.draft?.name || extractedName || '').trim();
+        const draftEmail = String(parsed.draft?.email || foundEmail || '').trim().toLowerCase();
+        const draftCompany = String(parsed.draft?.company || extractedCompany || '').trim();
+        const draftSubject = sanitizeSecretaryText(String(parsed.draft?.subject || detectedSubject || defaultSubject || ''));
+        const draftMessage = sanitizeSecretaryText(String(parsed.draft?.message || extractedMessage || ''));
+        const finalRevealEmail = Boolean(parsed.revealEmail && decision.canRevealEmail);
 
         if (!reply) {
-          if (wantsEmail) {
+          if (finalRevealEmail) {
             reply = isZh
-              ? '好的！已為您在下方展開 David 的直通信箱名片卡 (104@david888.com)。您也可以直接在對話中告訴我想轉達給 David 的話，由我為您整理送達！'
-              : "Certainly! I've displayed David's direct contact card below (104@david888.com). You can also tell me what you'd like to forward to David right here!";
+              ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
+              : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
+          } else if (wantsEmail) {
+            reply = isZh
+              ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
+              : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
           } else if (!draftName && !draftEmail) {
             reply = isZh
               ? `${draftCompany ? `${draftCompany} 的夥伴` : '您'}好！已為您記錄此項訊息。請問方便請教您的稱呼與聯繫信箱嗎？這樣 David 能親自回信給您！`
@@ -889,7 +1024,7 @@ Respond ONLY with a valid JSON object matching this schema:
           status: 200,
           body: {
             reply,
-            revealEmail: wantsEmail,
+            revealEmail: finalRevealEmail,
             draft: {
               name: draftName,
               email: draftEmail,
@@ -906,121 +1041,7 @@ Respond ONLY with a valid JSON object matching this schema:
     }
   }
 
-  // 2. Smart deterministic fallback (multi-turn conversational interview)
-  const userMessages = messages.filter((m) => m.role === 'user');
-  const lastUserMsg = userMessages[userMessages.length - 1]?.content || '';
-  const allUserText = userMessages.map((m) => m.content).join('\n');
-
-  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-  const foundEmail = allUserText.match(emailRegex)?.[0] || '';
-  const lastMsgHasEmail = emailRegex.test(lastUserMsg);
-
-  // Distinguish between asking for David's email vs visitor providing their own email
-  const wantsEmail =
-    !lastMsgHasEmail &&
-    (/(?:索取|要|提供|給|看|詢問|有|請問|查|寄給).*(?:email|mail|信箱|郵件|聯絡方式|contact)|(?:david|大衛).*(?:email|mail|信箱|郵件)|(?:email|mail|信箱|郵件|聯絡方式).*(?:是多少|是什麼|在哪|嗎)/i.test(
-      lastUserMsg,
-    ) ||
-      /^(?:email|mail|信箱|聯絡方式)$/i.test(lastUserMsg.trim()));
-
-  const nonNameVerbs =
-    /^(reaching|writing|contacting|looking|interested|delighted|pleased|happy|thrilled|excited|sending|emailing|here|just|glad|wondering|hoping|trying)$/i;
-
-  let extractedName = '';
-  const nameMatch = allUserText.match(/(?:我是|我叫|叫我|稱呼我|稱呼為|name is|I am|I'm)\s*([^\s,，。!！\n]{2,15})/i);
-  if (nameMatch && !nonNameVerbs.test(nameMatch[1].trim())) {
-    extractedName = nameMatch[1].trim();
-  } else {
-    for (let i = 0; i < messages.length - 1; i++) {
-      const cur = messages[i];
-      const next = messages[i + 1];
-      if (cur.role === 'assistant' && next.role === 'user') {
-        if (/稱呼|姓名|名字|貴姓|怎麼稱呼|your name|who you are|who I am speaking with/i.test(cur.content)) {
-          const candidate = next.content.trim().replace(/^[，,。.\s]+|[，,。.\s]+$/g, '');
-          const isEmailCandidate = emailRegex.test(candidate);
-          const isGreeting = /^(您好|你好|嗨|哈囉|hello|hi|hey)$/i.test(candidate);
-          const isChip = /^我想諮詢|^I'd like to discuss/i.test(candidate);
-          const isConfirm = /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(candidate);
-          if (
-            candidate.length >= 2 &&
-            candidate.length <= 15 &&
-            !isEmailCandidate &&
-            !isGreeting &&
-            !isChip &&
-            !isConfirm &&
-            !nonNameVerbs.test(candidate)
-          ) {
-            extractedName = candidate;
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  let extractedCompany = '';
-  const companyMatch =
-    allUserText.match(/\b([A-Z][a-zA-Z0-9_.-]+)(?:'s|’s)\s*(?:hiring managers|recruitment team|talent acquisition|team)/) ||
-    allUserText.match(/\b(?:hiring managers|recruitment team|talent acquisition)\s+at\s+([A-Za-z0-9_.-]+)/i) ||
-    allUserText.match(/\b(?:on behalf of|representative of)\s+([A-Z][a-zA-Z0-9_.-]+)/) ||
-    allUserText.match(/(?:來自|公司是|任職於|公司名稱|代表\s*|from\s+)([^\s,，。!！\n]{2,20})/i);
-  if (companyMatch) extractedCompany = companyMatch[1].trim();
-
-  let detectedSubject = defaultSubject || '';
-  if (!detectedSubject) {
-    if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview|hiring\s*manager|talent\s*acquisition/i.test(allUserText)) {
-      detectedSubject = isZh ? '職缺邀約／演講培訓' : 'Opportunities & Speaking';
-    } else if (/顧問|諮詢|業務|合作|商業|consulting|business/i.test(allUserText)) {
-      detectedSubject = isZh ? '顧問諮詢／業務合作' : 'Consulting & Business';
-    } else if (/技術|系統|架構|專案|tech|architecture|project/i.test(allUserText)) {
-      detectedSubject = isZh ? '技術交流／專案反饋' : 'Tech Chat & Project Feedback';
-    } else {
-      detectedSubject = isZh ? '其他交流／隨意聊聊' : 'Other Ideas & Chat';
-    }
-  }
-
-  // Extract message intent
-  const contentFilterRegex = /^(?:我想諮詢「.+」相關事宜。|I'd like to discuss ".+"\.|好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i;
-  let extractedMessage = '';
-  for (const u of userMessages) {
-    const trimmed = u.content.trim();
-    if (!trimmed) continue;
-    if (contentFilterRegex.test(trimmed)) continue;
-    if (emailRegex.test(trimmed) && trimmed.length <= 50 && !trimmed.includes(' ') && !trimmed.includes('\n')) continue;
-    if (extractedName && trimmed === extractedName) continue;
-    if (nameMatch && (trimmed === `我是${extractedName}` || trimmed === `我叫${extractedName}`)) continue;
-    extractedMessage = extractedMessage ? `${extractedMessage}\n${trimmed}` : trimmed;
-  }
-  const isTopicPromptText = (text: string): boolean =>
-    /^我想諮詢「.+」相關事宜。$/.test(text.trim()) || /^I'd like to discuss ".+"\./.test(text.trim());
-
-  if (!extractedMessage && !isTopicPromptText(lastUserMsg)) extractedMessage = lastUserMsg;
-
-  // Check if user only clicked a topic inquiry prompt
-  const hasOnlyTopicPrompt = isTopicPromptText(lastUserMsg);
-
-  if (hasOnlyTopicPrompt) {
-    const promptReply = isZh
-      ? `您好！很樂意為您安排「${detectedSubject}」相關事宜。請問方便請教您的稱呼與聯繫 Email 是？以及目前想與 David 討論的具體內容是什麼呢？`
-      : `Certainly! Regarding "${detectedSubject}", could you share your name, email, and any specific details you would like to discuss with David?`;
-    return {
-      status: 200,
-      body: {
-        reply: sanitizeSecretaryText(promptReply),
-        revealEmail: false,
-        draft: {
-          name: extractedName,
-          email: foundEmail,
-          company: extractedCompany,
-          subject: detectedSubject,
-          message: '',
-        },
-        readyToConfirm: false,
-      },
-    };
-  }
-
-  // Check missing elements
+  // 4. Smart deterministic fallback (multi-turn conversational interview)
   const hasEmail = Boolean(foundEmail);
   const hasName = Boolean(extractedName && extractedName.length >= 2);
   const hasMessage = Boolean(extractedMessage && extractedMessage.length >= 5);
@@ -1030,11 +1051,19 @@ Respond ONLY with a valid JSON object matching this schema:
     ready &&
     /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(lastUserMsg.trim());
 
+  const finalRevealEmail = Boolean(wantsEmail && decision.canRevealEmail);
+
   let reply = '';
   if (wantsEmail) {
-    reply = isZh
-      ? '好的！已為您在下方展開 David 的直通信箱名片卡 (104@david888.com)。您也可以直接在對話中告訴我想轉達給 David 的話，由我為您整理送達！'
-      : "Certainly! I've displayed David's direct contact card below (104@david888.com). You can also tell me what you'd like to forward to David right here!";
+    if (finalRevealEmail) {
+      reply = isZh
+        ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
+        : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
+    } else {
+      reply = isZh
+        ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
+        : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
+    }
   } else if (isConfirming) {
     reply = isZh
       ? `收到！小秘書正為您發送確認信至 ${foundEmail}，請點擊下方按鈕或稍候接收確認信！`
@@ -1043,6 +1072,12 @@ Respond ONLY with a valid JSON object matching this schema:
     reply = isZh
       ? `好的！小秘書已為您彙整好欲轉達給 David 的訊息：\n\n• 稱呼：${extractedName}\n• 信箱：${foundEmail}${extractedCompany ? `\n• 公司：${extractedCompany}` : ''}\n• 洽詢主旨：${detectedSubject}\n• 留言內容：${extractedMessage}\n\n請問確認要由小秘書為您寄送確認信至 ${foundEmail} 嗎？請點擊下方「確認送出確認信」即可！`
       : `Excellent! I have compiled your inquiry for David:\n\n• Name: ${extractedName}\n• Email: ${foundEmail}${extractedCompany ? `\n• Company: ${extractedCompany}` : ''}\n• Topic: ${detectedSubject}\n• Message: ${extractedMessage}\n\nShall I send the confirmation email to ${foundEmail}? Please click the confirmation button below!`;
+  } else if (decision.intent === 'recruitment_or_interview' && (!hasName || !hasEmail)) {
+    reply = isZh
+      ? (extractedCompany
+          ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！`
+          : '非常感謝您對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼、公司與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！')
+      : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D teams in distributed high-concurrency systems. Could you share your name, organization, and contact email so I can forward your invitation to David?`;
   } else if (!hasName && !hasEmail) {
     reply = isZh
       ? (extractedCompany
@@ -1067,7 +1102,7 @@ Respond ONLY with a valid JSON object matching this schema:
     status: 200,
     body: {
       reply: sanitizeSecretaryText(reply),
-      revealEmail: wantsEmail,
+      revealEmail: finalRevealEmail,
       draft: {
         name: extractedName,
         email: foundEmail,
