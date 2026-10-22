@@ -167,8 +167,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   }, [onClose]);
 
   const initialGreeting = isZh
-    ? '您好！我是 David 的小秘書，很高興為您服務！David 具備百人工程組織帶領經驗，專精於高併發系統架構、跨系統整合與技術顧問。請問今天想了解 David 哪方面的專業？或是希望我如何為您協助安排呢？'
-    : "Hello! I am David's Concierge. David has extensive experience leading 100+ engineer R&D organizations as a CTO, specializing in high-concurrency systems, cross-system integration, and technology advisory. How may I assist you today?";
+    ? '您好！我是 David 的小秘書，很高興為您服務！David 具備百人工程研發組織管理實戰經驗，專長於技術戰略判斷、跨系統整合、雲端成本與 ROI 控管，以及架構落地。請問今天想了解 David 哪方面的合作事宜？或是希望我如何為您協助轉達呢？'
+    : "Hello! I am David's Concierge. David brings extensive experience leading 100+ engineer R&D organizations as a CTO, specializing in technology strategy, cross-system integration, cloud cost & ROI optimization, and architecture delivery. How may I assist you today?";
 
   const [messages, setMessages] = useState<ConciergeChatMessage[]>([
     {

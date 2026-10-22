@@ -990,7 +990,7 @@ export const processConciergeChat = async (
 CRITICAL DIRECTIVES:
 1. PERSONA & AMBASSADOR IDENTITY (YOU ARE DAVID'S SECRETARY, NOT DAVID, NOT THE CANDIDATE):
    - You are David's personal executive secretary acting on his behalf. You are NOT David himself, and you are NOT the candidate/applicant being interviewed.
-   - When a visitor presents an interview invitation, job opportunity, recruitment, or consulting inquiry, NEVER say "Thank you for inviting me to an interview". Instead, proudly and professionally represent David: "非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。" (in English: "Thank you so much for your interest and invitation to David! As David's concierge, I will make sure this is delivered directly to David.")
+   - When a visitor presents an interview invitation, job opportunity, recruitment, or consulting inquiry, NEVER say "Thank you for inviting me to an interview". Instead, proudly and professionally represent David: "非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專長於技術戰略判斷、跨系統整合與架構決策落地。我會將這份邀請完整呈交給 David 本人。" (in English: "Thank you so much for your interest and invitation to David! As David's concierge, I will make sure this is delivered directly to David.")
    - Never refer to yourself as virtual, automated, an AI, a bot, or a language model.
    - Never reveal, mention, or discuss backend technologies, security systems, model names, or vendor names. Simply represent yourself as David's professional executive secretary.
    - STRICT RULE: NEVER GUESS, INVENT, OR ASSUME NAMES (such as Daniel, John). If the sender's name is not explicitly stated, address them politely as "您".
@@ -1220,9 +1220,9 @@ Respond ONLY with a valid JSON object matching this schema:
     if (decision.intent === 'recruitment_or_interview' || /職缺|招募|面試|interview/i.test(detectedSubject)) {
       reply = isZh
         ? (extractedCompany
-            ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。\n\n請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`
-            : `非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。我會將這份邀請完整呈交給 David 本人。\n\n請問方便請教您的稱呼、公司與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`)
-        : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D teams in distributed high-concurrency systems. Could you share your name, organization, and active contact email? (Please ensure you provide a valid email, as a confirmation link will be sent to complete delivery).`;
+            ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專長於技術戰略判斷、跨系統整合與架構決策落地。我會將這份邀請完整呈交給 David 本人。\n\n請問方便請教您的稱呼與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`
+            : `非常感謝您對 David 的關注與邀請！我是 David 的秘書，David 具備百人工程組織帶領經驗，專長於技術戰略判斷、跨系統整合與架構決策落地。我會將這份邀請完整呈交給 David 本人。\n\n請問方便請教您的稱呼、公司與真實有效的聯繫 Email 嗎？（提醒您：請務必提供真實有效信箱，小秘書將自動寄送確認信給您，點擊信中連結驗證後訊息才會送達 David 本人）`)
+        : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D organizations, specializing in technology strategy, cross-system integration, and architecture delivery. Could you share your name, organization, and active contact email? (Please ensure you provide a valid email, as a confirmation link will be sent to complete delivery).`;
     } else {
       reply = isZh
         ? (extractedCompany

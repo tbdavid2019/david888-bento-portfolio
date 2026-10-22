@@ -608,7 +608,7 @@ test('processConciergeChat runs Workers AI with CF_MODEL (@cf/openai/gpt-oss-20b
                     email: 'wang@example.com',
                     company: '創新科技',
                     subject: '顧問諮詢／業務合作',
-                    message: '希望諮詢高併發電商系統架構',
+                    message: '希望諮詢大型商務平台系統架構',
                   },
                   readyToConfirm: true,
                 }),
@@ -623,7 +623,7 @@ test('processConciergeChat runs Workers AI with CF_MODEL (@cf/openai/gpt-oss-20b
   const res = await processConciergeChat(
     {
       messages: [
-        { role: 'user', content: '我是創新科技的王小明 (wang@example.com)，想諮詢高併發電商系統架構。' },
+        { role: 'user', content: '我是創新科技的王小明 (wang@example.com)，想諮詢大型商務平台系統架構。' },
       ],
       locale: 'zh',
     },

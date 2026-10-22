@@ -319,9 +319,9 @@ export const sendConciergeMessage = async (
   } else if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview/i.test(detectedSubject) && (!hasName || !hasEmail)) {
     reply = isZh
       ? (extractedCompany
-          ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！`
-          : '非常感謝您對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專精於高併發系統架構與技術顧問。請問方便請教您的稱呼、公司與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！')
-      : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D teams in distributed high-concurrency systems. Could you share your name, organization, and contact email so I can forward your invitation to David?`;
+          ? `非常感謝 ${extractedCompany} 對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專長於技術戰略判斷、跨系統整合與架構決策落地。請問方便請教您的稱呼與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！`
+          : '非常感謝您對 David 的關注與邀請！David 具備百人工程組織帶領經驗，專長於技術戰略判斷、跨系統整合與架構決策落地。請問方便請教您的稱呼、公司與聯繫 Email 嗎？小秘書會為您整理完整邀約並呈交給 David！')
+      : `Thank you for reaching out with this opportunity for David! David brings extensive CTO experience leading 100+ engineer R&D organizations, specializing in technology strategy, cross-system integration, and architecture delivery. Could you share your name, organization, and contact email so I can forward your invitation to David?`;
   } else if (!hasName && !hasEmail) {
     reply = isZh
       ? (extractedCompany

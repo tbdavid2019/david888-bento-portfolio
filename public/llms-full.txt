@@ -3,7 +3,7 @@
 > 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統 / CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth. A CTO & Technical Advisor specializing in enterprise architecture, legacy refactoring, and business value creation.
 
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
-Specializing in technical due diligence, high-concurrency eCommerce platforms, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
+Specializing in technical due diligence, enterprise platform architecture, cross-system data integration, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
 
 - Contact: Verified web contact form at https://david888.com/ (anti-spam protected, direct dispatch to David)
 - Website: https://david888.com/
