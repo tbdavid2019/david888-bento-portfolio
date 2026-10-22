@@ -185,29 +185,31 @@ a[href] {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
-@media (max-width: 1023px) {
+/* Mobile & Small Screens (< 768px): Sleek Horizontal Scrollable Track (Never Wraps!) */
+@media (max-width: 767px) {
   .section-nav-bar {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    top: 8px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
     gap: 6px;
     padding: 6px;
+    border-radius: 14px;
   }
-}
-
-@media (max-width: 639px) {
-  .section-nav-bar {
-    top: 6px;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 6px;
-    padding: 6px;
+  .section-nav-bar::-webkit-scrollbar {
+    display: none;
   }
-  .section-nav-bar > a:nth-child(1),
-  .section-nav-bar > a:nth-child(2),
-  .section-nav-bar > a:nth-child(3) {
-    grid-column: span 2;
-  }
-  .section-nav-bar > a:nth-child(4),
-  .section-nav-bar > a:nth-child(5) {
-    grid-column: span 3;
+  .section-nav-bar > a {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    white-space: nowrap;
+    width: auto;
+    min-width: max-content;
   }
 }
 

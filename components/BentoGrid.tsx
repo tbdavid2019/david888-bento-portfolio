@@ -199,6 +199,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const sectionsToRender = isSearching ? searchSections : activeSections;
   const tocSections = sectionsToRender.filter(([section]) => section);
   const navigationCategoryId = isSearching ? 'search' : activeCategory?.id ?? activeCategoryId;
+  const navRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 600);
@@ -206,6 +207,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Auto-center active tab on mobile/small-screen horizontal scroll
+  React.useEffect(() => {
+    if (!navRef.current) return;
+    const activeEl = navRef.current.querySelector<HTMLElement>('[aria-current="location"]');
+    if (activeEl) {
+      activeEl.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
+    }
+  }, [activeCategory?.id, isExecutiveView, isFlagshipsView]);
 
   return (
     <main className="dossier-shell space-y-6 pb-16 pt-6">
@@ -226,6 +240,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
       {/* 2. 2md.aiurl.tw Sticky Deep-Blue Canonical Route Navigation Bar: 5 Clean Categories */}
       <nav
+        ref={navRef}
         aria-label={locale === 'en' ? 'Primary portfolio routes' : '主要路由導覽'}
         className="section-nav-bar"
       >
@@ -242,19 +257,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               }}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
-                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                'flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-[9px] px-3.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline whitespace-nowrap md:w-full md:min-w-0 md:px-1.5',
                 isActive
                   ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
                   : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
               )}
             >
               <Radio size={15} className="shrink-0" />
-              <span className="min-w-0 text-center leading-tight break-words">
+              <span className="min-w-0 text-center leading-tight">
                 {locale === 'en' ? 'Latest' : '最新動態'}
               </span>
               <span
                 className={cn(
-                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  'inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1.5 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:text-[11px]',
                   isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
                 )}
               >
@@ -273,19 +288,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
           }}
           aria-current={isExecutiveView ? 'location' : undefined}
           className={cn(
-            'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+            'flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-[9px] px-3.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline whitespace-nowrap md:w-full md:min-w-0 md:px-1.5',
             isExecutiveView
               ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
               : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
           )}
         >
           <Briefcase size={15} className="shrink-0" />
-          <span className="min-w-0 text-center leading-tight break-words">
+          <span className="min-w-0 text-center leading-tight">
             {locale === 'en' ? 'Ways to Work' : '合作方式'}
           </span>
           <span
             className={cn(
-              'ml-auto inline-flex h-5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:px-1.5 sm:text-[11px] md:ml-0',
+              'inline-flex h-5 shrink-0 items-center justify-center rounded-md px-1.5 font-mono text-[10px] font-extrabold leading-none sm:text-[11px]',
               isExecutiveView ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-[#ffb010] text-[#2b251a]',
             )}
           >
@@ -306,19 +321,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               }}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
-                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                'flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-[9px] px-3.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline whitespace-nowrap md:w-full md:min-w-0 md:px-1.5',
                 isActive
                   ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
                   : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
               )}
             >
               <LineChart size={15} className="shrink-0" />
-              <span className="min-w-0 text-center leading-tight break-words">
+              <span className="min-w-0 text-center leading-tight">
                 {locale === 'en' ? 'Finance & Qi' : '財經命理'}
               </span>
               <span
                 className={cn(
-                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  'inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1.5 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:text-[11px]',
                   isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
                 )}
               >
@@ -341,19 +356,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               }}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
-                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                'flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-[9px] px-3.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline whitespace-nowrap md:w-full md:min-w-0 md:px-1.5',
                 isActive
                   ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
                   : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
               )}
             >
               <Cpu size={15} className="shrink-0" />
-              <span className="min-w-0 text-center leading-tight break-words">
+              <span className="min-w-0 text-center leading-tight">
                 Skills
               </span>
               <span
                 className={cn(
-                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  'inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1.5 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:text-[11px]',
                   isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
                 )}
               >
@@ -376,19 +391,19 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               }}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
-                'flex min-h-[44px] w-full min-w-0 items-center justify-start gap-1 rounded-[9px] px-1.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline sm:justify-center md:gap-1.5',
+                'flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-[9px] px-3.5 py-1.5 text-xs sm:text-sm md:text-base font-bold transition-colors no-underline whitespace-nowrap md:w-full md:min-w-0 md:px-1.5',
                 isActive
                   ? 'bg-[#ffb010] text-[#2b251a] shadow-xs'
                   : 'text-[#fff9e8] hover:bg-[#ffb010]/20 hover:text-[#ffb010]',
               )}
             >
               <Layers size={15} className="shrink-0" />
-              <span className="min-w-0 text-center leading-tight break-words">
+              <span className="min-w-0 text-center leading-tight">
                 {locale === 'en' ? 'Other Apps' : '其他應用'}
               </span>
               <span
                 className={cn(
-                  'ml-auto inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:px-1.5 sm:text-[11px] md:ml-0',
+                  'inline-flex h-5 min-w-4.5 shrink-0 items-center justify-center rounded-md px-1.5 font-mono text-[10px] font-extrabold leading-none sm:min-w-5 sm:text-[11px]',
                   isActive ? 'bg-[#17324d] text-[#fff9e8]' : 'bg-white/15 text-[#fff9e8]',
                 )}
               >
