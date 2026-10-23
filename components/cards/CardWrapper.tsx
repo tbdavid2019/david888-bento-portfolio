@@ -37,7 +37,7 @@ export const CardWrapper: React.FC<CardWrapperProps> = ({
         className,
       )}
     >
-      <div className="relative z-10 flex h-full flex-col">{children}</div>
+      <div className="relative z-10 flex h-full flex-col min-w-0">{children}</div>
     </div>
   );
 };

@@ -122,5 +122,38 @@ test('provides a floating LLM Concierge receptionist button with accessibility l
   assert.match(bentoGrid, /bottom-20 right-6 z-40/);
 });
 
+test('renders products and flagships in balanced dual columns (md:grid-cols-2) without stretching full width', () => {
+  const links = JSON.parse(fs.readFileSync(new URL('../data/bento-links.json', import.meta.url), 'utf8'));
+  const linkCardSource = fs.readFileSync(new URL('../components/cards/BentoLinkCard.tsx', import.meta.url), 'utf8');
+
+  const dualColumnTitles = [
+    'Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析',
+    '888news | 科技與 AI 新聞自動彙整系統',
+    '2MD 快速閱讀、OCR 表格重建與個資去識別化引擎',
+    '888-url2md (2MD) Agent Skill & API',
+    '888 Stock Quant | 時間序列預測與籌碼平台',
+    '888 StockBot 2.0 | 台美股估值與籌碼分析系統',
+    '888 人生K線 | 八字命理可視化',
+    '333 奇門遁甲',
+    '台灣公司關係網路可視化',
+  ];
+
+  for (const title of dualColumnTitles) {
+    const item = links.find((entry) => entry.title === title);
+    assert.ok(item, `Card titled "${title}" must exist in bento-links.json`);
+    assert.notEqual(item.colSpan, 2, `Card titled "${title}" should not span 2 columns`);
+  }
+
+  // BentoGrid grid container and cell styling
+  assert.match(bentoGridSource, /grid grid-cols-1 gap-4 md:grid-cols-2/);
+  assert.match(bentoGridSource, /cn\('min-w-0 h-full', colSpanClass\)/);
+
+  // BentoLinkCard wrapping & overflow protection
+  assert.match(linkCardSource, /flex min-w-0 flex-1 flex-wrap items-center/);
+  assert.match(linkCardSource, /max-w-\[240px\] truncate/);
+  assert.match(linkCardSource, /flex flex-wrap gap-1\.5/);
+  assert.match(linkCardSource, /mt-auto flex flex-wrap items-center justify-end/);
+});
+
 
 

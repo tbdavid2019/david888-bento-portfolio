@@ -238,22 +238,26 @@ export const BentoLinkCard: React.FC<{
       )}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-2.5">
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#2b251a] bg-[#ffb010] text-[#2b251a] shadow-xs transition-transform duration-200 group-hover:scale-105">
             <ServiceIcon size={21} strokeWidth={2} aria-hidden="true" />
           </div>
-          <span className="rounded-md border border-border bg-bg-elevated px-2.5 py-1 font-mono text-xs font-bold text-text-muted">
+          <span
+            title={getDomain(link.url)}
+            aria-label={getDomain(link.url)}
+            className="max-w-[240px] truncate rounded-md border border-border bg-bg-elevated px-2.5 py-1 font-mono text-xs font-bold text-text-muted sm:max-w-none"
+          >
             {getDomain(link.url)}
           </span>
           {link.flagship && (
-            <span className="inline-flex items-center gap-1 rounded-md border border-[#f59e0b] bg-[#fff0cc] px-2 py-0.5 text-[11px] font-black text-[#854d0e] dark:border-[#ffb010] dark:bg-[#17324d] dark:text-[#fcd34d]">
+            <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-[#f59e0b] bg-[#fff0cc] px-2 py-0.5 text-[11px] font-black text-[#854d0e] dark:border-[#ffb010] dark:bg-[#17324d] dark:text-[#fcd34d]">
               <Sparkles size={11} className="text-[#f59e0b] dark:text-[#ffb010]" />
               <span>{isEn ? 'Flagship' : '主力系統'}</span>
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           {statusLabel && (
             <span
               title={statusTooltip}
@@ -330,16 +334,16 @@ export const BentoLinkCard: React.FC<{
                   onTagClick?.(tech);
                 }}
                 title={isEn ? `Filter portfolio by #${tech}` : `依 #${tech} 檢索跨分類相關作品`}
-                className="inline-flex cursor-pointer items-center rounded-md border border-border bg-bg-elevated px-2 py-0.5 font-mono text-[11px] font-bold text-text-muted transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] hover:text-[#17324d] dark:hover:border-[#ffb010] dark:hover:bg-[#17324d] dark:hover:text-[#ffb010]"
+                className="inline-flex max-w-full cursor-pointer items-center rounded-md border border-border bg-bg-elevated px-2 py-0.5 font-mono text-[11px] font-bold text-text-muted transition-colors hover:border-[#17324d] hover:bg-[#fff0cc] hover:text-[#17324d] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:focus-visible:outline-[#ffb010] dark:hover:border-[#ffb010] dark:hover:bg-[#17324d] dark:hover:text-[#ffb010]"
               >
-                #{tech.replace(/^#/, '')}
+                <span className="truncate">#{tech.replace(/^#/, '')}</span>
               </button>
             ))}
           </div>
         )}
 
         {(link.docUrl || link.repoUrl) && (
-          <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-border/70 pt-3 mt-4">
+          <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-border/70 pt-3 mt-3.5">
             {link.docUrl && (
               <a
                 href={link.docUrl}

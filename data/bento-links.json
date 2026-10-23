@@ -8,7 +8,6 @@
     "url": "https://stockdata.david888.com/",
     "repoUrl": "https://github.com/tbdavid2019/stock-underdog-ml",
     "imageSource": "/bento/stock_bot.svg",
-    "colSpan": 2,
     "featured": true,
     "tag": "finance",
     "section": "量化與分析平台 (Quant & Analytics Platforms)",
@@ -45,7 +44,6 @@
     "docLabel": "實戰題庫指南",
     "docLabelEn": "Prompt Guide",
     "imageSource": "/bento/stock_bot.svg",
-    "colSpan": 2,
     "featured": true,
     "tag": "finance",
     "section": "量化與分析平台 (Quant & Analytics Platforms)",
@@ -82,7 +80,6 @@
     "section": "企業與投資網路 (Corporate & Investment Networks)",
     "sectionEn": "Corporate & Investment Networks",
     "icon": "network",
-    "colSpan": 2,
     "techStack": [
       "Knowledge Graph",
       "Force-Directed Canvas",
@@ -115,7 +112,6 @@
     "icon": "store",
     "flagship": true,
     "featured": true,
-    "colSpan": 2,
     "techStack": [
       "Cloudflare Workers",
       "Google Places & SerpApi",
@@ -151,7 +147,6 @@
     "icon": "newspaper",
     "flagship": true,
     "featured": true,
-    "colSpan": 2,
     "techStack": [
       "100+ Tech Feeds",
       "Event Clustering",
@@ -256,7 +251,6 @@
     "previewImage": "/bento/bazi-kline.png",
     "label": "AI 八字可視化",
     "linkText": "立即體驗人生 K 線",
-    "colSpan": 2,
     "tag": "finance",
     "section": "奇門曆法與人生決策 (Qi & Life Decisions)",
     "sectionEn": "Qi Men & Life Decisions",
@@ -548,7 +542,6 @@
     "section": "Web 產品與服務 (Web Products & Services)",
     "sectionEn": "Web Products & Services",
     "icon": "search",
-    "colSpan": 2,
     "techStack": [
       "AnyDoc Parser",
       "PaddleOCR PP-OCRv4",
@@ -580,7 +573,6 @@
     "featured": true,
     "tag": "agent-skills",
     "icon": "search",
-    "colSpan": 2,
     "techStack": [
       "Agent Skill",
       "PP-OCRv4 API",
@@ -659,7 +651,6 @@
     "icon": "compass",
     "flagship": true,
     "featured": true,
-    "colSpan": 2,
     "techStack": [
       "Calendar Rule Engine",
       "Solar Term Calculation",

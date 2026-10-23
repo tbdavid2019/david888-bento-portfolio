@@ -592,7 +592,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
                               return (
                                 <div
                                   key={`${activeCategory?.id}-${section}-${index}`}
-                                  className={colSpanClass}
+                                  className={cn('min-w-0 h-full', colSpanClass)}
                                 >
                                   {renderItem(item, locale, handleTagClick)}
                                 </div>

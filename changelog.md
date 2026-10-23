@@ -1,5 +1,29 @@
 # Changelog
 
+## [2026-10-23] - Balanced Dual-Column Portfolio Layout (產品與旗艦雙欄並列優化) & Card Overflow Hardening
+
+### Dual-Column Bento Grid Layout (`data/bento-links.json`, `components/BentoGrid.tsx`, `components/cards/BentoLinkCard.tsx`, `components/cards/CardWrapper.tsx`)
+- **Dual-Column (`grid-cols-1 md:grid-cols-2`) Layout for Flagships & Products (`data/bento-links.json`)**:
+  - Removed `"colSpan": 2` from 9 key flagship products, tools, and platforms:
+    - `Store Pulse 店面脈搏 ｜ Google Maps 多分店評價速查與避雷分析`
+    - `888news | 科技與 AI 新聞自動彙整系統`
+    - `2MD 快速閱讀、OCR 表格重建與個資去識別化引擎`
+    - `888-url2md (2MD) Agent Skill & API`
+    - `888 Stock Quant | 時間序列預測與籌碼平台`
+    - `888 StockBot 2.0 | 台美股估值與籌碼分析系統`
+    - `888 人生K線 | 八字命理可視化`
+    - `333 奇門遁甲`
+    - `台灣公司關係網路可視化`
+  - All cards in "Web 產品與服務", "量化與分析平台", "企業與投資網路", and "奇門曆法與人生決策" now naturally occupy 1 column within `grid-cols-1 md:grid-cols-2`, creating a balanced side-by-side Bento Grid on PC/desktop screens instead of stretching full width.
+- **Card Styling & Responsive Overflow Protection (`components/cards/BentoLinkCard.tsx`, `components/cards/CardWrapper.tsx`, `components/BentoGrid.tsx`)**:
+  - **Header Domain Badge & Flagship Label**: Left container wrapped with `flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-2.5`, domain badge protected with `max-w-[240px] truncate sm:max-w-none` plus explicit `aria-label`, and right-side action icon container locked with `shrink-0` to prevent squishing or clipping on narrow viewports.
+  - **Tech Stack Tags**: Tags wrapped with `max-w-full truncate` to ensure tags never overflow horizontal card boundaries, supplemented with `focus-visible:outline-2` focus rings for WCAG 2.4.7 keyboard compliance.
+  - **Action Button Bottom Alignment**: Pinned with `mt-auto pt-3 mt-3.5` for clean, vertically aligned bottom action bars across cards of equal heights.
+  - **Flex Container Hardening**: Added `min-w-0` to `CardWrapper.tsx` inner column to guarantee code blocks and pre-formatted text scroll horizontally without pushing outer grid boundaries.
+  - **Grid Item Equal Heights**: Wrapped items in `BentoGrid.tsx` with `cn('min-w-0 h-full', colSpanClass)`.
+- **Automated Regression Test (`test/bento-navigation.test.mjs`)**:
+  - Added automated test verifying all 9 cards have removed `colSpan: 2`, and asserting responsive wrapper classes across `BentoGrid` and `BentoLinkCard`.
+
 ## [2026-10-23] - Floating LLM Concierge Receptionist Button (漂浮小秘書接待客服元件) & Non-Overlapping Back-to-Top Layout
 
 ### Floating Receptionist Component & Spatial Coordination (`components/FloatingConciergeButton.tsx`, `components/BentoGrid.tsx`, `App.tsx`, `test/bento-navigation.test.mjs`)
