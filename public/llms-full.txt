@@ -30,7 +30,7 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 
 ## Ways to Work & Executive Advisory
 
-- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。百人團隊帶得動，複雜系統搞得定，商業問題講得清；管得住成本、控制得了風險，兼具大型研發組織管理經驗與技術深度，能在企業面臨重大技術決策時做出判斷並負責落地。
+- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 讓技術投資產生商業回報，讓研發組織支撐企業成長。百人團隊帶得動，複雜系統搞得定，商業問題講得清；管得住成本、控制得了風險，兼具大型研發組織管理經驗與技術深度，能在企業面臨重大技術決策時做出判斷並負責落地。
 - [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](https://david888.com/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。
 - [CTO & VP of Engineering / 技術長與研發管理](https://david888.com/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。
 - [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](https://david888.com/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。
@@ -114,7 +114,7 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 
 ## About David Chiang (Traditional Chinese)
 
-### 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統
+### 讓技術投資產生商業回報，讓研發組織支撐企業成長。
 > 百人團隊帶得動，複雜系統搞得定，商業問題講得清。技術長的工作，不只是把系統做出來，更要管得住成本、控制得了風險，讓團隊持續交付，讓企業放心做生意。
 
 企業真正稀缺的，是既有百人大型研發組織的管理經驗，又有足夠的底層技術深度——能在企業面臨重大技術決策與系統危機時做出正確戰略判斷，並親手建立技術基準、負責把決策徹底落地。十多年跨國技術管理與架構實戰，曾帶領跨國大型商務平台工程與外部 Vendor 團隊負責核心營運與架構維護，並整合跨國消費性電子品牌客服與 CRM / ERP 跨系統資料流，打通資訊孤島、提升營運交付效率。
@@ -167,7 +167,7 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 
 ## About David Chiang (English)
 
-### CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth
+### Turning Technology Investments into Business Returns; Empowering Engineering Organizations to Drive Enterprise Growth
 > Leading 100+ person teams, mastering complex systems, and speaking plain business. A CTO's job goes beyond building software—it is about controlling costs, managing risk, keeping teams shipping, and giving the business peace of mind.
 
 What enterprises truly lack is a leader who combines large-scale engineering organization management with deep technical mastery—able to make the right strategic calls during critical technology decisions, establish technical baselines, and take full ownership of execution. With over a decade of multinational leadership, I have led multinational commerce platform engineering and vendor teams managing core operations and architectural resilience, as well as integrated multinational consumer electronics CRM/ERP data flows to eliminate organizational silos and accelerate operational delivery.

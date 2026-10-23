@@ -1,37 +1,37 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed rag-chat-2025",
+      "url": "https://github.com/tbdavid2019/rag-chat-2025/compare/fbe37bf3b5...439a4bfe9e",
+      "updated": "2026-10-22 01:56:45 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/rag-chat-2025 · October 22, 2026 01:56 1 commit to main 439a4bf security: update Node.js Docker images to 22.23.4-alpine"
+    },
+    {
+      "title": "tbdavid2019 pushed gods-eye-view",
+      "url": "https://github.com/tbdavid2019/gods-eye-view/compare/53002b8eec...d0962ab759",
+      "updated": "2026-10-22 01:57:04 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/gods-eye-view · October 22, 2026 01:57 1 commit to main d0962ab security(ci): update Node.js 24 version in CI to 24.22.1"
+    },
+    {
       "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/d2eaf5f7f2...7c03ded206",
-      "updated": "2026-10-22 03:18:28 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 22, 2026 03:18 1 commit to main 7c03ded feat(ui): migrate design tokens to 2md.aiurl.tw palette with full WCA…"
+      "url": "https://github.com/tbdavid2019/888news/compare/ed4e873188...d2eaf5f7f2",
+      "updated": "2026-10-22 01:56:22 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 22, 2026 01:56 1 commit to main d2eaf5f security: update Node.js Docker base image to 24.22.1-trixie-slim"
     },
     {
-      "title": "tbdavid2019 pushed store-pulse",
-      "url": "https://github.com/tbdavid2019/store-pulse/compare/f86a28fc89...92666f05dd",
-      "updated": "2026-10-21 08:57:46 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 21, 2026 08:57 1 commit to main 92666f0 fix(security): bind KV namespace, enforce global dual-layer rate limi…"
+      "title": "tbdavid2019 pushed iptools",
+      "url": "https://github.com/tbdavid2019/iptools/compare/86e94a0e14...6a84de869e",
+      "updated": "2026-10-22 14:53:57 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/iptools · October 22, 2026 14:53 1 commit to main 6a84de8 feat: complete 888IP branding and enhance worker api/ip with JSON/COR…"
     },
     {
-      "title": "tbdavid2019 pushed 888a2a",
-      "url": "https://github.com/tbdavid2019/888a2a/compare/4e53748ff6...ab92746a19",
-      "updated": "2026-10-22 02:14:58 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a · October 22, 2026 02:14 1 commit to main ab92746 test(supervisor): avoid multicall /bin/sleep symlink failure on Ubunt…"
-    },
-    {
-      "title": "tbdavid2019 pushed qimen",
-      "url": "https://github.com/tbdavid2019/qimen/compare/b6823f2402...59b9e80a41",
-      "updated": "2026-10-22 07:13:55 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 22, 2026 07:13 1 commit to main 59b9e80 feat(email,rwd): add inline Q&amp;A email export across 9 modules (exclud…"
-    },
-    {
-      "title": "tbdavid2019 pushed 888box",
-      "url": "https://github.com/tbdavid2019/888box/compare/f67c5ff9be...67a95f577d",
-      "updated": "2026-10-22 03:59:05 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888box · October 22, 2026 03:59 1 commit to main 67a95f5 fix: restore readable theme text contrast"
+      "title": "tbdavid2019 pushed iptools",
+      "url": "https://github.com/tbdavid2019/iptools/compare/70e10136ca...0e19b7fe82",
+      "updated": "2026-10-22 14:32:51 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/iptools · October 22, 2026 14:32 1 commit to main 0e19b7f feat: redesign 888IP branding and 2md color scheme, enforce WCAG AAA …"
     }
   ],
-  "lastSyncedAt": "2026-10-22T09:20:03.376Z",
+  "lastSyncedAt": "2026-10-23T01:59:28.244Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

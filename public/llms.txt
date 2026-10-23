@@ -30,7 +30,7 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 
 ## Ways to Work & Executive Advisory
 
-- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 具百人團隊實戰經驗的技術長：為企業打造能扛大盤的好系統。百人團隊帶得動，複雜系統搞得定，商業問題講得清；管得住成本、控制得了風險，兼具大型研發組織管理經驗與技術深度，能在企業面臨重大技術決策時做出判斷並負責落地。
+- [Executive Advisory & CTO Dossier / 合作方式與高階技術顧問完整實績](https://david888.com/executive): 讓技術投資產生商業回報，讓研發組織支撐企業成長。百人團隊帶得動，複雜系統搞得定，商業問題講得清；管得住成本、控制得了風險，兼具大型研發組織管理經驗與技術深度，能在企業面臨重大技術決策時做出判斷並負責落地。
 - [Annual Technical Advisor / 年度企業技術顧問 (12-Month Retainer)](https://david888.com/executive): 適合需要系統重構、跨系統整合、整理技術債或擴編團隊的企業。依約定頻率參與架構檢視與技術決策、規劃電商與 CRM/ERP 串接、檢討雲端成本並培訓技術主管。
 - [CTO & VP of Engineering / 技術長與研發管理](https://david888.com/executive): 跨國企業、上市櫃公司、零售電商或科技公司全職技術管理職缺。負責技術戰略、100+ 人工程團隊管理、核心商務平台改版與交付穩定度。
 - [Technical Due Diligence & System Review / 技術盡職調查與系統診斷](https://david888.com/executive): 為投資人與企業提供投資併購前第三方技術評估（架構、程式碼品質、資安規範）；或針對疊床架屋的毛線團資訊流、多方渠道串接摩擦（銀行/金流/優惠/物流）與單點故障風險進行全面盤查，提供精準消融診斷與開源節流方案。
