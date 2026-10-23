@@ -1,5 +1,26 @@
 # Changelog
 
+## [2026-10-23] - Floating LLM Concierge Receptionist Button (漂浮小秘書接待客服元件) & Non-Overlapping Back-to-Top Layout
+
+### Floating Receptionist Component & Spatial Coordination (`components/FloatingConciergeButton.tsx`, `components/BentoGrid.tsx`, `App.tsx`, `test/bento-navigation.test.mjs`)
+- **Dedicated Floating Concierge Receptionist Button (`components/FloatingConciergeButton.tsx`)**:
+  - Implemented persistent floating receptionist button anchored at `fixed bottom-6 right-6 z-40` with Navy `#17324d` background, Saffron `#ffb010` text/accent, and `#d6bc7c`/40 subtle border.
+  - Added live pulsing green indicator dot (`animate-ping`) signaling real-time receptionist availability.
+  - Responsive design behavior:
+    - Mobile (< sm): compact circular 48px badge (`h-12 w-12 rounded-full flex items-center justify-center`) with corner status dot.
+    - Tablet/Desktop (sm+): expands into an elegant pill capsule displaying `ConciergeBell` icon, localized label (**「David 的小秘書」** / **"David's Concierge"**), and inline pulsing online status indicator.
+  - Complete accessibility & polish: native `<button type="button">`, localized `aria-label` and `title`, keyboard focus visible rings (`focus-visible:ring-2 focus-visible:ring-[#ffb010]`), `motion-reduce:animate-none` for users with motion sensitivity, and `touch-manipulation` for immediate mobile response.
+- **Dual-Code-Review Autonomous Workflow (`.agent/skills/dual-code-review/SKILL.md`)**:
+  - Established standardized 5-phase pair programming protocol: Subagent Flash implementation, parent inspection, parallel Codex CLI (`codex review`) and OpenCode CLI (`opencode run`) reviews, review synthesis & remediation, followed by verified deployment.
+- **Back-to-Top Spatial Coordination (`components/BentoGrid.tsx`)**:
+  - Repositioned the scroll-to-top button from `bottom-6` to `bottom-20 right-6 z-40` so when long pages trigger the back-to-top action, it sits neatly above the floating receptionist button without collision or overlapping.
+  - Preserved exact `aria-label` strings for bilingual accessibility and regression test compliance.
+- **App Integration (`App.tsx`)**:
+  - Mounted `FloatingConciergeButton` with `!contactOpen` conditional display and `isOpen` prop support.
+  - Wired click handler to directly open `ContactDialog` in concierge chat mode (`openContactDialog('consulting', 'chat')`).
+- **Automated Regression Test (`test/bento-navigation.test.mjs`)**:
+  - Added test validating component presence, accessibility attributes, design tokens, App wiring, and non-overlapping coordinate positioning.
+
 ## [2026-10-22] - "David 的小秘書 (David's Concierge)" Receptionist Chat, Stateless Double Opt-in Email Confirmation & Cloudflare Workers `@cf/openai/gpt-oss-20b`
 
 ### Executive Receptionist Dialog & Dual-Mode Contact (`components/ContactDialog.tsx`, `public/bento/secretary-ol.png`, `lib/crm.ts`)

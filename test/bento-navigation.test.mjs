@@ -96,4 +96,31 @@ test('assigns https://stockdata.david888.com/ as the featured representative wor
   assert.equal(firstFinanceItem?.flagship, true);
 });
 
+test('provides a floating LLM Concierge receptionist button with accessibility labels and coordination with back-to-top', () => {
+  const conciergeSource = fs.readFileSync(new URL('../components/FloatingConciergeButton.tsx', import.meta.url), 'utf8');
+  const appSource = fs.readFileSync(new URL('../App.tsx', import.meta.url), 'utf8');
+  const bentoGrid = fs.readFileSync(new URL('../components/BentoGrid.tsx', import.meta.url), 'utf8');
+
+  // Verify FloatingConciergeButton component exists and has required structure
+  assert.match(conciergeSource, /ConciergeBell/);
+  assert.match(conciergeSource, /David 的小秘書/);
+  assert.match(conciergeSource, /David's Concierge/);
+  assert.match(conciergeSource, /type="button"/);
+  assert.match(conciergeSource, /aria-label=\{label\}/);
+  assert.match(conciergeSource, /title=\{label\}/);
+  assert.match(conciergeSource, /#17324d/);
+  assert.match(conciergeSource, /#ffb010/);
+  assert.match(conciergeSource, /animate-ping/);
+  assert.match(conciergeSource, /motion-reduce:animate-none/);
+
+  // Verify mounting in App.tsx
+  assert.match(appSource, /import \{ FloatingConciergeButton \} from '\.\/components\/FloatingConciergeButton';/);
+  assert.match(appSource, /<FloatingConciergeButton/);
+  assert.match(appSource, /openContactDialog\('consulting', 'chat'\)/);
+
+  // Verify coordination with back-to-top button in BentoGrid.tsx
+  assert.match(bentoGrid, /bottom-20 right-6 z-40/);
+});
+
+
 

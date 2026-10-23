@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
 import { ContactDialog } from './components/ContactDialog';
+import { FloatingConciergeButton } from './components/FloatingConciergeButton';
 import { defaultCategoryId, getVisibleCategories } from './lib/siteCatalog';
 import { registerPortfolioWebMcp } from './lib/webmcp';
 import type { Locale } from './types';
@@ -278,6 +279,12 @@ export default function App() {
         onClearSearch={() => setSearchQuery('')}
         onContact={() => openContactDialog('consulting')}
       />
+      {!contactOpen && (
+        <FloatingConciergeButton
+          locale={locale}
+          onClick={() => openContactDialog('consulting', 'chat')}
+        />
+      )}
       {contactOpen && (
         <ContactDialog
           locale={locale}

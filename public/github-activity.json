@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed rag-chat-2025",
-      "url": "https://github.com/tbdavid2019/rag-chat-2025/compare/fbe37bf3b5...439a4bfe9e",
-      "updated": "2026-10-22 01:56:45 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/rag-chat-2025 · October 22, 2026 01:56 1 commit to main 439a4bf security: update Node.js Docker images to 22.23.4-alpine"
+      "title": "tbdavid2019 pushed 888tools",
+      "url": "https://github.com/tbdavid2019/888tools/compare/d798d66630...7bafc51fa4",
+      "updated": "2026-10-22 08:58:58 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 22, 2026 08:58 1 commit to main 7bafc51 docs: add tool README and update root README and CHANGELOG for color-…"
     },
     {
-      "title": "tbdavid2019 pushed gods-eye-view",
-      "url": "https://github.com/tbdavid2019/gods-eye-view/compare/53002b8eec...d0962ab759",
-      "updated": "2026-10-22 01:57:04 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/gods-eye-view · October 22, 2026 01:57 1 commit to main d0962ab security(ci): update Node.js 24 version in CI to 24.22.1"
+      "title": "tbdavid2019 pushed 888PassWD",
+      "url": "https://github.com/tbdavid2019/888PassWD/compare/035cd4b5c0...cd414bcc1a",
+      "updated": "2026-10-22 07:52:56 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888PassWD · October 22, 2026 07:52 1 commit to main cd414bc chore: bump version to 2026.10.22 and document live release"
     },
     {
-      "title": "tbdavid2019 pushed 888news",
-      "url": "https://github.com/tbdavid2019/888news/compare/ed4e873188...d2eaf5f7f2",
-      "updated": "2026-10-22 01:56:22 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888news · October 22, 2026 01:56 1 commit to main d2eaf5f security: update Node.js Docker base image to 24.22.1-trixie-slim"
+      "title": "tbdavid2019 pushed store-pulse",
+      "url": "https://github.com/tbdavid2019/store-pulse/compare/90c64fd5ab...debd331ad4",
+      "updated": "2026-10-22 07:12:18 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 22, 2026 07:12 1 commit to main debd331 feat(router): implement URL state deep linking, store sharing, and po…"
     },
     {
-      "title": "tbdavid2019 pushed iptools",
-      "url": "https://github.com/tbdavid2019/iptools/compare/86e94a0e14...6a84de869e",
-      "updated": "2026-10-22 14:53:57 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/iptools · October 22, 2026 14:53 1 commit to main 6a84de8 feat: complete 888IP branding and enhance worker api/ip with JSON/COR…"
+      "title": "tbdavid2019 pushed stock-underdog-ml",
+      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/45e870f413...0125e91286",
+      "updated": "2026-10-22 07:05:35 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 22, 2026 07:05 1 commit to main 0125e91 refactor(ui,report): remove AI buzzword across UI, strategy labels, a…"
     },
     {
-      "title": "tbdavid2019 pushed iptools",
-      "url": "https://github.com/tbdavid2019/iptools/compare/70e10136ca...0e19b7fe82",
-      "updated": "2026-10-22 14:32:51 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/iptools · October 22, 2026 14:32 1 commit to main 0e19b7f feat: redesign 888IP branding and 2md color scheme, enforce WCAG AAA …"
+      "title": "tbdavid2019 pushed afterBUY",
+      "url": "https://github.com/tbdavid2019/afterBUY/compare/d50e89bbba...29b68ae371",
+      "updated": "2026-10-22 04:48:19 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 22, 2026 04:48 1 commit to main 29b68ae fix(ui): unify mobile 3-tier typography scale and lock app-shell scro…"
     }
   ],
-  "lastSyncedAt": "2026-10-23T01:59:28.244Z",
+  "lastSyncedAt": "2026-10-23T08:57:07.266Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
