@@ -113,15 +113,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
                     <span aria-hidden="true">·</span>
                     <span className="whitespace-nowrap">Systems Integration</span>
                     <span aria-hidden="true">·</span>
-                    <span className="whitespace-nowrap">Hands-on CTO</span>
+                    <span className="whitespace-nowrap">100+ Team Scale</span>
                   </>
                 ) : (
                   <>
                     <span className="whitespace-nowrap">大型系統架構</span>
                     <span aria-hidden="true">｜</span>
-                    <span className="whitespace-nowrap">系統整合</span>
+                    <span className="whitespace-nowrap">跨系統整合</span>
                     <span aria-hidden="true">｜</span>
-                    <span className="whitespace-nowrap">實戰經驗豐富技術長</span>
+                    <span className="whitespace-nowrap">百人研發管理</span>
                   </>
                 )}
               </div>

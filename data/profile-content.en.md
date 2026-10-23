@@ -1,4 +1,4 @@
-# CTO with 100+ Team Scale: Architecting Resilient Systems That Drive Enterprise Growth
+# Turning Technology Investments into Business Returns; Empowering Engineering Organizations to Drive Enterprise Growth
 
 > Leading 100+ person teams, mastering complex systems, and speaking plain business. A CTO's job goes beyond building software—it is about controlling costs, managing risk, keeping teams shipping, and giving the business peace of mind.
 
