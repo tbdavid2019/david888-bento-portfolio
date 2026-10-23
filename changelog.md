@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-10-23] - Remove Redundant LinkedIn Bento Card in Favor of Primary Hero ProfileCard Action Button (移除最新動態中冗餘的 LinkedIn 卡片)
+
+### Catalog & Navigation Hardening (`data/bento-links.json`, `test/bento-navigation.test.mjs`)
+- **Eliminated Redundant LinkedIn Bento Card (`data/bento-links.json`)**:
+  - Removed the standalone `"title": "LinkedIn"` card entry under `tag: "social"` entirely.
+  - LinkedIn is already permanently anchored as a primary action button directly in the hero header (`ProfileCard.tsx`: `<a href="https://www.linkedin.com/in/david11111/">LinkedIn</a>`), eliminating unnecessary visual clutter and empty space in the "最新動態" (social) grid.
+  - Fully preserved all other social links (`DAVID888 Daily 每日放送`, `DAVID888 YouTube`, `Threads: @david888.chiang`, `DAVID888 Daily 每日科技播客（英文版）`, etc.).
+- **Automated Regression Test Suite (`test/bento-navigation.test.mjs`)**:
+  - Added an assertion in the social category test verifying that `data/bento-links.json` no longer contains a redundant LinkedIn card, ensuring LinkedIn remains exclusively anchored in the hero ProfileCard header.
+
 ## [2026-10-23] - Fix Social Category Dual-Column Grid Layout & Eliminate Card Overlapping (最新動態雙欄佈局修復與重疊問題排除)
 
 ### Layout & Component Hardening (`components/BentoGrid.tsx`, `data/bento-links.json`, `test/bento-navigation.test.mjs`)

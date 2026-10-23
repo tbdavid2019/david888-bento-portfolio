@@ -258,15 +258,6 @@
   },
   {
     "type": "link",
-    "title": "LinkedIn",
-    "url": "https://www.linkedin.com/in/david11111/",
-    "imageSource": "/bento/linkedin.svg",
-    "bgClass": "bg-[#0077b5]",
-    "tag": "social",
-    "icon": "linkedin"
-  },
-  {
-    "type": "link",
     "title": "台灣標案檢索工具",
     "url": "https://huggingface.co/spaces/tbdavid2019/taiwan-tender",
     "tag": "products",

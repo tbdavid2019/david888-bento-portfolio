@@ -156,6 +156,14 @@ test('renders products and flagships in balanced dual columns (md:grid-cols-2) w
 });
 
 test('renders social category in balanced dual columns (md:grid-cols-2) without overlapping or full-width wrapping', () => {
+  const links = JSON.parse(fs.readFileSync(new URL('../data/bento-links.json', import.meta.url), 'utf8'));
+  const profileCardSource = fs.readFileSync(new URL('../components/ProfileCard.tsx', import.meta.url), 'utf8');
+
+  // Verify LinkedIn is permanently anchored in the ProfileCard hero header and no longer duplicated in bento-links.json
+  assert.match(profileCardSource, /href="https:\/\/www\.linkedin\.com\/in\/david11111\/"/);
+  const redundantLinkedIn = links.find((item) => item.tag === 'social' && item.title === 'LinkedIn');
+  assert.equal(redundantLinkedIn, undefined, 'Redundant LinkedIn card must be removed from bento-links.json since LinkedIn is permanently anchored in the ProfileCard hero header');
+
   // Verify linkedin-under-podcast, stacked-social, and special-case helpers are eliminated
   assert.doesNotMatch(bentoGridSource, /linkedin-under-podcast/);
   assert.doesNotMatch(bentoGridSource, /stacked-social/);

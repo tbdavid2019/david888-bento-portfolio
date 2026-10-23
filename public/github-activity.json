@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "tbdavid2019 pushed iptools",
+      "url": "https://github.com/tbdavid2019/iptools/compare/c42a900270...86e94a0e14",
+      "updated": "2026-10-22 14:47:16 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/iptools · October 22, 2026 14:47 1 commit to main 86e94a0 ci: remove npm cache requirement since package-lock is not tracked"
+    },
+    {
       "title": "tbdavid2019 pushed 888tools",
       "url": "https://github.com/tbdavid2019/888tools/compare/d798d66630...7bafc51fa4",
       "updated": "2026-10-22 08:58:58 UTC",
@@ -23,16 +29,10 @@
       "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/45e870f413...0125e91286",
       "updated": "2026-10-22 07:05:35 UTC",
       "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 22, 2026 07:05 1 commit to main 0125e91 refactor(ui,report): remove AI buzzword across UI, strategy labels, a…"
-    },
-    {
-      "title": "tbdavid2019 pushed afterBUY",
-      "url": "https://github.com/tbdavid2019/afterBUY/compare/d50e89bbba...29b68ae371",
-      "updated": "2026-10-22 04:48:19 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/afterBUY · October 22, 2026 04:48 1 commit to main 29b68ae fix(ui): unify mobile 3-tier typography scale and lock app-shell scro…"
     }
   ],
-  "lastSyncedAt": "2026-10-23T11:21:18.240Z",
-  "syncStatus": "stale",
+  "lastSyncedAt": "2026-10-23T11:41:08.213Z",
+  "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"
   ]
