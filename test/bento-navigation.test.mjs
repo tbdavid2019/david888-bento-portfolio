@@ -155,5 +155,29 @@ test('renders products and flagships in balanced dual columns (md:grid-cols-2) w
   assert.match(linkCardSource, /mt-auto flex flex-wrap items-center justify-end/);
 });
 
+test('renders social category in balanced dual columns (md:grid-cols-2) without overlapping or full-width wrapping', () => {
+  // Verify linkedin-under-podcast, stacked-social, and special-case helpers are eliminated
+  assert.doesNotMatch(bentoGridSource, /linkedin-under-podcast/);
+  assert.doesNotMatch(bentoGridSource, /stacked-social/);
+  assert.doesNotMatch(bentoGridSource, /isLinkedInItem/);
+  assert.doesNotMatch(bentoGridSource, /isStackedSocialItem/);
+  assert.doesNotMatch(bentoGridSource, /stackedSocialTitles/);
+
+  // Verify podcast, blog, and github cards are individual 1-column cells without md:col-span-2
+  assert.match(
+    bentoGridSource,
+    /<div className="min-w-0 h-full">\s*<PodcastFeedCard locale=\{locale\} \/>\s*<\/div>/,
+  );
+  assert.match(
+    bentoGridSource,
+    /<div className="min-w-0 h-full">\s*<BlogFeedCard locale=\{locale\} \/>\s*<\/div>/,
+  );
+  assert.match(
+    bentoGridSource,
+    /<div className="min-w-0 h-full">\s*<GithubActivityCard locale=\{locale\} \/>\s*<\/div>/,
+  );
+});
+
+
 
 

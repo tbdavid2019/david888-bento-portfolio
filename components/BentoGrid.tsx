@@ -47,26 +47,6 @@ const renderItem = (item: BentoItem, locale: Locale, onTagClick?: (tag: string) 
   return <BentoLinkCard link={item as any} locale={locale} onTagClick={onTagClick} />;
 };
 
-const stackedSocialTitles = new Set([
-  'DAVID888 YouTube',
-  'DAVID888 Daily 每日放送',
-  'Threads: @david888.chiang',
-  'Podcast: DAVID888商業報告[Oli家]',
-  'DAVID888 Daily 每日科技播客（英文版）',
-]);
-
-const isStackedSocialItem = (item: BentoItem) => {
-  if (isLinkedInItem(item)) return false;
-  if ('title' in item) {
-    return (
-      stackedSocialTitles.has(item.title) ||
-      item.title.startsWith('DAVID888 Daily') ||
-      item.title.startsWith('Podcast:')
-    );
-  }
-  return false;
-};
-
 const categoryIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   social: Radio,
   finance: LineChart,
@@ -76,7 +56,6 @@ const categoryIcons: Record<string, React.ComponentType<{ size?: number; classNa
   metaphysics: Compass,
 };
 
-const isLinkedInItem = (item: BentoItem) => 'title' in item && item.title === 'LinkedIn';
 const getSectionAnchorId = (categoryId: string, _section: string, index: number) =>
   `section-${categoryId}-${index}`;
 const getSectionLabel = (section: string) => section.replace(/\s+\([^)]*\)$/, '');
@@ -536,47 +515,25 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                       {shouldShowPodcastFeed && !section && (
-                        <div className="md:col-span-2">
+                        <div className="min-w-0 h-full">
                           <PodcastFeedCard locale={locale} />
-                          {sectionItems.filter(isLinkedInItem).map((item) => (
-                            <div key="linkedin-under-podcast" className="mt-4">
-                              {renderItem(item, locale, handleTagClick)}
-                            </div>
-                          ))}
                         </div>
                       )}
 
                       {shouldShowPodcastFeed && !section && (
-                        <div>
+                        <div className="min-w-0 h-full">
                           <BlogFeedCard locale={locale} />
                         </div>
                       )}
 
                       {shouldShowPodcastFeed && !section && (
-                        <div>
+                        <div className="min-w-0 h-full">
                           <GithubActivityCard locale={locale} />
                         </div>
                       )}
 
-                      {shouldShowPodcastFeed && !section && (
-                        <div className="md:col-span-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                          {sectionItems
-                            .filter(isStackedSocialItem)
-                            .map((item, index) => (
-                              <div key={`stacked-social-${index}`}>
-                                {renderItem(item, locale, handleTagClick)}
-                              </div>
-                            ))}
-                        </div>
-                      )}
-
                       {(() => {
-                        const filteredItems = sectionItems.filter(
-                          (item) =>
-                            !shouldShowPodcastFeed ||
-                            section ||
-                            (!isLinkedInItem(item) && !isStackedSocialItem(item)),
-                        );
+                        const filteredItems = sectionItems;
                         const sectionKey = `${activeCategory?.id}-${section || 'main'}`;
                         const isExpanded = !!expandedSections[sectionKey];
                         const shouldLimit =

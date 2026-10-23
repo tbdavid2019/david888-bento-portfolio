@@ -1,5 +1,25 @@
 # Changelog
 
+## [2026-10-23] - Fix Social Category Dual-Column Grid Layout & Eliminate Card Overlapping (最新動態雙欄佈局修復與重疊問題排除)
+
+### Layout & Component Hardening (`components/BentoGrid.tsx`, `data/bento-links.json`, `test/bento-navigation.test.mjs`)
+- **Dual-Column (`grid-cols-1 md:grid-cols-2`) Grid Flow for Latest Updates (`components/BentoGrid.tsx`)**:
+  - Removed `md:col-span-2` wrapper around `PodcastFeedCard`.
+  - Rendered `PodcastFeedCard`, `BlogFeedCard`, and `GithubActivityCard` as independent single-column cells (`min-w-0 h-full`).
+  - Removed special-case helpers `isLinkedInItem`, `isStackedSocialItem`, and `stackedSocialTitles`.
+  - Removed the hardcoded `linkedin-under-podcast` insertion that was causing LinkedIn badge and title to overlap with `BlogFeedCard`.
+  - Removed the nested `stacked-social` (`md:col-span-2 grid grid-cols-1 sm:grid-cols-2`) wrapper, enabling all social items to flow naturally through the standard dual-column grid.
+  - Social items now align in a clean, perfectly balanced dual-column grid on desktop screens without overlapping:
+    - Col 1: PodcastFeedCard | Col 2: BlogFeedCard
+    - Col 1: GithubActivityCard | Col 2: LinkedIn
+    - Col 1: DAVID888 Daily 每日放送 | Col 2: DAVID888 YouTube
+    - Col 1: Threads: @david888.chiang | Col 2: DAVID888 Daily 每日科技播客（英文版）
+- **Catalog Ordering (`data/bento-links.json`)**:
+  - Positioned `DAVID888 Daily 每日放送` alongside `DAVID888 YouTube` for balanced pairing across the two columns.
+- **Automated Regression Test Suite (`test/bento-navigation.test.mjs`)**:
+  - Added unit test asserting absence of `linkedin-under-podcast`, `stacked-social`, and redundant filter helpers.
+  - Verified `PodcastFeedCard`, `BlogFeedCard`, and `GithubActivityCard` render as clean single-column (`min-w-0 h-full`) grid items.
+
 ## [2026-10-23] - Balanced Dual-Column Portfolio Layout (產品與旗艦雙欄並列優化) & Card Overflow Hardening
 
 ### Dual-Column Bento Grid Layout (`data/bento-links.json`, `components/BentoGrid.tsx`, `components/cards/BentoLinkCard.tsx`, `components/cards/CardWrapper.tsx`)
