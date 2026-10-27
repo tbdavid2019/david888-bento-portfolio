@@ -1,5 +1,27 @@
 # Changelog
 
+## [2026-10-27] - Mobile Native Tab Swipe Navigation & Next Category Exploration Deck (手機左右滑動切換分頁手勢與章節接續探索卡片)
+
+### Mobile UX & Interaction Hardening (`lib/useSwipeCategory.ts`, `components/NextCategoryGuide.tsx`, `components/BentoGrid.tsx`, `test/mobile-category-swipe.test.mjs`)
+- **方案 B：Mobile Native Touch Swipe Gesture Hook (`lib/useSwipeCategory.ts`)**:
+  - Engineered zero-dependency, high-performance touch gesture hook with strict angle gating and directional priority.
+  - **Vertical Scroll Lock**: If vertical displacement $|dy| \ge |dx|$ within the first 10px, the gesture is immediately locked as native vertical scrolling, preventing accidental horizontal tab switching while reading content.
+  - **Horizontal Swipe Dominance**: Requires $|dx| \ge 48\text{px}$, $|dx| > 1.6 \times |dy|$, and duration $< 500\text{ms}$ for responsive, natural flick transitions.
+  - **Edge Exclusion Protection**: Skips gestures initiated within 24px of the screen edge to protect native iOS/Android swipe back/forward gestures.
+  - **Interactive Target Guard**: Prevents gesture interception on buttons, links, inputs, dialogs, and horizontally scrollable containers (`.section-nav-bar`, `pre`, `code`).
+  - **Haptic Feedback**: Integrates subtle haptic pulse (`navigator.vibrate(8)`) on supported devices.
+  - **Canonical Tab Sequencing**: Cycles cleanly across `social` $\leftrightarrow$ `executive` $\leftrightarrow$ `finance` $\leftrightarrow$ `agent-skills` $\leftrightarrow$ `products`.
+- **方案 A：Next Category Exploration Deck (`components/NextCategoryGuide.tsx`)**:
+  - Rendered at the bottom of each category content block so users who reach the bottom have a clear, forward-moving CTA.
+  - Features 2md Deep-Blue & Saffron luxury card styling, next chapter icon, localized title, summary, and direct action button.
+  - Includes subtle mobile hint educating users that swipe gestures are active: `📱 提示：在手機上亦可向左滑動隨時切換至下一分類`.
+  - When reaching the final category (`products`), renders a completion banner offering direct consultation contact (`onContact`) or loop back to latest updates.
+- **BentoGrid Integration (`components/BentoGrid.tsx`)**:
+  - Connected `useSwipeCategory` to `contentSectionRef`.
+  - Mounted `<NextCategoryGuide>` at the bottom of active category views, scrolling smoothly to section start on transition.
+- **Automated Regression Test Suite (`test/mobile-category-swipe.test.mjs`)**:
+  - 8 new comprehensive unit tests validating gesture angle gating, edge exclusions, alias normalization, and component wiring.
+
 ## [2026-10-23] - Remove Redundant LinkedIn Bento Card in Favor of Primary Hero ProfileCard Action Button (移除最新動態中冗餘的 LinkedIn 卡片)
 
 ### Catalog & Navigation Hardening (`data/bento-links.json`, `test/bento-navigation.test.mjs`)

@@ -1,37 +1,37 @@
 {
   "entries": [
     {
-      "title": "tbdavid2019 pushed iptools",
-      "url": "https://github.com/tbdavid2019/iptools/compare/c42a900270...86e94a0e14",
-      "updated": "2026-10-22 14:47:16 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/iptools · October 22, 2026 14:47 1 commit to main 86e94a0 ci: remove npm cache requirement since package-lock is not tracked"
+      "title": "tbdavid2019 pushed openVman",
+      "url": "https://github.com/CreateIntelligens/openVman/compare/a21fdbdb3d...517398266d",
+      "updated": "2026-10-25 13:51:24 UTC",
+      "summary": "tbdavid2019 pushed to main in CreateIntelligens/openVman · October 25, 2026 13:51 1 commit to main 5173982 fix(docker): install corepack globally for Node 26 compatibility"
+    },
+    {
+      "title": "tbdavid2019 pushed chrome-webtalk",
+      "url": "https://github.com/tbdavid2019/chrome-webtalk/compare/69767b80a6...45fa6d6451",
+      "updated": "2026-10-26 00:10:55 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/chrome-webtalk · October 26, 2026 00:10 1 commit to main 45fa6d6 feat: add multi-provider BYOK and free Groq starter (v2.8.6)"
     },
     {
       "title": "tbdavid2019 pushed 888tools",
-      "url": "https://github.com/tbdavid2019/888tools/compare/d798d66630...7bafc51fa4",
-      "updated": "2026-10-22 08:58:58 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 22, 2026 08:58 1 commit to main 7bafc51 docs: add tool README and update root README and CHANGELOG for color-…"
+      "url": "https://github.com/tbdavid2019/888tools/compare/93c87c81a6...69c0a6a024",
+      "updated": "2026-10-25 13:27:13 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888tools · October 25, 2026 13:27 1 commit to main 69c0a6a chore(runtime): 容器基底全面升級 Node.js 26 (v26.12.1) 與最新 CVE 安全防護加固"
     },
     {
-      "title": "tbdavid2019 pushed 888PassWD",
-      "url": "https://github.com/tbdavid2019/888PassWD/compare/035cd4b5c0...cd414bcc1a",
-      "updated": "2026-10-22 07:52:56 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888PassWD · October 22, 2026 07:52 1 commit to main cd414bc chore: bump version to 2026.10.22 and document live release"
+      "title": "tbdavid2019 pushed qimen",
+      "url": "https://github.com/tbdavid2019/qimen/compare/52717991d6...77d4d9fe00",
+      "updated": "2026-10-25 13:26:23 UTC",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/qimen · October 25, 2026 13:26 1 commit to main 77d4d9f chore(runtime): 容器基底全面升級 Node.js 26 (v26.12.1) 與最新 CVE 安全防護加固"
     },
     {
-      "title": "tbdavid2019 pushed store-pulse",
-      "url": "https://github.com/tbdavid2019/store-pulse/compare/90c64fd5ab...debd331ad4",
-      "updated": "2026-10-22 07:12:18 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/store-pulse · October 22, 2026 07:12 1 commit to main debd331 feat(router): implement URL state deep linking, store sharing, and po…"
-    },
-    {
-      "title": "tbdavid2019 pushed stock-underdog-ml",
-      "url": "https://github.com/tbdavid2019/stock-underdog-ml/compare/45e870f413...0125e91286",
-      "updated": "2026-10-22 07:05:35 UTC",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/stock-underdog-ml · October 22, 2026 07:05 1 commit to main 0125e91 refactor(ui,report): remove AI buzzword across UI, strategy labels, a…"
+      "title": "tbdavid2019 pushed openVman",
+      "url": "https://github.com/CreateIntelligens/openVman/compare/83176c3fa6...a21fdbdb3d",
+      "updated": "2026-10-25 13:45:11 UTC",
+      "summary": "tbdavid2019 pushed to main in CreateIntelligens/openVman · October 25, 2026 13:45 1 commit to main a21fdbd security: upgrade frontend Docker build stages to node:26.12.1-alpine"
     }
   ],
-  "lastSyncedAt": "2026-10-23T11:41:08.213Z",
+  "lastSyncedAt": "2026-10-27T01:16:56.776Z",
   "syncStatus": "ok",
   "excludedRepositories": [
     "david888-bento-portfolio"

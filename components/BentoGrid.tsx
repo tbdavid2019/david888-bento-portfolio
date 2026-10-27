@@ -26,6 +26,8 @@ import { PodcastFeedCard } from './cards/PodcastFeedCard';
 import { BlogFeedCard } from './cards/BlogFeedCard';
 import { GithubActivityCard } from './cards/GithubActivityCard';
 import { AnnouncementBar } from './AnnouncementBar';
+import { NextCategoryGuide } from './NextCategoryGuide';
+import { useSwipeCategory } from '../lib/useSwipeCategory';
 import {
   categories,
   getCategoryById,
@@ -137,6 +139,14 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const activeCategory =
     visibleCategories.find((category) => category.id === activeCategoryId) ?? visibleCategories[0];
   const activeItems = activeCategory ? groupedItems[activeCategory.id] ?? [] : [];
+
+  useSwipeCategory({
+    activeCategoryId: isExecutiveView ? 'executive' : activeCategory?.id ?? activeCategoryId,
+    onCategoryChange: handleCategorySelect,
+    isSearching,
+    enabled: true,
+    targetRef: contentSectionRef,
+  });
 
   const searchMatches = React.useMemo(() => {
     return searchSiteItems(searchQuery, items);
@@ -591,6 +601,16 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
               </div>
             )}
           </>
+        )}
+
+        {/* 方案 A: 下一章節接續探索卡片 (Next Category Exploration Guide) */}
+        {!isSearching && !isExecutiveView && !isFlagshipsView && (
+          <NextCategoryGuide
+            currentCategoryId={activeCategory?.id ?? activeCategoryId}
+            locale={locale}
+            onSelectCategory={handleCategorySelect}
+            onContact={onContact}
+          />
         )}
       </section>
 
