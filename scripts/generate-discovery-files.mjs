@@ -1,21 +1,20 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import {
-  GITHUB_ATOM_FEED_URL,
   createGithubActivityPayload,
   createStaleGithubActivityPayload,
+  fetchGithubAtomFeed,
   parseGithubAtomFeed,
 } from './github-activity.mjs';
 import { generateLlmsFiles } from './llms-txt.mjs';
+import { buildSiteContext } from './build-site-context.mjs';
 
 const projectRoot = process.cwd();
 const publicDir = path.join(projectRoot, 'public');
+const dataDir = path.join(projectRoot, 'data');
 const githubActivityPath = path.join(publicDir, 'github-activity.json');
 const packageJsonPath = path.join(projectRoot, 'package.json');
 const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
-const execFileAsync = promisify(execFile);
 
 const siteOrigin = new URL(packageJson.homepage).origin;
 const isoDate = new Date().toISOString();
@@ -115,13 +114,7 @@ async function buildGithubActivityFeed() {
   }
 
   try {
-    const { stdout: xml } = await execFileAsync('curl', [
-      '-fsSL',
-      '-H',
-      'Accept: application/atom+xml, application/xml;q=0.9, text/xml;q=0.8',
-      GITHUB_ATOM_FEED_URL,
-    ]);
-
+    const xml = await fetchGithubAtomFeed({ timeoutMs: 10_000 });
     const entries = parseGithubAtomFeed(xml);
 
     await fs.writeFile(
@@ -129,19 +122,30 @@ async function buildGithubActivityFeed() {
       `${JSON.stringify(createGithubActivityPayload(entries, isoDate), null, 2)}\n`,
       'utf8',
     );
+    return entries;
   } catch (error) {
     console.warn('Unable to build GitHub activity feed:', error);
+    const stalePayload = createStaleGithubActivityPayload(existingPayload);
     await fs.writeFile(
       githubActivityPath,
-      `${JSON.stringify(createStaleGithubActivityPayload(existingPayload), null, 2)}\n`,
+      `${JSON.stringify(stalePayload, null, 2)}\n`,
       'utf8',
     );
+    return stalePayload.entries;
   }
 }
 
 await ensureDir(path.join(publicDir, '.well-known'));
 
 await generateLlmsFiles({ projectRoot, siteOrigin });
+const githubActivityEntries = await buildGithubActivityFeed();
+await buildSiteContext({
+  dataDir,
+  outputDir: publicDir,
+  siteOrigin,
+  githubActivityEntries,
+  now: isoDate,
+});
 
 const categoryConfigPath = path.join(projectRoot, 'data', 'bento-categories.json');
 const categoryConfig = JSON.parse(await fs.readFile(categoryConfigPath, 'utf8'));
@@ -158,10 +162,9 @@ const canonicalCategoryRoutes = [
 
 const discoveredRoutes = await collectHtmlRoutes(publicDir);
 const sitemapRoutes = Array.from(
-  new Set(['/', '/llms.txt', '/llms-full.txt', ...canonicalCategoryRoutes, ...discoveredRoutes]),
+  new Set(['/', '/llms.txt', '/llms-full.txt', '/rss.xml', ...canonicalCategoryRoutes, ...discoveredRoutes]),
 ).sort();
 
 await fs.writeFile(path.join(publicDir, 'robots.txt'), buildRobotsTxt(), 'utf8');
 await fs.writeFile(path.join(publicDir, 'sitemap.xml'), buildSitemapXml(sitemapRoutes), 'utf8');
 await fs.writeFile(path.join(publicDir, '.well-known', 'api-catalog'), buildApiCatalog(), 'utf8');
-await buildGithubActivityFeed();

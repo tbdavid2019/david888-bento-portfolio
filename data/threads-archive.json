@@ -1,0 +1,35 @@
+{
+  "sourceUrl": "https://www.threads.com/@david888.chiang",
+  "syncStatus": "ok",
+  "lastSyncedAt": "2026-11-18T05:45:08.200Z",
+  "entries": [
+    {
+      "id": "md-d7d537eabd18",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運上，多組獨立解析器與自動容錯，比依賴單一公共 DNS 更能承受政策變動。🎧 聽今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "fetchedAt": "2026-11-18T05:44:40.120Z"
+    },
+    {
+      "id": "md-55b57e2da083",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "搜尋答案直接出現在結果頁，網站流量少四成，受影響的也包括寫教學和實測的人。文章指出，Google AI 回答減少搜尋導流，讓內容團隊轉向爭取 AI 引用；但被引用仍不等於讀者會回站。對讀者來說，點回原始文章、支持持續更新的第一手內容，仍是讓這種知識供給延續的方式。🎧 聽今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "fetchedAt": "2026-11-18T05:44:40.120Z"
+    },
+    {
+      "id": "md-11bb3716a3ac",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "作業系統看到你用了哪些開發代理，會讓遙測問題多一層競爭關係。今日文章整理 Windows 11 蒐集開發工具使用資訊引發的反彈：即使資料不含程式碼，工具清單與活躍情況也可能描出團隊採用趨勢。當系統商也推出自家 AI 工具，企業更需要弄清楚蒐集範圍、用途和管理方式。🎧 聽今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "fetchedAt": "2026-11-18T05:44:40.120Z"
+    },
+    {
+      "id": "md-a077aa8c1964",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "65 個字元可能就夠了：文章列出的 Java4Shell 觸發字串是 64 個 A 加一個等號。OpenJDK 在特定 AVX-512 解碼路徑可能因長度計算下溢，寫出配置範圍；研究團隊也列出 Keycloak、Jira、Confluence、Jenkins 等受影響案例。企業維運可先盤點 JVM 版本與相關服務，再追蹤各元件修補資訊。🎧 聽今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "fetchedAt": "2026-11-18T05:44:40.120Z"
+    }
+  ]
+}

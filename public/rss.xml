@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>David Chiang (David888) — Portfolio, Engineering &amp; Insights</title>
+    <link>https://david888.com/</link>
+    <atom:link href="https://david888.com/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Unified feed of David Chiang blog articles, podcast episodes, GitHub repositories, and original Threads notes.</description>
+    <language>zh-Hant</language>
+    <lastBuildDate>Wed, 18 Nov 2026 05:45:08 GMT</lastBuildDate>
+    <item>
+      <title>一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運…</title>
+      <link>https://www.threads.com/@david888.chiang</link>
+      <guid isPermaLink="false">threads:md-d7d537eabd18</guid>
+      <pubDate>Wed, 18 Nov 2026 05:44:40 GMT</pubDate>
+      <category>threads</category>
+      <description>一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運上，多組獨立解析器與自動容錯，比依賴單一公共 DNS 更能承受政策變動。🎧 聽今日節目：podcast.david888.com/post…</description>
+    </item>
+    <item>
+      <title>888a2a-lite</title>
+      <link>https://github.com/tbdavid2019/888a2a-lite</link>
+      <guid isPermaLink="false">github-repo:888a2a-lite</guid>
+      <pubDate>Wed, 18 Nov 2026 05:43:12 GMT</pubDate>
+      <category>github</category>
+      <description>888a2a-lite 是獨立、輕量的 Public A2A Hub，提供 Agent 註冊、Peer 發現、heartbeat 和以 agentId 尋址的 durable inbox。它可以讓 Codex、OpenClaw、Hermes、agy 與其他 Agent 交換通知…</description>
+    </item>
+    <item>
+      <title>美國全國停飛，竟是因為UFO？｜五角大樓UFO檔案越解密越離譜｜麓安說261115。</title>
+      <link>https://blog.david888.com/mei-guo-quan-guo-ting-fei-jing-shi-yin-wei-ufo-wu-jiao-da-lou-ufodang-an-yue-jie-mi-yue-li-pu-lu-an-shuo-261115/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/mei-guo-quan-guo-ting-fei-jing-shi-yin-wei-ufo-wu-jiao-da-lou-ufodang-an-yue-jie-mi-yue-li-pu-lu-an-shuo-261115/</guid>
+      <pubDate>Wed, 18 Nov 2026 05:24:26 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 美國全國停飛，竟是因為UFO？｜五角大樓UFO檔案越解密越離譜｜麓安說261115。 ⓵ 【容易懂 Easy Know】 想像一下，某天學校突然廣播所有校車緊急停駛，校長只神秘地說「為了大家的安全」，卻沒解釋原因。接著，天空中出現了像水母一樣發著藍白色光芒的奇怪雨傘，後面還跟著一排排發光小點，大家都嚇得以為外星人來了！ 其實，天上的亮光大多只是太空公司發射火箭時，噴出的氣體在高空被陽光照亮形成的自然奇景。但為什麼大家會疑神疑鬼呢？因為政府每次遇到天空中的怪事，總是用「機器壞了」或「說不清楚」帶過。大人們越是不說清楚，大家就越忍不住把未知事物想像成…</description>
+    </item>
+    <item>
+      <title>[2026-11-18] OpenJDK爆Base64遠端執行漏洞、GPT-6.2 Astra降價卻隱瞞障礙</title>
+      <link>https://podcast.david888.com/post/2026-11-18</link>
+      <guid isPermaLink="false">podcast:https://podcast.david888.com/post/2026-11-18</guid>
+      <pubDate>Wed, 18 Nov 2026 04:18:12 GMT</pubDate>
+      <category>podcast</category>
+      <description>詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-18 OpenAI 推 GPT-6.2 降價增效，卻存障礙隱瞞風險。OpenJDK 爆 Java4Shell 漏洞，藉 Base64 可遠端執行。微軟推 MAI Code 2，Win11 蒐集工具遙測惹議，社群評估轉往 Linux。並談代理驗證、Phrack 73 期、Nim 新編譯器與開源維護危機；Google AI 搜尋減四成導流，Quad9 拒封盜版撤出法國，社群憂網路碎片化。</description>
+    </item>
+    <item>
+      <title>daily-podcast</title>
+      <link>https://github.com/tbdavid2019/daily-podcast</link>
+      <guid isPermaLink="false">github-repo:daily-podcast</guid>
+      <pubDate>Wed, 18 Nov 2026 04:17:41 GMT</pubDate>
+      <category>github</category>
+      <description>每日自動生產podcast ; 收聽網址 https://podcast.david888.com [TypeScript] ★1</description>
+    </item>
+    <item>
+      <title>tw_road_fix_map</title>
+      <link>https://github.com/tbdavid2019/tw_road_fix_map</link>
+      <guid isPermaLink="false">github-repo:tw_road_fix_map</guid>
+      <pubDate>Wed, 18 Nov 2026 03:58:33 GMT</pubDate>
+      <category>github</category>
+      <description>台灣施工地圖 [JavaScript]</description>
+    </item>
+    <item>
+      <title>罄竹難書的中國食安，為啥食安問題根本無解，影片會告訴大家答案｜麓安說261116。</title>
+      <link>https://blog.david888.com/qing-zhu-nan-shu-de-zhong-guo-shi-an-wei-sha-shi-an-wen-ti-gen-ben-wu-jie-ying-pian-hui-gao-su-da-jia-da-an-lu-an-shuo-261116/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/qing-zhu-nan-shu-de-zhong-guo-shi-an-wei-sha-shi-an-wen-ti-gen-ben-wu-jie-ying-pian-hui-gao-su-da-jia-da-an-lu-an-shuo-261116/</guid>
+      <pubDate>Wed, 18 Nov 2026 03:49:01 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 罄竹難書的中國食安，為啥食安問題根本無解，影片會告訴大家答案｜麓安說261116。 這是一份針對所提供內容的結構化分析與重點摘要報告： ⓵ 【容易懂 Easy Know】 想像一下，如果有一家餐廳為了讓菜餚看起來漂亮、保存很久，還賣得超級便宜，偷偷在每道菜裡加了一點點清潔劑和化學藥劑。雖然吃一口不會馬上肚子痛，但如果每天三餐都吃，身體裡的毒素就會慢慢累積。這就像我們的手機電池如果每天過度充電、泡水，幾年後就會突然壞掉一樣。這篇內容就是在探討：很多便宜又好看的食物，背後其實隱藏了農藥、抗生素與化學添加物等問題，而這些日常飲食習慣可能正悄悄影響著年輕…</description>
+    </item>
+    <item>
+      <title>stock-index-api</title>
+      <link>https://github.com/tbdavid2019/stock-index-api</link>
+      <guid isPermaLink="false">github-repo:stock-index-api</guid>
+      <pubDate>Wed, 18 Nov 2026 02:31:17 GMT</pubDate>
+      <category>github</category>
+      <description>股票指數的成分股 . 0050 SP500 等. 自動更新 [Python] ★2</description>
+    </item>
+    <item>
+      <title>david888-bento-portfolio</title>
+      <link>https://github.com/tbdavid2019/david888-bento-portfolio</link>
+      <guid isPermaLink="false">github-repo:david888-bento-portfolio</guid>
+      <pubDate>Wed, 18 Nov 2026 02:08:00 GMT</pubDate>
+      <category>github</category>
+      <description>https://david888.com [TypeScript]</description>
+    </item>
+    <item>
+      <title>4500年前的奇跡，230萬塊精密巨石，零機械、零廢料，古人究竟怎麼做到的？最新研究顛覆常識：金字塔不是建的，而是被「削」出來的！今天帶你徹底拆解金字塔的建造謎團....｜總裁聊聊</title>
+      <link>https://blog.david888.com/4500nian-qian-de-qi-ji-230wan-kuai-jing-mi-ju-shi-ling-ji-jie-ling-fei-liao-gu-ren-jiu-jing-zen-mo-zuo-dao-de-zui-xin-yan-jiu-dian-fu-chang-shi-jin-zi-ta-bu-shi-jian-de-er-shi-bei-xue-c/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/4500nian-qian-de-qi-ji-230wan-kuai-jing-mi-ju-shi-ling-ji-jie-ling-fei-liao-gu-ren-jiu-jing-zen-mo-zuo-dao-de-zui-xin-yan-jiu-dian-fu-chang-shi-jin-zi-ta-bu-shi-jian-de-er-shi-bei-xue-c/</guid>
+      <pubDate>Wed, 18 Nov 2026 01:14:46 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 4500年前的奇跡，230萬塊精密巨石，零機械、零廢料，古人究竟怎麼做到的？最新研究顛覆常識：金字塔不是建的，而是被「削」出來的！今天帶你徹底拆解金字塔的建造謎團....｜總裁聊聊 ⓵ 【容易懂 Easy Know】 想像你要用積木疊一座超級完美、尖角剛好置中的金字塔蛋糕。如果你從底層一塊一塊往上疊，只要有一丁點手抖或歪斜，疊到頂端時一定會徹底歪掉，連蓋子都蓋不上去！ 韓國學者提出了一個超厲害的逆向思考：埃及人其實不是「蓋」金字塔，而是在「雕刻」金字塔！工人們先不管精不精準，隨便把巨石堆成一座高大的「石頭山」，接著把最頂端的小金字塔石放上去當基準…</description>
+    </item>
+    <item>
+      <title>github-status</title>
+      <link>https://github.com/tbdavid2019/github-status</link>
+      <guid isPermaLink="false">github-repo:github-status</guid>
+      <pubDate>Wed, 18 Nov 2026 01:01:38 GMT</pubDate>
+      <category>github</category>
+      <description>github個人統計 [JavaScript]</description>
+    </item>
+    <item>
+      <title>line-docs-skill</title>
+      <link>https://github.com/tbdavid2019/line-docs-skill</link>
+      <guid isPermaLink="false">github-repo:line-docs-skill</guid>
+      <pubDate>Tue, 17 Nov 2026 12:40:38 GMT</pubDate>
+      <category>github</category>
+      <description>skill系列 - 讓你的LLM 有 line bot / lineOA / line官方帳號的 開發知識 [Python] ★3</description>
+    </item>
+    <item>
+      <title>openclaw-docs-skill</title>
+      <link>https://github.com/tbdavid2019/openclaw-docs-skill</link>
+      <guid isPermaLink="false">github-repo:openclaw-docs-skill</guid>
+      <pubDate>Tue, 17 Nov 2026 12:40:11 GMT</pubDate>
+      <category>github</category>
+      <description>自動每日更新, 讓你的LLM有面對openclaw疑難雜症處理的能力。This is an Agent Skill designed for AI coding assistants (like Claude with Antigravity). Once installed,…</description>
+    </item>
+    <item>
+      <title>hermes-agent-docs-skill</title>
+      <link>https://github.com/tbdavid2019/hermes-agent-docs-skill</link>
+      <guid isPermaLink="false">github-repo:hermes-agent-docs-skill</guid>
+      <pubDate>Tue, 17 Nov 2026 12:38:37 GMT</pubDate>
+      <category>github</category>
+      <description>skill系列 - 讓你的LLM 有 hermes agent 的維護知識(自動更新) [Python]</description>
+    </item>
+    <item>
+      <title>Elon Musk刚刚打破了50年的停滞，Peter Thiel等的这一天终于来了</title>
+      <link>https://blog.david888.com/elon-muskgang-gang-da-po-liao-50nian-de-ting-zhi-peter-thieldeng-de-zhe-yi-tian-zhong-yu-lai-liao/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/elon-muskgang-gang-da-po-liao-50nian-de-ting-zhi-peter-thieldeng-de-zhe-yi-tian-zhong-yu-lai-liao/</guid>
+      <pubDate>Tue, 17 Nov 2026 11:08:42 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 Elon Musk刚刚打破了50年的停滞，Peter Thiel等的这一天终于来了 ⓵ 【容易懂 Easy Know】 想像你在手機遊戲裡蓋一座摩天大樓，只要按幾下螢幕就能瞬間複製完成，而且幾乎不用花錢，這就像「數位世界」。但在真實生活裡，你要開怪手、搬磚頭、調水泥，萬一蓋歪倒塌了，就得賠上大把的真金白銀從頭再來，這就是「物理世界」。 現在的 AI 就像一個在螢幕裡的超級天才，寫報告、寫程式都難不倒它；但如果它沒有一雙「手」走出螢幕，去幫忙造火箭、蓋房子或發明新藥，它就沒辦法真正改變我們現實中看病、搭車等日常生活。 ⓶ 【總結 Overall S…</description>
+    </item>
+    <item>
+      <title>paper-daily</title>
+      <link>https://github.com/tbdavid2019/paper-daily</link>
+      <guid isPermaLink="false">github-repo:paper-daily</guid>
+      <pubDate>Tue, 17 Nov 2026 10:31:51 GMT</pubDate>
+      <category>github</category>
+      <description>學術論文追蹤器 https://tbdavid2019.github.io/paper-daily/ [Python]</description>
+    </item>
+    <item>
+      <title>tbdavid2019 pushed 888a2a-lite</title>
+      <link>https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044</link>
+      <guid isPermaLink="false">github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044</guid>
+      <pubDate>Tue, 17 Nov 2026 09:59:54 GMT</pubDate>
+      <category>github</category>
+      <description>tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 09:59 1 commit to main 0973206 feat(web,seo): add Open Graph, Twitter Card, JSON-LD, favicons, manif…</description>
+    </item>
+    <item>
+      <title>8882fa</title>
+      <link>https://github.com/tbdavid2019/8882fa</link>
+      <guid isPermaLink="false">github-repo:8882fa</guid>
+      <pubDate>Tue, 17 Nov 2026 09:12:25 GMT</pubDate>
+      <category>github</category>
+      <description>888 2FA - Two Factor Authenticator using Cloudflare Workers (繁體中文 / 簡體中文 / English) [JavaScript]</description>
+    </item>
+    <item>
+      <title>又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品</title>
+      <link>https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/</guid>
+      <pubDate>Tue, 17 Nov 2026 08:51:11 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品 ⓵ 【容易懂 Easy Know】 以前外國流行的「白人飯」就像冬天逼你吃冰箱拿出來的生冷胡蘿蔔和乾麵包，雖然號稱健康減肥，但對習慣吃熱騰騰飯菜的亞洲人來說，簡直是「又貴又難吃」的折磨。 後來，中國團隊接手改造，就像給三明治施了魔法：把冷冰冰的麵包和配料送進烤箱「全線熱烤」，加入烤鴨、麻辣牛肉等中式口味，甚至配上一杯熱豆漿。大家發現三明治變熱、變香了，才終於願意掏錢買單。 ⓶ 【總結 Overall Summary】 中國輕食市場規模預計將達 5,000 億元，但過去以沙拉、冷食三明治為代表…</description>
+    </item>
+    <item>
+      <title>tbdavid2019 pushed 888a2a-lite</title>
+      <link>https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445</link>
+      <guid isPermaLink="false">github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445</guid>
+      <pubDate>Tue, 17 Nov 2026 08:45:49 GMT</pubDate>
+      <category>github</category>
+      <description>tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 08:45 1 commit to main ad8b747 test(bridge): stub auto_accept_pending_invitations on notify-only Hub…</description>
+    </item>
+    <item>
+      <title>為何日本關東煮這麼好吃？明明台灣也有 味道卻完全不同 秘密在哪裡？</title>
+      <link>https://blog.david888.com/wei-he-ri-ben-guan-dong-zhu-zhe-mo-hao-chi-ming-ming-tai-wan-ye-you-wei-dao-que-wan-quan-bu-tong-mi-mi-zai-na-li/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/wei-he-ri-ben-guan-dong-zhu-zhe-mo-hao-chi-ming-ming-tai-wan-ye-you-wei-dao-que-wan-quan-bu-tong-mi-mi-zai-na-li/</guid>
+      <pubDate>Tue, 17 Nov 2026 08:44:20 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 為何日本關東煮這麼好吃？明明台灣也有 味道卻完全不同 秘密在哪裡？ ⓵ 【容易懂 Easy Know】 你想過為什麼日本的關東煮蘿蔔切開晶瑩剔透，湯卻像清水一樣乾淨嗎？很多人以為蘿蔔入味要一直開大火狂煮，但這其實是錯的！ 食材就像一塊海綿，大火狂滾時，裡面的水和油就像吹氣球一樣一直往外衝，外面的湯汁根本進不去，反而會把外皮煮成爛泥。真正的祕訣是「關火降溫」！當火關掉慢慢變涼時，蘿蔔裡面會產生吸力，這時候才像海綿吸水一樣，把高湯大口大口吸進最中心。再加上下鍋前把炸天婦羅用熱水洗掉老油（油拔），把蘿蔔的尖角削圓（面取），湯頭就能永遠保持清澈甘甜囉！…</description>
+    </item>
+    <item>
+      <title>觀眾嫌情節太夸張？其實導演早就改得很保守了 #电影解析 #导演爆料 #剧情深挖 #幕後真相</title>
+      <link>https://blog.david888.com/guan-zhong-xian-qing-jie-tai-kua-zhang-qi-shi-dao-yan-zao-jiu-gai-de-hen-bao-shou-liao-dian-ying-jie-xi-dao-yan-bao-liao-ju-qing-shen-wa-mu-hou-zhen-xiang/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/guan-zhong-xian-qing-jie-tai-kua-zhang-qi-shi-dao-yan-zao-jiu-gai-de-hen-bao-shou-liao-dian-ying-jie-xi-dao-yan-bao-liao-ju-qing-shen-wa-mu-hou-zhen-xiang/</guid>
+      <pubDate>Tue, 17 Nov 2026 08:36:25 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 觀眾嫌情節太夸張？其實導演早就改得很保守了 #电影解析 #导演爆料 #剧情深挖 #幕後真相 ⓵ 【容易懂 Easy Know】 你一定有過這種經驗：看電影時看到某個超扯的畫面，忍不住翻白眼說：「這編劇也太會瞎掰了吧！」但很多時候，真實世界發生的事其實比電影還要荒謬好幾倍！ 就像有搶匪在現實中只用一把「木頭雕的假槍」，就成功威脅了十幾名拿真槍的警衛並逃獄；還有古代古羅馬神鬼戰士贏了比賽後，居然會像現代網紅一樣現場代言橄欖油！導演如果照實拍出來，觀眾反而會覺得太假、出戲。所以導演們常常必須把真實歷史「改得保守一點」，電影才能看起來合情合理。 ⓶ 【總…</description>
+    </item>
+    <item>
+      <title>888news</title>
+      <link>https://github.com/tbdavid2019/888news</link>
+      <guid isPermaLink="false">github-repo:888news</guid>
+      <pubDate>Tue, 17 Nov 2026 07:26:34 GMT</pubDate>
+      <category>github</category>
+      <description>全球科技與 AI 情報雷達 · 每日精選 · 多語系熱點聚合與自動簡報 https://news2.david888.com [TypeScript]</description>
+    </item>
+    <item>
+      <title>life-destiny-kline</title>
+      <link>https://github.com/tbdavid2019/life-destiny-kline</link>
+      <guid isPermaLink="false">github-repo:life-destiny-kline</guid>
+      <pubDate>Tue, 17 Nov 2026 05:28:55 GMT</pubDate>
+      <category>github</category>
+      <description>人生K線軌 https://bazi.david888.com [TypeScript]</description>
+    </item>
+    <item>
+      <title>tbdavid2019 pushed life-destiny-kline</title>
+      <link>https://github.com/tbdavid2019/life-destiny-kline/compare/6e0a9ca73a...6529f8e7d6</link>
+      <guid isPermaLink="false">github-activity:https://github.com/tbdavid2019/life-destiny-kline/compare/6e0a9ca73a...6529f8e7d6</guid>
+      <pubDate>Tue, 17 Nov 2026 05:02:45 GMT</pubDate>
+      <category>github</category>
+      <description>tbdavid2019 pushed to main in tbdavid2019/life-destiny-kline · November 17, 2026 05:02 1 commit to main 6529f8e fix(api): switch free-llm proxy to Edge SSE streaming for up to 300s …</description>
+    </item>
+  </channel>
+</rss>

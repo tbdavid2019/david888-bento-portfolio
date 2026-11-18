@@ -12,6 +12,7 @@
     "RESEND_FROM": "David's Concierge <contact@vip.david888.com>",
     "SMTP_HOST": "email-smtp.ap-northeast-1.amazonaws.com",
     "SMTP_PORT": "587",
-    "CF_MODEL": "@cf/openai/gpt-oss-20b"
+    "CF_MODEL": "@cf/openai/gpt-oss-20b",
+    "SITE_CONTEXT_URL": "https://david888.com/site-context.json"
   }
 }

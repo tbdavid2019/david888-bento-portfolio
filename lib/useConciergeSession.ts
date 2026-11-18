@@ -1,0 +1,280 @@
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import type { Locale } from '../types';
+import {
+  siteItems,
+  capabilityAreas,
+  getLocalizedItemTitle,
+  getLocalizedItemDescription,
+  getItemUrl,
+} from './siteCatalog';
+import { sendConciergeMessage, type ConciergeChatDraft } from './crm';
+import {
+  searchCombinedCatalog,
+  type CatalogSearchInputItem,
+  type ConciergeMode,
+  type DockChatMessage,
+  type SafeContextReference,
+} from './concierge-session';
+import type { SiteContextItem } from './context-retrieval';
+
+export interface FeedSummaryPayload {
+  syncStatus?: string;
+  lastSyncedAt?: string | null;
+  feedUrl?: string;
+  items?: Array<{
+    id?: string;
+    source?: string;
+    title?: string;
+    summary?: string;
+    url?: string;
+    publishedAt?: string;
+    tags?: string[];
+  }>;
+}
+
+const makeId = () => `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+export function useConciergeSession(locale: Locale, defaultSubject = '') {
+  const isZh = locale !== 'en';
+  const [mode, setMode] = useState<ConciergeMode>('qa');
+  const [messages, setMessages] = useState<DockChatMessage[]>([]);
+  const [busy, setBusy] = useState(false);
+  const [revealEmail, setRevealEmail] = useState(false);
+  const [readyToConfirm, setReadyToConfirm] = useState(false);
+  const [autoDispatched, setAutoDispatched] = useState(false);
+  const [dispatchedTo, setDispatchedTo] = useState<string | undefined>(undefined);
+  const [references, setReferences] = useState<SafeContextReference[]>([]);
+  const [draft, setDraft] = useState<ConciergeChatDraft>({
+    name: '',
+    email: '',
+    company: '',
+    subject: defaultSubject,
+    message: '',
+  });
+  const [feedSummary, setFeedSummary] = useState<FeedSummaryPayload | null>(null);
+  const feedFetchedRef = useRef(false);
+
+  const loadFeedSummary = useCallback(async () => {
+    if (feedFetchedRef.current) return feedSummary;
+    feedFetchedRef.current = true;
+    try {
+      const res = await fetch('/feed-summary.json', { headers: { Accept: 'application/json' } });
+      if (!res.ok) return null;
+      const data = (await res.json()) as FeedSummaryPayload;
+      if (data && Array.isArray(data.items)) {
+        setFeedSummary(data);
+        return data;
+      }
+    } catch {
+      // Graceful catalog-only fallback when feed-summary.json is unavailable
+    }
+    return null;
+  }, [feedSummary]);
+
+  // Idle background prefetch so /search and /rss respond instantaneously
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    let cancelled = false;
+    const win = window as any;
+    const trigger = () => {
+      if (!cancelled) void loadFeedSummary();
+    };
+    if (typeof win.requestIdleCallback === 'function') {
+      const handle = win.requestIdleCallback(trigger, { timeout: 2500 });
+      return () => {
+        cancelled = true;
+        win.cancelIdleCallback?.(handle);
+      };
+    }
+    const timer = window.setTimeout(trigger, 1200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [loadFeedSummary]);
+
+  const catalogSearchItems: CatalogSearchInputItem[] = useMemo(() => {
+    const caps = capabilityAreas.map((cap) => ({
+      id: `cap:${cap.id}`,
+      title: isZh ? cap.title : cap.titleEn,
+      summary: isZh ? cap.description : cap.descriptionEn,
+      url: '/executive',
+      source: 'capability',
+      featured: true,
+      tags: cap.keywords,
+    }));
+
+    const works = siteItems
+      .filter((item) => !item.hidden)
+      .map((item, idx) => ({
+        id: `work:${idx}:${item.title}`,
+        title: getLocalizedItemTitle(item, locale),
+        summary: getLocalizedItemDescription(item, locale),
+        url: getItemUrl(item, locale),
+        source: item.tag || 'portfolio',
+        featured: Boolean(item.flagship),
+        tags: [...(item.techStack || []), item.category, item.tag].filter(Boolean),
+      }));
+
+    return [...caps, ...works];
+  }, [isZh, locale]);
+
+  const feedSearchItems: CatalogSearchInputItem[] = useMemo(() => {
+    if (!feedSummary?.items) return [];
+    return feedSummary.items
+      .filter((item) => item && item.title && item.url)
+      .map((item) => ({
+        id: item.id || item.url,
+        title: String(item.title),
+        summary: String(item.summary || ''),
+        url: String(item.url),
+        source: item.source || 'feed',
+        publishedAt: item.publishedAt,
+        tags: Array.isArray(item.tags) ? item.tags : [],
+      }));
+  }, [feedSummary]);
+
+  const fallbackContextItems: SiteContextItem[] = useMemo(
+    () =>
+      [...catalogSearchItems, ...feedSearchItems].map((item) => ({
+        id: item.id,
+        source: item.source,
+        featured: item.featured,
+        title: item.title,
+        summary: item.summary,
+        url: item.url.startsWith('/') ? `https://david888.com${item.url}` : item.url,
+        publishedAt: item.publishedAt,
+        tags: item.tags,
+      })),
+    [catalogSearchItems, feedSearchItems],
+  );
+
+  const appendMessage = useCallback((msg: Omit<DockChatMessage, 'id'>) => {
+    const full: DockChatMessage = { id: makeId(), ...msg };
+    setMessages((prev) => [...prev, full]);
+    return full;
+  }, []);
+
+  const clearMessages = useCallback(() => {
+    setMessages([]);
+    setReferences([]);
+    setRevealEmail(false);
+    setReadyToConfirm(false);
+    setAutoDispatched(false);
+    setDispatchedTo(undefined);
+  }, []);
+
+  const runLocalSearch = useCallback(
+    (query: string, limit = 8) => {
+      return searchCombinedCatalog(query, catalogSearchItems, feedSearchItems, limit);
+    },
+    [catalogSearchItems, feedSearchItems],
+  );
+
+  const sendMessage = useCallback(
+    async (
+      rawText: string,
+      options?: { mode?: ConciergeMode; defaultSubject?: string },
+    ) => {
+      const content = rawText.trim();
+      if (!content || busy) return null;
+
+      const targetMode: ConciergeMode = options?.mode || mode;
+      const userMsg: DockChatMessage = {
+        id: makeId(),
+        role: 'user',
+        content,
+        mode: targetMode,
+        kind: 'text',
+      };
+
+      const historyForApi = [...messages, userMsg]
+        .filter((m) => m.kind !== 'help' && m.kind !== 'search' && m.kind !== 'rss' && m.kind !== 'error')
+        .slice(-10)
+        .map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
+
+      setMessages((prev) => [...prev, userMsg]);
+      setBusy(true);
+
+      try {
+        const res = await sendConciergeMessage({
+          messages: historyForApi,
+          locale,
+          defaultSubject: options?.defaultSubject ?? (draft.subject || defaultSubject),
+          mode: targetMode,
+          fallbackContextItems,
+        });
+
+        const refs = Array.isArray(res.references) ? res.references : [];
+        if (targetMode === 'contact') {
+          if (res.revealEmail) setRevealEmail(true);
+          if (res.draft) {
+            setDraft((prev) => ({
+              name: res.draft.name || prev.name,
+              email: res.draft.email || prev.email,
+              company: res.draft.company || prev.company,
+              subject: res.draft.subject || prev.subject,
+              message: res.draft.message || prev.message,
+            }));
+          }
+          setReadyToConfirm(Boolean(res.readyToConfirm));
+          setAutoDispatched(Boolean(res.autoDispatched));
+          if (res.dispatchedTo) setDispatchedTo(res.dispatchedTo);
+        }
+
+        setReferences(refs);
+        const replyMsg: DockChatMessage = {
+          id: makeId(),
+          role: 'assistant',
+          content: res.reply,
+          mode: targetMode,
+          references: refs,
+          kind: 'text',
+        };
+        setMessages((prev) => [...prev, replyMsg]);
+        return res;
+      } catch {
+        const errMsg: DockChatMessage = {
+          id: makeId(),
+          role: 'assistant',
+          mode: targetMode,
+          kind: 'error',
+          content: isZh
+            ? '暫時無法連線至雲端服務，請稍後再試，或輸入 `/form` 直接填表聯繫。'
+            : 'Unable to reach the concierge service right now. Please retry shortly or type `/form` to send a message directly.',
+        };
+        setMessages((prev) => [...prev, errMsg]);
+        return null;
+      } finally {
+        setBusy(false);
+      }
+    },
+    [busy, mode, messages, locale, draft.subject, defaultSubject, fallbackContextItems, isZh],
+  );
+
+  return {
+    mode,
+    setMode,
+    messages,
+    busy,
+    draft,
+    setDraft,
+    revealEmail,
+    setRevealEmail,
+    readyToConfirm,
+    setReadyToConfirm,
+    autoDispatched,
+    setAutoDispatched,
+    dispatchedTo,
+    references,
+    feedSummary,
+    loadFeedSummary,
+    appendMessage,
+    clearMessages,
+    runLocalSearch,
+    sendMessage,
+  };
+}

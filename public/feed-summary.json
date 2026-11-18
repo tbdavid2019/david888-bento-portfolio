@@ -1,0 +1,283 @@
+{
+  "syncStatus": "ok",
+  "lastSyncedAt": "2026-11-18T05:45:08.200Z",
+  "feedUrl": "https://david888.com/rss.xml",
+  "items": [
+    {
+      "id": "threads:md-d7d537eabd18",
+      "source": "threads",
+      "sourceFeedUrl": "https://www.threads.com/@david888.chiang",
+      "title": "一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運…",
+      "summary": "一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運上，多組獨立解析器與自動容錯，比依賴單一公共 DNS 更能承受政策變動。🎧 聽今日節目：podcast.david888.com/post…",
+      "url": "https://www.threads.com/@david888.chiang",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "tags": [
+        "threads"
+      ]
+    },
+    {
+      "id": "github-repo:888a2a-lite",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "888a2a-lite",
+      "summary": "888a2a-lite 是獨立、輕量的 Public A2A Hub，提供 Agent 註冊、Peer 發現、heartbeat 和以 agentId 尋址的 durable inbox。它可以讓 Codex、OpenClaw、Hermes、agy 與其他 Agent 交換通知…",
+      "url": "https://github.com/tbdavid2019/888a2a-lite",
+      "publishedAt": "2026-11-18T05:43:12.000Z",
+      "tags": [
+        "github",
+        "Go",
+        "a2a",
+        "a2a-agent",
+        "a2a-cli"
+      ]
+    },
+    {
+      "id": "blog:https://blog.david888.com/mei-guo-quan-guo-ting-fei-jing-shi-yin-wei-ufo-wu-jiao-da-lou-ufodang-an-yue-jie-mi-yue-li-pu-lu-an-shuo-261115/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "美國全國停飛，竟是因為UFO？｜五角大樓UFO檔案越解密越離譜｜麓安說261115。",
+      "summary": "📌 美國全國停飛，竟是因為UFO？｜五角大樓UFO檔案越解密越離譜｜麓安說261115。 ⓵ 【容易懂 Easy Know】 想像一下，某天學校突然廣播所有校車緊急停駛，校長只神秘地說「為了大家的安全」，卻沒解釋原因。接著，天空中出現了像水母一樣發著藍白色光芒的奇怪雨傘，後面還跟著一排排發光小點，大家都嚇得以為外星人來了！ 其實，天上的亮光大多只是太空公司發射火箭時，噴出的氣體在高空被陽光照亮形成的自然奇景。但為什麼大家會疑神疑鬼呢？因為政府每次遇到天空中的怪事，總是用「機器壞了」或「說不清楚」帶過。大人們越是不說清楚，大家就越忍不住把未知事物想像成…",
+      "url": "https://blog.david888.com/mei-guo-quan-guo-ting-fei-jing-shi-yin-wei-ufo-wu-jiao-da-lou-ufodang-an-yue-jie-mi-yue-li-pu-lu-an-shuo-261115/",
+      "publishedAt": "2026-11-18T05:24:26.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "podcast:https://podcast.david888.com/post/2026-11-18",
+      "source": "podcast",
+      "sourceFeedUrl": "https://podcast.david888.com/rss.xml",
+      "title": "[2026-11-18] OpenJDK爆Base64遠端執行漏洞、GPT-6.2 Astra降價卻隱瞞障礙",
+      "summary": "詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-18 OpenAI 推 GPT-6.2 降價增效，卻存障礙隱瞞風險。OpenJDK 爆 Java4Shell 漏洞，藉 Base64 可遠端執行。微軟推 MAI Code 2，Win11 蒐集工具遙測惹議，社群評估轉往 Linux。並談代理驗證、Phrack 73 期、Nim 新編譯器與開源維護危機；Google AI 搜尋減四成導流，Quad9 拒封盜版撤出法國，社群憂網路碎片化。",
+      "url": "https://podcast.david888.com/post/2026-11-18",
+      "publishedAt": "2026-11-18T04:18:12.000Z",
+      "tags": [
+        "podcast"
+      ]
+    },
+    {
+      "id": "github-repo:daily-podcast",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "daily-podcast",
+      "summary": "每日自動生產podcast ; 收聽網址 https://podcast.david888.com [TypeScript] ★1",
+      "url": "https://github.com/tbdavid2019/daily-podcast",
+      "publishedAt": "2026-11-18T04:17:41.000Z",
+      "tags": [
+        "github",
+        "TypeScript"
+      ]
+    },
+    {
+      "id": "github-repo:tw_road_fix_map",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "tw_road_fix_map",
+      "summary": "台灣施工地圖 [JavaScript]",
+      "url": "https://github.com/tbdavid2019/tw_road_fix_map",
+      "publishedAt": "2026-11-18T03:58:33.000Z",
+      "tags": [
+        "github",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": "blog:https://blog.david888.com/qing-zhu-nan-shu-de-zhong-guo-shi-an-wei-sha-shi-an-wen-ti-gen-ben-wu-jie-ying-pian-hui-gao-su-da-jia-da-an-lu-an-shuo-261116/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "罄竹難書的中國食安，為啥食安問題根本無解，影片會告訴大家答案｜麓安說261116。",
+      "summary": "📌 罄竹難書的中國食安，為啥食安問題根本無解，影片會告訴大家答案｜麓安說261116。 這是一份針對所提供內容的結構化分析與重點摘要報告： ⓵ 【容易懂 Easy Know】 想像一下，如果有一家餐廳為了讓菜餚看起來漂亮、保存很久，還賣得超級便宜，偷偷在每道菜裡加了一點點清潔劑和化學藥劑。雖然吃一口不會馬上肚子痛，但如果每天三餐都吃，身體裡的毒素就會慢慢累積。這就像我們的手機電池如果每天過度充電、泡水，幾年後就會突然壞掉一樣。這篇內容就是在探討：很多便宜又好看的食物，背後其實隱藏了農藥、抗生素與化學添加物等問題，而這些日常飲食習慣可能正悄悄影響著年輕…",
+      "url": "https://blog.david888.com/qing-zhu-nan-shu-de-zhong-guo-shi-an-wei-sha-shi-an-wen-ti-gen-ben-wu-jie-ying-pian-hui-gao-su-da-jia-da-an-lu-an-shuo-261116/",
+      "publishedAt": "2026-11-18T03:49:01.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "github-repo:stock-index-api",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "stock-index-api",
+      "summary": "股票指數的成分股 . 0050 SP500 等. 自動更新 [Python] ★2",
+      "url": "https://github.com/tbdavid2019/stock-index-api",
+      "publishedAt": "2026-11-18T02:31:17.000Z",
+      "tags": [
+        "github",
+        "Python"
+      ]
+    },
+    {
+      "id": "github-repo:david888-bento-portfolio",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": true,
+      "title": "david888-bento-portfolio",
+      "summary": "https://david888.com [TypeScript]",
+      "url": "https://github.com/tbdavid2019/david888-bento-portfolio",
+      "publishedAt": "2026-11-18T02:08:00.000Z",
+      "tags": [
+        "github",
+        "TypeScript"
+      ]
+    },
+    {
+      "id": "blog:https://blog.david888.com/4500nian-qian-de-qi-ji-230wan-kuai-jing-mi-ju-shi-ling-ji-jie-ling-fei-liao-gu-ren-jiu-jing-zen-mo-zuo-dao-de-zui-xin-yan-jiu-dian-fu-chang-shi-jin-zi-ta-bu-shi-jian-de-er-shi-bei-xue-c/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "4500年前的奇跡，230萬塊精密巨石，零機械、零廢料，古人究竟怎麼做到的？最新研究顛覆常識：金字塔不是建的，而是被「削」出來的！今天帶你徹底拆解金字塔的建造謎團....｜總裁聊聊",
+      "summary": "📌 4500年前的奇跡，230萬塊精密巨石，零機械、零廢料，古人究竟怎麼做到的？最新研究顛覆常識：金字塔不是建的，而是被「削」出來的！今天帶你徹底拆解金字塔的建造謎團....｜總裁聊聊 ⓵ 【容易懂 Easy Know】 想像你要用積木疊一座超級完美、尖角剛好置中的金字塔蛋糕。如果你從底層一塊一塊往上疊，只要有一丁點手抖或歪斜，疊到頂端時一定會徹底歪掉，連蓋子都蓋不上去！ 韓國學者提出了一個超厲害的逆向思考：埃及人其實不是「蓋」金字塔，而是在「雕刻」金字塔！工人們先不管精不精準，隨便把巨石堆成一座高大的「石頭山」，接著把最頂端的小金字塔石放上去當基準…",
+      "url": "https://blog.david888.com/4500nian-qian-de-qi-ji-230wan-kuai-jing-mi-ju-shi-ling-ji-jie-ling-fei-liao-gu-ren-jiu-jing-zen-mo-zuo-dao-de-zui-xin-yan-jiu-dian-fu-chang-shi-jin-zi-ta-bu-shi-jian-de-er-shi-bei-xue-c/",
+      "publishedAt": "2026-11-18T01:14:46.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "github-repo:github-status",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "github-status",
+      "summary": "github個人統計 [JavaScript]",
+      "url": "https://github.com/tbdavid2019/github-status",
+      "publishedAt": "2026-11-18T01:01:38.000Z",
+      "tags": [
+        "github",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": "github-repo:line-docs-skill",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "line-docs-skill",
+      "summary": "skill系列 - 讓你的LLM 有 line bot / lineOA / line官方帳號的 開發知識 [Python] ★3",
+      "url": "https://github.com/tbdavid2019/line-docs-skill",
+      "publishedAt": "2026-11-17T12:40:38.000Z",
+      "tags": [
+        "github",
+        "Python",
+        "liff",
+        "line",
+        "lineoa"
+      ]
+    },
+    {
+      "id": "github-repo:openclaw-docs-skill",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": true,
+      "title": "openclaw-docs-skill",
+      "summary": "自動每日更新, 讓你的LLM有面對openclaw疑難雜症處理的能力。This is an Agent Skill designed for AI coding assistants (like Claude with Antigravity). Once installed,…",
+      "url": "https://github.com/tbdavid2019/openclaw-docs-skill",
+      "publishedAt": "2026-11-17T12:40:11.000Z",
+      "tags": [
+        "github",
+        "Python",
+        "openclaw",
+        "openclaw-skills",
+        "skill"
+      ]
+    },
+    {
+      "id": "github-repo:hermes-agent-docs-skill",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "hermes-agent-docs-skill",
+      "summary": "skill系列 - 讓你的LLM 有 hermes agent 的維護知識(自動更新) [Python]",
+      "url": "https://github.com/tbdavid2019/hermes-agent-docs-skill",
+      "publishedAt": "2026-11-17T12:38:37.000Z",
+      "tags": [
+        "github",
+        "Python",
+        "hermes",
+        "hermes-agent",
+        "hermes-skill"
+      ]
+    },
+    {
+      "id": "blog:https://blog.david888.com/elon-muskgang-gang-da-po-liao-50nian-de-ting-zhi-peter-thieldeng-de-zhe-yi-tian-zhong-yu-lai-liao/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "Elon Musk刚刚打破了50年的停滞，Peter Thiel等的这一天终于来了",
+      "summary": "📌 Elon Musk刚刚打破了50年的停滞，Peter Thiel等的这一天终于来了 ⓵ 【容易懂 Easy Know】 想像你在手機遊戲裡蓋一座摩天大樓，只要按幾下螢幕就能瞬間複製完成，而且幾乎不用花錢，這就像「數位世界」。但在真實生活裡，你要開怪手、搬磚頭、調水泥，萬一蓋歪倒塌了，就得賠上大把的真金白銀從頭再來，這就是「物理世界」。 現在的 AI 就像一個在螢幕裡的超級天才，寫報告、寫程式都難不倒它；但如果它沒有一雙「手」走出螢幕，去幫忙造火箭、蓋房子或發明新藥，它就沒辦法真正改變我們現實中看病、搭車等日常生活。 ⓶ 【總結 Overall S…",
+      "url": "https://blog.david888.com/elon-muskgang-gang-da-po-liao-50nian-de-ting-zhi-peter-thieldeng-de-zhe-yi-tian-zhong-yu-lai-liao/",
+      "publishedAt": "2026-11-17T11:08:42.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "github-repo:paper-daily",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": true,
+      "title": "paper-daily",
+      "summary": "學術論文追蹤器 https://tbdavid2019.github.io/paper-daily/ [Python]",
+      "url": "https://github.com/tbdavid2019/paper-daily",
+      "publishedAt": "2026-11-17T10:31:51.000Z",
+      "tags": [
+        "github",
+        "Python"
+      ]
+    },
+    {
+      "id": "github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "title": "tbdavid2019 pushed 888a2a-lite",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 09:59 1 commit to main 0973206 feat(web,seo): add Open Graph, Twitter Card, JSON-LD, favicons, manif…",
+      "url": "https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044",
+      "publishedAt": "2026-11-17T09:59:54.000Z",
+      "tags": [
+        "github",
+        "activity"
+      ]
+    },
+    {
+      "id": "github-repo:8882fa",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "8882fa",
+      "summary": "888 2FA - Two Factor Authenticator using Cloudflare Workers (繁體中文 / 簡體中文 / English) [JavaScript]",
+      "url": "https://github.com/tbdavid2019/8882fa",
+      "publishedAt": "2026-11-17T09:12:25.000Z",
+      "tags": [
+        "github",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": "blog:https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品",
+      "summary": "📌 又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品 ⓵ 【容易懂 Easy Know】 以前外國流行的「白人飯」就像冬天逼你吃冰箱拿出來的生冷胡蘿蔔和乾麵包，雖然號稱健康減肥，但對習慣吃熱騰騰飯菜的亞洲人來說，簡直是「又貴又難吃」的折磨。 後來，中國團隊接手改造，就像給三明治施了魔法：把冷冰冰的麵包和配料送進烤箱「全線熱烤」，加入烤鴨、麻辣牛肉等中式口味，甚至配上一杯熱豆漿。大家發現三明治變熱、變香了，才終於願意掏錢買單。 ⓶ 【總結 Overall Summary】 中國輕食市場規模預計將達 5,000 億元，但過去以沙拉、冷食三明治為代表…",
+      "url": "https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/",
+      "publishedAt": "2026-11-17T08:51:11.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "title": "tbdavid2019 pushed 888a2a-lite",
+      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 08:45 1 commit to main ad8b747 test(bridge): stub auto_accept_pending_invitations on notify-only Hub…",
+      "url": "https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445",
+      "publishedAt": "2026-11-17T08:45:49.000Z",
+      "tags": [
+        "github",
+        "activity"
+      ]
+    }
+  ]
+}

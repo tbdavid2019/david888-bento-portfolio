@@ -57,34 +57,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isSearchOpen, searchQuery, onToggleSearch]);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (isSearchOpen) {
-          e.preventDefault();
-          onToggleSearch();
-          return;
-        }
-      }
-
-      if (
-        (e.key === '/' || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) &&
-        document.activeElement?.tagName !== 'INPUT' &&
-        document.activeElement?.tagName !== 'TEXTAREA'
-      ) {
-        e.preventDefault();
-        if (!isSearchOpen) {
-          onToggleSearch();
-        } else {
-          searchInputRef.current?.focus();
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isSearchOpen, onToggleSearch]);
-
   const previewMatches = useMemo(() => {
     return searchQuery.trim() ? searchSiteItems(searchQuery) : [];
   }, [searchQuery]);

@@ -2,7 +2,8 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { BentoGrid } from './components/BentoGrid';
 import { ContactDialog } from './components/ContactDialog';
-import { FloatingConciergeButton } from './components/FloatingConciergeButton';
+import { BottomConciergeDock, type BottomConciergeDockHandle } from './components/BottomConciergeDock';
+import { useConciergeSession } from './lib/useConciergeSession';
 import { defaultCategoryId, getVisibleCategories } from './lib/siteCatalog';
 import { registerPortfolioWebMcp } from './lib/webmcp';
 import type { Locale } from './types';
@@ -123,9 +124,15 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const localeRef = useRef(locale);
   const activeCategoryIdRef = useRef(activeCategoryId);
+  const dockRef = useRef<BottomConciergeDockHandle>(null);
+  const lastFocusedBeforeModalRef = useRef<HTMLElement | null>(null);
   const visibleCategories = getVisibleCategories();
+  const conciergeSession = useConciergeSession(locale);
 
   const openContactDialog = (defaultSubjectId = 'consulting', tab: 'chat' | 'form' = 'chat') => {
+    if (typeof document !== 'undefined') {
+      lastFocusedBeforeModalRef.current = document.activeElement as HTMLElement | null;
+    }
     setContactDefaultSubjectId(defaultSubjectId);
     setContactInitialTab(tab);
     setContactOpen(true);
@@ -157,6 +164,10 @@ export default function App() {
     const queryStr = params.toString();
     const nextUrl = queryStr ? `${fallbackPath}?${queryStr}` : fallbackPath;
     window.history.replaceState(null, '', nextUrl);
+    if (typeof window !== 'undefined' && lastFocusedBeforeModalRef.current) {
+      const targetEl = lastFocusedBeforeModalRef.current;
+      window.requestAnimationFrame(() => targetEl?.focus?.());
+    }
   };
 
   useEffect(() => {
@@ -250,6 +261,63 @@ export default function App() {
     setCategoryAndSyncUrl(nextCategory);
   };
 
+  const handleDockNavigateCategory = (nextCategory: string) => {
+    setSearchQuery('');
+    setIsSearchOpen(false);
+    setCategoryAndSyncUrl(nextCategory);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (contactOpen) {
+          e.preventDefault();
+          closeContactDialog();
+          return;
+        }
+        if (isSearchOpen) {
+          e.preventDefault();
+          setSearchQuery('');
+          setIsSearchOpen(false);
+          return;
+        }
+        if (dockRef.current?.isExpanded()) {
+          e.preventDefault();
+          dockRef.current.collapseDrawer();
+          return;
+        }
+      }
+
+      if (contactOpen) return;
+      const target = e.target as HTMLElement | null;
+      const tagName = target?.tagName;
+      if (tagName === 'INPUT' || tagName === 'TEXTAREA' || target?.isContentEditable) {
+        return;
+      }
+
+      if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        dockRef.current?.focusInput('/');
+        return;
+      }
+
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        dockRef.current?.expandDrawer();
+        dockRef.current?.focusInput('');
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [contactOpen, isSearchOpen]);
+
   return (
     <div className="min-h-screen bg-bg-base text-text-main transition-colors duration-200">
       <Navbar
@@ -280,9 +348,13 @@ export default function App() {
         onContact={() => openContactDialog('consulting')}
       />
       {!contactOpen && (
-        <FloatingConciergeButton
+        <BottomConciergeDock
+          ref={dockRef}
           locale={locale}
-          onClick={() => openContactDialog('consulting', 'chat')}
+          session={conciergeSession}
+          onNavigateCategory={handleDockNavigateCategory}
+          onOpenContact={(tab = 'chat') => openContactDialog('consulting', tab)}
+          isContactModalOpen={contactOpen}
         />
       )}
       {contactOpen && (
@@ -290,6 +362,7 @@ export default function App() {
           locale={locale}
           defaultSubjectId={contactDefaultSubjectId}
           initialTab={contactInitialTab}
+          session={conciergeSession}
           onClose={closeContactDialog}
         />
       )}

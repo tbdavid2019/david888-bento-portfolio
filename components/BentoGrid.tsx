@@ -211,7 +211,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   }, [activeCategory?.id, isExecutiveView, isFlagshipsView]);
 
   return (
-    <main className="dossier-shell space-y-6 pb-16 pt-6">
+    <main className="dossier-shell space-y-6 pb-24 sm:pb-28 pt-6">
       {/* 1. Single-Axis Executive Hero Dossier */}
       <ProfileCard
         locale={locale}
@@ -626,7 +626,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
             })
           }
           aria-label={locale === 'en' ? 'Back to top' : '回到頂端'}
-          className="fixed bottom-20 right-6 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#17324d] bg-[#ffb010] text-[#2b251a] shadow-lg transition-transform hover:-translate-y-1"
+          className="fixed bottom-20 sm:bottom-24 right-6 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#17324d] bg-[#ffb010] text-[#2b251a] shadow-lg transition-transform hover:-translate-y-1"
         >
           <ArrowUp size={20} />
         </button>

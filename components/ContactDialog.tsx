@@ -22,11 +22,13 @@ import {
   type ConciergeChatDraft,
 } from '../lib/crm';
 import type { Locale } from '../types';
+import type { useConciergeSession } from '../lib/useConciergeSession';
 
 interface ContactDialogProps {
   locale: Locale;
   defaultSubjectId?: string;
   initialTab?: 'chat' | 'form';
+  session?: ReturnType<typeof useConciergeSession>;
   onClose: () => void;
 }
 
@@ -98,6 +100,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   locale,
   defaultSubjectId,
   initialTab = 'chat',
+  session,
   onClose,
 }) => {
   const isZh = locale === 'zh';
@@ -109,11 +112,11 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
   // Form State
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    company: '',
-    subject: isZh ? defaultOption.zh : defaultOption.en,
-    message: '',
+    name: session?.draft.name || '',
+    email: session?.draft.email || '',
+    company: session?.draft.company || '',
+    subject: session?.draft.subject || (isZh ? defaultOption.zh : defaultOption.en),
+    message: session?.draft.message || '',
   });
   const [selectedSubjectId, setSelectedSubjectId] = useState<string>(defaultOption.id);
   const [customSubject, setCustomSubject] = useState('');
@@ -128,15 +131,15 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
   // Chat & Concierge States
   const [chatInput, setChatInput] = useState('');
-  const [revealEmail, setRevealEmail] = useState(false);
-  const [conciergeReady, setConciergeReady] = useState(false);
-  const [conciergeAutoDispatched, setConciergeAutoDispatched] = useState(false);
+  const [revealEmail, setRevealEmail] = useState(Boolean(session?.revealEmail));
+  const [conciergeReady, setConciergeReady] = useState(Boolean(session?.readyToConfirm));
+  const [conciergeAutoDispatched, setConciergeAutoDispatched] = useState(Boolean(session?.autoDispatched));
   const [conciergeDraft, setConciergeDraft] = useState<ConciergeChatDraft>({
-    name: '',
-    email: '',
-    company: '',
-    subject: isZh ? defaultOption.zh : defaultOption.en,
-    message: '',
+    name: session?.draft.name || '',
+    email: session?.draft.email || '',
+    company: session?.draft.company || '',
+    subject: session?.draft.subject || (isZh ? defaultOption.zh : defaultOption.en),
+    message: session?.draft.message || '',
   });
   const isComposingRef = useRef(false);
   const chatScrollContainerRef = useRef<HTMLDivElement>(null);
@@ -156,10 +159,11 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     }
   }, [initialTab]);
 
-  // Keyboard accessibility: Close on Escape key
+  // Keyboard accessibility: Close on Escape key (stopPropagation avoids double-closing dock)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.stopPropagation();
         onClose();
       }
     };
@@ -171,12 +175,18 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     ? '您好！我是 David 的小秘書，很高興為您服務！David 具備百人工程研發組織管理實戰經驗，專長於技術戰略判斷、跨系統整合、雲端成本與 ROI 控管，以及架構落地。請問今天想了解 David 哪方面的合作事宜？或是希望我如何為您協助轉達呢？'
     : "Hello! I am David's Concierge. David brings extensive experience leading 100+ engineer R&D organizations as a CTO, specializing in technology strategy, cross-system integration, cloud cost & ROI optimization, and architecture delivery. How may I assist you today?";
 
-  const [messages, setMessages] = useState<ConciergeChatMessage[]>([
-    {
-      role: 'assistant',
-      content: initialGreeting,
-    },
-  ]);
+  const [messages, setMessages] = useState<ConciergeChatMessage[]>(() => {
+    const carried = (session?.messages || [])
+      .filter((m) => m.kind === 'text' && m.content.trim())
+      .map((m) => ({ role: m.role, content: m.content }));
+    return [
+      {
+        role: 'assistant',
+        content: initialGreeting,
+      },
+      ...carried,
+    ];
+  });
 
   useEffect(() => {
     if (chatScrollContainerRef.current) {
@@ -386,6 +396,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       { role: 'user', content: textToSend },
     ];
     setMessages(nextMessages);
+    session?.appendMessage({ role: 'user', content: textToSend, mode: 'contact', kind: 'text' });
     setChatBusy(true);
 
     try {
@@ -393,21 +404,29 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         messages: nextMessages,
         locale,
         defaultSubject: conciergeDraft.subject || form.subject,
+        mode: 'contact',
       });
 
-      setConciergeDraft((prev) => ({
-        name: result.draft?.name || prev.name,
-        email: result.draft?.email || prev.email,
-        company: result.draft?.company || prev.company,
-        subject: result.draft?.subject || prev.subject,
-        message: result.draft?.message || prev.message || (isChipPrompt ? '' : textToSend),
-      }));
+      const mergedDraft: ConciergeChatDraft = {
+        name: result.draft?.name || conciergeDraft.name,
+        email: result.draft?.email || conciergeDraft.email,
+        company: result.draft?.company || conciergeDraft.company,
+        subject: result.draft?.subject || conciergeDraft.subject,
+        message: result.draft?.message || conciergeDraft.message || (isChipPrompt ? '' : textToSend),
+      };
+      setConciergeDraft(mergedDraft);
+      session?.setDraft(mergedDraft);
 
-      setConciergeReady(Boolean(result.readyToConfirm));
-      setConciergeAutoDispatched(Boolean(result.autoDispatched));
+      const ready = Boolean(result.readyToConfirm);
+      const dispatched = Boolean(result.autoDispatched);
+      setConciergeReady(ready);
+      setConciergeAutoDispatched(dispatched);
+      session?.setReadyToConfirm(ready);
+      session?.setAutoDispatched(dispatched);
 
       if (result.revealEmail) {
         setRevealEmail(true);
+        session?.setRevealEmail(true);
       }
 
       const replyText =
@@ -420,6 +439,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
         ...prev,
         { role: 'assistant', content: replyText },
       ]);
+      session?.appendMessage({ role: 'assistant', content: replyText, mode: 'contact', kind: 'text' });
     } catch (err) {
       console.warn('Chat interaction error:', err);
       setMessages((prev) => [

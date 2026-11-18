@@ -1,4 +1,12 @@
 import type { Timestamp } from 'firebase/firestore';
+import {
+  selectTopContextItems,
+  buildDeterministicQaReply,
+  EMBEDDED_FALLBACK_CONTEXT,
+  isValidHttpUrl,
+  type SafeContextReference,
+  type SiteContextItem,
+} from './context-retrieval.ts';
 
 export type TicketStatus = 'new' | 'replied' | 'closed';
 
@@ -129,6 +137,9 @@ export interface ConciergeChatInput {
   messages: ConciergeChatMessage[];
   locale?: 'zh' | 'en';
   defaultSubject?: string;
+  mode?: 'qa' | 'contact';
+  turnstileToken?: string;
+  fallbackContextItems?: SiteContextItem[];
 }
 
 export interface ConciergeChatDraft {
@@ -146,6 +157,8 @@ export interface ConciergeChatOutput {
   readyToConfirm: boolean;
   autoDispatched?: boolean;
   dispatchedTo?: string;
+  mode?: 'qa' | 'contact';
+  references?: SafeContextReference[];
 }
 
 export const sendConciergeMessage = async (
@@ -155,26 +168,69 @@ export const sendConciergeMessage = async (
     import.meta.env?.VITE_CONTACT_API_URL ||
     'https://david888-contact-worker.raspy-salad-a4b7.workers.dev';
 
+  const mode: 'qa' | 'contact' = input.mode === 'qa' ? 'qa' : 'contact';
+
   try {
     const url = `${contactApiUrl.replace(/\/$/, '')}/chat`;
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'chat', ...input }),
+      body: JSON.stringify({
+        action: 'chat',
+        messages: input.messages,
+        locale: input.locale,
+        defaultSubject: input.defaultSubject,
+        mode,
+        turnstileToken: input.turnstileToken,
+      }),
     });
 
     if (response.ok) {
       const data = (await response.json()) as ConciergeChatOutput;
       if (data && typeof data.reply === 'string' && data.reply.trim()) {
-        return data;
+        const safeRefs = Array.isArray(data.references)
+          ? data.references.filter((r) => r && isValidHttpUrl(r.url) && typeof r.title === 'string')
+          : undefined;
+        return {
+          ...data,
+          mode: data.mode || mode,
+          references: safeRefs,
+        };
       }
     }
   } catch (err) {
     console.warn('[CRM] Concierge chat API error, falling back to client-side logic:', err);
   }
 
-  // Smart client-side fallback (offline or network error)
+  // Safe Q&A offline fallback: return catalog/embedded context matches without soliciting email
   const isZh = input.locale !== 'en';
+  if (mode === 'qa') {
+    const fallbackItems = Array.isArray(input.fallbackContextItems) && input.fallbackContextItems.length > 0
+      ? [...input.fallbackContextItems, ...EMBEDDED_FALLBACK_CONTEXT.items]
+      : EMBEDDED_FALLBACK_CONTEXT.items;
+    const retrieved = selectTopContextItems(
+      { items: fallbackItems },
+      input.messages,
+      { topK: 4 },
+    );
+    return {
+      reply: buildDeterministicQaReply(retrieved, isZh),
+      revealEmail: false,
+      autoDispatched: false,
+      readyToConfirm: false,
+      mode: 'qa',
+      references: retrieved.hasMatch ? retrieved.references : [],
+      draft: {
+        name: '',
+        email: '',
+        company: '',
+        subject: '',
+        message: '',
+      },
+    };
+  }
+
+  // Smart client-side fallback (offline or network error) for contact mode
   const userMessages = input.messages.filter((m) => m.role === 'user');
   const lastUserMsg = userMessages[userMessages.length - 1]?.content || '';
   const allUserText = userMessages.map((m) => m.content).join('\n');

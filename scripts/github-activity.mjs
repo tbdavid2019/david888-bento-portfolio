@@ -65,3 +65,25 @@ export function createStaleGithubActivityPayload(existingPayload, fallbackSynced
     ),
   };
 }
+
+export async function fetchGithubAtomFeed({
+  fetchImpl = globalThis.fetch,
+  timeoutMs = 10_000,
+} = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetchImpl(GITHUB_ATOM_FEED_URL, {
+      headers: {
+        Accept: 'application/atom+xml, application/xml;q=0.9, text/xml;q=0.8',
+      },
+      signal: controller.signal,
+    });
+    if (!res || !res.ok) {
+      throw new Error(`GitHub Atom feed HTTP ${res?.status || 'unknown'}`);
+    }
+    return await res.text();
+  } finally {
+    clearTimeout(timer);
+  }
+}

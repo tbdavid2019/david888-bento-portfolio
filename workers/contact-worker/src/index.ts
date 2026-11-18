@@ -5,6 +5,10 @@ import {
   type ConversationEvaluationResult,
 } from '../../../lib/clef-guard.ts';
 import { sendEmailWithFallback } from '../../../lib/mailer.ts';
+import {
+  runQaModeChat,
+  validateChatPayloadLimits,
+} from '../../../lib/context-retrieval.ts';
 
 export interface Env {
   SMTP_HOST?: string;
@@ -18,6 +22,7 @@ export interface Env {
   ADMIN_EMAIL?: string;
   RESEND_FROM?: string;
   CF_MODEL?: string;
+  SITE_CONTEXT_URL?: string;
   ORIGIN?: string;
   AI?: any;
 }
@@ -784,13 +789,32 @@ export const processConciergeChat = async (
   env: Env,
   workerOrigin?: string,
 ): Promise<{ status: number; body: Record<string, unknown> }> => {
+  const limitCheck = validateChatPayloadLimits(payload);
+  if (!limitCheck.ok) {
+    return { status: limitCheck.status, body: { error: limitCheck.error } };
+  }
+
   const rawMessages = Array.isArray(payload.messages) ? payload.messages : [];
   const messages = rawMessages.slice(-10).map((m: any) => ({
-    role: m.role === 'assistant' ? 'assistant' : 'user',
+    role: m.role === 'assistant' ? ('assistant' as const) : ('user' as const),
     content: clean(m.content, 800),
   }));
 
   const locale = payload.locale === 'en' ? 'en' : 'zh';
+  const mode: 'qa' | 'contact' = payload.mode === 'qa' ? 'qa' : 'contact';
+
+  if (mode === 'qa') {
+    return runQaModeChat({
+      messages,
+      locale,
+      siteContextUrl: env.SITE_CONTEXT_URL,
+      ai: env.AI,
+      model: env.CF_MODEL,
+      sanitizeReply: sanitizeSecretaryText,
+      fetchImpl: typeof (env as any).fetchImpl === 'function' ? (env as any).fetchImpl : undefined,
+    });
+  }
+
   const isZh = locale !== 'en';
   const defaultSubject = clean(payload.defaultSubject, 100);
   const requestOrigin = payload.requestOrigin || workerOrigin || ((env as any).DEFAULT_BASE_URL as string);
