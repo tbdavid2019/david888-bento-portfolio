@@ -10,6 +10,7 @@ import {
   sanitizeSecretaryText,
   resolveConfirmOrigin,
 } from '../api/contact.ts';
+import { sendEmailViaSmtp, sendEmailWithFallback, buildMimeMessage } from '../lib/mailer.ts';
 import workerDefault from '../workers/contact-worker/src/index.ts';
 
 test('rejects submissions with missing or invalid fields', async () => {
@@ -1008,4 +1009,176 @@ test('processConciergeChat handles complex Chinese intro: extracts company and i
   assert.equal(res.body.draft.company, 'Hytech');
   assert.equal(res.body.draft.email, 'linda@hytech.tw');
   assert.equal(res.body.draft.subject, '職缺邀約／演講培訓');
+});
+
+test('Jev (api.typesafe.ai) is completely removed and never called on Clef failure', async () => {
+  const originalFetch = globalThis.fetch;
+  const calledUrls = [];
+
+  globalThis.fetch = async (url) => {
+    calledUrls.push(String(url));
+    if (String(url).includes('clef.')) {
+      throw new Error('Clef node down');
+    }
+    return { ok: true, status: 200, json: async () => ({ id: 'resend_ok' }) };
+  };
+
+  try {
+    const res = await processContactSubmission(
+      {
+        name: 'No Jev Tester',
+        email: 'nojev@example.com',
+        subject: '顧問諮詢／業務合作',
+        message: 'Testing that Jev endpoint is never called.',
+      },
+      { RESEND_API_KEY: 're_test_no_jev' },
+    );
+
+    assert.equal(res.status, 200);
+    assert.ok(calledUrls.every((u) => !u.includes('typesafe.ai')));
+    assert.ok(calledUrls.some((u) => u.includes('clef.create360.ai')));
+    assert.ok(calledUrls.some((u) => u.includes('clef.aiurl.tw')));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('Intent classification is written to email subject as reference and never blocks spam-tagged submissions', async () => {
+  const originalFetch = globalThis.fetch;
+  const sentBodies = [];
+
+  globalThis.fetch = async (url, opts) => {
+    if (String(url).includes('api.resend.com/emails')) {
+      sentBodies.push(JSON.parse(opts.body));
+      return { ok: true, status: 200, json: async () => ({ id: 'ok' }) };
+    }
+    return { ok: true, status: 200, json: async () => ({}) };
+  };
+
+  try {
+    const env = { RESEND_API_KEY: 're_intent_ref_test', ADMIN_EMAIL: '104@david888.com' };
+    const spamToken = await createConfirmationToken(
+      {
+        n: 'Promo Sender',
+        e: 'promo@example.com',
+        s: '業務推廣',
+        m: 'Promo message that should still be delivered with reference tag.',
+        l: 'zh',
+        exp: Date.now() + 86400000,
+        sp: true,
+        sc: 'harmful_spam_or_scam',
+        cf: 0.94,
+        ep: 'https://clef.create360.ai/v1/systemone',
+      },
+      env.RESEND_API_KEY,
+    );
+
+    const res = await confirmContactSubmission(spamToken, env);
+    assert.equal(res.status, 200);
+    assert.equal(res.ok, true);
+    assert.equal(sentBodies.length, 1);
+    assert.ok(sentBodies[0].subject.includes('[意圖參考: 疑似推銷 94% ⚠️]'));
+    assert.ok(sentBodies[0].subject.includes('業務推廣 — Promo Sender'));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('SMTP client completes STARTTLS + AUTH PLAIN + MIME DATA handshake and falls back to Resend when SMTP fails', async () => {
+  const sentCommands = [];
+  let tlsUpgraded = false;
+  let closed = false;
+  const encoder = new TextEncoder();
+  const responses = [
+    '220 email-smtp.ap-northeast-1.amazonaws.com ESMTP SimpleEmailService\r\n',
+    '250-email-smtp.ap-northeast-1.amazonaws.com\r\n250-STARTTLS\r\n250 OK\r\n',
+    '220 Ready to start TLS\r\n',
+    '250-email-smtp.ap-northeast-1.amazonaws.com\r\n250-AUTH PLAIN LOGIN\r\n250 OK\r\n',
+    '235 Authentication successful.\r\n',
+    '250 Ok\r\n',
+    '250 Ok\r\n',
+    '354 End data with <CR><LF>.<CR><LF>\r\n',
+    '250 Ok 0106019abc\r\n',
+    '221 Bye\r\n',
+  ];
+  let respIdx = 0;
+
+  await sendEmailViaSmtp({
+    host: 'email-smtp.ap-northeast-1.amazonaws.com',
+    port: 587,
+    user: 'AKIATEST',
+    pass: 'PASSTEST',
+    from: "David's Concierge <contact@vip.david888.com>",
+    to: ['104@david888.com'],
+    replyTo: 'visitor@example.com',
+    subject: '[直通呈報] [意圖參考: 商務諮詢 95%] 測試主旨',
+    text: 'Hello\n.dot-line',
+    html: '<p>Hello</p>',
+    connectSocket: async () => ({
+      readChunk: async () => {
+        if (respIdx >= responses.length) return null;
+        return encoder.encode(responses[respIdx++]);
+      },
+      writeText: async (txt) => {
+        sentCommands.push(txt);
+      },
+      upgradeToTls: async () => {
+        tlsUpgraded = true;
+      },
+      close: async () => {
+        closed = true;
+      },
+    }),
+  });
+
+  assert.equal(tlsUpgraded, true);
+  assert.equal(closed, true);
+  assert.ok(sentCommands.some((c) => c.startsWith('STARTTLS')));
+  assert.ok(sentCommands.some((c) => c.startsWith('AUTH PLAIN ')));
+  assert.ok(sentCommands.some((c) => c.includes('MAIL FROM:<contact@vip.david888.com>')));
+  assert.ok(sentCommands.some((c) => c.includes('RCPT TO:<104@david888.com>')));
+  assert.ok(sentCommands.some((c) => c.includes('Subject: =?UTF-8?B?')));
+
+  const mime = buildMimeMessage({
+    from: "David's Concierge <contact@vip.david888.com>",
+    to: ['104@david888.com'],
+    subject: '中文主旨測試',
+    text: '純文字內容',
+    html: '<p>HTML內容</p>',
+  });
+  assert.ok(mime.includes('Content-Type: multipart/alternative'));
+  assert.ok(mime.includes('Subject: =?UTF-8?B?'));
+
+  // Test fallback from unreachable SMTP to Resend API
+  const originalFetch = globalThis.fetch;
+  let resendCalled = false;
+  globalThis.fetch = async (url) => {
+    if (String(url).includes('api.resend.com/emails')) {
+      resendCalled = true;
+      return { ok: true, status: 200, json: async () => ({ id: 'fallback_ok' }) };
+    }
+    return { ok: true, status: 200, json: async () => ({}) };
+  };
+
+  try {
+    const fallbackRes = await sendEmailWithFallback({
+      env: {
+        SMTP_HOST: '127.0.0.1',
+        SMTP_PORT: '1', // unreachable local port triggers fallback
+        SMTP_USER: 'user',
+        SMTP_PASS: 'pass',
+        RESEND_API_KEY: 're_fallback_123',
+      },
+      from: "David's Concierge <contact@vip.david888.com>",
+      to: ['104@david888.com'],
+      subject: 'Fallback test',
+      text: 'body',
+      html: '<p>body</p>',
+    });
+    assert.equal(fallbackRes.ok, true);
+    assert.equal(fallbackRes.provider, 'resend');
+    assert.equal(resendCalled, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });

@@ -1,12 +1,10 @@
 /**
- * Clef-Flash & TypeSafe Jev System One Decision Engine
- * High-reliability 3-Tier Zero-Shot Classification & Conversational Gatekeeping
+ * Clef-Flash Decision Engine (2-Tier Resilient Reference Classifier)
  *
- * 3-Tier Resilient Fallback Architecture:
- * 1. Primary: 自建 Clef-Flash (https://clef.create360.ai/v1/systemone) - 極速 <200ms
+ * 2-Tier Resilient Fallback Architecture:
+ * 1. Primary: 自建 Clef-Flash (https://clef.create360.ai/v1/systemone)
  * 2. Fallback 2: 自建備援節點 Clef-Flash-Q4 (https://clef.aiurl.tw/v1/systemone)
- * 3. Fallback 3: TypeSafe 官方 Jev 服務 (https://api.typesafe.ai/v1/systemone) - 需帶 Bearer TYPESAFE_API_KEY
- * 4. Graceful Fail-Open: 若 3 節點皆超時 (25s) 或異常，Fail-open 自然優雅由 LLM 接手，絕不中斷對話！
+ * 3. Graceful Fail-Open: 若節點超時或異常，直接 Fail-open 放行，意圖結果僅作為信件標題參考數值，絕不擋信！
  */
 
 export interface ClefSpamCheckInput {
@@ -15,7 +13,6 @@ export interface ClefSpamCheckInput {
   company?: string;
   subject: string;
   message: string;
-  typesafeApiKey?: string;
 }
 
 export interface ClefSpamCheckResult {
@@ -33,7 +30,6 @@ export interface ConversationEvaluationInput {
   senderEmail?: string;
   company?: string;
   subject?: string;
-  typesafeApiKey?: string;
 }
 
 export interface ConversationEvaluationResult {
@@ -52,28 +48,51 @@ export interface ConversationEvaluationResult {
 
 export const CLEF_PRIMARY_URL = 'https://clef.create360.ai/v1/systemone';
 export const CLEF_FALLBACK2_URL = 'https://clef.aiurl.tw/v1/systemone';
-export const CLEF_TYPESAFE_URL = 'https://api.typesafe.ai/v1/systemone';
-
-export const CLEF_DEFAULT_TYPESAFE_KEY = '';
 
 export const CLEF_ENDPOINTS = [CLEF_PRIMARY_URL, CLEF_FALLBACK2_URL];
 
+const INTENT_LABELS: Record<string, string> = {
+  job_interview_or_recruitment: '招募面試',
+  recruitment_or_interview: '招募面試',
+  business_consulting_or_project: '商務諮詢',
+  consulting_or_partnership: '商務諮詢',
+  friendly_greeting_or_chat: '技術交流',
+  tech_chat_or_greeting: '技術交流',
+  harmful_spam_or_scam: '疑似推銷',
+  spam_or_solicitation: '疑似推銷',
+  vague_or_unclear: '一般洽詢',
+  legitimate_inquiry: '一般商務',
+};
+
 /**
- * 3-Tier Contact Submission Spam & Scam Guard
+ * Formats the intent classification & confidence as a non-blocking reference badge for email subjects.
+ */
+export const formatIntentReferenceBadge = (
+  intentOrChoice?: string,
+  confidence?: number,
+  isSpam?: boolean,
+): { intentLabel: string; badge: string } => {
+  const key = String(intentOrChoice || '').trim();
+  const intentLabel = INTENT_LABELS[key] || (key ? key : '一般洽詢');
+  const hasScore = typeof confidence === 'number' && Number.isFinite(confidence) && confidence > 0;
+  const pct = hasScore ? `${Math.round(confidence * 100)}%` : '';
+  const warn = isSpam ? ' ⚠️' : '';
+  const badge = hasScore
+    ? `[意圖參考: ${intentLabel} ${pct}${warn}]`
+    : `[意圖參考: ${intentLabel}${warn}]`;
+  return { intentLabel, badge };
+};
+
+/**
+ * 2-Tier Contact Submission Intent & Reference Classifier (Never blocks delivery)
  */
 export const checkSpamWithClef = async (
   input: ClefSpamCheckInput,
   timeoutPerEndpointMs: number = 5000,
 ): Promise<ClefSpamCheckResult> => {
-  const typesafeKey =
-    input.typesafeApiKey ||
-    (typeof process !== 'undefined' && process.env?.TYPESAFE_API_KEY) ||
-    CLEF_DEFAULT_TYPESAFE_KEY;
-
   const nodes = [
-    { url: CLEF_PRIMARY_URL, model: 'clef-flash', auth: null },
-    { url: CLEF_FALLBACK2_URL, model: 'clef-flash', auth: null },
-    { url: CLEF_TYPESAFE_URL, model: 'jev-latest', auth: `Bearer ${typesafeKey}` },
+    { url: CLEF_PRIMARY_URL, model: 'clef-flash' },
+    { url: CLEF_FALLBACK2_URL, model: 'clef-flash' },
   ];
 
   for (const node of nodes) {
@@ -108,12 +127,9 @@ export const checkSpamWithClef = async (
     const timer = setTimeout(() => controller.abort(), timeoutPerEndpointMs);
 
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (node.auth) headers['Authorization'] = node.auth;
-
       const response = await fetch(node.url, {
         method: 'POST',
-        headers,
+        headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
         body: JSON.stringify(payload),
       });
@@ -135,7 +151,10 @@ export const checkSpamWithClef = async (
         answer.probabilities?.harmful_spam_or_scam ??
         answer.probabilities?.spam_or_scam ??
         0;
-      const confidence = answer.confidence ?? 0;
+      const confidence =
+        answer.probabilities?.[choice] ??
+        answer.confidence ??
+        0;
       const isSpam =
         (choice === 'harmful_spam_or_scam' || choice === 'spam_or_scam') &&
         spamProb >= 0.7;
@@ -154,7 +173,7 @@ export const checkSpamWithClef = async (
   }
 
   // Fallback: fail-open (放行！絕不擋住正常使用者)
-  console.warn('[ClefGuard] All Clef / Jev nodes unavailable. Failing open (allowing submission).');
+  console.warn('[ClefGuard] All Clef nodes unavailable. Failing open (allowing submission).');
   return {
     isSpam: false,
     confidence: 0,
@@ -163,22 +182,15 @@ export const checkSpamWithClef = async (
 };
 
 /**
- * 3-Tier Conversational Intent & Gatekeeping Evaluator
- * Runs on every user message to evaluate intent and decide email disclosure.
+ * 2-Tier Conversational Intent Evaluator (Advisory reference only, never blocks forwarding)
  */
 export const evaluateConversationWithClef = async (
   input: ConversationEvaluationInput,
   timeoutPerEndpointMs: number = 5000,
 ): Promise<ConversationEvaluationResult> => {
-  const typesafeKey =
-    input.typesafeApiKey ||
-    (typeof process !== 'undefined' && process.env?.TYPESAFE_API_KEY) ||
-    CLEF_DEFAULT_TYPESAFE_KEY;
-
   const nodes = [
-    { url: CLEF_PRIMARY_URL, model: 'clef-flash', auth: null },
-    { url: CLEF_FALLBACK2_URL, model: 'clef-flash', auth: null },
-    { url: CLEF_TYPESAFE_URL, model: 'jev-latest', auth: `Bearer ${typesafeKey}` },
+    { url: CLEF_PRIMARY_URL, model: 'clef-flash' },
+    { url: CLEF_FALLBACK2_URL, model: 'clef-flash' },
   ];
 
   const dialogueContext = input.messages
@@ -231,12 +243,9 @@ export const evaluateConversationWithClef = async (
     const timer = setTimeout(() => controller.abort(), timeoutPerEndpointMs);
 
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (node.auth) headers['Authorization'] = node.auth;
-
       const response = await fetch(node.url, {
         method: 'POST',
-        headers,
+        headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
         body: JSON.stringify(payload),
       });
@@ -262,14 +271,12 @@ export const evaluateConversationWithClef = async (
       const canRevealEmail = !isSpam && (emailChoice === 'approved' || approvedProb >= 0.7);
 
       let guidance = '';
-      if (isSpam) {
-        guidance = 'Visitor appears to be spam or automated solicitation. Politely refuse or redirect.';
-      } else if (canRevealEmail) {
+      if (canRevealEmail) {
         guidance =
           "Approved. Visitor has provided authentic and verified high-value context. If they requested direct contact, you may set revealEmail: true and present David's contact card.";
       } else {
         guidance =
-          "Denied. Gatekeeping active. Do NOT reveal David's email or phone. Ask visitor for their name, organization, and concrete topic details so you can review and forward.";
+          'Advisory reference only. Always warmly assist the visitor and collect their inquiry, name, and email so the message can be forwarded to David with the intent reference label.';
       }
 
       return {
@@ -287,14 +294,14 @@ export const evaluateConversationWithClef = async (
     }
   }
 
-  // Graceful degradation / Fail-Open: LLM autonomous gatekeeping active
-  console.warn('[SystemOne] All 3 decision engine nodes unavailable. Gracefully delegating to LLM autonomous gatekeeping.');
+  // Graceful degradation / Fail-Open
+  console.warn('[SystemOne] Clef nodes unavailable. Failing open for concierge chat.');
   return {
     intent: 'vague_or_unclear',
     canRevealEmail: false,
     isSpam: false,
     confidence: 0,
-    guidance: '[Decision Engine Unavailable, LLM Autonomous Gatekeeping Active]',
+    guidance: '[Intent Classifier Unavailable — Collect & Forward All Inquiries Normally]',
     sourceNode: 'fail_open_llm',
   };
 };

@@ -1,11 +1,18 @@
 import {
   checkSpamWithClef,
   evaluateConversationWithClef,
+  formatIntentReferenceBadge,
   type ConversationEvaluationResult,
 } from '../../../lib/clef-guard.ts';
+import { sendEmailWithFallback } from '../../../lib/mailer.ts';
 
 export interface Env {
-  RESEND_API_KEY: string;
+  SMTP_HOST?: string;
+  SMTP_PORT?: string;
+  SMTP_USER?: string;
+  SMTP_PASS?: string;
+  SMTP_FROM?: string;
+  RESEND_API_KEY?: string;
   CONFIRM_SECRET?: string;
   TURNSTILE_SECRET?: string;
   ADMIN_EMAIL?: string;
@@ -13,7 +20,6 @@ export interface Env {
   CF_MODEL?: string;
   ORIGIN?: string;
   AI?: any;
-  TYPESAFE_API_KEY?: string;
 }
 
 export interface ContactPayload {
@@ -231,35 +237,38 @@ export const processContactSubmission = async (
     }
   }
 
-  // 2. Clef-Flash & TypeSafe Jev System One Spam & Scam Verification (Evaluated in background, NEVER block!)
-  const clefResult = precomputedClefResult || await checkSpamWithClef(
-    {
-      name,
-      email,
-      company,
-      subject,
-      message,
-      typesafeApiKey: env.TYPESAFE_API_KEY,
-    },
-    5000,
-  );
+  // 2. Clef-Flash Intent Evaluation (Reference metadata only, NEVER blocks!)
+  const clefResult = precomputedClefResult
+    ? {
+        isSpam: Boolean(precomputedClefResult.isSpam),
+        confidence: typeof precomputedClefResult.confidence === 'number' ? precomputedClefResult.confidence : 0,
+        choice: precomputedClefResult.choice || precomputedClefResult.intent,
+        endpoint: precomputedClefResult.endpoint || precomputedClefResult.sourceNode,
+      }
+    : await checkSpamWithClef(
+        {
+          name,
+          email,
+          company,
+          subject,
+          message,
+        },
+        5000,
+      );
 
-  if (clefResult.isSpam) {
-    console.warn(`[Worker] Clef/Jev evaluated message from ${email} as spam (${clefResult.confidence}): endpoint=${clefResult.endpoint}`);
-  }
-
-  if (!env.RESEND_API_KEY) {
+  const hasSmtp = Boolean(env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS);
+  if (!hasSmtp && !env.RESEND_API_KEY) {
     return {
       status: 503,
       body: {
-        error: 'RESEND_API_KEY is not configured in Worker. Fallback to Firebase.',
+        error: 'Neither SMTP nor RESEND_API_KEY is configured in Worker. Fallback to Firebase.',
         fallback: true,
       },
     };
   }
 
   // 3. Double Opt-in: Generate stateless HMAC token and send confirmation email to the VISITOR
-  const secret = env.CONFIRM_SECRET || env.RESEND_API_KEY;
+  const secret = env.CONFIRM_SECRET || env.RESEND_API_KEY || env.SMTP_PASS || '';
   const tokenPayload: ConfirmationPayload = {
     n: name,
     e: email,
@@ -391,30 +400,22 @@ ${message}
 此連結將於 24 小時後失效。`;
 
   try {
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [email],
-        reply_to: adminEmails[0] || '104@david888.com',
-        subject: emailSubject,
-        html: htmlContent,
-        text: textContent,
-      }),
+    const mailRes = await sendEmailWithFallback({
+      env,
+      from: fromEmail,
+      to: [email],
+      replyTo: adminEmails[0] || '104@david888.com',
+      subject: emailSubject,
+      html: htmlContent,
+      text: textContent,
     });
 
-    if (!resendResponse.ok) {
-      const errorText = await resendResponse.text();
-      console.warn('Resend API call failed in Worker:', errorText);
+    if (!mailRes.ok) {
       return {
-        status: 502,
+        status: mailRes.status || 502,
         body: {
-          error: 'Resend API failed to deliver confirmation email.',
-          details: errorText,
+          error: mailRes.error || 'Failed to deliver confirmation email.',
+          details: mailRes.details,
           fallback: true,
         },
       };
@@ -425,7 +426,7 @@ ${message}
       body: {
         ok: true,
         status: 'pending_confirmation',
-        provider: 'resend-edge',
+        provider: mailRes.provider || 'smtp',
       },
     };
   } catch (err: unknown) {
@@ -445,7 +446,7 @@ export const confirmContactSubmission = async (
   token: string,
   env: Env,
 ): Promise<{ status: number; ok: boolean; html: string; error?: string }> => {
-  const secret = env.CONFIRM_SECRET || env.RESEND_API_KEY || '';
+  const secret = env.CONFIRM_SECRET || env.RESEND_API_KEY || env.SMTP_PASS || '';
   const payload = await verifyConfirmationToken(token, secret);
   const isEn = payload?.l === 'en';
 
@@ -644,12 +645,12 @@ export const confirmContactSubmission = async (
     };
   }
 
-  const resendApiKey = env.RESEND_API_KEY;
-  if (!resendApiKey) {
+  const hasSmtp = Boolean(env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS);
+  if (!hasSmtp && !env.RESEND_API_KEY) {
     return {
       status: 503,
       ok: false,
-      error: 'RESEND_API_KEY is not configured.',
+      error: 'Neither SMTP nor RESEND_API_KEY is configured.',
       html: errorHtml(
         isEn ? 'Service Unavailable' : '服務暫時不可用',
         isEn
@@ -664,33 +665,26 @@ export const confirmContactSubmission = async (
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
-  const fromEmail = env.RESEND_FROM || "David's Concierge <contact@vip.david888.com>";
+  const fromEmail = env.SMTP_FROM || env.RESEND_FROM || "David's Concierge <contact@vip.david888.com>";
 
   try {
     const isSpam = Boolean(payload.sp);
     const choice = payload.sc || 'legitimate_inquiry';
-    const confidence = typeof payload.cf === 'number' ? payload.cf : 0.9;
+    const confidence = typeof payload.cf === 'number' ? payload.cf : 0;
     const endpoint = payload.ep || 'clef-flash';
+    const { intentLabel, badge: intentBadge } = formatIntentReferenceBadge(choice, confidence, isSpam);
+    const confidenceText = confidence > 0 ? `${(confidence * 100).toFixed(1)}%` : 'N/A (Fail-Open)';
 
-    const safetyBadge = isSpam
-      ? `[⚠️ 疑似廣告 (${(confidence * 100).toFixed(0)}%)]`
-      : `[✅ 正常商務 (${(confidence * 100).toFixed(0)}%)]`;
+    const finalSubject = `[直通呈報] ${intentBadge} ${payload.s} — ${payload.n}${payload.c ? ` (${payload.c})` : ''}`;
 
-    const finalSubject = `[直通呈報] ${safetyBadge} ${payload.s} — ${payload.n}${payload.c ? ` (${payload.c})` : ''}`;
-
-    const resendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: adminEmails,
-        reply_to: payload.e,
-        subject: finalSubject,
-        text: `David 的小秘書 — 訪客訊息轉達（已完成信箱雙重驗證）\n\n【決策模型安全分析報告】\n• 識別意圖：${choice}\n• 評估狀態：${safetyBadge}\n• 判定信心度：${(confidence * 100).toFixed(1)}%\n• 推論服務節點：${endpoint}\n\n──────────────────────────────────\n諮詢主旨：${payload.s}\n訪客姓名：${payload.n}\n訪客信箱：${payload.e}\n公司／團隊：${payload.c || '-'}\n\n留言內容：\n${payload.m}\n\n──────────────────────────────────\n此訊息已由訪客於其電子信箱點擊確認驗證後轉達。直接點擊「回覆」即可與訪客聯繫。`,
-        html: `<!DOCTYPE html>
+    const mailRes = await sendEmailWithFallback({
+      env,
+      from: fromEmail,
+      to: adminEmails,
+      replyTo: payload.e,
+      subject: finalSubject,
+      text: `David 的小秘書 — 訪客訊息轉達（已完成信箱雙重驗證）\n\n【意圖分類參考資訊（僅供參考，一律放行寄送）】\n• 識別意圖：${intentLabel} (${choice})\n• 判定信心度：${confidenceText}\n• 推論服務節點：${endpoint}\n\n──────────────────────────────────\n諮詢主旨：${payload.s}\n訪客姓名：${payload.n}\n訪客信箱：${payload.e}\n公司／團隊：${payload.c || '-'}\n\n留言內容：\n${payload.m}\n\n──────────────────────────────────\n此訊息已由訪客於其電子信箱點擊確認驗證後轉達。直接點擊「回覆」即可與訪客聯繫。`,
+      html: `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"/></head>
 <body style="margin: 0; padding: 24px; background: #fff9e8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #17324d;">
@@ -700,11 +694,11 @@ export const confirmContactSubmission = async (
     </div>
     
     <div style="background: #fffdfa; border: 1px solid #d6bc7c; border-radius: 10px; padding: 14px 16px; margin-bottom: 20px;">
-      <div style="font-weight: bold; font-size: 13px; color: #17324d; margin-bottom: 6px;">🛡️ 決策模型安全分析報告</div>
+      <div style="font-weight: bold; font-size: 13px; color: #17324d; margin-bottom: 6px;">🏷️ 意圖分類參考數值（一律放行寄送）</div>
       <div style="font-size: 12px; color: #2b251a; line-height: 1.6;">
-        • 識別意圖：<strong>${escapeHtml(choice)}</strong><br/>
-        • 評估狀態：<strong>${escapeHtml(safetyBadge)}</strong><br/>
-        • 判定信心度：<strong>${(confidence * 100).toFixed(1)}%</strong><br/>
+        • 識別意圖：<strong>${escapeHtml(intentLabel)}</strong> (<code>${escapeHtml(choice)}</code>)<br/>
+        • 參考標籤：<strong>${escapeHtml(intentBadge)}</strong><br/>
+        • 判定信心度：<strong>${escapeHtml(confidenceText)}</strong><br/>
         • 推論服務節點：<code>${escapeHtml(endpoint)}</code>
       </div>
     </div>
@@ -726,12 +720,10 @@ ${escapeHtml(payload.m)}
   </div>
 </body>
 </html>`,
-      }),
     });
 
-    if (!resendRes.ok) {
-      const errText = await resendRes.text().catch(() => '');
-      console.error('Failed to deliver confirmed message via Resend in Worker:', resendRes.status, errText);
+    if (!mailRes.ok) {
+      console.error('Failed to deliver confirmed message in Worker:', mailRes.status, mailRes.details || mailRes.error);
       return {
         status: 502,
         ok: false,
@@ -923,7 +915,7 @@ export const processConciergeChat = async (
     };
   }
 
-  // 2. Invoke Clef / Jev System One Decision Engine for Intent & Gatekeeping Evaluation
+  // 2. Invoke Clef-Flash Intent Evaluator (Reference only, never blocks delivery)
   const decision = await evaluateConversationWithClef(
     {
       messages,
@@ -932,7 +924,6 @@ export const processConciergeChat = async (
       senderEmail: foundEmail,
       company: extractedCompany,
       subject: detectedSubject,
-      typesafeApiKey: env.TYPESAFE_API_KEY,
     },
     25000,
   );
@@ -948,6 +939,28 @@ export const processConciergeChat = async (
   let reply = '';
 
   if (wantsEmail) {
+    if (ready && !alreadyDispatchedInHistory) {
+      try {
+        const submitRes = await processContactSubmission(
+          {
+            name: extractedName || (isZh ? '貴賓' : 'Guest'),
+            email: foundEmail,
+            company: extractedCompany,
+            subject: detectedSubject,
+            message: sanitizeSecretaryText(extractedMessage || allUserText),
+            locale,
+          },
+          env,
+          requestOrigin,
+          decision,
+        );
+        autoDispatched = submitRes.status === 200;
+      } catch (submitErr) {
+        console.warn('[ConciergeChat] Auto-dispatch background error:', submitErr);
+        autoDispatched = false;
+      }
+    }
+
     if (finalRevealEmail) {
       reply = isZh
         ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
@@ -963,7 +976,8 @@ export const processConciergeChat = async (
       body: {
         reply: sanitizeSecretaryText(reply),
         revealEmail: finalRevealEmail,
-        autoDispatched: false,
+        autoDispatched,
+        dispatchedTo: autoDispatched ? foundEmail : undefined,
         draft: {
           name: extractedName,
           email: foundEmail,
@@ -981,9 +995,8 @@ export const processConciergeChat = async (
     const model = env.CF_MODEL || '@cf/openai/gpt-oss-20b';
     const systemPrompt = `You are "David 的小秘書" (in English: "David's Concierge"), the warm, professional, executive personal secretary and ambassador for David Chiang (江政達 / David888).
 
-[INTERNAL SECURITY & INTENT ASSESSMENT]:
-- Evaluated Primary Intent: ${decision.intent} (Confidence: ${Math.round(decision.confidence * 100)}%)
-- Safety Assessment: ${decision.isSpam ? 'POTENTIAL SPAM (Handle politely)' : 'CLEAN & SAFE'}
+[INTERNAL ADVISORY INTENT REFERENCE]:
+- Evaluated Primary Intent: ${decision.intent} (Confidence: ${Math.round(decision.confidence * 100)}%) — Advisory reference only for email subject tagging; NEVER block, refuse, or turn away any visitor inquiry.
 - Email Disclosure Authorization: ${decision.canRevealEmail ? 'APPROVED (Verified High-Value Commercial/Interview Inquiry)' : 'DENIED (Gatekeeping Active: Do NOT disclose David\'s email or phone)'}
 - Policy Guidance: ${decision.guidance}
 

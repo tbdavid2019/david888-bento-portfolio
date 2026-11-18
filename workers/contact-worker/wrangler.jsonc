@@ -3,13 +3,15 @@
   "name": "david888-contact-worker",
   "main": "src/index.ts",
   "compatibility_date": "2026-09-16",
+  "compatibility_flags": ["nodejs_compat"],
   "ai": {
     "binding": "AI"
   },
   "vars": {
     "ADMIN_EMAIL": "104@david888.com, tbdavid2019@gmail.com",
     "RESEND_FROM": "David's Concierge <contact@vip.david888.com>",
-    "CF_MODEL": "@cf/openai/gpt-oss-20b",
-    "TYPESAFE_API_KEY": "apikey_259d4143052cecd4163b1c9f0a242ce8261_dbb3e525dc222cbf9ffed9a63213f95ee18822f0bccda8b3baaff5461008ae55"
+    "SMTP_HOST": "email-smtp.ap-northeast-1.amazonaws.com",
+    "SMTP_PORT": "587",
+    "CF_MODEL": "@cf/openai/gpt-oss-20b"
   }
 }

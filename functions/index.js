@@ -22,16 +22,16 @@ const taipeiDate = () => new Intl.DateTimeFormat('en-CA', {
   timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit',
 }).format(new Date()).replaceAll('-', '');
 
-const getResendApiKey = () => {
+const getSecretSafe = (secretParam, envKey) => {
   try {
-    return resendApiKeySecret.value() || process.env.RESEND_API_KEY || '';
+    return secretParam.value() || process.env[envKey] || '';
   } catch {
-    return process.env.RESEND_API_KEY || '';
+    return process.env[envKey] || '';
   }
 };
 
 const sendMailViaResend = async ({ to, subject, text, replyTo }) => {
-  const apiKey = getResendApiKey();
+  const apiKey = getSecretSafe(resendApiKeySecret, 'RESEND_API_KEY');
   if (!apiKey) return false;
 
   const response = await fetch('https://api.resend.com/emails', {
@@ -58,42 +58,53 @@ const sendMailViaResend = async ({ to, subject, text, replyTo }) => {
 };
 
 const smtpTransport = () => {
-  const user = smtpUserSecret.value() || process.env.SMTP_USER;
-  const pass = smtpPassSecret.value() || process.env.SMTP_PASS;
+  const user = getSecretSafe(smtpUserSecret, 'SMTP_USER');
+  const pass = getSecretSafe(smtpPassSecret, 'SMTP_PASS');
   if (!user || !pass) return null;
-  return { transport: nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: Number(process.env.SMTP_PORT || 465),
-    secure: String(process.env.SMTP_PORT || 465) === '465',
-    auth: { user, pass },
-  }), user };
+  const host = process.env.SMTP_HOST || 'email-smtp.ap-northeast-1.amazonaws.com';
+  const port = Number(process.env.SMTP_PORT || 587);
+  return {
+    transport: nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    }),
+    user,
+  };
 };
 
 const sendMailIfConfigured = async ({ to, subject, text, replyTo }) => {
-  // 1. Try Resend API first
+  // 1. Try SMTP first (Primary)
+  const transport = smtpTransport();
+  if (transport) {
+    try {
+      await transport.transport.sendMail({
+        from: process.env.SMTP_FROM || process.env.RESEND_FROM || transport.user,
+        to,
+        subject,
+        text,
+        ...(replyTo ? { replyTo } : {}),
+      });
+      console.log('Notification email sent successfully via SMTP.');
+      return;
+    } catch (smtpError) {
+      console.warn('Primary SMTP encountered an error, falling back to Resend API:', smtpError);
+    }
+  }
+
+  // 2. Fallback to Resend API
   try {
     const sentViaResend = await sendMailViaResend({ to, subject, text, replyTo });
     if (sentViaResend) {
-      console.log('Notification email sent successfully via Resend API.');
+      console.log('Notification email sent successfully via Resend API fallback.');
       return;
     }
   } catch (resendError) {
-    console.warn('Resend API encountered an error, falling back to SMTP:', resendError);
+    console.warn('Resend API fallback encountered an error:', resendError);
   }
 
-  // 2. Fallback to SMTP
-  const transport = smtpTransport();
-  if (!transport) {
-    console.warn('Neither Resend nor SMTP is configured; ticket was stored without email delivery.');
-    return;
-  }
-  await transport.transport.sendMail({
-    from: process.env.SMTP_FROM || transport.user,
-    to,
-    subject,
-    text,
-    ...(replyTo ? { replyTo } : {}),
-  });
+  console.warn('Neither SMTP nor Resend succeeded; ticket was stored without email delivery.');
 };
 
 export const createContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret, resendApiKeySecret] }, async (request) => {
