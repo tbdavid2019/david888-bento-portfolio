@@ -811,7 +811,8 @@ export const processConciergeChat = async (
 
   const isZh = locale !== 'en';
   const defaultSubject = clean(payload.defaultSubject, 100);
-  const requestOrigin = payload.requestOrigin || workerOrigin || (env.DEFAULT_BASE_URL as string);
+  // Ignore client-supplied requestOrigin to prevent HMAC confirmation link hijacking
+  const requestOrigin = workerOrigin || (env.DEFAULT_BASE_URL as string);
 
   // Check if confirmation email was already dispatched in earlier turns of this conversation
   const alreadyDispatchedInHistory = messages.some(

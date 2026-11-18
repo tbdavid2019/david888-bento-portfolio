@@ -66,7 +66,7 @@ const CJK_STOP_CHARS = new Set([
   '做', '過', '關', '於', '幫', '介', '紹',
 ]);
 
-const QUERY_SYNONYMS: Record<string, string[]> = {
+const QUERY_SYNONYMS: Record<string, string[]> = Object.assign(Object.create(null), {
   github: ['github', 'repo', '開源', '專案', 'code'],
   開源: ['github', 'open source', 'repo'],
   專案: ['portfolio', 'github', 'products', 'project'],
@@ -82,7 +82,7 @@ const QUERY_SYNONYMS: Record<string, string[]> = {
   threads: ['threads', '貼文', '動態', '社群'],
   聯絡: ['contact', '合作', 'email', '寄信'],
   合作: ['contact', '顧問', '諮詢', 'freelance'],
-};
+});
 
 export const EMBEDDED_FALLBACK_CONTEXT: SiteContextPayload = {
   syncStatus: 'stale',
@@ -232,8 +232,9 @@ export function extractSearchTerms(query: string): SearchTokens {
 
   // Light curated query expansion for bilingual search without diluting precision
   for (const token of [...asciiSet, ...phraseSet, ...cjkSet]) {
+    if (!Object.hasOwn(QUERY_SYNONYMS, token)) continue;
     const synonyms = QUERY_SYNONYMS[token];
-    if (synonyms) {
+    if (Array.isArray(synonyms)) {
       for (const syn of synonyms) {
         if (/^[a-z0-9]/i.test(syn)) {
           asciiSet.add(syn.toLowerCase());
@@ -454,7 +455,9 @@ export function formatUntrustedContextBlock(
       const title = sanitizeDelimiterText(item.title, 120);
       const summary = sanitizeDelimiterText(item.summary || '', 180);
       const datePart = item.publishedAt ? ` (${item.publishedAt.slice(0, 10)})` : '';
-      const urlPart = item.url && isValidHttpUrl(item.url) ? ` | ${item.url}` : '';
+      const urlPart = item.url && isValidHttpUrl(item.url)
+        ? ` | ${sanitizeDelimiterText(new URL(item.url).href.replace(/</g, '%3C').replace(/>/g, '%3E'), 300)}`
+        : '';
       const line = `- [${source}]${datePart} ${title}${summary ? `: ${summary}` : ''}${urlPart}`;
       if (lines.join('\n').length + line.length + 80 > MAX_CONTEXT_BLOCK_CHARS) {
         break;
@@ -529,9 +532,36 @@ export async function loadSiteContext(options: {
       return EMBEDDED_FALLBACK_CONTEXT;
     }
 
-    const rawText = await res.text();
-    if (new TextEncoder().encode(rawText).length > MAX_FETCHED_CONTEXT_BYTES) {
+    const declaredLength = Number(res.headers?.get?.('content-length') || 0);
+    if (Number.isFinite(declaredLength) && declaredLength > MAX_FETCHED_CONTEXT_BYTES) {
       return EMBEDDED_FALLBACK_CONTEXT;
+    }
+
+    let rawText = '';
+    if (res.body && typeof res.body.getReader === 'function') {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let totalBytes = 0;
+      const chunks: string[] = [];
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) {
+          totalBytes += value.byteLength;
+          if (totalBytes > MAX_FETCHED_CONTEXT_BYTES) {
+            await reader.cancel().catch(() => {});
+            return EMBEDDED_FALLBACK_CONTEXT;
+          }
+          chunks.push(decoder.decode(value, { stream: true }));
+        }
+      }
+      chunks.push(decoder.decode());
+      rawText = chunks.join('');
+    } else {
+      rawText = await res.text();
+      if (new TextEncoder().encode(rawText).length > MAX_FETCHED_CONTEXT_BYTES) {
+        return EMBEDDED_FALLBACK_CONTEXT;
+      }
     }
 
     const parsed = JSON.parse(rawText);
@@ -632,12 +662,24 @@ export function validateChatPayloadLimits(payload: unknown): { ok: true } | { ok
   }
   if (Array.isArray(rawMessages)) {
     for (const msg of rawMessages) {
-      if (msg && typeof (msg as any).content === 'string' && (msg as any).content.length > 4000) {
+      if (!msg || typeof msg !== 'object' || Array.isArray(msg)) {
+        return { ok: false, status: 400, error: 'Invalid message item in history' };
+      }
+      const record = msg as Record<string, unknown>;
+      if (typeof record.role !== 'string' || typeof record.content !== 'string') {
+        return { ok: false, status: 400, error: 'Each message must include string role and content' };
+      }
+      if (record.content.length > 4000) {
         return { ok: false, status: 400, error: 'Message exceeds maximum length' };
       }
     }
   }
   return { ok: true };
+}
+
+export function sanitizeQaOutputText(rawText: string): string {
+  // Scrub any accidental personal email disclosure while preserving technical terms like AI / LLM
+  return String(rawText || '').replace(/104@david888\.com/gi, '[透過 /contact 聯繫]');
 }
 
 export interface QaModeChatOptions {
@@ -662,6 +704,29 @@ export async function runQaModeChat(
   });
 
   const retrieved = selectTopContextItems(siteContext, options.messages, { topK: 6 });
+
+  // Server-enforced abstention when no indexed records match (avoids LLM hallucination & wasted AI tokens)
+  if (!retrieved.hasMatch) {
+    return {
+      status: 200,
+      body: {
+        reply: sanitize(buildDeterministicQaReply(retrieved, isZh)),
+        revealEmail: false,
+        autoDispatched: false,
+        readyToConfirm: false,
+        mode: 'qa',
+        references: [],
+        draft: {
+          name: '',
+          email: '',
+          company: '',
+          subject: '',
+          message: '',
+        },
+      },
+    };
+  }
+
   const contextBlock = formatUntrustedContextBlock(retrieved, siteContext.profile);
 
   let reply = '';
@@ -724,7 +789,7 @@ export async function runQaModeChat(
   return {
     status: 200,
     body: {
-      reply: sanitize(reply),
+      reply: sanitizeQaOutputText(sanitize(reply)),
       revealEmail: false,
       autoDispatched: false,
       readyToConfirm: false,

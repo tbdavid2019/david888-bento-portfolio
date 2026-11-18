@@ -64,6 +64,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
     const [input, setInput] = useState('');
     const [expanded, setExpanded] = useState(false);
     const [activeCmdIdx, setActiveCmdIdx] = useState(0);
+    const [slashDismissed, setSlashDismissed] = useState(false);
     const [keyboardInset, setKeyboardInset] = useState(0);
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -71,7 +72,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
     const isComposingRef = useRef(false);
 
     const filteredCommands = filterSlashCommands(input);
-    const showSlashMenu = filteredCommands.length > 0 && !isContactModalOpen;
+    const showSlashMenu = filteredCommands.length > 0 && !slashDismissed && !isContactModalOpen;
 
     useEffect(() => {
       if (activeCmdIdx >= filteredCommands.length) {
@@ -170,7 +171,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
         session.appendMessage({
           role: 'user',
           content: '/help',
-          kind: 'text',
+          kind: 'command',
         });
         session.appendMessage({
           role: 'assistant',
@@ -186,7 +187,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
         session.appendMessage({
           role: 'user',
           content: '/rss',
-          kind: 'text',
+          kind: 'command',
         });
         const feed = session.feedSummary || (await session.loadFeedSummary());
         const latest = Array.isArray(feed?.items) ? feed.items.slice(0, 6) : [];
@@ -232,12 +233,12 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
           window.requestAnimationFrame(() => textareaRef.current?.focus());
           return true;
         }
-        await session.loadFeedSummary();
-        const matches = session.runLocalSearch(query, 8);
+        const feed = session.feedSummary || (await session.loadFeedSummary());
+        const matches = session.runLocalSearch(query, 8, feed);
         session.appendMessage({
           role: 'user',
           content: `/search ${query}`,
-          kind: 'text',
+          kind: 'command',
         });
         session.appendMessage({
           role: 'assistant',
@@ -259,7 +260,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
         session.appendMessage({
           role: 'user',
           content: parsed.command,
-          kind: 'text',
+          kind: 'command',
         });
         session.appendMessage({
           role: 'assistant',
@@ -305,7 +306,8 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      const composing = isComposingRef.current || e.nativeEvent.isComposing;
+      const composing = isComposingRef.current || e.nativeEvent.isComposing || e.keyCode === 229;
+      if (composing) return;
 
       if (showSlashMenu) {
         if (e.key === 'ArrowDown') {
@@ -318,7 +320,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
           setActiveCmdIdx((prev) => (prev - 1 + filteredCommands.length) % filteredCommands.length);
           return;
         }
-        if (e.key === 'Tab') {
+        if (e.key === 'Tab' && !e.shiftKey) {
           e.preventDefault();
           const chosen = filteredCommands[activeCmdIdx];
           if (chosen) {
@@ -326,7 +328,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
           }
           return;
         }
-        if (e.key === 'Enter' && !e.shiftKey && !composing) {
+        if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
           const chosen = filteredCommands[activeCmdIdx];
           if (chosen) {
@@ -336,18 +338,20 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
         }
         if (e.key === 'Escape') {
           e.preventDefault();
-          setInput('');
+          e.nativeEvent.stopImmediatePropagation?.();
+          setSlashDismissed(true);
           return;
         }
       }
 
       if (e.key === 'Escape' && expanded && !isContactModalOpen) {
         e.preventDefault();
+        e.nativeEvent.stopImmediatePropagation?.();
         setExpanded(false);
         return;
       }
 
-      if (e.key === 'Enter' && !e.shiftKey && !composing) {
+      if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
         void handleSubmit();
       }
@@ -373,7 +377,8 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
 
     return (
       <div
-        className="fixed inset-x-0 z-50 pointer-events-none"
+        aria-hidden={isContactModalOpen}
+        className={`fixed inset-x-0 z-50 pointer-events-none ${isContactModalOpen ? 'hidden' : ''}`}
         style={{
           bottom: `${keyboardInset}px`,
           paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
@@ -384,6 +389,11 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
           {expanded && (
             <section
               aria-label={isZh ? '小秘書對話與站內查詢視窗' : 'Concierge Q&A and Search Drawer'}
+              style={
+                keyboardInset > 0
+                  ? { maxHeight: `max(12rem, calc(100dvh - ${keyboardInset + 112}px))` }
+                  : undefined
+              }
               className="pointer-events-auto mb-2 flex max-h-[60dvh] flex-col overflow-hidden rounded-2xl border-2 border-[#17324d] bg-[#fffefa] text-[#2b251a] shadow-[0_-12px_36px_rgba(23,50,77,0.2)] dark:border-[#ffb010] dark:bg-[#152332] dark:text-[#fff9e8]"
             >
               {/* Drawer Header */}
@@ -701,6 +711,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
                   value={input}
                   onChange={(e) => {
                     setInput(e.target.value);
+                    setSlashDismissed(false);
                     adjustHeight(e.target);
                   }}
                   onKeyDown={handleKeyDown}
@@ -755,7 +766,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
                   onClick={() => void handleSubmit()}
                   disabled={!input.trim() || session.busy}
                   aria-label={isZh ? '送出問題或指令' : 'Send query or command'}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#ffb010] text-[#2b251a] shadow-xs transition-colors hover:bg-[#f2a600] disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d]"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#ffb010] text-[#2b251a] shadow-xs transition-colors hover:bg-[#f2a600] disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d] dark:focus-visible:outline-[#ffb010]"
                 >
                   <Send size={16} strokeWidth={2.3} aria-hidden="true" />
                 </button>

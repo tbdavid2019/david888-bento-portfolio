@@ -187,7 +187,8 @@ export const sendConciergeMessage = async (
 
     if (response.ok) {
       const data = (await response.json()) as ConciergeChatOutput;
-      if (data && typeof data.reply === 'string' && data.reply.trim()) {
+      const modeMatches = mode !== 'qa' || data?.mode === 'qa';
+      if (data && modeMatches && typeof data.reply === 'string' && data.reply.trim()) {
         const safeRefs = Array.isArray(data.references)
           ? data.references.filter((r) => r && isValidHttpUrl(r.url) && typeof r.title === 'string')
           : undefined;
@@ -360,6 +361,7 @@ export const sendConciergeMessage = async (
   const finalRevealEmail = Boolean(wantsEmail && hasDetailedContext);
 
   let reply = '';
+  let offlineDispatched = false;
   if (wantsEmail) {
     if (finalRevealEmail) {
       reply = isZh
@@ -371,19 +373,29 @@ export const sendConciergeMessage = async (
         : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
     }
   } else if (ready) {
-    // In client-side offline fallback, trigger dispatch in background if not yet done
-    submitContactTicket({
-      name: extractedName || (isZh ? '貴賓' : 'Guest'),
-      email: foundEmail,
-      company: extractedCompany,
-      subject: detectedSubject,
-      message: extractedMessage || allUserText,
-      locale: isZh ? 'zh' : 'en',
-    }).catch((e) => console.warn('[CRM Fallback] submitContactTicket error:', e));
+    // In client-side fallback, await dispatch cleanly so status is never misreported
+    try {
+      const submitRes = await submitContactTicket({
+        name: extractedName || (isZh ? '貴賓' : 'Guest'),
+        email: foundEmail,
+        company: extractedCompany,
+        subject: detectedSubject,
+        message: extractedMessage || allUserText,
+        locale: isZh ? 'zh' : 'en',
+      });
+      offlineDispatched = Boolean(submitRes?.ok);
+    } catch (e) {
+      console.warn('[CRM Fallback] submitContactTicket error:', e);
+      offlineDispatched = false;
+    }
 
     reply = isZh
-      ? `非常感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已自動為您將訊息整理妥當，並已直接寄出確認信至 ${foundEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`
-      : `Thank you so much${extractedName ? `, ${extractedName}` : ''}! I have prepared your message and automatically sent a confirmation email to ${foundEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`;
+      ? (offlineDispatched
+          ? `非常感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已為您將訊息整理妥當，並已寄出確認信至 ${foundEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`
+          : `感謝${extractedName ? ` ${extractedName}` : ''}！目前離線或後端暫時無法寄出確認信至 ${foundEmail}，請點擊上方「直接填寫表單」或稍後重試。`)
+      : (offlineDispatched
+          ? `Thank you so much${extractedName ? `, ${extractedName}` : ''}! I have prepared your message and sent a confirmation email to ${foundEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`
+          : `Thank you${extractedName ? `, ${extractedName}` : ''}! Automatic dispatch to ${foundEmail} could not be completed just now. Please use Direct Form or try again shortly.`);
   } else if (/職缺|招募|獵頭|演講|培訓|recruitment|speaking|job|interview/i.test(detectedSubject) && (!hasName || !hasEmail)) {
     reply = isZh
       ? (extractedCompany
@@ -413,8 +425,8 @@ export const sendConciergeMessage = async (
   return {
     reply,
     revealEmail: finalRevealEmail,
-    autoDispatched: ready,
-    dispatchedTo: foundEmail || undefined,
+    autoDispatched: offlineDispatched,
+    dispatchedTo: offlineDispatched ? (foundEmail || undefined) : undefined,
     draft: {
       name: extractedName,
       email: foundEmail,
@@ -422,7 +434,7 @@ export const sendConciergeMessage = async (
       subject: detectedSubject,
       message: extractedMessage || allUserText,
     },
-    readyToConfirm: ready,
+    readyToConfirm: offlineDispatched,
   };
 };
 

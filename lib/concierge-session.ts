@@ -22,7 +22,7 @@ export interface DockChatMessage {
   content: string;
   mode?: ConciergeMode;
   references?: SafeContextReference[];
-  kind?: 'text' | 'search' | 'help' | 'rss' | 'error';
+  kind?: 'text' | 'command' | 'search' | 'help' | 'rss' | 'error';
   searchResults?: CombinedSearchResult[];
 }
 
@@ -189,15 +189,26 @@ export function searchCombinedCatalog(
   const queryLower = query.toLowerCase();
   const byUrl = new Map<string, CatalogSearchInputItem>();
 
-  // Catalog items take priority over duplicate feed items
+  const makeDedupKey = (item: CatalogSearchInputItem) => {
+    const normUrl = normalizeUrlForDedup(item.url);
+    const isSharedContainer =
+      normUrl === '/executive' ||
+      normUrl === 'https://www.threads.com/@david888.chiang' ||
+      normUrl === 'https://github.com/tbdavid2019';
+    return isSharedContainer
+      ? `${normUrl}::${item.title.trim().toLowerCase()}`
+      : normUrl;
+  };
+
+  // Catalog items take priority over duplicate feed items while keeping distinct items on shared container URLs
   for (const item of catalogItems || []) {
     if (!item || !item.title || !isSafeLinkTarget(item.url)) continue;
-    const key = normalizeUrlForDedup(item.url);
+    const key = makeDedupKey(item);
     if (!byUrl.has(key)) byUrl.set(key, item);
   }
   for (const item of feedItems || []) {
     if (!item || !item.title || !isSafeLinkTarget(item.url)) continue;
-    const key = normalizeUrlForDedup(item.url);
+    const key = makeDedupKey(item);
     if (!byUrl.has(key)) byUrl.set(key, item);
   }
 

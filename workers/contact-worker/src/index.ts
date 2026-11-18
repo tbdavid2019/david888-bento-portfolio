@@ -212,8 +212,17 @@ export const processContactSubmission = async (
     };
   }
 
-  // 1. Cloudflare Turnstile Verification (if provided)
-  if (env.TURNSTILE_SECRET && turnstileToken) {
+  // 1. Cloudflare Turnstile Verification (if TURNSTILE_SECRET is configured)
+  if (env.TURNSTILE_SECRET) {
+    if (!turnstileToken) {
+      return {
+        status: 403,
+        body: {
+          error: 'Cloudflare Turnstile verification token is missing.',
+          turnstileFailed: true,
+        },
+      };
+    }
     try {
       const verifyRes = await fetch(
         'https://challenges.cloudflare.com/turnstile/v0/siteverify',
@@ -238,7 +247,14 @@ export const processContactSubmission = async (
         };
       }
     } catch (verifyErr) {
-      console.warn('Turnstile verify network error:', verifyErr);
+      console.error('Turnstile verify network error:', verifyErr);
+      return {
+        status: 403,
+        body: {
+          error: 'Could not connect to Cloudflare Turnstile verification service.',
+          turnstileFailed: true,
+        },
+      };
     }
   }
 
@@ -816,7 +832,8 @@ export const processConciergeChat = async (
 
   const isZh = locale !== 'en';
   const defaultSubject = clean(payload.defaultSubject, 100);
-  const requestOrigin = payload.requestOrigin || workerOrigin || ((env as any).DEFAULT_BASE_URL as string);
+  // Ignore client-supplied requestOrigin to prevent HMAC confirmation link hijacking
+  const requestOrigin = workerOrigin || ((env as any).DEFAULT_BASE_URL as string);
 
   // Check if confirmation email was already dispatched in earlier turns of this conversation
   const alreadyDispatchedInHistory = messages.some(
@@ -1318,6 +1335,30 @@ Respond ONLY with a valid JSON object matching this schema:
   };
 };
 
+const MAX_POST_BODY_BYTES = 32_768;
+const CHAT_RATE_WINDOW_MS = 60_000;
+const CHAT_RATE_MAX_REQUESTS = 40;
+const chatRateBuckets = new Map<string, { count: number; resetAt: number }>();
+
+function checkChatRateLimit(clientIp: string | null): boolean {
+  if (!clientIp) return true;
+  const now = Date.now();
+  const existing = chatRateBuckets.get(clientIp);
+  if (!existing || now > existing.resetAt) {
+    if (chatRateBuckets.size >= 1000) {
+      const oldestKey = chatRateBuckets.keys().next().value;
+      if (oldestKey) chatRateBuckets.delete(oldestKey);
+    }
+    chatRateBuckets.set(clientIp, { count: 1, resetAt: now + CHAT_RATE_WINDOW_MS });
+    return true;
+  }
+  if (existing.count >= CHAT_RATE_MAX_REQUESTS) {
+    return false;
+  }
+  existing.count += 1;
+  return true;
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     // 1. Handle CORS Preflight
@@ -1345,10 +1386,41 @@ export default {
     }
 
     try {
-      const payload = (await request.json().catch(() => ({}))) as ContactPayload;
+      const declaredLen = Number(request.headers.get('content-length') || 0);
+      if (Number.isFinite(declaredLen) && declaredLen > MAX_POST_BODY_BYTES) {
+        return new Response(JSON.stringify({ error: 'Request body too large' }), {
+          status: 413,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      }
+
+      const rawBody = await request.text();
+      if (new TextEncoder().encode(rawBody).length > MAX_POST_BODY_BYTES) {
+        return new Response(JSON.stringify({ error: 'Request body too large' }), {
+          status: 413,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      }
+
+      let payload: ContactPayload;
+      try {
+        payload = (rawBody ? JSON.parse(rawBody) : {}) as ContactPayload;
+      } catch {
+        return new Response(JSON.stringify({ error: 'Invalid JSON request body' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      }
 
       // 3. Handle POST /chat or payload.action === 'chat'
       if (url.pathname === '/chat' || payload.action === 'chat') {
+        const clientIp = request.headers.get('cf-connecting-ip');
+        if (!checkChatRateLimit(clientIp)) {
+          return new Response(JSON.stringify({ error: 'Too many requests, please try again shortly.' }), {
+            status: 429,
+            headers: { 'Content-Type': 'application/json', ...corsHeaders },
+          });
+        }
         const result = await processConciergeChat(payload, env, url.origin);
         return new Response(JSON.stringify(result.body), {
           status: result.status,

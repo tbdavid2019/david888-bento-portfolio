@@ -34,6 +34,21 @@ export interface FeedSummaryPayload {
 
 const makeId = () => `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
+function normalizeFeedSearchItems(feed: FeedSummaryPayload | null): CatalogSearchInputItem[] {
+  if (!feed?.items) return [];
+  return feed.items
+    .filter((item) => item && item.title && item.url)
+    .map((item) => ({
+      id: item.id || item.url,
+      title: String(item.title),
+      summary: String(item.summary || ''),
+      url: String(item.url),
+      source: item.source || 'feed',
+      publishedAt: item.publishedAt,
+      tags: Array.isArray(item.tags) ? item.tags : [],
+    }));
+}
+
 export function useConciergeSession(locale: Locale, defaultSubject = '') {
   const isZh = locale !== 'en';
   const [mode, setMode] = useState<ConciergeMode>('qa');
@@ -52,23 +67,32 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
     message: '',
   });
   const [feedSummary, setFeedSummary] = useState<FeedSummaryPayload | null>(null);
-  const feedFetchedRef = useRef(false);
+  const feedInFlightRef = useRef<Promise<FeedSummaryPayload | null> | null>(null);
+  const sessionEpochRef = useRef(0);
 
-  const loadFeedSummary = useCallback(async () => {
-    if (feedFetchedRef.current) return feedSummary;
-    feedFetchedRef.current = true;
-    try {
-      const res = await fetch('/feed-summary.json', { headers: { Accept: 'application/json' } });
-      if (!res.ok) return null;
-      const data = (await res.json()) as FeedSummaryPayload;
-      if (data && Array.isArray(data.items)) {
-        setFeedSummary(data);
-        return data;
+  const loadFeedSummary = useCallback(async (): Promise<FeedSummaryPayload | null> => {
+    if (feedSummary) return feedSummary;
+    if (feedInFlightRef.current) return feedInFlightRef.current;
+
+    const promise = (async () => {
+      try {
+        const res = await fetch('/feed-summary.json', { headers: { Accept: 'application/json' } });
+        if (!res.ok) return null;
+        const data = (await res.json()) as FeedSummaryPayload;
+        if (data && Array.isArray(data.items)) {
+          setFeedSummary(data);
+          return data;
+        }
+      } catch {
+        // Graceful catalog-only fallback when feed-summary.json is unavailable; allows retry on next call
+      } finally {
+        feedInFlightRef.current = null;
       }
-    } catch {
-      // Graceful catalog-only fallback when feed-summary.json is unavailable
-    }
-    return null;
+      return null;
+    })();
+
+    feedInFlightRef.current = promise;
+    return promise;
   }, [feedSummary]);
 
   // Idle background prefetch so /search and /rss respond instantaneously
@@ -122,20 +146,7 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
     return [...caps, ...works];
   }, [isZh, locale]);
 
-  const feedSearchItems: CatalogSearchInputItem[] = useMemo(() => {
-    if (!feedSummary?.items) return [];
-    return feedSummary.items
-      .filter((item) => item && item.title && item.url)
-      .map((item) => ({
-        id: item.id || item.url,
-        title: String(item.title),
-        summary: String(item.summary || ''),
-        url: String(item.url),
-        source: item.source || 'feed',
-        publishedAt: item.publishedAt,
-        tags: Array.isArray(item.tags) ? item.tags : [],
-      }));
-  }, [feedSummary]);
+  const feedSearchItems = useMemo(() => normalizeFeedSearchItems(feedSummary), [feedSummary]);
 
   const fallbackContextItems: SiteContextItem[] = useMemo(
     () =>
@@ -159,17 +170,27 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
   }, []);
 
   const clearMessages = useCallback(() => {
+    sessionEpochRef.current += 1;
     setMessages([]);
+    setBusy(false);
     setReferences([]);
     setRevealEmail(false);
     setReadyToConfirm(false);
     setAutoDispatched(false);
     setDispatchedTo(undefined);
-  }, []);
+    setDraft({
+      name: '',
+      email: '',
+      company: '',
+      subject: defaultSubject,
+      message: '',
+    });
+  }, [defaultSubject]);
 
   const runLocalSearch = useCallback(
-    (query: string, limit = 8) => {
-      return searchCombinedCatalog(query, catalogSearchItems, feedSearchItems, limit);
+    (query: string, limit = 8, feedOverride?: FeedSummaryPayload | null) => {
+      const feedPool = feedOverride !== undefined ? normalizeFeedSearchItems(feedOverride) : feedSearchItems;
+      return searchCombinedCatalog(query, catalogSearchItems, feedPool, limit);
     },
     [catalogSearchItems, feedSearchItems],
   );
@@ -182,6 +203,7 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
       const content = rawText.trim();
       if (!content || busy) return null;
 
+      const epochAtStart = sessionEpochRef.current;
       const targetMode: ConciergeMode = options?.mode || mode;
       const userMsg: DockChatMessage = {
         id: makeId(),
@@ -191,8 +213,9 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
         kind: 'text',
       };
 
+      // Strictly isolate Q&A vs Contact history so private contact emails/messages never mix into Q&A (or vice versa)
       const historyForApi = [...messages, userMsg]
-        .filter((m) => m.kind !== 'help' && m.kind !== 'search' && m.kind !== 'rss' && m.kind !== 'error')
+        .filter((m) => m.kind === 'text' && (m.mode || 'qa') === targetMode)
         .slice(-10)
         .map((m) => ({
           role: m.role,
@@ -210,6 +233,10 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
           mode: targetMode,
           fallbackContextItems,
         });
+
+        if (sessionEpochRef.current !== epochAtStart) {
+          return null;
+        }
 
         const refs = Array.isArray(res.references) ? res.references : [];
         if (targetMode === 'contact') {
@@ -240,6 +267,9 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
         setMessages((prev) => [...prev, replyMsg]);
         return res;
       } catch {
+        if (sessionEpochRef.current !== epochAtStart) {
+          return null;
+        }
         const errMsg: DockChatMessage = {
           id: makeId(),
           role: 'assistant',
@@ -252,7 +282,9 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
         setMessages((prev) => [...prev, errMsg]);
         return null;
       } finally {
-        setBusy(false);
+        if (sessionEpochRef.current === epochAtStart) {
+          setBusy(false);
+        }
       }
     },
     [busy, mode, messages, locale, draft.subject, defaultSubject, fallbackContextItems, isZh],

@@ -142,6 +142,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     message: session?.draft.message || '',
   });
   const isComposingRef = useRef(false);
+  const dialogRef = useRef<HTMLElement>(null);
   const chatScrollContainerRef = useRef<HTMLDivElement>(null);
   const chatTextareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -159,12 +160,42 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     }
   }, [initialTab]);
 
-  // Keyboard accessibility: Close on Escape key (stopPropagation avoids double-closing dock)
+  // Keyboard & Focus accessibility: move focus inside dialog, trap Tab/Shift+Tab, and close on Escape
   useEffect(() => {
+    const dialogEl = dialogRef.current;
+    if (dialogEl) {
+      const firstFocusable = dialogEl.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      (firstFocusable || dialogEl).focus();
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        e.stopPropagation();
+        e.preventDefault();
         onClose();
+        return;
+      }
+
+      if (e.key === 'Tab' && dialogEl) {
+        const focusables = Array.from(
+          dialogEl.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((el) => el.offsetParent !== null);
+        if (focusables.length === 0) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first || !dialogEl.contains(document.activeElement)) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else if (document.activeElement === last || !dialogEl.contains(document.activeElement)) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -176,8 +207,9 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     : "Hello! I am David's Concierge. David brings extensive experience leading 100+ engineer R&D organizations as a CTO, specializing in technology strategy, cross-system integration, cloud cost & ROI optimization, and architecture delivery. How may I assist you today?";
 
   const [messages, setMessages] = useState<ConciergeChatMessage[]>(() => {
+    // Only carry prior contact-mode messages; never mix casual Q&A history or emails into contact dispatch
     const carried = (session?.messages || [])
-      .filter((m) => m.kind === 'text' && m.content.trim())
+      .filter((m) => m.kind === 'text' && m.mode === 'contact' && m.content.trim())
       .map((m) => ({ role: m.role, content: m.content }));
     return [
       {
@@ -401,7 +433,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
 
     try {
       const result = await sendConciergeMessage({
-        messages: nextMessages,
+        messages: nextMessages.slice(-10),
         locale,
         defaultSubject: conciergeDraft.subject || form.subject,
         mode: 'contact',
@@ -487,7 +519,9 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       onMouseDown={(event) => event.target === event.currentTarget && onClose()}
     >
       <section
-        className="my-auto max-h-[94vh] sm:max-h-[92vh] w-full max-w-[calc(100vw-1rem)] sm:max-w-xl md:max-w-2xl overflow-y-auto overflow-x-hidden rounded-2xl sm:rounded-[28px] border border-border bg-bg-surface p-4 sm:p-5 md:p-6 shadow-2xl box-border"
+        ref={dialogRef}
+        tabIndex={-1}
+        className="my-auto max-h-[94vh] sm:max-h-[92vh] w-full max-w-[calc(100vw-1rem)] sm:max-w-xl md:max-w-2xl overflow-y-auto overflow-x-hidden rounded-2xl sm:rounded-[28px] border border-border bg-bg-surface p-4 sm:p-5 md:p-6 shadow-2xl box-border focus:outline-none"
         style={{
           fontFamily:
             '"Gen Jyuu Gothic", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
@@ -781,8 +815,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
                     </div>
                   )}
 
-                  {/* Inline Conversational Summary & Auto-Dispatched Status Card */}
-                  {conciergeReady && conciergeDraft.email && (
+                  {/* Inline Conversational Summary & Auto-Dispatched Status Card (strictly gated on actual dispatch) */}
+                  {conciergeAutoDispatched && conciergeReady && conciergeDraft.email && (
                     <div className="rounded-2xl border border-[#ffb010]/30 bg-[#fffdfa] dark:bg-[#122338] p-4 text-sm shadow-xs space-y-3">
                       <div className="flex items-center justify-between border-b border-[#ffb010]/20 pb-2">
                         <span className="font-bold text-sm text-text-main flex items-center gap-2">

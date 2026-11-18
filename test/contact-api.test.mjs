@@ -1546,3 +1546,89 @@ test('sendConciergeMessage offline fallback in qa mode never solicits email', as
     globalThis.fetch = originalFetch;
   }
 });
+
+test('tri-review security gates: ignores client requestOrigin, rejects null message entries, enforces Worker Turnstile, and rejects legacy non-qa replies', async () => {
+  const originalFetch = globalThis.fetch;
+  let capturedConfirmLink = '';
+
+  // 1. Null/malformed message entries return HTTP 400 (never 500)
+  for (const fn of [processConciergeChat, workerProcessConciergeChat]) {
+    const resNull = await fn({ mode: 'qa', messages: [null] }, {});
+    assert.equal(resNull.status, 400);
+    const resNoRole = await fn({ mode: 'contact', messages: [{ content: 'hi' }] }, {});
+    assert.equal(resNoRole.status, 400);
+  }
+
+  // 2. Client-supplied requestOrigin must NOT hijack HMAC confirmation links in contact mode
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes('clef.')) throw new Error('Clef down');
+    if (String(url).includes('api.resend.com/emails')) {
+      const payload = JSON.parse(init.body);
+      capturedConfirmLink = payload.html || '';
+      return { ok: true, status: 200, json: async () => ({ id: 'mail-1' }) };
+    }
+    return { ok: false, status: 404 };
+  };
+
+  try {
+    const req = new Request('https://david888-contact-worker.example.workers.dev/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'chat',
+        mode: 'contact',
+        requestOrigin: 'https://evil-attacker.example',
+        messages: [{ role: 'user', content: '我是 Alice，信箱 alice@example.com，想洽詢企業架構顧問。' }],
+      }),
+    });
+    const workerRes = await workerDefault.fetch(req, {
+      RESEND_API_KEY: 're_test',
+      CONFIRM_SECRET: 'test-secret-123',
+      ADMIN_EMAIL: '104@david888.com',
+    });
+    assert.equal(workerRes.status, 200);
+    assert.ok(!capturedConfirmLink.includes('evil-attacker.example'));
+    assert.ok(capturedConfirmLink.includes('https://david888-contact-worker.example.workers.dev/confirm?token='));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  // 3. Worker Turnstile enforces fail-closed when TURNSTILE_SECRET is configured
+  const missingTurnstile = await workerDefault.fetch(
+    new Request('https://david888-contact-worker.example.workers.dev/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Alice',
+        email: 'alice@example.com',
+        subject: 'Consulting',
+        message: 'Testing fail-closed turnstile enforcement.',
+      }),
+    }),
+    { TURNSTILE_SECRET: 'secret_configured', RESEND_API_KEY: 're_test' },
+  );
+  assert.equal(missingTurnstile.status, 403);
+
+  // 4. Client sendConciergeMessage in qa mode ignores legacy remote responses missing mode: 'qa'
+  globalThis.fetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      reply: 'Legacy contact response claiming email sent',
+      autoDispatched: true,
+      readyToConfirm: true,
+    }),
+  });
+  try {
+    const out = await sendConciergeMessage({
+      mode: 'qa',
+      locale: 'zh',
+      messages: [{ role: 'user', content: 'David 有做過技術長顧問嗎？' }],
+    });
+    assert.equal(out.mode, 'qa');
+    assert.equal(out.autoDispatched, false);
+    assert.ok(!out.reply.includes('Legacy contact response'));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});

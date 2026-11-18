@@ -1,8 +1,53 @@
 {
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-18T05:45:08.200Z",
+  "lastSyncedAt": "2026-11-18T06:20:27.772Z",
   "feedUrl": "https://david888.com/rss.xml",
   "items": [
+    {
+      "id": "github-repo:888a2a-lite",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "888a2a-lite",
+      "summary": "888a2a-lite 是獨立、輕量的 Public A2A Hub，提供 Agent 註冊、Peer 發現、heartbeat 和以 agentId 尋址的 durable inbox。它可以讓 Codex、OpenClaw、Hermes、agy 與其他 Agent 交換通知…",
+      "url": "https://github.com/tbdavid2019/888a2a-lite",
+      "publishedAt": "2026-11-18T06:17:45.000Z",
+      "tags": [
+        "github",
+        "Go",
+        "a2a",
+        "a2a-agent",
+        "a2a-cli"
+      ]
+    },
+    {
+      "id": "github-repo:888wiki",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": false,
+      "title": "888wiki",
+      "summary": "A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations. https://wiki.david888.com [JavaScript] ★12",
+      "url": "https://github.com/tbdavid2019/888wiki",
+      "publishedAt": "2026-11-18T06:11:50.000Z",
+      "tags": [
+        "github",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": "github-repo:david888-bento-portfolio",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": true,
+      "title": "david888-bento-portfolio",
+      "summary": "https://david888.com [TypeScript]",
+      "url": "https://github.com/tbdavid2019/david888-bento-portfolio",
+      "publishedAt": "2026-11-18T06:01:19.000Z",
+      "tags": [
+        "github",
+        "TypeScript"
+      ]
+    },
     {
       "id": "threads:md-d7d537eabd18",
       "source": "threads",
@@ -16,20 +61,39 @@
       ]
     },
     {
-      "id": "github-repo:888a2a-lite",
-      "source": "github",
-      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
-      "featured": false,
-      "title": "888a2a-lite",
-      "summary": "888a2a-lite 是獨立、輕量的 Public A2A Hub，提供 Agent 註冊、Peer 發現、heartbeat 和以 agentId 尋址的 durable inbox。它可以讓 Codex、OpenClaw、Hermes、agy 與其他 Agent 交換通知…",
-      "url": "https://github.com/tbdavid2019/888a2a-lite",
-      "publishedAt": "2026-11-18T05:43:12.000Z",
+      "id": "threads:md-55b57e2da083",
+      "source": "threads",
+      "sourceFeedUrl": "https://www.threads.com/@david888.chiang",
+      "title": "搜尋答案直接出現在結果頁，網站流量少四成，受影響的也包括寫教學和實測的人。文章指出，Google AI 回答減少搜尋導流，讓內容團隊轉向爭取 AI 引用；但被引用仍不等於讀者會回站。對讀者來說，點回…",
+      "summary": "搜尋答案直接出現在結果頁，網站流量少四成，受影響的也包括寫教學和實測的人。文章指出，Google AI 回答減少搜尋導流，讓內容團隊轉向爭取 AI 引用；但被引用仍不等於讀者會回站。對讀者來說，點回原始文章、支持持續更新的第一手內容，仍是讓這種知識供給延續的方式。🎧 聽今日節目：podcast.david888.com/post…",
+      "url": "https://www.threads.com/@david888.chiang",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
       "tags": [
-        "github",
-        "Go",
-        "a2a",
-        "a2a-agent",
-        "a2a-cli"
+        "threads"
+      ]
+    },
+    {
+      "id": "threads:md-11bb3716a3ac",
+      "source": "threads",
+      "sourceFeedUrl": "https://www.threads.com/@david888.chiang",
+      "title": "作業系統看到你用了哪些開發代理，會讓遙測問題多一層競爭關係。今日文章整理 Windows 11 蒐集開發工具使用資訊引發的反彈：即使資料不含程式碼，工具清單與活躍情況也可能描出團隊採用趨勢。當系統商…",
+      "summary": "作業系統看到你用了哪些開發代理，會讓遙測問題多一層競爭關係。今日文章整理 Windows 11 蒐集開發工具使用資訊引發的反彈：即使資料不含程式碼，工具清單與活躍情況也可能描出團隊採用趨勢。當系統商也推出自家 AI 工具，企業更需要弄清楚蒐集範圍、用途和管理方式。🎧 聽今日節目：podcast.david888.com/post…",
+      "url": "https://www.threads.com/@david888.chiang",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "tags": [
+        "threads"
+      ]
+    },
+    {
+      "id": "threads:md-a077aa8c1964",
+      "source": "threads",
+      "sourceFeedUrl": "https://www.threads.com/@david888.chiang",
+      "title": "65 個字元可能就夠了：文章列出的 Java4Shell 觸發字串是 64 個 A 加一個等號。OpenJDK 在特定 AVX-512 解碼路徑可能因長度計算下溢，寫出配置範圍；研究團隊也列出 Ke…",
+      "summary": "65 個字元可能就夠了：文章列出的 Java4Shell 觸發字串是 64 個 A 加一個等號。OpenJDK 在特定 AVX-512 解碼路徑可能因長度計算下溢，寫出配置範圍；研究團隊也列出 Keycloak、Jira、Confluence、Jenkins 等受影響案例。企業維運可先盤點 JVM 版本與相關服務，再追蹤各元件修補資訊。🎧 聽今日節目：podcast.david888.com/post…",
+      "url": "https://www.threads.com/@david888.chiang",
+      "publishedAt": "2026-11-18T05:44:40.120Z",
+      "tags": [
+        "threads"
       ]
     },
     {
@@ -108,20 +172,6 @@
       "tags": [
         "github",
         "Python"
-      ]
-    },
-    {
-      "id": "github-repo:david888-bento-portfolio",
-      "source": "github",
-      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
-      "featured": true,
-      "title": "david888-bento-portfolio",
-      "summary": "https://david888.com [TypeScript]",
-      "url": "https://github.com/tbdavid2019/david888-bento-portfolio",
-      "publishedAt": "2026-11-18T02:08:00.000Z",
-      "tags": [
-        "github",
-        "TypeScript"
       ]
     },
     {
@@ -225,58 +275,6 @@
       "tags": [
         "github",
         "Python"
-      ]
-    },
-    {
-      "id": "github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044",
-      "source": "github",
-      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
-      "title": "tbdavid2019 pushed 888a2a-lite",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 09:59 1 commit to main 0973206 feat(web,seo): add Open Graph, Twitter Card, JSON-LD, favicons, manif…",
-      "url": "https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044",
-      "publishedAt": "2026-11-17T09:59:54.000Z",
-      "tags": [
-        "github",
-        "activity"
-      ]
-    },
-    {
-      "id": "github-repo:8882fa",
-      "source": "github",
-      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
-      "featured": false,
-      "title": "8882fa",
-      "summary": "888 2FA - Two Factor Authenticator using Cloudflare Workers (繁體中文 / 簡體中文 / English) [JavaScript]",
-      "url": "https://github.com/tbdavid2019/8882fa",
-      "publishedAt": "2026-11-17T09:12:25.000Z",
-      "tags": [
-        "github",
-        "JavaScript"
-      ]
-    },
-    {
-      "id": "blog:https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/",
-      "source": "blog",
-      "sourceFeedUrl": "https://blog.david888.com/rss/",
-      "title": "又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品",
-      "summary": "📌 又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品 ⓵ 【容易懂 Easy Know】 以前外國流行的「白人飯」就像冬天逼你吃冰箱拿出來的生冷胡蘿蔔和乾麵包，雖然號稱健康減肥，但對習慣吃熱騰騰飯菜的亞洲人來說，簡直是「又貴又難吃」的折磨。 後來，中國團隊接手改造，就像給三明治施了魔法：把冷冰冰的麵包和配料送進烤箱「全線熱烤」，加入烤鴨、麻辣牛肉等中式口味，甚至配上一杯熱豆漿。大家發現三明治變熱、變香了，才終於願意掏錢買單。 ⓶ 【總結 Overall Summary】 中國輕食市場規模預計將達 5,000 億元，但過去以沙拉、冷食三明治為代表…",
-      "url": "https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/",
-      "publishedAt": "2026-11-17T08:51:11.000Z",
-      "tags": [
-        "blog"
-      ]
-    },
-    {
-      "id": "github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445",
-      "source": "github",
-      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
-      "title": "tbdavid2019 pushed 888a2a-lite",
-      "summary": "tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 08:45 1 commit to main ad8b747 test(bridge): stub auto_accept_pending_invitations on notify-only Hub…",
-      "url": "https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445",
-      "publishedAt": "2026-11-17T08:45:49.000Z",
-      "tags": [
-        "github",
-        "activity"
       ]
     }
   ]

@@ -275,6 +275,8 @@ export default function App() {
 
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return;
+
       if (e.key === 'Escape') {
         if (contactOpen) {
           e.preventDefault();
@@ -297,7 +299,7 @@ export default function App() {
       if (contactOpen) return;
       const target = e.target as HTMLElement | null;
       const tagName = target?.tagName;
-      if (tagName === 'INPUT' || tagName === 'TEXTAREA' || target?.isContentEditable) {
+      if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT' || target?.isContentEditable) {
         return;
       }
 
@@ -347,16 +349,14 @@ export default function App() {
         onClearSearch={() => setSearchQuery('')}
         onContact={() => openContactDialog('consulting')}
       />
-      {!contactOpen && (
-        <BottomConciergeDock
-          ref={dockRef}
-          locale={locale}
-          session={conciergeSession}
-          onNavigateCategory={handleDockNavigateCategory}
-          onOpenContact={(tab: 'chat' | 'form' = 'chat') => openContactDialog('consulting', tab)}
-          isContactModalOpen={contactOpen}
-        />
-      )}
+      <BottomConciergeDock
+        ref={dockRef}
+        locale={locale}
+        session={conciergeSession}
+        onNavigateCategory={handleDockNavigateCategory}
+        onOpenContact={(tab: 'chat' | 'form' = 'chat') => openContactDialog('consulting', tab)}
+        isContactModalOpen={contactOpen}
+      />
       {contactOpen && (
         <ContactDialog
           locale={locale}

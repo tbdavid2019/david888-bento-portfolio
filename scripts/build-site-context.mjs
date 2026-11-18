@@ -45,6 +45,16 @@ export function escapeXml(value) {
     .replace(/'/g, '&apos;');
 }
 
+function isSafeHttpUrl(rawUrl) {
+  if (typeof rawUrl !== 'string') return false;
+  try {
+    const u = new URL(rawUrl.trim());
+    return u.protocol === 'https:' || u.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
 export function toIsoDateOrFallback(raw, fallbackIso) {
   const ts = Date.parse(String(raw || ''));
   return Number.isFinite(ts) ? new Date(ts).toISOString() : fallbackIso;
@@ -138,9 +148,11 @@ export function buildRssXml({ items, siteOrigin, nowIso }) {
 }
 
 export function enforceContextByteBudget(payload, maxBytes = SITE_CONTEXT_MAX_BYTES) {
-  const serialize = (obj) => Buffer.byteLength(JSON.stringify(obj), 'utf8');
+  // Include the exact trailing newline written to site-context.json
+  const serialize = (obj) => Buffer.byteLength(`${JSON.stringify(obj)}\n`, 'utf8');
   const cloned = {
     ...payload,
+    profile: payload.profile ? { ...payload.profile } : undefined,
     items: Array.isArray(payload.items) ? payload.items.map((item) => ({ ...item })) : [],
   };
 
@@ -171,6 +183,15 @@ export function enforceContextByteBudget(payload, maxBytes = SITE_CONTEXT_MAX_BY
   while (cloned.items.length > 0 && serialize(cloned) > maxBytes) {
     cloned.items.pop();
   }
+
+  // Step 4: If oversized metadata alone exceeds budget, clamp profile strings so file size never exceeds maxBytes
+  if (serialize(cloned) > maxBytes && cloned.profile) {
+    cloned.profile.headline = truncateText(cloned.profile.headline || '', 120);
+    cloned.profile.location = truncateText(cloned.profile.location || '', 60);
+    if (serialize(cloned) > maxBytes) {
+      cloned.profile = { name: truncateText(cloned.profile.name || 'David Chiang', 40) };
+    }
+  }
   return cloned;
 }
 
@@ -178,12 +199,18 @@ function deduplicateFeedItems(items) {
   const seenKeys = new Set();
   const deduped = [];
   for (const item of items) {
-    if (!item || !item.url || !item.title) continue;
+    if (!item || !item.url || !item.title || !isSafeHttpUrl(item.url)) continue;
     const urlKey = String(item.url).replace(/\/+$/, '').toLowerCase();
     const idKey = String(item.id || '').toLowerCase();
-    if (seenKeys.has(urlKey) || (idKey && seenKeys.has(idKey))) continue;
-    seenKeys.add(urlKey);
-    if (idKey) seenKeys.add(idKey);
+    // Threads avatar-fallback posts share the profile URL; deduplicate them by id/title so distinct posts survive
+    const isSharedProfileUrl = urlKey === THREADS_PROFILE_URL.toLowerCase();
+    const compositeKey = isSharedProfileUrl
+      ? (idKey || `${urlKey}::${String(item.title).trim().toLowerCase()}`)
+      : (idKey || urlKey);
+    if (seenKeys.has(compositeKey)) continue;
+    if (!isSharedProfileUrl && seenKeys.has(urlKey)) continue;
+    seenKeys.add(compositeKey);
+    if (!isSharedProfileUrl) seenKeys.add(urlKey);
     deduped.push(item);
   }
   return deduped;
