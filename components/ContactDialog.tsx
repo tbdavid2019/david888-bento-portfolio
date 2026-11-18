@@ -178,8 +178,8 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       }
 
       if (e.key === 'Tab' && dialogEl) {
-        const focusables = Array.from(
-          dialogEl.querySelectorAll<HTMLElement>(
+        const focusables = Array.from<HTMLElement>(
+          dialogEl.querySelectorAll(
             'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
           ),
         ).filter((el) => el.offsetParent !== null);
