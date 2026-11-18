@@ -55,7 +55,7 @@ jobs:
           fi
 
       - name: Build production bundle
-        run: npx tsc --noEmit && vite build
+        run: npx tsc --noEmit && npx vite build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
