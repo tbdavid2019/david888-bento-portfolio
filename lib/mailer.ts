@@ -13,7 +13,6 @@ export interface MailEnv {
   SMTP_FROM?: string;
   RESEND_API_KEY?: string;
   RESEND_FROM?: string;
-  [key: string]: unknown;
 }
 
 export interface SendMailInput {
