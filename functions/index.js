@@ -68,10 +68,19 @@ const smtpTransport = () => {
       host,
       port,
       secure: port === 465,
+      requireTLS: port !== 465,
       auth: { user, pass },
     }),
     user,
   };
+};
+
+const isAmbiguousPostDataSmtpError = (err) => {
+  if (!err || typeof err !== 'object') return false;
+  const hasSmtpCode = typeof err.responseCode === 'number' && err.responseCode >= 400;
+  if (hasSmtpCode) return false;
+  const cmd = String(err.command || '').toUpperCase();
+  return cmd === 'DATA' || cmd === 'DATA END';
 };
 
 const sendMailIfConfigured = async ({ to, subject, text, replyTo }) => {
@@ -79,16 +88,23 @@ const sendMailIfConfigured = async ({ to, subject, text, replyTo }) => {
   const transport = smtpTransport();
   if (transport) {
     try {
+      const defaultFrom = isEmail(transport.user)
+        ? transport.user
+        : "David's Concierge <contact@vip.david888.com>";
       await transport.transport.sendMail({
-        from: process.env.SMTP_FROM || process.env.RESEND_FROM || transport.user,
+        from: process.env.SMTP_FROM || process.env.RESEND_FROM || defaultFrom,
         to,
         subject,
         text,
         ...(replyTo ? { replyTo } : {}),
       });
       console.log('Notification email sent successfully via SMTP.');
-      return;
+      return { ok: true, provider: 'smtp' };
     } catch (smtpError) {
+      if (isAmbiguousPostDataSmtpError(smtpError)) {
+        console.warn('SMTP outcome ambiguous after DATA submission; skipping Resend fallback to prevent duplicate:', smtpError);
+        return { ok: false, ambiguous: true, error: smtpError?.message || 'SMTP post-DATA timeout' };
+      }
       console.warn('Primary SMTP encountered an error, falling back to Resend API:', smtpError);
     }
   }
@@ -98,13 +114,14 @@ const sendMailIfConfigured = async ({ to, subject, text, replyTo }) => {
     const sentViaResend = await sendMailViaResend({ to, subject, text, replyTo });
     if (sentViaResend) {
       console.log('Notification email sent successfully via Resend API fallback.');
-      return;
+      return { ok: true, provider: 'resend' };
     }
   } catch (resendError) {
     console.warn('Resend API fallback encountered an error:', resendError);
   }
 
-  console.warn('Neither SMTP nor Resend succeeded; ticket was stored without email delivery.');
+  console.warn('Neither SMTP nor Resend succeeded; email was not delivered.');
+  return { ok: false, error: 'All configured email providers failed.' };
 };
 
 export const createContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret, resendApiKeySecret] }, async (request) => {
@@ -161,26 +178,28 @@ export const createContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSe
 
   const ticketNo = `CS-${date}-${String(sequence).padStart(4, '0')}`;
   // 1. Notify admin
-  await sendMailIfConfigured({
+  const adminMailResult = await sendMailIfConfigured({
     to: ADMIN_EMAIL,
     replyTo: email,
     subject: `[${ticketNo}] ${subject}`,
     text: `新聯絡案件\n\n服務序號：${ticketNo}\n諮詢類型：${subject}\n姓名：${name}\nEmail：${email}\n公司／團隊：${company || '-'}\n\n留言內容：\n${message}`,
   });
-
-  // 2. Best-effort customer receipt
-  try {
-    await sendMailIfConfigured({
-      to: email,
-      replyTo: ADMIN_EMAIL,
-      subject: `[收件確認] 我們已收到您的訊息 (${ticketNo}) - ${subject}`,
-      text: `您好 ${name}：\n\n感謝您的來信！我們已收到您的聯絡訊息，以下是您填寫的案件存根：\n\n====================\n服務序號：${ticketNo}\n諮詢類型：${subject}\n姓名：${name}\nEmail：${email}\n公司／團隊：${company || '-'}\n\n留言內容：\n${message}\n====================\n\nDavid 會盡快親自查閱並透過此 Email 與您聯繫。\n\nDavid888 Portfolio (david888.com)`,
-    });
-  } catch (receiptErr) {
-    console.warn('Customer receipt email delivery skipped:', receiptErr);
+  if (!adminMailResult.ok) {
+    console.error(`Admin notification failed for ticket ${ticketNo}:`, adminMailResult.error);
   }
 
-  return { ticketNo };
+  // 2. Best-effort customer receipt
+  const receiptResult = await sendMailIfConfigured({
+    to: email,
+    replyTo: ADMIN_EMAIL,
+    subject: `[收件確認] 我們已收到您的訊息 (${ticketNo}) - ${subject}`,
+    text: `您好 ${name}：\n\n感謝您的來信！我們已收到您的聯絡訊息，以下是您填寫的案件存根：\n\n====================\n服務序號：${ticketNo}\n諮詢類型：${subject}\n姓名：${name}\nEmail：${email}\n公司／團隊：${company || '-'}\n\n留言內容：\n${message}\n====================\n\nDavid 會盡快親自查閱並透過此 Email 與您聯繫。\n\nDavid888 Portfolio (david888.com)`,
+  });
+  if (!receiptResult.ok) {
+    console.warn(`Customer receipt email delivery skipped for ${ticketNo}:`, receiptResult.error);
+  }
+
+  return { ticketNo, emailDelivered: adminMailResult.ok };
 });
 
 export const replyToContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassSecret, resendApiKeySecret] }, async (request) => {
@@ -197,17 +216,20 @@ export const replyToContactTicket = onCall({ secrets: [smtpUserSecret, smtpPassS
   if (!ticket.exists) throw new HttpsError('not-found', 'Ticket not found.');
 
   const ticketData = ticket.data();
+  const mailResult = await sendMailIfConfigured({
+    to: ticketData.email,
+    replyTo: ADMIN_EMAIL,
+    subject: `Re: [${ticketData.ticketNo}] ${ticketData.subject}`,
+    text: `David888 回覆你的聯絡案件（${ticketData.ticketNo}）：\n\n${body}`,
+  });
+  if (!mailResult.ok) {
+    throw new HttpsError('unavailable', mailResult.error || 'Failed to deliver reply email.');
+  }
   await ticketRef.collection('replies').add({
     body,
     authorEmail: request.auth.token.email,
     createdAt: FieldValue.serverTimestamp(),
   });
   await ticketRef.update({ status: 'replied', updatedAt: FieldValue.serverTimestamp() });
-  await sendMailIfConfigured({
-    to: ticketData.email,
-    replyTo: ADMIN_EMAIL,
-    subject: `Re: [${ticketData.ticketNo}] ${ticketData.subject}`,
-    text: `David888 回覆你的聯絡案件（${ticketData.ticketNo}）：\n\n${body}`,
-  });
-  return { ok: true };
+  return { ok: true, provider: mailResult.provider };
 });

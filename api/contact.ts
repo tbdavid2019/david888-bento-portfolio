@@ -174,7 +174,7 @@ export const processContactSubmission = async (
   const subject = clean(payload.subject, 180);
   const message = clean(payload.message, 5000);
   const locale = payload.locale === 'en' ? 'en' : 'zh';
-  const turnstileToken = payload.turnstileToken;
+  const turnstileToken = clean(payload.turnstileToken, 2048);
 
   if (!name || !isEmail(email) || !subject || message.length < 5) {
     return {
@@ -410,7 +410,7 @@ ${message}
         body: {
           error: mailRes.error || 'Failed to deliver confirmation email.',
           details: mailRes.details,
-          fallback: true,
+          fallback: mailRes.fallback ?? true,
         },
       };
     }
@@ -719,15 +719,27 @@ ${escapeHtml(payload.m)}
 
     if (!mailRes.ok) {
       console.error('Failed to deliver confirmed message:', mailRes.status, mailRes.details || mailRes.error);
+      const isAmbiguous = mailRes.fallback === false;
+      if (isAmbiguous) {
+        if (confirmedSignatures.size >= 5000) {
+          const oldest = confirmedSignatures.values().next().value;
+          if (oldest) confirmedSignatures.delete(oldest);
+        }
+        confirmedSignatures.add(sig);
+      }
       return {
         status: 502,
         ok: false,
         error: 'Failed to deliver confirmed message.',
         html: errorHtml(
-          isEn ? 'Delivery Failed' : '訊息送達失敗',
-          isEn
-            ? 'We encountered an error delivering your message to David. Please click the link in your email again to retry.'
-            : '轉達訊息時發生連線錯誤，請再次點擊信中的確認連結重新嘗試。',
+          isEn ? 'Delivery Status Uncertain' : (isAmbiguous ? '訊息寄送狀態待確認' : '訊息送達失敗'),
+          isAmbiguous
+            ? (isEn
+                ? 'Your message was submitted to the mail server, though the final confirmation timed out. Please avoid repeating immediately to prevent duplicates.'
+                : '您的訊息已送交郵件伺服器，但等待最終回應時逾時。為避免重複寄送，請稍候片刻再確認。')
+            : (isEn
+                ? 'We encountered an error delivering your message to David. Please click the link in your email again to retry.'
+                : '轉達訊息時發生連線錯誤，請再次點擊信中的確認連結重新嘗試。'),
           isEn ? 'en' : 'zh-TW',
         ),
       };
@@ -784,6 +796,7 @@ export const processConciergeChat = async (
       m.role === 'assistant' &&
       (m.content.includes('已自動為您將訊息整理妥當') ||
         m.content.includes('已直接寄出確認信') ||
+        m.content.includes('已自動寄出確認信') ||
         m.content.includes('automatically sent a confirmation email') ||
         m.content.includes('已自動為您送出確認信') ||
         m.content.includes('已自動寄送確認信'))
@@ -944,6 +957,7 @@ export const processConciergeChat = async (
             subject: detectedSubject,
             message: sanitizeSecretaryText(extractedMessage || allUserText),
             locale,
+            turnstileToken: payload.turnstileToken,
           },
           env,
           requestOrigin,
@@ -958,12 +972,20 @@ export const processConciergeChat = async (
 
     if (finalRevealEmail) {
       reply = isZh
-        ? '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！'
-        : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!";
+        ? (autoDispatched
+            ? `感謝您提供詳實完整的交流資訊！經小秘書確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)，同時已自動寄出確認信至 ${foundEmail}，請至信箱點擊連結即可同步呈報給 David！`
+            : '感謝您提供詳實完整的交流資訊！經小秘書意圖與安全審核確認為正式邀約，已在下方為您展開 David 的直通信箱名片卡 (104@david888.com)。您可直接複製來信，或由小秘書為您寄出確認信呈報！')
+        : (autoDispatched
+            ? `Thank you for providing detailed inquiry information! I have displayed David's direct contact card below (104@david888.com) and automatically sent a confirmation email to ${foundEmail}.`
+            : "Thank you for providing detailed inquiry information! Having verified this as a formal invitation, I have displayed David's direct contact card below (104@david888.com). You may email directly or have me send a confirmation email!");
     } else {
       reply = isZh
-        ? '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！'
-        : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!";
+        ? (autoDispatched
+            ? `抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴；不過小秘書已自動為您寄出確認信至 ${foundEmail}，請務必至信箱點擊確認連結即可為您轉達給 David！`
+            : '抱歉，David 先生平時公務繁忙，直通信箱僅提供給具備明確事由的正式合作夥伴。請您先說明您代表的單位、大名與具體洽談主題，小秘書審核後很樂意為您轉達或提供進一步聯繫管道！')
+        : (autoDispatched
+            ? `David's direct inbox is reserved for formal partners with verified context; however, I have automatically sent a confirmation email to ${foundEmail} so you can verify and deliver your inquiry to David!`
+            : "David's direct inbox is reserved for formal partners with verified context. Please share your name, organization, and inquiry topic first, and I will gladly review and forward your message!");
     }
 
     return {
@@ -1115,6 +1137,7 @@ Respond ONLY with a valid JSON object matching this schema:
                   subject: draftSubject,
                   message: sanitizeSecretaryText(draftMessage || allUserText),
                   locale,
+                  turnstileToken: payload.turnstileToken,
                 },
                 env,
                 requestOrigin,
@@ -1183,6 +1206,7 @@ Respond ONLY with a valid JSON object matching this schema:
             subject: detectedSubject,
             message: sanitizeSecretaryText(extractedMessage || allUserText),
             locale,
+            turnstileToken: payload.turnstileToken,
           },
           env,
           requestOrigin,
@@ -1200,10 +1224,14 @@ Respond ONLY with a valid JSON object matching this schema:
     reply = isZh
       ? (alreadyDispatchedInHistory
           ? `好的！確認信先前已自動寄送至 ${foundEmail}，請務必至您的信箱查收並點擊「確認轉達給 David」連結。一經確認，訊息將立即直達呈報給 David 本人！`
-          : `非常感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已自動為您將訊息整理妥當，並已直接寄出確認信至 ${foundEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`)
+          : autoDispatched
+            ? `非常感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已自動為您將訊息整理妥當，並已直接寄出確認信至 ${foundEmail}。\n\n請務必前往該信箱查收並點擊確認連結（提醒您：請確認信箱真實有效），一經確認，訊息將立即直達呈報給 David 本人！`
+            : `感謝${extractedName ? ` ${extractedName}` : ''}！小秘書已為您整理妥當（聯繫信箱：${foundEmail}），但自動寄出確認信時暫時發生異常，請您改用「直接填表」送出或稍後再試。`)
       : (alreadyDispatchedInHistory
           ? `Understood! The confirmation email was dispatched to ${foundEmail}. Please verify via your inbox to deliver your message directly to David!`
-          : `Thank you so much${extractedName ? `, ${extractedName}` : ''}! I have prepared your message and automatically sent a confirmation email to ${foundEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`);
+          : autoDispatched
+            ? `Thank you so much${extractedName ? `, ${extractedName}` : ''}! I have prepared your message and automatically sent a confirmation email to ${foundEmail}.\n\nPlease check your inbox and click the verification link (please ensure your email is active) to deliver your message directly to David!`
+            : `Thank you${extractedName ? `, ${extractedName}` : ''}! I have prepared your draft (${foundEmail}), though automatic email delivery failed just now. Please use the Direct Form tab or try again shortly.`);
 
     return {
       status: 200,

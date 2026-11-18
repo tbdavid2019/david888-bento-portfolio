@@ -36,7 +36,18 @@ export interface SendMailResult {
 }
 
 const textEncoder = new TextEncoder();
-const textDecoder = new TextDecoder();
+
+export class SmtpError extends Error {
+  code?: number;
+  afterDataTerminator: boolean;
+
+  constructor(message: string, opts?: { code?: number; afterDataTerminator?: boolean }) {
+    super(message);
+    this.name = 'SmtpError';
+    this.code = opts?.code;
+    this.afterDataTerminator = Boolean(opts?.afterDataTerminator);
+  }
+}
 
 export const sanitizeHeaderValue = (value: string): string =>
   String(value || '').replace(/[\r\n]+/g, ' ').trim();
@@ -44,7 +55,11 @@ export const sanitizeHeaderValue = (value: string): string =>
 export const extractEmailAddress = (addressOrFormatted: string): string => {
   const cleaned = sanitizeHeaderValue(addressOrFormatted);
   const match = cleaned.match(/<([^<>\s]+@[^<>\s]+)>/);
-  return (match ? match[1] : cleaned).trim();
+  const candidate = (match ? match[1] : cleaned).trim();
+  if (!/^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(candidate)) {
+    throw new SmtpError(`Invalid SMTP envelope email address: ${candidate}`);
+  }
+  return candidate;
 };
 
 export const toBase64Utf8 = (input: string): string => {
@@ -98,7 +113,14 @@ export const formatAddressHeader = (addressOrFormatted: string): string => {
   const displayName = match[1].trim().replace(/^"|"$/g, '');
   const email = match[2].trim();
   if (!displayName) return `<${email}>`;
-  return `${encodeMimeHeaderText(displayName)} <${email}>`;
+  if (!/^[\x20-\x7E]*$/.test(displayName)) {
+    return `${encodeMimeHeaderText(displayName)} <${email}>`;
+  }
+  if (/[()<>@,;:\\".\[\]]/.test(displayName)) {
+    const escaped = displayName.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    return `"${escaped}" <${email}>`;
+  }
+  return `${displayName} <${email}>`;
 };
 
 export const buildMimeMessage = (params: {
@@ -169,80 +191,110 @@ const withTimeout = <T>(promise: Promise<T>, timeoutMs: number, label: string): 
   });
 
 async function openWorkerSocket(host: string, port: number, timeoutMs: number): Promise<SmtpStreamConnection | null> {
+  let mod: any;
   try {
-    const mod = await import(/* @vite-ignore */ 'cloudflare:sockets');
-    if (!mod || typeof mod.connect !== 'function') return null;
-
-    let socket: any = mod.connect(
-      { hostname: host, port },
-      { secureTransport: port === 465 ? 'on' : 'starttls' },
-    );
-    await withTimeout(socket.opened, timeoutMs, 'socket.opened');
-
-    let reader = socket.readable.getReader();
-    let writer = socket.writable.getWriter();
-
-    return {
-      readChunk: async () => {
-        const { value, done } = await withTimeout<{ value?: Uint8Array; done: boolean }>(
-          reader.read(),
-          timeoutMs,
-          'socket.read',
-        );
-        if (done || !value) return null;
-        return value;
-      },
-      writeText: async (text: string) => {
-        await withTimeout(writer.write(textEncoder.encode(text)), timeoutMs, 'socket.write');
-      },
-      upgradeToTls: async () => {
-        reader.releaseLock();
-        writer.releaseLock();
-        socket = socket.startTls();
-        reader = socket.readable.getReader();
-        writer = socket.writable.getWriter();
-      },
-      close: async () => {
-        try {
-          reader.releaseLock();
-        } catch {
-          // ignore
-        }
-        try {
-          writer.releaseLock();
-        } catch {
-          // ignore
-        }
-        try {
-          await socket.close();
-        } catch {
-          // ignore
-        }
-      },
-    };
+    mod = await import(/* @vite-ignore */ 'cloudflare:sockets');
   } catch {
+    // Running outside Cloudflare Workers (e.g. Node.js)
     return null;
   }
+  if (!mod || typeof mod.connect !== 'function') return null;
+
+  let socket: any = mod.connect(
+    { hostname: host, port },
+    { secureTransport: port === 465 ? 'on' : 'starttls' },
+  );
+  let reader: any = null;
+  let writer: any = null;
+
+  try {
+    await withTimeout(socket.opened, timeoutMs, 'socket.opened');
+    reader = socket.readable.getReader();
+    writer = socket.writable.getWriter();
+  } catch (err) {
+    try {
+      await socket.close();
+    } catch {
+      // ignore
+    }
+    throw err;
+  }
+
+  return {
+    readChunk: async () => {
+      const { value, done } = await withTimeout<{ value?: Uint8Array; done: boolean }>(
+        reader.read(),
+        timeoutMs,
+        'socket.read',
+      );
+      if (done || !value) return null;
+      return value;
+    },
+    writeText: async (text: string) => {
+      await withTimeout(writer.write(textEncoder.encode(text)), timeoutMs, 'socket.write');
+    },
+    upgradeToTls: async () => {
+      reader.releaseLock();
+      writer.releaseLock();
+      socket = socket.startTls();
+      reader = socket.readable.getReader();
+      writer = socket.writable.getWriter();
+    },
+    close: async () => {
+      try {
+        await reader?.cancel?.();
+      } catch {
+        // ignore
+      }
+      try {
+        reader?.releaseLock?.();
+      } catch {
+        // ignore
+      }
+      try {
+        writer?.releaseLock?.();
+      } catch {
+        // ignore
+      }
+      try {
+        await socket.close();
+      } catch {
+        // ignore
+      }
+    },
+  };
 }
 
 async function openNodeSocket(host: string, port: number, timeoutMs: number): Promise<SmtpStreamConnection> {
   const net = await import('node:net');
   const tls = await import('node:tls');
 
-  let activeSocket: any = await withTimeout(
-    new Promise<any>((resolve, reject) => {
-      const sock =
-        port === 465
-          ? tls.connect({ host, port, servername: host }, () => resolve(sock))
-          : net.connect({ host, port }, () => resolve(sock));
-      sock.once('error', reject);
-    }),
-    timeoutMs,
-    'node.connect',
-  );
+  let rawSock: any = null;
+  let activeSocket: any;
+  try {
+    activeSocket = await withTimeout(
+      new Promise<any>((resolve, reject) => {
+        rawSock =
+          port === 465
+            ? tls.connect({ host, port, servername: host }, () => resolve(rawSock))
+            : net.connect({ host, port }, () => resolve(rawSock));
+        rawSock.once('error', reject);
+      }),
+      timeoutMs,
+      'node.connect',
+    );
+  } catch (err) {
+    try {
+      rawSock?.destroy?.();
+    } catch {
+      // ignore
+    }
+    throw err;
+  }
 
   let chunks: Uint8Array[] = [];
   let closed = false;
+  let sockError: Error | null = null;
   let pendingResolve: ((chunk: Uint8Array | null) => void) | null = null;
   let pendingReject: ((err: Error) => void) | null = null;
 
@@ -269,6 +321,7 @@ async function openNodeSocket(host: string, port: number, timeoutMs: number): Pr
     });
     sock.on('error', (err: Error) => {
       closed = true;
+      sockError = err;
       if (pendingReject) {
         const rej = pendingReject;
         pendingResolve = null;
@@ -283,6 +336,11 @@ async function openNodeSocket(host: string, port: number, timeoutMs: number): Pr
   return {
     readChunk: async () => {
       if (chunks.length > 0) return chunks.shift()!;
+      if (sockError) {
+        const err = sockError;
+        sockError = null;
+        throw err;
+      }
       if (closed) return null;
       return withTimeout(
         new Promise<Uint8Array | null>((resolve, reject) => {
@@ -310,17 +368,29 @@ async function openNodeSocket(host: string, port: number, timeoutMs: number): Pr
       activeSocket.removeAllListeners('end');
       activeSocket.removeAllListeners('error');
       chunks = [];
-      activeSocket = await withTimeout(
-        new Promise<any>((resolve, reject) => {
-          const tlsSock = tls.connect(
-            { socket: activeSocket, servername: host },
-            () => resolve(tlsSock),
-          );
-          tlsSock.once('error', reject);
-        }),
-        timeoutMs,
-        'node.startTls',
-      );
+      sockError = null;
+      let tlsSock: any = null;
+      try {
+        activeSocket = await withTimeout(
+          new Promise<any>((resolve, reject) => {
+            tlsSock = tls.connect(
+              { socket: activeSocket, servername: host },
+              () => resolve(tlsSock),
+            );
+            tlsSock.once('error', reject);
+          }),
+          timeoutMs,
+          'node.startTls',
+        );
+      } catch (err) {
+        try {
+          tlsSock?.destroy?.();
+          activeSocket?.destroy?.();
+        } catch {
+          // ignore
+        }
+        throw err;
+      }
       attachListeners(activeSocket);
     },
     close: async () => {
@@ -335,6 +405,7 @@ async function openNodeSocket(host: string, port: number, timeoutMs: number): Pr
 
 class SmtpLineReader {
   private buffer = '';
+  private decoder = new TextDecoder();
   private conn: SmtpStreamConnection;
 
   constructor(conn: SmtpStreamConnection) {
@@ -364,7 +435,7 @@ class SmtpLineReader {
       if (!chunk) {
         throw new Error(`SMTP connection closed unexpectedly (buffer=${this.buffer})`);
       }
-      this.buffer += textDecoder.decode(chunk, { stream: true });
+      this.buffer += this.decoder.decode(chunk, { stream: true });
     }
   }
 }
@@ -383,6 +454,15 @@ export async function sendEmailViaSmtp(params: {
   timeoutMs?: number;
   connectSocket?: (host: string, port: number, timeoutMs: number) => Promise<SmtpStreamConnection>;
 }): Promise<void> {
+  if (!Array.isArray(params.to) || params.to.length === 0) {
+    throw new SmtpError('At least one recipient email address is required');
+  }
+  if (!Number.isInteger(params.port) || params.port <= 0 || params.port > 65535) {
+    throw new SmtpError(`Invalid SMTP port: ${params.port}`);
+  }
+  const envelopeFrom = extractEmailAddress(params.from);
+  const rcptEmails = params.to.map(extractEmailAddress);
+
   const timeoutMs = params.timeoutMs ?? 15000;
   const conn =
     (params.connectSocket && (await params.connectSocket(params.host, params.port, timeoutMs))) ||
@@ -390,22 +470,36 @@ export async function sendEmailViaSmtp(params: {
     (await openNodeSocket(params.host, params.port, timeoutMs));
 
   const reader = new SmtpLineReader(conn);
+  let dataTerminatorSent = false;
   const expectCode = async (expectedCodes: number[], step: string) => {
-    const res = await reader.readResponse();
-    if (!expectedCodes.includes(res.code)) {
-      throw new Error(`SMTP ${step} failed (${res.code}): ${res.raw}`);
+    try {
+      const res = await reader.readResponse();
+      if (!expectedCodes.includes(res.code)) {
+        throw new SmtpError(`SMTP ${step} failed (${res.code}): ${res.raw}`, {
+          code: res.code,
+          afterDataTerminator: dataTerminatorSent,
+        });
+      }
+      return res;
+    } catch (err) {
+      if (err instanceof SmtpError) throw err;
+      const msg = err instanceof Error ? err.message : String(err);
+      throw new SmtpError(msg, { afterDataTerminator: dataTerminatorSent });
     }
-    return res;
   };
 
   try {
     await expectCode([220], 'greeting');
 
-    const ehloHost = 'david888-contact-worker.local';
+    const ehloHost = 'contact-worker.david888.com';
     await conn.writeText(`EHLO ${ehloHost}\r\n`);
     let ehloRes = await expectCode([250], 'EHLO');
 
     if (params.port !== 465) {
+      const supportsStartTls = ehloRes.lines.some((l) => /^250[- ]STARTTLS\b/i.test(l));
+      if (!supportsStartTls) {
+        throw new SmtpError('SMTP server did not advertise STARTTLS capability');
+      }
       await conn.writeText('STARTTLS\r\n');
       await expectCode([220], 'STARTTLS');
       await conn.upgradeToTls();
@@ -413,26 +507,27 @@ export async function sendEmailViaSmtp(params: {
       ehloRes = await expectCode([250], 'EHLO after STARTTLS');
     }
 
-    const supportsPlain = ehloRes.lines.some((l) => /AUTH.*\bPLAIN\b/i.test(l));
+    const supportsPlain = ehloRes.lines.some((l) => /^250[- ]AUTH(?:=| )(?:.*\b)?PLAIN\b/i.test(l));
+    const supportsLogin = ehloRes.lines.some((l) => /^250[- ]AUTH(?:=| )(?:.*\b)?LOGIN\b/i.test(l));
     if (supportsPlain) {
       const authToken = toBase64Utf8(`\0${params.user}\0${params.pass}`);
       await conn.writeText(`AUTH PLAIN ${authToken}\r\n`);
       await expectCode([235], 'AUTH PLAIN');
-    } else {
+    } else if (supportsLogin) {
       await conn.writeText('AUTH LOGIN\r\n');
       await expectCode([334], 'AUTH LOGIN');
       await conn.writeText(`${toBase64Utf8(params.user)}\r\n`);
       await expectCode([334], 'AUTH LOGIN username');
       await conn.writeText(`${toBase64Utf8(params.pass)}\r\n`);
       await expectCode([235], 'AUTH LOGIN password');
+    } else {
+      throw new SmtpError('SMTP server did not advertise AUTH PLAIN or AUTH LOGIN');
     }
 
-    const envelopeFrom = extractEmailAddress(params.from);
     await conn.writeText(`MAIL FROM:<${envelopeFrom}>\r\n`);
     await expectCode([250], 'MAIL FROM');
 
-    for (const recipient of params.to) {
-      const rcptEmail = extractEmailAddress(recipient);
+    for (const rcptEmail of rcptEmails) {
       await conn.writeText(`RCPT TO:<${rcptEmail}>\r\n`);
       await expectCode([250, 251], `RCPT TO ${rcptEmail}`);
     }
@@ -450,14 +545,21 @@ export async function sendEmailViaSmtp(params: {
     });
     // Dot-stuffing per RFC 5321 section 4.5.2
     const stuffed = mime.replace(/(^|\r\n)\./g, '$1..');
-    await conn.writeText(`${stuffed}\r\n.\r\n`);
+    const dataPayload = stuffed.endsWith('\r\n') ? `${stuffed}.\r\n` : `${stuffed}\r\n.\r\n`;
+    dataTerminatorSent = true;
+    try {
+      await conn.writeText(dataPayload);
+    } catch (writeErr) {
+      const msg = writeErr instanceof Error ? writeErr.message : String(writeErr);
+      throw new SmtpError(msg, { afterDataTerminator: true });
+    }
     await expectCode([250], 'DATA end');
 
-    await conn.writeText('QUIT\r\n');
     try {
+      await conn.writeText('QUIT\r\n');
       await reader.readResponse();
     } catch {
-      // Ignore QUIT close errors
+      // Ignore QUIT close/write errors after 250 Ok
     }
   } finally {
     await conn.close();
@@ -503,6 +605,16 @@ export async function sendEmailWithFallback(input: SendMailInput): Promise<SendM
       return { ok: true, provider: 'smtp' };
     } catch (smtpErr: unknown) {
       lastErrorDetails = smtpErr instanceof Error ? smtpErr.message : String(smtpErr);
+      if (smtpErr instanceof SmtpError && smtpErr.afterDataTerminator && smtpErr.code === undefined) {
+        console.warn('[Mailer] Ambiguous SMTP outcome after DATA terminator (skipping Resend fallback to avoid duplicates):', lastErrorDetails);
+        return {
+          ok: false,
+          status: 502,
+          error: 'SMTP connection dropped after message submission; delivery status is uncertain.',
+          details: lastErrorDetails,
+          fallback: false,
+        };
+      }
       console.warn('[Mailer] Primary SMTP delivery failed, falling back to Resend API:', lastErrorDetails);
     }
   }

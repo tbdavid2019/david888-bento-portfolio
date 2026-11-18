@@ -10,7 +10,15 @@ import {
   sanitizeSecretaryText,
   resolveConfirmOrigin,
 } from '../api/contact.ts';
-import { sendEmailViaSmtp, sendEmailWithFallback, buildMimeMessage } from '../lib/mailer.ts';
+import {
+  sendEmailViaSmtp,
+  sendEmailWithFallback,
+  buildMimeMessage,
+  extractEmailAddress,
+  formatAddressHeader,
+  SmtpError,
+} from '../lib/mailer.ts';
+import { submitContactTicket } from '../lib/crm.ts';
 import workerDefault from '../workers/contact-worker/src/index.ts';
 
 test('rejects submissions with missing or invalid fields', async () => {
@@ -1178,6 +1186,212 @@ test('SMTP client completes STARTTLS + AUTH PLAIN + MIME DATA handshake and fall
     assert.equal(fallbackRes.ok, true);
     assert.equal(fallbackRes.provider, 'resend');
     assert.equal(resendCalled, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('SMTP client enforces advertised AUTH mechanisms, validates envelope addresses, and tags ambiguous post-DATA drops', async () => {
+  assert.throws(() => extractEmailAddress('bad>address@example.com'), SmtpError);
+  assert.throws(() => extractEmailAddress('not-an-email'), SmtpError);
+
+  const encoder = new TextEncoder();
+  const makeMockConn = (responses) => {
+    let idx = 0;
+    return async () => ({
+      readChunk: async () => (idx < responses.length ? encoder.encode(responses[idx++]) : null),
+      writeText: async () => {},
+      upgradeToTls: async () => {},
+      close: async () => {},
+    });
+  };
+
+  // 1. Server does not advertise PLAIN or LOGIN -> must reject cleanly
+  await assert.rejects(
+    () =>
+      sendEmailViaSmtp({
+        host: 'smtp.example.com',
+        port: 587,
+        user: 'u',
+        pass: 'p',
+        from: 'sender@example.com',
+        to: ['to@example.com'],
+        subject: 'Auth check',
+        text: 'body',
+        html: '<p>body</p>',
+        connectSocket: makeMockConn([
+          '220 smtp.example.com ESMTP\r\n',
+          '250-smtp.example.com\r\n250 STARTTLS\r\n',
+          '220 Ready\r\n',
+          '250-smtp.example.com\r\n250 AUTH CRAM-MD5\r\n',
+        ]),
+      }),
+    (err) => err instanceof SmtpError && err.message.includes('did not advertise AUTH PLAIN or AUTH LOGIN'),
+  );
+
+  // 2. Connection drops after DATA terminator -> SmtpError with afterDataTerminator=true, code=undefined
+  await assert.rejects(
+    () =>
+      sendEmailViaSmtp({
+        host: 'smtp.example.com',
+        port: 587,
+        user: 'u',
+        pass: 'p',
+        from: 'sender@example.com',
+        to: ['to@example.com'],
+        subject: 'Post-DATA drop',
+        text: 'body',
+        html: '<p>body</p>',
+        connectSocket: makeMockConn([
+          '220 smtp.example.com ESMTP\r\n',
+          '250-smtp.example.com\r\n250 STARTTLS\r\n',
+          '220 Ready\r\n',
+          '250-smtp.example.com\r\n250 AUTH PLAIN\r\n',
+          '235 OK\r\n',
+          '250 OK\r\n',
+          '250 OK\r\n',
+          '354 Go ahead\r\n',
+          // No 250 response -> simulates drop after DATA terminator
+        ]),
+      }),
+    (err) => err instanceof SmtpError && err.afterDataTerminator === true && err.code === undefined,
+  );
+
+  // 3. RFC 5322 quoting for ASCII display names with specials & AUTH LOGIN + QUIT drop resilience
+  assert.equal(formatAddressHeader('Chiang, David <a@b.com>'), '"Chiang, David" <a@b.com>');
+  assert.equal(formatAddressHeader('David Chiang <a@b.com>'), 'David Chiang <a@b.com>');
+
+  // Server advertises LOGIN only and closes immediately after 250 Ok (QUIT fails) -> should still succeed
+  await sendEmailViaSmtp({
+    host: 'smtp.example.com',
+    port: 587,
+    user: 'u',
+    pass: 'p',
+    from: 'sender@example.com',
+    to: ['to@example.com'],
+    subject: 'AUTH LOGIN + QUIT tolerance',
+    text: 'body',
+    html: '<p>body</p>',
+    connectSocket: async () => {
+      const resps = [
+        '220 smtp.example.com ESMTP\r\n',
+        '250-smtp.example.com\r\n250 STARTTLS\r\n',
+        '220 Ready\r\n',
+        '250-smtp.example.com\r\n250 AUTH LOGIN\r\n',
+        '334 VXNlcm5hbWU6\r\n',
+        '334 UGFzc3dvcmQ6\r\n',
+        '235 OK\r\n',
+        '250 OK\r\n',
+        '250 OK\r\n',
+        '354 Go ahead\r\n',
+        '250 Ok queued\r\n',
+      ];
+      let idx = 0;
+      let dataSent = false;
+      return {
+        readChunk: async () => (idx < resps.length ? encoder.encode(resps[idx++]) : null),
+        writeText: async (txt) => {
+          if (txt.startsWith('QUIT') && dataSent) {
+            throw new Error('Socket closed before QUIT');
+          }
+          if (txt.includes('Subject:')) dataSent = true;
+        },
+        upgradeToTls: async () => {},
+        close: async () => {},
+      };
+    },
+  });
+
+  // 4. Server missing STARTTLS on port 587 -> rejects cleanly
+  await assert.rejects(
+    () =>
+      sendEmailViaSmtp({
+        host: 'smtp.example.com',
+        port: 587,
+        user: 'u',
+        pass: 'p',
+        from: 'sender@example.com',
+        to: ['to@example.com'],
+        subject: 'No STARTTLS',
+        text: 'body',
+        html: '<p>body</p>',
+        connectSocket: makeMockConn([
+          '220 smtp.example.com ESMTP\r\n',
+          '250-smtp.example.com\r\n250 SIZE 10240000\r\n',
+        ]),
+      }),
+    (err) => err instanceof SmtpError && err.message.includes('did not advertise STARTTLS'),
+  );
+});
+
+test('CRM submitContactTicket does not fallback to Firebase on 400 or fallback:false, and chat fallback does not falsely claim sent on mail failure', async () => {
+  const originalFetch = globalThis.fetch;
+
+  // 1. 400 validation error must throw directly (not fall through to Firebase)
+  globalThis.fetch = async () => ({
+    ok: false,
+    status: 400,
+    json: async () => ({
+      error: 'Please provide a valid name, email, subject, and a message of at least 5 characters.',
+    }),
+  });
+  try {
+    await assert.rejects(
+      () =>
+        submitContactTicket({
+          name: 'A',
+          email: 'a@b.com',
+          subject: 'S',
+          message: '123',
+        }),
+      (err) => err.name === 'NonFallbackContactError' && err.message.includes('at least 5 characters'),
+    );
+
+    // 2. 502 with fallback:false must throw directly (not fall through to Firebase)
+    globalThis.fetch = async () => ({
+      ok: false,
+      status: 502,
+      json: async () => ({
+        error: 'SMTP connection dropped after message submission; delivery status is uncertain.',
+        fallback: false,
+      }),
+    });
+    await assert.rejects(
+      () =>
+        submitContactTicket({
+          name: 'Alice',
+          email: 'alice@example.com',
+          subject: 'Consulting',
+          message: 'Detailed consulting message here.',
+        }),
+      (err) => err.name === 'NonFallbackContactError' && err.message.includes('uncertain'),
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  // 3. Chat deterministic fallback when mail delivery fails (502) must NOT falsely claim email was sent
+  globalThis.fetch = async (url) => {
+    if (String(url).includes('clef.')) {
+      throw new Error('Clef down');
+    }
+    return {
+      ok: false,
+      status: 502,
+      text: async () => 'Resend error',
+    };
+  };
+  try {
+    const res = await processConciergeChat(
+      {
+        messages: [{ role: 'user', content: '我是 TestUser，信箱 test@example.com，想洽詢系統架構顧問合作。' }],
+        locale: 'zh',
+      },
+      { RESEND_API_KEY: 're_fail_test' },
+    );
+    assert.equal(res.body.autoDispatched, false);
+    assert.ok(!res.body.reply.includes('已直接寄出確認信'));
+    assert.ok(res.body.reply.includes('test@example.com'));
   } finally {
     globalThis.fetch = originalFetch;
   }

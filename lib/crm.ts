@@ -40,6 +40,13 @@ export interface SubmitContactResult {
   error?: string;
 }
 
+class NonFallbackContactError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'NonFallbackContactError';
+  }
+}
+
 export const submitContactTicket = async (input: {
   name: string;
   email: string;
@@ -52,7 +59,7 @@ export const submitContactTicket = async (input: {
   // 1. Try Resend API first (via Cloudflare Worker or custom API URL)
   try {
     const contactApiUrl =
-      import.meta.env.VITE_CONTACT_API_URL ||
+      import.meta.env?.VITE_CONTACT_API_URL ||
       'https://david888-contact-worker.raspy-salad-a4b7.workers.dev';
     const response = await fetch(contactApiUrl, {
       method: 'POST',
@@ -82,14 +89,19 @@ export const submitContactTicket = async (input: {
           error: data.error || '此內容未通過安全性檢驗，已被系統自動屏蔽拒絕發送。',
         };
       }
-      // If bad request (400), throw directly (do not fallback)
+      // If bad request (400) or explicitly non-fallback error (e.g. ambiguous post-DATA SMTP drop), do not fallback to Firebase
       if (response.status === 400) {
-        throw new Error(data?.error || 'Invalid contact submission');
+        throw new NonFallbackContactError(data?.error || 'Invalid contact submission');
+      }
+      if (data?.fallback === false) {
+        throw new NonFallbackContactError(
+          data.error || 'Email delivery status is uncertain; please check your inbox before retrying.',
+        );
       }
       console.warn(`[CRM] Contact API endpoint returned status ${response.status}, falling back to Firebase.`);
     }
   } catch (resendError) {
-    if (resendError instanceof Error && resendError.message.includes('Invalid contact submission')) {
+    if (resendError instanceof NonFallbackContactError) {
       throw resendError;
     }
     console.warn('[CRM] Contact API endpoint unreachable or failed, falling back to Firebase:', resendError);
@@ -140,7 +152,7 @@ export const sendConciergeMessage = async (
   input: ConciergeChatInput
 ): Promise<ConciergeChatOutput> => {
   const contactApiUrl =
-    import.meta.env.VITE_CONTACT_API_URL ||
+    import.meta.env?.VITE_CONTACT_API_URL ||
     'https://david888-contact-worker.raspy-salad-a4b7.workers.dev';
 
   try {

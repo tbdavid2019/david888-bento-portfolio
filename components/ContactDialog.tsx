@@ -130,6 +130,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
   const [chatInput, setChatInput] = useState('');
   const [revealEmail, setRevealEmail] = useState(false);
   const [conciergeReady, setConciergeReady] = useState(false);
+  const [conciergeAutoDispatched, setConciergeAutoDispatched] = useState(false);
   const [conciergeDraft, setConciergeDraft] = useState<ConciergeChatDraft>({
     name: '',
     email: '',
@@ -283,11 +284,17 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
     } catch (submissionError: unknown) {
       console.error(submissionError);
       const errMsg = submissionError instanceof Error ? submissionError.message : '';
-      if (errMsg.includes('Invalid contact submission')) {
+      if (errMsg.includes('Invalid contact submission') || errMsg.includes('at least 5 characters')) {
         setError(
           isZh
             ? '請完整填寫姓名、有效信箱，且留言內容至少需 5 個字元。'
             : 'Please provide a valid name, email, subject, and a message of at least 5 characters.',
+        );
+      } else if (errMsg.includes('uncertain')) {
+        setError(
+          isZh
+            ? '郵件已送交伺服器，但等待最終確認時連線逾時。為避免重複寄送，請先檢查信箱再決定是否重試。'
+            : 'Your message was submitted, but confirmation timed out. Please check your inbox before retrying to avoid duplicates.',
         );
       } else {
         setError(
@@ -352,9 +359,10 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       }
     }
 
-    // Check if user is acknowledging in dialogue
+    // Check if user is acknowledging in dialogue after confirmation email was actually dispatched
     const isConfirmWord =
       conciergeReady &&
+      conciergeAutoDispatched &&
       Boolean(conciergeDraft.email) &&
       /^(好|好的|確認|送出|寄出|發送|可以|沒問題|ok|yes|confirm|send)$/i.test(textToSend);
 
@@ -396,6 +404,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({
       }));
 
       setConciergeReady(Boolean(result.readyToConfirm));
+      setConciergeAutoDispatched(Boolean(result.autoDispatched));
 
       if (result.revealEmail) {
         setRevealEmail(true);
