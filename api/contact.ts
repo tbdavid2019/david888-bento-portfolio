@@ -805,7 +805,6 @@ export const processConciergeChat = async (
       siteContextUrl: env.SITE_CONTEXT_URL as string | undefined,
       ai: env.AI,
       model: env.CF_MODEL as string | undefined,
-      sanitizeReply: sanitizeSecretaryText,
       fetchImpl: typeof env.fetchImpl === 'function' ? env.fetchImpl : undefined,
     });
   }

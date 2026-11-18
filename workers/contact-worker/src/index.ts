@@ -810,7 +810,6 @@ export const processConciergeChat = async (
       siteContextUrl: env.SITE_CONTEXT_URL,
       ai: env.AI,
       model: env.CF_MODEL,
-      sanitizeReply: sanitizeSecretaryText,
       fetchImpl: typeof (env as any).fetchImpl === 'function' ? (env as any).fetchImpl : undefined,
     });
   }

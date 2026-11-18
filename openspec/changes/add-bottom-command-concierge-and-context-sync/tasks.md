@@ -21,4 +21,4 @@
 
 ## 4. Integration Verification & Deployment
 
-- [ ] 4.1 Run full `node --test`, `tsc --noEmit`, `npm run build`, and `wrangler deploy --dry-run` in `workers/contact-worker/`; after live deploy, verify `https://david888-contact-worker.raspy-salad-a4b7.workers.dev/chat` in both `'qa'` mode (grounded answer + `references`, `autoDispatched: false`) and `'contact'` mode, plus GitHub Pages `/rss.xml` and `/site-context.json`.
+- [x] 4.1 Run full `node --test`, `tsc --noEmit`, `npm run build`, and `wrangler deploy --dry-run` in `workers/contact-worker/`; after live deploy, verify `https://david888-contact-worker.raspy-salad-a4b7.workers.dev/chat` in both `'qa'` mode (grounded answer + `references`, `autoDispatched: false`) and `'contact'` mode, plus GitHub Pages `/rss.xml` and `/site-context.json`.
