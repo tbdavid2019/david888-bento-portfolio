@@ -353,7 +353,7 @@ export default function App() {
           locale={locale}
           session={conciergeSession}
           onNavigateCategory={handleDockNavigateCategory}
-          onOpenContact={(tab = 'chat') => openContactDialog('consulting', tab)}
+          onOpenContact={(tab: 'chat' | 'form' = 'chat') => openContactDialog('consulting', tab)}
           isContactModalOpen={contactOpen}
         />
       )}

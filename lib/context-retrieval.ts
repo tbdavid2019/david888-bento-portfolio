@@ -1,3 +1,5 @@
+export type ConciergeMode = 'qa' | 'contact';
+
 export type ContextSourceKind =
   | 'portfolio'
   | 'capability'

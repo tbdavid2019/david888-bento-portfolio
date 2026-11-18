@@ -106,15 +106,18 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
 
     const works = siteItems
       .filter((item) => !item.hidden)
-      .map((item, idx) => ({
-        id: `work:${idx}:${item.title}`,
-        title: getLocalizedItemTitle(item, locale),
-        summary: getLocalizedItemDescription(item, locale),
-        url: getItemUrl(item, locale),
-        source: item.tag || 'portfolio',
-        featured: Boolean(item.flagship),
-        tags: [...(item.techStack || []), item.category, item.tag].filter(Boolean),
-      }));
+      .map((item, idx) => {
+        const title = getLocalizedItemTitle(item, locale);
+        return {
+          id: `work:${idx}:${title}`,
+          title,
+          summary: getLocalizedItemDescription(item, locale) || '',
+          url: getItemUrl(item) || `/${item.tag || 'flagships'}`,
+          source: item.tag || 'portfolio',
+          featured: Boolean('flagship' in item && item.flagship),
+          tags: [...(item.techStack || []), item.section, item.tag].filter((t): t is string => Boolean(t)),
+        };
+      });
 
     return [...caps, ...works];
   }, [isZh, locale]);

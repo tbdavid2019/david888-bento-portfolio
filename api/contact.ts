@@ -785,7 +785,7 @@ export const processConciergeChat = async (
   workerOrigin?: string,
 ): Promise<{ status: number; body: Record<string, unknown> }> => {
   const limitCheck = validateChatPayloadLimits(payload);
-  if (!limitCheck.ok) {
+  if ('error' in limitCheck) {
     return { status: limitCheck.status, body: { error: limitCheck.error } };
   }
 
