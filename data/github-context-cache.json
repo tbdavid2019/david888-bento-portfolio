@@ -1,7 +1,7 @@
 {
   "username": "tbdavid2019",
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-18T05:45:08.200Z",
+  "lastSyncedAt": "2026-11-18T06:20:27.772Z",
   "repos": [
     {
       "id": "github-repo:david888-bento-portfolio",
@@ -15,7 +15,7 @@
       "stars": 0,
       "fork": false,
       "featured": true,
-      "pushedAt": "2026-11-18T02:08:00Z"
+      "pushedAt": "2026-11-18T06:01:19Z"
     },
     {
       "id": "github-repo:openclaw-docs-skill",
@@ -102,7 +102,21 @@
       "stars": 1,
       "fork": false,
       "featured": false,
-      "pushedAt": "2026-11-18T05:43:12Z"
+      "pushedAt": "2026-11-18T06:17:45Z"
+    },
+    {
+      "id": "github-repo:888wiki",
+      "name": "888wiki",
+      "fullName": "tbdavid2019/888wiki",
+      "description": "A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations.  https://wiki.david888.com",
+      "url": "https://github.com/tbdavid2019/888wiki",
+      "homepage": "https://wiki.david888.com",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 12,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-18T06:11:50Z"
     },
     {
       "id": "github-repo:daily-podcast",
@@ -285,20 +299,6 @@
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-17T02:08:33Z"
-    },
-    {
-      "id": "github-repo:888wiki",
-      "name": "888wiki",
-      "fullName": "tbdavid2019/888wiki",
-      "description": "A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations.  https://wiki.david888.com",
-      "url": "https://github.com/tbdavid2019/888wiki",
-      "homepage": "https://wiki.david888.com",
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 12,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-17T02:06:29Z"
     },
     {
       "id": "github-repo:qimen",
