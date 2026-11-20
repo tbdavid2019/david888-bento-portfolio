@@ -209,6 +209,14 @@ test('includes one-command npx install snippets and npm package links on package
   assert.match(linkCardSource, /handleCopyInstall/);
 });
 
+test('deep-link routes scroll directly to section-nav-bar instead of remaining hidden below Commitments hero', () => {
+  assert.match(bentoGridSource, /id="section-nav-bar"/);
+  assert.match(bentoGridSource, /isDirectSectionDeepLink/);
+  assert.match(bentoGridSource, /navRef\.current\?\.scrollIntoView\(\{ behavior: 'auto', block: 'start' \}\)/);
+  // Active tab centering must scroll horizontally inside navRef instead of calling activeEl.scrollIntoView vertically
+  assert.match(bentoGridSource, /navEl\.scrollTo\(/);
+});
+
 
 
 

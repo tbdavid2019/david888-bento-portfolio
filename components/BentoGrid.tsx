@@ -197,18 +197,44 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Auto-center active tab on mobile/small-screen horizontal scroll
+  // Horizontally center active tab inside the nav container without hijacking vertical window scroll
   React.useEffect(() => {
-    if (!navRef.current) return;
-    const activeEl = navRef.current.querySelector<HTMLElement>('[aria-current="location"]');
-    if (activeEl) {
-      activeEl.scrollIntoView({
+    const navEl = navRef.current;
+    if (!navEl) return;
+    const activeEl = navEl.querySelector<HTMLElement>('[aria-current="location"]');
+    if (activeEl && typeof navEl.scrollTo === 'function') {
+      const targetLeft =
+        activeEl.offsetLeft - navEl.clientWidth / 2 + activeEl.offsetWidth / 2;
+      navEl.scrollTo({
+        left: Math.max(0, targetLeft),
         behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest',
       });
     }
   }, [activeCategory?.id, isExecutiveView, isFlagshipsView]);
+
+  // When landing directly on a canonical category URL (e.g. /agent-skills, /executive, /flagships),
+  // scroll straight past the hero dossier to the category navigation bar & cards above the fold.
+  const hasScrolledInitialRouteRef = React.useRef(false);
+  React.useEffect(() => {
+    if (hasScrolledInitialRouteRef.current || typeof window === 'undefined') return;
+    const cleanPath = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    const isDirectSectionDeepLink =
+      Boolean(cleanPath) &&
+      cleanPath !== 'commitments' &&
+      cleanPath !== 'promises' &&
+      cleanPath !== 'contact' &&
+      cleanPath !== 'contact/form' &&
+      !cleanPath.startsWith('contact/');
+    if (!isDirectSectionDeepLink) return;
+
+    hasScrolledInitialRouteRef.current = true;
+    const scrollToSectionNav = () => {
+      navRef.current?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+    window.requestAnimationFrame(scrollToSectionNav);
+    const timer = window.setTimeout(scrollToSectionNav, 120);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <main className="dossier-shell space-y-6 pb-24 sm:pb-28 pt-6">
@@ -229,9 +255,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
 
       {/* 2. 2md.aiurl.tw Sticky Deep-Blue Canonical Route Navigation Bar: 5 Clean Categories */}
       <nav
+        id="section-nav-bar"
         ref={navRef}
         aria-label={locale === 'en' ? 'Primary portfolio routes' : '主要路由導覽'}
-        className="section-nav-bar"
+        className="section-nav-bar scroll-mt-4"
       >
         {/* Tab 1: 最新動態 (social) */}
         {(() => {

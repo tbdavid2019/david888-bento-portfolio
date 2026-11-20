@@ -266,9 +266,14 @@ export default function App() {
     setIsSearchOpen(false);
     setCategoryAndSyncUrl(nextCategory);
     if (typeof window !== 'undefined') {
-      window.scrollTo({
-        top: 0,
-        behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      const behavior: ScrollBehavior = reduced ? 'auto' : 'smooth';
+      window.requestAnimationFrame(() => {
+        if (nextCategory === 'commitments' || nextCategory === 'promises') {
+          window.scrollTo({ top: 0, behavior });
+        } else {
+          document.getElementById('section-nav-bar')?.scrollIntoView({ behavior, block: 'start' });
+        }
       });
     }
   };
