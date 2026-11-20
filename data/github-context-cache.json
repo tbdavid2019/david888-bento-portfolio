@@ -1,8 +1,22 @@
 {
   "username": "tbdavid2019",
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-20T00:58:30.982Z",
+  "lastSyncedAt": "2026-11-20T01:00:45.417Z",
   "repos": [
+    {
+      "id": "github-repo:david888-bento-portfolio",
+      "name": "david888-bento-portfolio",
+      "fullName": "tbdavid2019/david888-bento-portfolio",
+      "description": "https://david888.com",
+      "url": "https://github.com/tbdavid2019/david888-bento-portfolio",
+      "homepage": "",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "fork": false,
+      "featured": true,
+      "pushedAt": "2026-11-20T00:59:01Z"
+    },
     {
       "id": "github-repo:openclaw-docs-skill",
       "name": "openclaw-docs-skill",
@@ -34,20 +48,6 @@
       "fork": false,
       "featured": true,
       "pushedAt": "2026-11-19T10:09:38Z"
-    },
-    {
-      "id": "github-repo:david888-bento-portfolio",
-      "name": "david888-bento-portfolio",
-      "fullName": "tbdavid2019/david888-bento-portfolio",
-      "description": "https://david888.com",
-      "url": "https://github.com/tbdavid2019/david888-bento-portfolio",
-      "homepage": "",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "fork": false,
-      "featured": true,
-      "pushedAt": "2026-11-18T06:32:21Z"
     },
     {
       "id": "github-repo:taiwan-company-network",

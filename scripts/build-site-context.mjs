@@ -313,7 +313,7 @@ export async function buildSiteContext({
       featured: Boolean(item.flagship),
       title: truncateText(item.titleEn && item.title ? `${item.title} (${item.titleEn})` : (item.title || item.titleEn), 120),
       summary: truncateText(
-        [item.description || item.descriptionEn || '', item.installCommand ? `Install: ${item.installCommand}` : '']
+        [item.installCommand ? `${item.installCommand} —` : '', item.description || item.descriptionEn || '']
           .filter(Boolean)
           .join(' '),
         140,

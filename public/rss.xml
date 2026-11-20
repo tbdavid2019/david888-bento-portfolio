@@ -6,7 +6,15 @@
     <atom:link href="https://david888.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Unified feed of David Chiang blog articles, podcast episodes, GitHub repositories, and original Threads notes.</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Fri, 20 Nov 2026 00:58:30 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 01:00:45 GMT</lastBuildDate>
+    <item>
+      <title>david888-bento-portfolio</title>
+      <link>https://github.com/tbdavid2019/david888-bento-portfolio</link>
+      <guid isPermaLink="false">github-repo:david888-bento-portfolio</guid>
+      <pubDate>Fri, 20 Nov 2026 00:59:01 GMT</pubDate>
+      <category>github</category>
+      <description>https://david888.com [TypeScript]</description>
+    </item>
     <item>
       <title>github-status</title>
       <link>https://github.com/tbdavid2019/github-status</link>
@@ -198,14 +206,6 @@
       <pubDate>Thu, 19 Nov 2026 08:44:02 GMT</pubDate>
       <category>blog</category>
       <description>📌 矽谷世紀女騙徒遇上整人鬼才！這部燒腦神片為何震撼奧斯卡？ ⓵ 【容易懂 Easy Know】 想像一下，學校裡有個說謊成性的同學，明明考試都作弊，卻靠著名牌衣服和甜言蜜語，把全校師長唬得團團轉，甚至騙走了大筆零用錢。就在東窗事發、準備被嚴懲前，她找來一位專門拍整人節目的怪咖導演，想拍一部影片證明自己其實很善良。 沒想到，這個導演是個「抓謊大師」！他沒有當面拆穿她，而是用攝影機貼身緊盯她的微表情，甚至在她去坐牢後，找來演過她的專業女演員搭建假監獄來「排練」對話。整部片就像一面照妖鏡，把女騙子的心機與謊言層層剝開，變成一場比推理小說還要燒腦的心理大鬥…</description>
-    </item>
-    <item>
-      <title>是誰容不下黃仁勳？</title>
-      <link>https://blog.david888.com/shi-shui-rong-bu-xia-huang-ren-xun/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/shi-shui-rong-bu-xia-huang-ren-xun/</guid>
-      <pubDate>Thu, 19 Nov 2026 08:01:35 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 是誰容不下黃仁勳？ 這是一份針對所提供音訊轉錄文本的結構化分析總結報告： ⓵ 【容易懂 Easy Know】 想像英偉達（NVIDIA）就像武俠小說裡的「丐幫」，原本只做不起眼的遊戲顯示卡（像底層乞丐），後來練就了強大的 AI 運算絕世武功，變成了天下第一大幫！而創辦人黃仁勳就像武功蓋世的幫主「喬峰」。但當幫派變得超級巨大、甚至牽涉到國家利益與地緣政治時，長老們（董事會）開始擔心風險，加上他的族裔背景引起猜忌，最後喬峰不得不離開幫主之位。這告訴我們：當一艘船變得像航空母艦那麼大時，光靠船長個人的英雄能力，已經無法掌控所有複雜的風浪了。 ⓶ 【總結…</description>
     </item>
   </channel>
 </rss>

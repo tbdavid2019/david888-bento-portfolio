@@ -1,8 +1,22 @@
 {
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-20T00:58:30.982Z",
+  "lastSyncedAt": "2026-11-20T01:00:45.417Z",
   "feedUrl": "https://david888.com/rss.xml",
   "items": [
+    {
+      "id": "github-repo:david888-bento-portfolio",
+      "source": "github",
+      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
+      "featured": true,
+      "title": "david888-bento-portfolio",
+      "summary": "https://david888.com [TypeScript]",
+      "url": "https://github.com/tbdavid2019/david888-bento-portfolio",
+      "publishedAt": "2026-11-20T00:59:01.000Z",
+      "tags": [
+        "github",
+        "TypeScript"
+      ]
+    },
     {
       "id": "github-repo:github-status",
       "source": "github",
@@ -262,21 +276,6 @@
       "publishedAt": "2026-11-19T09:42:58.000Z",
       "tags": [
         "blog"
-      ]
-    },
-    {
-      "id": "github-repo:telegram-bot-summary",
-      "source": "github",
-      "sourceFeedUrl": "https://github.com/tbdavid2019.atom",
-      "featured": false,
-      "title": "telegram-bot-summary",
-      "summary": "濃縮重點機器人Telegram bot can generate concise summaries of text, URLs, PDFs, and YouTube videos. [Python] ★1",
-      "url": "https://github.com/tbdavid2019/telegram-bot-summary",
-      "publishedAt": "2026-11-19T09:37:02.000Z",
-      "tags": [
-        "github",
-        "Python",
-        "telegram-bot"
       ]
     }
   ]
