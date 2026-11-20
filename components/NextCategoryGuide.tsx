@@ -118,8 +118,8 @@ export const NextCategoryGuide: React.FC<NextCategoryGuideProps> = ({
             </h3>
             <p className="max-w-2xl text-sm leading-relaxed text-text-muted">
               {isEn
-                ? 'Send an inquiry directly or initiate a confidential advisory conversation. Messages reach David directly.'
-                : '百人團隊帶得動，複雜系統搞得定。歡迎直接聯繫洽談，訊息會直達 David 信箱並開立追蹤序號。'}
+                ? 'Send an inquiry directly or initiate a confidential advisory conversation. Verified inquiries reach David directly.'
+                : '百人團隊帶得動，複雜系統搞得定。歡迎直接聯繫洽談，完成信箱驗證後訊息將直達 David 信箱。'}
             </p>
           </div>
         </div>

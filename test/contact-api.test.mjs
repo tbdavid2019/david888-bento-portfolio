@@ -631,6 +631,7 @@ test('processConciergeChat runs Workers AI with CF_MODEL (@cf/openai/gpt-oss-20b
 
   const res = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我是創新科技的王小明 (wang@example.com)，想諮詢大型商務平台系統架構。' },
       ],
@@ -655,6 +656,7 @@ test('processConciergeChat runs Workers AI with CF_MODEL (@cf/openai/gpt-oss-20b
 test('processConciergeChat topic prompt: asks for user details and keeps draft message empty', async () => {
   const res = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
       ],
@@ -673,6 +675,7 @@ test('processConciergeChat topic prompt: asks for user details and keeps draft m
 test('processConciergeChat smart fallback refuses unverified email request as gatekeeper with zero AI words', async () => {
   const res = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想直接索取 David 的 Email 信箱，謝謝！' },
       ],
@@ -723,6 +726,7 @@ test('processConciergeChat reveals email card when Clef System One approves veri
   try {
     const res = await processConciergeChat(
       {
+        mode: 'contact',
         messages: [
           {
             role: 'user',
@@ -806,6 +810,7 @@ test('processConciergeChat conducts multi-turn interview: asks for missing conta
   // Turn 1: User only provides message intent without name or email
   const turn1 = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想跟他說，我有使用他的專案' },
       ],
@@ -822,6 +827,7 @@ test('processConciergeChat conducts multi-turn interview: asks for missing conta
   // Turn 2: User answers with name and email
   const turn2 = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想跟他說，我有使用他的專案' },
         { role: 'assistant', content: turn1.body.reply },
@@ -871,6 +877,7 @@ test('processConciergeChat preserves standalone name across turns and isolates t
   // Turn 1: User clicks topic chip
   const turn1 = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
       ],
@@ -884,6 +891,7 @@ test('processConciergeChat preserves standalone name across turns and isolates t
   // Turn 2: User provides message
   const turn2 = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
         { role: 'assistant', content: turn1.body.reply },
@@ -900,6 +908,7 @@ test('processConciergeChat preserves standalone name across turns and isolates t
   // Turn 3: User provides standalone name in response to assistant asking for name
   const turn3 = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
         { role: 'assistant', content: turn1.body.reply },
@@ -918,6 +927,7 @@ test('processConciergeChat preserves standalone name across turns and isolates t
   // Turn 4: User provides email
   const turn4 = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [
         { role: 'user', content: '我想諮詢「顧問諮詢／業務合作」相關事宜。' },
         { role: 'assistant', content: turn1.body.reply },
@@ -964,6 +974,7 @@ test('processConciergeChat guarantees non-empty reply even if LLM returns empty 
 
   const res = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [{ role: 'user', content: 'Long interview inquiry text' }],
       locale: 'zh',
     },
@@ -986,6 +997,7 @@ I am reaching out to you on behalf of Hytech's hiring managers regarding our tec
 
   const res = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [{ role: 'user', content: longMsg }],
       locale: 'zh',
     },
@@ -1006,6 +1018,7 @@ test('processConciergeChat handles complex Chinese intro: extracts company and i
   const introMsg = '我是 Hytech 的 HR Linda，信箱是 linda@hytech.tw，想與 David 安排技術架構面試';
   const res = await processConciergeChat(
     {
+      mode: 'contact',
       messages: [{ role: 'user', content: introMsg }],
       locale: 'zh',
     },
@@ -1384,6 +1397,7 @@ test('CRM submitContactTicket does not fallback to Firebase on 400 or fallback:f
   try {
     const res = await processConciergeChat(
       {
+        mode: 'contact',
         messages: [{ role: 'user', content: '我是 TestUser，信箱 test@example.com，想洽詢系統架構顧問合作。' }],
         locale: 'zh',
       },
@@ -1631,4 +1645,103 @@ test('tri-review security gates: ignores client requestOrigin, rejects null mess
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test('omitted mode safely defaults to qa and emits suggestedAction: contact on commercial/consulting queries', async () => {
+  const originalFetch = globalThis.fetch;
+  const fixture = {
+    syncStatus: 'ok',
+    lastSyncedAt: '2026-11-20T00:00:00Z',
+    profile: { name: 'David Chiang', headline: 'CTO', siteOrigin: 'https://david888.com' },
+    items: [
+      {
+        id: 'flagship:executive',
+        source: 'portfolio',
+        featured: true,
+        title: 'CTO 技術顧問服務與商業合作',
+        summary: '年度技術顧問約、全職 CTO 與技術盡職調查',
+        url: 'https://david888.com/executive',
+        tags: ['CTO', '顧問'],
+      },
+      {
+        id: 'skill:line-docs',
+        source: 'portfolio',
+        featured: true,
+        title: 'LINE Developers CLI Skill',
+        summary: 'npx -y line-docs-skill@latest',
+        url: 'https://david888.com/agent-skills',
+        tags: ['LINE', 'npx'],
+      },
+    ],
+  };
+
+  globalThis.fetch = async (url) => {
+    if (String(url).includes('site-context.json')) {
+      return {
+        ok: true,
+        status: 200,
+        text: async () => JSON.stringify(fixture),
+      };
+    }
+    throw new Error(`Unexpected fetch: ${url}`);
+  };
+
+  try {
+    // 1. Omitted mode with consulting inquiry -> defaults to 'qa', never dispatches, includes suggestedAction: 'contact'
+    const omittedRes = await processConciergeChat(
+      {
+        messages: [{ role: 'user', content: '請問怎麼找 David 做技術顧問或合作報價？' }],
+        locale: 'zh',
+      },
+      { SITE_CONTEXT_URL: 'https://david888.com/site-context.json' },
+    );
+    assert.equal(omittedRes.status, 200);
+    assert.equal(omittedRes.body.mode, 'qa');
+    assert.equal(omittedRes.body.autoDispatched, false);
+    assert.equal(omittedRes.body.suggestedAction, 'contact');
+
+    // 2. Technical Q&A with context match and no commercial/contact intent -> no suggestedAction
+    const techRes = await workerProcessConciergeChat(
+      {
+        mode: 'qa',
+        messages: [{ role: 'user', content: '請問 line-docs skill 怎麼安裝？' }],
+        locale: 'zh',
+      },
+      { SITE_CONTEXT_URL: 'https://david888.com/site-context.json' },
+    );
+    assert.equal(techRes.status, 200);
+    assert.equal(techRes.body.mode, 'qa');
+    assert.equal(techRes.body.suggestedAction, undefined);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('api/contact handler and Worker handler share 32 KB limit and unified behavior', async () => {
+  const { default: apiHandler } = await import('../api/contact.ts');
+  const hugeBody = JSON.stringify({
+    name: 'Tester',
+    email: 'tester@example.com',
+    subject: 'Too big',
+    message: 'a'.repeat(40_000),
+  });
+
+  const apiRes = await apiHandler(
+    new Request('https://david888.com/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: hugeBody,
+    }),
+  );
+  assert.equal(apiRes.status, 413);
+
+  const workerRes = await workerDefault.fetch(
+    new Request('https://david888-contact-worker.example.workers.dev/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: hugeBody,
+    }),
+    {},
+  );
+  assert.equal(workerRes.status, 413);
 });

@@ -556,13 +556,15 @@
     "type": "link",
     "title": "888-url2md (2MD) Agent Skill & API",
     "titleEn": "888-url2md (2MD) Agent Skill & API",
-    "description": "專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。",
+    "description": "專為 AI Agent 與 LLM 打造的網頁爬取、即時搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。",
     "descriptionEn": "Agent Skill & API for web scraping, live SERP search, PDF/Office parsing, PP-OCRv4 tabular image OCR, and 15-rule PII de-identification at https://2md.aiurl.tw/.",
     "url": "https://2md.aiurl.tw/",
     "repoUrl": "https://github.com/tbdavid2019/888-url2md",
     "imageSource": "/bento/url-markdown.svg",
     "featured": true,
     "tag": "agent-skills",
+    "section": "MCP Server 與網頁引擎 (MCP Server & Web Engines)",
+    "sectionEn": "MCP Server & Web Engines",
     "icon": "search",
     "techStack": [
       "Agent Skill",
@@ -797,6 +799,8 @@
     "imageSource": "/bento/888box.svg",
     "featured": true,
     "tag": "agent-skills",
+    "section": "MCP Server 與網頁引擎 (MCP Server & Web Engines)",
+    "sectionEn": "MCP Server & Web Engines",
     "icon": "cpu",
     "techStack": [
       "Streamable HTTP",
@@ -840,6 +844,8 @@
     "bgClass": "bg-gradient-to-br from-orange-400 to-red-600 shadow-orange-200",
     "featured": true,
     "tag": "agent-skills",
+    "section": "一鍵 npx 文件 Skills (One-Command npx Docs Skills)",
+    "sectionEn": "One-Command npx Docs Skills",
     "icon": "cpu",
     "techStack": [
       "npx Skill",
@@ -858,6 +864,8 @@
     "imageSource": "/bento/paper-daily.svg",
     "bgClass": "bg-gradient-to-br from-cyan-600 to-blue-800",
     "tag": "agent-skills",
+    "section": "Multi-Agent 與知識工作流 (Multi-Agent & Knowledge Workflows)",
+    "sectionEn": "Multi-Agent & Knowledge Workflows",
     "icon": "book-open"
   },
   {
@@ -871,6 +879,8 @@
     "bgClass": "bg-gradient-to-br from-indigo-500 to-purple-800",
     "featured": true,
     "tag": "agent-skills",
+    "section": "Multi-Agent 與知識工作流 (Multi-Agent & Knowledge Workflows)",
+    "sectionEn": "Multi-Agent & Knowledge Workflows",
     "icon": "share-2",
     "techStack": [
       "A2A Protocol",
@@ -894,6 +904,8 @@
     "url": "https://github.com/tbdavid2019/cf-notepad",
     "imageSource": "/bento/cf_notepad.svg",
     "tag": "agent-skills",
+    "section": "Multi-Agent 與知識工作流 (Multi-Agent & Knowledge Workflows)",
+    "sectionEn": "Multi-Agent & Knowledge Workflows",
     "icon": "file-edit"
   },
   {
@@ -905,6 +917,8 @@
     "url": "https://box.david888.com/skill.php",
     "imageSource": "/bento/888box.svg",
     "tag": "agent-skills",
+    "section": "MCP Server 與網頁引擎 (MCP Server & Web Engines)",
+    "sectionEn": "MCP Server & Web Engines",
     "icon": "box"
   },
   {
@@ -933,6 +947,8 @@
     "docLabelEn": "npm Package",
     "bgClass": "bg-[#0088cc]",
     "tag": "agent-skills",
+    "section": "一鍵 npx 文件 Skills (One-Command npx Docs Skills)",
+    "sectionEn": "One-Command npx Docs Skills",
     "icon": "bot",
     "techStack": [
       "npx Skill",
@@ -954,6 +970,8 @@
     "imageSource": "https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg",
     "bgClass": "bg-[#06C755]",
     "tag": "agent-skills",
+    "section": "一鍵 npx 文件 Skills (One-Command npx Docs Skills)",
+    "sectionEn": "One-Command npx Docs Skills",
     "icon": "message-square",
     "techStack": [
       "npx Skill",
@@ -976,6 +994,8 @@
     "imageSource": "https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg",
     "bgClass": "bg-[#008fd3]",
     "tag": "agent-skills",
+    "section": "一鍵 npx 文件 Skills (One-Command npx Docs Skills)",
+    "sectionEn": "One-Command npx Docs Skills",
     "icon": "layers",
     "techStack": [
       "npx Skill",
@@ -998,6 +1018,8 @@
     "imageSource": "/bento/hermes-agent.svg",
     "bgClass": "bg-gradient-to-br from-purple-500 to-indigo-700",
     "tag": "agent-skills",
+    "section": "一鍵 npx 文件 Skills (One-Command npx Docs Skills)",
+    "sectionEn": "One-Command npx Docs Skills",
     "icon": "workflow",
     "techStack": [
       "npx Skill",
@@ -1009,7 +1031,7 @@
   {
     "type": "link",
     "title": "Lofi Music 輕音樂",
-    "url": "http://music.david888.com/",
+    "url": "https://music.david888.com/",
     "imageSource": "/bento/music.svg",
     "tag": "products",
     "section": "生活應用與地圖工具 (Lifestyle & Map Utilities)",

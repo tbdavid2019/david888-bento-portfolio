@@ -5,6 +5,8 @@ import type { Locale } from '../../types';
 
 const PODCAST_RSS_URL = 'https://podcast.david888.com/rss.xml';
 const PODCAST_HOME_URL = 'https://podcast.david888.com/';
+const FEED_SUMMARY_URL = '/feed-summary.json';
+const FEED_FETCH_TIMEOUT_MS = 6000;
 const EPISODE_LIMIT = 3;
 
 type Episode = {
@@ -39,8 +41,39 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
       setLoading(true);
       setHasError(false);
 
+      // 1. Fast first-paint hydration from prebuilt /feed-summary.json
+      let hydratedFromSummary = false;
       try {
-        const response = await fetch(PODCAST_RSS_URL);
+        const summaryRes = await fetch(FEED_SUMMARY_URL, { headers: { Accept: 'application/json' } });
+        if (summaryRes.ok) {
+          const summaryData = await summaryRes.json();
+          const summaryEpisodes: Episode[] = Array.isArray(summaryData?.items)
+            ? summaryData.items
+                .filter((item: any) => item && item.source === 'podcast' && item.title && item.url)
+                .slice(0, EPISODE_LIMIT)
+                .map((item: any) => ({
+                  title: String(item.title),
+                  link: String(item.url),
+                  audioUrl: null,
+                  pubDate: item.publishedAt ? String(item.publishedAt) : null,
+                  description: item.summary ? stripHtml(String(item.summary)) : null,
+                }))
+            : [];
+          if (!cancelled && summaryEpisodes.length > 0) {
+            hydratedFromSummary = true;
+            setEpisodes(summaryEpisodes);
+            setLoading(false);
+          }
+        }
+      } catch {
+        // Ignore summary miss and attempt live RSS fetch
+      }
+
+      // 2. Bounded live RSS refresh (up to 6s) for direct audio enclosure links
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), FEED_FETCH_TIMEOUT_MS);
+      try {
+        const response = await fetch(PODCAST_RSS_URL, { signal: controller.signal });
         if (!response.ok) {
           throw new Error(`Failed to fetch podcast RSS: ${response.status}`);
         }
@@ -71,17 +104,21 @@ export const PodcastFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
           })
           .filter((item) => item.title && item.link);
 
-        if (!cancelled) {
+        if (!cancelled && nextEpisodes.length > 0) {
           setEpisodes(nextEpisodes);
-          setHasError(nextEpisodes.length === 0);
+          setHasError(false);
+        } else if (!cancelled && !hydratedFromSummary) {
+          setEpisodes([]);
+          setHasError(true);
         }
       } catch (error) {
-        if (!cancelled) {
+        if (!cancelled && !hydratedFromSummary) {
           console.error(error);
           setHasError(true);
           setEpisodes([]);
         }
       } finally {
+        window.clearTimeout(timer);
         if (!cancelled) {
           setLoading(false);
         }

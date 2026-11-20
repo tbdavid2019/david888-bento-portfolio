@@ -351,7 +351,7 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
         </div>
       </div>
 
-      {/* Section 3: The 5 Live Production Systems */}
+      {/* Section 3: The Flagship Live Production Systems */}
       <FlagshipShowcase locale={locale} />
 
       {/* Bottom Direct Advisory Callout */}
@@ -364,8 +364,8 @@ export const ExecutiveBriefing: React.FC<ExecutiveBriefingProps> = ({
           </h3>
           <p className="text-sm font-semibold text-text-muted">
             {isEn
-              ? 'Send an inquiry directly—your message goes straight to David with an instant tracking number.'
-              : '歡迎直接填寫表單聯繫，訊息會直達 David 信箱並產生服務單號。'}
+              ? 'Send an inquiry directly—once verified via confirmation email, your message goes straight to David.'
+              : '歡迎直接填寫表單或透過小秘書聯繫，完成信箱點擊驗證後即會將訊息直達呈報給 David。'}
           </p>
         </div>
         <div className="flex w-full flex-wrap items-center gap-2.5 sm:w-auto">

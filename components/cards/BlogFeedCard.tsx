@@ -6,6 +6,8 @@ import type { Locale } from '../../types';
 const BLOG_HOME_URL = 'https://blog.david888.com/';
 const BLOG_API_URL =
   'https://admin.blog.david888.com/ghost/api/content/posts/?key=9f872fa2c1d0f2c4a54b921194&limit=3&fields=title,url,excerpt,published_at,feature_image';
+const FEED_SUMMARY_URL = '/feed-summary.json';
+const FEED_FETCH_TIMEOUT_MS = 6000;
 
 type BlogPost = {
   title: string;
@@ -31,8 +33,39 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
       setLoading(true);
       setHasError(false);
 
+      // 1. Instant local summary hydration from prebuilt /feed-summary.json
+      let hydratedFromSummary = false;
       try {
-        const response = await fetch(BLOG_API_URL);
+        const summaryRes = await fetch(FEED_SUMMARY_URL, { headers: { Accept: 'application/json' } });
+        if (summaryRes.ok) {
+          const summaryData = await summaryRes.json();
+          const summaryPosts: BlogPost[] = Array.isArray(summaryData?.items)
+            ? summaryData.items
+                .filter((item: any) => item && item.source === 'blog' && item.title && item.url)
+                .slice(0, 3)
+                .map((item: any) => ({
+                  title: normalizeText(String(item.title)),
+                  url: String(item.url),
+                  excerpt: typeof item.summary === 'string' ? normalizeText(item.summary) : null,
+                  published_at: String(item.publishedAt || ''),
+                  feature_image: null,
+                }))
+            : [];
+          if (!cancelled && summaryPosts.length > 0) {
+            hydratedFromSummary = true;
+            setPosts(summaryPosts);
+            setLoading(false);
+          }
+        }
+      } catch {
+        // Ignore local summary cache miss and fall back to live API
+      }
+
+      // 2. Bounded live Ghost API refresh (up to 6s) for fresh excerpts & cover thumbnails
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), FEED_FETCH_TIMEOUT_MS);
+      try {
+        const response = await fetch(BLOG_API_URL, { signal: controller.signal });
         if (!response.ok) {
           throw new Error(`Failed to fetch blog feed: ${response.status}`);
         }
@@ -40,27 +73,31 @@ export const BlogFeedCard: React.FC<{ locale: Locale }> = ({ locale }) => {
         const payload = await response.json();
         const nextPosts = Array.isArray(payload.posts)
           ? payload.posts
-              .map((post) => ({
+              .map((post: any) => ({
                 title: typeof post.title === 'string' ? normalizeText(post.title) : '',
                 url: typeof post.url === 'string' ? post.url : '',
                 excerpt: typeof post.excerpt === 'string' ? normalizeText(post.excerpt) : null,
                 published_at: typeof post.published_at === 'string' ? post.published_at : '',
                 feature_image: typeof post.feature_image === 'string' ? post.feature_image : null,
               }))
-              .filter((post) => post.title && post.url && post.published_at)
+              .filter((post: BlogPost) => post.title && post.url && post.published_at)
           : [];
 
-        if (!cancelled) {
+        if (!cancelled && nextPosts.length > 0) {
           setPosts(nextPosts);
-          setHasError(nextPosts.length === 0);
+          setHasError(false);
+        } else if (!cancelled && !hydratedFromSummary) {
+          setPosts([]);
+          setHasError(true);
         }
       } catch (error) {
-        if (!cancelled) {
+        if (!cancelled && !hydratedFromSummary) {
           console.error(error);
           setPosts([]);
           setHasError(true);
         }
       } finally {
+        window.clearTimeout(timer);
         if (!cancelled) {
           setLoading(false);
         }

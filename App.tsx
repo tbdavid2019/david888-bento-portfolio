@@ -270,7 +270,7 @@ export default function App() {
       const behavior: ScrollBehavior = reduced ? 'auto' : 'smooth';
       window.requestAnimationFrame(() => {
         if (nextCategory === 'commitments' || nextCategory === 'promises') {
-          window.scrollTo({ top: 0, behavior });
+          document.getElementById('commitments')?.scrollIntoView({ behavior, block: 'start' });
         } else {
           document.getElementById('section-nav-bar')?.scrollIntoView({ behavior, block: 'start' });
         }
@@ -296,7 +296,7 @@ export default function App() {
         }
         if (dockRef.current?.isExpanded()) {
           e.preventDefault();
-          dockRef.current.collapseDrawer();
+          dockRef.current.collapseDrawer(true);
           return;
         }
       }
@@ -350,7 +350,10 @@ export default function App() {
         activeCategoryId={activeCategoryId}
         onCategoryChange={changeCategory}
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={(q) => {
+          setSearchQuery(q);
+          if (q.trim()) setIsSearchOpen(true);
+        }}
         onClearSearch={() => setSearchQuery('')}
         onContact={() => openContactDialog('consulting')}
       />

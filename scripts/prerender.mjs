@@ -10,6 +10,50 @@ const linksPath = path.join(projectRoot, 'data/bento-links.json');
 const categoriesPath = path.join(projectRoot, 'data/bento-categories.json');
 const contentPath = path.join(projectRoot, 'data/profile-content.json');
 
+const escapeAttr = (value) =>
+  String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+function applyRouteHeadMetadata(baseHtml, { title, description, canonicalUrl }) {
+  const safeTitle = escapeAttr(title);
+  const safeDesc = escapeAttr(description);
+  const safeUrl = escapeAttr(canonicalUrl);
+
+  return baseHtml
+    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${safeTitle}</title>`)
+    .replace(
+      /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
+      `<link rel="canonical" href="${safeUrl}" />`,
+    )
+    .replace(
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
+      `<meta name="description" content="${safeDesc}" />`,
+    )
+    .replace(
+      /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+      `<meta property="og:url" content="${safeUrl}" />`,
+    )
+    .replace(
+      /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i,
+      `<meta property="og:title" content="${safeTitle}" />`,
+    )
+    .replace(
+      /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i,
+      `<meta property="og:description" content="${safeDesc}" />`,
+    )
+    .replace(
+      /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i,
+      `<meta name="twitter:title" content="${safeTitle}" />`,
+    )
+    .replace(
+      /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i,
+      `<meta name="twitter:description" content="${safeDesc}" />`,
+    );
+}
+
 async function run() {
   try {
     console.log('Starting pre-rendering for SEO...');
@@ -59,28 +103,12 @@ async function run() {
     };
 
     const headInjections = `
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="${metaDescription}" />
-  <meta name="keywords" content="${keywords}" />
-  <meta name="author" content="${profile.name}" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://david888.com/" />
-  <meta property="og:title" content="${profile.name} | CTO & Technical Advisor" />
-  <meta property="og:description" content="${metaDescription}" />
+  <!-- Additional SEO Meta Tags & Structured Data -->
+  <meta name="keywords" content="${escapeAttr(keywords)}" />
   <meta property="og:image" content="https://david888.com/bento/og-me.jpg" />
   <meta property="og:locale" content="zh_TW" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:site_name" content="David888.com" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${profile.name} | CTO & Technical Advisor" />
-  <meta name="twitter:description" content="${metaDescription}" />
-  <meta name="twitter:image" content="https://david888.com/bento/og-me.jpg" />
-
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
   </script>
@@ -88,7 +116,7 @@ ${JSON.stringify(schemaJson, null, 2)}
 
     // 3. Generate Pre-rendered HTML content
     let preRenderedContent = `
-  <div class="sr-only" style="display: none;" aria-hidden="true">
+  <div class="sr-only">
     <header>
       <h1>${profile.name}</h1>
       <p><strong>Contact:</strong> ${profile.contactLine} / ${profile.contactLineEn || ''}</p>
@@ -159,7 +187,12 @@ ${JSON.stringify(schemaJson, null, 2)}
     preRenderedContent += `    </main>
   </div>`;
 
-    // 4. Inject Head elements
+    // 4. Update root head metadata cleanly & inject structured data
+    html = applyRouteHeadMetadata(html, {
+      title: `${profile.name} (David888) | CTO & Technical Advisor`,
+      description: metaDescription,
+      canonicalUrl: 'https://david888.com/',
+    });
     if (html.includes('</head>')) {
       html = html.replace('</head>', `${headInjections}\n</head>`);
     } else {
@@ -180,25 +213,84 @@ ${JSON.stringify(schemaJson, null, 2)}
     await fs.writeFile(indexPath, html, 'utf8');
 
     // 7. Generate Canonical Route static HTML entrypoints for direct URL navigation
-    const canonicalRoutes = [
-      'contact',
-      'contact/form',
-      'commitments',
-      'promises',
-      'executive',
-      'advisory',
-      'flagships',
-      ...categories.map((cat) => cat.id),
-    ];
+    const categoryMetaById = Object.fromEntries(
+      categories.map((cat) => [
+        cat.id,
+        {
+          title: `${cat.title} (${cat.titleEn}) | ${profile.name}`,
+          description: `${cat.summary || ''} ${cat.summaryEn || ''}`.trim() || metaDescription,
+        },
+      ]),
+    );
+
+    const routeMetadata = {
+      contact: {
+        title: `Contact & Advisory Inquiry | ${profile.name}`,
+        description: 'Direct contact concierge and double opt-in inquiry form for CTO advisory, technical due diligence, and architecture collaboration.',
+      },
+      'contact/form': {
+        title: `Direct Contact Form | ${profile.name}`,
+        description: 'Submit an executive technical advisory, CTO hiring, or collaboration inquiry directly to David Chiang.',
+      },
+      commitments: {
+        title: `一個 CTO 的 5 大承諾 (A CTO's 5 Commitments) | ${profile.name}`,
+        description: '戰略判斷、商業回報、百人工程團隊組織領導、風險承擔與底層執行落地——高階技術領導五大承諾。',
+      },
+      promises: {
+        title: `一個 CTO 的 5 大承諾 (A CTO's 5 Commitments) | ${profile.name}`,
+        description: '戰略判斷、商業回報、百人工程團隊組織領導、風險承擔與底層執行落地——高階技術領導五大承諾。',
+      },
+      executive: {
+        title: `Executive Advisory & CTO Dossier | ${profile.name}`,
+        description: '年度技術顧問約、全職 CTO / VP of Engineering 與投資前技術盡職調查 (Due Diligence) 合作總覽。',
+      },
+      advisory: {
+        title: `Executive Advisory & CTO Dossier | ${profile.name}`,
+        description: '年度技術顧問約、全職 CTO / VP of Engineering 與投資前技術盡職調查 (Due Diligence) 合作總覽。',
+      },
+      flagships: {
+        title: `7 Flagship Production Systems | ${profile.name}`,
+        description: 'Showcase of 7 live enterprise-grade production platforms: Quant Finance, Multi-Agent RAG, Security & MCP Engines.',
+      },
+      experiments: categoryMetaById.products || {
+        title: `Products & Experiments | ${profile.name}`,
+        description: metaDescription,
+      },
+      metaphysics: categoryMetaById.finance || {
+        title: `Quant Finance & Calendar Systems | ${profile.name}`,
+        description: metaDescription,
+      },
+      ...categoryMetaById,
+    };
+
+    const canonicalRoutes = Array.from(
+      new Set([
+        'contact',
+        'contact/form',
+        'commitments',
+        'promises',
+        'executive',
+        'advisory',
+        'flagships',
+        'experiments',
+        'metaphysics',
+        ...categories.map((cat) => cat.id),
+      ]),
+    );
 
     for (const route of canonicalRoutes) {
       const routeDir = path.join(distDir, route);
       await fs.mkdir(routeDir, { recursive: true });
       const routeCanonicalUrl = `https://david888.com/${route}`;
-      const routeHtml = html.replace(
-        /<link rel="canonical" href="https:\/\/david888\.com\/" \/>/,
-        `<link rel="canonical" href="${routeCanonicalUrl}" />`,
-      );
+      const meta = routeMetadata[route] || {
+        title: `${profile.name} | ${route}`,
+        description: metaDescription,
+      };
+      const routeHtml = applyRouteHeadMetadata(html, {
+        title: meta.title,
+        description: meta.description,
+        canonicalUrl: routeCanonicalUrl,
+      });
       await fs.writeFile(path.join(routeDir, 'index.html'), routeHtml, 'utf8');
     }
 

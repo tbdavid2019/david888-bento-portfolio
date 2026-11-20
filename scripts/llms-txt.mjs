@@ -1,6 +1,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+function formatLlmsTitle(item, separator = 'parenpair') {
+  const zh = String(item?.title || '').trim();
+  const en = String(item?.titleEn || '').trim();
+  if (zh && en) {
+    if (zh.toLowerCase() === en.toLowerCase()) return zh;
+    return separator === 'slash' ? `${zh} / ${en}` : `${zh} (${en})`;
+  }
+  return zh || en;
+}
+
 export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }) {
   const lines = [
     '# David Chiang (David888) - CTO & Technical Advisor Portfolio',
@@ -10,14 +20,25 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     'David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.',
     'Specializing in technical due diligence, enterprise platform architecture, cross-system data integration, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.',
     '',
-    `- Contact: Verified web contact form at ${siteOrigin}/ (anti-spam protected, direct dispatch to David)`,
+    `- Contact: Verified web contact form at ${siteOrigin}/contact (anti-spam protected, double opt-in dispatch to David)`,
     `- Website: ${siteOrigin}/`,
     `- Executive Advisory & CTO Dossier: ${siteOrigin}/executive`,
     `- 5 Core Commitments (Direct Route): ${siteOrigin}/commitments`,
+    `- Flagship Systems Showcase: ${siteOrigin}/flagships`,
+    `- Agent Skills & MCP Directory: ${siteOrigin}/agent-skills`,
     `- GitHub: https://github.com/tbdavid2019`,
     `- LinkedIn: https://www.linkedin.com/in/david11111/`,
     `- Location / Availability: ${profile.contactLine || '台北/高雄 可合作'} (${profile.contactLineEn || 'Taipei / Kaohsiung / Remote collaboration'})`,
     `- Service Models: Full-time / Part-time / Advisory (No gambling, crypto, or exchange projects)`,
+    '',
+    '## Agent & Machine-Readable Endpoints',
+    '',
+    `- Concise Directory (/llms.txt): ${siteOrigin}/llms.txt`,
+    `- Full Context & Specifications (/llms-full.txt): ${siteOrigin}/llms-full.txt`,
+    `- Unified RSS 2.0 Feed (/rss.xml): ${siteOrigin}/rss.xml`,
+    `- Structured Site Context JSON (/site-context.json): ${siteOrigin}/site-context.json`,
+    `- Live Feed Summary JSON (/feed-summary.json): ${siteOrigin}/feed-summary.json`,
+    `- Discovery Index (/docs/api/): ${siteOrigin}/docs/api/`,
     '',
     '## Core Expertise & Advisory Services',
     '',
@@ -44,10 +65,13 @@ export function buildLlmsTxt({ profile, links, content, siteOrigin, categories }
     lines.push('');
 
     for (const item of items) {
-      const title = item.titleEn ? `${item.title} (${item.titleEn})` : item.title;
+      const title = formatLlmsTitle(item, 'parenpair');
       const rawUrl = item.url || '';
       const url = rawUrl.startsWith('http://') || rawUrl.startsWith('https://') ? rawUrl : `${siteOrigin}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`;
-      const desc = item.description || item.descriptionEn || '';
+      const extras = [];
+      if (item.installCommand) extras.push(`Install: \`${item.installCommand}\``);
+      if (item.mcpConfig?.url) extras.push(`MCP (${item.mcpConfig.type || 'http'}): ${item.mcpConfig.url}`);
+      const desc = [item.description || item.descriptionEn || '', ...extras].filter(Boolean).join(' — ');
       lines.push(desc ? `- [${title}](${url}): ${desc}` : `- [${title}](${url})`);
     }
     lines.push('');
@@ -133,7 +157,7 @@ export function buildLlmsFullTxt({ profile, links, content, siteOrigin, categori
 
   for (const item of links) {
     if (item.hidden) continue;
-    const title = item.titleEn ? `${item.title} / ${item.titleEn}` : item.title;
+    const title = formatLlmsTitle(item, 'slash');
     const url = item.url || '';
     const descZh = item.description || '';
     const descEn = item.descriptionEn || '';
@@ -142,6 +166,12 @@ export function buildLlmsFullTxt({ profile, links, content, siteOrigin, categori
     if (url) fullLines.push(`- URL: ${url}`);
     if (item.tag) fullLines.push(`- Category: ${item.tag}`);
     if (item.section) fullLines.push(`- Section: ${item.section}`);
+    if (item.installCommand) fullLines.push(`- Install Command: \`${item.installCommand}\``);
+    if (item.docUrl) fullLines.push(`- Documentation / Package: ${item.docUrl}`);
+    if (item.mcpConfig?.url) fullLines.push(`- MCP Server: ${item.mcpConfig.url} (${item.mcpConfig.type || 'http'})`);
+    if (Array.isArray(item.techStack) && item.techStack.length > 0) {
+      fullLines.push(`- Tech / Tools: ${item.techStack.join(', ')}`);
+    }
     if (descZh) fullLines.push(`- Description (ZH): ${descZh}`);
     if (descEn) fullLines.push(`- Description (EN): ${descEn}`);
     fullLines.push('');

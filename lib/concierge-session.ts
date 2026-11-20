@@ -21,6 +21,7 @@ export interface DockChatMessage {
   role: 'user' | 'assistant';
   content: string;
   mode?: ConciergeMode;
+  suggestedAction?: 'contact';
   references?: SafeContextReference[];
   kind?: 'text' | 'command' | 'search' | 'help' | 'rss' | 'error';
   searchResults?: CombinedSearchResult[];

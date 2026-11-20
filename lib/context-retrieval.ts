@@ -74,6 +74,20 @@ const QUERY_SYNONYMS: Record<string, string[]> = Object.assign(Object.create(nul
   資安: ['security', '資安', 'waf', 'ctf', 'fido2', 'passkey'],
   security: ['資安', 'ctf', 'passkey', 'waf'],
   ai: ['ai', 'llm', 'agent', 'rag', 'a2a', 'mcp'],
+  mcp: ['mcp', 'agent-skills', 'streamable', 'tool', 'news888'],
+  skill: ['agent-skills', 'npx', 'skill', 'docs'],
+  skills: ['agent-skills', 'npx', 'skill', 'docs'],
+  npx: ['npx', 'install', 'agent-skills', 'npm'],
+  quant: ['quant', 'stockbot', 'stockdata', '量化', '估值'],
+  量化: ['quant', 'stockbot', 'stockdata', '籌碼', '台美股'],
+  八字: ['bazi', '人生k線', '命理', 'finance'],
+  奇門: ['qimen', '奇門遁甲', '命理', 'finance'],
+  ocr: ['ocr', '2md', 'pp-ocrv4', '表格'],
+  spartacus: ['sap', 'spartacus', 'storefront', 'sap-spartacus-docs-skill'],
+  line: ['line', 'liff', 'line-docs-skill', 'messaging'],
+  telegram: ['telegram', 'telegram-docs-skill', 'bot'],
+  openclaw: ['openclaw', 'openclaw-docs-skill'],
+  hermes: ['hermes', 'hermes-agent-docs-skill'],
   顧問: ['cto', '顧問', 'advisory', 'architecture', '架構'],
   cto: ['技術長', '顧問', '架構', 'architecture', 'leadership'],
   部落格: ['blog', '文章', 'writing'],
@@ -294,6 +308,7 @@ function scoreSingleQueryAgainstItem(tokens: SearchTokens, item: SiteContextItem
   const summaryLower = (item.summary || '').toLowerCase();
   const tagsLower = (item.tags || []).join(' ').toLowerCase();
   const sourceLower = (item.source || '').toLowerCase();
+  const urlIdLower = `${item.url || ''} ${item.id || ''}`.toLowerCase();
 
   let score = 0;
 
@@ -318,6 +333,8 @@ function scoreSingleQueryAgainstItem(tokens: SearchTokens, item: SiteContextItem
 
     if (exactWordRe.test(summaryLower)) score += 6;
     else if (summaryLower.includes(tok)) score += 3;
+
+    if (urlIdLower.includes(tok)) score += 4;
   }
 
   for (const ngram of tokens.cjkNgrams) {
@@ -335,7 +352,7 @@ export function selectTopContextItems(
   options: { topK?: number; minScore?: number } = {},
 ): RetrievedContextResult {
   const topK = Math.max(1, Math.min(12, options.topK ?? 6));
-  const minScore = options.minScore ?? 4;
+  const minScore = options.minScore ?? 3;
 
   const { primaryQuery, turns } = expandRetrievalQueries(messagesOrQuery);
   const expandedQuery = turns.map((t) => t.query).join(' | ');
@@ -682,6 +699,36 @@ export function sanitizeQaOutputText(rawText: string): string {
   return String(rawText || '').replace(/104@david888\.com/gi, '[透過 /contact 聯繫]');
 }
 
+export function detectCommercialContactIntent(
+  messages: Array<{ role?: string; content?: string }>,
+): boolean {
+  const userText = (Array.isArray(messages) ? messages : [])
+    .filter((m) => m && m.role === 'user' && typeof m.content === 'string')
+    .slice(-2)
+    .map((m) => m.content || '')
+    .join('\n');
+  if (!userText.trim()) return false;
+  return /(?:聯絡|聯繫|合作|顧問|諮詢|報價|預算|報聘|招募|面試|職缺|演講|邀約|外包|轉達|找\s*david|怎麼約|email|contact\s*david|hire|hiring|retainer|advisory|consult(?:ing|ant)?|due\s*diligence|pricing|proposal|reach\s*out|work\s*with)/i.test(
+    userText,
+  );
+}
+
+const AI_RUN_TIMEOUT_MS = 8000;
+
+async function runWithTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<T>((_resolve, reject) => {
+        timer = setTimeout(() => reject(new Error(`AI timeout after ${timeoutMs}ms`)), timeoutMs);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 export interface QaModeChatOptions {
   messages: Array<{ role: 'user' | 'assistant'; content: string }>;
   locale?: 'zh' | 'en';
@@ -704,9 +751,12 @@ export async function runQaModeChat(
   });
 
   const retrieved = selectTopContextItems(siteContext, options.messages, { topK: 6 });
+  const hasContactIntent = detectCommercialContactIntent(options.messages);
+  const suggestedAction = hasContactIntent || !retrieved.hasMatch ? 'contact' : undefined;
 
   // Server-enforced abstention when no indexed records match (avoids LLM hallucination & wasted AI tokens)
   if (!retrieved.hasMatch) {
+    console.warn('[QA] Abstaining due to zero context match', { queryLen: retrieved.primaryQuery.length });
     return {
       status: 200,
       body: {
@@ -715,6 +765,7 @@ export async function runQaModeChat(
         autoDispatched: false,
         readyToConfirm: false,
         mode: 'qa',
+        ...(suggestedAction ? { suggestedAction } : {}),
         references: [],
         draft: {
           name: '',
@@ -739,15 +790,22 @@ export async function runQaModeChat(
     try {
       let aiResult: any = null;
       try {
-        aiResult = await options.ai.run(model, {
-          instructions: systemPrompt,
-          input: inputMessages,
-          reasoning: { effort: 'low' },
-        });
-      } catch {
-        aiResult = await options.ai.run(model, {
-          messages: [{ role: 'system', content: systemPrompt }, ...inputMessages],
-        });
+        aiResult = await runWithTimeout(
+          options.ai.run(model, {
+            instructions: systemPrompt,
+            input: inputMessages,
+            reasoning: { effort: 'low' },
+          }),
+          AI_RUN_TIMEOUT_MS,
+        );
+      } catch (firstErr) {
+        console.warn('[QA] Primary AI call failed/timed out, retrying legacy format:', (firstErr as Error)?.message || firstErr);
+        aiResult = await runWithTimeout(
+          options.ai.run(model, {
+            messages: [{ role: 'system', content: systemPrompt }, ...inputMessages],
+          }),
+          AI_RUN_TIMEOUT_MS,
+        );
       }
 
       const outputMsgItem = Array.isArray(aiResult?.output)
@@ -777,8 +835,8 @@ export async function runQaModeChat(
       } else if (typeof rawContent === 'string' && rawContent.trim() && !rawContent.trim().startsWith('{')) {
         reply = rawContent.trim();
       }
-    } catch {
-      // Fallback to deterministic grounded Q&A reply below
+    } catch (aiErr) {
+      console.warn('[QA] Falling back to deterministic reply:', (aiErr as Error)?.message || aiErr);
     }
   }
 
@@ -794,6 +852,7 @@ export async function runQaModeChat(
       autoDispatched: false,
       readyToConfirm: false,
       mode: 'qa',
+      ...(suggestedAction ? { suggestedAction } : {}),
       references: retrieved.hasMatch ? retrieved.references : [],
       draft: {
         name: '',

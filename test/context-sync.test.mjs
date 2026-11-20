@@ -236,6 +236,25 @@ test('buildSiteContext enforces <= 40KB budget, deduplicates feeds, and builds v
     const truncated = enforceContextByteBudget({ items: hugeLinks.map((x, idx) => ({ id: `${idx}`, source: 'portfolio', featured: idx < 2, title: x.title, summary: x.description, url: x.url, tags: x.techStack })) }, 4096);
     assert.ok(Buffer.byteLength(JSON.stringify(truncated), 'utf8') <= 4096);
 
+    // Ensure tiered quota keeps podcast, blog, threads, and github represented ahead of secondary portfolio items under tight budget
+    const mixedTight = enforceContextByteBudget(
+      {
+        items: [
+          ...hugeLinks.slice(0, 4).map((x, idx) => ({ id: `f:${idx}`, source: 'portfolio', featured: true, title: `Featured ${idx}`, summary: x.description.slice(0, 40), url: x.url })),
+          ...hugeLinks.slice(4, 24).map((x, idx) => ({ id: `s:${idx}`, source: 'portfolio', featured: false, title: `Secondary ${idx}`, summary: x.description.slice(0, 40), url: x.url })),
+          { id: 'blog:1', source: 'blog', title: 'Blog 1', summary: 'b1', url: 'https://blog.david888.com/1', publishedAt: '2026-11-18T10:00:00Z' },
+          { id: 'pod:1', source: 'podcast', title: 'Pod 1', summary: 'p1', url: 'https://podcast.david888.com/1', publishedAt: '2026-11-18T09:00:00Z' },
+          { id: 'thr:1', source: 'threads', title: 'Thr 1', summary: 't1', url: 'https://www.threads.com/@david888.chiang/1', publishedAt: '2026-11-18T08:00:00Z' },
+          { id: 'gh:1', source: 'github', title: 'GH 1', summary: 'g1', url: 'https://github.com/tbdavid2019/repo', publishedAt: '2026-11-18T07:00:00Z' },
+        ],
+      },
+      2600,
+    );
+    assert.ok(mixedTight.items.some((i) => i.source === 'podcast'));
+    assert.ok(mixedTight.items.some((i) => i.source === 'threads'));
+    assert.ok(mixedTight.items.some((i) => i.source === 'blog'));
+    assert.ok(mixedTight.items.some((i) => i.source === 'github'));
+
     const rssTest = buildRssXml({ items: result.feedSummary.items, siteOrigin: 'https://david888.com', nowIso: '2026-11-18T10:00:00.000Z' });
     assert.ok(rssTest.includes('<atom:link href="https://david888.com/rss.xml"'));
   } finally {

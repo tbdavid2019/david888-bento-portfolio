@@ -217,6 +217,30 @@ test('deep-link routes scroll directly to section-nav-bar instead of remaining h
   assert.match(bentoGridSource, /navEl\.scrollTo\(/);
 });
 
+test('groups agent-skills into concise subsections (< 8 cards each), upgrades music URL to HTTPS, and removes dead resources', () => {
+  const links = JSON.parse(fs.readFileSync(new URL('../data/bento-links.json', import.meta.url), 'utf8'));
+  const skillItems = links.filter((item) => !item.hidden && item.tag === 'agent-skills');
+  assert.ok(skillItems.length >= 11);
+
+  const bySection = new Map();
+  for (const item of skillItems) {
+    assert.ok(item.section && item.sectionEn, `Agent Skill "${item.title}" must define section & sectionEn`);
+    bySection.set(item.section, (bySection.get(item.section) || 0) + 1);
+  }
+  for (const [sectionName, count] of bySection.entries()) {
+    assert.ok(count <= 8, `Section "${sectionName}" has ${count} items (> 8 would hide cards behind expand button)`);
+  }
+
+  const musicCard = links.find((item) => String(item.url).includes('music.david888.com'));
+  assert.ok(musicCard && musicCard.url === 'https://music.david888.com/');
+
+  assert.equal(fs.existsSync(new URL('../components/FloatingDock.tsx', import.meta.url)), false);
+
+  const indexHtml = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  assert.ok(!indexHtml.includes('type="importmap"'));
+  assert.ok(!indexHtml.includes('webtalk.js'));
+});
+
 
 
 

@@ -32,7 +32,7 @@ import type { useConciergeSession } from '../lib/useConciergeSession';
 export interface BottomConciergeDockHandle {
   focusInput: (prefill?: string) => void;
   expandDrawer: () => void;
-  collapseDrawer: () => void;
+  collapseDrawer: (restoreFocus?: boolean) => void;
   isExpanded: () => boolean;
 }
 
@@ -124,7 +124,12 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
         });
       },
       expandDrawer: () => setExpanded(true),
-      collapseDrawer: () => setExpanded(false),
+      collapseDrawer: (restoreFocus = false) => {
+        setExpanded(false);
+        if (restoreFocus) {
+          window.requestAnimationFrame(() => textareaRef.current?.focus());
+        }
+      },
       isExpanded: () => expanded,
     }));
 
@@ -348,6 +353,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
         e.preventDefault();
         e.nativeEvent.stopImmediatePropagation?.();
         setExpanded(false);
+        window.requestAnimationFrame(() => textareaRef.current?.focus());
         return;
       }
 
@@ -590,6 +596,27 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
                             ))}
                         </div>
                       )}
+
+                      {/* Direct Commercial / Contact Handoff Pill */}
+                      {msg.role === 'assistant' && msg.suggestedAction === 'contact' && (
+                        <div className="mt-2.5 border-t border-[#d6bc7c]/50 pt-2 dark:border-[#2a4563]">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setExpanded(false);
+                              onOpenContact('chat');
+                            }}
+                            className="inline-flex min-h-[36px] items-center gap-1.5 rounded-xl bg-[#17324d] px-3 py-1.5 text-xs font-extrabold text-[#fff9e8] shadow-xs transition-colors hover:bg-[#0f2337] dark:bg-[#ffb010] dark:text-[#2b251a] dark:hover:bg-[#ffc64d]"
+                          >
+                            <Mail size={13} aria-hidden="true" />
+                            <span>
+                              {isZh
+                                ? '直接由小秘書轉達聯繫 David (/contact) →'
+                                : 'Connect with David via Concierge (/contact) →'}
+                            </span>
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -739,14 +766,14 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
               </div>
 
               {/* Action Buttons */}
-              <div className="flex shrink-0 items-center gap-1.5">
+              <div className="flex shrink-0 items-center gap-1 sm:gap-1.5">
                 <a
                   href="/rss.xml"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={isZh ? '站內 RSS 訂閱 (/rss.xml)' : 'Site RSS Feed (/rss.xml)'}
                   title="RSS 2.0 (/rss.xml)"
-                  className="hidden h-10 w-10 items-center justify-center rounded-xl border border-[#17324d]/30 bg-[#fffefa] text-[#17324d] transition-colors hover:bg-[#fff0cc] dark:border-[#d8cfbc]/30 dark:bg-[#0f2337] dark:text-[#fff9e8] dark:hover:bg-[#17324d] sm:inline-flex"
+                  className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-[#17324d]/30 bg-[#fffefa] text-[#17324d] transition-colors hover:bg-[#fff0cc] dark:border-[#d8cfbc]/30 dark:bg-[#0f2337] dark:text-[#fff9e8] dark:hover:bg-[#17324d]"
                 >
                   <Rss size={16} aria-hidden="true" />
                 </a>
@@ -756,7 +783,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
                   onClick={() => void executeParsedCommand('/search')}
                   aria-label={isZh ? '快速搜尋作品與文章' : 'Quick search works and posts'}
                   title="/search"
-                  className="hidden h-10 w-10 items-center justify-center rounded-xl border border-[#17324d]/30 bg-[#fffefa] text-[#17324d] transition-colors hover:bg-[#fff0cc] dark:border-[#d8cfbc]/30 dark:bg-[#0f2337] dark:text-[#fff9e8] dark:hover:bg-[#17324d] md:inline-flex"
+                  className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-[#17324d]/30 bg-[#fffefa] text-[#17324d] transition-colors hover:bg-[#fff0cc] dark:border-[#d8cfbc]/30 dark:bg-[#0f2337] dark:text-[#fff9e8] dark:hover:bg-[#17324d]"
                 >
                   <Search size={16} aria-hidden="true" />
                 </button>
@@ -766,7 +793,7 @@ export const BottomConciergeDock = forwardRef<BottomConciergeDockHandle, BottomC
                   onClick={() => void handleSubmit()}
                   disabled={!input.trim() || session.busy}
                   aria-label={isZh ? '送出問題或指令' : 'Send query or command'}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#ffb010] text-[#2b251a] shadow-xs transition-colors hover:bg-[#f2a600] disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d] dark:focus-visible:outline-[#ffb010]"
+                  className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-[#ffb010] text-[#2b251a] shadow-xs transition-colors hover:bg-[#f2a600] disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#17324d] dark:focus-visible:outline-[#ffb010]"
                 >
                   <Send size={16} strokeWidth={2.3} aria-hidden="true" />
                 </button>

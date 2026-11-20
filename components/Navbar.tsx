@@ -263,8 +263,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               type="button"
               onClick={onToggleSearch}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2b251a] bg-[#fff9e8] text-[#2b251a] shadow-xs transition-colors hover:bg-[#fff0cc]"
-              aria-label={locale === 'en' ? 'Search (Press /)' : '搜尋（按 /）'}
-              title={locale === 'en' ? 'Search (Press /)' : '搜尋（按 / 快捷鍵）'}
+              aria-label={locale === 'en' ? 'Filter portfolio items' : '篩選站內作品'}
+              title={locale === 'en' ? 'Filter portfolio items' : '篩選站內作品'}
             >
               <Search size={17} />
             </button>

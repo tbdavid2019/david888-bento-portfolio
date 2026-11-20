@@ -6,12 +6,12 @@
     <atom:link href="https://david888.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Unified feed of David Chiang blog articles, podcast episodes, GitHub repositories, and original Threads notes.</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Fri, 20 Nov 2026 01:00:45 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 01:50:02 GMT</lastBuildDate>
     <item>
       <title>david888-bento-portfolio</title>
       <link>https://github.com/tbdavid2019/david888-bento-portfolio</link>
       <guid isPermaLink="false">github-repo:david888-bento-portfolio</guid>
-      <pubDate>Fri, 20 Nov 2026 00:59:01 GMT</pubDate>
+      <pubDate>Fri, 20 Nov 2026 01:32:09 GMT</pubDate>
       <category>github</category>
       <description>https://david888.com [TypeScript]</description>
     </item>

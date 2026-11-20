@@ -5,14 +5,25 @@
 David Chiang (David888) is a CTO and Technical Advisor with 10+ years of enterprise engineering leadership.
 Specializing in technical due diligence, enterprise platform architecture, cross-system data integration, AI/LLM integration, Chrome extensions, Telegram & LINE bots, and developer tools.
 
-- Contact: Verified web contact form at https://david888.com/ (anti-spam protected, direct dispatch to David)
+- Contact: Verified web contact form at https://david888.com/contact (anti-spam protected, double opt-in dispatch to David)
 - Website: https://david888.com/
 - Executive Advisory & CTO Dossier: https://david888.com/executive
 - 5 Core Commitments (Direct Route): https://david888.com/commitments
+- Flagship Systems Showcase: https://david888.com/flagships
+- Agent Skills & MCP Directory: https://david888.com/agent-skills
 - GitHub: https://github.com/tbdavid2019
 - LinkedIn: https://www.linkedin.com/in/david11111/
 - Location / Availability: 台北/高雄 可合作 (Taipei / Kaohsiung / Remote collaboration)
 - Service Models: Full-time / Part-time / Advisory (No gambling, crypto, or exchange projects)
+
+## Agent & Machine-Readable Endpoints
+
+- Concise Directory (/llms.txt): https://david888.com/llms.txt
+- Full Context & Specifications (/llms-full.txt): https://david888.com/llms-full.txt
+- Unified RSS 2.0 Feed (/rss.xml): https://david888.com/rss.xml
+- Structured Site Context JSON (/site-context.json): https://david888.com/site-context.json
+- Live Feed Summary JSON (/feed-summary.json): https://david888.com/feed-summary.json
+- Discovery Index (/docs/api/): https://david888.com/docs/api/
 
 ## Core Expertise & Advisory Services
 
@@ -53,17 +64,17 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 
 ## Skills & MCP Tools for LLMs & AI Agents
 
-- [888-url2md (2MD) Agent Skill & API (888-url2md (2MD) Agent Skill & API)](https://2md.aiurl.tw/): 專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
-- [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
-- [OpenClaw Agent Skill (OpenClaw Agent Skill)](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題，支援透過 npx 一行指令安裝。
+- [888-url2md (2MD) Agent Skill & API](https://2md.aiurl.tw/): 專為 AI Agent 與 LLM 打造的網頁爬取、即時搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
+- [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。 — MCP (http): https://news2.david888.com/api/mcp
+- [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題，支援透過 npx 一行指令安裝。 — Install: `npx -y openclaw-docs-skill@latest`
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
 - [888a2a Agent 平台 (888a2a - Multi-Agent Platform)](https://github.com/tbdavid2019/888a2a): A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。
-- [CF Notepad Skill (CF Notepad Skill)](https://github.com/tbdavid2019/cf-notepad): Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。
-- [888box Skill (888box Skill)](https://box.david888.com/skill.php): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
-- [Telegram Bot Agent Skill (Telegram Bot Agent Skill)](https://github.com/tbdavid2019/telegram-docs-skill): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill，支援 npx 一行指令直接安裝至開發環境。
-- [LINE Platform Agent Skill (LINE Platform Agent Skill)](https://github.com/tbdavid2019/line-docs-skill): 整理 LINE Bot、Messaging API、LIFF 與官方帳號開發文件的 Agent Skill，支援 npx 一行指令安裝。
-- [SAP Spartacus Agent Skill (SAP Spartacus Agent Skill)](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus (Composable Storefront) 電商前端開發文件與規範的 Agent Skill，支援 npx 一行指令安裝。
-- [Hermes Agent Skill (Hermes Agent Skill)](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill，支援透過 npx 一行指令安裝。
+- [CF Notepad Skill](https://github.com/tbdavid2019/cf-notepad): Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。
+- [888box Skill](https://box.david888.com/skill.php): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
+- [Telegram Bot Agent Skill](https://github.com/tbdavid2019/telegram-docs-skill): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill，支援 npx 一行指令直接安裝至開發環境。 — Install: `npx -y telegram-docs-skill@latest`
+- [LINE Platform Agent Skill](https://github.com/tbdavid2019/line-docs-skill): 整理 LINE Bot、Messaging API、LIFF 與官方帳號開發文件的 Agent Skill，支援 npx 一行指令安裝。 — Install: `npx -y line-docs-skill@latest`
+- [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus (Composable Storefront) 電商前端開發文件與規範的 Agent Skill，支援 npx 一行指令安裝。 — Install: `npx -y sap-spartacus-docs-skill@latest`
+- [Hermes Agent Skill](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill，支援透過 npx 一行指令安裝。 — Install: `npx -y hermes-agent-docs-skill@latest`
 
 ## Productivity Apps, Tools & Interactive Visuals
 
@@ -72,7 +83,7 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 - [888 2FA | 雙因素認證金鑰管理 (888 2FA - Cloudflare Workers 2FA Manager)](https://2fa.david888.com/): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
 - [afterBUY 補貨日記 | 耗材保存期管理 (afterBUY - Consumables & Warranty Tracker)](https://tbdavid2019.github.io/afterBUY): 手機優先 PWA 耗材更換週期追蹤、開封保存期（PAO）、保固倒數與常備庫存管理，支援 Passkey 免密碼登入與 WebCal 日曆訂閱同步。
 - [學術論文追蹤器 (Academic Paper Tracker)](https://tbdavid2019.github.io/paper-daily/): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
-- [333 Taiwanese TTS Hub (333 Taiwanese TTS Hub)](https://tbdavid2019.github.io/333TTSWeb/): 台語與國語語音模型整合工作台，支援快速試聽、多模型比較、語音生成與展示用途。
+- [333 Taiwanese TTS Hub](https://tbdavid2019.github.io/333TTSWeb/): 台語與國語語音模型整合工作台，支援快速試聽、多模型比較、語音生成與展示用途。
 - [Telegram: Oli Summary 總結王](https://t.me/quantaar_bot)
 - [Telegram 公開頻道預覽器 (Telegram Channel Viewer)](https://telegram.david888.com/): 可以把公開頻道內容轉成 web content，方便快速瀏覽與資料整理。
 - [Telegram: Oli家 古靈 Gemini](https://t.me/oli_photo_bot)
@@ -85,19 +96,19 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 - [WebTalk 333 - Chat and Summarize on any website. (WebTalk 333 - Chat and Summarize on any website)](https://chromewebstore.google.com/detail/webtalk-chat-with-friends/hhhdloelamldfadfobnhdhpfmbbdppdb?authuser=0&hl=zh-TW&pli=1): 結合網頁摘要與 WebRTC P2P 即時聊天功能的擴充套件，可在同一個網頁上整理重點並與其他人即時討論。
 - [888box 檔案中心 (888box File Center)](https://box.david888.com/): 開源的類 Dropbox 雲端儲存與檔案管理中心。
 - [2MD 快速閱讀、OCR 表格重建與個資去識別化引擎 (2MD — Fast Web/Doc Reader, PP-OCRv4 Table Reconstruction & PII Shield)](https://2md.aiurl.tw/): 全功能 AI 內容解析與隱私護盾：將網頁、Office/PDF 文件、高解析圖片表格（PP-OCRv4）與即時搜尋轉為乾淨 GFM Markdown 或 JSON，內建 15 類台灣與國際個資去識別化。
-- [WebTalk 333 (WebTalk 333)](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
-- [888 Tool (888 Tool)](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
-- [david888 wiki (david888 wiki)](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
+- [WebTalk 333](https://webtalk-nine.vercel.app/): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
+- [888 Tool](https://tool.david888.com/): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
+- [david888 wiki](https://wiki.david888.com/): 團隊內部使用的知識庫，用來整理 SOP、專案筆記、研究紀錄與技術文件。
 - [888desturl 最終目的地網址追蹤](https://url.david888.com/): 使用 Headless Chromium 模擬真實瀏覽器，追蹤分析 HTTP 轉址、meta refresh 與 JavaScript 導向。
 - [台灣道路施工地圖](https://tbdavid2019.github.io/tw_road_fix_map/)
 - [台灣寵物認養地圖](https://tbdavid2019.github.io/tw_pet_need_map/)
-- [Shorten and undo closed URL 333 (Shorten and Undo Closed URL 333)](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。
+- [Shorten and undo closed URL 333](https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW): 結合「短網址產生」與「恢復剛關閉分頁」功能的瀏覽器擴充工具。
 - [final destination 檢查網址的最終目的地 333 (Final Destination 333)](https://chromewebstore.google.com/detail/final-destination-333/obcenjfdaklcigkaojocademabnookln): 輕量級的資安防護工具。透過串接 888desturl API，協助使用者在點擊未知連結前，預先解析並確認網址的最終導向位置，防範惡意重新導向風險。
 - [輪盤選擇器 333 (Roulette Picker 333)](https://chromewebstore.google.com/detail/%E8%BC%AA%E7%9B%A4%E9%81%B8%E6%93%87%E5%99%A8-333/oaaajpfjfjhbegdiajklkaljjddlbnjp): 支援離線使用的決策小工具，提供可自訂選項的轉盤介面，協助快速做決定。
 - [LINE 群組人](https://line.me/R/ti/p/@377mwhqu)
 - [LINE 解惑人](https://line.me/R/ti/p/@728wsrjq)
-- [AnswerBook API (AnswerBook API)](https://answerbook.david888.com/): 可作為知識查詢與回答層的 API 入口，適合串接內部問答、文件檢索與工具流程。
-- [Lofi Music 輕音樂](http://music.david888.com/)
+- [AnswerBook API](https://answerbook.david888.com/): 可作為知識查詢與回答層的 API 入口，適合串接內部問答、文件檢索與工具流程。
+- [Lofi Music 輕音樂](https://music.david888.com/)
 - [便利商店即期食品查詢](https://tbdavid2019-taiwan-7-11.hf.space/)
 - [Tabs URL Copy 快速大量複製分頁網址 333 (Tabs URL Copy 333)](https://chromewebstore.google.com/detail/tab-url-copy/lfhdpmaolmbejolceggollfelmhbmmkb): 專為資料彙整與分享設計的效率工具。支援多種格式輸出，一鍵即可將瀏覽器中所有開啟的分頁網址快速複製到剪貼簿。
 - [Nano banana • Open WebUI](https://openwebui.com/t/david888/nano_banana)
@@ -223,6 +234,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://stockdata.david888.com/
 - Category: finance
 - Section: 量化與分析平台 (Quant & Analytics Platforms)
+- Tech / Tools: TimesFM & Timestral, LSTM, Broker Flow Tracking, Technical Indicators, TW/US Equities
 - Description (ZH): 結合 Google TimesFM、Timestral 與 LSTM 時間序列預測模型，整理台美股技術指標與三大法人、券商分點買賣超資料。
 - Description (EN): Quantitative data platform combining Google TimesFM, Timestral, and LSTM forecasting models with technical indicators and broker-branch chip tracking for TW/US equities.
 
@@ -230,6 +242,8 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://bot.david888.com/
 - Category: finance
 - Section: 量化與分析平台 (Quant & Analytics Platforms)
+- Documentation / Package: https://wiki.david888.com/share/rzye4g
+- Tech / Tools: TypeScript, DCF / SEPA, Options PnL, TWSE Chip Flow, TradingView Charts, 2MD Search
 - Description (ZH): 以 TypeScript 實作財務估值（DCF 現金流折現、Minervini SEPA、財報摘要、選擇權損益試算），整合台灣三大法人買賣超資料、TradingView 走勢圖與 2MD 即時網頁搜尋。
 - Description (EN): TypeScript financial analysis tool with DCF valuation, Minervini SEPA, options PnL calculators, TWSE/TPEx institutional flows, TradingView charts, and 2MD web search.
 
@@ -237,6 +251,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://taiwan-company-network.david888.com/
 - Category: finance
 - Section: 企業與投資網路 (Corporate & Investment Networks)
+- Tech / Tools: Knowledge Graph, Force-Directed Canvas, Corporate Ownership Data, Interactive Search
 - Description (ZH): 台灣公司法人投資關係的互動式可視化，探索企業與關聯法人之間的投資網路。
 - Description (EN): An interactive visualization of corporate investment relationships in Taiwan, exploring investment networks between companies and related legal entities.
 
@@ -244,6 +259,8 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://storepulse.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
+- Documentation / Package: https://storepulse.david888.com/llms.txt
+- Tech / Tools: Cloudflare Workers, Google Places & SerpApi, BYOK Zero-Knowledge, SHA-256 Evidence Hash, Anti-Hallucination Guard, llms.txt REST API
 - Description (ZH): 專為實體門市與連鎖品牌打造的評價速查、負評標記與避雷深度分析系統。透過 Cloudflare Workers 邊緣運算與自備金鑰（BYOK）雙軌機制，自動提煉各門市真實痛點與服務缺口。
 - Description (EN): Operational intelligence and anti-hallucination review curation for retail and dining chains on Cloudflare Workers edge runtime, featuring BYOK zero-knowledge privacy, SHA-256 evidence fingerprinting, and automated pain-point extraction.
 
@@ -251,6 +268,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://news2.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
+- Tech / Tools: 100+ Tech Feeds, Event Clustering, LLM Filtering, Streamable HTTP MCP, Bilingual Digest
 - Description (ZH): 自動收集超過 100 個科技媒體與 AI 實驗室公告（OpenAI、Anthropic、Google、Meta 等），透過語意分類合併重複報導、過濾廣編稿，每日整理中英雙語新聞摘要。
 - Description (EN): Automated tech & AI news aggregator monitoring 100+ sources (OpenAI, Anthropic, Google, Meta) with semantic grouping, ad filtering, and daily bilingual summaries.
 
@@ -258,6 +276,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://2fa.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
+- Tech / Tools: Cloudflare Workers, WebAuthn / Passkey, Web Crypto API, PWA
 - Description (ZH): 架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。
 - Description (EN): 2FA authenticator on Cloudflare Workers featuring Web Crypto Passkey/WebAuthn login, offline PWA TOTP, and encrypted backup.
 
@@ -275,7 +294,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - Description (ZH): 每日追蹤 arXiv、HuggingFace、Semantic Scholar 最新 AI 與機器人學論文，自動排序並透過 LLM 生成繁體中文研究摘要與速報。
 - Description (EN): An automated daily research tracker monitoring Embodied AI and ML papers across arXiv, HuggingFace, and Semantic Scholar with LLM-generated Chinese summaries.
 
-### 333 Taiwanese TTS Hub / 333 Taiwanese TTS Hub
+### 333 Taiwanese TTS Hub
 - URL: https://tbdavid2019.github.io/333TTSWeb/
 - Category: products
 - Section: 語音與語言 (Speech & Language)
@@ -383,30 +402,33 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://2md.aiurl.tw/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
+- Tech / Tools: AnyDoc Parser, PaddleOCR PP-OCRv4, 2D Table Reconstruction, 15-Rule PII De-ID, Batch Crawl & SERP, WebMCP
 - Description (ZH): 全功能 AI 內容解析與隱私護盾：將網頁、Office/PDF 文件、高解析圖片表格（PP-OCRv4）與即時搜尋轉為乾淨 GFM Markdown 或 JSON，內建 15 類台灣與國際個資去識別化。
 - Description (EN): All-in-one AI ingestion & privacy shield converting web pages, PDF/Office docs, tabular images (PP-OCRv4), and live search into clean GFM Markdown or JSON, with 15-category PII de-identification.
 
-### 888-url2md (2MD) Agent Skill & API / 888-url2md (2MD) Agent Skill & API
+### 888-url2md (2MD) Agent Skill & API
 - URL: https://2md.aiurl.tw/
 - Category: agent-skills
-- Description (ZH): 專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
+- Section: MCP Server 與網頁引擎 (MCP Server & Web Engines)
+- Tech / Tools: Agent Skill, PP-OCRv4 API, PII De-ID Shield, SERP & Batch Crawl, AnyDoc Engine
+- Description (ZH): 專為 AI Agent 與 LLM 打造的網頁爬取、即時搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
 - Description (EN): Agent Skill & API for web scraping, live SERP search, PDF/Office parsing, PP-OCRv4 tabular image OCR, and 15-rule PII de-identification at https://2md.aiurl.tw/.
 
-### WebTalk 333 / WebTalk 333
+### WebTalk 333
 - URL: https://webtalk-nine.vercel.app/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
 - Description (ZH): 多人即時交流工具，讓同一網站的訪客一起討論、一起看內容。支援聊天與 AI 摘要，可直接嵌入網站，無需自行架設後端。
 - Description (EN): Multi-user real-time chat tool that lets visitors on the same website discuss and view content together. Supports chat + AI summary, can be embedded on any website without a custom backend.
 
-### 888 Tool / 888 Tool
+### 888 Tool
 - URL: https://tool.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
 - Description (ZH): 常用線上小工具入口，集中整理日常開發與工作會用到的轉檔、格式處理與實用服務。
 - Description (EN): A practical tool hub that gathers the small services and utilities used repeatedly in daily work.
 
-### david888 wiki / david888 wiki
+### david888 wiki
 - URL: https://wiki.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
@@ -423,6 +445,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - URL: https://qi.david888.com/
 - Category: finance
 - Section: 奇門曆法與人生決策 (Qi & Life Decisions)
+- Tech / Tools: Calendar Rule Engine, Solar Term Calculation, Multi-Turn Q&A, Life K-Line Chart, Consumer Web App
 - Description (ZH): 將奇門遁甲、生辰八字、梅花易數、風水與塔羅的排盤規則寫成固定演算法，再交由 AI 進行多輪問答解讀。
 - Description (EN): Consumer web app combining a calendar calculation engine with multi-turn AI Q&A across Qi Men Dun Jia, Plum Blossom Numerology, Bazi Life K-Line, Tarot, and Feng Shui.
 
@@ -464,7 +487,7 @@ Open to full-time technology leadership roles for multinational corporations, li
 - Category: products
 - Section: 生活應用與地圖工具 (Lifestyle & Map Utilities)
 
-### Shorten and undo closed URL 333 / Shorten and Undo Closed URL 333
+### Shorten and undo closed URL 333
 - URL: https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW
 - Category: products
 - Section: 瀏覽器產品｜AI 與生產力 (Browser Products - AI & Productivity)
@@ -498,72 +521,101 @@ Open to full-time technology leadership roles for multinational corporations, li
 ### 888news 遠端 MCP 服務 (5 工具呼叫) / 888news Remote MCP Server (5 Agent Tools)
 - URL: https://news2.david888.com/api/mcp
 - Category: agent-skills
+- Section: MCP Server 與網頁引擎 (MCP Server & Web Engines)
+- Documentation / Package: https://news2.david888.com/agent
+- MCP Server: https://news2.david888.com/api/mcp (http)
+- Tech / Tools: Streamable HTTP, 5 Tools, news888_get_latest, news888_search, news888_get_hot_topics, news888_get_story, news888_get_daily
 - Description (ZH): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
 - Description (EN): Directly call 5 tools from any AI agent. Built for remote MCP-compatible agents and dev tools. Standard Streamable HTTP, anonymous read-only, no token needed; returns concise text and structured data.
 
-### OpenClaw Agent Skill / OpenClaw Agent Skill
+### OpenClaw Agent Skill
 - URL: https://github.com/tbdavid2019/openclaw-docs-skill
 - Category: agent-skills
+- Section: 一鍵 npx 文件 Skills (One-Command npx Docs Skills)
+- Install Command: `npx -y openclaw-docs-skill@latest`
+- Documentation / Package: https://www.npmjs.com/package/openclaw-docs-skill
+- Tech / Tools: npx Skill, Agent Skill, OpenClaw, Auto-Synced Docs
 - Description (ZH): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題，支援透過 npx 一行指令安裝。
 - Description (EN): Daily auto-synced OpenClaw official docs and troubleshooting guide packaged as a one-command npx Agent Skill.
 
 ### 論文雷達 Agent Skill / Daily Paper Scout Skill
 - URL: https://github.com/tbdavid2019/paper-daily
 - Category: agent-skills
+- Section: Multi-Agent 與知識工作流 (Multi-Agent & Knowledge Workflows)
 - Description (ZH): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
 - Description (EN): An agent skill for academic paper tracking and radar analysis, enabling LLMs to read daily paper dumps and generate structured research reports.
 
 ### 888a2a Agent 平台 / 888a2a - Multi-Agent Platform
 - URL: https://github.com/tbdavid2019/888a2a
 - Category: agent-skills
+- Section: Multi-Agent 與知識工作流 (Multi-Agent & Knowledge Workflows)
+- Tech / Tools: A2A Protocol, Multi-Agent Orchestration, Human-in-the-Loop, TypeScript
 - Description (ZH): A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。
 - Description (EN): An A2A-first human and AI-agent collaboration platform designed for seamless multi-agent workflows.
 
-### CF Notepad Skill / CF Notepad Skill
+### CF Notepad Skill
 - URL: https://github.com/tbdavid2019/cf-notepad
 - Category: agent-skills
+- Section: Multi-Agent 與知識工作流 (Multi-Agent & Knowledge Workflows)
 - Description (ZH): Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。
 - Description (EN): Cloudflare Pages / Worker style cloud note editing and workflow skill, ideal for building lightweight knowledge tooling.
 
-### 888box Skill / 888box Skill
+### 888box Skill
 - URL: https://box.david888.com/skill.php
 - Category: agent-skills
+- Section: MCP Server 與網頁引擎 (MCP Server & Web Engines)
 - Description (ZH): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
 - Description (EN): A skill entry for using 888box inside agent workflows for file management, asset organization, and content access.
 
-### AnswerBook API / AnswerBook API
+### AnswerBook API
 - URL: https://answerbook.david888.com/
 - Category: products
 - Section: Web 產品與服務 (Web Products & Services)
 - Description (ZH): 可作為知識查詢與回答層的 API 入口，適合串接內部問答、文件檢索與工具流程。
 - Description (EN): An API entry point for knowledge lookup and answer generation, suitable for internal Q&A, document retrieval, and workflow integrations.
 
-### Telegram Bot Agent Skill / Telegram Bot Agent Skill
+### Telegram Bot Agent Skill
 - URL: https://github.com/tbdavid2019/telegram-docs-skill
 - Category: agent-skills
+- Section: 一鍵 npx 文件 Skills (One-Command npx Docs Skills)
+- Install Command: `npx -y telegram-docs-skill@latest`
+- Documentation / Package: https://www.npmjs.com/package/telegram-docs-skill
+- Tech / Tools: npx Skill, Agent Skill, Telegram Bot API
 - Description (ZH): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill，支援 npx 一行指令直接安裝至開發環境。
 - Description (EN): Synchronized Telegram Bot API documentation and developer examples packaged as a one-command npx Agent Skill.
 
-### LINE Platform Agent Skill / LINE Platform Agent Skill
+### LINE Platform Agent Skill
 - URL: https://github.com/tbdavid2019/line-docs-skill
 - Category: agent-skills
+- Section: 一鍵 npx 文件 Skills (One-Command npx Docs Skills)
+- Install Command: `npx -y line-docs-skill@latest`
+- Documentation / Package: https://www.npmjs.com/package/line-docs-skill
+- Tech / Tools: npx Skill, Agent Skill, LINE Messaging API, LIFF
 - Description (ZH): 整理 LINE Bot、Messaging API、LIFF 與官方帳號開發文件的 Agent Skill，支援 npx 一行指令安裝。
 - Description (EN): Synchronized LINE Developers (Messaging API, LIFF, Login) documentation packaged as a one-command npx Agent Skill.
 
-### SAP Spartacus Agent Skill / SAP Spartacus Agent Skill
+### SAP Spartacus Agent Skill
 - URL: https://github.com/tbdavid2019/SAP-spartacus-docs-skill
 - Category: agent-skills
+- Section: 一鍵 npx 文件 Skills (One-Command npx Docs Skills)
+- Install Command: `npx -y sap-spartacus-docs-skill@latest`
+- Documentation / Package: https://www.npmjs.com/package/sap-spartacus-docs-skill
+- Tech / Tools: npx Skill, Agent Skill, SAP Spartacus, E-Commerce
 - Description (ZH): 提供 SAP Spartacus (Composable Storefront) 電商前端開發文件與規範的 Agent Skill，支援 npx 一行指令安裝。
 - Description (EN): Synchronized SAP Spartacus (Composable Storefront) e-commerce documentation packaged as a one-command npx Agent Skill.
 
-### Hermes Agent Skill / Hermes Agent Skill
+### Hermes Agent Skill
 - URL: https://github.com/tbdavid2019/hermes-agent-docs-skill
 - Category: agent-skills
+- Section: 一鍵 npx 文件 Skills (One-Command npx Docs Skills)
+- Install Command: `npx -y hermes-agent-docs-skill@latest`
+- Documentation / Package: https://www.npmjs.com/package/hermes-agent-docs-skill
+- Tech / Tools: npx Skill, Agent Skill, Hermes Agent, Ops Guide
 - Description (ZH): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill，支援透過 npx 一行指令安裝。
 - Description (EN): Auto-synced Hermes Agent configuration and troubleshooting docs packaged as a one-command npx Agent Skill.
 
 ### Lofi Music 輕音樂
-- URL: http://music.david888.com/
+- URL: https://music.david888.com/
 - Category: products
 - Section: 生活應用與地圖工具 (Lifestyle & Map Utilities)
 

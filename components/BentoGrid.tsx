@@ -448,7 +448,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
           <FlagshipShowcase locale={locale} />
         ) : (
           <>
-            {/* Always surface the 5 Flagship High-Difficulty Systems at the top of the default landing flow so employers never miss them */}
+            {/* Always surface Flagship High-Difficulty Systems at the top of the default landing flow so employers never miss them */}
             {!isSearching && activeCategory?.id === 'social' && (
               <FlagshipShowcase locale={locale} />
             )}

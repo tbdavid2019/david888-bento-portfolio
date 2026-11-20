@@ -75,16 +75,21 @@ test('buildLlmsTxt strictly conforms to llmstxt.org spec structure', () => {
   assert.match(result, /## Productivity Apps, Tools & Interactive Visuals/);
   assert.match(result, /## Finance, Quant & Metaphysics Systems/);
 
-  // Spec check 4: Contains list links in standard [name](url): description format
+  // Spec check 4: Contains list links in standard [name](url): description format (deduped title === titleEn)
   assert.match(
     result,
-    /- \[David888 Blog \(David888 Blog\)\]\(https:\/\/blog\.david888\.com\/\): 技術文章與系統架構思考/,
+    /- \[David888 Blog\]\(https:\/\/blog\.david888\.com\/\): 技術文章與系統架構思考/,
   );
+  assert.doesNotMatch(result, /David888 Blog \(David888 Blog\)/);
   assert.match(result, /- Contact: Verified web contact form at https:\/\/david888\.com\//);
   assert.doesNotMatch(result, /Contact Email:/);
   assert.doesNotMatch(result, /104@david888\.com/);
   assert.match(result, /- Executive Advisory & CTO Dossier: https:\/\/david888\.com\/executive/);
   assert.match(result, /- 5 Core Commitments \(Direct Route\): https:\/\/david888\.com\/commitments/);
+  assert.match(result, /- Flagship Systems Showcase: https:\/\/david888\.com\/flagships/);
+  assert.match(result, /- Agent Skills & MCP Directory: https:\/\/david888\.com\/agent-skills/);
+  assert.match(result, /https:\/\/david888\.com\/site-context\.json/);
+  assert.match(result, /https:\/\/david888\.com\/rss\.xml/);
 });
 
 test('buildLlmsFullTxt appends full profile and item catalog details', () => {
@@ -100,5 +105,6 @@ test('buildLlmsFullTxt appends full profile and item catalog details', () => {
   assert.match(fullResult, /## About David Chiang \(Traditional Chinese\)/);
   assert.match(fullResult, /## About David Chiang \(English\)/);
   assert.match(fullResult, /## Detailed Item Catalog/);
-  assert.match(fullResult, /### David888 Blog \/ David888 Blog/);
+  assert.match(fullResult, /### David888 Blog$/m);
+  assert.doesNotMatch(fullResult, /### David888 Blog \/ David888 Blog/);
 });

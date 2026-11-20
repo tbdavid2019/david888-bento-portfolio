@@ -9,7 +9,16 @@ export const BLOG_FEED_HOME_URL = 'https://blog.david888.com/rss/';
 export const PODCAST_RSS_URL = 'https://podcast.david888.com/rss.xml';
 export const GITHUB_ATOM_URL = 'https://github.com/tbdavid2019.atom';
 export const THREADS_PROFILE_URL = 'https://www.threads.com/@david888.chiang';
-export const SITE_CONTEXT_MAX_BYTES = 40_960;
+export const SITE_CONTEXT_MAX_BYTES = 57_344;
+
+function formatContextItemTitle(item) {
+  const zh = String(item?.title || '').trim();
+  const en = String(item?.titleEn || '').trim();
+  if (zh && en) {
+    return zh.toLowerCase() === en.toLowerCase() ? zh : `${zh} (${en})`;
+  }
+  return zh || en;
+}
 
 function stripHtmlAndWhitespace(value) {
   return String(value || '')
@@ -158,28 +167,64 @@ export function enforceContextByteBudget(payload, maxBytes = SITE_CONTEXT_MAX_BY
 
   if (serialize(cloned) <= maxBytes) return cloned;
 
-  // Step 1: Trim summaries to 100 chars
+  // Step 1: Trim summaries to 100 chars and tags to max 6
   cloned.items = cloned.items.map((item) => ({
     ...item,
     summary: truncateText(item.summary, 100),
-    tags: Array.isArray(item.tags) ? item.tags.slice(0, 4) : [],
+    tags: Array.isArray(item.tags) ? item.tags.slice(0, 6) : [],
   }));
   if (serialize(cloned) <= maxBytes) return cloned;
 
-  // Step 2: Prefer core portfolio/capabilities/flagships first, keep newest across all feed sources (blog, podcast, threads, github)
-  const isCore = (item) =>
-    item.source === 'portfolio' || item.source === 'capability' || Boolean(item.featured);
-  const coreItems = cloned.items.filter(isCore);
-  const feedItems = cloned.items
-    .filter((item) => !isCore(item))
+  // Step 2: Partition into pinned works/capabilities, secondary portfolio items, and live feeds.
+  // Round-robin pick up to 4 newest items per live feed source (blog, podcast, threads, github) so no feed is starved.
+  const isPinned = (item) =>
+    item.source === 'capability' || Boolean(item.featured);
+  const pinnedItems = cloned.items.filter(isPinned);
+  const secondaryPortfolio = cloned.items.filter(
+    (item) => !isPinned(item) && item.source === 'portfolio',
+  );
+  const remainingFeeds = cloned.items
+    .filter((item) => !isPinned(item) && item.source !== 'portfolio')
     .sort((a, b) => (Date.parse(b.publishedAt || '') || 0) - (Date.parse(a.publishedAt || '') || 0));
 
-  while (feedItems.length > 0 && serialize({ ...cloned, items: [...coreItems, ...feedItems] }) > maxBytes) {
-    feedItems.pop();
+  const bySource = new Map();
+  for (const item of remainingFeeds) {
+    const key = String(item.source || 'feed');
+    if (!bySource.has(key)) bySource.set(key, []);
+    bySource.get(key).push(item);
   }
-  cloned.items = [...coreItems, ...feedItems];
 
-  // Step 3: If core catalog itself still exceeds budget, trim from tail of coreItems
+  const prioritizedFeeds = [];
+  const overflowFeeds = [];
+  const sourceQueues = Array.from(bySource.values());
+  let round = 0;
+  while (sourceQueues.some((q) => q.length > 0)) {
+    for (const q of sourceQueues) {
+      if (q.length > 0) {
+        const nextItem = q.shift();
+        if (round < 4) {
+          prioritizedFeeds.push(nextItem);
+        } else {
+          overflowFeeds.push(nextItem);
+        }
+      }
+    }
+    round += 1;
+  }
+
+  // Fit pinned + guaranteed per-source feed slice + secondary portfolio + overflow feeds within budget
+  const candidate = [...pinnedItems];
+  for (const group of [prioritizedFeeds, secondaryPortfolio, overflowFeeds]) {
+    for (const item of group) {
+      const next = [...candidate, item];
+      if (serialize({ ...cloned, items: next }) <= maxBytes) {
+        candidate.push(item);
+      }
+    }
+  }
+  cloned.items = candidate;
+
+  // Step 3: If pinned items alone exceed budget, trim tail of cloned.items
   while (cloned.items.length > 0 && serialize(cloned) > maxBytes) {
     cloned.items.pop();
   }
@@ -310,16 +355,20 @@ export async function buildSiteContext({
     .map((item, idx) => ({
       id: `portfolio:${idx}:${item.url || item.title}`,
       source: 'portfolio',
-      featured: Boolean(item.flagship),
-      title: truncateText(item.titleEn && item.title ? `${item.title} (${item.titleEn})` : (item.title || item.titleEn), 120),
+      featured: Boolean(item.flagship || item.featured || item.installCommand || item.mcpConfig),
+      title: truncateText(formatContextItemTitle(item), 120),
       summary: truncateText(
-        [item.installCommand ? `${item.installCommand} —` : '', item.description || item.descriptionEn || '']
+        [
+          item.installCommand ? `${item.installCommand} —` : '',
+          item.mcpConfig?.url ? `MCP (${item.mcpConfig.serverName || 'http'}): ${item.mcpConfig.url} —` : '',
+          item.description || item.descriptionEn || '',
+        ]
           .filter(Boolean)
           .join(' '),
         140,
       ),
       url: item.url || `${siteOrigin}/${item.tag || 'products'}`,
-      tags: [item.tag, ...(Array.isArray(item.techStack) ? item.techStack.slice(0, 4) : [])].filter(Boolean),
+      tags: [item.tag, ...(Array.isArray(item.techStack) ? item.techStack.slice(0, 7) : [])].filter(Boolean),
     }));
 
   const capabilityItems = (Array.isArray(capabilities) ? capabilities : [])
@@ -328,7 +377,7 @@ export async function buildSiteContext({
       id: `capability:${c.id}`,
       source: 'capability',
       featured: true,
-      title: truncateText(`${c.title} (${c.titleEn || c.id})`, 120),
+      title: truncateText(formatContextItemTitle(c) || `${c.title} (${c.id})`, 120),
       summary: truncateText(c.description || c.descriptionEn || '', 140),
       url: `${siteOrigin}/executive`,
       tags: Array.isArray(c.keywords) ? c.keywords.slice(0, 5) : [],
@@ -408,6 +457,7 @@ export async function buildSiteContext({
       ...blogItems.map((i) => ({ ...i, summary: truncateText(i.summary, 140) })),
       ...podcastItems.map((i) => ({ ...i, summary: truncateText(i.summary, 140) })),
       ...threadsFeedItems.map((i) => ({ ...i, summary: truncateText(i.summary, 140) })),
+      ...githubActivityFeedItems.map((i) => ({ ...i, summary: truncateText(i.summary, 140) })),
       ...githubRepoItems,
     ],
   };

@@ -76,7 +76,10 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
 
     const promise = (async () => {
       try {
-        const res = await fetch('/feed-summary.json', { headers: { Accept: 'application/json' } });
+        const res = await fetch('/feed-summary.json', {
+          cache: 'no-store',
+          headers: { Accept: 'application/json' },
+        });
         if (!res.ok) return null;
         const data = (await res.json()) as FeedSummaryPayload;
         if (data && Array.isArray(data.items)) {
@@ -261,6 +264,7 @@ export function useConciergeSession(locale: Locale, defaultSubject = '') {
           role: 'assistant',
           content: res.reply,
           mode: targetMode,
+          suggestedAction: res.suggestedAction,
           references: refs,
           kind: 'text',
         };
