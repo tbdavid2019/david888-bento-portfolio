@@ -1,5 +1,43 @@
 # Changelog
 
+## [2026-11-20] - EGM Architecture & UX Convergence, Route A Discovery & Shared Contact Core (架構整併、RAG 配額調優、問答轉接 CTA 與 Canonical 路由完善)
+
+### Conversational Commerce Handoff & UX Convergence (`lib/context-retrieval.ts`, `lib/concierge-session.ts`, `lib/useConciergeSession.ts`, `components/BottomConciergeDock.tsx`, `components/Navbar.tsx`, `App.tsx`, `components/ExecutiveBriefing.tsx`, `components/NextCategoryGuide.tsx`, `components/BentoGrid.tsx`)
+- **置底問答列商業／顧問洽詢 CTA (`suggestedAction: 'contact'`)**:
+  - Added `detectCommercialContactIntent` and `runWithTimeout(..., 8000)` in `lib/context-retrieval.ts` alongside expanded skill/quant/metaphysics synonyms and `urlIdLower` matching (`minScore: 3`).
+  - When `'qa'` mode detects commercial, advisory, hiring, quote, or contact intent (or zero context match), responses emit `suggestedAction: 'contact'`, rendering a high-contrast 1-click handoff pill inside `BottomConciergeDock` (`直接由小秘書轉達聯繫 David (/contact) →` / `Connect with David via Concierge (/contact) →`).
+  - Made compact `RSS` and `/search` quick actions accessible on mobile viewports in `BottomConciergeDock`, added `cache: 'no-store'` on `/feed-summary.json`, and restored focus to `textareaRef` when collapsing the drawer via `Escape`.
+- **Navigation, Filter & Copy Consistency**:
+  - Updated `Navbar.tsx` search button tooltip/aria-label to `篩選站內作品` / `Filter portfolio items`, and wired `App.tsx` + `BentoGrid.tsx` so clicking a card's `#techStack` chip opens the filter bar visibly.
+  - Resolved `/commitments` dock scroll race by targeting `#commitments` directly without competing `window.scrollTo` calls.
+  - Replaced outdated `"instant tracking number"` / `"產生服務單號"` / `"開立追蹤序號"` wording in `ExecutiveBriefing.tsx` and `NextCategoryGuide.tsx` with accurate Double Opt-in email confirmation copy, and updated `Flagships` comments from `5` to `7`.
+
+### Route A Discovery, `/agent-skills` Grouping & Canonical Prerender (`data/bento-links.json`, `scripts/build-site-context.mjs`, `scripts/llms-txt.mjs`, `scripts/prerender.mjs`, `public/docs/api/index.html`)
+- **`/agent-skills` 卡片子分組與 1-Click `npx` 收錄 (`a4bcd3e`, `d9c7c65`, `53583fe`)**:
+  - Added copyable `npx -y ...@latest` install snippets (`sap-spartacus-docs-skill`, `line-docs-skill`, `telegram-docs-skill`, `openclaw-docs-skill`, `hermes-agent-docs-skill`) and npm package links.
+  - Organized all 11 `agent-skills` entries into 3 clear subsections (`一鍵 npx 文件 Skills`, `MCP Server 與網頁引擎`, `Multi-Agent 與知識工作流`) with $\le 5$ cards each so no skills collapse behind `BentoGrid`'s `> 8` limit.
+  - Upgraded `Lofi Music 輕音樂` URL to `https://music.david888.com/`.
+- **`site-context.json` RAG 空間釋放與多來源配額保障 (`scripts/build-site-context.mjs`)**:
+  - Raised `SITE_CONTEXT_MAX_BYTES` to `57_344` (`56 KB`, safely within the Worker's `65_536` fetch cap), deduplicated `title === titleEn` titles via `formatContextItemTitle`, included `mcpConfig` and `githubActivityFeedItems`, and replaced tail starvation with tiered round-robin feed quotas so `blog`, `podcast`, `threads`, and `github` entries remain represented (`57,137` bytes across `131` items live).
+- **`llms.txt`, `/docs/api/`, & Canonical Prerender (`324195d`, `c04a34d`, `53583fe`)**:
+  - Updated `scripts/llms-txt.mjs` and `public/docs/api/index.html` to deduplicate identical bilingual titles and list `/llms.txt`, `/llms-full.txt`, `/rss.xml`, `/site-context.json`, `/feed-summary.json`, `/flagships`, and `/agent-skills`.
+  - Updated GitHub Actions build + `scripts/prerender.mjs` to emit static canonical route HTML (`/` subclasses + `/experiments` + `/metaphysics` + `404.html`) with route-specific `<title>`, `<meta name="description">`, Open Graph, and `<link rel="canonical">`, while removing `style="display: none;" aria-hidden="true"` from `.sr-only`.
+
+### Backend Deduplication & Frontend Resource Cleanup (`lib/contact-core.ts`, `lib/contact-extraction.ts`, `workers/contact-worker/src/index.ts`, `api/contact.ts`, `lib/crm.ts`, `index.html`, `index.css`, `components/cards/BlogFeedCard.tsx`, `components/cards/PodcastFeedCard.tsx`)
+- **Shared Contact Core (`lib/contact-core.ts`, `lib/contact-extraction.ts`)**:
+  - Consolidated duplicated logic across Cloudflare Worker, Vercel API, and CRM offline regex extraction into shared modules while keeping Vite client bundles free of Node-only mailer dependencies.
+  - Enforced OpenSpec default `mode: 'qa'` when `mode` is omitted, unified `32 KB` request size cap, IP rate limiting, multi-recipient `ADMIN_EMAIL`, and Turnstile fail-closed behavior; updated internal email quote styling from `border-left` to full hairline border (`fff62ed`).
+- **Frontend Bundle & Loading Cleanup**:
+  - Removed unused `components/FloatingDock.tsx`, dead `<script type="importmap">`, external `webtalk.js` script in `index.html`, and duplicate `JetBrains Mono` CSS `@import` in `index.css` (prioritizing `"Gen Jyuu Gothic"` first on `body`).
+  - Updated `BlogFeedCard.tsx` and `PodcastFeedCard.tsx` to hydrate immediately from `/feed-summary.json` with a bounded 6s timeout background refresh.
+
+## [2026-11-18] - Bottom Command Concierge Dock, Context RAG, Unified RSS & AWS SES SMTP (`4ba769b` ~ `43ff041`)
+
+### Concierge RAG, Dual-Mode Isolation & Mailer Hardening (`BottomConciergeDock.tsx`, `lib/context-retrieval.ts`, `lib/mailer.ts`, `scripts/build-site-context.mjs`, `scripts/threads-context.mjs`, `scripts/github-context.mjs`)
+- Added sticky bottom command concierge (`BottomConciergeDock`) with `/` slash command autocomplete (`/search`, `/rss`, `/contact`, `/form`, `/clear`, `/help`, route shortcuts) and isolated `'qa'` vs `'contact'` modes.
+- Built automated context and RSS synchronization pipeline generating `site-context.json`, `feed-summary.json`, `rss.xml`, `threads-archive.json`, and `github-context-cache.json`.
+- Switched primary email transport to AWS SES SMTP (`STARTTLS` + `AUTH PLAIN`) with Resend fallback (`lib/mailer.ts`), removed legacy `Jev` dependency, added Clef intent classification tags to email subjects, and hardened trust boundaries across tri-review security gates.
+
 ## [2026-10-27] - Mobile Native Tab Swipe Navigation & Next Category Exploration Deck (手機左右滑動切換分頁手勢與章節接續探索卡片)
 
 ### Mobile UX & Interaction Hardening (`lib/useSwipeCategory.ts`, `components/NextCategoryGuide.tsx`, `components/BentoGrid.tsx`, `test/mobile-category-swipe.test.mjs`)
