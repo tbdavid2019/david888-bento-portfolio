@@ -675,7 +675,7 @@ export const confirmContactSubmission = async (
       <strong>主旨：</strong>${escapeHtml(payload.s)}
     </div>
 
-    <div style="background: #fafaf9; border-left: 4px solid #ffb010; padding: 14px 16px; border-radius: 4px; font-size: 14px; line-height: 1.6; color: #1c1917; white-space: pre-wrap; margin-bottom: 20px;">
+    <div style="background: #fffdfa; border: 1px solid #d6bc7c; padding: 14px 16px; border-radius: 8px; font-size: 14px; line-height: 1.6; color: #1c1917; white-space: pre-wrap; margin-bottom: 20px;">
 ${escapeHtml(payload.m)}
     </div>
 
