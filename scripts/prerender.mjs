@@ -202,6 +202,9 @@ ${JSON.stringify(schemaJson, null, 2)}
       await fs.writeFile(path.join(routeDir, 'index.html'), routeHtml, 'utf8');
     }
 
+    // Fallback 404.html for GitHub Pages SPA subpaths
+    await fs.writeFile(path.join(distDir, '404.html'), html, 'utf8');
+
     console.log('Pre-rendering and Canonical Route generation completed successfully!');
   } catch (error) {
     console.error('Pre-rendering failed:', error);
