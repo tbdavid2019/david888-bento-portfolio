@@ -1,8 +1,36 @@
 {
   "sourceUrl": "https://www.threads.com/@david888.chiang",
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-20T01:50:02.424Z",
+  "lastSyncedAt": "2026-11-20T07:08:04.498Z",
   "entries": [
+    {
+      "id": "md-2dc6c4f11523",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "用完token的怪物。要玩rust 電腦效能要很好",
+      "publishedAt": "2026-11-20T07:08:04.498Z",
+      "fetchedAt": "2026-11-20T07:08:04.498Z"
+    },
+    {
+      "id": "md-715748f161ba",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "ToolJet 把 MCP 串接、React 介面每次儲存時的安全掃描，以及高風險流程的人工作業核准放進同一平台，瞄準「Agent 做得快、企業不敢上線」的落差。不過討論區提出的關鍵問題仍未獲官方回答：敏感查詢是在執行前即時攔截，還是部署時才標記？採用者應同步驗收存檔掃描、執行期權限與稽核能力。🎧 今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-20T07:08:04.498Z",
+      "fetchedAt": "2026-11-20T07:08:04.498Z"
+    },
+    {
+      "id": "md-9e69648a4f37",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "AI Agent 讀一張表格時，可能把儲存格裡偽裝成規則的文字當成命令。節目稿指出，模型看到系統提示、使用者輸入與工具回傳資料時，缺少傳統程式那種明確的指令／資料隔離；若 Agent 接著能讀機密或執行寫入，提示注入就會變成權限問題。把工具權限縮到任務所需、驗證結構化輸出，並讓敏感操作經過獨立核准，才有實際防線。🎧 今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-20T07:08:04.498Z",
+      "fetchedAt": "2026-11-20T07:08:04.498Z"
+    },
+    {
+      "id": "md-bcaf018dc8db",
+      "url": "https://www.threads.com/@david888.chiang",
+      "text": "Rails 的「免登入遠端程式碼執行」警訊，核心在驗證發生前就可能被打到。報導將 Ruby2ßhell 指向 stock Rails；若服務符合受影響條件且暴露在網路上，攻擊者可能不需帳密便執行指令。維運者應核對研究團隊與官方修補資訊、盤點外網服務並盡快處理。這類漏洞提醒維運者把防線前移到請求解析與框架更新。🎧 今日節目：podcast.david888.com/post…",
+      "publishedAt": "2026-11-20T07:08:04.498Z",
+      "fetchedAt": "2026-11-20T07:08:04.498Z"
+    },
     {
       "id": "Df8Ym_1k9U4",
       "url": "https://www.threads.com/@david888.chiang/post/Df8Ym_1k9U4",

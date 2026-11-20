@@ -167,6 +167,42 @@
   },
   {
     "type": "link",
+    "title": "888 字體檔加工台｜OpenCC OpenType 簡繁字型轉換工作台",
+    "titleEn": "888 Font Workbench — OpenCC OpenType CJK Font Converter",
+    "description": "免費線上編譯 OpenCC 1.4.2 詞彙級 OpenType GSUB 簡繁轉換字型，支援備用字型缺字補全、90° 電子書直排旋轉、WOFF2 Webfont 打包、Kobo 相容命名與靜態／可變多字重家族批次生成。",
+    "descriptionEn": "Free online OpenType CJK font workbench compiling OpenCC 1.4.2 phrase-level GSUB rules (s2t/twp/s2tw/s2hk/t2s), fallback glyph merging, 90° e-reader vertical rotation, WOFF2 packaging, and static/variable family builds.",
+    "url": "https://font.david888.com/",
+    "repoUrl": "https://github.com/tbdavid2019/OpenCCFontGenerator",
+    "docUrl": "https://font.david888.com/docs",
+    "docLabel": "OpenAPI /docs",
+    "docLabelZh": "OpenAPI /docs",
+    "docLabelEn": "OpenAPI /docs",
+    "featured": true,
+    "tag": "products",
+    "section": "Web 產品與服務 (Web Products & Services)",
+    "sectionEn": "Web Products & Services",
+    "icon": "type",
+    "techStack": [
+      "OpenCC 1.4.2",
+      "OpenType GSUB",
+      "WOFF2 & Webfont",
+      "Fallback Merge",
+      "90° E-Reader Rotate",
+      "OpenAPI REST"
+    ],
+    "highlights": [
+      "透過 otfccdump / otfccbuild 編譯詞彙級 GSUB 查找表，支援 s2t、twp、s2tw、s2hk 與 t2s 轉換並提供即時見本試轉",
+      "支援備用字型（Fallback Font）缺字補全與異體字映射，解決 Kindle / Kobo 閱讀器缺字回退問題",
+      "內建 90° 電子書直排旋轉、WOFF2 + @font-face ZIP 打包與靜態／可變（Thin–Black）多字重家族批次生成"
+    ],
+    "highlightsEn": [
+      "Compiles phrase-level OpenCC 1.4.2 GSUB substitution tables (s2t, twp, s2tw, s2hk, t2s) with live specimen preview",
+      "Fallback glyph merging and variant mapping to prevent missing-glyph fallback on Kindle and Kobo e-readers",
+      "Includes 90° vertical rotation, WOFF2 + @font-face ZIP bundling, and batch static/variable (Thin–Black) family builds"
+    ]
+  },
+  {
+    "type": "link",
     "title": "888 2FA | 雙因素認證金鑰管理",
     "titleEn": "888 2FA - Cloudflare Workers 2FA Manager",
     "description": "架設於 Cloudflare Workers 的 2FA 驗證碼管理工具。使用 Web Crypto API 實作 Passkey / WebAuthn 登入，支援 PWA 離線 TOTP 與多端備份。",

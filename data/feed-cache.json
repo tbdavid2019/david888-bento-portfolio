@@ -1,7 +1,31 @@
 {
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-20T01:50:02.424Z",
+  "lastSyncedAt": "2026-11-20T07:08:04.498Z",
   "blog": [
+    {
+      "id": "blog:https://blog.david888.com/bi-dou-zhen-ju-le-bu-geng-feng-kuang-jie-kai-xie-dian-shen-zuo-chang-zi-bei-hou-de-can-ku-yu-yan/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "比《鬥陣俱樂部》更瘋狂？揭開邪典神作《腸子》背後的殘酷寓言",
+      "summary": "📌 比《鬥陣俱樂部》更瘋狂？揭開邪典神作《腸子》背後的殘酷寓言 ⓵ 【容易懂 Easy Know】 想像有一群想當大作家的人，把自己關在一棟大房子裡三個月。他們不用心寫作，反而想出一個餿主意：「大家最愛看悲慘的故事，只要我們把自己折磨得夠慘，出去就能靠悲慘遭遇大賺一筆！」於是他們開始互相殘殺、毀掉食物、傷害自己的身體。 這本書就像一面放大鏡，用極度誇張的故事告訴我們：人有時候為了一點點自私的念頭、虛榮心或好奇心，就像踩到了危險邊緣，只要走偏一步，原本平靜的生活就會瞬間掉進可怕的地獄裡。 ⓶ 【總結 Overall Summary】 美國著名小說家恰克…",
+      "url": "https://blog.david888.com/bi-dou-zhen-ju-le-bu-geng-feng-kuang-jie-kai-xie-dian-shen-zuo-chang-zi-bei-hou-de-can-ku-yu-yan/",
+      "publishedAt": "2026-11-20T04:25:14.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "blog:https://blog.david888.com/han-zhu-zheng-jiu-ren-lei-que-shen-xian-wan-yi-hao-du-jie-kai-anthropic-zui-qiang-ai-de-shuang-mian-zheng-yi/",
+      "source": "blog",
+      "sourceFeedUrl": "https://blog.david888.com/rss/",
+      "title": "喊著拯救人類卻深陷萬億豪賭？揭開 Anthropic 最強 AI 的雙面爭議",
+      "summary": "📌 喊著拯救人類卻深陷萬億豪賭？揭開 Anthropic 最強 AI 的雙面爭議 ⓵ 【容易懂 Easy Know】 想像一群原本在頂級車廠研發「超光速跑車」的天才工程師，因為擔心車子跑太快卻沒裝好煞車會撞車，於是集體出走，自己開了一家標榜「安全第一」的新車廠（也就是 Anthropic）。 他們研發出極其聰明又冷靜的副駕駛「Claude」，一開始發誓只要發現有安全疑慮就立刻踩煞車停工。但隨著全球比賽越來越激烈，為了賺錢活下去並贏過老東家，他們不僅把油門踩得比誰都兇，甚至把跑車技術賣給軍隊。這就像一位提醒大家玩火很危險的消防員，最後為了證明實力，自己…",
+      "url": "https://blog.david888.com/han-zhu-zheng-jiu-ren-lei-que-shen-xian-wan-yi-hao-du-jie-kai-anthropic-zui-qiang-ai-de-shuang-mian-zheng-yi/",
+      "publishedAt": "2026-11-20T03:41:34.000Z",
+      "tags": [
+        "blog"
+      ]
+    },
     {
       "id": "blog:https://blog.david888.com/wen-ming-gui-ze-bi-ye-xin-jia-di-tou-jie-mi-ying-qiu-mei-guo-zong-tong-de-shi-zhan-quan-mou-shu/",
       "source": "blog",
@@ -97,30 +121,6 @@
       "tags": [
         "blog"
       ]
-    },
-    {
-      "id": "blog:https://blog.david888.com/feng-kuang-ji-chang-bie-ting-zhuan-jia-hu-che-guan-cai-jiao-da-lao-jie-shi-yi-ci-jiu-dong/",
-      "source": "blog",
-      "sourceFeedUrl": "https://blog.david888.com/rss/",
-      "title": "瘋狂機長｜別聽專家胡扯棺材角！大佬解釋一次就懂...",
-      "summary": "📌 瘋狂機長｜別聽專家胡扯棺材角！大佬解釋一次就懂... ⓵ 【容易懂 Easy Know】 想像你正騎著腳踏車走在一條兩邊都是懸崖的「極窄獨木橋」上：只要稍微騎快一點點，就會失控衝進右邊的懸崖（超速解體）；但只要稍微騎慢一點點，車子失去平衡就會掉進左邊的懸崖（失速下墜），這條幾乎沒有容錯空間的鋼索就是「棺材角」（Coffin Corner）。當飛機飛到空氣非常稀薄的極高空時，最快速度與最慢速度的邊界會縮到幾乎只剩一條線。不過，真正讓飛機救不回來的往往不是這個狹窄區間，而是黏在機翼上、破壞空氣浮力的「致命積冰」！ ⓶ 【總結 Overall Summ…",
-      "url": "https://blog.david888.com/feng-kuang-ji-chang-bie-ting-zhuan-jia-hu-che-guan-cai-jiao-da-lao-jie-shi-yi-ci-jiu-dong/",
-      "publishedAt": "2026-11-18T23:52:54.000Z",
-      "tags": [
-        "blog"
-      ]
-    },
-    {
-      "id": "blog:https://blog.david888.com/elon-muskzhe-ci-nie-zhu-liao-anthropicde-ming-mai/",
-      "source": "blog",
-      "sourceFeedUrl": "https://blog.david888.com/rss/",
-      "title": "Elon Musk这次捏住了Anthropic的命脉…",
-      "summary": "📌 Elon Musk这次捏住了Anthropic的命脉… ⓵ 【容易懂 Easy Know】 想像一下，AI 就像在小鎮裡建造巨大的「超級發電機」。科技富豪靠它賺了大錢，但鎮上的普通居民卻發現自己的電費變貴、水變少，甚至覺得富豪搶走了所有好處，於是大家投票抗議「不准再蓋發電機」！ 然而，不准蓋新的，反而讓手裡已經握有發電機的「超級大房東」（如微軟、谷歌、SpaceX）變得更強大。因為算力變稀缺，房東可以任意漲租，而真正研發聰明大腦的 AI 公司（如 Anthropic、OpenAI）只是「租客」，隨時面臨被斷電或漲價的危機。看似在對抗富豪的抗議，最…",
-      "url": "https://blog.david888.com/elon-muskzhe-ci-nie-zhu-liao-anthropicde-ming-mai/",
-      "publishedAt": "2026-11-18T10:59:19.000Z",
-      "tags": [
-        "blog"
-      ]
     }
   ],
   "podcast": [
@@ -128,10 +128,10 @@
       "id": "podcast:https://podcast.david888.com/post/2026-11-20",
       "source": "podcast",
       "sourceFeedUrl": "https://podcast.david888.com/rss.xml",
-      "title": "2026-11-20 Claude破解黑洞難題卻因安全護欄降級遭炎上、Rails爆驗證前RCE震撼開發圈",
-      "summary": "詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-20 Anthropic以Claude多代理與Lean解開黑洞難題並赴Nasdaq上市，社群熱議財報與算力衝突；資安人員揭露白名單仍遭護欄誤擋、靜默降級且易繞過，轉抱開源。另談Rails預設RCE、表格注入劫持Agent、LLM逆向及ToolJet動態查詢攔截疑慮；最後涵蓋本地語音Moonshine、MiniMind、歐盟導入Matrix，及單機千萬伺服器、SQLite物件儲存與記憶體壓縮。",
+      "title": "2026-11-20 Claude解開黑洞物理難題同步上市、Gemini 4 Neon低價登頂卻卡在工具鏈",
+      "summary": "詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-20 今天焦點鎖定 Anthropic 雙線出擊：Claude Fable 5.2 以多代理協作與 Lean 驗證解開兩道黑洞物理難題，公司也登上納斯達克接受華爾街檢驗。同時 Gemini 4 Neon 在工程指數奪冠，卻因工具鏈引發爭議。節目也深挖 Rails 遠端執行漏洞、SQLite 儲存、單機千萬伺服器、記憶體壓縮、K8s 1.35 與 AI 逆向工程。",
       "url": "https://podcast.david888.com/post/2026-11-20",
-      "publishedAt": "2026-11-20T00:30:49.000Z",
+      "publishedAt": "2026-11-20T04:54:34.000Z",
       "tags": [
         "podcast"
       ]

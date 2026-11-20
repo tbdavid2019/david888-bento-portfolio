@@ -1,7 +1,7 @@
 {
   "username": "tbdavid2019",
   "syncStatus": "ok",
-  "lastSyncedAt": "2026-11-20T01:50:02.424Z",
+  "lastSyncedAt": "2026-11-20T07:08:04.498Z",
   "repos": [
     {
       "id": "github-repo:david888-bento-portfolio",
@@ -15,7 +15,7 @@
       "stars": 0,
       "fork": false,
       "featured": true,
-      "pushedAt": "2026-11-20T01:32:09Z"
+      "pushedAt": "2026-11-20T02:48:17Z"
     },
     {
       "id": "github-repo:openclaw-docs-skill",
@@ -82,6 +82,148 @@
       "pushedAt": "2026-11-12T01:12:04Z"
     },
     {
+      "id": "github-repo:OpenCCFontGenerator",
+      "name": "OpenCCFontGenerator",
+      "fullName": "tbdavid2019/OpenCCFontGenerator",
+      "description": "製作一個自動字型， 可以把 簡體字 看成 繁體字 https://font.david888.com/",
+      "url": "https://github.com/tbdavid2019/OpenCCFontGenerator",
+      "homepage": "https://font.david888.com/",
+      "language": "Python",
+      "topics": [],
+      "stars": 1,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T06:50:11Z"
+    },
+    {
+      "id": "github-repo:qimen",
+      "name": "qimen",
+      "fullName": "tbdavid2019/qimen",
+      "description": "奇門遁甲 梅花易數 塔羅牌 八字 月老 https://qi.david888.com",
+      "url": "https://github.com/tbdavid2019/qimen",
+      "homepage": "https://qi.david888.com",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 1,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T06:45:24Z"
+    },
+    {
+      "id": "github-repo:888tools",
+      "name": "888tools",
+      "fullName": "tbdavid2019/888tools",
+      "description": "台灣香港獨有工具：繁體簡體轉換/貓狗生日/QR等20餘種 ．https://tool.david888.com",
+      "url": "https://github.com/tbdavid2019/888tools",
+      "homepage": "https://tool.david888.com",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T06:35:51Z"
+    },
+    {
+      "id": "github-repo:daily-podcast",
+      "name": "daily-podcast",
+      "fullName": "tbdavid2019/daily-podcast",
+      "description": "每日自動生產podcast  ; 收聽網址 https://podcast.david888.com",
+      "url": "https://github.com/tbdavid2019/daily-podcast",
+      "homepage": "https://podcast.david888.com",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 1,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T05:56:19Z"
+    },
+    {
+      "id": "github-repo:chrome-shorturl",
+      "name": "chrome-shorturl",
+      "fullName": "tbdavid2019/chrome-shorturl",
+      "description": "可縮網址/ 可復原關閉網頁的 chrome extension",
+      "url": "https://github.com/tbdavid2019/chrome-shorturl",
+      "homepage": "https://chromewebstore.google.com/detail/short-url-extension-333/cpgihhghfphpbapipfllmlplmfokfhaj?authuser=1&hl=zh-TW",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T05:54:33Z"
+    },
+    {
+      "id": "github-repo:chrome-change-fonts",
+      "name": "chrome-change-fonts",
+      "fullName": "tbdavid2019/chrome-change-fonts",
+      "description": "Chrome Extension: Change the font family of any website. 用你喜歡的字體閱讀網站",
+      "url": "https://github.com/tbdavid2019/chrome-change-fonts",
+      "homepage": "https://chromewebstore.google.com/detail/website-font-changer-333/ilmdkfomedcdolkiiagifgmgohahlmoi?authuser=0&hl=zh-TW",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T05:54:29Z"
+    },
+    {
+      "id": "github-repo:888wiki",
+      "name": "888wiki",
+      "fullName": "tbdavid2019/888wiki",
+      "description": "A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations.  https://wiki.david888.com",
+      "url": "https://github.com/tbdavid2019/888wiki",
+      "homepage": "https://wiki.david888.com",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 12,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T04:31:01Z"
+    },
+    {
+      "id": "github-repo:tw_road_fix_map",
+      "name": "tw_road_fix_map",
+      "fullName": "tbdavid2019/tw_road_fix_map",
+      "description": "台灣施工地圖",
+      "url": "https://github.com/tbdavid2019/tw_road_fix_map",
+      "homepage": "https://tbdavid2019.github.io/tw_road_fix_map/",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T03:49:06Z"
+    },
+    {
+      "id": "github-repo:telegram-bot-summary",
+      "name": "telegram-bot-summary",
+      "fullName": "tbdavid2019/telegram-bot-summary",
+      "description": "濃縮重點機器人Telegram bot can generate concise summaries of text, URLs, PDFs, and YouTube videos.",
+      "url": "https://github.com/tbdavid2019/telegram-bot-summary",
+      "homepage": "https://t.me/quantaar_bot",
+      "language": "Python",
+      "topics": [
+        "telegram-bot"
+      ],
+      "stars": 1,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T02:35:24Z"
+    },
+    {
+      "id": "github-repo:stock-index-api",
+      "name": "stock-index-api",
+      "fullName": "tbdavid2019/stock-index-api",
+      "description": "股票指數的成分股 . 0050 SP500 等. 自動更新",
+      "url": "https://github.com/tbdavid2019/stock-index-api",
+      "homepage": "http://answerbook.david888.com/SP500",
+      "language": "Python",
+      "topics": [],
+      "stars": 2,
+      "fork": false,
+      "featured": false,
+      "pushedAt": "2026-11-20T01:50:40Z"
+    },
+    {
       "id": "github-repo:github-status",
       "name": "github-status",
       "fullName": "tbdavid2019/github-status",
@@ -114,20 +256,6 @@
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-20T00:23:50Z"
-    },
-    {
-      "id": "github-repo:OpenCCFontGenerator",
-      "name": "OpenCCFontGenerator",
-      "fullName": "tbdavid2019/OpenCCFontGenerator",
-      "description": "製作一個自動字型， 可以把 簡體字 看成 繁體字",
-      "url": "https://github.com/tbdavid2019/OpenCCFontGenerator",
-      "homepage": "",
-      "language": "Python",
-      "topics": [],
-      "stars": 1,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-20T00:18:41Z"
     },
     {
       "id": "github-repo:SAP-spartacus-docs-skill",
@@ -187,36 +315,6 @@
       "pushedAt": "2026-11-20T00:05:04Z"
     },
     {
-      "id": "github-repo:tw_road_fix_map",
-      "name": "tw_road_fix_map",
-      "fullName": "tbdavid2019/tw_road_fix_map",
-      "description": "台灣施工地圖",
-      "url": "https://github.com/tbdavid2019/tw_road_fix_map",
-      "homepage": "https://tbdavid2019.github.io/tw_road_fix_map/",
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 0,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-19T12:20:44Z"
-    },
-    {
-      "id": "github-repo:telegram-bot-summary",
-      "name": "telegram-bot-summary",
-      "fullName": "tbdavid2019/telegram-bot-summary",
-      "description": "濃縮重點機器人Telegram bot can generate concise summaries of text, URLs, PDFs, and YouTube videos.",
-      "url": "https://github.com/tbdavid2019/telegram-bot-summary",
-      "homepage": "https://t.me/quantaar_bot",
-      "language": "Python",
-      "topics": [
-        "telegram-bot"
-      ],
-      "stars": 1,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-19T09:37:02Z"
-    },
-    {
       "id": "github-repo:8882fa",
       "name": "8882fa",
       "fullName": "tbdavid2019/8882fa",
@@ -229,48 +327,6 @@
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-19T08:46:59Z"
-    },
-    {
-      "id": "github-repo:daily-podcast",
-      "name": "daily-podcast",
-      "fullName": "tbdavid2019/daily-podcast",
-      "description": "每日自動生產podcast  ; 收聽網址 https://podcast.david888.com",
-      "url": "https://github.com/tbdavid2019/daily-podcast",
-      "homepage": "https://podcast.david888.com",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 1,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-19T07:52:24Z"
-    },
-    {
-      "id": "github-repo:888wiki",
-      "name": "888wiki",
-      "fullName": "tbdavid2019/888wiki",
-      "description": "A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations.  https://wiki.david888.com",
-      "url": "https://github.com/tbdavid2019/888wiki",
-      "homepage": "https://wiki.david888.com",
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 12,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-19T02:16:34Z"
-    },
-    {
-      "id": "github-repo:stock-index-api",
-      "name": "stock-index-api",
-      "fullName": "tbdavid2019/stock-index-api",
-      "description": "股票指數的成分股 . 0050 SP500 等. 自動更新",
-      "url": "https://github.com/tbdavid2019/stock-index-api",
-      "homepage": "http://answerbook.david888.com/SP500",
-      "language": "Python",
-      "topics": [],
-      "stars": 2,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-19T01:57:54Z"
     },
     {
       "id": "github-repo:888news",
@@ -301,20 +357,6 @@
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-18T09:25:36Z"
-    },
-    {
-      "id": "github-repo:qimen",
-      "name": "qimen",
-      "fullName": "tbdavid2019/qimen",
-      "description": "奇門遁甲 梅花易數 塔羅牌 八字 月老 https://qi.david888.com",
-      "url": "https://github.com/tbdavid2019/qimen",
-      "homepage": "https://qi.david888.com",
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 1,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-18T09:21:47Z"
     },
     {
       "id": "github-repo:tg-Channel-2-web",
@@ -366,20 +408,6 @@
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-17T05:28:55Z"
-    },
-    {
-      "id": "github-repo:888tools",
-      "name": "888tools",
-      "fullName": "tbdavid2019/888tools",
-      "description": "台灣香港獨有工具：繁體簡體轉換/貓狗生日/QR等20餘種 ．https://tool.david888.com",
-      "url": "https://github.com/tbdavid2019/888tools",
-      "homepage": "https://tool.david888.com",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-17T04:55:11Z"
     },
     {
       "id": "github-repo:telegram-bot-stock2",
@@ -461,7 +489,7 @@
         "stock-price-prediction",
         "stocks"
       ],
-      "stars": 63,
+      "stars": 64,
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-14T11:50:40Z"
@@ -601,34 +629,6 @@
       "fork": false,
       "featured": false,
       "pushedAt": "2026-11-03T10:33:03Z"
-    },
-    {
-      "id": "github-repo:webtalk",
-      "name": "webtalk",
-      "fullName": "tbdavid2019/webtalk",
-      "description": "",
-      "url": "https://github.com/tbdavid2019/webtalk",
-      "homepage": "https://nook-xi-dusky.vercel.app",
-      "language": "Vue",
-      "topics": [],
-      "stars": 0,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-03T10:28:49Z"
-    },
-    {
-      "id": "github-repo:chrome-EdgeTranslate333",
-      "name": "chrome-EdgeTranslate333",
-      "fullName": "tbdavid2019/chrome-EdgeTranslate333",
-      "description": "側邊翻譯暗黑模式版本",
-      "url": "https://github.com/tbdavid2019/chrome-EdgeTranslate333",
-      "homepage": "https://chromewebstore.google.com/detail/%E5%81%B4%E9%82%8A%E7%BF%BB%E8%AD%AF-333/odidpbpeokeiedljjcoppibifgnifmpg?hl=zh-TW&utm_source=ext_sidebar",
-      "language": "Fluent",
-      "topics": [],
-      "stars": 0,
-      "fork": false,
-      "featured": false,
-      "pushedAt": "2026-11-03T09:46:26Z"
     }
   ]
 }

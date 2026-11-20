@@ -6,14 +6,150 @@
     <atom:link href="https://david888.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Unified feed of David Chiang blog articles, podcast episodes, GitHub repositories, and original Threads notes.</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Fri, 20 Nov 2026 01:50:02 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 07:08:04 GMT</lastBuildDate>
+    <item>
+      <title>用完token的怪物。要玩rust 電腦效能要很好</title>
+      <link>https://www.threads.com/@david888.chiang</link>
+      <guid isPermaLink="false">threads:md-2dc6c4f11523</guid>
+      <pubDate>Fri, 20 Nov 2026 07:08:04 GMT</pubDate>
+      <category>threads</category>
+      <description>用完token的怪物。要玩rust 電腦效能要很好</description>
+    </item>
+    <item>
+      <title>ToolJet 把 MCP 串接、React 介面每次儲存時的安全掃描，以及高風險流程的人工作業核准放進同一平台，瞄準「Agent 做得快、企業不敢上線」的落差。不過討論區提出的關鍵問題仍未獲官方回…</title>
+      <link>https://www.threads.com/@david888.chiang</link>
+      <guid isPermaLink="false">threads:md-715748f161ba</guid>
+      <pubDate>Fri, 20 Nov 2026 07:08:04 GMT</pubDate>
+      <category>threads</category>
+      <description>ToolJet 把 MCP 串接、React 介面每次儲存時的安全掃描，以及高風險流程的人工作業核准放進同一平台，瞄準「Agent 做得快、企業不敢上線」的落差。不過討論區提出的關鍵問題仍未獲官方回答：敏感查詢是在執行前即時攔截，還是部署時才標記？採用者應同步驗收存檔掃描、執行期權限與稽核能力。🎧 今日節目：podcast.david888.com/post…</description>
+    </item>
+    <item>
+      <title>AI Agent 讀一張表格時，可能把儲存格裡偽裝成規則的文字當成命令。節目稿指出，模型看到系統提示、使用者輸入與工具回傳資料時，缺少傳統程式那種明確的指令／資料隔離；若 Agent 接著能讀機密或…</title>
+      <link>https://www.threads.com/@david888.chiang</link>
+      <guid isPermaLink="false">threads:md-9e69648a4f37</guid>
+      <pubDate>Fri, 20 Nov 2026 07:08:04 GMT</pubDate>
+      <category>threads</category>
+      <description>AI Agent 讀一張表格時，可能把儲存格裡偽裝成規則的文字當成命令。節目稿指出，模型看到系統提示、使用者輸入與工具回傳資料時，缺少傳統程式那種明確的指令／資料隔離；若 Agent 接著能讀機密或執行寫入，提示注入就會變成權限問題。把工具權限縮到任務所需、驗證結構化輸出，並讓敏感操作經過獨立核准，才有實際防線。🎧 今日節目：podcast.david888.com/post…</description>
+    </item>
+    <item>
+      <title>Rails 的「免登入遠端程式碼執行」警訊，核心在驗證發生前就可能被打到。報導將 Ruby2ßhell 指向 stock Rails；若服務符合受影響條件且暴露在網路上，攻擊者可能不需帳密便執行指令…</title>
+      <link>https://www.threads.com/@david888.chiang</link>
+      <guid isPermaLink="false">threads:md-bcaf018dc8db</guid>
+      <pubDate>Fri, 20 Nov 2026 07:08:04 GMT</pubDate>
+      <category>threads</category>
+      <description>Rails 的「免登入遠端程式碼執行」警訊，核心在驗證發生前就可能被打到。報導將 Ruby2ßhell 指向 stock Rails；若服務符合受影響條件且暴露在網路上，攻擊者可能不需帳密便執行指令。維運者應核對研究團隊與官方修補資訊、盤點外網服務並盡快處理。這類漏洞提醒維運者把防線前移到請求解析與框架更新。🎧 今日節目：podcast.david888.com/post…</description>
+    </item>
+    <item>
+      <title>OpenCCFontGenerator</title>
+      <link>https://github.com/tbdavid2019/OpenCCFontGenerator</link>
+      <guid isPermaLink="false">github-repo:OpenCCFontGenerator</guid>
+      <pubDate>Fri, 20 Nov 2026 06:50:11 GMT</pubDate>
+      <category>github</category>
+      <description>製作一個自動字型， 可以把 簡體字 看成 繁體字 https://font.david888.com/ [Python] ★1</description>
+    </item>
+    <item>
+      <title>qimen</title>
+      <link>https://github.com/tbdavid2019/qimen</link>
+      <guid isPermaLink="false">github-repo:qimen</guid>
+      <pubDate>Fri, 20 Nov 2026 06:45:24 GMT</pubDate>
+      <category>github</category>
+      <description>奇門遁甲 梅花易數 塔羅牌 八字 月老 https://qi.david888.com [JavaScript] ★1</description>
+    </item>
+    <item>
+      <title>888tools</title>
+      <link>https://github.com/tbdavid2019/888tools</link>
+      <guid isPermaLink="false">github-repo:888tools</guid>
+      <pubDate>Fri, 20 Nov 2026 06:35:51 GMT</pubDate>
+      <category>github</category>
+      <description>台灣香港獨有工具：繁體簡體轉換/貓狗生日/QR等20餘種 ．https://tool.david888.com [TypeScript]</description>
+    </item>
+    <item>
+      <title>daily-podcast</title>
+      <link>https://github.com/tbdavid2019/daily-podcast</link>
+      <guid isPermaLink="false">github-repo:daily-podcast</guid>
+      <pubDate>Fri, 20 Nov 2026 05:56:19 GMT</pubDate>
+      <category>github</category>
+      <description>每日自動生產podcast ; 收聽網址 https://podcast.david888.com [TypeScript] ★1</description>
+    </item>
+    <item>
+      <title>chrome-shorturl</title>
+      <link>https://github.com/tbdavid2019/chrome-shorturl</link>
+      <guid isPermaLink="false">github-repo:chrome-shorturl</guid>
+      <pubDate>Fri, 20 Nov 2026 05:54:33 GMT</pubDate>
+      <category>github</category>
+      <description>可縮網址/ 可復原關閉網頁的 chrome extension [JavaScript]</description>
+    </item>
+    <item>
+      <title>chrome-change-fonts</title>
+      <link>https://github.com/tbdavid2019/chrome-change-fonts</link>
+      <guid isPermaLink="false">github-repo:chrome-change-fonts</guid>
+      <pubDate>Fri, 20 Nov 2026 05:54:29 GMT</pubDate>
+      <category>github</category>
+      <description>Chrome Extension: Change the font family of any website. 用你喜歡的字體閱讀網站 [JavaScript]</description>
+    </item>
+    <item>
+      <title>2026-11-20 Claude解開黑洞物理難題同步上市、Gemini 4 Neon低價登頂卻卡在工具鏈</title>
+      <link>https://podcast.david888.com/post/2026-11-20</link>
+      <guid isPermaLink="false">podcast:https://podcast.david888.com/post/2026-11-20</guid>
+      <pubDate>Fri, 20 Nov 2026 04:54:34 GMT</pubDate>
+      <category>podcast</category>
+      <description>詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-20 今天焦點鎖定 Anthropic 雙線出擊：Claude Fable 5.2 以多代理協作與 Lean 驗證解開兩道黑洞物理難題，公司也登上納斯達克接受華爾街檢驗。同時 Gemini 4 Neon 在工程指數奪冠，卻因工具鏈引發爭議。節目也深挖 Rails 遠端執行漏洞、SQLite 儲存、單機千萬伺服器、記憶體壓縮、K8s 1.35 與 AI 逆向工程。</description>
+    </item>
+    <item>
+      <title>888wiki</title>
+      <link>https://github.com/tbdavid2019/888wiki</link>
+      <guid isPermaLink="false">github-repo:888wiki</guid>
+      <pubDate>Fri, 20 Nov 2026 04:31:01 GMT</pubDate>
+      <category>github</category>
+      <description>A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations. https://wiki.david888.com [JavaScript] ★12</description>
+    </item>
+    <item>
+      <title>比《鬥陣俱樂部》更瘋狂？揭開邪典神作《腸子》背後的殘酷寓言</title>
+      <link>https://blog.david888.com/bi-dou-zhen-ju-le-bu-geng-feng-kuang-jie-kai-xie-dian-shen-zuo-chang-zi-bei-hou-de-can-ku-yu-yan/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/bi-dou-zhen-ju-le-bu-geng-feng-kuang-jie-kai-xie-dian-shen-zuo-chang-zi-bei-hou-de-can-ku-yu-yan/</guid>
+      <pubDate>Fri, 20 Nov 2026 04:25:14 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 比《鬥陣俱樂部》更瘋狂？揭開邪典神作《腸子》背後的殘酷寓言 ⓵ 【容易懂 Easy Know】 想像有一群想當大作家的人，把自己關在一棟大房子裡三個月。他們不用心寫作，反而想出一個餿主意：「大家最愛看悲慘的故事，只要我們把自己折磨得夠慘，出去就能靠悲慘遭遇大賺一筆！」於是他們開始互相殘殺、毀掉食物、傷害自己的身體。 這本書就像一面放大鏡，用極度誇張的故事告訴我們：人有時候為了一點點自私的念頭、虛榮心或好奇心，就像踩到了危險邊緣，只要走偏一步，原本平靜的生活就會瞬間掉進可怕的地獄裡。 ⓶ 【總結 Overall Summary】 美國著名小說家恰克…</description>
+    </item>
+    <item>
+      <title>tw_road_fix_map</title>
+      <link>https://github.com/tbdavid2019/tw_road_fix_map</link>
+      <guid isPermaLink="false">github-repo:tw_road_fix_map</guid>
+      <pubDate>Fri, 20 Nov 2026 03:49:06 GMT</pubDate>
+      <category>github</category>
+      <description>台灣施工地圖 [JavaScript]</description>
+    </item>
+    <item>
+      <title>喊著拯救人類卻深陷萬億豪賭？揭開 Anthropic 最強 AI 的雙面爭議</title>
+      <link>https://blog.david888.com/han-zhu-zheng-jiu-ren-lei-que-shen-xian-wan-yi-hao-du-jie-kai-anthropic-zui-qiang-ai-de-shuang-mian-zheng-yi/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/han-zhu-zheng-jiu-ren-lei-que-shen-xian-wan-yi-hao-du-jie-kai-anthropic-zui-qiang-ai-de-shuang-mian-zheng-yi/</guid>
+      <pubDate>Fri, 20 Nov 2026 03:41:34 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 喊著拯救人類卻深陷萬億豪賭？揭開 Anthropic 最強 AI 的雙面爭議 ⓵ 【容易懂 Easy Know】 想像一群原本在頂級車廠研發「超光速跑車」的天才工程師，因為擔心車子跑太快卻沒裝好煞車會撞車，於是集體出走，自己開了一家標榜「安全第一」的新車廠（也就是 Anthropic）。 他們研發出極其聰明又冷靜的副駕駛「Claude」，一開始發誓只要發現有安全疑慮就立刻踩煞車停工。但隨著全球比賽越來越激烈，為了賺錢活下去並贏過老東家，他們不僅把油門踩得比誰都兇，甚至把跑車技術賣給軍隊。這就像一位提醒大家玩火很危險的消防員，最後為了證明實力，自己…</description>
+    </item>
     <item>
       <title>david888-bento-portfolio</title>
       <link>https://github.com/tbdavid2019/david888-bento-portfolio</link>
       <guid isPermaLink="false">github-repo:david888-bento-portfolio</guid>
-      <pubDate>Fri, 20 Nov 2026 01:32:09 GMT</pubDate>
+      <pubDate>Fri, 20 Nov 2026 02:48:17 GMT</pubDate>
       <category>github</category>
       <description>https://david888.com [TypeScript]</description>
+    </item>
+    <item>
+      <title>telegram-bot-summary</title>
+      <link>https://github.com/tbdavid2019/telegram-bot-summary</link>
+      <guid isPermaLink="false">github-repo:telegram-bot-summary</guid>
+      <pubDate>Fri, 20 Nov 2026 02:35:24 GMT</pubDate>
+      <category>github</category>
+      <description>濃縮重點機器人Telegram bot can generate concise summaries of text, URLs, PDFs, and YouTube videos. [Python] ★1</description>
+    </item>
+    <item>
+      <title>stock-index-api</title>
+      <link>https://github.com/tbdavid2019/stock-index-api</link>
+      <guid isPermaLink="false">github-repo:stock-index-api</guid>
+      <pubDate>Fri, 20 Nov 2026 01:50:40 GMT</pubDate>
+      <category>github</category>
+      <description>股票指數的成分股 . 0050 SP500 等. 自動更新 [Python] ★2</description>
     </item>
     <item>
       <title>github-status</title>
@@ -30,14 +166,6 @@
       <pubDate>Fri, 20 Nov 2026 00:37:30 GMT</pubDate>
       <category>threads</category>
       <description>偉大 gg75130</description>
-    </item>
-    <item>
-      <title>2026-11-20 Claude破解黑洞難題卻因安全護欄降級遭炎上、Rails爆驗證前RCE震撼開發圈</title>
-      <link>https://podcast.david888.com/post/2026-11-20</link>
-      <guid isPermaLink="false">podcast:https://podcast.david888.com/post/2026-11-20</guid>
-      <pubDate>Fri, 20 Nov 2026 00:30:49 GMT</pubDate>
-      <category>podcast</category>
-      <description>詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-20 Anthropic以Claude多代理與Lean解開黑洞難題並赴Nasdaq上市，社群熱議財報與算力衝突；資安人員揭露白名單仍遭護欄誤擋、靜默降級且易繞過，轉抱開源。另談Rails預設RCE、表格注入劫持Agent、LLM逆向及ToolJet動態查詢攔截疑慮；最後涵蓋本地語音Moonshine、MiniMind、歐盟導入Matrix，及單機千萬伺服器、SQLite物件儲存與記憶體壓縮。</description>
     </item>
     <item>
       <title>想搞定一個人，最蠢的方法就是送禮討好。 美國那些頂級政客拉攏盟友的方法完全相反：他們專挑關鍵人物，開口拜託對方幫自己一個小忙。 人性就是這樣，為你付出過的人，為了證明自己沒看走眼，反而會像買了你的原…</title>
@@ -72,140 +200,12 @@
       <description>skill系列 - 讓你的LLM 有 hermes agent 的維護知識(自動更新) [Python]</description>
     </item>
     <item>
-      <title>OpenCCFontGenerator</title>
-      <link>https://github.com/tbdavid2019/OpenCCFontGenerator</link>
-      <guid isPermaLink="false">github-repo:OpenCCFontGenerator</guid>
-      <pubDate>Fri, 20 Nov 2026 00:18:41 GMT</pubDate>
-      <category>github</category>
-      <description>製作一個自動字型， 可以把 簡體字 看成 繁體字 [Python] ★1</description>
-    </item>
-    <item>
       <title>SAP-spartacus-docs-skill</title>
       <link>https://github.com/tbdavid2019/SAP-spartacus-docs-skill</link>
       <guid isPermaLink="false">github-repo:SAP-spartacus-docs-skill</guid>
       <pubDate>Fri, 20 Nov 2026 00:15:52 GMT</pubDate>
       <category>github</category>
       <description>SAP spartacus ecommerce 前端開發文件 skill [Python]</description>
-    </item>
-    <item>
-      <title>不靠暴力威脅怎麼贏？揭開美國頂尖政客《硬球》博弈的逆向人性學</title>
-      <link>https://blog.david888.com/bu-kao-bao-li-wei-xie-zen-mo-ying-jie-kai-mei-guo-ding-jian-zheng-ke-ying-qiu-bo-yi-de-ni-xiang-ren-xing-xue/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/bu-kao-bao-li-wei-xie-zen-mo-ying-jie-kai-mei-guo-ding-jian-zheng-ke-ying-qiu-bo-yi-de-ni-xiang-ren-xing-xue/</guid>
-      <pubDate>Fri, 20 Nov 2026 00:05:06 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 不靠暴力威脅怎麼贏？揭開美國頂尖政客《硬球》博弈的逆向人性學 ⓵ 【容易懂 Easy Know】 在文明社會裡，職場或政治的競爭不能靠打架、暗算或暴力解決，就像大家在球場比賽，必須遵守界線。「硬球」（Hardball）指的不是惡意犯規的髒球，而是在規則允許範圍內，真刀真槍玩到極致的權力技巧。 頂尖高手的秘訣往往非常「反直覺」：想結交鐵桿盟友，不是一味討好送禮，反而是開口請對方幫忙，讓他心理上成為你的「股東」；面對討厭的對手，不是把他趕得遠遠的，而是放在身邊綁定利益；談判時把面子全讓給別人，自己默默拿走裡子。這是一套收起傲慢、順應人性的高級博弈術。…</description>
-    </item>
-    <item>
-      <title>telegram-docs-skill</title>
-      <link>https://github.com/tbdavid2019/telegram-docs-skill</link>
-      <guid isPermaLink="false">github-repo:telegram-docs-skill</guid>
-      <pubDate>Fri, 20 Nov 2026 00:05:06 GMT</pubDate>
-      <category>github</category>
-      <description>skill系列 - 讓你的LLM 有 telegram bot api 開發知識 [Python] ★4</description>
-    </item>
-    <item>
-      <title>line-docs-skill</title>
-      <link>https://github.com/tbdavid2019/line-docs-skill</link>
-      <guid isPermaLink="false">github-repo:line-docs-skill</guid>
-      <pubDate>Fri, 20 Nov 2026 00:05:04 GMT</pubDate>
-      <category>github</category>
-      <description>skill系列 - 讓你的LLM 有 line bot / lineOA / line官方帳號的 開發知識 [Python] ★3</description>
-    </item>
-    <item>
-      <title>openclaw-docs-skill</title>
-      <link>https://github.com/tbdavid2019/openclaw-docs-skill</link>
-      <guid isPermaLink="false">github-repo:openclaw-docs-skill</guid>
-      <pubDate>Thu, 19 Nov 2026 23:47:32 GMT</pubDate>
-      <category>github</category>
-      <description>npx -y openclaw-docs-skill@latest 自動每日更新, 讓你的LLM有面對openclaw疑難雜症處理的能力。This is an Agent Skill designed for AI coding assistants (like Claude…</description>
-    </item>
-    <item>
-      <title>tw_road_fix_map</title>
-      <link>https://github.com/tbdavid2019/tw_road_fix_map</link>
-      <guid isPermaLink="false">github-repo:tw_road_fix_map</guid>
-      <pubDate>Thu, 19 Nov 2026 12:20:44 GMT</pubDate>
-      <category>github</category>
-      <description>台灣施工地圖 [JavaScript]</description>
-    </item>
-    <item>
-      <title>馬斯克專訪大暴雷？力挺黃仁勳如喬丹遭逐，更揭特斯拉合併太空算力野心</title>
-      <link>https://blog.david888.com/ma-si-ke-zhuan-fang-da-bao-lei-li-ting-huang-ren-xun-ru-qiao-dan-zao-zhu-geng-jie-te-si-la-he-bing-tai-kong-suan-li-ye-xin/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/ma-si-ke-zhuan-fang-da-bao-lei-li-ting-huang-ren-xun-ru-qiao-dan-zao-zhu-geng-jie-te-si-la-he-bing-tai-kong-suan-li-ye-xin/</guid>
-      <pubDate>Thu, 19 Nov 2026 11:02:01 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 馬斯克專訪大暴雷？力挺黃仁勳如喬丹遭逐，更揭特斯拉合併太空算力野心 ⓵ 【容易懂 Easy Know】 想像一下，芝加哥公牛隊正在連勝拿冠軍，教練卻突然把靈魂球星麥可·喬丹開除，這聽起來是不是超荒謬？科技巨頭馬斯克最近受訪時，就用這個比喻來形容輝達（NVIDIA）董事會趕走創辦人黃仁勳的決定。馬斯克認為黃仁勳是不可取代的靈魂人物。除了替好友抱不平，馬斯克還透露未來想把特斯拉和 SpaceX 合併，甚至把人工智慧大腦送到太空中運作，以及他在烏克蘭星鏈網路與政治選舉背後的真實想法。 ⓶ 【總結 Overall Summary】 在《紐約時報》舉辦的年…</description>
-    </item>
-    <item>
-      <title>paper-daily</title>
-      <link>https://github.com/tbdavid2019/paper-daily</link>
-      <guid isPermaLink="false">github-repo:paper-daily</guid>
-      <pubDate>Thu, 19 Nov 2026 10:09:38 GMT</pubDate>
-      <category>github</category>
-      <description>學術論文追蹤器 https://tbdavid2019.github.io/paper-daily/ [Python]</description>
-    </item>
-    <item>
-      <title>四個圓周率疊成冪塔會是整數嗎？連超級電腦都算不出的世紀數學謎局</title>
-      <link>https://blog.david888.com/si-ge-yuan-zhou-lu-die-cheng-mi-ta-hui-shi-zheng-shu-ma-lian-chao-ji-dian-nao-du-suan-bu-chu-de-shi-ji-shu-xue-mi-ju/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/si-ge-yuan-zhou-lu-die-cheng-mi-ta-hui-shi-zheng-shu-ma-lian-chao-ji-dian-nao-du-suan-bu-chu-de-shi-ji-shu-xue-mi-ju/</guid>
-      <pubDate>Thu, 19 Nov 2026 10:08:53 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 四個圓周率疊成冪塔會是整數嗎？連超級電腦都算不出的世紀數學謎局 ⓵ 【容易懂 Easy Know】 想像你把四個圓周率 $\pi$（約 3.14）像疊積木一樣，一層一層往上算次方：$\pi$ 的 $\pi$ 次方的 $\pi$ 次方再次方。這就像給數字施了「膨脹魔法」，結果會大到不可思議！ 大家很好奇：這個由無限不循環小數疊出來的龐然大物，最後算出來有沒有可能「剛好是個整數」？聽起來很不可思議，但在數學中，無理數相乘方確實有機會變回整數。然而，因為四層圓周率疊上去後的位數多達幾十億億位，就連全世界最強大的超級電腦也算不出來，成了數學家至今都解不開…</description>
-    </item>
-    <item>
-      <title>店員說的「消磁」竟然是燒毀電路？揭開賣場防盜門不為人知的感應真相</title>
-      <link>https://blog.david888.com/dian-yuan-shuo-de-xiao-ci-jing-ran-shi-shao-hui-dian-lu-jie-kai-mai-chang-fang-dao-men-bu-wei-ren-zhi-de-gan-ying-zhen-xiang/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/dian-yuan-shuo-de-xiao-ci-jing-ran-shi-shao-hui-dian-lu-jie-kai-mai-chang-fang-dao-men-bu-wei-ren-zhi-de-gan-ying-zhen-xiang/</guid>
-      <pubDate>Thu, 19 Nov 2026 09:58:27 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 店員說的「消磁」竟然是燒毀電路？揭開賣場防盜門不為人知的感應真相 ⓵ 【容易懂 Easy Know】 賣場門口的兩根防盜柱子，其實不認得商品也不會看條碼，它們只是一直在走道間散發看不見的電磁波，尋找特製的防盜標籤。這就像玩盪鞦韆：防盜貼紙裡藏著一個微小電路，只要柱子發出的頻率對了，貼紙就會跟著「盪起來」並吸走能量，柱子發現能量突然變少，就會立刻嗶嗶叫報警！結帳時店員所謂的「消磁」，其實是用超強力量把貼紙盪到短路燒壞；另一種厚塑膠長條，則是讓裡面的小磁鐵失去磁性。所以手機經過根本不會壞，也不用拿去消磁喔！ ⓶ 【總結 Overall Summary…</description>
-    </item>
-    <item>
-      <title>揭開Anthropic三色帳本：從千億循環融資看懂AI泡沫真相</title>
-      <link>https://blog.david888.com/jie-kai-anthropicsan-se-zhang-ben-cong-qian-yi-xun-huan-rong-zi-kan-dong-aipao-mo-zhen-xiang/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/jie-kai-anthropicsan-se-zhang-ben-cong-qian-yi-xun-huan-rong-zi-kan-dong-aipao-mo-zhen-xiang/</guid>
-      <pubDate>Thu, 19 Nov 2026 09:42:58 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 揭開Anthropic三色帳本：從千億循環融資看懂AI泡沫真相 📝 [ DAVID888 筆記／觀點備註 ] 藍錢 紅錢 紫錢 分別代表什麼呢？ 原來紫色錢最不健康 💬 【針對筆記與疑問回應】 根據影片中的生動比喻，這三種顏色的錢清楚勾勒出當前 AI 巨頭營收背後的「資金成色」： 1. 紅錢（循環融資／自己人的錢）： 2. 代表意義：指投資巨頭（如微軟、Google、亞馬遜）投資給 AI 公司的錢，AI 公司轉頭又拿去租用這幾家巨頭的雲端算力與伺服器。 3. 本質：同一筆錢「出門溜達一圈又回來」，左手交右手，把股權投資包裝成巨頭財報上亮眼的雲…</description>
-    </item>
-    <item>
-      <title>telegram-bot-summary</title>
-      <link>https://github.com/tbdavid2019/telegram-bot-summary</link>
-      <guid isPermaLink="false">github-repo:telegram-bot-summary</guid>
-      <pubDate>Thu, 19 Nov 2026 09:37:02 GMT</pubDate>
-      <category>github</category>
-      <description>濃縮重點機器人Telegram bot can generate concise summaries of text, URLs, PDFs, and YouTube videos. [Python] ★1</description>
-    </item>
-    <item>
-      <title>矽谷最大騙徒伊麗莎白霍姆斯坐牢前幹過最荒謬的事，就是找整人鬼才導演拍片想洗白自己，結果被整到無所遁形。 導演直接用極近特寫死盯她的微表情，看她硬拗當初說技術能做到只是指「未來的可能性」。更瘋的是她入…</title>
-      <link>https://www.threads.com/@david888.chiang/post/Df6ryMAk7pP</link>
-      <guid isPermaLink="false">threads:Df6ryMAk7pP</guid>
-      <pubDate>Thu, 19 Nov 2026 08:58:30 GMT</pubDate>
-      <category>threads</category>
-      <description>矽谷最大騙徒伊麗莎白霍姆斯坐牢前幹過最荒謬的事，就是找整人鬼才導演拍片想洗白自己，結果被整到無所遁形。 導演直接用極近特寫死盯她的微表情，看她硬拗當初說技術能做到只是指「未來的可能性」。更瘋的是她入獄後，導演找來之前在影集演過她的好萊塢女星，蓋了座假監獄重演探監對話，把自欺欺人玩成最高級的心理戰。 最毛的是，連導演自己都差點被她那套楚楚可憐的無辜感牽著走。但吹哨者說得好，別被電影的獵奇感騙了，這女人的騙局當年害慘多少人誤診癌症跟愛滋。 大家到底是真的想看騙徒被拆穿，還是不知不覺又沉迷在她的表演裡了？</description>
-    </item>
-    <item>
-      <title>blog.david888.com/xi-gu…</title>
-      <link>https://www.threads.com/@david888.chiang/post/Df6ryiWk7i-</link>
-      <guid isPermaLink="false">threads:Df6ryiWk7i-</guid>
-      <pubDate>Thu, 19 Nov 2026 08:58:30 GMT</pubDate>
-      <category>threads</category>
-      <description>blog.david888.com/xi-gu…</description>
-    </item>
-    <item>
-      <title>8882fa</title>
-      <link>https://github.com/tbdavid2019/8882fa</link>
-      <guid isPermaLink="false">github-repo:8882fa</guid>
-      <pubDate>Thu, 19 Nov 2026 08:46:59 GMT</pubDate>
-      <category>github</category>
-      <description>888 2FA - Two Factor Authenticator using Cloudflare Workers (繁體中文 / 簡體中文 / English) [JavaScript]</description>
-    </item>
-    <item>
-      <title>矽谷世紀女騙徒遇上整人鬼才！這部燒腦神片為何震撼奧斯卡？</title>
-      <link>https://blog.david888.com/xi-gu-shi-ji-nu-pian-tu-yu-shang-zheng-ren-gui-cai-zhe-bu-shao-nao-shen-pian-wei-he-zhen-han-ao-si-qia/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/xi-gu-shi-ji-nu-pian-tu-yu-shang-zheng-ren-gui-cai-zhe-bu-shao-nao-shen-pian-wei-he-zhen-han-ao-si-qia/</guid>
-      <pubDate>Thu, 19 Nov 2026 08:44:02 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 矽谷世紀女騙徒遇上整人鬼才！這部燒腦神片為何震撼奧斯卡？ ⓵ 【容易懂 Easy Know】 想像一下，學校裡有個說謊成性的同學，明明考試都作弊，卻靠著名牌衣服和甜言蜜語，把全校師長唬得團團轉，甚至騙走了大筆零用錢。就在東窗事發、準備被嚴懲前，她找來一位專門拍整人節目的怪咖導演，想拍一部影片證明自己其實很善良。 沒想到，這個導演是個「抓謊大師」！他沒有當面拆穿她，而是用攝影機貼身緊盯她的微表情，甚至在她去坐牢後，找來演過她的專業女演員搭建假監獄來「排練」對話。整部片就像一面照妖鏡，把女騙子的心機與謊言層層剝開，變成一場比推理小說還要燒腦的心理大鬥…</description>
     </item>
   </channel>
 </rss>

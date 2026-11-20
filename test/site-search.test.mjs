@@ -22,3 +22,15 @@ test('bento-links contains Store Pulse flagship with correct metadata', () => {
   assert.match(storePulse.title, /Store Pulse/);
   assert.match(storePulse.description, /Cloudflare Workers/);
 });
+
+test('bento-links contains 888 Font Workbench (font.david888.com) with correct metadata', () => {
+  const fontWorkbench = links.find((item) => item.url === 'https://font.david888.com/');
+  assert.ok(fontWorkbench, '888 Font Workbench item exists');
+  assert.equal(fontWorkbench.tag, 'products');
+  assert.equal(fontWorkbench.featured, true);
+  assert.equal(fontWorkbench.icon, 'type');
+  assert.equal(fontWorkbench.repoUrl, 'https://github.com/tbdavid2019/OpenCCFontGenerator');
+  assert.equal(fontWorkbench.docUrl, 'https://font.david888.com/docs');
+  assert.match(fontWorkbench.title, /888 字體檔加工台/);
+  assert.match(fontWorkbench.description, /OpenCC 1\.4\.2/);
+});
