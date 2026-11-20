@@ -186,6 +186,29 @@ test('renders social category in balanced dual columns (md:grid-cols-2) without 
   );
 });
 
+test('includes one-command npx install snippets and npm package links on packaged agent skills', () => {
+  const links = JSON.parse(fs.readFileSync(new URL('../data/bento-links.json', import.meta.url), 'utf8'));
+  const linkCardSource = fs.readFileSync(new URL('../components/cards/BentoLinkCard.tsx', import.meta.url), 'utf8');
+
+  const expectedPackages = [
+    'sap-spartacus-docs-skill',
+    'line-docs-skill',
+    'telegram-docs-skill',
+    'openclaw-docs-skill',
+    'hermes-agent-docs-skill',
+  ];
+
+  for (const pkg of expectedPackages) {
+    const expectedCmd = `npx -y ${pkg}@latest`;
+    const card = links.find((item) => item.tag === 'agent-skills' && item.installCommand === expectedCmd);
+    assert.ok(card, `Agent Skill card for ${pkg} must include installCommand="${expectedCmd}"`);
+    assert.equal(card.docUrl, `https://www.npmjs.com/package/${pkg}`);
+  }
+
+  assert.match(linkCardSource, /link\.installCommand/);
+  assert.match(linkCardSource, /handleCopyInstall/);
+});
+
 
 
 

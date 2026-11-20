@@ -828,13 +828,25 @@
   {
     "type": "link",
     "title": "OpenClaw Agent Skill",
-    "description": "每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題。",
+    "titleEn": "OpenClaw Agent Skill",
+    "description": "每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題，支援透過 npx 一行指令安裝。",
+    "descriptionEn": "Daily auto-synced OpenClaw official docs and troubleshooting guide packaged as a one-command npx Agent Skill.",
     "url": "https://github.com/tbdavid2019/openclaw-docs-skill",
+    "installCommand": "npx -y openclaw-docs-skill@latest",
+    "docUrl": "https://www.npmjs.com/package/openclaw-docs-skill",
+    "docLabel": "npm 套件",
+    "docLabelEn": "npm Package",
     "imageSource": "/bento/openclaw.svg",
     "bgClass": "bg-gradient-to-br from-orange-400 to-red-600 shadow-orange-200",
     "featured": true,
     "tag": "agent-skills",
-    "icon": "cpu"
+    "icon": "cpu",
+    "techStack": [
+      "npx Skill",
+      "Agent Skill",
+      "OpenClaw",
+      "Auto-Synced Docs"
+    ]
   },
   {
     "type": "link",
@@ -911,41 +923,88 @@
   {
     "type": "link",
     "title": "Telegram Bot Agent Skill",
-    "description": "整理 Telegram Bot API 官方文件與開發範例的 Agent Skill。",
+    "titleEn": "Telegram Bot Agent Skill",
+    "description": "整理 Telegram Bot API 官方文件與開發範例的 Agent Skill，支援 npx 一行指令直接安裝至開發環境。",
+    "descriptionEn": "Synchronized Telegram Bot API documentation and developer examples packaged as a one-command npx Agent Skill.",
     "url": "https://github.com/tbdavid2019/telegram-docs-skill",
+    "installCommand": "npx -y telegram-docs-skill@latest",
+    "docUrl": "https://www.npmjs.com/package/telegram-docs-skill",
+    "docLabel": "npm 套件",
+    "docLabelEn": "npm Package",
     "bgClass": "bg-[#0088cc]",
     "tag": "agent-skills",
-    "icon": "bot"
+    "icon": "bot",
+    "techStack": [
+      "npx Skill",
+      "Agent Skill",
+      "Telegram Bot API"
+    ]
   },
   {
     "type": "link",
     "title": "LINE Platform Agent Skill",
-    "description": "整理 LINE Bot 與 LINE 官方帳號開發文件與串接規範的 Agent Skill。",
+    "titleEn": "LINE Platform Agent Skill",
+    "description": "整理 LINE Bot、Messaging API、LIFF 與官方帳號開發文件的 Agent Skill，支援 npx 一行指令安裝。",
+    "descriptionEn": "Synchronized LINE Developers (Messaging API, LIFF, Login) documentation packaged as a one-command npx Agent Skill.",
     "url": "https://github.com/tbdavid2019/line-docs-skill",
+    "installCommand": "npx -y line-docs-skill@latest",
+    "docUrl": "https://www.npmjs.com/package/line-docs-skill",
+    "docLabel": "npm 套件",
+    "docLabelEn": "npm Package",
     "imageSource": "https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg",
     "bgClass": "bg-[#06C755]",
     "tag": "agent-skills",
-    "icon": "message-square"
+    "icon": "message-square",
+    "techStack": [
+      "npx Skill",
+      "Agent Skill",
+      "LINE Messaging API",
+      "LIFF"
+    ]
   },
   {
     "type": "link",
     "title": "SAP Spartacus Agent Skill",
-    "description": "提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。",
+    "titleEn": "SAP Spartacus Agent Skill",
+    "description": "提供 SAP Spartacus (Composable Storefront) 電商前端開發文件與規範的 Agent Skill，支援 npx 一行指令安裝。",
+    "descriptionEn": "Synchronized SAP Spartacus (Composable Storefront) e-commerce documentation packaged as a one-command npx Agent Skill.",
     "url": "https://github.com/tbdavid2019/SAP-spartacus-docs-skill",
+    "installCommand": "npx -y sap-spartacus-docs-skill@latest",
+    "docUrl": "https://www.npmjs.com/package/sap-spartacus-docs-skill",
+    "docLabel": "npm 套件",
+    "docLabelEn": "npm Package",
     "imageSource": "https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg",
     "bgClass": "bg-[#008fd3]",
     "tag": "agent-skills",
-    "icon": "layers"
+    "icon": "layers",
+    "techStack": [
+      "npx Skill",
+      "Agent Skill",
+      "SAP Spartacus",
+      "E-Commerce"
+    ]
   },
   {
     "type": "link",
     "title": "Hermes Agent Skill",
-    "description": "自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill。",
+    "titleEn": "Hermes Agent Skill",
+    "description": "自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill，支援透過 npx 一行指令安裝。",
+    "descriptionEn": "Auto-synced Hermes Agent configuration and troubleshooting docs packaged as a one-command npx Agent Skill.",
     "url": "https://github.com/tbdavid2019/hermes-agent-docs-skill",
+    "installCommand": "npx -y hermes-agent-docs-skill@latest",
+    "docUrl": "https://www.npmjs.com/package/hermes-agent-docs-skill",
+    "docLabel": "npm 套件",
+    "docLabelEn": "npm Package",
     "imageSource": "/bento/hermes-agent.svg",
     "bgClass": "bg-gradient-to-br from-purple-500 to-indigo-700",
     "tag": "agent-skills",
-    "icon": "workflow"
+    "icon": "workflow",
+    "techStack": [
+      "npx Skill",
+      "Agent Skill",
+      "Hermes Agent",
+      "Ops Guide"
+    ]
   },
   {
     "type": "link",

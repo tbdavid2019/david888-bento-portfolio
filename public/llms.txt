@@ -55,15 +55,15 @@ Specializing in technical due diligence, enterprise platform architecture, cross
 
 - [888-url2md (2MD) Agent Skill & API (888-url2md (2MD) Agent Skill & API)](https://2md.aiurl.tw/): 專為 AI Agent 與 LLM 打造的網頁爬取、即时搜尋、PDF/Office 解析、PP-OCRv4 圖片表格識別與個資去識別化 Skill（https://2md.aiurl.tw/）。
 - [888news 遠端 MCP 服務 (5 工具呼叫) (888news Remote MCP Server (5 Agent Tools))](https://news2.david888.com/api/mcp): 支援遠端 MCP 的 Agent 與開發工具可直接連線呼叫 5 個工具。採用標準 Streamable HTTP，匿名只讀、不需要 token，回傳文字與結構化資料。
-- [OpenClaw Agent Skill](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題。
+- [OpenClaw Agent Skill (OpenClaw Agent Skill)](https://github.com/tbdavid2019/openclaw-docs-skill): 每日自動同步 OpenClaw 官方文件與常見問題處理方式，方便 Agent 查詢開發與設定問題，支援透過 npx 一行指令安裝。
 - [論文雷達 Agent Skill (Daily Paper Scout Skill)](https://github.com/tbdavid2019/paper-daily): 學術論文追蹤與研究雷達 Agent 技能，讓 LLM 自動讀取最新論文資料並產出結構化研究評估報告。
 - [888a2a Agent 平台 (888a2a - Multi-Agent Platform)](https://github.com/tbdavid2019/888a2a): A2A-first human and AI-agent collaboration platform，專為多代理協同設計的人機協作平台。
 - [CF Notepad Skill (CF Notepad Skill)](https://github.com/tbdavid2019/cf-notepad): Cloudflare Pages / Worker 風格的雲端筆記與編輯工作流技能，適合快速建立輕量知識工具。
 - [888box Skill (888box Skill)](https://box.david888.com/skill.php): 把 888box 納入代理工作流的技能入口，方便做檔案管理、資產整理與內容存取。
-- [Telegram Bot Agent Skill](https://github.com/tbdavid2019/telegram-docs-skill): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill。
-- [LINE Platform Agent Skill](https://github.com/tbdavid2019/line-docs-skill): 整理 LINE Bot 與 LINE 官方帳號開發文件與串接規範的 Agent Skill。
-- [SAP Spartacus Agent Skill](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus 電商前端開發文件與規範的 Agent Skill。
-- [Hermes Agent Skill](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill。
+- [Telegram Bot Agent Skill (Telegram Bot Agent Skill)](https://github.com/tbdavid2019/telegram-docs-skill): 整理 Telegram Bot API 官方文件與開發範例的 Agent Skill，支援 npx 一行指令直接安裝至開發環境。
+- [LINE Platform Agent Skill (LINE Platform Agent Skill)](https://github.com/tbdavid2019/line-docs-skill): 整理 LINE Bot、Messaging API、LIFF 與官方帳號開發文件的 Agent Skill，支援 npx 一行指令安裝。
+- [SAP Spartacus Agent Skill (SAP Spartacus Agent Skill)](https://github.com/tbdavid2019/SAP-spartacus-docs-skill): 提供 SAP Spartacus (Composable Storefront) 電商前端開發文件與規範的 Agent Skill，支援 npx 一行指令安裝。
+- [Hermes Agent Skill (Hermes Agent Skill)](https://github.com/tbdavid2019/hermes-agent-docs-skill): 自動同步 Hermes Agent 官方文件與操作維護指南的 Agent Skill，支援透過 npx 一行指令安裝。
 
 ## Productivity Apps, Tools & Interactive Visuals
 

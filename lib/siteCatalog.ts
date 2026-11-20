@@ -139,6 +139,7 @@ function getItemSearchText(item: BentoItem): string {
     category?.labelEn,
     category?.title,
     category?.titleEn,
+    'installCommand' in item ? item.installCommand : null,
     ...(item.techStack || []),
     ...(item.highlights || []),
     ...(item.highlightsEn || []),

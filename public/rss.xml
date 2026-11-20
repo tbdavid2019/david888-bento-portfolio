@@ -6,132 +6,100 @@
     <atom:link href="https://david888.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>Unified feed of David Chiang blog articles, podcast episodes, GitHub repositories, and original Threads notes.</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Wed, 18 Nov 2026 06:20:27 GMT</lastBuildDate>
-    <item>
-      <title>888a2a-lite</title>
-      <link>https://github.com/tbdavid2019/888a2a-lite</link>
-      <guid isPermaLink="false">github-repo:888a2a-lite</guid>
-      <pubDate>Wed, 18 Nov 2026 06:17:45 GMT</pubDate>
-      <category>github</category>
-      <description>888a2a-lite 是獨立、輕量的 Public A2A Hub，提供 Agent 註冊、Peer 發現、heartbeat 和以 agentId 尋址的 durable inbox。它可以讓 Codex、OpenClaw、Hermes、agy 與其他 Agent 交換通知…</description>
-    </item>
-    <item>
-      <title>888wiki</title>
-      <link>https://github.com/tbdavid2019/888wiki</link>
-      <guid isPermaLink="false">github-repo:888wiki</guid>
-      <pubDate>Wed, 18 Nov 2026 06:11:50 GMT</pubDate>
-      <category>github</category>
-      <description>A Markdown wiki that can be installed on Cloudflare Worker, supporting SKILL and MCP invocations. https://wiki.david888.com [JavaScript] ★12</description>
-    </item>
-    <item>
-      <title>david888-bento-portfolio</title>
-      <link>https://github.com/tbdavid2019/david888-bento-portfolio</link>
-      <guid isPermaLink="false">github-repo:david888-bento-portfolio</guid>
-      <pubDate>Wed, 18 Nov 2026 06:01:19 GMT</pubDate>
-      <category>github</category>
-      <description>https://david888.com [TypeScript]</description>
-    </item>
-    <item>
-      <title>一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運…</title>
-      <link>https://www.threads.com/@david888.chiang</link>
-      <guid isPermaLink="false">threads:md-d7d537eabd18</guid>
-      <pubDate>Wed, 18 Nov 2026 05:44:40 GMT</pubDate>
-      <category>threads</category>
-      <description>一台設備把 DNS 寫死為 9.9.9.9，服務退出當地時就可能直接斷線。Quad9 撤出法國後，文章提到醫院、大學、政府機關及部分 IoT 設備都可能受影響；DNS 封鎖又能被更換解析器繞過。維運上，多組獨立解析器與自動容錯，比依賴單一公共 DNS 更能承受政策變動。🎧 聽今日節目：podcast.david888.com/post…</description>
-    </item>
-    <item>
-      <title>搜尋答案直接出現在結果頁，網站流量少四成，受影響的也包括寫教學和實測的人。文章指出，Google AI 回答減少搜尋導流，讓內容團隊轉向爭取 AI 引用；但被引用仍不等於讀者會回站。對讀者來說，點回…</title>
-      <link>https://www.threads.com/@david888.chiang</link>
-      <guid isPermaLink="false">threads:md-55b57e2da083</guid>
-      <pubDate>Wed, 18 Nov 2026 05:44:40 GMT</pubDate>
-      <category>threads</category>
-      <description>搜尋答案直接出現在結果頁，網站流量少四成，受影響的也包括寫教學和實測的人。文章指出，Google AI 回答減少搜尋導流，讓內容團隊轉向爭取 AI 引用；但被引用仍不等於讀者會回站。對讀者來說，點回原始文章、支持持續更新的第一手內容，仍是讓這種知識供給延續的方式。🎧 聽今日節目：podcast.david888.com/post…</description>
-    </item>
-    <item>
-      <title>作業系統看到你用了哪些開發代理，會讓遙測問題多一層競爭關係。今日文章整理 Windows 11 蒐集開發工具使用資訊引發的反彈：即使資料不含程式碼，工具清單與活躍情況也可能描出團隊採用趨勢。當系統商…</title>
-      <link>https://www.threads.com/@david888.chiang</link>
-      <guid isPermaLink="false">threads:md-11bb3716a3ac</guid>
-      <pubDate>Wed, 18 Nov 2026 05:44:40 GMT</pubDate>
-      <category>threads</category>
-      <description>作業系統看到你用了哪些開發代理，會讓遙測問題多一層競爭關係。今日文章整理 Windows 11 蒐集開發工具使用資訊引發的反彈：即使資料不含程式碼，工具清單與活躍情況也可能描出團隊採用趨勢。當系統商也推出自家 AI 工具，企業更需要弄清楚蒐集範圍、用途和管理方式。🎧 聽今日節目：podcast.david888.com/post…</description>
-    </item>
-    <item>
-      <title>65 個字元可能就夠了：文章列出的 Java4Shell 觸發字串是 64 個 A 加一個等號。OpenJDK 在特定 AVX-512 解碼路徑可能因長度計算下溢，寫出配置範圍；研究團隊也列出 Ke…</title>
-      <link>https://www.threads.com/@david888.chiang</link>
-      <guid isPermaLink="false">threads:md-a077aa8c1964</guid>
-      <pubDate>Wed, 18 Nov 2026 05:44:40 GMT</pubDate>
-      <category>threads</category>
-      <description>65 個字元可能就夠了：文章列出的 Java4Shell 觸發字串是 64 個 A 加一個等號。OpenJDK 在特定 AVX-512 解碼路徑可能因長度計算下溢，寫出配置範圍；研究團隊也列出 Keycloak、Jira、Confluence、Jenkins 等受影響案例。企業維運可先盤點 JVM 版本與相關服務，再追蹤各元件修補資訊。🎧 聽今日節目：podcast.david888.com/post…</description>
-    </item>
-    <item>
-      <title>美國全國停飛，竟是因為UFO？｜五角大樓UFO檔案越解密越離譜｜麓安說261115。</title>
-      <link>https://blog.david888.com/mei-guo-quan-guo-ting-fei-jing-shi-yin-wei-ufo-wu-jiao-da-lou-ufodang-an-yue-jie-mi-yue-li-pu-lu-an-shuo-261115/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/mei-guo-quan-guo-ting-fei-jing-shi-yin-wei-ufo-wu-jiao-da-lou-ufodang-an-yue-jie-mi-yue-li-pu-lu-an-shuo-261115/</guid>
-      <pubDate>Wed, 18 Nov 2026 05:24:26 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 美國全國停飛，竟是因為UFO？｜五角大樓UFO檔案越解密越離譜｜麓安說261115。 ⓵ 【容易懂 Easy Know】 想像一下，某天學校突然廣播所有校車緊急停駛，校長只神秘地說「為了大家的安全」，卻沒解釋原因。接著，天空中出現了像水母一樣發著藍白色光芒的奇怪雨傘，後面還跟著一排排發光小點，大家都嚇得以為外星人來了！ 其實，天上的亮光大多只是太空公司發射火箭時，噴出的氣體在高空被陽光照亮形成的自然奇景。但為什麼大家會疑神疑鬼呢？因為政府每次遇到天空中的怪事，總是用「機器壞了」或「說不清楚」帶過。大人們越是不說清楚，大家就越忍不住把未知事物想像成…</description>
-    </item>
-    <item>
-      <title>[2026-11-18] OpenJDK爆Base64遠端執行漏洞、GPT-6.2 Astra降價卻隱瞞障礙</title>
-      <link>https://podcast.david888.com/post/2026-11-18</link>
-      <guid isPermaLink="false">podcast:https://podcast.david888.com/post/2026-11-18</guid>
-      <pubDate>Wed, 18 Nov 2026 04:18:12 GMT</pubDate>
-      <category>podcast</category>
-      <description>詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-18 OpenAI 推 GPT-6.2 降價增效，卻存障礙隱瞞風險。OpenJDK 爆 Java4Shell 漏洞，藉 Base64 可遠端執行。微軟推 MAI Code 2，Win11 蒐集工具遙測惹議，社群評估轉往 Linux。並談代理驗證、Phrack 73 期、Nim 新編譯器與開源維護危機；Google AI 搜尋減四成導流，Quad9 拒封盜版撤出法國，社群憂網路碎片化。</description>
-    </item>
-    <item>
-      <title>daily-podcast</title>
-      <link>https://github.com/tbdavid2019/daily-podcast</link>
-      <guid isPermaLink="false">github-repo:daily-podcast</guid>
-      <pubDate>Wed, 18 Nov 2026 04:17:41 GMT</pubDate>
-      <category>github</category>
-      <description>每日自動生產podcast ; 收聽網址 https://podcast.david888.com [TypeScript] ★1</description>
-    </item>
-    <item>
-      <title>tw_road_fix_map</title>
-      <link>https://github.com/tbdavid2019/tw_road_fix_map</link>
-      <guid isPermaLink="false">github-repo:tw_road_fix_map</guid>
-      <pubDate>Wed, 18 Nov 2026 03:58:33 GMT</pubDate>
-      <category>github</category>
-      <description>台灣施工地圖 [JavaScript]</description>
-    </item>
-    <item>
-      <title>罄竹難書的中國食安，為啥食安問題根本無解，影片會告訴大家答案｜麓安說261116。</title>
-      <link>https://blog.david888.com/qing-zhu-nan-shu-de-zhong-guo-shi-an-wei-sha-shi-an-wen-ti-gen-ben-wu-jie-ying-pian-hui-gao-su-da-jia-da-an-lu-an-shuo-261116/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/qing-zhu-nan-shu-de-zhong-guo-shi-an-wei-sha-shi-an-wen-ti-gen-ben-wu-jie-ying-pian-hui-gao-su-da-jia-da-an-lu-an-shuo-261116/</guid>
-      <pubDate>Wed, 18 Nov 2026 03:49:01 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 罄竹難書的中國食安，為啥食安問題根本無解，影片會告訴大家答案｜麓安說261116。 這是一份針對所提供內容的結構化分析與重點摘要報告： ⓵ 【容易懂 Easy Know】 想像一下，如果有一家餐廳為了讓菜餚看起來漂亮、保存很久，還賣得超級便宜，偷偷在每道菜裡加了一點點清潔劑和化學藥劑。雖然吃一口不會馬上肚子痛，但如果每天三餐都吃，身體裡的毒素就會慢慢累積。這就像我們的手機電池如果每天過度充電、泡水，幾年後就會突然壞掉一樣。這篇內容就是在探討：很多便宜又好看的食物，背後其實隱藏了農藥、抗生素與化學添加物等問題，而這些日常飲食習慣可能正悄悄影響著年輕…</description>
-    </item>
-    <item>
-      <title>stock-index-api</title>
-      <link>https://github.com/tbdavid2019/stock-index-api</link>
-      <guid isPermaLink="false">github-repo:stock-index-api</guid>
-      <pubDate>Wed, 18 Nov 2026 02:31:17 GMT</pubDate>
-      <category>github</category>
-      <description>股票指數的成分股 . 0050 SP500 等. 自動更新 [Python] ★2</description>
-    </item>
-    <item>
-      <title>4500年前的奇跡，230萬塊精密巨石，零機械、零廢料，古人究竟怎麼做到的？最新研究顛覆常識：金字塔不是建的，而是被「削」出來的！今天帶你徹底拆解金字塔的建造謎團....｜總裁聊聊</title>
-      <link>https://blog.david888.com/4500nian-qian-de-qi-ji-230wan-kuai-jing-mi-ju-shi-ling-ji-jie-ling-fei-liao-gu-ren-jiu-jing-zen-mo-zuo-dao-de-zui-xin-yan-jiu-dian-fu-chang-shi-jin-zi-ta-bu-shi-jian-de-er-shi-bei-xue-c/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/4500nian-qian-de-qi-ji-230wan-kuai-jing-mi-ju-shi-ling-ji-jie-ling-fei-liao-gu-ren-jiu-jing-zen-mo-zuo-dao-de-zui-xin-yan-jiu-dian-fu-chang-shi-jin-zi-ta-bu-shi-jian-de-er-shi-bei-xue-c/</guid>
-      <pubDate>Wed, 18 Nov 2026 01:14:46 GMT</pubDate>
-      <category>blog</category>
-      <description>📌 4500年前的奇跡，230萬塊精密巨石，零機械、零廢料，古人究竟怎麼做到的？最新研究顛覆常識：金字塔不是建的，而是被「削」出來的！今天帶你徹底拆解金字塔的建造謎團....｜總裁聊聊 ⓵ 【容易懂 Easy Know】 想像你要用積木疊一座超級完美、尖角剛好置中的金字塔蛋糕。如果你從底層一塊一塊往上疊，只要有一丁點手抖或歪斜，疊到頂端時一定會徹底歪掉，連蓋子都蓋不上去！ 韓國學者提出了一個超厲害的逆向思考：埃及人其實不是「蓋」金字塔，而是在「雕刻」金字塔！工人們先不管精不精準，隨便把巨石堆成一座高大的「石頭山」，接著把最頂端的小金字塔石放上去當基準…</description>
-    </item>
+    <lastBuildDate>Fri, 20 Nov 2026 00:58:30 GMT</lastBuildDate>
     <item>
       <title>github-status</title>
       <link>https://github.com/tbdavid2019/github-status</link>
       <guid isPermaLink="false">github-repo:github-status</guid>
-      <pubDate>Wed, 18 Nov 2026 01:01:38 GMT</pubDate>
+      <pubDate>Fri, 20 Nov 2026 00:41:30 GMT</pubDate>
       <category>github</category>
       <description>github個人統計 [JavaScript]</description>
+    </item>
+    <item>
+      <title>偉大 gg75130</title>
+      <link>https://www.threads.com/@david888.chiang/post/Df8Ym_1k9U4</link>
+      <guid isPermaLink="false">threads:Df8Ym_1k9U4</guid>
+      <pubDate>Fri, 20 Nov 2026 00:37:30 GMT</pubDate>
+      <category>threads</category>
+      <description>偉大 gg75130</description>
+    </item>
+    <item>
+      <title>2026-11-20 Claude破解黑洞難題卻因安全護欄降級遭炎上、Rails爆驗證前RCE震撼開發圈</title>
+      <link>https://podcast.david888.com/post/2026-11-20</link>
+      <guid isPermaLink="false">podcast:https://podcast.david888.com/post/2026-11-20</guid>
+      <pubDate>Fri, 20 Nov 2026 00:30:49 GMT</pubDate>
+      <category>podcast</category>
+      <description>詳細網頁版與參考連結：https://podcast.david888.com/post/2026-11-20 Anthropic以Claude多代理與Lean解開黑洞難題並赴Nasdaq上市，社群熱議財報與算力衝突；資安人員揭露白名單仍遭護欄誤擋、靜默降級且易繞過，轉抱開源。另談Rails預設RCE、表格注入劫持Agent、LLM逆向及ToolJet動態查詢攔截疑慮；最後涵蓋本地語音Moonshine、MiniMind、歐盟導入Matrix，及單機千萬伺服器、SQLite物件儲存與記憶體壓縮。</description>
+    </item>
+    <item>
+      <title>想搞定一個人，最蠢的方法就是送禮討好。 美國那些頂級政客拉攏盟友的方法完全相反：他們專挑關鍵人物，開口拜託對方幫自己一個小忙。 人性就是這樣，為你付出過的人，為了證明自己沒看走眼，反而會像買了你的原…</title>
+      <link>https://www.threads.com/@david888.chiang/post/Df8Xz1Sk2Fj</link>
+      <guid isPermaLink="false">threads:Df8Xz1Sk2Fj</guid>
+      <pubDate>Fri, 20 Nov 2026 00:30:30 GMT</pubDate>
+      <category>threads</category>
+      <description>想搞定一個人，最蠢的方法就是送禮討好。 美國那些頂級政客拉攏盟友的方法完全相反：他們專挑關鍵人物，開口拜託對方幫自己一個小忙。 人性就是這樣，為你付出過的人，為了證明自己沒看走眼，反而會像買了你的原始股一樣，死心塌地挺你到底。 對付死對頭更不是撕破臉，而是直接拉到身邊當心腹。 當年雷根把公開痛罵過自己的政敵找來當幕僚長，把對手放在眼皮底下，他的利益就跟你綁死，哪還有力氣在背後開冷槍？ 高手從不把時間花在生氣和討好，他們擅長的是讓別人的自尊心替自己賣命。 你在職場上遇過這種表面客氣、手段卻深不見底的狠角色嗎？👀</description>
+    </item>
+    <item>
+      <title>blog.david888.com/wen-m…</title>
+      <link>https://www.threads.com/@david888.chiang/post/Df8X0WIE06o</link>
+      <guid isPermaLink="false">threads:Df8X0WIE06o</guid>
+      <pubDate>Fri, 20 Nov 2026 00:30:30 GMT</pubDate>
+      <category>threads</category>
+      <description>blog.david888.com/wen-m…</description>
+    </item>
+    <item>
+      <title>文明規則逼野心家低頭？解密《硬球》美國總統的實戰權謀術</title>
+      <link>https://blog.david888.com/wen-ming-gui-ze-bi-ye-xin-jia-di-tou-jie-mi-ying-qiu-mei-guo-zong-tong-de-shi-zhan-quan-mou-shu/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/wen-ming-gui-ze-bi-ye-xin-jia-di-tou-jie-mi-ying-qiu-mei-guo-zong-tong-de-shi-zhan-quan-mou-shu/</guid>
+      <pubDate>Fri, 20 Nov 2026 00:27:43 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 文明規則逼野心家低頭？解密《硬球》美國總統的實戰權謀術 ⓵ 【容易懂 Easy Know】 想像你在學校選班長，既不能打人也不能作弊，要怎麼贏？厲害的政客就像球場上的老手，玩的不是打架犯規的「髒球」，也不是客套隨便的「軟球」，而是規則內寸土不讓的「硬球」。 他們拉攏朋友不是到處送糖果，而是反過來「拜託別人幫忙」，因為幫過你的人反而更挺你；對付討厭的對手，不是在背後罵他，而是把他拉到身邊一起做事，讓他沒辦法搗蛋。在文明社會裡，不能用暴力逼人害怕，你就必須懂得哄飽別人的自尊心，讓大家心甘情願聽你的。 ⓶ 【總結 Overall Summary】 政治…</description>
+    </item>
+    <item>
+      <title>hermes-agent-docs-skill</title>
+      <link>https://github.com/tbdavid2019/hermes-agent-docs-skill</link>
+      <guid isPermaLink="false">github-repo:hermes-agent-docs-skill</guid>
+      <pubDate>Fri, 20 Nov 2026 00:23:50 GMT</pubDate>
+      <category>github</category>
+      <description>skill系列 - 讓你的LLM 有 hermes agent 的維護知識(自動更新) [Python]</description>
+    </item>
+    <item>
+      <title>OpenCCFontGenerator</title>
+      <link>https://github.com/tbdavid2019/OpenCCFontGenerator</link>
+      <guid isPermaLink="false">github-repo:OpenCCFontGenerator</guid>
+      <pubDate>Fri, 20 Nov 2026 00:18:41 GMT</pubDate>
+      <category>github</category>
+      <description>製作一個自動字型， 可以把 簡體字 看成 繁體字 [Python] ★1</description>
+    </item>
+    <item>
+      <title>SAP-spartacus-docs-skill</title>
+      <link>https://github.com/tbdavid2019/SAP-spartacus-docs-skill</link>
+      <guid isPermaLink="false">github-repo:SAP-spartacus-docs-skill</guid>
+      <pubDate>Fri, 20 Nov 2026 00:15:52 GMT</pubDate>
+      <category>github</category>
+      <description>SAP spartacus ecommerce 前端開發文件 skill [Python]</description>
+    </item>
+    <item>
+      <title>不靠暴力威脅怎麼贏？揭開美國頂尖政客《硬球》博弈的逆向人性學</title>
+      <link>https://blog.david888.com/bu-kao-bao-li-wei-xie-zen-mo-ying-jie-kai-mei-guo-ding-jian-zheng-ke-ying-qiu-bo-yi-de-ni-xiang-ren-xing-xue/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/bu-kao-bao-li-wei-xie-zen-mo-ying-jie-kai-mei-guo-ding-jian-zheng-ke-ying-qiu-bo-yi-de-ni-xiang-ren-xing-xue/</guid>
+      <pubDate>Fri, 20 Nov 2026 00:05:06 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 不靠暴力威脅怎麼贏？揭開美國頂尖政客《硬球》博弈的逆向人性學 ⓵ 【容易懂 Easy Know】 在文明社會裡，職場或政治的競爭不能靠打架、暗算或暴力解決，就像大家在球場比賽，必須遵守界線。「硬球」（Hardball）指的不是惡意犯規的髒球，而是在規則允許範圍內，真刀真槍玩到極致的權力技巧。 頂尖高手的秘訣往往非常「反直覺」：想結交鐵桿盟友，不是一味討好送禮，反而是開口請對方幫忙，讓他心理上成為你的「股東」；面對討厭的對手，不是把他趕得遠遠的，而是放在身邊綁定利益；談判時把面子全讓給別人，自己默默拿走裡子。這是一套收起傲慢、順應人性的高級博弈術。…</description>
+    </item>
+    <item>
+      <title>telegram-docs-skill</title>
+      <link>https://github.com/tbdavid2019/telegram-docs-skill</link>
+      <guid isPermaLink="false">github-repo:telegram-docs-skill</guid>
+      <pubDate>Fri, 20 Nov 2026 00:05:06 GMT</pubDate>
+      <category>github</category>
+      <description>skill系列 - 讓你的LLM 有 telegram bot api 開發知識 [Python] ★4</description>
     </item>
     <item>
       <title>line-docs-skill</title>
       <link>https://github.com/tbdavid2019/line-docs-skill</link>
       <guid isPermaLink="false">github-repo:line-docs-skill</guid>
-      <pubDate>Tue, 17 Nov 2026 12:40:38 GMT</pubDate>
+      <pubDate>Fri, 20 Nov 2026 00:05:04 GMT</pubDate>
       <category>github</category>
       <description>skill系列 - 讓你的LLM 有 line bot / lineOA / line官方帳號的 開發知識 [Python] ★3</description>
     </item>
@@ -139,73 +107,105 @@
       <title>openclaw-docs-skill</title>
       <link>https://github.com/tbdavid2019/openclaw-docs-skill</link>
       <guid isPermaLink="false">github-repo:openclaw-docs-skill</guid>
-      <pubDate>Tue, 17 Nov 2026 12:40:11 GMT</pubDate>
+      <pubDate>Thu, 19 Nov 2026 23:47:32 GMT</pubDate>
       <category>github</category>
-      <description>自動每日更新, 讓你的LLM有面對openclaw疑難雜症處理的能力。This is an Agent Skill designed for AI coding assistants (like Claude with Antigravity). Once installed,…</description>
+      <description>npx -y openclaw-docs-skill@latest 自動每日更新, 讓你的LLM有面對openclaw疑難雜症處理的能力。This is an Agent Skill designed for AI coding assistants (like Claude…</description>
     </item>
     <item>
-      <title>hermes-agent-docs-skill</title>
-      <link>https://github.com/tbdavid2019/hermes-agent-docs-skill</link>
-      <guid isPermaLink="false">github-repo:hermes-agent-docs-skill</guid>
-      <pubDate>Tue, 17 Nov 2026 12:38:37 GMT</pubDate>
+      <title>tw_road_fix_map</title>
+      <link>https://github.com/tbdavid2019/tw_road_fix_map</link>
+      <guid isPermaLink="false">github-repo:tw_road_fix_map</guid>
+      <pubDate>Thu, 19 Nov 2026 12:20:44 GMT</pubDate>
       <category>github</category>
-      <description>skill系列 - 讓你的LLM 有 hermes agent 的維護知識(自動更新) [Python]</description>
+      <description>台灣施工地圖 [JavaScript]</description>
     </item>
     <item>
-      <title>Elon Musk刚刚打破了50年的停滞，Peter Thiel等的这一天终于来了</title>
-      <link>https://blog.david888.com/elon-muskgang-gang-da-po-liao-50nian-de-ting-zhi-peter-thieldeng-de-zhe-yi-tian-zhong-yu-lai-liao/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/elon-muskgang-gang-da-po-liao-50nian-de-ting-zhi-peter-thieldeng-de-zhe-yi-tian-zhong-yu-lai-liao/</guid>
-      <pubDate>Tue, 17 Nov 2026 11:08:42 GMT</pubDate>
+      <title>馬斯克專訪大暴雷？力挺黃仁勳如喬丹遭逐，更揭特斯拉合併太空算力野心</title>
+      <link>https://blog.david888.com/ma-si-ke-zhuan-fang-da-bao-lei-li-ting-huang-ren-xun-ru-qiao-dan-zao-zhu-geng-jie-te-si-la-he-bing-tai-kong-suan-li-ye-xin/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/ma-si-ke-zhuan-fang-da-bao-lei-li-ting-huang-ren-xun-ru-qiao-dan-zao-zhu-geng-jie-te-si-la-he-bing-tai-kong-suan-li-ye-xin/</guid>
+      <pubDate>Thu, 19 Nov 2026 11:02:01 GMT</pubDate>
       <category>blog</category>
-      <description>📌 Elon Musk刚刚打破了50年的停滞，Peter Thiel等的这一天终于来了 ⓵ 【容易懂 Easy Know】 想像你在手機遊戲裡蓋一座摩天大樓，只要按幾下螢幕就能瞬間複製完成，而且幾乎不用花錢，這就像「數位世界」。但在真實生活裡，你要開怪手、搬磚頭、調水泥，萬一蓋歪倒塌了，就得賠上大把的真金白銀從頭再來，這就是「物理世界」。 現在的 AI 就像一個在螢幕裡的超級天才，寫報告、寫程式都難不倒它；但如果它沒有一雙「手」走出螢幕，去幫忙造火箭、蓋房子或發明新藥，它就沒辦法真正改變我們現實中看病、搭車等日常生活。 ⓶ 【總結 Overall S…</description>
+      <description>📌 馬斯克專訪大暴雷？力挺黃仁勳如喬丹遭逐，更揭特斯拉合併太空算力野心 ⓵ 【容易懂 Easy Know】 想像一下，芝加哥公牛隊正在連勝拿冠軍，教練卻突然把靈魂球星麥可·喬丹開除，這聽起來是不是超荒謬？科技巨頭馬斯克最近受訪時，就用這個比喻來形容輝達（NVIDIA）董事會趕走創辦人黃仁勳的決定。馬斯克認為黃仁勳是不可取代的靈魂人物。除了替好友抱不平，馬斯克還透露未來想把特斯拉和 SpaceX 合併，甚至把人工智慧大腦送到太空中運作，以及他在烏克蘭星鏈網路與政治選舉背後的真實想法。 ⓶ 【總結 Overall Summary】 在《紐約時報》舉辦的年…</description>
     </item>
     <item>
       <title>paper-daily</title>
       <link>https://github.com/tbdavid2019/paper-daily</link>
       <guid isPermaLink="false">github-repo:paper-daily</guid>
-      <pubDate>Tue, 17 Nov 2026 10:31:51 GMT</pubDate>
+      <pubDate>Thu, 19 Nov 2026 10:09:38 GMT</pubDate>
       <category>github</category>
       <description>學術論文追蹤器 https://tbdavid2019.github.io/paper-daily/ [Python]</description>
     </item>
     <item>
-      <title>tbdavid2019 pushed 888a2a-lite</title>
-      <link>https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044</link>
-      <guid isPermaLink="false">github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/c331bee70f...0973206044</guid>
-      <pubDate>Tue, 17 Nov 2026 09:59:54 GMT</pubDate>
+      <title>四個圓周率疊成冪塔會是整數嗎？連超級電腦都算不出的世紀數學謎局</title>
+      <link>https://blog.david888.com/si-ge-yuan-zhou-lu-die-cheng-mi-ta-hui-shi-zheng-shu-ma-lian-chao-ji-dian-nao-du-suan-bu-chu-de-shi-ji-shu-xue-mi-ju/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/si-ge-yuan-zhou-lu-die-cheng-mi-ta-hui-shi-zheng-shu-ma-lian-chao-ji-dian-nao-du-suan-bu-chu-de-shi-ji-shu-xue-mi-ju/</guid>
+      <pubDate>Thu, 19 Nov 2026 10:08:53 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 四個圓周率疊成冪塔會是整數嗎？連超級電腦都算不出的世紀數學謎局 ⓵ 【容易懂 Easy Know】 想像你把四個圓周率 $\pi$（約 3.14）像疊積木一樣，一層一層往上算次方：$\pi$ 的 $\pi$ 次方的 $\pi$ 次方再次方。這就像給數字施了「膨脹魔法」，結果會大到不可思議！ 大家很好奇：這個由無限不循環小數疊出來的龐然大物，最後算出來有沒有可能「剛好是個整數」？聽起來很不可思議，但在數學中，無理數相乘方確實有機會變回整數。然而，因為四層圓周率疊上去後的位數多達幾十億億位，就連全世界最強大的超級電腦也算不出來，成了數學家至今都解不開…</description>
+    </item>
+    <item>
+      <title>店員說的「消磁」竟然是燒毀電路？揭開賣場防盜門不為人知的感應真相</title>
+      <link>https://blog.david888.com/dian-yuan-shuo-de-xiao-ci-jing-ran-shi-shao-hui-dian-lu-jie-kai-mai-chang-fang-dao-men-bu-wei-ren-zhi-de-gan-ying-zhen-xiang/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/dian-yuan-shuo-de-xiao-ci-jing-ran-shi-shao-hui-dian-lu-jie-kai-mai-chang-fang-dao-men-bu-wei-ren-zhi-de-gan-ying-zhen-xiang/</guid>
+      <pubDate>Thu, 19 Nov 2026 09:58:27 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 店員說的「消磁」竟然是燒毀電路？揭開賣場防盜門不為人知的感應真相 ⓵ 【容易懂 Easy Know】 賣場門口的兩根防盜柱子，其實不認得商品也不會看條碼，它們只是一直在走道間散發看不見的電磁波，尋找特製的防盜標籤。這就像玩盪鞦韆：防盜貼紙裡藏著一個微小電路，只要柱子發出的頻率對了，貼紙就會跟著「盪起來」並吸走能量，柱子發現能量突然變少，就會立刻嗶嗶叫報警！結帳時店員所謂的「消磁」，其實是用超強力量把貼紙盪到短路燒壞；另一種厚塑膠長條，則是讓裡面的小磁鐵失去磁性。所以手機經過根本不會壞，也不用拿去消磁喔！ ⓶ 【總結 Overall Summary…</description>
+    </item>
+    <item>
+      <title>揭開Anthropic三色帳本：從千億循環融資看懂AI泡沫真相</title>
+      <link>https://blog.david888.com/jie-kai-anthropicsan-se-zhang-ben-cong-qian-yi-xun-huan-rong-zi-kan-dong-aipao-mo-zhen-xiang/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/jie-kai-anthropicsan-se-zhang-ben-cong-qian-yi-xun-huan-rong-zi-kan-dong-aipao-mo-zhen-xiang/</guid>
+      <pubDate>Thu, 19 Nov 2026 09:42:58 GMT</pubDate>
+      <category>blog</category>
+      <description>📌 揭開Anthropic三色帳本：從千億循環融資看懂AI泡沫真相 📝 [ DAVID888 筆記／觀點備註 ] 藍錢 紅錢 紫錢 分別代表什麼呢？ 原來紫色錢最不健康 💬 【針對筆記與疑問回應】 根據影片中的生動比喻，這三種顏色的錢清楚勾勒出當前 AI 巨頭營收背後的「資金成色」： 1. 紅錢（循環融資／自己人的錢）： 2. 代表意義：指投資巨頭（如微軟、Google、亞馬遜）投資給 AI 公司的錢，AI 公司轉頭又拿去租用這幾家巨頭的雲端算力與伺服器。 3. 本質：同一筆錢「出門溜達一圈又回來」，左手交右手，把股權投資包裝成巨頭財報上亮眼的雲…</description>
+    </item>
+    <item>
+      <title>telegram-bot-summary</title>
+      <link>https://github.com/tbdavid2019/telegram-bot-summary</link>
+      <guid isPermaLink="false">github-repo:telegram-bot-summary</guid>
+      <pubDate>Thu, 19 Nov 2026 09:37:02 GMT</pubDate>
       <category>github</category>
-      <description>tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 09:59 1 commit to main 0973206 feat(web,seo): add Open Graph, Twitter Card, JSON-LD, favicons, manif…</description>
+      <description>濃縮重點機器人Telegram bot can generate concise summaries of text, URLs, PDFs, and YouTube videos. [Python] ★1</description>
+    </item>
+    <item>
+      <title>矽谷最大騙徒伊麗莎白霍姆斯坐牢前幹過最荒謬的事，就是找整人鬼才導演拍片想洗白自己，結果被整到無所遁形。 導演直接用極近特寫死盯她的微表情，看她硬拗當初說技術能做到只是指「未來的可能性」。更瘋的是她入…</title>
+      <link>https://www.threads.com/@david888.chiang/post/Df6ryMAk7pP</link>
+      <guid isPermaLink="false">threads:Df6ryMAk7pP</guid>
+      <pubDate>Thu, 19 Nov 2026 08:58:30 GMT</pubDate>
+      <category>threads</category>
+      <description>矽谷最大騙徒伊麗莎白霍姆斯坐牢前幹過最荒謬的事，就是找整人鬼才導演拍片想洗白自己，結果被整到無所遁形。 導演直接用極近特寫死盯她的微表情，看她硬拗當初說技術能做到只是指「未來的可能性」。更瘋的是她入獄後，導演找來之前在影集演過她的好萊塢女星，蓋了座假監獄重演探監對話，把自欺欺人玩成最高級的心理戰。 最毛的是，連導演自己都差點被她那套楚楚可憐的無辜感牽著走。但吹哨者說得好，別被電影的獵奇感騙了，這女人的騙局當年害慘多少人誤診癌症跟愛滋。 大家到底是真的想看騙徒被拆穿，還是不知不覺又沉迷在她的表演裡了？</description>
+    </item>
+    <item>
+      <title>blog.david888.com/xi-gu…</title>
+      <link>https://www.threads.com/@david888.chiang/post/Df6ryiWk7i-</link>
+      <guid isPermaLink="false">threads:Df6ryiWk7i-</guid>
+      <pubDate>Thu, 19 Nov 2026 08:58:30 GMT</pubDate>
+      <category>threads</category>
+      <description>blog.david888.com/xi-gu…</description>
     </item>
     <item>
       <title>8882fa</title>
       <link>https://github.com/tbdavid2019/8882fa</link>
       <guid isPermaLink="false">github-repo:8882fa</guid>
-      <pubDate>Tue, 17 Nov 2026 09:12:25 GMT</pubDate>
+      <pubDate>Thu, 19 Nov 2026 08:46:59 GMT</pubDate>
       <category>github</category>
       <description>888 2FA - Two Factor Authenticator using Cloudflare Workers (繁體中文 / 簡體中文 / English) [JavaScript]</description>
     </item>
     <item>
-      <title>又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品</title>
-      <link>https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/you-gui-you-nan-chi-de-sai-bai-wei-zen-yao-tu-ran-mai-bao-liao-icshi-yan-shi-chu-pin/</guid>
-      <pubDate>Tue, 17 Nov 2026 08:51:11 GMT</pubDate>
+      <title>矽谷世紀女騙徒遇上整人鬼才！這部燒腦神片為何震撼奧斯卡？</title>
+      <link>https://blog.david888.com/xi-gu-shi-ji-nu-pian-tu-yu-shang-zheng-ren-gui-cai-zhe-bu-shao-nao-shen-pian-wei-he-zhen-han-ao-si-qia/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/xi-gu-shi-ji-nu-pian-tu-yu-shang-zheng-ren-gui-cai-zhe-bu-shao-nao-shen-pian-wei-he-zhen-han-ao-si-qia/</guid>
+      <pubDate>Thu, 19 Nov 2026 08:44:02 GMT</pubDate>
       <category>blog</category>
-      <description>📌 又贵又难吃的赛百味，怎么突然卖爆了？- IC实验室出品 ⓵ 【容易懂 Easy Know】 以前外國流行的「白人飯」就像冬天逼你吃冰箱拿出來的生冷胡蘿蔔和乾麵包，雖然號稱健康減肥，但對習慣吃熱騰騰飯菜的亞洲人來說，簡直是「又貴又難吃」的折磨。 後來，中國團隊接手改造，就像給三明治施了魔法：把冷冰冰的麵包和配料送進烤箱「全線熱烤」，加入烤鴨、麻辣牛肉等中式口味，甚至配上一杯熱豆漿。大家發現三明治變熱、變香了，才終於願意掏錢買單。 ⓶ 【總結 Overall Summary】 中國輕食市場規模預計將達 5,000 億元，但過去以沙拉、冷食三明治為代表…</description>
+      <description>📌 矽谷世紀女騙徒遇上整人鬼才！這部燒腦神片為何震撼奧斯卡？ ⓵ 【容易懂 Easy Know】 想像一下，學校裡有個說謊成性的同學，明明考試都作弊，卻靠著名牌衣服和甜言蜜語，把全校師長唬得團團轉，甚至騙走了大筆零用錢。就在東窗事發、準備被嚴懲前，她找來一位專門拍整人節目的怪咖導演，想拍一部影片證明自己其實很善良。 沒想到，這個導演是個「抓謊大師」！他沒有當面拆穿她，而是用攝影機貼身緊盯她的微表情，甚至在她去坐牢後，找來演過她的專業女演員搭建假監獄來「排練」對話。整部片就像一面照妖鏡，把女騙子的心機與謊言層層剝開，變成一場比推理小說還要燒腦的心理大鬥…</description>
     </item>
     <item>
-      <title>tbdavid2019 pushed 888a2a-lite</title>
-      <link>https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445</link>
-      <guid isPermaLink="false">github-activity:https://github.com/tbdavid2019/888a2a-lite/compare/9501811556...ad8b747445</guid>
-      <pubDate>Tue, 17 Nov 2026 08:45:49 GMT</pubDate>
-      <category>github</category>
-      <description>tbdavid2019 pushed to main in tbdavid2019/888a2a-lite · November 17, 2026 08:45 1 commit to main ad8b747 test(bridge): stub auto_accept_pending_invitations on notify-only Hub…</description>
-    </item>
-    <item>
-      <title>為何日本關東煮這麼好吃？明明台灣也有 味道卻完全不同 秘密在哪裡？</title>
-      <link>https://blog.david888.com/wei-he-ri-ben-guan-dong-zhu-zhe-mo-hao-chi-ming-ming-tai-wan-ye-you-wei-dao-que-wan-quan-bu-tong-mi-mi-zai-na-li/</link>
-      <guid isPermaLink="false">blog:https://blog.david888.com/wei-he-ri-ben-guan-dong-zhu-zhe-mo-hao-chi-ming-ming-tai-wan-ye-you-wei-dao-que-wan-quan-bu-tong-mi-mi-zai-na-li/</guid>
-      <pubDate>Tue, 17 Nov 2026 08:44:20 GMT</pubDate>
+      <title>是誰容不下黃仁勳？</title>
+      <link>https://blog.david888.com/shi-shui-rong-bu-xia-huang-ren-xun/</link>
+      <guid isPermaLink="false">blog:https://blog.david888.com/shi-shui-rong-bu-xia-huang-ren-xun/</guid>
+      <pubDate>Thu, 19 Nov 2026 08:01:35 GMT</pubDate>
       <category>blog</category>
-      <description>📌 為何日本關東煮這麼好吃？明明台灣也有 味道卻完全不同 秘密在哪裡？ ⓵ 【容易懂 Easy Know】 你想過為什麼日本的關東煮蘿蔔切開晶瑩剔透，湯卻像清水一樣乾淨嗎？很多人以為蘿蔔入味要一直開大火狂煮，但這其實是錯的！ 食材就像一塊海綿，大火狂滾時，裡面的水和油就像吹氣球一樣一直往外衝，外面的湯汁根本進不去，反而會把外皮煮成爛泥。真正的祕訣是「關火降溫」！當火關掉慢慢變涼時，蘿蔔裡面會產生吸力，這時候才像海綿吸水一樣，把高湯大口大口吸進最中心。再加上下鍋前把炸天婦羅用熱水洗掉老油（油拔），把蘿蔔的尖角削圓（面取），湯頭就能永遠保持清澈甘甜囉！…</description>
+      <description>📌 是誰容不下黃仁勳？ 這是一份針對所提供音訊轉錄文本的結構化分析總結報告： ⓵ 【容易懂 Easy Know】 想像英偉達（NVIDIA）就像武俠小說裡的「丐幫」，原本只做不起眼的遊戲顯示卡（像底層乞丐），後來練就了強大的 AI 運算絕世武功，變成了天下第一大幫！而創辦人黃仁勳就像武功蓋世的幫主「喬峰」。但當幫派變得超級巨大、甚至牽涉到國家利益與地緣政治時，長老們（董事會）開始擔心風險，加上他的族裔背景引起猜忌，最後喬峰不得不離開幫主之位。這告訴我們：當一艘船變得像航空母艦那麼大時，光靠船長個人的英雄能力，已經無法掌控所有複雜的風浪了。 ⓶ 【總結…</description>
     </item>
   </channel>
 </rss>

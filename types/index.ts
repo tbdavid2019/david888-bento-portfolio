@@ -106,6 +106,7 @@ export interface LinkCardData extends BaseCard {
     runtimeStatus?: BentoLinkRuntimeStatus;
     repoUrl?: string;
     cloneCommand?: string;
+    installCommand?: string;
     docUrl?: string;
     docLabel?: string;
     docLabelEn?: string;

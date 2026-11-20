@@ -58,6 +58,7 @@ import {
   Sparkle,
   Sparkles,
   Store,
+  Terminal,
   TreePine,
   TrendingUp,
   Type,
@@ -84,6 +85,7 @@ interface BentoLink {
   runtimeStatus?: BentoLinkRuntimeStatus;
   repoUrl?: string;
   cloneCommand?: string;
+  installCommand?: string;
   colSpan?: 1 | 2;
   docUrl?: string;
   docLabel?: string;
@@ -194,6 +196,7 @@ export const BentoLinkCard: React.FC<{
 }) => {
   const isEn = locale === 'en';
   const [copiedMcp, setCopiedMcp] = React.useState(false);
+  const [copiedInstall, setCopiedInstall] = React.useState(false);
   const title = isEn ? link.titleEn || link.title : link.title;
   const description = isEn ? link.descriptionEn || link.description : link.description;
   const highlights = isEn ? link.highlightsEn || link.highlights : link.highlights;
@@ -206,12 +209,19 @@ export const BentoLinkCard: React.FC<{
       : `Hugging Face Space 狀態：${statusCopy.zh}`
     : '';
 
-  const handleCopyMcp = (e: React.MouseEvent, text: string) => {
+  const copyWithFeedback = (
+    e: React.MouseEvent,
+    text: string,
+    setFlag: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
     e.stopPropagation();
     navigator.clipboard.writeText(text);
-    setCopiedMcp(true);
-    setTimeout(() => setCopiedMcp(false), 2000);
+    setFlag(true);
+    setTimeout(() => setFlag(false), 2000);
   };
+
+  const handleCopyMcp = (e: React.MouseEvent, text: string) => copyWithFeedback(e, text, setCopiedMcp);
+  const handleCopyInstall = (e: React.MouseEvent, cmd: string) => copyWithFeedback(e, cmd, setCopiedInstall);
 
   const mcpJson = link.mcpConfig
     ? link.mcpConfig.configJson ||
@@ -281,6 +291,32 @@ export const BentoLinkCard: React.FC<{
         {description && (
           <div className="mt-2 break-words text-sm leading-relaxed text-text-muted md:text-[15px]">
             {description}
+          </div>
+        )}
+
+        {link.installCommand && (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="mt-3 min-w-0 overflow-hidden rounded-xl border border-border bg-bg-surface p-2.5 text-xs"
+          >
+            <div className="flex items-center justify-between gap-2 pb-1.5">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-extrabold text-[#a9471d] dark:text-[#ffb010]">
+                <Terminal size={12} aria-hidden="true" />
+                <span>{isEn ? 'CLI Quick Install' : '一行指令安裝'}</span>
+              </span>
+              <button
+                type="button"
+                onClick={(e) => handleCopyInstall(e, link.installCommand!)}
+                className="inline-flex min-h-[30px] items-center gap-1 rounded-md border border-[#17324d] bg-[#fff0cc] px-2.5 py-0.5 font-mono text-[11px] font-bold text-[#17324d] transition-colors hover:bg-[#ffb010] focus-visible:outline-2 focus-visible:outline-[#17324d] dark:border-[#ffb010]/60 dark:bg-[#17324d] dark:text-[#ffb010] dark:hover:bg-[#ffb010] dark:hover:text-[#2b251a]"
+                aria-label={isEn ? `Copy ${link.installCommand}` : `複製 ${link.installCommand}`}
+              >
+                {copiedInstall ? <Check size={12} /> : <Copy size={12} />}
+                <span>{copiedInstall ? (isEn ? 'Copied!' : '已複製！') : (isEn ? 'Copy' : '複製')}</span>
+              </button>
+            </div>
+            <pre className="max-w-full overflow-x-auto rounded-lg bg-[#fffefa] px-2.5 py-1.5 font-mono text-[11px] font-semibold text-[#17324d] border border-border/60 dark:bg-[#0f2337] dark:text-[#fff9e8]">
+              <code>{link.installCommand}</code>
+            </pre>
           </div>
         )}
 

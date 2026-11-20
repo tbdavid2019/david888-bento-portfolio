@@ -312,7 +312,12 @@ export async function buildSiteContext({
       source: 'portfolio',
       featured: Boolean(item.flagship),
       title: truncateText(item.titleEn && item.title ? `${item.title} (${item.titleEn})` : (item.title || item.titleEn), 120),
-      summary: truncateText(item.description || item.descriptionEn || '', 140),
+      summary: truncateText(
+        [item.description || item.descriptionEn || '', item.installCommand ? `Install: ${item.installCommand}` : '']
+          .filter(Boolean)
+          .join(' '),
+        140,
+      ),
       url: item.url || `${siteOrigin}/${item.tag || 'products'}`,
       tags: [item.tag, ...(Array.isArray(item.techStack) ? item.techStack.slice(0, 4) : [])].filter(Boolean),
     }));
